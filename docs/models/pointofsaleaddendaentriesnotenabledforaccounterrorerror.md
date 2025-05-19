@@ -1,0 +1,23 @@
+# PointOfSaleAddendaEntriesNotEnabledForAccountErrorError
+
+## Example Usage
+
+```typescript
+import { PointOfSaleAddendaEntriesNotEnabledForAccountErrorError } from "dwolla-typescript";
+
+let value: PointOfSaleAddendaEntriesNotEnabledForAccountErrorError = {
+  code: "NotAllowed",
+  message: "Supplying point of sale addenda entries is currently not enabled.",
+  path: "",
+  links: {},
+};
+```
+
+## Fields
+
+| Field                                                                                                                                  | Type                                                                                                                                   | Required                                                                                                                               | Description                                                                                                                            | Example                                                                                                                                |
+| -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `code`                                                                                                                                 | *string*                                                                                                                               | :heavy_minus_sign:                                                                                                                     | N/A                                                                                                                                    | NotAllowed                                                                                                                             |
+| `message`                                                                                                                              | *string*                                                                                                                               | :heavy_minus_sign:                                                                                                                     | N/A                                                                                                                                    | Supplying point of sale addenda entries is currently not enabled.                                                                      |
+| `path`                                                                                                                                 | *string*                                                                                                                               | :heavy_minus_sign:                                                                                                                     | N/A                                                                                                                                    |                                                                                                                                        |
+| `links`                                                                                                                                | [models.PointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks](../models/pointofsaleaddendaentriesnotenabledforaccounterrorlinks.md) | :heavy_minus_sign:                                                                                                                     | N/A                                                                                                                                    | {}                                                                                                                                     |

@@ -1,0 +1,42 @@
+# MassPayment
+
+## Example Usage
+
+```typescript
+import { MassPayment } from "dwolla-typescript";
+
+let value: MassPayment = {
+  links: {
+    "key": {
+      href: "https://api.dwolla.com",
+      type: "application/vnd.dwolla.v1.hal+json",
+      resourceType: "resource-type",
+    },
+  },
+  id: "11ac4051-7b76-44fc-87ab-ae23012393f0",
+  status: "complete",
+  created: new Date("2022-01-20T17:41:41.000Z"),
+  total: {
+    value: "5.00",
+    currency: "USD",
+  },
+  totalFees: {
+    value: "5.00",
+    currency: "USD",
+  },
+  correlationId: "CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2",
+};
+```
+
+## Fields
+
+| Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   | Example                                                                                       |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `links`                                                                                       | Record<string, [models.HalLink](../models/hallink.md)>                                        | :heavy_minus_sign:                                                                            | N/A                                                                                           |                                                                                               |
+| `id`                                                                                          | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           | 11ac4051-7b76-44fc-87ab-ae23012393f0                                                          |
+| `status`                                                                                      | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           | complete                                                                                      |
+| `created`                                                                                     | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_minus_sign:                                                                            | N/A                                                                                           | 2022-01-20T17:41:41.000Z                                                                      |
+| `metaData`                                                                                    | [models.MassPaymentMetaData](../models/masspaymentmetadata.md)                                | :heavy_minus_sign:                                                                            | N/A                                                                                           |                                                                                               |
+| `total`                                                                                       | [models.TransferAmount](../models/transferamount.md)                                          | :heavy_minus_sign:                                                                            | N/A                                                                                           |                                                                                               |
+| `totalFees`                                                                                   | [models.TransferAmount](../models/transferamount.md)                                          | :heavy_minus_sign:                                                                            | N/A                                                                                           |                                                                                               |
+| `correlationId`                                                                               | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           | CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2                                                      |

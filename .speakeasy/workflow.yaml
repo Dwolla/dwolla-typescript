@@ -1,0 +1,18 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    Dwolla API:
+        inputs:
+            - location: ../dwolla-openapi/openapi.yml
+        registry:
+            location: registry.speakeasyapi.dev/dwolla-vc3/dwolla/dwolla-api
+targets:
+    dwolla:
+        target: typescript
+        source: Dwolla API
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/dwolla-vc3/dwolla/dwolla-api-typescript-code-samples
+            labelOverride:
+                fixedValue: Typescript (SDK)
+            blocking: false

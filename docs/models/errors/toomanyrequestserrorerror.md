@@ -1,0 +1,16 @@
+# TooManyRequestsErrorError
+
+## Example Usage
+
+```typescript
+import { TooManyRequestsErrorError } from "dwolla-typescript/models/errors";
+
+// No examples available for this model
+```
+
+## Fields
+
+| Field                                                                                                                                      | Type                                                                                                                                       | Required                                                                                                                                   | Description                                                                                                                                | Example                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `code`                                                                                                                                     | *string*                                                                                                                                   | :heavy_check_mark:                                                                                                                         | N/A                                                                                                                                        | TooManyRequests                                                                                                                            |
+| `message`                                                                                                                                  | *string*                                                                                                                                   | :heavy_check_mark:                                                                                                                         | N/A                                                                                                                                        | Concurrent transfers with the given funding source are not supported. Please wait a short period of time before re-attempting the request. |

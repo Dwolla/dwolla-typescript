@@ -1,0 +1,36 @@
+speakeasyVersion: 1.548.1
+sources:
+    Dwolla API:
+        sourceNamespace: dwolla-api
+        sourceRevisionDigest: sha256:304678320d00f4b14260a9c1a47773e548ea057857e4da553fd2684a312b890f
+        sourceBlobDigest: sha256:eb8414fb98a2ee64ac248a7dd4a9450159c5da0acebd88064fc6bf5c3d88858d
+        tags:
+            - latest
+            - "2.0"
+targets:
+    dwolla:
+        source: Dwolla API
+        sourceNamespace: dwolla-api
+        sourceRevisionDigest: sha256:304678320d00f4b14260a9c1a47773e548ea057857e4da553fd2684a312b890f
+        sourceBlobDigest: sha256:eb8414fb98a2ee64ac248a7dd4a9450159c5da0acebd88064fc6bf5c3d88858d
+        codeSamplesNamespace: dwolla-api-typescript-code-samples
+        codeSamplesRevisionDigest: sha256:e77ca741c07689173aa050c75de39e09b7538b6b054e61fb109d1ba6c3bd7558
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        Dwolla API:
+            inputs:
+                - location: ../dwolla-openapi/openapi.yml
+            registry:
+                location: registry.speakeasyapi.dev/dwolla-vc3/dwolla/dwolla-api
+    targets:
+        dwolla:
+            target: typescript
+            source: Dwolla API
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/dwolla-vc3/dwolla/dwolla-api-typescript-code-samples
+                labelOverride:
+                    fixedValue: Typescript (SDK)
+                blocking: false
