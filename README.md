@@ -186,33 +186,13 @@ For a full list of server arguments, run:
 npx -y --package dwolla-typescript -- mcp start --help
 ```
 
-<details>
-<summary>Local Development Configuration</summary>
+## Local Development
 
 For local development before the package is published, you can configure the MCP server to run
 directly from the source code.
 
-Create a `.cursor/mcp.json` file in your project root with the following content:
-
-```json
-{
-  "mcpServers": {
-    "Dwolla": {
-      "command": "node",
-      "args": [
-        "./bin/mcp-server.js",
-        "start",
-        "--client-id",
-        "...",
-        "--client-secret",
-        "...",
-        "--server-url",
-        "https://api-sandbox.dwolla.com"
-      ]
-    }
-  }
-}
-```
+<details>
+<summary>Claude Configuration</summary>
 
 Add the following server definition to your `claude_desktop_config.json` file:
 
@@ -237,10 +217,38 @@ Add the following server definition to your `claude_desktop_config.json` file:
 }
 ```
 
+</details>
+
+<details>
+<summary>Cursor Configuration</summary>
+
+Create a `.cursor/mcp.json` file in your project root with the following content:
+
+```json
+{
+  "mcpServers": {
+    "Dwolla": {
+      "command": "node",
+      "args": [
+        "./bin/mcp-server.js",
+        "start",
+        "--client-id",
+        "...",
+        "--client-secret",
+        "...",
+        "--server-url",
+        "https://api-sandbox.dwolla.com"
+      ]
+    }
+  }
+}
+```
+
+</details>
+
 This configuration assumes you have the source code cloned locally and are running the MCP server
 directly from the project directory.
 
-</details>
 <!-- End SDK Installation [installation] -->
 
 <!-- Start Requirements [requirements] -->
