@@ -19,11 +19,11 @@ export type ListCustomerMassPaymentsRequest = {
   /**
    * Number of search results to return. Defaults to 25
    */
-  limit?: string | undefined;
+  limit?: number | undefined;
   /**
    * Number of search results to skip. Use for pagination
    */
-  offset?: string | undefined;
+  offset?: number | undefined;
 };
 
 /** @internal */
@@ -34,16 +34,16 @@ export const ListCustomerMassPaymentsRequest$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   correlationId: z.string().optional(),
-  limit: z.string().optional(),
-  offset: z.string().optional(),
+  limit: z.number().int().optional(),
+  offset: z.number().int().optional(),
 });
 
 /** @internal */
 export type ListCustomerMassPaymentsRequest$Outbound = {
   id: string;
   correlationId?: string | undefined;
-  limit?: string | undefined;
-  offset?: string | undefined;
+  limit?: number | undefined;
+  offset?: number | undefined;
 };
 
 /** @internal */
@@ -54,8 +54,8 @@ export const ListCustomerMassPaymentsRequest$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   correlationId: z.string().optional(),
-  limit: z.string().optional(),
-  offset: z.string().optional(),
+  limit: z.number().int().optional(),
+  offset: z.number().int().optional(),
 });
 
 /**

@@ -21,12 +21,6 @@ export type FacilitatorFeeBelowMinimumErrorEmbedded = {
   errors?: Array<FacilitatorFeeBelowMinimumErrorError> | undefined;
 };
 
-export type FacilitatorFeeBelowMinimumError = {
-  code: string;
-  message: string;
-  embedded?: FacilitatorFeeBelowMinimumErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const FacilitatorFeeBelowMinimumErrorLinks$inboundSchema: z.ZodType<
   FacilitatorFeeBelowMinimumErrorLinks,
@@ -224,77 +218,5 @@ export function facilitatorFeeBelowMinimumErrorEmbeddedFromJSON(
         JSON.parse(x),
       ),
     `Failed to parse 'FacilitatorFeeBelowMinimumErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const FacilitatorFeeBelowMinimumError$inboundSchema: z.ZodType<
-  FacilitatorFeeBelowMinimumError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() => FacilitatorFeeBelowMinimumErrorEmbedded$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type FacilitatorFeeBelowMinimumError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?: FacilitatorFeeBelowMinimumErrorEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const FacilitatorFeeBelowMinimumError$outboundSchema: z.ZodType<
-  FacilitatorFeeBelowMinimumError$Outbound,
-  z.ZodTypeDef,
-  FacilitatorFeeBelowMinimumError
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  embedded: z.lazy(() => FacilitatorFeeBelowMinimumErrorEmbedded$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FacilitatorFeeBelowMinimumError$ {
-  /** @deprecated use `FacilitatorFeeBelowMinimumError$inboundSchema` instead. */
-  export const inboundSchema = FacilitatorFeeBelowMinimumError$inboundSchema;
-  /** @deprecated use `FacilitatorFeeBelowMinimumError$outboundSchema` instead. */
-  export const outboundSchema = FacilitatorFeeBelowMinimumError$outboundSchema;
-  /** @deprecated use `FacilitatorFeeBelowMinimumError$Outbound` instead. */
-  export type Outbound = FacilitatorFeeBelowMinimumError$Outbound;
-}
-
-export function facilitatorFeeBelowMinimumErrorToJSON(
-  facilitatorFeeBelowMinimumError: FacilitatorFeeBelowMinimumError,
-): string {
-  return JSON.stringify(
-    FacilitatorFeeBelowMinimumError$outboundSchema.parse(
-      facilitatorFeeBelowMinimumError,
-    ),
-  );
-}
-
-export function facilitatorFeeBelowMinimumErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<FacilitatorFeeBelowMinimumError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FacilitatorFeeBelowMinimumError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FacilitatorFeeBelowMinimumError' from JSON`,
   );
 }

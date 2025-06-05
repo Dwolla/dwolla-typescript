@@ -5,13 +5,7 @@
 ```typescript
 import { CreateCustomerResponse } from "dwolla-typescript/models/operations";
 
-let value: CreateCustomerResponse = {
-  headers: {
-    "key": [
-      "<value>",
-    ],
-  },
-};
+let value: CreateCustomerResponse = {};
 ```
 
 ## Fields

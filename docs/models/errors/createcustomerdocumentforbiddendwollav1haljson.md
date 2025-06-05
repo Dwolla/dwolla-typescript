@@ -5,20 +5,20 @@ not found
 
 ## Supported Types
 
-### `models.InvalidResourceStateSchema`
+### `errors.InvalidResourceStateSchemaError`
 
 ```typescript
-const value: models.InvalidResourceStateSchema = {
+const value: errors.InvalidResourceStateSchemaError = {
   code: "invalidResourceState",
   message:
     "Resource cannot be modified. Document creation not allowed for already verified Customers or non-verified Customer types.",
 };
 ```
 
-### `models.NotAuthorizedSchema`
+### `errors.NotAuthorizedSchemaError`
 
 ```typescript
-const value: models.NotAuthorizedSchema = {
+const value: errors.NotAuthorizedSchemaError = {
   code: "notAuthorized",
   message: "Not authorized to create documents.",
 };

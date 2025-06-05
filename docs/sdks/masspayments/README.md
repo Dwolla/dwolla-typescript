@@ -3,18 +3,16 @@
 
 ## Overview
 
-Operations related to Mass Payments
-
 ### Available Operations
 
-* [initiateMassPayment](#initiatemasspayment) - Initiate a mass payment
-* [getMassPayment](#getmasspayment) - Retrieve a mass payment
-* [updateMassPayment](#updatemasspayment) - Update a mass payment to process or cancel it
-* [listMassPaymentItems](#listmasspaymentitems) - List items for a mass payment
-* [getMassPaymentItem](#getmasspaymentitem) - Retrieve mass payment item
-* [listCustomerMassPayments](#listcustomermasspayments) - List mass payments for customer
+* [create](#create) - Initiate a mass payment
+* [get](#get) - Retrieve a mass payment
+* [update](#update) - Update a mass payment
+* [listItems](#listitems) - List items for a mass payment
+* [getItem](#getitem) - Retrieve mass payment item
+* [listForCustomer](#listforcustomer) - List mass payments for customer
 
-## initiateMassPayment
+## create
 
 Initiate a mass payment
 
@@ -24,11 +22,14 @@ Initiate a mass payment
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.massPayments.initiateMassPayment({
+  const result = await dwolla.massPayments.create({
     links: {
       source: {
         href: "https://api.dwolla.com/funding-sources/707177c3-bf15-4e7e-b37c-55c3898d9bf4",
@@ -106,7 +107,6 @@ async function run() {
     correlationId: "ad6ca82d-59f7-45f0-a8d2-94c2cd4e8841",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -119,16 +119,19 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { massPaymentsInitiateMassPayment } from "dwolla-typescript/funcs/massPaymentsInitiateMassPayment.js";
+import { massPaymentsCreate } from "dwolla-typescript/funcs/massPaymentsCreate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await massPaymentsInitiateMassPayment(dwolla, {
+  const res = await massPaymentsCreate(dwolla, {
     links: {
       source: {
         href: "https://api.dwolla.com/funding-sources/707177c3-bf15-4e7e-b37c-55c3898d9bf4",
@@ -205,15 +208,12 @@ async function run() {
     },
     correlationId: "ad6ca82d-59f7-45f0-a8d2-94c2cd4e8841",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("massPaymentsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -234,11 +234,13 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| errors.BadRequestError                         | 400                                            | application/vnd.dwolla.v1.hal+json             |
+| errors.InitiateMassPaymentDwollaV1HalJSONError | 403                                            | application/vnd.dwolla.v1.hal+json             |
+| errors.APIError                                | 4XX, 5XX                                       | \*/\*                                          |
 
-## getMassPayment
+## get
 
 Retrieve a mass payment
 
@@ -248,15 +250,17 @@ Retrieve a mass payment
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.massPayments.getMassPayment({
+  const result = await dwolla.massPayments.get({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -269,27 +273,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { massPaymentsGetMassPayment } from "dwolla-typescript/funcs/massPaymentsGetMassPayment.js";
+import { massPaymentsGet } from "dwolla-typescript/funcs/massPaymentsGet.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await massPaymentsGetMassPayment(dwolla, {
+  const res = await massPaymentsGet(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("massPaymentsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -310,13 +314,15 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| errors.GetMassPaymentForbiddenDwollaV1HalJSONError | 403                                                | application/vnd.dwolla.v1.hal+json                 |
+| errors.GetMassPaymentNotFoundDwollaV1HalJSONError  | 404                                                | application/vnd.dwolla.v1.hal+json                 |
+| errors.APIError                                    | 4XX, 5XX                                           | \*/\*                                              |
 
-## updateMassPayment
+## update
 
-Update a mass payment to process or cancel it
+This section covers how to update a mass payment's status to `pending` which triggers processing on a created and deferred mass payment, or `cancelled` which cancels a created and deferred mass payment.
 
 ### Example Usage
 
@@ -324,18 +330,20 @@ Update a mass payment to process or cancel it
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.massPayments.updateMassPayment({
+  const result = await dwolla.massPayments.update({
     id: "<id>",
     requestBody: {
       status: "pending",
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -348,30 +356,30 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { massPaymentsUpdateMassPayment } from "dwolla-typescript/funcs/massPaymentsUpdateMassPayment.js";
+import { massPaymentsUpdate } from "dwolla-typescript/funcs/massPaymentsUpdate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await massPaymentsUpdateMassPayment(dwolla, {
+  const res = await massPaymentsUpdate(dwolla, {
     id: "<id>",
     requestBody: {
       status: "pending",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("massPaymentsUpdate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -392,11 +400,14 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| errors.BadRequestError                                | 400                                                   | application/vnd.dwolla.v1.hal+json                    |
+| errors.UpdateMassPaymentForbiddenDwollaV1HalJSONError | 403                                                   | application/vnd.dwolla.v1.hal+json                    |
+| errors.UpdateMassPaymentNotFoundDwollaV1HalJSONError  | 404                                                   | application/vnd.dwolla.v1.hal+json                    |
+| errors.APIError                                       | 4XX, 5XX                                              | \*/\*                                                 |
 
-## listMassPaymentItems
+## listItems
 
 List items for a mass payment
 
@@ -406,15 +417,17 @@ List items for a mass payment
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.massPayments.listMassPaymentItems({
+  const result = await dwolla.massPayments.listItems({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -427,27 +440,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { massPaymentsListMassPaymentItems } from "dwolla-typescript/funcs/massPaymentsListMassPaymentItems.js";
+import { massPaymentsListItems } from "dwolla-typescript/funcs/massPaymentsListItems.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await massPaymentsListMassPaymentItems(dwolla, {
+  const res = await massPaymentsListItems(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("massPaymentsListItems failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -468,11 +481,13 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
+| Error Type                                               | Status Code                                              | Content Type                                             |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| errors.ListMassPaymentItemsForbiddenDwollaV1HalJSONError | 403                                                      | application/vnd.dwolla.v1.hal+json                       |
+| errors.ListMassPaymentItemsNotFoundDwollaV1HalJSONError  | 404                                                      | application/vnd.dwolla.v1.hal+json                       |
+| errors.APIError                                          | 4XX, 5XX                                                 | \*/\*                                                    |
 
-## getMassPaymentItem
+## getItem
 
 Retrieve mass payment item
 
@@ -482,15 +497,17 @@ Retrieve mass payment item
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.massPayments.getMassPaymentItem({
+  const result = await dwolla.massPayments.getItem({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -503,27 +520,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { massPaymentsGetMassPaymentItem } from "dwolla-typescript/funcs/massPaymentsGetMassPaymentItem.js";
+import { massPaymentsGetItem } from "dwolla-typescript/funcs/massPaymentsGetItem.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await massPaymentsGetMassPaymentItem(dwolla, {
+  const res = await massPaymentsGetItem(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("massPaymentsGetItem failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -544,11 +561,13 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
+| Error Type                                             | Status Code                                            | Content Type                                           |
+| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
+| errors.GetMassPaymentItemForbiddenDwollaV1HalJSONError | 403                                                    | application/vnd.dwolla.v1.hal+json                     |
+| errors.GetMassPaymentItemNotFoundDwollaV1HalJSONError  | 404                                                    | application/vnd.dwolla.v1.hal+json                     |
+| errors.APIError                                        | 4XX, 5XX                                               | \*/\*                                                  |
 
-## listCustomerMassPayments
+## listForCustomer
 
 List mass payments for customer
 
@@ -558,15 +577,17 @@ List mass payments for customer
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.massPayments.listCustomerMassPayments({
+  const result = await dwolla.massPayments.listForCustomer({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -579,27 +600,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { massPaymentsListCustomerMassPayments } from "dwolla-typescript/funcs/massPaymentsListCustomerMassPayments.js";
+import { massPaymentsListForCustomer } from "dwolla-typescript/funcs/massPaymentsListForCustomer.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await massPaymentsListCustomerMassPayments(dwolla, {
+  const res = await massPaymentsListForCustomer(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("massPaymentsListForCustomer failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -620,6 +641,8 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                   | Status Code                                                  | Content Type                                                 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| errors.ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError | 403                                                          | application/vnd.dwolla.v1.hal+json                           |
+| errors.ListCustomerMassPaymentsNotFoundDwollaV1HalJSONError  | 404                                                          | application/vnd.dwolla.v1.hal+json                           |
+| errors.APIError                                              | 4XX, 5XX                                                     | \*/\*                                                        |

@@ -18,17 +18,18 @@ Generates an access token that contains permissions scoped to the application ow
 ```typescript
 import { Dwolla } from "dwolla-typescript";
 
-const dwolla = new Dwolla();
+const dwolla = new Dwolla({
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
+});
 
 async function run() {
   const result = await dwolla.tokens.createApplicationAccessToken({
-    username: "",
-    password: "",
-  }, {
     grantType: "client_credentials",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -45,24 +46,23 @@ import { tokensCreateApplicationAccessToken } from "dwolla-typescript/funcs/toke
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const dwolla = new DwollaCore();
+const dwolla = new DwollaCore({
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
+});
 
 async function run() {
   const res = await tokensCreateApplicationAccessToken(dwolla, {
-    username: "",
-    password: "",
-  }, {
     grantType: "client_credentials",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("tokensCreateApplicationAccessToken failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -73,7 +73,6 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                                                                                                      | [operations.CreateApplicationAccessTokenRequest](../../models/operations/createapplicationaccesstokenrequest.md)                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `security`                                                                                                                                                                     | [operations.CreateApplicationAccessTokenSecurity](../../models/operations/createapplicationaccesstokensecurity.md)                                                             | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |

@@ -23,14 +23,6 @@ export type PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded = {
     | undefined;
 };
 
-export type PointOfSaleAddendaEntriesNotEnabledForAccountError = {
-  code: string;
-  message: string;
-  embedded?:
-    | PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded
-    | undefined;
-};
-
 /** @internal */
 export const PointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks$inboundSchema:
   z.ZodType<
@@ -255,93 +247,5 @@ export function pointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbeddedFromJS
       PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded$inboundSchema
         .parse(JSON.parse(x)),
     `Failed to parse 'PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const PointOfSaleAddendaEntriesNotEnabledForAccountError$inboundSchema:
-  z.ZodType<
-    PointOfSaleAddendaEntriesNotEnabledForAccountError,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    code: z.string(),
-    message: z.string(),
-    _embedded: z.lazy(() =>
-      PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded$inboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "_embedded": "embedded",
-    });
-  });
-
-/** @internal */
-export type PointOfSaleAddendaEntriesNotEnabledForAccountError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?:
-    | PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const PointOfSaleAddendaEntriesNotEnabledForAccountError$outboundSchema:
-  z.ZodType<
-    PointOfSaleAddendaEntriesNotEnabledForAccountError$Outbound,
-    z.ZodTypeDef,
-    PointOfSaleAddendaEntriesNotEnabledForAccountError
-  > = z.object({
-    code: z.string(),
-    message: z.string(),
-    embedded: z.lazy(() =>
-      PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      embedded: "_embedded",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PointOfSaleAddendaEntriesNotEnabledForAccountError$ {
-  /** @deprecated use `PointOfSaleAddendaEntriesNotEnabledForAccountError$inboundSchema` instead. */
-  export const inboundSchema =
-    PointOfSaleAddendaEntriesNotEnabledForAccountError$inboundSchema;
-  /** @deprecated use `PointOfSaleAddendaEntriesNotEnabledForAccountError$outboundSchema` instead. */
-  export const outboundSchema =
-    PointOfSaleAddendaEntriesNotEnabledForAccountError$outboundSchema;
-  /** @deprecated use `PointOfSaleAddendaEntriesNotEnabledForAccountError$Outbound` instead. */
-  export type Outbound =
-    PointOfSaleAddendaEntriesNotEnabledForAccountError$Outbound;
-}
-
-export function pointOfSaleAddendaEntriesNotEnabledForAccountErrorToJSON(
-  pointOfSaleAddendaEntriesNotEnabledForAccountError:
-    PointOfSaleAddendaEntriesNotEnabledForAccountError,
-): string {
-  return JSON.stringify(
-    PointOfSaleAddendaEntriesNotEnabledForAccountError$outboundSchema.parse(
-      pointOfSaleAddendaEntriesNotEnabledForAccountError,
-    ),
-  );
-}
-
-export function pointOfSaleAddendaEntriesNotEnabledForAccountErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  PointOfSaleAddendaEntriesNotEnabledForAccountError,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      PointOfSaleAddendaEntriesNotEnabledForAccountError$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'PointOfSaleAddendaEntriesNotEnabledForAccountError' from JSON`,
   );
 }

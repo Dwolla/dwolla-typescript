@@ -7,17 +7,17 @@ Operations related to Labels
 
 ### Available Operations
 
-* [getLabel](#getlabel) - Retrieve a label
-* [removeLabel](#removelabel) - Remove a label
-* [listCustomerLabels](#listcustomerlabels) - List labels for a customer
-* [createCustomerLabel](#createcustomerlabel) - Create a label for a customer
-* [listLabelLedgerEntries](#listlabelledgerentries) - List label ledger entries
-* [createLabelLedgerEntry](#createlabelledgerentry) - Create label ledger entries
-* [getLabelLedgerEntry](#getlabelledgerentry) - Retrieve a label ledger entry
-* [createLabelReallocation](#createlabelreallocation) - Create a label reallocation
-* [retrieveLabelLedgerEntry](#retrievelabelledgerentry) - Retrieve a label reallocation
+* [get](#get) - Retrieve a label
+* [remove](#remove) - Remove a label
+* [listForCustomer](#listforcustomer) - List labels for a customer
+* [createForCustomer](#createforcustomer) - Create a label for a customer
+* [listLedgerEntries](#listledgerentries) - List label ledger entries
+* [createLedgerEntry](#createledgerentry) - Create a label ledger entry
+* [getLedgerEntry](#getledgerentry) - Retrieve a label ledger entry
+* [createReallocation](#createreallocation) - Create a label reallocation
+* [getReallocation](#getreallocation) - Retrieve a label reallocation
 
-## getLabel
+## get
 
 Retrieve a label
 
@@ -27,15 +27,17 @@ Retrieve a label
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.labels.getLabel({
+  const result = await dwolla.labels.get({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -48,27 +50,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { labelsGetLabel } from "dwolla-typescript/funcs/labelsGetLabel.js";
+import { labelsGet } from "dwolla-typescript/funcs/labelsGet.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await labelsGetLabel(dwolla, {
+  const res = await labelsGet(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("labelsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -89,11 +91,13 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.ForbiddenError              | 403                                | application/vnd.dwolla.v1.hal+json |
+| errors.NotFoundError               | 404                                | application/vnd.dwolla.v1.hal+json |
+| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
 
-## removeLabel
+## remove
 
 Remove a label
 
@@ -103,15 +107,17 @@ Remove a label
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.labels.removeLabel({
+  const result = await dwolla.labels.remove({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -124,27 +130,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { labelsRemoveLabel } from "dwolla-typescript/funcs/labelsRemoveLabel.js";
+import { labelsRemove } from "dwolla-typescript/funcs/labelsRemove.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await labelsRemoveLabel(dwolla, {
+  const res = await labelsRemove(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("labelsRemove failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -168,9 +174,10 @@ run();
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | errors.RemoveLabelDwollaV1HalJSONError | 403                                    | application/vnd.dwolla.v1.hal+json     |
+| errors.NotFoundError                   | 404                                    | application/vnd.dwolla.v1.hal+json     |
 | errors.APIError                        | 4XX, 5XX                               | \*/\*                                  |
 
-## listCustomerLabels
+## listForCustomer
 
 List labels for a customer
 
@@ -180,15 +187,17 @@ List labels for a customer
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.labels.listCustomerLabels({
+  const result = await dwolla.labels.listForCustomer({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -201,27 +210,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { labelsListCustomerLabels } from "dwolla-typescript/funcs/labelsListCustomerLabels.js";
+import { labelsListForCustomer } from "dwolla-typescript/funcs/labelsListForCustomer.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await labelsListCustomerLabels(dwolla, {
+  const res = await labelsListForCustomer(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("labelsListForCustomer failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -242,11 +251,13 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
+| Error Type                                             | Status Code                                            | Content Type                                           |
+| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
+| errors.ListCustomerLabelsForbiddenDwollaV1HalJSONError | 403                                                    | application/vnd.dwolla.v1.hal+json                     |
+| errors.ListCustomerLabelsNotFoundDwollaV1HalJSONError  | 404                                                    | application/vnd.dwolla.v1.hal+json                     |
+| errors.APIError                                        | 4XX, 5XX                                               | \*/\*                                                  |
 
-## createCustomerLabel
+## createForCustomer
 
 Create a label for a customer
 
@@ -256,11 +267,14 @@ Create a label for a customer
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.labels.createCustomerLabel({
+  const result = await dwolla.labels.createForCustomer({
     id: "<id>",
     requestBody: {
       amount: {
@@ -270,7 +284,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -283,16 +296,19 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { labelsCreateCustomerLabel } from "dwolla-typescript/funcs/labelsCreateCustomerLabel.js";
+import { labelsCreateForCustomer } from "dwolla-typescript/funcs/labelsCreateForCustomer.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await labelsCreateCustomerLabel(dwolla, {
+  const res = await labelsCreateForCustomer(dwolla, {
     id: "<id>",
     requestBody: {
       amount: {
@@ -301,15 +317,12 @@ async function run() {
       },
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("labelsCreateForCustomer failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -330,11 +343,14 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
+| Error Type                                              | Status Code                                             | Content Type                                            |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| errors.BadRequestError                                  | 400                                                     | application/vnd.dwolla.v1.hal+json                      |
+| errors.CreateCustomerLabelForbiddenDwollaV1HalJSONError | 403                                                     | application/vnd.dwolla.v1.hal+json                      |
+| errors.CreateCustomerLabelNotFoundDwollaV1HalJSONError  | 404                                                     | application/vnd.dwolla.v1.hal+json                      |
+| errors.APIError                                         | 4XX, 5XX                                                | \*/\*                                                   |
 
-## listLabelLedgerEntries
+## listLedgerEntries
 
 List label ledger entries
 
@@ -344,15 +360,17 @@ List label ledger entries
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.labels.listLabelLedgerEntries({
+  const result = await dwolla.labels.listLedgerEntries({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -365,27 +383,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { labelsListLabelLedgerEntries } from "dwolla-typescript/funcs/labelsListLabelLedgerEntries.js";
+import { labelsListLedgerEntries } from "dwolla-typescript/funcs/labelsListLedgerEntries.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await labelsListLabelLedgerEntries(dwolla, {
+  const res = await labelsListLedgerEntries(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("labelsListLedgerEntries failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -406,13 +424,16 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.BadRequestError             | 400                                | application/vnd.dwolla.v1.hal+json |
+| errors.ForbiddenError              | 403                                | application/vnd.dwolla.v1.hal+json |
+| errors.NotFoundError               | 404                                | application/vnd.dwolla.v1.hal+json |
+| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
 
-## createLabelLedgerEntry
+## createLedgerEntry
 
-Create label ledger entries
+Create a new entry on a Label Ledger. The amount tied to a Label cannot go negative, therefore if the amount of the label ledger entry exceeds the current amount tied to a Label then a validation error will be returned.
 
 ### Example Usage
 
@@ -420,18 +441,23 @@ Create label ledger entries
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.labels.createLabelLedgerEntry({
+  const result = await dwolla.labels.createLedgerEntry({
     id: "<id>",
     requestBody: {
-      amount: {},
+      amount: {
+        value: "-5.00",
+        currency: "USD",
+      },
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -444,30 +470,33 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { labelsCreateLabelLedgerEntry } from "dwolla-typescript/funcs/labelsCreateLabelLedgerEntry.js";
+import { labelsCreateLedgerEntry } from "dwolla-typescript/funcs/labelsCreateLedgerEntry.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await labelsCreateLabelLedgerEntry(dwolla, {
+  const res = await labelsCreateLedgerEntry(dwolla, {
     id: "<id>",
     requestBody: {
-      amount: {},
+      amount: {
+        value: "-5.00",
+        currency: "USD",
+      },
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("labelsCreateLedgerEntry failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -488,11 +517,14 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.BadRequestError             | 400                                | application/vnd.dwolla.v1.hal+json |
+| errors.ForbiddenError              | 403                                | application/vnd.dwolla.v1.hal+json |
+| errors.NotFoundError               | 404                                | application/vnd.dwolla.v1.hal+json |
+| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
 
-## getLabelLedgerEntry
+## getLedgerEntry
 
 Retrieve a label ledger entry
 
@@ -502,15 +534,17 @@ Retrieve a label ledger entry
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.labels.getLabelLedgerEntry({
+  const result = await dwolla.labels.getLedgerEntry({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -523,27 +557,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { labelsGetLabelLedgerEntry } from "dwolla-typescript/funcs/labelsGetLabelLedgerEntry.js";
+import { labelsGetLedgerEntry } from "dwolla-typescript/funcs/labelsGetLedgerEntry.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await labelsGetLabelLedgerEntry(dwolla, {
+  const res = await labelsGetLedgerEntry(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("labelsGetLedgerEntry failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -564,11 +598,13 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.ForbiddenError              | 403                                | application/vnd.dwolla.v1.hal+json |
+| errors.NotFoundError               | 404                                | application/vnd.dwolla.v1.hal+json |
+| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
 
-## createLabelReallocation
+## createReallocation
 
 Create a label reallocation
 
@@ -578,11 +614,14 @@ Create a label reallocation
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.labels.createLabelReallocation({
+  const result = await dwolla.labels.createReallocation({
     links: {
       from: {
         href: "https://api.dwolla.com/labels/c91c501c-f49b-48be-a93b-12b45e152d45",
@@ -597,7 +636,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -610,16 +648,19 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { labelsCreateLabelReallocation } from "dwolla-typescript/funcs/labelsCreateLabelReallocation.js";
+import { labelsCreateReallocation } from "dwolla-typescript/funcs/labelsCreateReallocation.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await labelsCreateLabelReallocation(dwolla, {
+  const res = await labelsCreateReallocation(dwolla, {
     links: {
       from: {
         href: "https://api.dwolla.com/labels/c91c501c-f49b-48be-a93b-12b45e152d45",
@@ -633,15 +674,12 @@ async function run() {
       value: "USD",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("labelsCreateReallocation failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -662,11 +700,14 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
+| Error Type                                                  | Status Code                                                 | Content Type                                                |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| errors.BadRequestError                                      | 400                                                         | application/vnd.dwolla.v1.hal+json                          |
+| errors.CreateLabelReallocationForbiddenDwollaV1HalJSONError | 403                                                         | application/vnd.dwolla.v1.hal+json                          |
+| errors.CreateLabelReallocationNotFoundDwollaV1HalJSONError  | 404                                                         | application/vnd.dwolla.v1.hal+json                          |
+| errors.APIError                                             | 4XX, 5XX                                                    | \*/\*                                                       |
 
-## retrieveLabelLedgerEntry
+## getReallocation
 
 Retrieve a label reallocation
 
@@ -676,15 +717,17 @@ Retrieve a label reallocation
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.labels.retrieveLabelLedgerEntry({
+  const result = await dwolla.labels.getReallocation({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -697,27 +740,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { labelsRetrieveLabelLedgerEntry } from "dwolla-typescript/funcs/labelsRetrieveLabelLedgerEntry.js";
+import { labelsGetReallocation } from "dwolla-typescript/funcs/labelsGetReallocation.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await labelsRetrieveLabelLedgerEntry(dwolla, {
+  const res = await labelsGetReallocation(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("labelsGetReallocation failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -727,17 +770,19 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.RetrieveLabelLedgerEntryRequest](../../models/operations/retrievelabelledgerentryrequest.md)                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.RetrieveLabelReallocationRequest](../../models/operations/retrievelabelreallocationrequest.md)                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.RetrieveLabelLedgerEntryResponse](../../models/operations/retrievelabelledgerentryresponse.md)\>**
+**Promise\<[operations.RetrieveLabelReallocationResponse](../../models/operations/retrievelabelreallocationresponse.md)\>**
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.ForbiddenError              | 403                                | application/vnd.dwolla.v1.hal+json |
+| errors.NotFoundError               | 404                                | application/vnd.dwolla.v1.hal+json |
+| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |

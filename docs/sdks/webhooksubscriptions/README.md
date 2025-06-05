@@ -3,18 +3,16 @@
 
 ## Overview
 
-Operations related to Webhook Subscriptions
-
 ### Available Operations
 
-* [listWebhookSubscriptions](#listwebhooksubscriptions) - List webhook subscriptions
-* [createWebhookSubscription](#createwebhooksubscription) - Create a webhook subscription
-* [getWebhookSubscription](#getwebhooksubscription) - Retrieve a webhook subscription
-* [updateWebhookSubscription](#updatewebhooksubscription) - Update a webhook subscription
+* [list](#list) - List webhook subscriptions
+* [create](#create) - Create a webhook subscription
+* [get](#get) - Retrieve a webhook subscription
+* [update](#update) - Update a webhook subscription
 * [delete](#delete) - Delete a webhook subscription
 * [listWebhooks](#listwebhooks) - List webhooks for a webhook subscription
 
-## listWebhookSubscriptions
+## list
 
 List webhook subscriptions
 
@@ -24,13 +22,15 @@ List webhook subscriptions
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.webhookSubscriptions.listWebhookSubscriptions();
+  const result = await dwolla.webhookSubscriptions.list();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -43,25 +43,25 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { webhookSubscriptionsListWebhookSubscriptions } from "dwolla-typescript/funcs/webhookSubscriptionsListWebhookSubscriptions.js";
+import { webhookSubscriptionsList } from "dwolla-typescript/funcs/webhookSubscriptionsList.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await webhookSubscriptionsListWebhookSubscriptions(dwolla);
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await webhookSubscriptionsList(dwolla);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("webhookSubscriptionsList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -81,11 +81,13 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.ForbiddenError              | 403                                | application/vnd.dwolla.v1.hal+json |
+| errors.NotFoundError               | 404                                | application/vnd.dwolla.v1.hal+json |
+| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
 
-## createWebhookSubscription
+## create
 
 Create a webhook subscription
 
@@ -95,16 +97,18 @@ Create a webhook subscription
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.webhookSubscriptions.createWebhookSubscription({
+  const result = await dwolla.webhookSubscriptions.create({
     url: "http://myapplication.com/webhooks",
     secret: "sshhhhhh",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -117,28 +121,28 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { webhookSubscriptionsCreateWebhookSubscription } from "dwolla-typescript/funcs/webhookSubscriptionsCreateWebhookSubscription.js";
+import { webhookSubscriptionsCreate } from "dwolla-typescript/funcs/webhookSubscriptionsCreate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await webhookSubscriptionsCreateWebhookSubscription(dwolla, {
+  const res = await webhookSubscriptionsCreate(dwolla, {
     url: "http://myapplication.com/webhooks",
     secret: "sshhhhhh",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("webhookSubscriptionsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -159,11 +163,16 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| errors.InvalidUrlFormatError        | 400                                 | application/vnd.dwolla.v1.hal+json  |
+| errors.SecretTooLongError           | 400                                 | application/vnd.dwolla.v1.hal+json  |
+| errors.MaxSubscriptionsReachedError | 400                                 | application/vnd.dwolla.v1.hal+json  |
+| errors.ForbiddenError               | 403                                 | application/vnd.dwolla.v1.hal+json  |
+| errors.NotFoundError                | 404                                 | application/vnd.dwolla.v1.hal+json  |
+| errors.APIError                     | 4XX, 5XX                            | \*/\*                               |
 
-## getWebhookSubscription
+## get
 
 Retrieve a webhook subscription
 
@@ -173,15 +182,17 @@ Retrieve a webhook subscription
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.webhookSubscriptions.getWebhookSubscription({
+  const result = await dwolla.webhookSubscriptions.get({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -194,27 +205,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { webhookSubscriptionsGetWebhookSubscription } from "dwolla-typescript/funcs/webhookSubscriptionsGetWebhookSubscription.js";
+import { webhookSubscriptionsGet } from "dwolla-typescript/funcs/webhookSubscriptionsGet.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await webhookSubscriptionsGetWebhookSubscription(dwolla, {
+  const res = await webhookSubscriptionsGet(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("webhookSubscriptionsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -235,11 +246,12 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.NotFoundError               | 404                                | application/vnd.dwolla.v1.hal+json |
+| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
 
-## updateWebhookSubscription
+## update
 
 Update a webhook subscription
 
@@ -249,18 +261,20 @@ Update a webhook subscription
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.webhookSubscriptions.updateWebhookSubscription({
+  const result = await dwolla.webhookSubscriptions.update({
     id: "<id>",
     requestBody: {
       paused: true,
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -273,30 +287,30 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { webhookSubscriptionsUpdateWebhookSubscription } from "dwolla-typescript/funcs/webhookSubscriptionsUpdateWebhookSubscription.js";
+import { webhookSubscriptionsUpdate } from "dwolla-typescript/funcs/webhookSubscriptionsUpdate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await webhookSubscriptionsUpdateWebhookSubscription(dwolla, {
+  const res = await webhookSubscriptionsUpdate(dwolla, {
     id: "<id>",
     requestBody: {
       paused: true,
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("webhookSubscriptionsUpdate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -333,7 +347,10 @@ Delete a webhook subscription
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
@@ -341,7 +358,6 @@ async function run() {
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -359,22 +375,22 @@ import { webhookSubscriptionsDelete } from "dwolla-typescript/funcs/webhookSubsc
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
   const res = await webhookSubscriptionsDelete(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("webhookSubscriptionsDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -410,7 +426,10 @@ List webhooks for a webhook subscription
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
@@ -418,7 +437,6 @@ async function run() {
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -436,22 +454,22 @@ import { webhookSubscriptionsListWebhooks } from "dwolla-typescript/funcs/webhoo
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
   const res = await webhookSubscriptionsListWebhooks(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("webhookSubscriptionsListWebhooks failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -472,6 +490,8 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.ForbiddenError              | 403                                | application/vnd.dwolla.v1.hal+json |
+| errors.NotFoundError               | 404                                | application/vnd.dwolla.v1.hal+json |
+| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |

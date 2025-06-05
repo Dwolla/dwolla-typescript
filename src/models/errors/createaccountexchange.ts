@@ -5,7 +5,18 @@
 import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as models from "../index.js";
+import {
+  InvalidExchangeError,
+  InvalidExchangeError$inboundSchema,
+  InvalidExchangeError$Outbound,
+  InvalidExchangeError$outboundSchema,
+} from "./invalidexchangeerror.js";
+import {
+  InvalidExchangeTokenError,
+  InvalidExchangeTokenError$inboundSchema,
+  InvalidExchangeTokenError$Outbound,
+  InvalidExchangeTokenError$outboundSchema,
+} from "./invalidexchangetokenerror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 /**
@@ -42,8 +53,8 @@ export class CreateAccountExchangeDwollaV1HalJSONError extends Error {
  * Bad Request
  */
 export type CreateAccountExchangeDwollaV1HalJSON =
-  | models.InvalidExchangeToken
-  | models.InvalidExchange;
+  | InvalidExchangeTokenError
+  | InvalidExchangeError;
 
 /** @internal */
 export const CreateAccountExchangeDwollaV1HalJSONError$inboundSchema: z.ZodType<
@@ -98,14 +109,14 @@ export const CreateAccountExchangeDwollaV1HalJSON$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  models.InvalidExchangeToken$inboundSchema,
-  models.InvalidExchange$inboundSchema,
+  InvalidExchangeTokenError$inboundSchema,
+  InvalidExchangeError$inboundSchema,
 ]);
 
 /** @internal */
 export type CreateAccountExchangeDwollaV1HalJSON$Outbound =
-  | models.InvalidExchangeToken$Outbound
-  | models.InvalidExchange$Outbound;
+  | InvalidExchangeTokenError$Outbound
+  | InvalidExchangeError$Outbound;
 
 /** @internal */
 export const CreateAccountExchangeDwollaV1HalJSON$outboundSchema: z.ZodType<
@@ -113,8 +124,8 @@ export const CreateAccountExchangeDwollaV1HalJSON$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateAccountExchangeDwollaV1HalJSON
 > = z.union([
-  models.InvalidExchangeToken$outboundSchema,
-  models.InvalidExchange$outboundSchema,
+  InvalidExchangeTokenError$outboundSchema,
+  InvalidExchangeError$outboundSchema,
 ]);
 
 /**

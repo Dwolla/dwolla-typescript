@@ -3,31 +3,28 @@
  */
 
 import * as z from "zod";
-import { remap as remap$ } from "../../lib/primitives.js";
-import * as operations from "../operations/index.js";
 
 /**
  * forbidden
  */
-export type CertifyBeneficialOwnershipForCustomerForbiddenDwollaV1HalJSONErrorData =
-  {
-    code?: string | undefined;
-    message?: string | undefined;
-  };
+export type CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONErrorData = {
+  code?: string | undefined;
+  message?: string | undefined;
+};
 
 /**
  * forbidden
  */
-export class CertifyBeneficialOwnershipForCustomerForbiddenDwollaV1HalJSONError
+export class CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError
   extends Error
 {
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: CertifyBeneficialOwnershipForCustomerForbiddenDwollaV1HalJSONErrorData;
+  data$: CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONErrorData;
 
   constructor(
-    err: CertifyBeneficialOwnershipForCustomerForbiddenDwollaV1HalJSONErrorData,
+    err: CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONErrorData,
   ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
@@ -37,60 +34,14 @@ export class CertifyBeneficialOwnershipForCustomerForbiddenDwollaV1HalJSONError
 
     if (err.code != null) this.code = err.code;
 
-    this.name =
-      "CertifyBeneficialOwnershipForCustomerForbiddenDwollaV1HalJSONError";
-  }
-}
-
-/**
- * ValidationError
- */
-export type CertifyBeneficialOwnershipForCustomerBadRequestDwollaV1HalJSONErrorData =
-  {
-    code?: string | undefined;
-    message?: string | undefined;
-    embedded?:
-      | operations.CertifyBeneficialOwnershipForCustomerEmbedded
-      | undefined;
-  };
-
-/**
- * ValidationError
- */
-export class CertifyBeneficialOwnershipForCustomerBadRequestDwollaV1HalJSONError
-  extends Error
-{
-  code?: string | undefined;
-  embedded?:
-    | operations.CertifyBeneficialOwnershipForCustomerEmbedded
-    | undefined;
-
-  /** The original data that was passed to this error instance. */
-  data$:
-    CertifyBeneficialOwnershipForCustomerBadRequestDwollaV1HalJSONErrorData;
-
-  constructor(
-    err:
-      CertifyBeneficialOwnershipForCustomerBadRequestDwollaV1HalJSONErrorData,
-  ) {
-    const message = "message" in err && typeof err.message === "string"
-      ? err.message
-      : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
-    this.data$ = err;
-
-    if (err.code != null) this.code = err.code;
-    if (err.embedded != null) this.embedded = err.embedded;
-
-    this.name =
-      "CertifyBeneficialOwnershipForCustomerBadRequestDwollaV1HalJSONError";
+    this.name = "CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError";
   }
 }
 
 /** @internal */
-export const CertifyBeneficialOwnershipForCustomerForbiddenDwollaV1HalJSONError$inboundSchema:
+export const CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError$inboundSchema:
   z.ZodType<
-    CertifyBeneficialOwnershipForCustomerForbiddenDwollaV1HalJSONError,
+    CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError,
     z.ZodTypeDef,
     unknown
   > = z.object({
@@ -98,27 +49,23 @@ export const CertifyBeneficialOwnershipForCustomerForbiddenDwollaV1HalJSONError$
     message: z.string().optional(),
   })
     .transform((v) => {
-      return new CertifyBeneficialOwnershipForCustomerForbiddenDwollaV1HalJSONError(
-        v,
-      );
+      return new CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError(v);
     });
 
 /** @internal */
-export type CertifyBeneficialOwnershipForCustomerForbiddenDwollaV1HalJSONError$Outbound =
+export type CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError$Outbound =
   {
     code?: string | undefined;
     message?: string | undefined;
   };
 
 /** @internal */
-export const CertifyBeneficialOwnershipForCustomerForbiddenDwollaV1HalJSONError$outboundSchema:
+export const CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError$outboundSchema:
   z.ZodType<
-    CertifyBeneficialOwnershipForCustomerForbiddenDwollaV1HalJSONError$Outbound,
+    CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError$Outbound,
     z.ZodTypeDef,
-    CertifyBeneficialOwnershipForCustomerForbiddenDwollaV1HalJSONError
-  > = z.instanceof(
-    CertifyBeneficialOwnershipForCustomerForbiddenDwollaV1HalJSONError,
-  )
+    CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError
+  > = z.instanceof(CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError)
     .transform(v => v.data$)
     .pipe(z.object({
       code: z.string().optional(),
@@ -129,88 +76,14 @@ export const CertifyBeneficialOwnershipForCustomerForbiddenDwollaV1HalJSONError$
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CertifyBeneficialOwnershipForCustomerForbiddenDwollaV1HalJSONError$ {
-  /** @deprecated use `CertifyBeneficialOwnershipForCustomerForbiddenDwollaV1HalJSONError$inboundSchema` instead. */
+export namespace CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError$ {
+  /** @deprecated use `CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError$inboundSchema` instead. */
   export const inboundSchema =
-    CertifyBeneficialOwnershipForCustomerForbiddenDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `CertifyBeneficialOwnershipForCustomerForbiddenDwollaV1HalJSONError$outboundSchema` instead. */
+    CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError$inboundSchema;
+  /** @deprecated use `CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError$outboundSchema` instead. */
   export const outboundSchema =
-    CertifyBeneficialOwnershipForCustomerForbiddenDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `CertifyBeneficialOwnershipForCustomerForbiddenDwollaV1HalJSONError$Outbound` instead. */
+    CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError$outboundSchema;
+  /** @deprecated use `CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError$Outbound` instead. */
   export type Outbound =
-    CertifyBeneficialOwnershipForCustomerForbiddenDwollaV1HalJSONError$Outbound;
-}
-
-/** @internal */
-export const CertifyBeneficialOwnershipForCustomerBadRequestDwollaV1HalJSONError$inboundSchema:
-  z.ZodType<
-    CertifyBeneficialOwnershipForCustomerBadRequestDwollaV1HalJSONError,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    _embedded: z.lazy(() =>
-      operations.CertifyBeneficialOwnershipForCustomerEmbedded$inboundSchema
-    ).optional(),
-  })
-    .transform((v) => {
-      const remapped = remap$(v, {
-        "_embedded": "embedded",
-      });
-
-      return new CertifyBeneficialOwnershipForCustomerBadRequestDwollaV1HalJSONError(
-        remapped,
-      );
-    });
-
-/** @internal */
-export type CertifyBeneficialOwnershipForCustomerBadRequestDwollaV1HalJSONError$Outbound =
-  {
-    code?: string | undefined;
-    message?: string | undefined;
-    _embedded?:
-      | operations.CertifyBeneficialOwnershipForCustomerEmbedded$Outbound
-      | undefined;
-  };
-
-/** @internal */
-export const CertifyBeneficialOwnershipForCustomerBadRequestDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    CertifyBeneficialOwnershipForCustomerBadRequestDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    CertifyBeneficialOwnershipForCustomerBadRequestDwollaV1HalJSONError
-  > = z.instanceof(
-    CertifyBeneficialOwnershipForCustomerBadRequestDwollaV1HalJSONError,
-  )
-    .transform(v => v.data$)
-    .pipe(
-      z.object({
-        code: z.string().optional(),
-        message: z.string().optional(),
-        embedded: z.lazy(() =>
-          operations
-            .CertifyBeneficialOwnershipForCustomerEmbedded$outboundSchema
-        ).optional(),
-      }).transform((v) => {
-        return remap$(v, {
-          embedded: "_embedded",
-        });
-      }),
-    );
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CertifyBeneficialOwnershipForCustomerBadRequestDwollaV1HalJSONError$ {
-  /** @deprecated use `CertifyBeneficialOwnershipForCustomerBadRequestDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    CertifyBeneficialOwnershipForCustomerBadRequestDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `CertifyBeneficialOwnershipForCustomerBadRequestDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    CertifyBeneficialOwnershipForCustomerBadRequestDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `CertifyBeneficialOwnershipForCustomerBadRequestDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    CertifyBeneficialOwnershipForCustomerBadRequestDwollaV1HalJSONError$Outbound;
+    CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError$Outbound;
 }

@@ -21,12 +21,6 @@ export type ReceiverNotFoundErrorEmbedded = {
   errors?: Array<ReceiverNotFoundErrorError> | undefined;
 };
 
-export type ReceiverNotFoundError = {
-  code: string;
-  message: string;
-  embedded?: ReceiverNotFoundErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const ReceiverNotFoundErrorLinks$inboundSchema: z.ZodType<
   ReceiverNotFoundErrorLinks,
@@ -201,75 +195,5 @@ export function receiverNotFoundErrorEmbeddedFromJSON(
     jsonString,
     (x) => ReceiverNotFoundErrorEmbedded$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'ReceiverNotFoundErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const ReceiverNotFoundError$inboundSchema: z.ZodType<
-  ReceiverNotFoundError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() => ReceiverNotFoundErrorEmbedded$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type ReceiverNotFoundError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?: ReceiverNotFoundErrorEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const ReceiverNotFoundError$outboundSchema: z.ZodType<
-  ReceiverNotFoundError$Outbound,
-  z.ZodTypeDef,
-  ReceiverNotFoundError
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  embedded: z.lazy(() => ReceiverNotFoundErrorEmbedded$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReceiverNotFoundError$ {
-  /** @deprecated use `ReceiverNotFoundError$inboundSchema` instead. */
-  export const inboundSchema = ReceiverNotFoundError$inboundSchema;
-  /** @deprecated use `ReceiverNotFoundError$outboundSchema` instead. */
-  export const outboundSchema = ReceiverNotFoundError$outboundSchema;
-  /** @deprecated use `ReceiverNotFoundError$Outbound` instead. */
-  export type Outbound = ReceiverNotFoundError$Outbound;
-}
-
-export function receiverNotFoundErrorToJSON(
-  receiverNotFoundError: ReceiverNotFoundError,
-): string {
-  return JSON.stringify(
-    ReceiverNotFoundError$outboundSchema.parse(receiverNotFoundError),
-  );
-}
-
-export function receiverNotFoundErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<ReceiverNotFoundError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ReceiverNotFoundError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ReceiverNotFoundError' from JSON`,
   );
 }

@@ -6,7 +6,19 @@
 import { ExchangePartnersEmbedded } from "dwolla-typescript";
 
 let value: ExchangePartnersEmbedded = {
-  exchangePartners: [],
+  exchangePartners: [
+    {
+      links: {
+        "key": {
+          href: "https://api.dwolla.com",
+          type: "application/vnd.dwolla.v1.hal+json",
+          resourceType: "resource-type",
+        },
+      },
+      embedded: {},
+      total: 3,
+    },
+  ],
 };
 ```
 

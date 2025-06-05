@@ -7,9 +7,6 @@ import { CreateLabelLedgerEntryRequest } from "dwolla-typescript/models/operatio
 
 let value: CreateLabelLedgerEntryRequest = {
   id: "<id>",
-  requestBody: {
-    amount: {},
-  },
 };
 ```
 
@@ -17,5 +14,5 @@ let value: CreateLabelLedgerEntryRequest = {
 
 | Field                                                                                                        | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
 | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| `id`                                                                                                         | *string*                                                                                                     | :heavy_check_mark:                                                                                           | A label unique identifier                                                                                    |
-| `requestBody`                                                                                                | [operations.CreateLabelLedgerEntryRequestBody](../../models/operations/createlabelledgerentryrequestbody.md) | :heavy_check_mark:                                                                                           | Parameters to create label ledger entry                                                                      |
+| `id`                                                                                                         | *string*                                                                                                     | :heavy_check_mark:                                                                                           | The Id of the Label to update.                                                                               |
+| `requestBody`                                                                                                | [operations.CreateLabelLedgerEntryRequestBody](../../models/operations/createlabelledgerentryrequestbody.md) | :heavy_check_mark:                                                                                           | Parameters to create a label ledger entry                                                                    |

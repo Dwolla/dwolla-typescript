@@ -5,28 +5,28 @@ validation error
 
 ## Supported Types
 
-### `operations.CreateCustomerFundingSourceResponseBody1`
+### `errors.CreateCustomerFundingSourceResponseBodyError1`
 
 ```typescript
-const value: operations.CreateCustomerFundingSourceResponseBody1 = {
+const value: errors.CreateCustomerFundingSourceResponseBodyError1 = {
   code: "InactiveExchange",
   message: "The Exchange was removed or disabled.",
 };
 ```
 
-### `operations.CreateCustomerFundingSourceResponseBody2`
+### `errors.CreateCustomerFundingSourceResponseBodyError2`
 
 ```typescript
-const value: operations.CreateCustomerFundingSourceResponseBody2 = {
+const value: errors.CreateCustomerFundingSourceResponseBodyError2 = {
   code: "InvalidExchangeToken",
   message: "The exchange token is not valid to perform this operation.",
 };
 ```
 
-### `operations.CreateCustomerFundingSourceResponseBody3`
+### `errors.CreateCustomerFundingSourceResponseBodyError3`
 
 ```typescript
-const value: operations.CreateCustomerFundingSourceResponseBody3 = {
+const value: errors.CreateCustomerFundingSourceResponseBodyError3 = {
   code: "ValidationError",
   message:
     "Duplicate funding source or validation error. Authorization already associated to a funding source.",

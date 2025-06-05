@@ -15,13 +15,11 @@ export class Tokens extends ClientSDK {
    * Generates an access token that contains permissions scoped to the application owner's Dwolla Client Account.
    */
   async createApplicationAccessToken(
-    security: operations.CreateApplicationAccessTokenSecurity,
     request: operations.CreateApplicationAccessTokenRequest,
     options?: RequestOptions,
   ): Promise<operations.CreateApplicationAccessTokenResponse> {
     return unwrapAsync(tokensCreateApplicationAccessToken(
       this,
-      security,
       request,
       options,
     ));

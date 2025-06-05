@@ -21,12 +21,6 @@ export type IncompatibleSourceForRtpDestinationErrorEmbedded = {
   errors?: Array<IncompatibleSourceForRtpDestinationErrorError> | undefined;
 };
 
-export type IncompatibleSourceForRtpDestinationError = {
-  code: string;
-  message: string;
-  embedded?: IncompatibleSourceForRtpDestinationErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const IncompatibleSourceForRtpDestinationErrorLinks$inboundSchema:
   z.ZodType<
@@ -249,90 +243,5 @@ export function incompatibleSourceForRtpDestinationErrorEmbeddedFromJSON(
         JSON.parse(x),
       ),
     `Failed to parse 'IncompatibleSourceForRtpDestinationErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const IncompatibleSourceForRtpDestinationError$inboundSchema: z.ZodType<
-  IncompatibleSourceForRtpDestinationError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() =>
-    IncompatibleSourceForRtpDestinationErrorEmbedded$inboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type IncompatibleSourceForRtpDestinationError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?:
-    | IncompatibleSourceForRtpDestinationErrorEmbedded$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const IncompatibleSourceForRtpDestinationError$outboundSchema: z.ZodType<
-  IncompatibleSourceForRtpDestinationError$Outbound,
-  z.ZodTypeDef,
-  IncompatibleSourceForRtpDestinationError
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  embedded: z.lazy(() =>
-    IncompatibleSourceForRtpDestinationErrorEmbedded$outboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IncompatibleSourceForRtpDestinationError$ {
-  /** @deprecated use `IncompatibleSourceForRtpDestinationError$inboundSchema` instead. */
-  export const inboundSchema =
-    IncompatibleSourceForRtpDestinationError$inboundSchema;
-  /** @deprecated use `IncompatibleSourceForRtpDestinationError$outboundSchema` instead. */
-  export const outboundSchema =
-    IncompatibleSourceForRtpDestinationError$outboundSchema;
-  /** @deprecated use `IncompatibleSourceForRtpDestinationError$Outbound` instead. */
-  export type Outbound = IncompatibleSourceForRtpDestinationError$Outbound;
-}
-
-export function incompatibleSourceForRtpDestinationErrorToJSON(
-  incompatibleSourceForRtpDestinationError:
-    IncompatibleSourceForRtpDestinationError,
-): string {
-  return JSON.stringify(
-    IncompatibleSourceForRtpDestinationError$outboundSchema.parse(
-      incompatibleSourceForRtpDestinationError,
-    ),
-  );
-}
-
-export function incompatibleSourceForRtpDestinationErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  IncompatibleSourceForRtpDestinationError,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      IncompatibleSourceForRtpDestinationError$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'IncompatibleSourceForRtpDestinationError' from JSON`,
   );
 }

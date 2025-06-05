@@ -7,9 +7,6 @@ import { CertifyBeneficialOwnershipForCustomerRequest } from "dwolla-typescript/
 
 let value: CertifyBeneficialOwnershipForCustomerRequest = {
   id: "<id>",
-  requestBody: {
-    status: "<value>",
-  },
 };
 ```
 

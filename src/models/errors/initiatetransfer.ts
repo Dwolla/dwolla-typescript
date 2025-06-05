@@ -5,87 +5,500 @@
 import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as models from "../index.js";
+import {
+  AchAddendaEntriesNotEnabledForAccountError,
+  AchAddendaEntriesNotEnabledForAccountError$inboundSchema,
+  AchAddendaEntriesNotEnabledForAccountError$Outbound,
+  AchAddendaEntriesNotEnabledForAccountError$outboundSchema,
+} from "./achaddendaentriesnotenabledforaccounterror.js";
+import {
+  CannotParseAmountError,
+  CannotParseAmountError$inboundSchema,
+  CannotParseAmountError$Outbound,
+  CannotParseAmountError$outboundSchema,
+} from "./cannotparseamounterror.js";
+import {
+  DepositAccountRestrictedError,
+  DepositAccountRestrictedError$inboundSchema,
+  DepositAccountRestrictedError$Outbound,
+  DepositAccountRestrictedError$outboundSchema,
+} from "./depositaccountrestrictederror.js";
+import {
+  DestinationAddendaMaxLengthError,
+  DestinationAddendaMaxLengthError$inboundSchema,
+  DestinationAddendaMaxLengthError$Outbound,
+  DestinationAddendaMaxLengthError$outboundSchema,
+} from "./destinationaddendamaxlengtherror.js";
+import {
+  DestinationProcessingChannelNotSupportedError,
+  DestinationProcessingChannelNotSupportedError$inboundSchema,
+  DestinationProcessingChannelNotSupportedError$Outbound,
+  DestinationProcessingChannelNotSupportedError$outboundSchema,
+} from "./destinationprocessingchannelnotsupportederror.js";
+import {
+  DestinationRemittanceDataMaxLengthError,
+  DestinationRemittanceDataMaxLengthError$inboundSchema,
+  DestinationRemittanceDataMaxLengthError$Outbound,
+  DestinationRemittanceDataMaxLengthError$outboundSchema,
+} from "./destinationremittancedatamaxlengtherror.js";
+import {
+  DirectAccountWithoutBankError,
+  DirectAccountWithoutBankError$inboundSchema,
+  DirectAccountWithoutBankError$Outbound,
+  DirectAccountWithoutBankError$outboundSchema,
+} from "./directaccountwithoutbankerror.js";
+import {
+  FacilitatorFeeAccountNotFoundError,
+  FacilitatorFeeAccountNotFoundError$inboundSchema,
+  FacilitatorFeeAccountNotFoundError$Outbound,
+  FacilitatorFeeAccountNotFoundError$outboundSchema,
+} from "./facilitatorfeeaccountnotfounderror.js";
+import {
+  FacilitatorFeeBelowMinimumError,
+  FacilitatorFeeBelowMinimumError$inboundSchema,
+  FacilitatorFeeBelowMinimumError$Outbound,
+  FacilitatorFeeBelowMinimumError$outboundSchema,
+} from "./facilitatorfeebelowminimumerror.js";
+import {
+  FacilitatorFeeSumTooLargeError,
+  FacilitatorFeeSumTooLargeError$inboundSchema,
+  FacilitatorFeeSumTooLargeError$Outbound,
+  FacilitatorFeeSumTooLargeError$outboundSchema,
+} from "./facilitatorfeesumtoolargeerror.js";
+import {
+  HighRiskError,
+  HighRiskError$inboundSchema,
+  HighRiskError$Outbound,
+  HighRiskError$outboundSchema,
+} from "./highriskerror.js";
+import {
+  IncompatibleAddendaEntriesError,
+  IncompatibleAddendaEntriesError$inboundSchema,
+  IncompatibleAddendaEntriesError$Outbound,
+  IncompatibleAddendaEntriesError$outboundSchema,
+} from "./incompatibleaddendaentrieserror.js";
+import {
+  IncompatibleHoldingsError,
+  IncompatibleHoldingsError$inboundSchema,
+  IncompatibleHoldingsError$Outbound,
+  IncompatibleHoldingsError$outboundSchema,
+} from "./incompatibleholdingserror.js";
+import {
+  IncompatibleSourceAndDestinationTypesError,
+  IncompatibleSourceAndDestinationTypesError$inboundSchema,
+  IncompatibleSourceAndDestinationTypesError$Outbound,
+  IncompatibleSourceAndDestinationTypesError$outboundSchema,
+} from "./incompatiblesourceanddestinationtypeserror.js";
+import {
+  IncompatibleSourceForRtpDestinationError,
+  IncompatibleSourceForRtpDestinationError$inboundSchema,
+  IncompatibleSourceForRtpDestinationError$Outbound,
+  IncompatibleSourceForRtpDestinationError$outboundSchema,
+} from "./incompatiblesourceforrtpdestinationerror.js";
+import {
+  InsufficientFundsError,
+  InsufficientFundsError$inboundSchema,
+  InsufficientFundsError$Outbound,
+  InsufficientFundsError$outboundSchema,
+} from "./insufficientfundserror.js";
+import {
+  InvalidAmountForDestinationClearingTypeError,
+  InvalidAmountForDestinationClearingTypeError$inboundSchema,
+  InvalidAmountForDestinationClearingTypeError$Outbound,
+  InvalidAmountForDestinationClearingTypeError$outboundSchema,
+} from "./invalidamountfordestinationclearingtypeerror.js";
+import {
+  InvalidAmountForDestinationProcessingChannelError,
+  InvalidAmountForDestinationProcessingChannelError$inboundSchema,
+  InvalidAmountForDestinationProcessingChannelError$Outbound,
+  InvalidAmountForDestinationProcessingChannelError$outboundSchema,
+} from "./invalidamountfordestinationprocessingchannelerror.js";
+import {
+  InvalidAmountLimitError,
+  InvalidAmountLimitError$inboundSchema,
+  InvalidAmountLimitError$Outbound,
+  InvalidAmountLimitError$outboundSchema,
+} from "./invalidamountlimiterror.js";
+import {
+  InvalidAttemptToFacilitateFundsError,
+  InvalidAttemptToFacilitateFundsError$inboundSchema,
+  InvalidAttemptToFacilitateFundsError$Outbound,
+  InvalidAttemptToFacilitateFundsError$outboundSchema,
+} from "./invalidattempttofacilitatefundserror.js";
+import {
+  InvalidAttemptToPayInFundsError,
+  InvalidAttemptToPayInFundsError$inboundSchema,
+  InvalidAttemptToPayInFundsError$Outbound,
+  InvalidAttemptToPayInFundsError$outboundSchema,
+} from "./invalidattempttopayinfundserror.js";
+import {
+  InvalidAttemptToPayOutFundsError,
+  InvalidAttemptToPayOutFundsError$inboundSchema,
+  InvalidAttemptToPayOutFundsError$Outbound,
+  InvalidAttemptToPayOutFundsError$outboundSchema,
+} from "./invalidattempttopayoutfundserror.js";
+import {
+  InvalidCorrelationIdError,
+  InvalidCorrelationIdError$inboundSchema,
+  InvalidCorrelationIdError$Outbound,
+  InvalidCorrelationIdError$outboundSchema,
+} from "./invalidcorrelationiderror.js";
+import {
+  InvalidDestinationBankAccountTypeError,
+  InvalidDestinationBankAccountTypeError$inboundSchema,
+  InvalidDestinationBankAccountTypeError$Outbound,
+  InvalidDestinationBankAccountTypeError$outboundSchema,
+} from "./invaliddestinationbankaccounttypeerror.js";
+import {
+  InvalidDestinationClearingTypeError,
+  InvalidDestinationClearingTypeError$inboundSchema,
+  InvalidDestinationClearingTypeError$Outbound,
+  InvalidDestinationClearingTypeError$outboundSchema,
+} from "./invaliddestinationclearingtypeerror.js";
+import {
+  InvalidDestinationFundingSourceError,
+  InvalidDestinationFundingSourceError$inboundSchema,
+  InvalidDestinationFundingSourceError$Outbound,
+  InvalidDestinationFundingSourceError$outboundSchema,
+} from "./invaliddestinationfundingsourceerror.js";
+import {
+  InvalidFacilitatorError,
+  InvalidFacilitatorError$inboundSchema,
+  InvalidFacilitatorError$Outbound,
+  InvalidFacilitatorError$outboundSchema,
+} from "./invalidfacilitatorerror.js";
+import {
+  InvalidFacilitatorFeeAmountError,
+  InvalidFacilitatorFeeAmountError$inboundSchema,
+  InvalidFacilitatorFeeAmountError$Outbound,
+  InvalidFacilitatorFeeAmountError$outboundSchema,
+} from "./invalidfacilitatorfeeamounterror.js";
+import {
+  InvalidFacilitatorFeeCollectFromCombinationError,
+  InvalidFacilitatorFeeCollectFromCombinationError$inboundSchema,
+  InvalidFacilitatorFeeCollectFromCombinationError$Outbound,
+  InvalidFacilitatorFeeCollectFromCombinationError$outboundSchema,
+} from "./invalidfacilitatorfeecollectfromcombinationerror.js";
+import {
+  InvalidFacilitatorFeeCollectFromError,
+  InvalidFacilitatorFeeCollectFromError$inboundSchema,
+  InvalidFacilitatorFeeCollectFromError$Outbound,
+  InvalidFacilitatorFeeCollectFromError$outboundSchema,
+} from "./invalidfacilitatorfeecollectfromerror.js";
+import {
+  InvalidFeeOdfiError,
+  InvalidFeeOdfiError$inboundSchema,
+  InvalidFeeOdfiError$Outbound,
+  InvalidFeeOdfiError$outboundSchema,
+} from "./invalidfeeodfierror.js";
+import {
+  InvalidMetadataError,
+  InvalidMetadataError$inboundSchema,
+  InvalidMetadataError$Outbound,
+  InvalidMetadataError$outboundSchema,
+} from "./invalidmetadataerror.js";
+import {
+  InvalidPointOfSaleAddendaAddressError,
+  InvalidPointOfSaleAddendaAddressError$inboundSchema,
+  InvalidPointOfSaleAddendaAddressError$Outbound,
+  InvalidPointOfSaleAddendaAddressError$outboundSchema,
+} from "./invalidpointofsaleaddendaaddresserror.js";
+import {
+  InvalidPointOfSaleAddendaCityError,
+  InvalidPointOfSaleAddendaCityError$inboundSchema,
+  InvalidPointOfSaleAddendaCityError$Outbound,
+  InvalidPointOfSaleAddendaCityError$outboundSchema,
+} from "./invalidpointofsaleaddendacityerror.js";
+import {
+  InvalidPointOfSaleAddendaDateError,
+  InvalidPointOfSaleAddendaDateError$inboundSchema,
+  InvalidPointOfSaleAddendaDateError$Outbound,
+  InvalidPointOfSaleAddendaDateError$outboundSchema,
+} from "./invalidpointofsaleaddendadateerror.js";
+import {
+  InvalidPointOfSaleAddendaIdentificationCodeError,
+  InvalidPointOfSaleAddendaIdentificationCodeError$inboundSchema,
+  InvalidPointOfSaleAddendaIdentificationCodeError$Outbound,
+  InvalidPointOfSaleAddendaIdentificationCodeError$outboundSchema,
+} from "./invalidpointofsaleaddendaidentificationcodeerror.js";
+import {
+  InvalidPointOfSaleAddendaSerialNumberError,
+  InvalidPointOfSaleAddendaSerialNumberError$inboundSchema,
+  InvalidPointOfSaleAddendaSerialNumberError$Outbound,
+  InvalidPointOfSaleAddendaSerialNumberError$outboundSchema,
+} from "./invalidpointofsaleaddendaserialnumbererror.js";
+import {
+  InvalidPointOfSaleAddendaStateError,
+  InvalidPointOfSaleAddendaStateError$inboundSchema,
+  InvalidPointOfSaleAddendaStateError$Outbound,
+  InvalidPointOfSaleAddendaStateError$outboundSchema,
+} from "./invalidpointofsaleaddendastateerror.js";
+import {
+  InvalidSourceBankAccountTypeError,
+  InvalidSourceBankAccountTypeError$inboundSchema,
+  InvalidSourceBankAccountTypeError$Outbound,
+  InvalidSourceBankAccountTypeError$outboundSchema,
+} from "./invalidsourcebankaccounttypeerror.js";
+import {
+  InvalidSourceFundingSourceError,
+  InvalidSourceFundingSourceError$inboundSchema,
+  InvalidSourceFundingSourceError$Outbound,
+  InvalidSourceFundingSourceError$outboundSchema,
+} from "./invalidsourcefundingsourceerror.js";
+import {
+  OperationBlockedError,
+  OperationBlockedError$inboundSchema,
+  OperationBlockedError$Outbound,
+  OperationBlockedError$outboundSchema,
+} from "./operationblockederror.js";
+import {
+  PointOfSaleAddendaEntriesNotEnabledForAccountError,
+  PointOfSaleAddendaEntriesNotEnabledForAccountError$inboundSchema,
+  PointOfSaleAddendaEntriesNotEnabledForAccountError$Outbound,
+  PointOfSaleAddendaEntriesNotEnabledForAccountError$outboundSchema,
+} from "./pointofsaleaddendaentriesnotenabledforaccounterror.js";
+import {
+  ReceiverNotFoundError,
+  ReceiverNotFoundError$inboundSchema,
+  ReceiverNotFoundError$Outbound,
+  ReceiverNotFoundError$outboundSchema,
+} from "./receivernotfounderror.js";
+import {
+  ReceiverRestrictedError,
+  ReceiverRestrictedError$inboundSchema,
+  ReceiverRestrictedError$Outbound,
+  ReceiverRestrictedError$outboundSchema,
+} from "./receiverrestrictederror.js";
+import {
+  RtpAccountSettingNotEnabledError,
+  RtpAccountSettingNotEnabledError$inboundSchema,
+  RtpAccountSettingNotEnabledError$Outbound,
+  RtpAccountSettingNotEnabledError$outboundSchema,
+} from "./rtpaccountsettingnotenablederror.js";
+import {
+  RtpFacilitatorFeeNotSupportedError,
+  RtpFacilitatorFeeNotSupportedError$inboundSchema,
+  RtpFacilitatorFeeNotSupportedError$Outbound,
+  RtpFacilitatorFeeNotSupportedError$outboundSchema,
+} from "./rtpfacilitatorfeenotsupportederror.js";
+import {
+  RtpPersonalToPersonalNotSupportedError,
+  RtpPersonalToPersonalNotSupportedError$inboundSchema,
+  RtpPersonalToPersonalNotSupportedError$Outbound,
+  RtpPersonalToPersonalNotSupportedError$outboundSchema,
+} from "./rtppersonaltopersonalnotsupportederror.js";
+import {
+  RtpUnverifiedSenderNotSupportedError,
+  RtpUnverifiedSenderNotSupportedError$inboundSchema,
+  RtpUnverifiedSenderNotSupportedError$Outbound,
+  RtpUnverifiedSenderNotSupportedError$outboundSchema,
+} from "./rtpunverifiedsendernotsupportederror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
+import {
+  SenderRestrictedError,
+  SenderRestrictedError$inboundSchema,
+  SenderRestrictedError$Outbound,
+  SenderRestrictedError$outboundSchema,
+} from "./senderrestrictederror.js";
+import {
+  SourceAddendaMaxLengthError,
+  SourceAddendaMaxLengthError$inboundSchema,
+  SourceAddendaMaxLengthError$Outbound,
+  SourceAddendaMaxLengthError$outboundSchema,
+} from "./sourceaddendamaxlengtherror.js";
+import {
+  SourceNotFoundError,
+  SourceNotFoundError$inboundSchema,
+  SourceNotFoundError$Outbound,
+  SourceNotFoundError$outboundSchema,
+} from "./sourcenotfounderror.js";
+import {
+  SourceSameAsDestinationError,
+  SourceSameAsDestinationError$inboundSchema,
+  SourceSameAsDestinationError$Outbound,
+  SourceSameAsDestinationError$outboundSchema,
+} from "./sourcesameasdestinationerror.js";
+import {
+  TransferExpiredForFeeError,
+  TransferExpiredForFeeError$inboundSchema,
+  TransferExpiredForFeeError$Outbound,
+  TransferExpiredForFeeError$outboundSchema,
+} from "./transferexpiredforfeeerror.js";
+import {
+  WeeklyReceiveLimitReachedError,
+  WeeklyReceiveLimitReachedError$inboundSchema,
+  WeeklyReceiveLimitReachedError$Outbound,
+  WeeklyReceiveLimitReachedError$outboundSchema,
+} from "./weeklyreceivelimitreachederror.js";
+import {
+  WireAccountNotFoundError,
+  WireAccountNotFoundError$inboundSchema,
+  WireAccountNotFoundError$Outbound,
+  WireAccountNotFoundError$outboundSchema,
+} from "./wireaccountnotfounderror.js";
+import {
+  WireAccountRestrictedError,
+  WireAccountRestrictedError$inboundSchema,
+  WireAccountRestrictedError$Outbound,
+  WireAccountRestrictedError$outboundSchema,
+} from "./wireaccountrestrictederror.js";
+import {
+  WireInvalidImadError,
+  WireInvalidImadError$inboundSchema,
+  WireInvalidImadError$Outbound,
+  WireInvalidImadError$outboundSchema,
+} from "./wireinvalidimaderror.js";
+import {
+  WireNotEnabledError,
+  WireNotEnabledError$inboundSchema,
+  WireNotEnabledError$Outbound,
+  WireNotEnabledError$outboundSchema,
+} from "./wirenotenablederror.js";
+import {
+  WithdrawAccountRestrictedError,
+  WithdrawAccountRestrictedError$inboundSchema,
+  WithdrawAccountRestrictedError$Outbound,
+  WithdrawAccountRestrictedError$outboundSchema,
+} from "./withdrawaccountrestrictederror.js";
+import {
+  WithdrawInvalidAmountError,
+  WithdrawInvalidAmountError$inboundSchema,
+  WithdrawInvalidAmountError$Outbound,
+  WithdrawInvalidAmountError$outboundSchema,
+} from "./withdrawinvalidamounterror.js";
+import {
+  WithdrawInvalidAmountForClearingTypeError,
+  WithdrawInvalidAmountForClearingTypeError$inboundSchema,
+  WithdrawInvalidAmountForClearingTypeError$Outbound,
+  WithdrawInvalidAmountForClearingTypeError$outboundSchema,
+} from "./withdrawinvalidamountforclearingtypeerror.js";
+import {
+  WithdrawInvalidFundingSourceError,
+  WithdrawInvalidFundingSourceError$inboundSchema,
+  WithdrawInvalidFundingSourceError$Outbound,
+  WithdrawInvalidFundingSourceError$outboundSchema,
+} from "./withdrawinvalidfundingsourceerror.js";
+import {
+  WithdrawInvalidWireBeneficiaryCountryError,
+  WithdrawInvalidWireBeneficiaryCountryError$inboundSchema,
+  WithdrawInvalidWireBeneficiaryCountryError$Outbound,
+  WithdrawInvalidWireBeneficiaryCountryError$outboundSchema,
+} from "./withdrawinvalidwirebeneficiarycountryerror.js";
+import {
+  WithdrawInvalidWireBeneficiaryLocalityError,
+  WithdrawInvalidWireBeneficiaryLocalityError$inboundSchema,
+  WithdrawInvalidWireBeneficiaryLocalityError$Outbound,
+  WithdrawInvalidWireBeneficiaryLocalityError$outboundSchema,
+} from "./withdrawinvalidwirebeneficiarylocalityerror.js";
+import {
+  WithdrawInvalidWireBeneficiaryRegionError,
+  WithdrawInvalidWireBeneficiaryRegionError$inboundSchema,
+  WithdrawInvalidWireBeneficiaryRegionError$Outbound,
+  WithdrawInvalidWireBeneficiaryRegionError$outboundSchema,
+} from "./withdrawinvalidwirebeneficiaryregionerror.js";
+import {
+  WithdrawInvalidWireOriginatorToBeneficiaryError,
+  WithdrawInvalidWireOriginatorToBeneficiaryError$inboundSchema,
+  WithdrawInvalidWireOriginatorToBeneficiaryError$Outbound,
+  WithdrawInvalidWireOriginatorToBeneficiaryError$outboundSchema,
+} from "./withdrawinvalidwireoriginatortobeneficiaryerror.js";
+import {
+  WithdrawProcessingChannelNotSupportedError,
+  WithdrawProcessingChannelNotSupportedError$inboundSchema,
+  WithdrawProcessingChannelNotSupportedError$Outbound,
+  WithdrawProcessingChannelNotSupportedError$outboundSchema,
+} from "./withdrawprocessingchannelnotsupportederror.js";
+import {
+  WithdrawRtpPersonalWithdrawalNotSupportedError,
+  WithdrawRtpPersonalWithdrawalNotSupportedError$inboundSchema,
+  WithdrawRtpPersonalWithdrawalNotSupportedError$Outbound,
+  WithdrawRtpPersonalWithdrawalNotSupportedError$outboundSchema,
+} from "./withdrawrtppersonalwithdrawalnotsupportederror.js";
+import {
+  WithdrawRtpUnverifiedSenderNotSupportedError,
+  WithdrawRtpUnverifiedSenderNotSupportedError$inboundSchema,
+  WithdrawRtpUnverifiedSenderNotSupportedError$Outbound,
+  WithdrawRtpUnverifiedSenderNotSupportedError$outboundSchema,
+} from "./withdrawrtpunverifiedsendernotsupportederror.js";
 
 /**
  * Forbidden
  */
 export type InitiateTransferForbiddenDwollaV1HalJSON =
-  | models.InvalidAttemptToFacilitateFundsError
-  | models.InvalidAttemptToPayInFundsError
-  | models.InvalidAttemptToPayOutFundsError
-  | models.RtpAccountSettingNotEnabledError;
+  | InvalidAttemptToFacilitateFundsError
+  | InvalidAttemptToPayInFundsError
+  | InvalidAttemptToPayOutFundsError
+  | RtpAccountSettingNotEnabledError;
 
 /**
  * Bad Request
  */
 export type InitiateTransferBadRequestDwollaV1HalJSON =
-  | models.SourceNotFoundError
-  | models.ReceiverNotFoundError
-  | models.InvalidSourceFundingSourceError
-  | models.SenderRestrictedError
-  | models.ReceiverRestrictedError
-  | models.InvalidMetadataError
-  | models.OperationBlockedError
-  | models.InvalidAmountLimitError
-  | models.CannotParseAmountError
-  | models.InsufficientFundsError
-  | models.FacilitatorFeeAccountNotFoundError
-  | models.FacilitatorFeeSumTooLargeError
-  | models.FacilitatorFeeBelowMinimumError
-  | models.HighRiskError
-  | models.IncompatibleHoldingsError
-  | models.DirectAccountWithoutBankError
-  | models.SourceSameAsDestinationError
-  | models.InvalidFacilitatorError
-  | models.InvalidFacilitatorFeeCollectFromError
-  | models.InvalidFacilitatorFeeCollectFromCombinationError
-  | models.InvalidDestinationFundingSourceError
-  | models.InvalidFacilitatorFeeAmountError
-  | models.WeeklyReceiveLimitReachedError
-  | models.InvalidDestinationClearingTypeError
-  | models.InvalidAmountForDestinationClearingTypeError
-  | models.InvalidCorrelationIdError
-  | models.SourceAddendaMaxLengthError
-  | models.DestinationAddendaMaxLengthError
-  | models.AchAddendaEntriesNotEnabledForAccountError
-  | models.PointOfSaleAddendaEntriesNotEnabledForAccountError
-  | models.IncompatibleAddendaEntriesError
-  | models.InvalidPointOfSaleAddendaIdentificationCodeError
-  | models.InvalidPointOfSaleAddendaSerialNumberError
-  | models.InvalidPointOfSaleAddendaDateError
-  | models.InvalidPointOfSaleAddendaAddressError
-  | models.InvalidPointOfSaleAddendaCityError
-  | models.InvalidPointOfSaleAddendaStateError
-  | models.TransferExpiredForFeeError
-  | models.InvalidFeeOdfiError
-  | models.InvalidSourceBankAccountTypeError
-  | models.InvalidDestinationBankAccountTypeError
-  | models.IncompatibleSourceAndDestinationTypesError
-  | models.IncompatibleSourceForRtpDestinationError
-  | models.InvalidAmountForDestinationProcessingChannelError
-  | models.RtpFacilitatorFeeNotSupportedError
-  | models.RtpUnverifiedSenderNotSupportedError
-  | models.RtpPersonalToPersonalNotSupportedError
-  | models.DestinationProcessingChannelNotSupportedError
-  | models.DestinationRemittanceDataMaxLengthError
-  | models.WithdrawInvalidAmountError
-  | models.WithdrawInvalidFundingSourceError
-  | models.WithdrawAccountRestrictedError
-  | models.WithdrawInvalidAmountForClearingTypeError
-  | models.WithdrawInvalidWireBeneficiaryLocalityError
-  | models.WithdrawInvalidWireBeneficiaryRegionError
-  | models.WithdrawInvalidWireBeneficiaryCountryError
-  | models.WithdrawInvalidWireOriginatorToBeneficiaryError
-  | models.WithdrawProcessingChannelNotSupportedError
-  | models.WithdrawRtpUnverifiedSenderNotSupportedError
-  | models.WithdrawRtpPersonalWithdrawalNotSupportedError
-  | models.DepositAccountRestrictedError
-  | models.WireInvalidImadError
-  | models.WireAccountRestrictedError
-  | models.WireNotEnabledError
-  | models.WireAccountNotFoundError;
+  | SourceNotFoundError
+  | ReceiverNotFoundError
+  | InvalidSourceFundingSourceError
+  | SenderRestrictedError
+  | ReceiverRestrictedError
+  | InvalidMetadataError
+  | OperationBlockedError
+  | InvalidAmountLimitError
+  | CannotParseAmountError
+  | InsufficientFundsError
+  | FacilitatorFeeAccountNotFoundError
+  | FacilitatorFeeSumTooLargeError
+  | FacilitatorFeeBelowMinimumError
+  | HighRiskError
+  | IncompatibleHoldingsError
+  | DirectAccountWithoutBankError
+  | SourceSameAsDestinationError
+  | InvalidFacilitatorError
+  | InvalidFacilitatorFeeCollectFromError
+  | InvalidFacilitatorFeeCollectFromCombinationError
+  | InvalidDestinationFundingSourceError
+  | InvalidFacilitatorFeeAmountError
+  | WeeklyReceiveLimitReachedError
+  | InvalidDestinationClearingTypeError
+  | InvalidAmountForDestinationClearingTypeError
+  | InvalidCorrelationIdError
+  | SourceAddendaMaxLengthError
+  | DestinationAddendaMaxLengthError
+  | AchAddendaEntriesNotEnabledForAccountError
+  | PointOfSaleAddendaEntriesNotEnabledForAccountError
+  | IncompatibleAddendaEntriesError
+  | InvalidPointOfSaleAddendaIdentificationCodeError
+  | InvalidPointOfSaleAddendaSerialNumberError
+  | InvalidPointOfSaleAddendaDateError
+  | InvalidPointOfSaleAddendaAddressError
+  | InvalidPointOfSaleAddendaCityError
+  | InvalidPointOfSaleAddendaStateError
+  | TransferExpiredForFeeError
+  | InvalidFeeOdfiError
+  | InvalidSourceBankAccountTypeError
+  | InvalidDestinationBankAccountTypeError
+  | IncompatibleSourceAndDestinationTypesError
+  | IncompatibleSourceForRtpDestinationError
+  | InvalidAmountForDestinationProcessingChannelError
+  | RtpFacilitatorFeeNotSupportedError
+  | RtpUnverifiedSenderNotSupportedError
+  | RtpPersonalToPersonalNotSupportedError
+  | DestinationProcessingChannelNotSupportedError
+  | DestinationRemittanceDataMaxLengthError
+  | WithdrawInvalidAmountError
+  | WithdrawInvalidFundingSourceError
+  | WithdrawAccountRestrictedError
+  | WithdrawInvalidAmountForClearingTypeError
+  | WithdrawInvalidWireBeneficiaryLocalityError
+  | WithdrawInvalidWireBeneficiaryRegionError
+  | WithdrawInvalidWireBeneficiaryCountryError
+  | WithdrawInvalidWireOriginatorToBeneficiaryError
+  | WithdrawProcessingChannelNotSupportedError
+  | WithdrawRtpUnverifiedSenderNotSupportedError
+  | WithdrawRtpPersonalWithdrawalNotSupportedError
+  | DepositAccountRestrictedError
+  | WireInvalidImadError
+  | WireAccountRestrictedError
+  | WireNotEnabledError
+  | WireAccountNotFoundError;
 
 /** @internal */
 export const InitiateTransferForbiddenDwollaV1HalJSON$inboundSchema: z.ZodType<
@@ -93,18 +506,18 @@ export const InitiateTransferForbiddenDwollaV1HalJSON$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  models.InvalidAttemptToFacilitateFundsError$inboundSchema,
-  models.InvalidAttemptToPayInFundsError$inboundSchema,
-  models.InvalidAttemptToPayOutFundsError$inboundSchema,
-  models.RtpAccountSettingNotEnabledError$inboundSchema,
+  InvalidAttemptToFacilitateFundsError$inboundSchema,
+  InvalidAttemptToPayInFundsError$inboundSchema,
+  InvalidAttemptToPayOutFundsError$inboundSchema,
+  RtpAccountSettingNotEnabledError$inboundSchema,
 ]);
 
 /** @internal */
 export type InitiateTransferForbiddenDwollaV1HalJSON$Outbound =
-  | models.InvalidAttemptToFacilitateFundsError$Outbound
-  | models.InvalidAttemptToPayInFundsError$Outbound
-  | models.InvalidAttemptToPayOutFundsError$Outbound
-  | models.RtpAccountSettingNotEnabledError$Outbound;
+  | InvalidAttemptToFacilitateFundsError$Outbound
+  | InvalidAttemptToPayInFundsError$Outbound
+  | InvalidAttemptToPayOutFundsError$Outbound
+  | RtpAccountSettingNotEnabledError$Outbound;
 
 /** @internal */
 export const InitiateTransferForbiddenDwollaV1HalJSON$outboundSchema: z.ZodType<
@@ -112,10 +525,10 @@ export const InitiateTransferForbiddenDwollaV1HalJSON$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   InitiateTransferForbiddenDwollaV1HalJSON
 > = z.union([
-  models.InvalidAttemptToFacilitateFundsError$outboundSchema,
-  models.InvalidAttemptToPayInFundsError$outboundSchema,
-  models.InvalidAttemptToPayOutFundsError$outboundSchema,
-  models.RtpAccountSettingNotEnabledError$outboundSchema,
+  InvalidAttemptToFacilitateFundsError$outboundSchema,
+  InvalidAttemptToPayInFundsError$outboundSchema,
+  InvalidAttemptToPayOutFundsError$outboundSchema,
+  RtpAccountSettingNotEnabledError$outboundSchema,
 ]);
 
 /**
@@ -166,140 +579,140 @@ export const InitiateTransferBadRequestDwollaV1HalJSON$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  models.SourceNotFoundError$inboundSchema,
-  models.ReceiverNotFoundError$inboundSchema,
-  models.InvalidSourceFundingSourceError$inboundSchema,
-  models.SenderRestrictedError$inboundSchema,
-  models.ReceiverRestrictedError$inboundSchema,
-  models.InvalidMetadataError$inboundSchema,
-  models.OperationBlockedError$inboundSchema,
-  models.InvalidAmountLimitError$inboundSchema,
-  models.CannotParseAmountError$inboundSchema,
-  models.InsufficientFundsError$inboundSchema,
-  models.FacilitatorFeeAccountNotFoundError$inboundSchema,
-  models.FacilitatorFeeSumTooLargeError$inboundSchema,
-  models.FacilitatorFeeBelowMinimumError$inboundSchema,
-  models.HighRiskError$inboundSchema,
-  models.IncompatibleHoldingsError$inboundSchema,
-  models.DirectAccountWithoutBankError$inboundSchema,
-  models.SourceSameAsDestinationError$inboundSchema,
-  models.InvalidFacilitatorError$inboundSchema,
-  models.InvalidFacilitatorFeeCollectFromError$inboundSchema,
-  models.InvalidFacilitatorFeeCollectFromCombinationError$inboundSchema,
-  models.InvalidDestinationFundingSourceError$inboundSchema,
-  models.InvalidFacilitatorFeeAmountError$inboundSchema,
-  models.WeeklyReceiveLimitReachedError$inboundSchema,
-  models.InvalidDestinationClearingTypeError$inboundSchema,
-  models.InvalidAmountForDestinationClearingTypeError$inboundSchema,
-  models.InvalidCorrelationIdError$inboundSchema,
-  models.SourceAddendaMaxLengthError$inboundSchema,
-  models.DestinationAddendaMaxLengthError$inboundSchema,
-  models.AchAddendaEntriesNotEnabledForAccountError$inboundSchema,
-  models.PointOfSaleAddendaEntriesNotEnabledForAccountError$inboundSchema,
-  models.IncompatibleAddendaEntriesError$inboundSchema,
-  models.InvalidPointOfSaleAddendaIdentificationCodeError$inboundSchema,
-  models.InvalidPointOfSaleAddendaSerialNumberError$inboundSchema,
-  models.InvalidPointOfSaleAddendaDateError$inboundSchema,
-  models.InvalidPointOfSaleAddendaAddressError$inboundSchema,
-  models.InvalidPointOfSaleAddendaCityError$inboundSchema,
-  models.InvalidPointOfSaleAddendaStateError$inboundSchema,
-  models.TransferExpiredForFeeError$inboundSchema,
-  models.InvalidFeeOdfiError$inboundSchema,
-  models.InvalidSourceBankAccountTypeError$inboundSchema,
-  models.InvalidDestinationBankAccountTypeError$inboundSchema,
-  models.IncompatibleSourceAndDestinationTypesError$inboundSchema,
-  models.IncompatibleSourceForRtpDestinationError$inboundSchema,
-  models.InvalidAmountForDestinationProcessingChannelError$inboundSchema,
-  models.RtpFacilitatorFeeNotSupportedError$inboundSchema,
-  models.RtpUnverifiedSenderNotSupportedError$inboundSchema,
-  models.RtpPersonalToPersonalNotSupportedError$inboundSchema,
-  models.DestinationProcessingChannelNotSupportedError$inboundSchema,
-  models.DestinationRemittanceDataMaxLengthError$inboundSchema,
-  models.WithdrawInvalidAmountError$inboundSchema,
-  models.WithdrawInvalidFundingSourceError$inboundSchema,
-  models.WithdrawAccountRestrictedError$inboundSchema,
-  models.WithdrawInvalidAmountForClearingTypeError$inboundSchema,
-  models.WithdrawInvalidWireBeneficiaryLocalityError$inboundSchema,
-  models.WithdrawInvalidWireBeneficiaryRegionError$inboundSchema,
-  models.WithdrawInvalidWireBeneficiaryCountryError$inboundSchema,
-  models.WithdrawInvalidWireOriginatorToBeneficiaryError$inboundSchema,
-  models.WithdrawProcessingChannelNotSupportedError$inboundSchema,
-  models.WithdrawRtpUnverifiedSenderNotSupportedError$inboundSchema,
-  models.WithdrawRtpPersonalWithdrawalNotSupportedError$inboundSchema,
-  models.DepositAccountRestrictedError$inboundSchema,
-  models.WireInvalidImadError$inboundSchema,
-  models.WireAccountRestrictedError$inboundSchema,
-  models.WireNotEnabledError$inboundSchema,
-  models.WireAccountNotFoundError$inboundSchema,
+  SourceNotFoundError$inboundSchema,
+  ReceiverNotFoundError$inboundSchema,
+  InvalidSourceFundingSourceError$inboundSchema,
+  SenderRestrictedError$inboundSchema,
+  ReceiverRestrictedError$inboundSchema,
+  InvalidMetadataError$inboundSchema,
+  OperationBlockedError$inboundSchema,
+  InvalidAmountLimitError$inboundSchema,
+  CannotParseAmountError$inboundSchema,
+  InsufficientFundsError$inboundSchema,
+  FacilitatorFeeAccountNotFoundError$inboundSchema,
+  FacilitatorFeeSumTooLargeError$inboundSchema,
+  FacilitatorFeeBelowMinimumError$inboundSchema,
+  HighRiskError$inboundSchema,
+  IncompatibleHoldingsError$inboundSchema,
+  DirectAccountWithoutBankError$inboundSchema,
+  SourceSameAsDestinationError$inboundSchema,
+  InvalidFacilitatorError$inboundSchema,
+  InvalidFacilitatorFeeCollectFromError$inboundSchema,
+  InvalidFacilitatorFeeCollectFromCombinationError$inboundSchema,
+  InvalidDestinationFundingSourceError$inboundSchema,
+  InvalidFacilitatorFeeAmountError$inboundSchema,
+  WeeklyReceiveLimitReachedError$inboundSchema,
+  InvalidDestinationClearingTypeError$inboundSchema,
+  InvalidAmountForDestinationClearingTypeError$inboundSchema,
+  InvalidCorrelationIdError$inboundSchema,
+  SourceAddendaMaxLengthError$inboundSchema,
+  DestinationAddendaMaxLengthError$inboundSchema,
+  AchAddendaEntriesNotEnabledForAccountError$inboundSchema,
+  PointOfSaleAddendaEntriesNotEnabledForAccountError$inboundSchema,
+  IncompatibleAddendaEntriesError$inboundSchema,
+  InvalidPointOfSaleAddendaIdentificationCodeError$inboundSchema,
+  InvalidPointOfSaleAddendaSerialNumberError$inboundSchema,
+  InvalidPointOfSaleAddendaDateError$inboundSchema,
+  InvalidPointOfSaleAddendaAddressError$inboundSchema,
+  InvalidPointOfSaleAddendaCityError$inboundSchema,
+  InvalidPointOfSaleAddendaStateError$inboundSchema,
+  TransferExpiredForFeeError$inboundSchema,
+  InvalidFeeOdfiError$inboundSchema,
+  InvalidSourceBankAccountTypeError$inboundSchema,
+  InvalidDestinationBankAccountTypeError$inboundSchema,
+  IncompatibleSourceAndDestinationTypesError$inboundSchema,
+  IncompatibleSourceForRtpDestinationError$inboundSchema,
+  InvalidAmountForDestinationProcessingChannelError$inboundSchema,
+  RtpFacilitatorFeeNotSupportedError$inboundSchema,
+  RtpUnverifiedSenderNotSupportedError$inboundSchema,
+  RtpPersonalToPersonalNotSupportedError$inboundSchema,
+  DestinationProcessingChannelNotSupportedError$inboundSchema,
+  DestinationRemittanceDataMaxLengthError$inboundSchema,
+  WithdrawInvalidAmountError$inboundSchema,
+  WithdrawInvalidFundingSourceError$inboundSchema,
+  WithdrawAccountRestrictedError$inboundSchema,
+  WithdrawInvalidAmountForClearingTypeError$inboundSchema,
+  WithdrawInvalidWireBeneficiaryLocalityError$inboundSchema,
+  WithdrawInvalidWireBeneficiaryRegionError$inboundSchema,
+  WithdrawInvalidWireBeneficiaryCountryError$inboundSchema,
+  WithdrawInvalidWireOriginatorToBeneficiaryError$inboundSchema,
+  WithdrawProcessingChannelNotSupportedError$inboundSchema,
+  WithdrawRtpUnverifiedSenderNotSupportedError$inboundSchema,
+  WithdrawRtpPersonalWithdrawalNotSupportedError$inboundSchema,
+  DepositAccountRestrictedError$inboundSchema,
+  WireInvalidImadError$inboundSchema,
+  WireAccountRestrictedError$inboundSchema,
+  WireNotEnabledError$inboundSchema,
+  WireAccountNotFoundError$inboundSchema,
 ]);
 
 /** @internal */
 export type InitiateTransferBadRequestDwollaV1HalJSON$Outbound =
-  | models.SourceNotFoundError$Outbound
-  | models.ReceiverNotFoundError$Outbound
-  | models.InvalidSourceFundingSourceError$Outbound
-  | models.SenderRestrictedError$Outbound
-  | models.ReceiverRestrictedError$Outbound
-  | models.InvalidMetadataError$Outbound
-  | models.OperationBlockedError$Outbound
-  | models.InvalidAmountLimitError$Outbound
-  | models.CannotParseAmountError$Outbound
-  | models.InsufficientFundsError$Outbound
-  | models.FacilitatorFeeAccountNotFoundError$Outbound
-  | models.FacilitatorFeeSumTooLargeError$Outbound
-  | models.FacilitatorFeeBelowMinimumError$Outbound
-  | models.HighRiskError$Outbound
-  | models.IncompatibleHoldingsError$Outbound
-  | models.DirectAccountWithoutBankError$Outbound
-  | models.SourceSameAsDestinationError$Outbound
-  | models.InvalidFacilitatorError$Outbound
-  | models.InvalidFacilitatorFeeCollectFromError$Outbound
-  | models.InvalidFacilitatorFeeCollectFromCombinationError$Outbound
-  | models.InvalidDestinationFundingSourceError$Outbound
-  | models.InvalidFacilitatorFeeAmountError$Outbound
-  | models.WeeklyReceiveLimitReachedError$Outbound
-  | models.InvalidDestinationClearingTypeError$Outbound
-  | models.InvalidAmountForDestinationClearingTypeError$Outbound
-  | models.InvalidCorrelationIdError$Outbound
-  | models.SourceAddendaMaxLengthError$Outbound
-  | models.DestinationAddendaMaxLengthError$Outbound
-  | models.AchAddendaEntriesNotEnabledForAccountError$Outbound
-  | models.PointOfSaleAddendaEntriesNotEnabledForAccountError$Outbound
-  | models.IncompatibleAddendaEntriesError$Outbound
-  | models.InvalidPointOfSaleAddendaIdentificationCodeError$Outbound
-  | models.InvalidPointOfSaleAddendaSerialNumberError$Outbound
-  | models.InvalidPointOfSaleAddendaDateError$Outbound
-  | models.InvalidPointOfSaleAddendaAddressError$Outbound
-  | models.InvalidPointOfSaleAddendaCityError$Outbound
-  | models.InvalidPointOfSaleAddendaStateError$Outbound
-  | models.TransferExpiredForFeeError$Outbound
-  | models.InvalidFeeOdfiError$Outbound
-  | models.InvalidSourceBankAccountTypeError$Outbound
-  | models.InvalidDestinationBankAccountTypeError$Outbound
-  | models.IncompatibleSourceAndDestinationTypesError$Outbound
-  | models.IncompatibleSourceForRtpDestinationError$Outbound
-  | models.InvalidAmountForDestinationProcessingChannelError$Outbound
-  | models.RtpFacilitatorFeeNotSupportedError$Outbound
-  | models.RtpUnverifiedSenderNotSupportedError$Outbound
-  | models.RtpPersonalToPersonalNotSupportedError$Outbound
-  | models.DestinationProcessingChannelNotSupportedError$Outbound
-  | models.DestinationRemittanceDataMaxLengthError$Outbound
-  | models.WithdrawInvalidAmountError$Outbound
-  | models.WithdrawInvalidFundingSourceError$Outbound
-  | models.WithdrawAccountRestrictedError$Outbound
-  | models.WithdrawInvalidAmountForClearingTypeError$Outbound
-  | models.WithdrawInvalidWireBeneficiaryLocalityError$Outbound
-  | models.WithdrawInvalidWireBeneficiaryRegionError$Outbound
-  | models.WithdrawInvalidWireBeneficiaryCountryError$Outbound
-  | models.WithdrawInvalidWireOriginatorToBeneficiaryError$Outbound
-  | models.WithdrawProcessingChannelNotSupportedError$Outbound
-  | models.WithdrawRtpUnverifiedSenderNotSupportedError$Outbound
-  | models.WithdrawRtpPersonalWithdrawalNotSupportedError$Outbound
-  | models.DepositAccountRestrictedError$Outbound
-  | models.WireInvalidImadError$Outbound
-  | models.WireAccountRestrictedError$Outbound
-  | models.WireNotEnabledError$Outbound
-  | models.WireAccountNotFoundError$Outbound;
+  | SourceNotFoundError$Outbound
+  | ReceiverNotFoundError$Outbound
+  | InvalidSourceFundingSourceError$Outbound
+  | SenderRestrictedError$Outbound
+  | ReceiverRestrictedError$Outbound
+  | InvalidMetadataError$Outbound
+  | OperationBlockedError$Outbound
+  | InvalidAmountLimitError$Outbound
+  | CannotParseAmountError$Outbound
+  | InsufficientFundsError$Outbound
+  | FacilitatorFeeAccountNotFoundError$Outbound
+  | FacilitatorFeeSumTooLargeError$Outbound
+  | FacilitatorFeeBelowMinimumError$Outbound
+  | HighRiskError$Outbound
+  | IncompatibleHoldingsError$Outbound
+  | DirectAccountWithoutBankError$Outbound
+  | SourceSameAsDestinationError$Outbound
+  | InvalidFacilitatorError$Outbound
+  | InvalidFacilitatorFeeCollectFromError$Outbound
+  | InvalidFacilitatorFeeCollectFromCombinationError$Outbound
+  | InvalidDestinationFundingSourceError$Outbound
+  | InvalidFacilitatorFeeAmountError$Outbound
+  | WeeklyReceiveLimitReachedError$Outbound
+  | InvalidDestinationClearingTypeError$Outbound
+  | InvalidAmountForDestinationClearingTypeError$Outbound
+  | InvalidCorrelationIdError$Outbound
+  | SourceAddendaMaxLengthError$Outbound
+  | DestinationAddendaMaxLengthError$Outbound
+  | AchAddendaEntriesNotEnabledForAccountError$Outbound
+  | PointOfSaleAddendaEntriesNotEnabledForAccountError$Outbound
+  | IncompatibleAddendaEntriesError$Outbound
+  | InvalidPointOfSaleAddendaIdentificationCodeError$Outbound
+  | InvalidPointOfSaleAddendaSerialNumberError$Outbound
+  | InvalidPointOfSaleAddendaDateError$Outbound
+  | InvalidPointOfSaleAddendaAddressError$Outbound
+  | InvalidPointOfSaleAddendaCityError$Outbound
+  | InvalidPointOfSaleAddendaStateError$Outbound
+  | TransferExpiredForFeeError$Outbound
+  | InvalidFeeOdfiError$Outbound
+  | InvalidSourceBankAccountTypeError$Outbound
+  | InvalidDestinationBankAccountTypeError$Outbound
+  | IncompatibleSourceAndDestinationTypesError$Outbound
+  | IncompatibleSourceForRtpDestinationError$Outbound
+  | InvalidAmountForDestinationProcessingChannelError$Outbound
+  | RtpFacilitatorFeeNotSupportedError$Outbound
+  | RtpUnverifiedSenderNotSupportedError$Outbound
+  | RtpPersonalToPersonalNotSupportedError$Outbound
+  | DestinationProcessingChannelNotSupportedError$Outbound
+  | DestinationRemittanceDataMaxLengthError$Outbound
+  | WithdrawInvalidAmountError$Outbound
+  | WithdrawInvalidFundingSourceError$Outbound
+  | WithdrawAccountRestrictedError$Outbound
+  | WithdrawInvalidAmountForClearingTypeError$Outbound
+  | WithdrawInvalidWireBeneficiaryLocalityError$Outbound
+  | WithdrawInvalidWireBeneficiaryRegionError$Outbound
+  | WithdrawInvalidWireBeneficiaryCountryError$Outbound
+  | WithdrawInvalidWireOriginatorToBeneficiaryError$Outbound
+  | WithdrawProcessingChannelNotSupportedError$Outbound
+  | WithdrawRtpUnverifiedSenderNotSupportedError$Outbound
+  | WithdrawRtpPersonalWithdrawalNotSupportedError$Outbound
+  | DepositAccountRestrictedError$Outbound
+  | WireInvalidImadError$Outbound
+  | WireAccountRestrictedError$Outbound
+  | WireNotEnabledError$Outbound
+  | WireAccountNotFoundError$Outbound;
 
 /** @internal */
 export const InitiateTransferBadRequestDwollaV1HalJSON$outboundSchema:
@@ -308,71 +721,71 @@ export const InitiateTransferBadRequestDwollaV1HalJSON$outboundSchema:
     z.ZodTypeDef,
     InitiateTransferBadRequestDwollaV1HalJSON
   > = z.union([
-    models.SourceNotFoundError$outboundSchema,
-    models.ReceiverNotFoundError$outboundSchema,
-    models.InvalidSourceFundingSourceError$outboundSchema,
-    models.SenderRestrictedError$outboundSchema,
-    models.ReceiverRestrictedError$outboundSchema,
-    models.InvalidMetadataError$outboundSchema,
-    models.OperationBlockedError$outboundSchema,
-    models.InvalidAmountLimitError$outboundSchema,
-    models.CannotParseAmountError$outboundSchema,
-    models.InsufficientFundsError$outboundSchema,
-    models.FacilitatorFeeAccountNotFoundError$outboundSchema,
-    models.FacilitatorFeeSumTooLargeError$outboundSchema,
-    models.FacilitatorFeeBelowMinimumError$outboundSchema,
-    models.HighRiskError$outboundSchema,
-    models.IncompatibleHoldingsError$outboundSchema,
-    models.DirectAccountWithoutBankError$outboundSchema,
-    models.SourceSameAsDestinationError$outboundSchema,
-    models.InvalidFacilitatorError$outboundSchema,
-    models.InvalidFacilitatorFeeCollectFromError$outboundSchema,
-    models.InvalidFacilitatorFeeCollectFromCombinationError$outboundSchema,
-    models.InvalidDestinationFundingSourceError$outboundSchema,
-    models.InvalidFacilitatorFeeAmountError$outboundSchema,
-    models.WeeklyReceiveLimitReachedError$outboundSchema,
-    models.InvalidDestinationClearingTypeError$outboundSchema,
-    models.InvalidAmountForDestinationClearingTypeError$outboundSchema,
-    models.InvalidCorrelationIdError$outboundSchema,
-    models.SourceAddendaMaxLengthError$outboundSchema,
-    models.DestinationAddendaMaxLengthError$outboundSchema,
-    models.AchAddendaEntriesNotEnabledForAccountError$outboundSchema,
-    models.PointOfSaleAddendaEntriesNotEnabledForAccountError$outboundSchema,
-    models.IncompatibleAddendaEntriesError$outboundSchema,
-    models.InvalidPointOfSaleAddendaIdentificationCodeError$outboundSchema,
-    models.InvalidPointOfSaleAddendaSerialNumberError$outboundSchema,
-    models.InvalidPointOfSaleAddendaDateError$outboundSchema,
-    models.InvalidPointOfSaleAddendaAddressError$outboundSchema,
-    models.InvalidPointOfSaleAddendaCityError$outboundSchema,
-    models.InvalidPointOfSaleAddendaStateError$outboundSchema,
-    models.TransferExpiredForFeeError$outboundSchema,
-    models.InvalidFeeOdfiError$outboundSchema,
-    models.InvalidSourceBankAccountTypeError$outboundSchema,
-    models.InvalidDestinationBankAccountTypeError$outboundSchema,
-    models.IncompatibleSourceAndDestinationTypesError$outboundSchema,
-    models.IncompatibleSourceForRtpDestinationError$outboundSchema,
-    models.InvalidAmountForDestinationProcessingChannelError$outboundSchema,
-    models.RtpFacilitatorFeeNotSupportedError$outboundSchema,
-    models.RtpUnverifiedSenderNotSupportedError$outboundSchema,
-    models.RtpPersonalToPersonalNotSupportedError$outboundSchema,
-    models.DestinationProcessingChannelNotSupportedError$outboundSchema,
-    models.DestinationRemittanceDataMaxLengthError$outboundSchema,
-    models.WithdrawInvalidAmountError$outboundSchema,
-    models.WithdrawInvalidFundingSourceError$outboundSchema,
-    models.WithdrawAccountRestrictedError$outboundSchema,
-    models.WithdrawInvalidAmountForClearingTypeError$outboundSchema,
-    models.WithdrawInvalidWireBeneficiaryLocalityError$outboundSchema,
-    models.WithdrawInvalidWireBeneficiaryRegionError$outboundSchema,
-    models.WithdrawInvalidWireBeneficiaryCountryError$outboundSchema,
-    models.WithdrawInvalidWireOriginatorToBeneficiaryError$outboundSchema,
-    models.WithdrawProcessingChannelNotSupportedError$outboundSchema,
-    models.WithdrawRtpUnverifiedSenderNotSupportedError$outboundSchema,
-    models.WithdrawRtpPersonalWithdrawalNotSupportedError$outboundSchema,
-    models.DepositAccountRestrictedError$outboundSchema,
-    models.WireInvalidImadError$outboundSchema,
-    models.WireAccountRestrictedError$outboundSchema,
-    models.WireNotEnabledError$outboundSchema,
-    models.WireAccountNotFoundError$outboundSchema,
+    SourceNotFoundError$outboundSchema,
+    ReceiverNotFoundError$outboundSchema,
+    InvalidSourceFundingSourceError$outboundSchema,
+    SenderRestrictedError$outboundSchema,
+    ReceiverRestrictedError$outboundSchema,
+    InvalidMetadataError$outboundSchema,
+    OperationBlockedError$outboundSchema,
+    InvalidAmountLimitError$outboundSchema,
+    CannotParseAmountError$outboundSchema,
+    InsufficientFundsError$outboundSchema,
+    FacilitatorFeeAccountNotFoundError$outboundSchema,
+    FacilitatorFeeSumTooLargeError$outboundSchema,
+    FacilitatorFeeBelowMinimumError$outboundSchema,
+    HighRiskError$outboundSchema,
+    IncompatibleHoldingsError$outboundSchema,
+    DirectAccountWithoutBankError$outboundSchema,
+    SourceSameAsDestinationError$outboundSchema,
+    InvalidFacilitatorError$outboundSchema,
+    InvalidFacilitatorFeeCollectFromError$outboundSchema,
+    InvalidFacilitatorFeeCollectFromCombinationError$outboundSchema,
+    InvalidDestinationFundingSourceError$outboundSchema,
+    InvalidFacilitatorFeeAmountError$outboundSchema,
+    WeeklyReceiveLimitReachedError$outboundSchema,
+    InvalidDestinationClearingTypeError$outboundSchema,
+    InvalidAmountForDestinationClearingTypeError$outboundSchema,
+    InvalidCorrelationIdError$outboundSchema,
+    SourceAddendaMaxLengthError$outboundSchema,
+    DestinationAddendaMaxLengthError$outboundSchema,
+    AchAddendaEntriesNotEnabledForAccountError$outboundSchema,
+    PointOfSaleAddendaEntriesNotEnabledForAccountError$outboundSchema,
+    IncompatibleAddendaEntriesError$outboundSchema,
+    InvalidPointOfSaleAddendaIdentificationCodeError$outboundSchema,
+    InvalidPointOfSaleAddendaSerialNumberError$outboundSchema,
+    InvalidPointOfSaleAddendaDateError$outboundSchema,
+    InvalidPointOfSaleAddendaAddressError$outboundSchema,
+    InvalidPointOfSaleAddendaCityError$outboundSchema,
+    InvalidPointOfSaleAddendaStateError$outboundSchema,
+    TransferExpiredForFeeError$outboundSchema,
+    InvalidFeeOdfiError$outboundSchema,
+    InvalidSourceBankAccountTypeError$outboundSchema,
+    InvalidDestinationBankAccountTypeError$outboundSchema,
+    IncompatibleSourceAndDestinationTypesError$outboundSchema,
+    IncompatibleSourceForRtpDestinationError$outboundSchema,
+    InvalidAmountForDestinationProcessingChannelError$outboundSchema,
+    RtpFacilitatorFeeNotSupportedError$outboundSchema,
+    RtpUnverifiedSenderNotSupportedError$outboundSchema,
+    RtpPersonalToPersonalNotSupportedError$outboundSchema,
+    DestinationProcessingChannelNotSupportedError$outboundSchema,
+    DestinationRemittanceDataMaxLengthError$outboundSchema,
+    WithdrawInvalidAmountError$outboundSchema,
+    WithdrawInvalidFundingSourceError$outboundSchema,
+    WithdrawAccountRestrictedError$outboundSchema,
+    WithdrawInvalidAmountForClearingTypeError$outboundSchema,
+    WithdrawInvalidWireBeneficiaryLocalityError$outboundSchema,
+    WithdrawInvalidWireBeneficiaryRegionError$outboundSchema,
+    WithdrawInvalidWireBeneficiaryCountryError$outboundSchema,
+    WithdrawInvalidWireOriginatorToBeneficiaryError$outboundSchema,
+    WithdrawProcessingChannelNotSupportedError$outboundSchema,
+    WithdrawRtpUnverifiedSenderNotSupportedError$outboundSchema,
+    WithdrawRtpPersonalWithdrawalNotSupportedError$outboundSchema,
+    DepositAccountRestrictedError$outboundSchema,
+    WireInvalidImadError$outboundSchema,
+    WireAccountRestrictedError$outboundSchema,
+    WireNotEnabledError$outboundSchema,
+    WireAccountNotFoundError$outboundSchema,
   ]);
 
 /**

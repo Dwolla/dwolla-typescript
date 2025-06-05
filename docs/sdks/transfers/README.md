@@ -7,15 +7,15 @@ Operations related to Transfers
 
 ### Available Operations
 
-* [initiateTransfer](#initiatetransfer) - Initiate a transfer
-* [getTransfer](#gettransfer) - Retrieve a transfer
-* [cancelTransfer](#canceltransfer) - Cancel a transfer
-* [listCustomerTransfers](#listcustomertransfers) - List and search transfers for a customer
-* [listTransferFees](#listtransferfees) - List fees for a transfer
-* [getTransferFailureReason](#gettransferfailurereason) - Retrieve a transfer failure reason
-* [createOnDemandTransferAuthorization](#createondemandtransferauthorization) - Create an on-demand transfer authorization
+* [create](#create) - Initiate a transfer
+* [get](#get) - Retrieve a transfer
+* [cancel](#cancel) - Cancel a transfer
+* [listForCustomer](#listforcustomer) - List and search transfers for a customer
+* [listFees](#listfees) - List fees for a transfer
+* [getFailureReason](#getfailurereason) - Retrieve a transfer failure reason
+* [createOnDemandAuthorization](#createondemandauthorization) - Create an on-demand transfer authorization
 
-## initiateTransfer
+## create
 
 Initiate a transfer
 
@@ -25,11 +25,14 @@ Initiate a transfer
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.transfers.initiateTransfer({
+  const result = await dwolla.transfers.create({
     links: {},
     amount: {
       value: "5.00",
@@ -40,7 +43,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -53,16 +55,19 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { transfersInitiateTransfer } from "dwolla-typescript/funcs/transfersInitiateTransfer.js";
+import { transfersCreate } from "dwolla-typescript/funcs/transfersCreate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await transfersInitiateTransfer(dwolla, {
+  const res = await transfersCreate(dwolla, {
     links: {},
     amount: {
       value: "5.00",
@@ -72,15 +77,12 @@ async function run() {
       destination: "real-time-payments",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("transfersCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -101,14 +103,81 @@ run();
 
 ### Errors
 
-| Error Type                                       | Status Code                                      | Content Type                                     |
-| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
-| errors.InitiateTransferBadRequestDwollaV1HalJSON | 400                                              | application/vnd.dwolla.v1.hal+json               |
-| errors.InitiateTransferForbiddenDwollaV1HalJSON  | 403                                              | application/vnd.dwolla.v1.hal+json               |
-| errors.TooManyRequestsErrorError                 | 429                                              | application/vnd.dwolla.v1.hal+json               |
-| errors.APIError                                  | 4XX, 5XX                                         | \*/\*                                            |
+| Error Type                                                | Status Code                                               | Content Type                                              |
+| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| errors.SourceNotFoundError                                | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.ReceiverNotFoundError                              | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.InvalidSourceFundingSourceError                    | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.SenderRestrictedError                              | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.ReceiverRestrictedError                            | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.InvalidMetadataError                               | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.OperationBlockedError                              | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.InvalidAmountLimitError                            | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.CannotParseAmountError                             | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.InsufficientFundsError                             | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.FacilitatorFeeAccountNotFoundError                 | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.FacilitatorFeeSumTooLargeError                     | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.FacilitatorFeeBelowMinimumError                    | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.HighRiskError                                      | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.IncompatibleHoldingsError                          | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.DirectAccountWithoutBankError                      | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.SourceSameAsDestinationError                       | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.InvalidFacilitatorError                            | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.InvalidFacilitatorFeeCollectFromError              | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.InvalidFacilitatorFeeCollectFromCombinationError   | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.InvalidDestinationFundingSourceError               | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.InvalidFacilitatorFeeAmountError                   | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.WeeklyReceiveLimitReachedError                     | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.InvalidDestinationClearingTypeError                | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.InvalidAmountForDestinationClearingTypeError       | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.InvalidCorrelationIdError                          | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.SourceAddendaMaxLengthError                        | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.DestinationAddendaMaxLengthError                   | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.AchAddendaEntriesNotEnabledForAccountError         | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.PointOfSaleAddendaEntriesNotEnabledForAccountError | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.IncompatibleAddendaEntriesError                    | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.InvalidPointOfSaleAddendaIdentificationCodeError   | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.InvalidPointOfSaleAddendaSerialNumberError         | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.InvalidPointOfSaleAddendaDateError                 | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.InvalidPointOfSaleAddendaAddressError              | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.InvalidPointOfSaleAddendaCityError                 | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.InvalidPointOfSaleAddendaStateError                | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.TransferExpiredForFeeError                         | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.InvalidFeeOdfiError                                | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.InvalidSourceBankAccountTypeError                  | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.InvalidDestinationBankAccountTypeError             | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.IncompatibleSourceAndDestinationTypesError         | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.IncompatibleSourceForRtpDestinationError           | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.InvalidAmountForDestinationProcessingChannelError  | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.RtpFacilitatorFeeNotSupportedError                 | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.RtpUnverifiedSenderNotSupportedError               | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.RtpPersonalToPersonalNotSupportedError             | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.DestinationProcessingChannelNotSupportedError      | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.DestinationRemittanceDataMaxLengthError            | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.WithdrawInvalidAmountError                         | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.WithdrawInvalidFundingSourceError                  | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.WithdrawAccountRestrictedError                     | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.WithdrawInvalidAmountForClearingTypeError          | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.WithdrawInvalidWireBeneficiaryLocalityError        | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.WithdrawInvalidWireBeneficiaryRegionError          | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.WithdrawInvalidWireBeneficiaryCountryError         | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.WithdrawInvalidWireOriginatorToBeneficiaryError    | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.WithdrawProcessingChannelNotSupportedError         | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.WithdrawRtpUnverifiedSenderNotSupportedError       | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.WithdrawRtpPersonalWithdrawalNotSupportedError     | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.DepositAccountRestrictedError                      | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.WireInvalidImadError                               | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.WireAccountRestrictedError                         | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.WireNotEnabledError                                | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.WireAccountNotFoundError                           | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.InvalidAttemptToFacilitateFundsError               | 403                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.InvalidAttemptToPayInFundsError                    | 403                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.InvalidAttemptToPayOutFundsError                   | 403                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.RtpAccountSettingNotEnabledError                   | 403                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.TooManyRequestsErrorError                          | 429                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.APIError                                           | 4XX, 5XX                                                  | \*/\*                                                     |
 
-## getTransfer
+## get
 
 Retrieve a transfer
 
@@ -118,15 +187,17 @@ Retrieve a transfer
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.transfers.getTransfer({
+  const result = await dwolla.transfers.get({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -139,27 +210,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { transfersGetTransfer } from "dwolla-typescript/funcs/transfersGetTransfer.js";
+import { transfersGet } from "dwolla-typescript/funcs/transfersGet.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await transfersGetTransfer(dwolla, {
+  const res = await transfersGet(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("transfersGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -185,7 +256,7 @@ run();
 | errors.NotFoundError               | 404                                | application/vnd.dwolla.v1.hal+json |
 | errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
 
-## cancelTransfer
+## cancel
 
 Cancel a transfer
 
@@ -195,18 +266,20 @@ Cancel a transfer
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.transfers.cancelTransfer({
+  const result = await dwolla.transfers.cancel({
     id: "<id>",
     requestBody: {
       status: "cancelled",
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -219,30 +292,30 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { transfersCancelTransfer } from "dwolla-typescript/funcs/transfersCancelTransfer.js";
+import { transfersCancel } from "dwolla-typescript/funcs/transfersCancel.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await transfersCancelTransfer(dwolla, {
+  const res = await transfersCancel(dwolla, {
     id: "<id>",
     requestBody: {
       status: "cancelled",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("transfersCancel failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -263,13 +336,15 @@ run();
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| errors.CancelTransferDwollaV1HalJSON | 400                                  | application/vnd.dwolla.v1.hal+json   |
-| errors.NotFoundError                 | 404                                  | application/vnd.dwolla.v1.hal+json   |
-| errors.APIError                      | 4XX, 5XX                             | \*/\*                                |
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.BadRequestError             | 400                                | application/vnd.dwolla.v1.hal+json |
+| errors.StatusInvalidError          | 400                                | application/vnd.dwolla.v1.hal+json |
+| errors.StatusNotAllowedError       | 400                                | application/vnd.dwolla.v1.hal+json |
+| errors.NotFoundError               | 404                                | application/vnd.dwolla.v1.hal+json |
+| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
 
-## listCustomerTransfers
+## listForCustomer
 
 List and search transfers for a customer
 
@@ -279,15 +354,17 @@ List and search transfers for a customer
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.transfers.listCustomerTransfers({
+  const result = await dwolla.transfers.listForCustomer({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -300,27 +377,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { transfersListCustomerTransfers } from "dwolla-typescript/funcs/transfersListCustomerTransfers.js";
+import { transfersListForCustomer } from "dwolla-typescript/funcs/transfersListForCustomer.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await transfersListCustomerTransfers(dwolla, {
+  const res = await transfersListForCustomer(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("transfersListForCustomer failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -346,7 +423,7 @@ run();
 | errors.NotFoundError               | 404                                | application/vnd.dwolla.v1.hal+json |
 | errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
 
-## listTransferFees
+## listFees
 
 List fees for a transfer
 
@@ -356,15 +433,17 @@ List fees for a transfer
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.transfers.listTransferFees({
+  const result = await dwolla.transfers.listFees({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -377,27 +456,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { transfersListTransferFees } from "dwolla-typescript/funcs/transfersListTransferFees.js";
+import { transfersListFees } from "dwolla-typescript/funcs/transfersListFees.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await transfersListTransferFees(dwolla, {
+  const res = await transfersListFees(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("transfersListFees failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -423,7 +502,7 @@ run();
 | errors.NotFoundError               | 404                                | application/vnd.dwolla.v1.hal+json |
 | errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
 
-## getTransferFailureReason
+## getFailureReason
 
 Retrieve a transfer failure reason
 
@@ -433,15 +512,17 @@ Retrieve a transfer failure reason
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.transfers.getTransferFailureReason({
+  const result = await dwolla.transfers.getFailureReason({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -454,27 +535,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { transfersGetTransferFailureReason } from "dwolla-typescript/funcs/transfersGetTransferFailureReason.js";
+import { transfersGetFailureReason } from "dwolla-typescript/funcs/transfersGetFailureReason.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await transfersGetTransferFailureReason(dwolla, {
+  const res = await transfersGetFailureReason(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("transfersGetFailureReason failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -501,7 +582,7 @@ run();
 | errors.NotFoundError               | 404                                | application/vnd.dwolla.v1.hal+json |
 | errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
 
-## createOnDemandTransferAuthorization
+## createOnDemandAuthorization
 
 Create an on-demand transfer authorization
 
@@ -511,13 +592,15 @@ Create an on-demand transfer authorization
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.transfers.createOnDemandTransferAuthorization();
+  const result = await dwolla.transfers.createOnDemandAuthorization();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -530,25 +613,25 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { transfersCreateOnDemandTransferAuthorization } from "dwolla-typescript/funcs/transfersCreateOnDemandTransferAuthorization.js";
+import { transfersCreateOnDemandAuthorization } from "dwolla-typescript/funcs/transfersCreateOnDemandAuthorization.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await transfersCreateOnDemandTransferAuthorization(dwolla);
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await transfersCreateOnDemandAuthorization(dwolla);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("transfersCreateOnDemandAuthorization failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

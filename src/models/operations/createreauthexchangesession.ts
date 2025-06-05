@@ -15,9 +15,14 @@ export type CreateReAuthExchangeSessionRequest = {
    */
   id: string;
   /**
-   * Request body parameters. Required for Visa and Plaid mobile sessions, not required for Plaid Web sessions.
+   * Request body containing the redirect URL.
    *
    * @remarks
+   * Required for:
+   * - Visa exchange sessions
+   * - Plaid mobile sessions
+   * Not required for:
+   * - Plaid web sessions
    */
   createReAuthExchangeSession?:
     | models.CreateReAuthExchangeSessionUnion

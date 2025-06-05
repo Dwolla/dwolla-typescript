@@ -28,9 +28,13 @@ import { Result } from "../types/fp.js";
  * Initiate or Verify micro-deposits
  *
  * @remarks
- * Initiate or Verify micro-deposits.
- * For initiating micro-deposits, no request body is required.
- * For verifying micro-deposits, a request body with the micro-deposit amounts is required.
+ * This endpoint handles two different actions:
+ * 1. Initiating micro-deposits: No request body is required
+ * 2. Verifying micro-deposits: Request body with micro-deposit amounts is required
+ *
+ * The action is determined by the presence of a request body:
+ * - If no request body is provided, the endpoint will initiate micro-deposits
+ * - If a request body with micro-deposit amounts is provided, the endpoint will verify the micro-deposits
  */
 export function fundingSourcesInitiateOrVerifyMicroDeposits(
   client: DwollaCore,
@@ -104,18 +108,18 @@ async function $do(
     Accept: "application/vnd.dwolla.v1.hal+json",
   }));
 
-  const secConfig = await extractSecurity(client._options.bearerAuth);
-  const securityInput = secConfig == null ? {} : { bearerAuth: secConfig };
+  const securityInput = await extractSecurity(client._options.security);
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "initiateOrVerifyMicroDeposits",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
 
-    securitySource: client._options.bearerAuth,
+    securitySource: client._options.security,
     retryConfig: options?.retries
       || client._options.retryConfig
       || { strategy: "none" },
@@ -129,6 +133,7 @@ async function $do(
     path: path,
     headers: headers,
     body: body,
+    userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {

@@ -26,11 +26,6 @@ export type CertifyBeneficialOwnershipForCustomerRequest = {
   requestBody: CertifyBeneficialOwnershipForCustomerRequestBody;
 };
 
-export type CertifyBeneficialOwnershipForCustomerEmbedded = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
 /** @internal */
 export const CertifyBeneficialOwnershipForCustomerRequestBody$inboundSchema:
   z.ZodType<
@@ -178,75 +173,5 @@ export function certifyBeneficialOwnershipForCustomerRequestFromJSON(
         JSON.parse(x),
       ),
     `Failed to parse 'CertifyBeneficialOwnershipForCustomerRequest' from JSON`,
-  );
-}
-
-/** @internal */
-export const CertifyBeneficialOwnershipForCustomerEmbedded$inboundSchema:
-  z.ZodType<
-    CertifyBeneficialOwnershipForCustomerEmbedded,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-  });
-
-/** @internal */
-export type CertifyBeneficialOwnershipForCustomerEmbedded$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const CertifyBeneficialOwnershipForCustomerEmbedded$outboundSchema:
-  z.ZodType<
-    CertifyBeneficialOwnershipForCustomerEmbedded$Outbound,
-    z.ZodTypeDef,
-    CertifyBeneficialOwnershipForCustomerEmbedded
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CertifyBeneficialOwnershipForCustomerEmbedded$ {
-  /** @deprecated use `CertifyBeneficialOwnershipForCustomerEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    CertifyBeneficialOwnershipForCustomerEmbedded$inboundSchema;
-  /** @deprecated use `CertifyBeneficialOwnershipForCustomerEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    CertifyBeneficialOwnershipForCustomerEmbedded$outboundSchema;
-  /** @deprecated use `CertifyBeneficialOwnershipForCustomerEmbedded$Outbound` instead. */
-  export type Outbound = CertifyBeneficialOwnershipForCustomerEmbedded$Outbound;
-}
-
-export function certifyBeneficialOwnershipForCustomerEmbeddedToJSON(
-  certifyBeneficialOwnershipForCustomerEmbedded:
-    CertifyBeneficialOwnershipForCustomerEmbedded,
-): string {
-  return JSON.stringify(
-    CertifyBeneficialOwnershipForCustomerEmbedded$outboundSchema.parse(
-      certifyBeneficialOwnershipForCustomerEmbedded,
-    ),
-  );
-}
-
-export function certifyBeneficialOwnershipForCustomerEmbeddedFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CertifyBeneficialOwnershipForCustomerEmbedded,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CertifyBeneficialOwnershipForCustomerEmbedded$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CertifyBeneficialOwnershipForCustomerEmbedded' from JSON`,
   );
 }

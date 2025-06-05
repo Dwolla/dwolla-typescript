@@ -21,12 +21,6 @@ export type InvalidPointOfSaleAddendaDateErrorEmbedded = {
   errors?: Array<InvalidPointOfSaleAddendaDateErrorError> | undefined;
 };
 
-export type InvalidPointOfSaleAddendaDateError = {
-  code: string;
-  message: string;
-  embedded?: InvalidPointOfSaleAddendaDateErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const InvalidPointOfSaleAddendaDateErrorLinks$inboundSchema: z.ZodType<
   InvalidPointOfSaleAddendaDateErrorLinks,
@@ -235,81 +229,5 @@ export function invalidPointOfSaleAddendaDateErrorEmbeddedFromJSON(
         JSON.parse(x),
       ),
     `Failed to parse 'InvalidPointOfSaleAddendaDateErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const InvalidPointOfSaleAddendaDateError$inboundSchema: z.ZodType<
-  InvalidPointOfSaleAddendaDateError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() =>
-    InvalidPointOfSaleAddendaDateErrorEmbedded$inboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type InvalidPointOfSaleAddendaDateError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?: InvalidPointOfSaleAddendaDateErrorEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const InvalidPointOfSaleAddendaDateError$outboundSchema: z.ZodType<
-  InvalidPointOfSaleAddendaDateError$Outbound,
-  z.ZodTypeDef,
-  InvalidPointOfSaleAddendaDateError
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  embedded: z.lazy(() =>
-    InvalidPointOfSaleAddendaDateErrorEmbedded$outboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidPointOfSaleAddendaDateError$ {
-  /** @deprecated use `InvalidPointOfSaleAddendaDateError$inboundSchema` instead. */
-  export const inboundSchema = InvalidPointOfSaleAddendaDateError$inboundSchema;
-  /** @deprecated use `InvalidPointOfSaleAddendaDateError$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidPointOfSaleAddendaDateError$outboundSchema;
-  /** @deprecated use `InvalidPointOfSaleAddendaDateError$Outbound` instead. */
-  export type Outbound = InvalidPointOfSaleAddendaDateError$Outbound;
-}
-
-export function invalidPointOfSaleAddendaDateErrorToJSON(
-  invalidPointOfSaleAddendaDateError: InvalidPointOfSaleAddendaDateError,
-): string {
-  return JSON.stringify(
-    InvalidPointOfSaleAddendaDateError$outboundSchema.parse(
-      invalidPointOfSaleAddendaDateError,
-    ),
-  );
-}
-
-export function invalidPointOfSaleAddendaDateErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<InvalidPointOfSaleAddendaDateError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      InvalidPointOfSaleAddendaDateError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InvalidPointOfSaleAddendaDateError' from JSON`,
   );
 }

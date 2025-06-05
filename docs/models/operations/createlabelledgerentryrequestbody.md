@@ -1,6 +1,6 @@
 # CreateLabelLedgerEntryRequestBody
 
-Parameters to create label ledger entry
+Parameters to create a label ledger entry
 
 ## Example Usage
 
@@ -8,7 +8,10 @@ Parameters to create label ledger entry
 import { CreateLabelLedgerEntryRequestBody } from "dwolla-typescript/models/operations";
 
 let value: CreateLabelLedgerEntryRequestBody = {
-  amount: {},
+  amount: {
+    value: "-5.00",
+    currency: "USD",
+  },
 };
 ```
 

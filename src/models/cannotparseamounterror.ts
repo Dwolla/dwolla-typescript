@@ -21,12 +21,6 @@ export type CannotParseAmountErrorEmbedded = {
   errors?: Array<CannotParseAmountErrorError> | undefined;
 };
 
-export type CannotParseAmountError = {
-  code: string;
-  message: string;
-  embedded?: CannotParseAmountErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const CannotParseAmountErrorLinks$inboundSchema: z.ZodType<
   CannotParseAmountErrorLinks,
@@ -205,75 +199,5 @@ export function cannotParseAmountErrorEmbeddedFromJSON(
     jsonString,
     (x) => CannotParseAmountErrorEmbedded$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'CannotParseAmountErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const CannotParseAmountError$inboundSchema: z.ZodType<
-  CannotParseAmountError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() => CannotParseAmountErrorEmbedded$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type CannotParseAmountError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?: CannotParseAmountErrorEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const CannotParseAmountError$outboundSchema: z.ZodType<
-  CannotParseAmountError$Outbound,
-  z.ZodTypeDef,
-  CannotParseAmountError
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  embedded: z.lazy(() => CannotParseAmountErrorEmbedded$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CannotParseAmountError$ {
-  /** @deprecated use `CannotParseAmountError$inboundSchema` instead. */
-  export const inboundSchema = CannotParseAmountError$inboundSchema;
-  /** @deprecated use `CannotParseAmountError$outboundSchema` instead. */
-  export const outboundSchema = CannotParseAmountError$outboundSchema;
-  /** @deprecated use `CannotParseAmountError$Outbound` instead. */
-  export type Outbound = CannotParseAmountError$Outbound;
-}
-
-export function cannotParseAmountErrorToJSON(
-  cannotParseAmountError: CannotParseAmountError,
-): string {
-  return JSON.stringify(
-    CannotParseAmountError$outboundSchema.parse(cannotParseAmountError),
-  );
-}
-
-export function cannotParseAmountErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<CannotParseAmountError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CannotParseAmountError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CannotParseAmountError' from JSON`,
   );
 }

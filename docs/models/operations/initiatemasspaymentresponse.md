@@ -5,13 +5,7 @@
 ```typescript
 import { InitiateMassPaymentResponse } from "dwolla-typescript/models/operations";
 
-let value: InitiateMassPaymentResponse = {
-  headers: {
-    "key": [
-      "<value>",
-    ],
-  },
-};
+let value: InitiateMassPaymentResponse = {};
 ```
 
 ## Fields

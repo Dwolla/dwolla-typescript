@@ -5,16 +5,33 @@
 import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as models from "../index.js";
+import {
+  BadRequestError,
+  BadRequestError$inboundSchema,
+  BadRequestError$Outbound,
+  BadRequestError$outboundSchema,
+} from "./badrequesterror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
+import {
+  StatusInvalidError,
+  StatusInvalidError$inboundSchema,
+  StatusInvalidError$Outbound,
+  StatusInvalidError$outboundSchema,
+} from "./statusinvaliderror.js";
+import {
+  StatusNotAllowedError,
+  StatusNotAllowedError$inboundSchema,
+  StatusNotAllowedError$Outbound,
+  StatusNotAllowedError$outboundSchema,
+} from "./statusnotallowederror.js";
 
 /**
  * 400 Bad Request
  */
 export type CancelTransferDwollaV1HalJSON =
-  | models.StatusInvalidError
-  | models.StatusNotAllowedError
-  | models.BadRequestError;
+  | BadRequestError
+  | StatusInvalidError
+  | StatusNotAllowedError;
 
 /** @internal */
 export const CancelTransferDwollaV1HalJSON$inboundSchema: z.ZodType<
@@ -22,16 +39,16 @@ export const CancelTransferDwollaV1HalJSON$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  models.StatusInvalidError$inboundSchema,
-  models.StatusNotAllowedError$inboundSchema,
-  models.BadRequestError$inboundSchema,
+  BadRequestError$inboundSchema,
+  StatusInvalidError$inboundSchema,
+  StatusNotAllowedError$inboundSchema,
 ]);
 
 /** @internal */
 export type CancelTransferDwollaV1HalJSON$Outbound =
-  | models.StatusInvalidError$Outbound
-  | models.StatusNotAllowedError$Outbound
-  | models.BadRequestError$Outbound;
+  | BadRequestError$Outbound
+  | StatusInvalidError$Outbound
+  | StatusNotAllowedError$Outbound;
 
 /** @internal */
 export const CancelTransferDwollaV1HalJSON$outboundSchema: z.ZodType<
@@ -39,9 +56,9 @@ export const CancelTransferDwollaV1HalJSON$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CancelTransferDwollaV1HalJSON
 > = z.union([
-  models.StatusInvalidError$outboundSchema,
-  models.StatusNotAllowedError$outboundSchema,
-  models.BadRequestError$outboundSchema,
+  BadRequestError$outboundSchema,
+  StatusInvalidError$outboundSchema,
+  StatusNotAllowedError$outboundSchema,
 ]);
 
 /**

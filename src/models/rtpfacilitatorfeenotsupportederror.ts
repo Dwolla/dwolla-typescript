@@ -21,12 +21,6 @@ export type RtpFacilitatorFeeNotSupportedErrorEmbedded = {
   errors?: Array<RtpFacilitatorFeeNotSupportedErrorError> | undefined;
 };
 
-export type RtpFacilitatorFeeNotSupportedError = {
-  code: string;
-  message: string;
-  embedded?: RtpFacilitatorFeeNotSupportedErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const RtpFacilitatorFeeNotSupportedErrorLinks$inboundSchema: z.ZodType<
   RtpFacilitatorFeeNotSupportedErrorLinks,
@@ -235,81 +229,5 @@ export function rtpFacilitatorFeeNotSupportedErrorEmbeddedFromJSON(
         JSON.parse(x),
       ),
     `Failed to parse 'RtpFacilitatorFeeNotSupportedErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const RtpFacilitatorFeeNotSupportedError$inboundSchema: z.ZodType<
-  RtpFacilitatorFeeNotSupportedError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() =>
-    RtpFacilitatorFeeNotSupportedErrorEmbedded$inboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type RtpFacilitatorFeeNotSupportedError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?: RtpFacilitatorFeeNotSupportedErrorEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const RtpFacilitatorFeeNotSupportedError$outboundSchema: z.ZodType<
-  RtpFacilitatorFeeNotSupportedError$Outbound,
-  z.ZodTypeDef,
-  RtpFacilitatorFeeNotSupportedError
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  embedded: z.lazy(() =>
-    RtpFacilitatorFeeNotSupportedErrorEmbedded$outboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RtpFacilitatorFeeNotSupportedError$ {
-  /** @deprecated use `RtpFacilitatorFeeNotSupportedError$inboundSchema` instead. */
-  export const inboundSchema = RtpFacilitatorFeeNotSupportedError$inboundSchema;
-  /** @deprecated use `RtpFacilitatorFeeNotSupportedError$outboundSchema` instead. */
-  export const outboundSchema =
-    RtpFacilitatorFeeNotSupportedError$outboundSchema;
-  /** @deprecated use `RtpFacilitatorFeeNotSupportedError$Outbound` instead. */
-  export type Outbound = RtpFacilitatorFeeNotSupportedError$Outbound;
-}
-
-export function rtpFacilitatorFeeNotSupportedErrorToJSON(
-  rtpFacilitatorFeeNotSupportedError: RtpFacilitatorFeeNotSupportedError,
-): string {
-  return JSON.stringify(
-    RtpFacilitatorFeeNotSupportedError$outboundSchema.parse(
-      rtpFacilitatorFeeNotSupportedError,
-    ),
-  );
-}
-
-export function rtpFacilitatorFeeNotSupportedErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<RtpFacilitatorFeeNotSupportedError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      RtpFacilitatorFeeNotSupportedError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'RtpFacilitatorFeeNotSupportedError' from JSON`,
   );
 }

@@ -23,12 +23,6 @@ export type DestinationProcessingChannelNotSupportedErrorEmbedded = {
     | undefined;
 };
 
-export type DestinationProcessingChannelNotSupportedError = {
-  code: string;
-  message: string;
-  embedded?: DestinationProcessingChannelNotSupportedErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const DestinationProcessingChannelNotSupportedErrorLinks$inboundSchema:
   z.ZodType<
@@ -257,92 +251,5 @@ export function destinationProcessingChannelNotSupportedErrorEmbeddedFromJSON(
         JSON.parse(x),
       ),
     `Failed to parse 'DestinationProcessingChannelNotSupportedErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const DestinationProcessingChannelNotSupportedError$inboundSchema:
-  z.ZodType<
-    DestinationProcessingChannelNotSupportedError,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    code: z.string(),
-    message: z.string(),
-    _embedded: z.lazy(() =>
-      DestinationProcessingChannelNotSupportedErrorEmbedded$inboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "_embedded": "embedded",
-    });
-  });
-
-/** @internal */
-export type DestinationProcessingChannelNotSupportedError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?:
-    | DestinationProcessingChannelNotSupportedErrorEmbedded$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const DestinationProcessingChannelNotSupportedError$outboundSchema:
-  z.ZodType<
-    DestinationProcessingChannelNotSupportedError$Outbound,
-    z.ZodTypeDef,
-    DestinationProcessingChannelNotSupportedError
-  > = z.object({
-    code: z.string(),
-    message: z.string(),
-    embedded: z.lazy(() =>
-      DestinationProcessingChannelNotSupportedErrorEmbedded$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      embedded: "_embedded",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DestinationProcessingChannelNotSupportedError$ {
-  /** @deprecated use `DestinationProcessingChannelNotSupportedError$inboundSchema` instead. */
-  export const inboundSchema =
-    DestinationProcessingChannelNotSupportedError$inboundSchema;
-  /** @deprecated use `DestinationProcessingChannelNotSupportedError$outboundSchema` instead. */
-  export const outboundSchema =
-    DestinationProcessingChannelNotSupportedError$outboundSchema;
-  /** @deprecated use `DestinationProcessingChannelNotSupportedError$Outbound` instead. */
-  export type Outbound = DestinationProcessingChannelNotSupportedError$Outbound;
-}
-
-export function destinationProcessingChannelNotSupportedErrorToJSON(
-  destinationProcessingChannelNotSupportedError:
-    DestinationProcessingChannelNotSupportedError,
-): string {
-  return JSON.stringify(
-    DestinationProcessingChannelNotSupportedError$outboundSchema.parse(
-      destinationProcessingChannelNotSupportedError,
-    ),
-  );
-}
-
-export function destinationProcessingChannelNotSupportedErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  DestinationProcessingChannelNotSupportedError,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      DestinationProcessingChannelNotSupportedError$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'DestinationProcessingChannelNotSupportedError' from JSON`,
   );
 }

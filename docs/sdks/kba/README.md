@@ -7,11 +7,11 @@ Operations related to Knowledge-Based Authentication
 
 ### Available Operations
 
-* [initiateKbaForCustomer](#initiatekbaforcustomer) - Initiate a KBA session
-* [getKbaQuestions](#getkbaquestions) - Retrieve KBA Questions
-* [verifyKbaQuestions](#verifykbaquestions) - Verify KBA Questions
+* [initiate](#initiate) - Initiate a KBA session
+* [getQuestions](#getquestions) - Retrieve KBA Questions
+* [verify](#verify) - Verify KBA Questions
 
-## initiateKbaForCustomer
+## initiate
 
 Initiate a KBA session
 
@@ -21,15 +21,17 @@ Initiate a KBA session
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.kba.initiateKbaForCustomer({
+  const result = await dwolla.kba.initiate({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -42,27 +44,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { kbaInitiateKbaForCustomer } from "dwolla-typescript/funcs/kbaInitiateKbaForCustomer.js";
+import { kbaInitiate } from "dwolla-typescript/funcs/kbaInitiate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await kbaInitiateKbaForCustomer(dwolla, {
+  const res = await kbaInitiate(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("kbaInitiate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -83,13 +85,14 @@ run();
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| errors.InitiateKbaForCustomerDwollaV1HalJSON | 403                                          | application/vnd.dwolla.v1.hal+json           |
-| errors.NotFoundError                         | 404                                          | application/vnd.dwolla.v1.hal+json           |
-| errors.APIError                              | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.InvalidResourceStateSchemaError | 403                                    | application/vnd.dwolla.v1.hal+json     |
+| errors.ForbiddenError                  | 403                                    | application/vnd.dwolla.v1.hal+json     |
+| errors.NotFoundError                   | 404                                    | application/vnd.dwolla.v1.hal+json     |
+| errors.APIError                        | 4XX, 5XX                               | \*/\*                                  |
 
-## getKbaQuestions
+## getQuestions
 
 Retrieve KBA Questions
 
@@ -99,15 +102,17 @@ Retrieve KBA Questions
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.kba.getKbaQuestions({
+  const result = await dwolla.kba.getQuestions({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -120,27 +125,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { kbaGetKbaQuestions } from "dwolla-typescript/funcs/kbaGetKbaQuestions.js";
+import { kbaGetQuestions } from "dwolla-typescript/funcs/kbaGetQuestions.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await kbaGetKbaQuestions(dwolla, {
+  const res = await kbaGetQuestions(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("kbaGetQuestions failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -167,7 +172,7 @@ run();
 | errors.GetKbaQuestionsDwollaV1HalJSONError | 404                                        | application/vnd.dwolla.v1.hal+json         |
 | errors.APIError                            | 4XX, 5XX                                   | \*/\*                                      |
 
-## verifyKbaQuestions
+## verify
 
 Verify KBA Questions
 
@@ -177,23 +182,20 @@ Verify KBA Questions
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.kba.verifyKbaQuestions({
+  const result = await dwolla.kba.verify({
     id: "<id>",
     requestBody: {
-      answers: [
-        {
-          questionId: "2355953375",
-          answerId: "2687969335",
-        },
-      ],
+      answers: [],
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -206,35 +208,30 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { kbaVerifyKbaQuestions } from "dwolla-typescript/funcs/kbaVerifyKbaQuestions.js";
+import { kbaVerify } from "dwolla-typescript/funcs/kbaVerify.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await kbaVerifyKbaQuestions(dwolla, {
+  const res = await kbaVerify(dwolla, {
     id: "<id>",
     requestBody: {
-      answers: [
-        {
-          questionId: "2355953375",
-          answerId: "2687969335",
-        },
-      ],
+      answers: [],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("kbaVerify failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -244,19 +241,21 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.VerifyKbaQuestionsRequest](../../models/operations/verifykbaquestionsrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.VerifyRequest](../../models/operations/verifyrequest.md)                                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.VerifyKbaQuestionsResponse](../../models/operations/verifykbaquestionsresponse.md)\>**
+**Promise\<[operations.VerifyResponse](../../models/operations/verifyresponse.md)\>**
 
 ### Errors
 
-| Error Type                                    | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| errors.VerifyKbaQuestionsDwollaV1HalJSON      | 403                                           | application/vnd.dwolla.v1.hal+json            |
-| errors.VerifyKbaQuestionsDwollaV1HalJSONError | 404                                           | application/vnd.dwolla.v1.hal+json            |
-| errors.APIError                               | 4XX, 5XX                                      | \*/\*                                         |
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.ForbiddenError              | 403                                | application/vnd.dwolla.v1.hal+json |
+| errors.InvalidKbaSessionError      | 403                                | application/vnd.dwolla.v1.hal+json |
+| errors.ExpiredKbaSessionError      | 403                                | application/vnd.dwolla.v1.hal+json |
+| errors.VerifyDwollaV1HalJSONError  | 404                                | application/vnd.dwolla.v1.hal+json |
+| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |

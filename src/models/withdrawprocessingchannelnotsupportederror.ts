@@ -21,12 +21,6 @@ export type WithdrawProcessingChannelNotSupportedErrorEmbedded = {
   errors?: Array<WithdrawProcessingChannelNotSupportedErrorError> | undefined;
 };
 
-export type WithdrawProcessingChannelNotSupportedError = {
-  code: string;
-  message: string;
-  embedded?: WithdrawProcessingChannelNotSupportedErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const WithdrawProcessingChannelNotSupportedErrorLinks$inboundSchema:
   z.ZodType<
@@ -253,89 +247,5 @@ export function withdrawProcessingChannelNotSupportedErrorEmbeddedFromJSON(
         JSON.parse(x),
       ),
     `Failed to parse 'WithdrawProcessingChannelNotSupportedErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const WithdrawProcessingChannelNotSupportedError$inboundSchema:
-  z.ZodType<WithdrawProcessingChannelNotSupportedError, z.ZodTypeDef, unknown> =
-    z.object({
-      code: z.string(),
-      message: z.string(),
-      _embedded: z.lazy(() =>
-        WithdrawProcessingChannelNotSupportedErrorEmbedded$inboundSchema
-      ).optional(),
-    }).transform((v) => {
-      return remap$(v, {
-        "_embedded": "embedded",
-      });
-    });
-
-/** @internal */
-export type WithdrawProcessingChannelNotSupportedError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?:
-    | WithdrawProcessingChannelNotSupportedErrorEmbedded$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const WithdrawProcessingChannelNotSupportedError$outboundSchema:
-  z.ZodType<
-    WithdrawProcessingChannelNotSupportedError$Outbound,
-    z.ZodTypeDef,
-    WithdrawProcessingChannelNotSupportedError
-  > = z.object({
-    code: z.string(),
-    message: z.string(),
-    embedded: z.lazy(() =>
-      WithdrawProcessingChannelNotSupportedErrorEmbedded$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      embedded: "_embedded",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawProcessingChannelNotSupportedError$ {
-  /** @deprecated use `WithdrawProcessingChannelNotSupportedError$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawProcessingChannelNotSupportedError$inboundSchema;
-  /** @deprecated use `WithdrawProcessingChannelNotSupportedError$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawProcessingChannelNotSupportedError$outboundSchema;
-  /** @deprecated use `WithdrawProcessingChannelNotSupportedError$Outbound` instead. */
-  export type Outbound = WithdrawProcessingChannelNotSupportedError$Outbound;
-}
-
-export function withdrawProcessingChannelNotSupportedErrorToJSON(
-  withdrawProcessingChannelNotSupportedError:
-    WithdrawProcessingChannelNotSupportedError,
-): string {
-  return JSON.stringify(
-    WithdrawProcessingChannelNotSupportedError$outboundSchema.parse(
-      withdrawProcessingChannelNotSupportedError,
-    ),
-  );
-}
-
-export function withdrawProcessingChannelNotSupportedErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  WithdrawProcessingChannelNotSupportedError,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      WithdrawProcessingChannelNotSupportedError$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'WithdrawProcessingChannelNotSupportedError' from JSON`,
   );
 }

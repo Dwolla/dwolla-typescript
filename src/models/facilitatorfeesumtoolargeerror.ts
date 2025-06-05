@@ -21,12 +21,6 @@ export type FacilitatorFeeSumTooLargeErrorEmbedded = {
   errors?: Array<FacilitatorFeeSumTooLargeErrorError> | undefined;
 };
 
-export type FacilitatorFeeSumTooLargeError = {
-  code: string;
-  message: string;
-  embedded?: FacilitatorFeeSumTooLargeErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const FacilitatorFeeSumTooLargeErrorLinks$inboundSchema: z.ZodType<
   FacilitatorFeeSumTooLargeErrorLinks,
@@ -219,77 +213,5 @@ export function facilitatorFeeSumTooLargeErrorEmbeddedFromJSON(
     (x) =>
       FacilitatorFeeSumTooLargeErrorEmbedded$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'FacilitatorFeeSumTooLargeErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const FacilitatorFeeSumTooLargeError$inboundSchema: z.ZodType<
-  FacilitatorFeeSumTooLargeError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() => FacilitatorFeeSumTooLargeErrorEmbedded$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type FacilitatorFeeSumTooLargeError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?: FacilitatorFeeSumTooLargeErrorEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const FacilitatorFeeSumTooLargeError$outboundSchema: z.ZodType<
-  FacilitatorFeeSumTooLargeError$Outbound,
-  z.ZodTypeDef,
-  FacilitatorFeeSumTooLargeError
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  embedded: z.lazy(() => FacilitatorFeeSumTooLargeErrorEmbedded$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FacilitatorFeeSumTooLargeError$ {
-  /** @deprecated use `FacilitatorFeeSumTooLargeError$inboundSchema` instead. */
-  export const inboundSchema = FacilitatorFeeSumTooLargeError$inboundSchema;
-  /** @deprecated use `FacilitatorFeeSumTooLargeError$outboundSchema` instead. */
-  export const outboundSchema = FacilitatorFeeSumTooLargeError$outboundSchema;
-  /** @deprecated use `FacilitatorFeeSumTooLargeError$Outbound` instead. */
-  export type Outbound = FacilitatorFeeSumTooLargeError$Outbound;
-}
-
-export function facilitatorFeeSumTooLargeErrorToJSON(
-  facilitatorFeeSumTooLargeError: FacilitatorFeeSumTooLargeError,
-): string {
-  return JSON.stringify(
-    FacilitatorFeeSumTooLargeError$outboundSchema.parse(
-      facilitatorFeeSumTooLargeError,
-    ),
-  );
-}
-
-export function facilitatorFeeSumTooLargeErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<FacilitatorFeeSumTooLargeError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FacilitatorFeeSumTooLargeError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FacilitatorFeeSumTooLargeError' from JSON`,
   );
 }

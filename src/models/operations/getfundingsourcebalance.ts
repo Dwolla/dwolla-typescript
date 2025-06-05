@@ -16,6 +16,43 @@ export type GetFundingSourceBalanceRequest = {
   id: string;
 };
 
+export type GetFundingSourceBalanceSelf = {
+  href?: string | undefined;
+  type?: string | undefined;
+  resourceType?: string | undefined;
+};
+
+export type FundingSource = {
+  href?: string | undefined;
+  type?: string | undefined;
+  resourceType?: string | undefined;
+};
+
+export type GetFundingSourceBalanceLinks = {
+  self?: GetFundingSourceBalanceSelf | undefined;
+  fundingSource?: FundingSource | undefined;
+};
+
+export type Available = {
+  value?: string | undefined;
+  currency?: string | undefined;
+};
+
+export type Closing = {
+  value?: string | undefined;
+  currency?: string | undefined;
+};
+
+/**
+ * Response for retrieving balance of a bank account verified through Open Banking
+ */
+export type BankBalanceResponse = {
+  links?: GetFundingSourceBalanceLinks | undefined;
+  available?: Available | undefined;
+  closing?: Closing | undefined;
+  lastUpdated?: string | undefined;
+};
+
 export type Balance = {
   value?: string | undefined;
   currency?: string | undefined;
@@ -27,14 +64,21 @@ export type Total = {
 };
 
 /**
- * successful operation
+ * Response for retrieving balance of a Dwolla Balance funding source
  */
-export type GetFundingSourceBalanceResponse = {
+export type DwollaBalanceResponse = {
   links?: { [k: string]: models.HalLink } | undefined;
   balance?: Balance | undefined;
   total?: Total | undefined;
   lastUpdated?: string | undefined;
 };
+
+/**
+ * successful operation
+ */
+export type GetFundingSourceBalanceResponse =
+  | DwollaBalanceResponse
+  | BankBalanceResponse;
 
 /** @internal */
 export const GetFundingSourceBalanceRequest$inboundSchema: z.ZodType<
@@ -89,6 +133,381 @@ export function getFundingSourceBalanceRequestFromJSON(
     jsonString,
     (x) => GetFundingSourceBalanceRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'GetFundingSourceBalanceRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetFundingSourceBalanceSelf$inboundSchema: z.ZodType<
+  GetFundingSourceBalanceSelf,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  href: z.string().optional(),
+  type: z.string().optional(),
+  "resource-type": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "resource-type": "resourceType",
+  });
+});
+
+/** @internal */
+export type GetFundingSourceBalanceSelf$Outbound = {
+  href?: string | undefined;
+  type?: string | undefined;
+  "resource-type"?: string | undefined;
+};
+
+/** @internal */
+export const GetFundingSourceBalanceSelf$outboundSchema: z.ZodType<
+  GetFundingSourceBalanceSelf$Outbound,
+  z.ZodTypeDef,
+  GetFundingSourceBalanceSelf
+> = z.object({
+  href: z.string().optional(),
+  type: z.string().optional(),
+  resourceType: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    resourceType: "resource-type",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetFundingSourceBalanceSelf$ {
+  /** @deprecated use `GetFundingSourceBalanceSelf$inboundSchema` instead. */
+  export const inboundSchema = GetFundingSourceBalanceSelf$inboundSchema;
+  /** @deprecated use `GetFundingSourceBalanceSelf$outboundSchema` instead. */
+  export const outboundSchema = GetFundingSourceBalanceSelf$outboundSchema;
+  /** @deprecated use `GetFundingSourceBalanceSelf$Outbound` instead. */
+  export type Outbound = GetFundingSourceBalanceSelf$Outbound;
+}
+
+export function getFundingSourceBalanceSelfToJSON(
+  getFundingSourceBalanceSelf: GetFundingSourceBalanceSelf,
+): string {
+  return JSON.stringify(
+    GetFundingSourceBalanceSelf$outboundSchema.parse(
+      getFundingSourceBalanceSelf,
+    ),
+  );
+}
+
+export function getFundingSourceBalanceSelfFromJSON(
+  jsonString: string,
+): SafeParseResult<GetFundingSourceBalanceSelf, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetFundingSourceBalanceSelf$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetFundingSourceBalanceSelf' from JSON`,
+  );
+}
+
+/** @internal */
+export const FundingSource$inboundSchema: z.ZodType<
+  FundingSource,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  href: z.string().optional(),
+  type: z.string().optional(),
+  "resource-type": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "resource-type": "resourceType",
+  });
+});
+
+/** @internal */
+export type FundingSource$Outbound = {
+  href?: string | undefined;
+  type?: string | undefined;
+  "resource-type"?: string | undefined;
+};
+
+/** @internal */
+export const FundingSource$outboundSchema: z.ZodType<
+  FundingSource$Outbound,
+  z.ZodTypeDef,
+  FundingSource
+> = z.object({
+  href: z.string().optional(),
+  type: z.string().optional(),
+  resourceType: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    resourceType: "resource-type",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace FundingSource$ {
+  /** @deprecated use `FundingSource$inboundSchema` instead. */
+  export const inboundSchema = FundingSource$inboundSchema;
+  /** @deprecated use `FundingSource$outboundSchema` instead. */
+  export const outboundSchema = FundingSource$outboundSchema;
+  /** @deprecated use `FundingSource$Outbound` instead. */
+  export type Outbound = FundingSource$Outbound;
+}
+
+export function fundingSourceToJSON(fundingSource: FundingSource): string {
+  return JSON.stringify(FundingSource$outboundSchema.parse(fundingSource));
+}
+
+export function fundingSourceFromJSON(
+  jsonString: string,
+): SafeParseResult<FundingSource, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FundingSource$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FundingSource' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetFundingSourceBalanceLinks$inboundSchema: z.ZodType<
+  GetFundingSourceBalanceLinks,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  self: z.lazy(() => GetFundingSourceBalanceSelf$inboundSchema).optional(),
+  "funding-source": z.lazy(() => FundingSource$inboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "funding-source": "fundingSource",
+  });
+});
+
+/** @internal */
+export type GetFundingSourceBalanceLinks$Outbound = {
+  self?: GetFundingSourceBalanceSelf$Outbound | undefined;
+  "funding-source"?: FundingSource$Outbound | undefined;
+};
+
+/** @internal */
+export const GetFundingSourceBalanceLinks$outboundSchema: z.ZodType<
+  GetFundingSourceBalanceLinks$Outbound,
+  z.ZodTypeDef,
+  GetFundingSourceBalanceLinks
+> = z.object({
+  self: z.lazy(() => GetFundingSourceBalanceSelf$outboundSchema).optional(),
+  fundingSource: z.lazy(() => FundingSource$outboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    fundingSource: "funding-source",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetFundingSourceBalanceLinks$ {
+  /** @deprecated use `GetFundingSourceBalanceLinks$inboundSchema` instead. */
+  export const inboundSchema = GetFundingSourceBalanceLinks$inboundSchema;
+  /** @deprecated use `GetFundingSourceBalanceLinks$outboundSchema` instead. */
+  export const outboundSchema = GetFundingSourceBalanceLinks$outboundSchema;
+  /** @deprecated use `GetFundingSourceBalanceLinks$Outbound` instead. */
+  export type Outbound = GetFundingSourceBalanceLinks$Outbound;
+}
+
+export function getFundingSourceBalanceLinksToJSON(
+  getFundingSourceBalanceLinks: GetFundingSourceBalanceLinks,
+): string {
+  return JSON.stringify(
+    GetFundingSourceBalanceLinks$outboundSchema.parse(
+      getFundingSourceBalanceLinks,
+    ),
+  );
+}
+
+export function getFundingSourceBalanceLinksFromJSON(
+  jsonString: string,
+): SafeParseResult<GetFundingSourceBalanceLinks, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetFundingSourceBalanceLinks$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetFundingSourceBalanceLinks' from JSON`,
+  );
+}
+
+/** @internal */
+export const Available$inboundSchema: z.ZodType<
+  Available,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  value: z.string().optional(),
+  currency: z.string().optional(),
+});
+
+/** @internal */
+export type Available$Outbound = {
+  value?: string | undefined;
+  currency?: string | undefined;
+};
+
+/** @internal */
+export const Available$outboundSchema: z.ZodType<
+  Available$Outbound,
+  z.ZodTypeDef,
+  Available
+> = z.object({
+  value: z.string().optional(),
+  currency: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Available$ {
+  /** @deprecated use `Available$inboundSchema` instead. */
+  export const inboundSchema = Available$inboundSchema;
+  /** @deprecated use `Available$outboundSchema` instead. */
+  export const outboundSchema = Available$outboundSchema;
+  /** @deprecated use `Available$Outbound` instead. */
+  export type Outbound = Available$Outbound;
+}
+
+export function availableToJSON(available: Available): string {
+  return JSON.stringify(Available$outboundSchema.parse(available));
+}
+
+export function availableFromJSON(
+  jsonString: string,
+): SafeParseResult<Available, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Available$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Available' from JSON`,
+  );
+}
+
+/** @internal */
+export const Closing$inboundSchema: z.ZodType<Closing, z.ZodTypeDef, unknown> =
+  z.object({
+    value: z.string().optional(),
+    currency: z.string().optional(),
+  });
+
+/** @internal */
+export type Closing$Outbound = {
+  value?: string | undefined;
+  currency?: string | undefined;
+};
+
+/** @internal */
+export const Closing$outboundSchema: z.ZodType<
+  Closing$Outbound,
+  z.ZodTypeDef,
+  Closing
+> = z.object({
+  value: z.string().optional(),
+  currency: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Closing$ {
+  /** @deprecated use `Closing$inboundSchema` instead. */
+  export const inboundSchema = Closing$inboundSchema;
+  /** @deprecated use `Closing$outboundSchema` instead. */
+  export const outboundSchema = Closing$outboundSchema;
+  /** @deprecated use `Closing$Outbound` instead. */
+  export type Outbound = Closing$Outbound;
+}
+
+export function closingToJSON(closing: Closing): string {
+  return JSON.stringify(Closing$outboundSchema.parse(closing));
+}
+
+export function closingFromJSON(
+  jsonString: string,
+): SafeParseResult<Closing, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Closing$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Closing' from JSON`,
+  );
+}
+
+/** @internal */
+export const BankBalanceResponse$inboundSchema: z.ZodType<
+  BankBalanceResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  _links: z.lazy(() => GetFundingSourceBalanceLinks$inboundSchema).optional(),
+  available: z.lazy(() => Available$inboundSchema).optional(),
+  closing: z.lazy(() => Closing$inboundSchema).optional(),
+  lastUpdated: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "_links": "links",
+  });
+});
+
+/** @internal */
+export type BankBalanceResponse$Outbound = {
+  _links?: GetFundingSourceBalanceLinks$Outbound | undefined;
+  available?: Available$Outbound | undefined;
+  closing?: Closing$Outbound | undefined;
+  lastUpdated?: string | undefined;
+};
+
+/** @internal */
+export const BankBalanceResponse$outboundSchema: z.ZodType<
+  BankBalanceResponse$Outbound,
+  z.ZodTypeDef,
+  BankBalanceResponse
+> = z.object({
+  links: z.lazy(() => GetFundingSourceBalanceLinks$outboundSchema).optional(),
+  available: z.lazy(() => Available$outboundSchema).optional(),
+  closing: z.lazy(() => Closing$outboundSchema).optional(),
+  lastUpdated: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    links: "_links",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace BankBalanceResponse$ {
+  /** @deprecated use `BankBalanceResponse$inboundSchema` instead. */
+  export const inboundSchema = BankBalanceResponse$inboundSchema;
+  /** @deprecated use `BankBalanceResponse$outboundSchema` instead. */
+  export const outboundSchema = BankBalanceResponse$outboundSchema;
+  /** @deprecated use `BankBalanceResponse$Outbound` instead. */
+  export type Outbound = BankBalanceResponse$Outbound;
+}
+
+export function bankBalanceResponseToJSON(
+  bankBalanceResponse: BankBalanceResponse,
+): string {
+  return JSON.stringify(
+    BankBalanceResponse$outboundSchema.parse(bankBalanceResponse),
+  );
+}
+
+export function bankBalanceResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<BankBalanceResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BankBalanceResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BankBalanceResponse' from JSON`,
   );
 }
 
@@ -193,8 +612,8 @@ export function totalFromJSON(
 }
 
 /** @internal */
-export const GetFundingSourceBalanceResponse$inboundSchema: z.ZodType<
-  GetFundingSourceBalanceResponse,
+export const DwollaBalanceResponse$inboundSchema: z.ZodType<
+  DwollaBalanceResponse,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -209,7 +628,7 @@ export const GetFundingSourceBalanceResponse$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetFundingSourceBalanceResponse$Outbound = {
+export type DwollaBalanceResponse$Outbound = {
   _links?: { [k: string]: models.HalLink$Outbound } | undefined;
   balance?: Balance$Outbound | undefined;
   total?: Total$Outbound | undefined;
@@ -217,10 +636,10 @@ export type GetFundingSourceBalanceResponse$Outbound = {
 };
 
 /** @internal */
-export const GetFundingSourceBalanceResponse$outboundSchema: z.ZodType<
-  GetFundingSourceBalanceResponse$Outbound,
+export const DwollaBalanceResponse$outboundSchema: z.ZodType<
+  DwollaBalanceResponse$Outbound,
   z.ZodTypeDef,
-  GetFundingSourceBalanceResponse
+  DwollaBalanceResponse
 > = z.object({
   links: z.record(models.HalLink$outboundSchema).optional(),
   balance: z.lazy(() => Balance$outboundSchema).optional(),
@@ -231,6 +650,62 @@ export const GetFundingSourceBalanceResponse$outboundSchema: z.ZodType<
     links: "_links",
   });
 });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace DwollaBalanceResponse$ {
+  /** @deprecated use `DwollaBalanceResponse$inboundSchema` instead. */
+  export const inboundSchema = DwollaBalanceResponse$inboundSchema;
+  /** @deprecated use `DwollaBalanceResponse$outboundSchema` instead. */
+  export const outboundSchema = DwollaBalanceResponse$outboundSchema;
+  /** @deprecated use `DwollaBalanceResponse$Outbound` instead. */
+  export type Outbound = DwollaBalanceResponse$Outbound;
+}
+
+export function dwollaBalanceResponseToJSON(
+  dwollaBalanceResponse: DwollaBalanceResponse,
+): string {
+  return JSON.stringify(
+    DwollaBalanceResponse$outboundSchema.parse(dwollaBalanceResponse),
+  );
+}
+
+export function dwollaBalanceResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<DwollaBalanceResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DwollaBalanceResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DwollaBalanceResponse' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetFundingSourceBalanceResponse$inboundSchema: z.ZodType<
+  GetFundingSourceBalanceResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.union([
+  z.lazy(() => DwollaBalanceResponse$inboundSchema),
+  z.lazy(() => BankBalanceResponse$inboundSchema),
+]);
+
+/** @internal */
+export type GetFundingSourceBalanceResponse$Outbound =
+  | DwollaBalanceResponse$Outbound
+  | BankBalanceResponse$Outbound;
+
+/** @internal */
+export const GetFundingSourceBalanceResponse$outboundSchema: z.ZodType<
+  GetFundingSourceBalanceResponse$Outbound,
+  z.ZodTypeDef,
+  GetFundingSourceBalanceResponse
+> = z.union([
+  z.lazy(() => DwollaBalanceResponse$outboundSchema),
+  z.lazy(() => BankBalanceResponse$outboundSchema),
+]);
 
 /**
  * @internal

@@ -11,11 +11,11 @@ export type ListAndSearchCustomersRequest = {
   /**
    * How many results to return
    */
-  limit?: string | undefined;
+  limit?: number | undefined;
   /**
    * How many results to skip
    */
-  offset?: string | undefined;
+  offset?: number | undefined;
   /**
    * Searches on certain fields
    */
@@ -32,16 +32,16 @@ export const ListAndSearchCustomersRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  limit: z.string().optional(),
-  offset: z.string().optional(),
+  limit: z.number().int().optional(),
+  offset: z.number().int().optional(),
   search: z.string().optional(),
   status: z.string().optional(),
 });
 
 /** @internal */
 export type ListAndSearchCustomersRequest$Outbound = {
-  limit?: string | undefined;
-  offset?: string | undefined;
+  limit?: number | undefined;
+  offset?: number | undefined;
   search?: string | undefined;
   status?: string | undefined;
 };
@@ -52,8 +52,8 @@ export const ListAndSearchCustomersRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListAndSearchCustomersRequest
 > = z.object({
-  limit: z.string().optional(),
-  offset: z.string().optional(),
+  limit: z.number().int().optional(),
+  offset: z.number().int().optional(),
   search: z.string().optional(),
   status: z.string().optional(),
 });

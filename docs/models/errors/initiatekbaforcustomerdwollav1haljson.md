@@ -5,20 +5,20 @@
 
 ## Supported Types
 
-### `models.InvalidResourceStateSchema`
+### `errors.InvalidResourceStateSchemaError`
 
 ```typescript
-const value: models.InvalidResourceStateSchema = {
+const value: errors.InvalidResourceStateSchemaError = {
   code: "invalidResourceState",
   message:
     "Resource cannot be modified. Document creation not allowed for already verified Customers or non-verified Customer types.",
 };
 ```
 
-### `models.ForbiddenError`
+### `errors.ForbiddenError`
 
 ```typescript
-const value: models.ForbiddenError = {
+const value: errors.ForbiddenError = {
   code: "Forbidden",
   message: "The supplied credentials are not authorized for this resource.",
 };

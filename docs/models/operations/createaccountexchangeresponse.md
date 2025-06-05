@@ -5,14 +5,7 @@
 ```typescript
 import { CreateAccountExchangeResponse } from "dwolla-typescript/models/operations";
 
-let value: CreateAccountExchangeResponse = {
-  headers: {
-    "key": [
-      "<value>",
-    ],
-  },
-  result: {},
-};
+let value: CreateAccountExchangeResponse = {};
 ```
 
 ## Fields

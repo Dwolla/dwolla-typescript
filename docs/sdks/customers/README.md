@@ -7,14 +7,13 @@ Operations related to Customers
 
 ### Available Operations
 
-* [listAndSearchCustomers](#listandsearchcustomers) - List and search customers
-* [createCustomer](#createcustomer) - Create a customer
-* [getCustomer](#getcustomer) - Retrieve a customer
+* [list](#list) - List and search customers
+* [create](#create) - Create a customer
+* [get](#get) - Retrieve a customer
 * [update](#update) - Update a customer
-* [listBusinessClassifications](#listbusinessclassifications) - List business classification
-* [retrieveBusinessClassification](#retrievebusinessclassification) - Retrieve a business classification
+* [listAvailableConnections](#listavailableconnections) - List available exchange connections
 
-## listAndSearchCustomers
+## list
 
 List and search customers allowing you to filter by email and status, as well as search on key fields such as firstName, lastName, and businessName.
 
@@ -24,13 +23,15 @@ List and search customers allowing you to filter by email and status, as well as
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.customers.listAndSearchCustomers({});
+  const result = await dwolla.customers.list({});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -43,25 +44,25 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { customersListAndSearchCustomers } from "dwolla-typescript/funcs/customersListAndSearchCustomers.js";
+import { customersList } from "dwolla-typescript/funcs/customersList.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await customersListAndSearchCustomers(dwolla, {});
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await customersList(dwolla, {});
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("customersList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -82,11 +83,12 @@ run();
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.ForbiddenError              | 403                                | application/vnd.dwolla.v1.hal+json |
+| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
 
-## createCustomer
+## create
 
 Create an unverified customer, verified customer, or receive-only user.
 
@@ -96,11 +98,14 @@ Create an unverified customer, verified customer, or receive-only user.
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.customers.createCustomer({
+  const result = await dwolla.customers.create({
     firstName: "Account",
     lastName: "Admin",
     email: "accountAdmin@email.com",
@@ -111,7 +116,6 @@ async function run() {
     businessName: "Jane Corp llc",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -124,16 +128,19 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { customersCreateCustomer } from "dwolla-typescript/funcs/customersCreateCustomer.js";
+import { customersCreate } from "dwolla-typescript/funcs/customersCreate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await customersCreateCustomer(dwolla, {
+  const res = await customersCreate(dwolla, {
     firstName: "Account",
     lastName: "Admin",
     email: "accountAdmin@email.com",
@@ -143,15 +150,12 @@ async function run() {
     correlationId: "fc451a7a-ae30-4404-aB95-e3553fcd733",
     businessName: "Jane Corp llc",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("customersCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -179,7 +183,7 @@ run();
 | errors.CreateCustomerNotFoundDwollaV1HalJSONError  | 404                                                | application/vnd.dwolla.v1.hal+json                 |
 | errors.APIError                                    | 4XX, 5XX                                           | \*/\*                                              |
 
-## getCustomer
+## get
 
 Retrieve details for a single customer
 
@@ -189,15 +193,17 @@ Retrieve details for a single customer
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.customers.getCustomer({
+  const result = await dwolla.customers.get({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -210,27 +216,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { customersGetCustomer } from "dwolla-typescript/funcs/customersGetCustomer.js";
+import { customersGet } from "dwolla-typescript/funcs/customersGet.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await customersGetCustomer(dwolla, {
+  const res = await customersGet(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("customersGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -268,7 +274,10 @@ import { Dwolla } from "dwolla-typescript";
 import { RFCDate } from "dwolla-typescript/types";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
@@ -306,7 +315,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -325,7 +333,10 @@ import { RFCDate } from "dwolla-typescript/types";
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
@@ -362,15 +373,12 @@ async function run() {
       ein: "00-0000000",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("customersUpdate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -397,9 +405,12 @@ run();
 | errors.UpdateForbiddenDwollaV1HalJSONError  | 403                                         | application/vnd.dwolla.v1.hal+json          |
 | errors.APIError                             | 4XX, 5XX                                    | \*/\*                                       |
 
-## listBusinessClassifications
+## listAvailableConnections
 
-Retrieve an _embedded list of business classifications that contains an _embedded list of industry classifications.
+Retrieve a list of a customer's external bank accounts that have been authorized through MX Connect.
+Each account is represented as an "available exchange connection" with details like the account name and associated availableConnectionToken.
+This information is essential for creating an exchange and corresponding funding source within Dwolla.
+
 
 ### Example Usage
 
@@ -407,13 +418,17 @@ Retrieve an _embedded list of business classifications that contains an _embedde
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.customers.listBusinessClassifications();
+  const result = await dwolla.customers.listAvailableConnections({
+    id: "<id>",
+  });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -426,25 +441,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { customersListBusinessClassifications } from "dwolla-typescript/funcs/customersListBusinessClassifications.js";
+import { customersListAvailableConnections } from "dwolla-typescript/funcs/customersListAvailableConnections.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await customersListBusinessClassifications(dwolla);
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await customersListAvailableConnections(dwolla, {
+    id: "<id>",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("customersListAvailableConnections failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -454,93 +471,18 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.ListAvailableExchangeConnectionsRequest](../../models/operations/listavailableexchangeconnectionsrequest.md)                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.ListBusinessClassificationsResponse](../../models/operations/listbusinessclassificationsresponse.md)\>**
+**Promise\<[models.AvailableExchangeConnections](../../models/availableexchangeconnections.md)\>**
 
 ### Errors
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
-
-## retrieveBusinessClassification
-
-Retrieve a business classification
-
-### Example Usage
-
-```typescript
-import { Dwolla } from "dwolla-typescript";
-
-const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
-});
-
-async function run() {
-  const result = await dwolla.customers.retrieveBusinessClassification({
-    id: "<id>",
-  });
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { customersRetrieveBusinessClassification } from "dwolla-typescript/funcs/customersRetrieveBusinessClassification.js";
-
-// Use `DwollaCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
-});
-
-async function run() {
-  const res = await customersRetrieveBusinessClassification(dwolla, {
-    id: "<id>",
-  });
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.RetrieveBusinessClassificationRequest](../../models/operations/retrievebusinessclassificationrequest.md)                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[models.BusinessClassification](../../models/businessclassification.md)\>**
-
-### Errors
-
-| Error Type                                                | Status Code                                               | Content Type                                              |
-| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| errors.RetrieveBusinessClassificationDwollaV1HalJSONError | 404                                                       | application/vnd.dwolla.v1.hal+json                        |
-| errors.APIError                                           | 4XX, 5XX                                                  | \*/\*                                                     |
+| Error Type                                                  | Status Code                                                 | Content Type                                                |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| errors.ListAvailableExchangeConnectionsDwollaV1HalJSONError | 404                                                         | application/vnd.dwolla.v1.hal+json                          |
+| errors.APIError                                             | 4XX, 5XX                                                    | \*/\*                                                       |

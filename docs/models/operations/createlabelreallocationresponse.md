@@ -5,13 +5,7 @@
 ```typescript
 import { CreateLabelReallocationResponse } from "dwolla-typescript/models/operations";
 
-let value: CreateLabelReallocationResponse = {
-  headers: {
-    "key": [
-      "<value>",
-    ],
-  },
-};
+let value: CreateLabelReallocationResponse = {};
 ```
 
 ## Fields

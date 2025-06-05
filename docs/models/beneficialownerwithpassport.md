@@ -8,9 +8,9 @@ Request body for creating and updating a Beneficial Owner with a Passport
 import { BeneficialOwnerWithPassport } from "dwolla-typescript";
 
 let value: BeneficialOwnerWithPassport = {
-  firstName: "Herminio",
-  lastName: "Larson",
-  dateOfBirth: "1950-01-24",
+  firstName: "Therese",
+  lastName: "Nitzsche",
+  dateOfBirth: "1983-08-02",
   address: {
     address1: "462 Main Street",
     address2: "Suite 123",

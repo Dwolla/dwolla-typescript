@@ -21,12 +21,6 @@ export type InvalidFacilitatorErrorEmbedded = {
   errors?: Array<InvalidFacilitatorErrorError> | undefined;
 };
 
-export type InvalidFacilitatorError = {
-  code: string;
-  message: string;
-  embedded?: InvalidFacilitatorErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const InvalidFacilitatorErrorLinks$inboundSchema: z.ZodType<
   InvalidFacilitatorErrorLinks,
@@ -205,75 +199,5 @@ export function invalidFacilitatorErrorEmbeddedFromJSON(
     jsonString,
     (x) => InvalidFacilitatorErrorEmbedded$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'InvalidFacilitatorErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const InvalidFacilitatorError$inboundSchema: z.ZodType<
-  InvalidFacilitatorError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() => InvalidFacilitatorErrorEmbedded$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type InvalidFacilitatorError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?: InvalidFacilitatorErrorEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const InvalidFacilitatorError$outboundSchema: z.ZodType<
-  InvalidFacilitatorError$Outbound,
-  z.ZodTypeDef,
-  InvalidFacilitatorError
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  embedded: z.lazy(() => InvalidFacilitatorErrorEmbedded$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidFacilitatorError$ {
-  /** @deprecated use `InvalidFacilitatorError$inboundSchema` instead. */
-  export const inboundSchema = InvalidFacilitatorError$inboundSchema;
-  /** @deprecated use `InvalidFacilitatorError$outboundSchema` instead. */
-  export const outboundSchema = InvalidFacilitatorError$outboundSchema;
-  /** @deprecated use `InvalidFacilitatorError$Outbound` instead. */
-  export type Outbound = InvalidFacilitatorError$Outbound;
-}
-
-export function invalidFacilitatorErrorToJSON(
-  invalidFacilitatorError: InvalidFacilitatorError,
-): string {
-  return JSON.stringify(
-    InvalidFacilitatorError$outboundSchema.parse(invalidFacilitatorError),
-  );
-}
-
-export function invalidFacilitatorErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<InvalidFacilitatorError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InvalidFacilitatorError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InvalidFacilitatorError' from JSON`,
   );
 }

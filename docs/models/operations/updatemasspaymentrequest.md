@@ -7,9 +7,6 @@ import { UpdateMassPaymentRequest } from "dwolla-typescript/models/operations";
 
 let value: UpdateMassPaymentRequest = {
   id: "<id>",
-  requestBody: {
-    status: "pending",
-  },
 };
 ```
 

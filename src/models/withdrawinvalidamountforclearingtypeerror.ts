@@ -21,12 +21,6 @@ export type WithdrawInvalidAmountForClearingTypeErrorEmbedded = {
   errors?: Array<WithdrawInvalidAmountForClearingTypeErrorError> | undefined;
 };
 
-export type WithdrawInvalidAmountForClearingTypeError = {
-  code: string;
-  message: string;
-  embedded?: WithdrawInvalidAmountForClearingTypeErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const WithdrawInvalidAmountForClearingTypeErrorLinks$inboundSchema:
   z.ZodType<
@@ -253,91 +247,5 @@ export function withdrawInvalidAmountForClearingTypeErrorEmbeddedFromJSON(
         JSON.parse(x),
       ),
     `Failed to parse 'WithdrawInvalidAmountForClearingTypeErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const WithdrawInvalidAmountForClearingTypeError$inboundSchema: z.ZodType<
-  WithdrawInvalidAmountForClearingTypeError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() =>
-    WithdrawInvalidAmountForClearingTypeErrorEmbedded$inboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type WithdrawInvalidAmountForClearingTypeError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?:
-    | WithdrawInvalidAmountForClearingTypeErrorEmbedded$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const WithdrawInvalidAmountForClearingTypeError$outboundSchema:
-  z.ZodType<
-    WithdrawInvalidAmountForClearingTypeError$Outbound,
-    z.ZodTypeDef,
-    WithdrawInvalidAmountForClearingTypeError
-  > = z.object({
-    code: z.string(),
-    message: z.string(),
-    embedded: z.lazy(() =>
-      WithdrawInvalidAmountForClearingTypeErrorEmbedded$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      embedded: "_embedded",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawInvalidAmountForClearingTypeError$ {
-  /** @deprecated use `WithdrawInvalidAmountForClearingTypeError$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawInvalidAmountForClearingTypeError$inboundSchema;
-  /** @deprecated use `WithdrawInvalidAmountForClearingTypeError$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawInvalidAmountForClearingTypeError$outboundSchema;
-  /** @deprecated use `WithdrawInvalidAmountForClearingTypeError$Outbound` instead. */
-  export type Outbound = WithdrawInvalidAmountForClearingTypeError$Outbound;
-}
-
-export function withdrawInvalidAmountForClearingTypeErrorToJSON(
-  withdrawInvalidAmountForClearingTypeError:
-    WithdrawInvalidAmountForClearingTypeError,
-): string {
-  return JSON.stringify(
-    WithdrawInvalidAmountForClearingTypeError$outboundSchema.parse(
-      withdrawInvalidAmountForClearingTypeError,
-    ),
-  );
-}
-
-export function withdrawInvalidAmountForClearingTypeErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  WithdrawInvalidAmountForClearingTypeError,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      WithdrawInvalidAmountForClearingTypeError$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'WithdrawInvalidAmountForClearingTypeError' from JSON`,
   );
 }

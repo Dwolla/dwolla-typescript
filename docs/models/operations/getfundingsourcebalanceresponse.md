@@ -2,12 +2,13 @@
 
 successful operation
 
-## Example Usage
+
+## Supported Types
+
+### `operations.DwollaBalanceResponse`
 
 ```typescript
-import { GetFundingSourceBalanceResponse } from "dwolla-typescript/models/operations";
-
-let value: GetFundingSourceBalanceResponse = {
+const value: operations.DwollaBalanceResponse = {
   links: {
     "key": {
       href: "https://api.dwolla.com",
@@ -27,11 +28,33 @@ let value: GetFundingSourceBalanceResponse = {
 };
 ```
 
-## Fields
+### `operations.BankBalanceResponse`
 
-| Field                                                     | Type                                                      | Required                                                  | Description                                               | Example                                                   |
-| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| `links`                                                   | Record<string, [models.HalLink](../../models/hallink.md)> | :heavy_minus_sign:                                        | N/A                                                       |                                                           |
-| `balance`                                                 | [operations.Balance](../../models/operations/balance.md)  | :heavy_minus_sign:                                        | N/A                                                       |                                                           |
-| `total`                                                   | [operations.Total](../../models/operations/total.md)      | :heavy_minus_sign:                                        | N/A                                                       |                                                           |
-| `lastUpdated`                                             | *string*                                                  | :heavy_minus_sign:                                        | N/A                                                       | 2017-04-18T15:20:25.880Z                                  |
+```typescript
+const value: operations.BankBalanceResponse = {
+  links: {
+    self: {
+      href:
+        "https://api.dwolla.com/funding-sources/42f48a64-2a9b-40df-9777-603ed2fe2764/balance",
+      type: "application/vnd.dwolla.v1.hal+json",
+      resourceType: "balance",
+    },
+    fundingSource: {
+      href:
+        "https://api.dwolla.com/funding-sources/42f48a64-2a9b-40df-9777-603ed2fe2764",
+      type: "application/vnd.dwolla.v1.hal+json",
+      resourceType: "funding-source",
+    },
+  },
+  available: {
+    value: "542.00",
+    currency: "USD",
+  },
+  closing: {
+    value: "542.00",
+    currency: "USD",
+  },
+  lastUpdated: "2024-09-09T16:39:14.219Z",
+};
+```
+

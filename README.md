@@ -103,7 +103,9 @@ Add the following server definition to your `claude_desktop_config.json` file:
         "-y", "--package", "dwolla-typescript",
         "--",
         "mcp", "start",
-        "--bearer-auth", "..."
+        "--client-id", "...",
+        "--client-secret", "...",
+        "--token-url", "..."
       ]
     }
   }
@@ -126,7 +128,9 @@ Create a `.cursor/mcp.json` file in your project root with the following content
         "-y", "--package", "dwolla-typescript",
         "--",
         "mcp", "start",
-        "--bearer-auth", "..."
+        "--client-id", "...",
+        "--client-secret", "...",
+        "--token-url", "..."
       ]
     }
   }
@@ -180,17 +184,18 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ```typescript
 import { Dwolla } from "dwolla-typescript";
 
-const dwolla = new Dwolla();
+const dwolla = new Dwolla({
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
+});
 
 async function run() {
   const result = await dwolla.tokens.createApplicationAccessToken({
-    username: "",
-    password: "",
-  }, {
     grantType: "client_credentials",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -206,46 +211,26 @@ run();
 
 This SDK supports the following security scheme globally:
 
-| Name         | Type | Scheme      | Environment Variable |
-| ------------ | ---- | ----------- | -------------------- |
-| `bearerAuth` | http | HTTP Bearer | `DWOLLA_BEARER_AUTH` |
+| Name                          | Type   | Scheme                         | Environment Variable                                                 |
+| ----------------------------- | ------ | ------------------------------ | -------------------------------------------------------------------- |
+| `clientID`<br/>`clientSecret` | oauth2 | OAuth2 Client Credentials Flow | `DWOLLA_CLIENT_ID`<br/>`DWOLLA_CLIENT_SECRET`<br/>`DWOLLA_TOKEN_URL` |
 
-To authenticate with the API the `bearerAuth` parameter must be set when initializing the SDK client instance. For example:
+You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. For example:
 ```typescript
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.root.root();
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-
-```
-
-### Per-Operation Security Schemes
-
-Some operations in this SDK require the security scheme to be specified at the request level. For example:
-```typescript
-import { Dwolla } from "dwolla-typescript";
-
-const dwolla = new Dwolla();
-
-async function run() {
   const result = await dwolla.tokens.createApplicationAccessToken({
-    username: "",
-    password: "",
-  }, {
     grantType: "client_credentials",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -260,106 +245,142 @@ run();
 <details open>
 <summary>Available methods</summary>
 
-### [account](docs/sdks/account/README.md)
+### [accounts](docs/sdks/accounts/README.md)
 
-* [getAccount](docs/sdks/account/README.md#getaccount) - Retrieve Account Details
-* [createAccountFundingSource](docs/sdks/account/README.md#createaccountfundingsource) - Create a funding source for an account
-* [listAccountFundingSources](docs/sdks/account/README.md#listaccountfundingsources) - List funding sources for an account
-* [listAndSearchAccountTransfers](docs/sdks/account/README.md#listandsearchaccounttransfers) - List and search transfers for an account
-* [listAccountMassPayments](docs/sdks/account/README.md#listaccountmasspayments) - List mass payments for an account
+* [get](docs/sdks/accounts/README.md#get) - Retrieve Account Details
+
+#### [accounts.exchanges](docs/sdks/accountsexchanges/README.md)
+
+* [list](docs/sdks/accountsexchanges/README.md#list) - List exchanges for an account
+* [create](docs/sdks/accountsexchanges/README.md#create) - Create an exchange for an account
+
+#### [accounts.fundingSources](docs/sdks/accountsfundingsources/README.md)
+
+* [create](docs/sdks/accountsfundingsources/README.md#create) - Create a funding source for an account
+* [list](docs/sdks/accountsfundingsources/README.md#list) - List funding sources for an account
+
+#### [accounts.massPayments](docs/sdks/accountsmasspayments/README.md)
+
+* [list](docs/sdks/accountsmasspayments/README.md#list) - List mass payments for an account
+
+#### [accounts.transfers](docs/sdks/accountstransfers/README.md)
+
+* [list](docs/sdks/accountstransfers/README.md#list) - List and search transfers for an account
 
 ### [beneficialOwners](docs/sdks/beneficialowners/README.md)
 
-* [listBeneficialOwnersForCustomer](docs/sdks/beneficialowners/README.md#listbeneficialownersforcustomer) - List beneficial owners
-* [createBeneficialOwnerForCustomer](docs/sdks/beneficialowners/README.md#createbeneficialownerforcustomer) - Create beneficial owner
-* [retrieveBeneficialOwner](docs/sdks/beneficialowners/README.md#retrievebeneficialowner) - Retrieve beneficial owner
-* [updateBeneficialOwner](docs/sdks/beneficialowners/README.md#updatebeneficialowner) - Update beneficial owner
-* [deleteBeneficialOwner](docs/sdks/beneficialowners/README.md#deletebeneficialowner) - Delete beneficial owner
-* [getBeneficialOwnershipStatusForCustomer](docs/sdks/beneficialowners/README.md#getbeneficialownershipstatusforcustomer) - Retrieve beneficial ownership status
-* [certifyBeneficialOwnershipForCustomer](docs/sdks/beneficialowners/README.md#certifybeneficialownershipforcustomer) - Certify beneficial ownership status
+* [get](docs/sdks/beneficialowners/README.md#get) - Retrieve beneficial owner
+* [update](docs/sdks/beneficialowners/README.md#update) - Update beneficial owner
+* [delete](docs/sdks/beneficialowners/README.md#delete) - Delete beneficial owner
+* [getOwnershipStatus](docs/sdks/beneficialowners/README.md#getownershipstatus) - Retrieve beneficial ownership status
+* [certifyOwnership](docs/sdks/beneficialowners/README.md#certifyownership) - Certify beneficial ownership status
+
+#### [beneficialOwners.documents](docs/sdks/beneficialownersdocuments/README.md)
+
+* [list](docs/sdks/beneficialownersdocuments/README.md#list) - List document for beneficial owner
+* [create](docs/sdks/beneficialownersdocuments/README.md#create) - Create a document for beneficial owner
+
+### [businessClassifications](docs/sdks/businessclassifications/README.md)
+
+* [list](docs/sdks/businessclassifications/README.md#list) - List business classifications
+* [get](docs/sdks/businessclassifications/README.md#get) - Retrieve a business classification
+
+### [clientTokens](docs/sdks/clienttokens/README.md)
+
+* [create](docs/sdks/clienttokens/README.md#create) - Create a client token
 
 ### [customers](docs/sdks/customers/README.md)
 
-* [listAndSearchCustomers](docs/sdks/customers/README.md#listandsearchcustomers) - List and search customers
-* [createCustomer](docs/sdks/customers/README.md#createcustomer) - Create a customer
-* [getCustomer](docs/sdks/customers/README.md#getcustomer) - Retrieve a customer
+* [list](docs/sdks/customers/README.md#list) - List and search customers
+* [create](docs/sdks/customers/README.md#create) - Create a customer
+* [get](docs/sdks/customers/README.md#get) - Retrieve a customer
 * [update](docs/sdks/customers/README.md#update) - Update a customer
-* [listBusinessClassifications](docs/sdks/customers/README.md#listbusinessclassifications) - List business classification
-* [retrieveBusinessClassification](docs/sdks/customers/README.md#retrievebusinessclassification) - Retrieve a business classification
+* [listAvailableConnections](docs/sdks/customers/README.md#listavailableconnections) - List available exchange connections
+
+#### [customers.beneficialOwners](docs/sdks/customersbeneficialowners/README.md)
+
+* [list](docs/sdks/customersbeneficialowners/README.md#list) - List beneficial owners
+* [create](docs/sdks/customersbeneficialowners/README.md#create) - Create beneficial owner
+
+#### [customers.documents](docs/sdks/customersdocuments/README.md)
+
+* [list](docs/sdks/customersdocuments/README.md#list) - List documents for customer
+* [create](docs/sdks/customersdocuments/README.md#create) - Create a document for customer
+
+#### [customers.exchanges](docs/sdks/customersexchanges/README.md)
+
+* [list](docs/sdks/customersexchanges/README.md#list) - List exchanges for a customer
+* [create](docs/sdks/customersexchanges/README.md#create) - Create an exchange for a customer
+
+#### [customers.fundingSources](docs/sdks/customersfundingsources/README.md)
+
+* [list](docs/sdks/customersfundingsources/README.md#list) - List customer funding sources
 
 ### [documents](docs/sdks/documents/README.md)
 
-* [listCustomerDocuments](docs/sdks/documents/README.md#listcustomerdocuments) - List documents for customer
-* [createCustomerDocument](docs/sdks/documents/README.md#createcustomerdocument) - Create a document for customer
-* [listBeneficialOwnerDocuments](docs/sdks/documents/README.md#listbeneficialownerdocuments) - List document for beneficial owner
-* [createBeneficialOwnerDocument](docs/sdks/documents/README.md#createbeneficialownerdocument) - Create a document for beneficial owner
-* [getDocument](docs/sdks/documents/README.md#getdocument) - Retrieve a document
+* [get](docs/sdks/documents/README.md#get) - Retrieve a document
 
 
 ### [events](docs/sdks/events/README.md)
 
-* [getEvent](docs/sdks/events/README.md#getevent) - Retrieve event
+* [list](docs/sdks/events/README.md#list) - List events
+* [get](docs/sdks/events/README.md#get) - Retrieve event
+
+### [exchangePartners](docs/sdks/exchangepartners/README.md)
+
+* [list](docs/sdks/exchangepartners/README.md#list) - List exchange partners
+* [get](docs/sdks/exchangepartners/README.md#get) - Retrieve exchange partner
 
 ### [exchanges](docs/sdks/exchanges/README.md)
 
-* [listExchangePartners](docs/sdks/exchanges/README.md#listexchangepartners) - List exchange partners
-* [getExchangePartner](docs/sdks/exchanges/README.md#getexchangepartner) - Retrieve exchange partner
-* [listAccountExchanges](docs/sdks/exchanges/README.md#listaccountexchanges) - List exchanges for an account
-* [createAccountExchange](docs/sdks/exchanges/README.md#createaccountexchange) - Create an exchange for an account
-* [getExchange](docs/sdks/exchanges/README.md#getexchange) - Retrieve exchange resource
-* [listCustomerExchanges](docs/sdks/exchanges/README.md#listcustomerexchanges) - List exchanges for a customer
-* [createCustomerExchange](docs/sdks/exchanges/README.md#createcustomerexchange) - Create an exchange for a customer
+* [get](docs/sdks/exchanges/README.md#get) - Retrieve exchange resource
+* [createReAuth](docs/sdks/exchanges/README.md#createreauth) - Create re-authentication exchange session
 
 ### [exchangeSessions](docs/sdks/exchangesessions/README.md)
 
-* [createCustomerExchangeSession](docs/sdks/exchangesessions/README.md#createcustomerexchangesession) - Create customer exchange session
-* [retrieveCustomerExchangeSession](docs/sdks/exchangesessions/README.md#retrievecustomerexchangesession) - Retrieve exchange session
-* [createReAuthExchangeSession](docs/sdks/exchangesessions/README.md#createreauthexchangesession) - Create re-authentication exchange session
-* [listAvailableExchangeConnections](docs/sdks/exchangesessions/README.md#listavailableexchangeconnections) - List available exchange connections
+* [create](docs/sdks/exchangesessions/README.md#create) - Create customer exchange session
+* [get](docs/sdks/exchangesessions/README.md#get) - Retrieve exchange session
 
 ### [fundingSources](docs/sdks/fundingsources/README.md)
 
-* [listCustomerFundingSources](docs/sdks/fundingsources/README.md#listcustomerfundingsources) - List customer funding sources
-* [createCustomerFundingSource](docs/sdks/fundingsources/README.md#createcustomerfundingsource) - Create customer funding source
-* [~~createCustomerFundingSourceToken~~](docs/sdks/fundingsources/README.md#createcustomerfundingsourcetoken) - Create a funding sources token for dwolla.js :warning: **Deprecated**
-* [~~createCustomerIavToken~~](docs/sdks/fundingsources/README.md#createcustomeriavtoken) - Create an IAV token for dwolla.js :warning: **Deprecated**
-* [getFundingSource](docs/sdks/fundingsources/README.md#getfundingsource) - Retrieve a funding source
-* [updateOrRemoveFundingSource](docs/sdks/fundingsources/README.md#updateorremovefundingsource) - Update or remove a funding source
+* [createForCustomer](docs/sdks/fundingsources/README.md#createforcustomer) - Create customer funding source
+* [get](docs/sdks/fundingsources/README.md#get) - Retrieve a funding source
+* [updateOrRemove](docs/sdks/fundingsources/README.md#updateorremove) - Update or remove a funding source
 * [getMicroDeposits](docs/sdks/fundingsources/README.md#getmicrodeposits) - Retrieve micro-deposits details
 * [initiateOrVerifyMicroDeposits](docs/sdks/fundingsources/README.md#initiateorverifymicrodeposits) - Initiate or Verify micro-deposits
-* [getFundingSourceBalance](docs/sdks/fundingsources/README.md#getfundingsourcebalance) - Retrieve funding source balance
-* [getVanAchRouting](docs/sdks/fundingsources/README.md#getvanachrouting) - Retrieve account and routing numbers for a VAN (Virtual Account Number)
+* [getBalance](docs/sdks/fundingsources/README.md#getbalance) - Retrieve funding source balance
+* [getVanRouting](docs/sdks/fundingsources/README.md#getvanrouting) - Retrieve VAN account and routing numbers
 
 ### [kba](docs/sdks/kba/README.md)
 
-* [initiateKbaForCustomer](docs/sdks/kba/README.md#initiatekbaforcustomer) - Initiate a KBA session
-* [getKbaQuestions](docs/sdks/kba/README.md#getkbaquestions) - Retrieve KBA Questions
-* [verifyKbaQuestions](docs/sdks/kba/README.md#verifykbaquestions) - Verify KBA Questions
+* [initiate](docs/sdks/kba/README.md#initiate) - Initiate a KBA session
+* [getQuestions](docs/sdks/kba/README.md#getquestions) - Retrieve KBA Questions
+* [verify](docs/sdks/kba/README.md#verify) - Verify KBA Questions
 
 ### [labels](docs/sdks/labels/README.md)
 
-* [getLabel](docs/sdks/labels/README.md#getlabel) - Retrieve a label
-* [removeLabel](docs/sdks/labels/README.md#removelabel) - Remove a label
-* [listCustomerLabels](docs/sdks/labels/README.md#listcustomerlabels) - List labels for a customer
-* [createCustomerLabel](docs/sdks/labels/README.md#createcustomerlabel) - Create a label for a customer
-* [listLabelLedgerEntries](docs/sdks/labels/README.md#listlabelledgerentries) - List label ledger entries
-* [createLabelLedgerEntry](docs/sdks/labels/README.md#createlabelledgerentry) - Create label ledger entries
-* [getLabelLedgerEntry](docs/sdks/labels/README.md#getlabelledgerentry) - Retrieve a label ledger entry
-* [createLabelReallocation](docs/sdks/labels/README.md#createlabelreallocation) - Create a label reallocation
-* [retrieveLabelLedgerEntry](docs/sdks/labels/README.md#retrievelabelledgerentry) - Retrieve a label reallocation
+* [get](docs/sdks/labels/README.md#get) - Retrieve a label
+* [remove](docs/sdks/labels/README.md#remove) - Remove a label
+* [listForCustomer](docs/sdks/labels/README.md#listforcustomer) - List labels for a customer
+* [createForCustomer](docs/sdks/labels/README.md#createforcustomer) - Create a label for a customer
+* [listLedgerEntries](docs/sdks/labels/README.md#listledgerentries) - List label ledger entries
+* [createLedgerEntry](docs/sdks/labels/README.md#createledgerentry) - Create a label ledger entry
+* [getLedgerEntry](docs/sdks/labels/README.md#getledgerentry) - Retrieve a label ledger entry
+* [createReallocation](docs/sdks/labels/README.md#createreallocation) - Create a label reallocation
+* [getReallocation](docs/sdks/labels/README.md#getreallocation) - Retrieve a label reallocation
 
 ### [massPayments](docs/sdks/masspayments/README.md)
 
-* [initiateMassPayment](docs/sdks/masspayments/README.md#initiatemasspayment) - Initiate a mass payment
-* [getMassPayment](docs/sdks/masspayments/README.md#getmasspayment) - Retrieve a mass payment
-* [updateMassPayment](docs/sdks/masspayments/README.md#updatemasspayment) - Update a mass payment to process or cancel it
-* [listMassPaymentItems](docs/sdks/masspayments/README.md#listmasspaymentitems) - List items for a mass payment
-* [getMassPaymentItem](docs/sdks/masspayments/README.md#getmasspaymentitem) - Retrieve mass payment item
-* [listCustomerMassPayments](docs/sdks/masspayments/README.md#listcustomermasspayments) - List mass payments for customer
+* [create](docs/sdks/masspayments/README.md#create) - Initiate a mass payment
+* [get](docs/sdks/masspayments/README.md#get) - Retrieve a mass payment
+* [update](docs/sdks/masspayments/README.md#update) - Update a mass payment
+* [listItems](docs/sdks/masspayments/README.md#listitems) - List items for a mass payment
+* [getItem](docs/sdks/masspayments/README.md#getitem) - Retrieve mass payment item
+* [listForCustomer](docs/sdks/masspayments/README.md#listforcustomer) - List mass payments for customer
 
 ### [root](docs/sdks/root/README.md)
 
-* [root](docs/sdks/root/README.md#root) - root
+* [get](docs/sdks/root/README.md#get) - root
 
 ### [tokens](docs/sdks/tokens/README.md)
 
@@ -367,26 +388,26 @@ run();
 
 ### [transfers](docs/sdks/transfers/README.md)
 
-* [initiateTransfer](docs/sdks/transfers/README.md#initiatetransfer) - Initiate a transfer
-* [getTransfer](docs/sdks/transfers/README.md#gettransfer) - Retrieve a transfer
-* [cancelTransfer](docs/sdks/transfers/README.md#canceltransfer) - Cancel a transfer
-* [listCustomerTransfers](docs/sdks/transfers/README.md#listcustomertransfers) - List and search transfers for a customer
-* [listTransferFees](docs/sdks/transfers/README.md#listtransferfees) - List fees for a transfer
-* [getTransferFailureReason](docs/sdks/transfers/README.md#gettransferfailurereason) - Retrieve a transfer failure reason
-* [createOnDemandTransferAuthorization](docs/sdks/transfers/README.md#createondemandtransferauthorization) - Create an on-demand transfer authorization
+* [create](docs/sdks/transfers/README.md#create) - Initiate a transfer
+* [get](docs/sdks/transfers/README.md#get) - Retrieve a transfer
+* [cancel](docs/sdks/transfers/README.md#cancel) - Cancel a transfer
+* [listForCustomer](docs/sdks/transfers/README.md#listforcustomer) - List and search transfers for a customer
+* [listFees](docs/sdks/transfers/README.md#listfees) - List fees for a transfer
+* [getFailureReason](docs/sdks/transfers/README.md#getfailurereason) - Retrieve a transfer failure reason
+* [createOnDemandAuthorization](docs/sdks/transfers/README.md#createondemandauthorization) - Create an on-demand transfer authorization
 
 ### [webhooks](docs/sdks/webhooks/README.md)
 
-* [getWebhook](docs/sdks/webhooks/README.md#getwebhook) - Retrieve a webhook
-* [listWebhookRetries](docs/sdks/webhooks/README.md#listwebhookretries) - List retries for a webhook
-* [retryWebhook](docs/sdks/webhooks/README.md#retrywebhook) - Retry a webhook
+* [get](docs/sdks/webhooks/README.md#get) - Retrieve a webhook
+* [listRetries](docs/sdks/webhooks/README.md#listretries) - List retries for a webhook
+* [retry](docs/sdks/webhooks/README.md#retry) - Retry a webhook
 
 ### [webhookSubscriptions](docs/sdks/webhooksubscriptions/README.md)
 
-* [listWebhookSubscriptions](docs/sdks/webhooksubscriptions/README.md#listwebhooksubscriptions) - List webhook subscriptions
-* [createWebhookSubscription](docs/sdks/webhooksubscriptions/README.md#createwebhooksubscription) - Create a webhook subscription
-* [getWebhookSubscription](docs/sdks/webhooksubscriptions/README.md#getwebhooksubscription) - Retrieve a webhook subscription
-* [updateWebhookSubscription](docs/sdks/webhooksubscriptions/README.md#updatewebhooksubscription) - Update a webhook subscription
+* [list](docs/sdks/webhooksubscriptions/README.md#list) - List webhook subscriptions
+* [create](docs/sdks/webhooksubscriptions/README.md#create) - Create a webhook subscription
+* [get](docs/sdks/webhooksubscriptions/README.md#get) - Retrieve a webhook subscription
+* [update](docs/sdks/webhooksubscriptions/README.md#update) - Update a webhook subscription
 * [delete](docs/sdks/webhooksubscriptions/README.md#delete) - Delete a webhook subscription
 * [listWebhooks](docs/sdks/webhooksubscriptions/README.md#listwebhooks) - List webhooks for a webhook subscription
 
@@ -408,87 +429,87 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`accountCreateAccountFundingSource`](docs/sdks/account/README.md#createaccountfundingsource) - Create a funding source for an account
-- [`accountGetAccount`](docs/sdks/account/README.md#getaccount) - Retrieve Account Details
-- [`accountListAccountFundingSources`](docs/sdks/account/README.md#listaccountfundingsources) - List funding sources for an account
-- [`accountListAccountMassPayments`](docs/sdks/account/README.md#listaccountmasspayments) - List mass payments for an account
-- [`accountListAndSearchAccountTransfers`](docs/sdks/account/README.md#listandsearchaccounttransfers) - List and search transfers for an account
-- [`beneficialOwnersCertifyBeneficialOwnershipForCustomer`](docs/sdks/beneficialowners/README.md#certifybeneficialownershipforcustomer) - Certify beneficial ownership status
-- [`beneficialOwnersCreateBeneficialOwnerForCustomer`](docs/sdks/beneficialowners/README.md#createbeneficialownerforcustomer) - Create beneficial owner
-- [`beneficialOwnersDeleteBeneficialOwner`](docs/sdks/beneficialowners/README.md#deletebeneficialowner) - Delete beneficial owner
-- [`beneficialOwnersGetBeneficialOwnershipStatusForCustomer`](docs/sdks/beneficialowners/README.md#getbeneficialownershipstatusforcustomer) - Retrieve beneficial ownership status
-- [`beneficialOwnersListBeneficialOwnersForCustomer`](docs/sdks/beneficialowners/README.md#listbeneficialownersforcustomer) - List beneficial owners
-- [`beneficialOwnersRetrieveBeneficialOwner`](docs/sdks/beneficialowners/README.md#retrievebeneficialowner) - Retrieve beneficial owner
-- [`beneficialOwnersUpdateBeneficialOwner`](docs/sdks/beneficialowners/README.md#updatebeneficialowner) - Update beneficial owner
-- [`customersCreateCustomer`](docs/sdks/customers/README.md#createcustomer) - Create a customer
-- [`customersGetCustomer`](docs/sdks/customers/README.md#getcustomer) - Retrieve a customer
-- [`customersListAndSearchCustomers`](docs/sdks/customers/README.md#listandsearchcustomers) - List and search customers
-- [`customersListBusinessClassifications`](docs/sdks/customers/README.md#listbusinessclassifications) - List business classification
-- [`customersRetrieveBusinessClassification`](docs/sdks/customers/README.md#retrievebusinessclassification) - Retrieve a business classification
+- [`accountsExchangesCreate`](docs/sdks/accountsexchanges/README.md#create) - Create an exchange for an account
+- [`accountsExchangesList`](docs/sdks/accountsexchanges/README.md#list) - List exchanges for an account
+- [`accountsFundingSourcesCreate`](docs/sdks/accountsfundingsources/README.md#create) - Create a funding source for an account
+- [`accountsFundingSourcesList`](docs/sdks/accountsfundingsources/README.md#list) - List funding sources for an account
+- [`accountsGet`](docs/sdks/accounts/README.md#get) - Retrieve Account Details
+- [`accountsMassPaymentsList`](docs/sdks/accountsmasspayments/README.md#list) - List mass payments for an account
+- [`accountsTransfersList`](docs/sdks/accountstransfers/README.md#list) - List and search transfers for an account
+- [`beneficialOwnersCertifyOwnership`](docs/sdks/beneficialowners/README.md#certifyownership) - Certify beneficial ownership status
+- [`beneficialOwnersDelete`](docs/sdks/beneficialowners/README.md#delete) - Delete beneficial owner
+- [`beneficialOwnersDocumentsCreate`](docs/sdks/beneficialownersdocuments/README.md#create) - Create a document for beneficial owner
+- [`beneficialOwnersDocumentsList`](docs/sdks/beneficialownersdocuments/README.md#list) - List document for beneficial owner
+- [`beneficialOwnersGet`](docs/sdks/beneficialowners/README.md#get) - Retrieve beneficial owner
+- [`beneficialOwnersGetOwnershipStatus`](docs/sdks/beneficialowners/README.md#getownershipstatus) - Retrieve beneficial ownership status
+- [`beneficialOwnersUpdate`](docs/sdks/beneficialowners/README.md#update) - Update beneficial owner
+- [`businessClassificationsGet`](docs/sdks/businessclassifications/README.md#get) - Retrieve a business classification
+- [`businessClassificationsList`](docs/sdks/businessclassifications/README.md#list) - List business classifications
+- [`clientTokensCreate`](docs/sdks/clienttokens/README.md#create) - Create a client token
+- [`customersBeneficialOwnersCreate`](docs/sdks/customersbeneficialowners/README.md#create) - Create beneficial owner
+- [`customersBeneficialOwnersList`](docs/sdks/customersbeneficialowners/README.md#list) - List beneficial owners
+- [`customersCreate`](docs/sdks/customers/README.md#create) - Create a customer
+- [`customersDocumentsCreate`](docs/sdks/customersdocuments/README.md#create) - Create a document for customer
+- [`customersDocumentsList`](docs/sdks/customersdocuments/README.md#list) - List documents for customer
+- [`customersExchangesCreate`](docs/sdks/customersexchanges/README.md#create) - Create an exchange for a customer
+- [`customersExchangesList`](docs/sdks/customersexchanges/README.md#list) - List exchanges for a customer
+- [`customersFundingSourcesList`](docs/sdks/customersfundingsources/README.md#list) - List customer funding sources
+- [`customersGet`](docs/sdks/customers/README.md#get) - Retrieve a customer
+- [`customersList`](docs/sdks/customers/README.md#list) - List and search customers
+- [`customersListAvailableConnections`](docs/sdks/customers/README.md#listavailableconnections) - List available exchange connections
 - [`customersUpdate`](docs/sdks/customers/README.md#update) - Update a customer
-- [`documentsCreateBeneficialOwnerDocument`](docs/sdks/documents/README.md#createbeneficialownerdocument) - Create a document for beneficial owner
-- [`documentsCreateCustomerDocument`](docs/sdks/documents/README.md#createcustomerdocument) - Create a document for customer
-- [`documentsGetDocument`](docs/sdks/documents/README.md#getdocument) - Retrieve a document
-- [`documentsListBeneficialOwnerDocuments`](docs/sdks/documents/README.md#listbeneficialownerdocuments) - List document for beneficial owner
-- [`documentsListCustomerDocuments`](docs/sdks/documents/README.md#listcustomerdocuments) - List documents for customer
-- [`eventsGetEvent`](docs/sdks/events/README.md#getevent) - Retrieve event
-- [`exchangesCreateAccountExchange`](docs/sdks/exchanges/README.md#createaccountexchange) - Create an exchange for an account
-- [`exchangesCreateCustomerExchange`](docs/sdks/exchanges/README.md#createcustomerexchange) - Create an exchange for a customer
-- [`exchangeSessionsCreateCustomerExchangeSession`](docs/sdks/exchangesessions/README.md#createcustomerexchangesession) - Create customer exchange session
-- [`exchangeSessionsCreateReAuthExchangeSession`](docs/sdks/exchangesessions/README.md#createreauthexchangesession) - Create re-authentication exchange session
-- [`exchangeSessionsListAvailableExchangeConnections`](docs/sdks/exchangesessions/README.md#listavailableexchangeconnections) - List available exchange connections
-- [`exchangeSessionsRetrieveCustomerExchangeSession`](docs/sdks/exchangesessions/README.md#retrievecustomerexchangesession) - Retrieve exchange session
-- [`exchangesGetExchange`](docs/sdks/exchanges/README.md#getexchange) - Retrieve exchange resource
-- [`exchangesGetExchangePartner`](docs/sdks/exchanges/README.md#getexchangepartner) - Retrieve exchange partner
-- [`exchangesListAccountExchanges`](docs/sdks/exchanges/README.md#listaccountexchanges) - List exchanges for an account
-- [`exchangesListCustomerExchanges`](docs/sdks/exchanges/README.md#listcustomerexchanges) - List exchanges for a customer
-- [`exchangesListExchangePartners`](docs/sdks/exchanges/README.md#listexchangepartners) - List exchange partners
-- [`fundingSourcesCreateCustomerFundingSource`](docs/sdks/fundingsources/README.md#createcustomerfundingsource) - Create customer funding source
-- [`fundingSourcesGetFundingSource`](docs/sdks/fundingsources/README.md#getfundingsource) - Retrieve a funding source
-- [`fundingSourcesGetFundingSourceBalance`](docs/sdks/fundingsources/README.md#getfundingsourcebalance) - Retrieve funding source balance
+- [`documentsGet`](docs/sdks/documents/README.md#get) - Retrieve a document
+- [`eventsGet`](docs/sdks/events/README.md#get) - Retrieve event
+- [`eventsList`](docs/sdks/events/README.md#list) - List events
+- [`exchangePartnersGet`](docs/sdks/exchangepartners/README.md#get) - Retrieve exchange partner
+- [`exchangePartnersList`](docs/sdks/exchangepartners/README.md#list) - List exchange partners
+- [`exchangesCreateReAuth`](docs/sdks/exchanges/README.md#createreauth) - Create re-authentication exchange session
+- [`exchangeSessionsCreate`](docs/sdks/exchangesessions/README.md#create) - Create customer exchange session
+- [`exchangeSessionsGet`](docs/sdks/exchangesessions/README.md#get) - Retrieve exchange session
+- [`exchangesGet`](docs/sdks/exchanges/README.md#get) - Retrieve exchange resource
+- [`fundingSourcesCreateForCustomer`](docs/sdks/fundingsources/README.md#createforcustomer) - Create customer funding source
+- [`fundingSourcesGet`](docs/sdks/fundingsources/README.md#get) - Retrieve a funding source
+- [`fundingSourcesGetBalance`](docs/sdks/fundingsources/README.md#getbalance) - Retrieve funding source balance
 - [`fundingSourcesGetMicroDeposits`](docs/sdks/fundingsources/README.md#getmicrodeposits) - Retrieve micro-deposits details
-- [`fundingSourcesGetVanAchRouting`](docs/sdks/fundingsources/README.md#getvanachrouting) - Retrieve account and routing numbers for a VAN (Virtual Account Number)
+- [`fundingSourcesGetVanRouting`](docs/sdks/fundingsources/README.md#getvanrouting) - Retrieve VAN account and routing numbers
 - [`fundingSourcesInitiateOrVerifyMicroDeposits`](docs/sdks/fundingsources/README.md#initiateorverifymicrodeposits) - Initiate or Verify micro-deposits
-- [`fundingSourcesListCustomerFundingSources`](docs/sdks/fundingsources/README.md#listcustomerfundingsources) - List customer funding sources
-- [`fundingSourcesUpdateOrRemoveFundingSource`](docs/sdks/fundingsources/README.md#updateorremovefundingsource) - Update or remove a funding source
-- [`kbaGetKbaQuestions`](docs/sdks/kba/README.md#getkbaquestions) - Retrieve KBA Questions
-- [`kbaInitiateKbaForCustomer`](docs/sdks/kba/README.md#initiatekbaforcustomer) - Initiate a KBA session
-- [`kbaVerifyKbaQuestions`](docs/sdks/kba/README.md#verifykbaquestions) - Verify KBA Questions
-- [`labelsCreateCustomerLabel`](docs/sdks/labels/README.md#createcustomerlabel) - Create a label for a customer
-- [`labelsCreateLabelLedgerEntry`](docs/sdks/labels/README.md#createlabelledgerentry) - Create label ledger entries
-- [`labelsCreateLabelReallocation`](docs/sdks/labels/README.md#createlabelreallocation) - Create a label reallocation
-- [`labelsGetLabel`](docs/sdks/labels/README.md#getlabel) - Retrieve a label
-- [`labelsGetLabelLedgerEntry`](docs/sdks/labels/README.md#getlabelledgerentry) - Retrieve a label ledger entry
-- [`labelsListCustomerLabels`](docs/sdks/labels/README.md#listcustomerlabels) - List labels for a customer
-- [`labelsListLabelLedgerEntries`](docs/sdks/labels/README.md#listlabelledgerentries) - List label ledger entries
-- [`labelsRemoveLabel`](docs/sdks/labels/README.md#removelabel) - Remove a label
-- [`labelsRetrieveLabelLedgerEntry`](docs/sdks/labels/README.md#retrievelabelledgerentry) - Retrieve a label reallocation
-- [`massPaymentsGetMassPayment`](docs/sdks/masspayments/README.md#getmasspayment) - Retrieve a mass payment
-- [`massPaymentsGetMassPaymentItem`](docs/sdks/masspayments/README.md#getmasspaymentitem) - Retrieve mass payment item
-- [`massPaymentsInitiateMassPayment`](docs/sdks/masspayments/README.md#initiatemasspayment) - Initiate a mass payment
-- [`massPaymentsListCustomerMassPayments`](docs/sdks/masspayments/README.md#listcustomermasspayments) - List mass payments for customer
-- [`massPaymentsListMassPaymentItems`](docs/sdks/masspayments/README.md#listmasspaymentitems) - List items for a mass payment
-- [`massPaymentsUpdateMassPayment`](docs/sdks/masspayments/README.md#updatemasspayment) - Update a mass payment to process or cancel it
-- [`rootRoot`](docs/sdks/root/README.md#root) - root
+- [`fundingSourcesUpdateOrRemove`](docs/sdks/fundingsources/README.md#updateorremove) - Update or remove a funding source
+- [`kbaGetQuestions`](docs/sdks/kba/README.md#getquestions) - Retrieve KBA Questions
+- [`kbaInitiate`](docs/sdks/kba/README.md#initiate) - Initiate a KBA session
+- [`kbaVerify`](docs/sdks/kba/README.md#verify) - Verify KBA Questions
+- [`labelsCreateForCustomer`](docs/sdks/labels/README.md#createforcustomer) - Create a label for a customer
+- [`labelsCreateLedgerEntry`](docs/sdks/labels/README.md#createledgerentry) - Create a label ledger entry
+- [`labelsCreateReallocation`](docs/sdks/labels/README.md#createreallocation) - Create a label reallocation
+- [`labelsGet`](docs/sdks/labels/README.md#get) - Retrieve a label
+- [`labelsGetLedgerEntry`](docs/sdks/labels/README.md#getledgerentry) - Retrieve a label ledger entry
+- [`labelsGetReallocation`](docs/sdks/labels/README.md#getreallocation) - Retrieve a label reallocation
+- [`labelsListForCustomer`](docs/sdks/labels/README.md#listforcustomer) - List labels for a customer
+- [`labelsListLedgerEntries`](docs/sdks/labels/README.md#listledgerentries) - List label ledger entries
+- [`labelsRemove`](docs/sdks/labels/README.md#remove) - Remove a label
+- [`massPaymentsCreate`](docs/sdks/masspayments/README.md#create) - Initiate a mass payment
+- [`massPaymentsGet`](docs/sdks/masspayments/README.md#get) - Retrieve a mass payment
+- [`massPaymentsGetItem`](docs/sdks/masspayments/README.md#getitem) - Retrieve mass payment item
+- [`massPaymentsListForCustomer`](docs/sdks/masspayments/README.md#listforcustomer) - List mass payments for customer
+- [`massPaymentsListItems`](docs/sdks/masspayments/README.md#listitems) - List items for a mass payment
+- [`massPaymentsUpdate`](docs/sdks/masspayments/README.md#update) - Update a mass payment
+- [`rootGet`](docs/sdks/root/README.md#get) - root
 - [`tokensCreateApplicationAccessToken`](docs/sdks/tokens/README.md#createapplicationaccesstoken) - Create an application access token
-- [`transfersCancelTransfer`](docs/sdks/transfers/README.md#canceltransfer) - Cancel a transfer
-- [`transfersCreateOnDemandTransferAuthorization`](docs/sdks/transfers/README.md#createondemandtransferauthorization) - Create an on-demand transfer authorization
-- [`transfersGetTransfer`](docs/sdks/transfers/README.md#gettransfer) - Retrieve a transfer
-- [`transfersGetTransferFailureReason`](docs/sdks/transfers/README.md#gettransferfailurereason) - Retrieve a transfer failure reason
-- [`transfersInitiateTransfer`](docs/sdks/transfers/README.md#initiatetransfer) - Initiate a transfer
-- [`transfersListCustomerTransfers`](docs/sdks/transfers/README.md#listcustomertransfers) - List and search transfers for a customer
-- [`transfersListTransferFees`](docs/sdks/transfers/README.md#listtransferfees) - List fees for a transfer
-- [`webhooksGetWebhook`](docs/sdks/webhooks/README.md#getwebhook) - Retrieve a webhook
-- [`webhooksListWebhookRetries`](docs/sdks/webhooks/README.md#listwebhookretries) - List retries for a webhook
-- [`webhooksRetryWebhook`](docs/sdks/webhooks/README.md#retrywebhook) - Retry a webhook
-- [`webhookSubscriptionsCreateWebhookSubscription`](docs/sdks/webhooksubscriptions/README.md#createwebhooksubscription) - Create a webhook subscription
+- [`transfersCancel`](docs/sdks/transfers/README.md#cancel) - Cancel a transfer
+- [`transfersCreate`](docs/sdks/transfers/README.md#create) - Initiate a transfer
+- [`transfersCreateOnDemandAuthorization`](docs/sdks/transfers/README.md#createondemandauthorization) - Create an on-demand transfer authorization
+- [`transfersGet`](docs/sdks/transfers/README.md#get) - Retrieve a transfer
+- [`transfersGetFailureReason`](docs/sdks/transfers/README.md#getfailurereason) - Retrieve a transfer failure reason
+- [`transfersListFees`](docs/sdks/transfers/README.md#listfees) - List fees for a transfer
+- [`transfersListForCustomer`](docs/sdks/transfers/README.md#listforcustomer) - List and search transfers for a customer
+- [`webhooksGet`](docs/sdks/webhooks/README.md#get) - Retrieve a webhook
+- [`webhooksListRetries`](docs/sdks/webhooks/README.md#listretries) - List retries for a webhook
+- [`webhooksRetry`](docs/sdks/webhooks/README.md#retry) - Retry a webhook
+- [`webhookSubscriptionsCreate`](docs/sdks/webhooksubscriptions/README.md#create) - Create a webhook subscription
 - [`webhookSubscriptionsDelete`](docs/sdks/webhooksubscriptions/README.md#delete) - Delete a webhook subscription
-- [`webhookSubscriptionsGetWebhookSubscription`](docs/sdks/webhooksubscriptions/README.md#getwebhooksubscription) - Retrieve a webhook subscription
+- [`webhookSubscriptionsGet`](docs/sdks/webhooksubscriptions/README.md#get) - Retrieve a webhook subscription
+- [`webhookSubscriptionsList`](docs/sdks/webhooksubscriptions/README.md#list) - List webhook subscriptions
 - [`webhookSubscriptionsListWebhooks`](docs/sdks/webhooksubscriptions/README.md#listwebhooks) - List webhooks for a webhook subscription
-- [`webhookSubscriptionsListWebhookSubscriptions`](docs/sdks/webhooksubscriptions/README.md#listwebhooksubscriptions) - List webhook subscriptions
-- [`webhookSubscriptionsUpdateWebhookSubscription`](docs/sdks/webhooksubscriptions/README.md#updatewebhooksubscription) - Update a webhook subscription
-- ~~[`fundingSourcesCreateCustomerFundingSourceToken`](docs/sdks/fundingsources/README.md#createcustomerfundingsourcetoken)~~ - Create a funding sources token for dwolla.js :warning: **Deprecated**
-- ~~[`fundingSourcesCreateCustomerIavToken`](docs/sdks/fundingsources/README.md#createcustomeriavtoken)~~ - Create an IAV token for dwolla.js :warning: **Deprecated**
+- [`webhookSubscriptionsUpdate`](docs/sdks/webhooksubscriptions/README.md#update) - Update a webhook subscription
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -511,16 +532,18 @@ Certain SDK methods accept files as part of a multi-part request. It is possible
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.documents.createCustomerDocument({
+  const result = await dwolla.customers.documents.create({
     id: "<id>",
     requestBody: {},
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -538,13 +561,15 @@ To change the default retry strategy for a single API call, simply provide a ret
 ```typescript
 import { Dwolla } from "dwolla-typescript";
 
-const dwolla = new Dwolla();
+const dwolla = new Dwolla({
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
+});
 
 async function run() {
   const result = await dwolla.tokens.createApplicationAccessToken({
-    username: "",
-    password: "",
-  }, {
     grantType: "client_credentials",
   }, {
     retries: {
@@ -559,7 +584,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -582,17 +606,17 @@ const dwolla = new Dwolla({
     },
     retryConnectionErrors: false,
   },
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
   const result = await dwolla.tokens.createApplicationAccessToken({
-    username: "",
-    password: "",
-  }, {
     grantType: "client_credentials",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -604,55 +628,50 @@ run();
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Some methods specify known errors which can be thrown. All the known errors are enumerated in the `models/errors/errors.ts` module. The known errors for a method are documented under the *Errors* tables in SDK docs. For example, the `createApplicationAccessToken` method may throw the following errors:
+This table shows properties which are common on error classes. For full details see [error classes](#error-classes).
 
-| Error Type               | Status Code | Content Type     |
-| ------------------------ | ----------- | ---------------- |
-| errors.UnauthorizedError | 401         | application/json |
-| errors.APIError          | 4XX, 5XX    | \*/\*            |
+| Property            | Type       | Description                                                                             |
+| ------------------- | ---------- | --------------------------------------------------------------------------------------- |
+| `error.name`        | `string`   | Error class name eg `APIError`                                                          |
+| `error.message`     | `string`   | Error message                                                                           |
+| `error.statusCode`  | `number`   | HTTP status code eg `404`                                                               |
+| `error.contentType` | `string`   | HTTP content type eg `application/json`                                                 |
+| `error.body`        | `string`   | HTTP body. Can be empty string if no body is returned.                                  |
+| `error.rawResponse` | `Response` | Raw HTTP response. Access to headers and more.                                          |
+| `error.data$`       |            | Optional. Some errors may contain structured data. [See Error Classes](#error-classes). |
 
-If the method throws an error and it is not captured by the known errors, it will default to throwing a `APIError`.
-
+### Example
 ```typescript
 import { Dwolla } from "dwolla-typescript";
-import {
-  SDKValidationError,
-  UnauthorizedError,
-} from "dwolla-typescript/models/errors";
+import * as errors from "dwolla-typescript/models/errors";
 
-const dwolla = new Dwolla();
+const dwolla = new Dwolla({
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
+});
 
 async function run() {
-  let result;
   try {
-    result = await dwolla.tokens.createApplicationAccessToken({
-      username: "",
-      password: "",
-    }, {
+    const result = await dwolla.tokens.createApplicationAccessToken({
       grantType: "client_credentials",
     });
 
-    // Handle the result
     console.log(result);
-  } catch (err) {
-    switch (true) {
-      // The server response does not match the expected SDK schema
-      case (err instanceof SDKValidationError): {
-        // Pretty-print will provide a human-readable multi-line error message
-        console.error(err.pretty());
-        // Raw value may also be inspected
-        console.error(err.rawValue);
-        return;
-      }
-      case (err instanceof UnauthorizedError): {
-        // Handle err.data$: UnauthorizedErrorData
-        console.error(err);
-        return;
-      }
-      default: {
-        // Other errors such as network errors, see HTTPClientErrors for more details
-        throw err;
-      }
+  } catch (error) {
+    // Depending on the method different errors may be thrown
+    if (error instanceof errors.UnauthorizedError) {
+      console.log(error.message);
+      console.log(error.data$.error); // string
+    }
+
+    // Fallback error class, if no other more specific error class is matched
+    if (error instanceof errors.APIError) {
+      console.log(error.message);
+      console.log(error.statusCode);
+      console.log(error.body);
+      console.log(error.rawResponse.headers);
     }
   }
 }
@@ -661,17 +680,187 @@ run();
 
 ```
 
-Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted multi-line string since validation errors can list many issues and the plain error string may be difficult read when debugging.
+### Error Classes
+* `APIError`: The fallback error class, if no other more specific error class is matched.
+* `SDKValidationError`: Type mismatch between the data returned from the server and the structure expected by the SDK. This can also be thrown for invalid method arguments. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
+* Network errors:
+    * `ConnectionError`: HTTP client was unable to make a request to a server.
+    * `RequestTimeoutError`: HTTP request timed out due to an AbortSignal signal.
+    * `RequestAbortedError`: HTTP request was aborted by the client.
+    * `InvalidRequestError`: Any input used to create a request is invalid.
+    * `UnexpectedClientError`: Unrecognised or unexpected error.
 
-In some rare cases, the SDK can fail to get a response from the server or even make the request due to unexpected circumstances such as network conditions. These types of errors are captured in the `models/errors/httpclienterrors.ts` module:
+<details><summary>Less common errors, applicable to a subset of methods (165)</summary>
 
-| HTTP Client Error                                    | Description                                          |
-| ---------------------------------------------------- | ---------------------------------------------------- |
-| RequestAbortedError                                  | HTTP request was aborted by the client               |
-| RequestTimeoutError                                  | HTTP request timed out due to an AbortSignal signal  |
-| ConnectionError                                      | HTTP client was unable to make a request to a server |
-| InvalidRequestError                                  | Any input used to create a request is invalid        |
-| UnexpectedClientError                                | Unrecognised or unexpected error                     |
+* [`NotFoundError`](docs/models/errors/notfounderror.md): Error response schema for 404 NotFound. Status code `404`. Applicable to 36 of 81 methods.*
+* [`ForbiddenError`](docs/models/errors/forbiddenerror.md): Error response schema for 403 Forbidden. Status code `403`. Applicable to 24 of 81 methods.*
+* [`BadRequestError`](docs/models/errors/badrequesterror.md): Error response schema for 400 Bad Request. Status code `400`. Applicable to 11 of 81 methods.*
+* [`ValidationErrorSchema`](docs/models/errors/validationerrorschema.md): Status code `400`. Applicable to 3 of 81 methods.*
+* [`DuplicateResourceSchemaError`](docs/models/errors/duplicateresourceschemaerror.md): Status code `400`. Applicable to 3 of 81 methods.*
+* [`MaximumNumberOfResourcesSchemaError`](docs/models/errors/maximumnumberofresourcesschemaerror.md): Bad Request. Status code `400`. Applicable to 2 of 81 methods.*
+* [`InvalidFileTypeSchemaError`](docs/models/errors/invalidfiletypeschemaerror.md): Bad Request. Status code `400`. Applicable to 2 of 81 methods.*
+* [`InvalidResourceStateSchemaError`](docs/models/errors/invalidresourcestateschemaerror.md): Status code `403`. Applicable to 2 of 81 methods.*
+* [`UpdateBadRequestDwollaV1HalJSONError`](docs/models/errors/updatebadrequestdwollav1haljsonerror.md): bad request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`CreateCustomerFundingSourceResponseBodyError1`](docs/models/errors/createcustomerfundingsourceresponsebodyerror1.md): validation error. Status code `400`. Applicable to 1 of 81 methods.*
+* [`CreateCustomerFundingSourceResponseBodyError2`](docs/models/errors/createcustomerfundingsourceresponsebodyerror2.md): validation error. Status code `400`. Applicable to 1 of 81 methods.*
+* [`CreateCustomerFundingSourceResponseBodyError3`](docs/models/errors/createcustomerfundingsourceresponsebodyerror3.md): validation error. Status code `400`. Applicable to 1 of 81 methods.*
+* [`UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError`](docs/models/errors/updateorremovefundingsourcebadrequestdwollav1haljsonerror.md): validation error. Status code `400`. Applicable to 1 of 81 methods.*
+* [`SourceNotFoundError`](docs/models/errors/sourcenotfounderror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`ReceiverNotFoundError`](docs/models/errors/receivernotfounderror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InvalidSourceFundingSourceError`](docs/models/errors/invalidsourcefundingsourceerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`SenderRestrictedError`](docs/models/errors/senderrestrictederror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`ReceiverRestrictedError`](docs/models/errors/receiverrestrictederror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InvalidMetadataError`](docs/models/errors/invalidmetadataerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`OperationBlockedError`](docs/models/errors/operationblockederror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InvalidAmountLimitError`](docs/models/errors/invalidamountlimiterror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`CannotParseAmountError`](docs/models/errors/cannotparseamounterror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InsufficientFundsError`](docs/models/errors/insufficientfundserror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`FacilitatorFeeAccountNotFoundError`](docs/models/errors/facilitatorfeeaccountnotfounderror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`FacilitatorFeeSumTooLargeError`](docs/models/errors/facilitatorfeesumtoolargeerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`FacilitatorFeeBelowMinimumError`](docs/models/errors/facilitatorfeebelowminimumerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`HighRiskError`](docs/models/errors/highriskerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`IncompatibleHoldingsError`](docs/models/errors/incompatibleholdingserror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`DirectAccountWithoutBankError`](docs/models/errors/directaccountwithoutbankerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`SourceSameAsDestinationError`](docs/models/errors/sourcesameasdestinationerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InvalidFacilitatorError`](docs/models/errors/invalidfacilitatorerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InvalidFacilitatorFeeCollectFromError`](docs/models/errors/invalidfacilitatorfeecollectfromerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InvalidFacilitatorFeeCollectFromCombinationError`](docs/models/errors/invalidfacilitatorfeecollectfromcombinationerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InvalidDestinationFundingSourceError`](docs/models/errors/invaliddestinationfundingsourceerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InvalidFacilitatorFeeAmountError`](docs/models/errors/invalidfacilitatorfeeamounterror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`WeeklyReceiveLimitReachedError`](docs/models/errors/weeklyreceivelimitreachederror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InvalidDestinationClearingTypeError`](docs/models/errors/invaliddestinationclearingtypeerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InvalidAmountForDestinationClearingTypeError`](docs/models/errors/invalidamountfordestinationclearingtypeerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InvalidCorrelationIdError`](docs/models/errors/invalidcorrelationiderror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`SourceAddendaMaxLengthError`](docs/models/errors/sourceaddendamaxlengtherror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`DestinationAddendaMaxLengthError`](docs/models/errors/destinationaddendamaxlengtherror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`AchAddendaEntriesNotEnabledForAccountError`](docs/models/errors/achaddendaentriesnotenabledforaccounterror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`PointOfSaleAddendaEntriesNotEnabledForAccountError`](docs/models/errors/pointofsaleaddendaentriesnotenabledforaccounterror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`IncompatibleAddendaEntriesError`](docs/models/errors/incompatibleaddendaentrieserror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InvalidPointOfSaleAddendaIdentificationCodeError`](docs/models/errors/invalidpointofsaleaddendaidentificationcodeerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InvalidPointOfSaleAddendaSerialNumberError`](docs/models/errors/invalidpointofsaleaddendaserialnumbererror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InvalidPointOfSaleAddendaDateError`](docs/models/errors/invalidpointofsaleaddendadateerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InvalidPointOfSaleAddendaAddressError`](docs/models/errors/invalidpointofsaleaddendaaddresserror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InvalidPointOfSaleAddendaCityError`](docs/models/errors/invalidpointofsaleaddendacityerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InvalidPointOfSaleAddendaStateError`](docs/models/errors/invalidpointofsaleaddendastateerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`TransferExpiredForFeeError`](docs/models/errors/transferexpiredforfeeerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InvalidFeeOdfiError`](docs/models/errors/invalidfeeodfierror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InvalidSourceBankAccountTypeError`](docs/models/errors/invalidsourcebankaccounttypeerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InvalidDestinationBankAccountTypeError`](docs/models/errors/invaliddestinationbankaccounttypeerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`IncompatibleSourceAndDestinationTypesError`](docs/models/errors/incompatiblesourceanddestinationtypeserror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`IncompatibleSourceForRtpDestinationError`](docs/models/errors/incompatiblesourceforrtpdestinationerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InvalidAmountForDestinationProcessingChannelError`](docs/models/errors/invalidamountfordestinationprocessingchannelerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`RtpFacilitatorFeeNotSupportedError`](docs/models/errors/rtpfacilitatorfeenotsupportederror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`RtpUnverifiedSenderNotSupportedError`](docs/models/errors/rtpunverifiedsendernotsupportederror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`RtpPersonalToPersonalNotSupportedError`](docs/models/errors/rtppersonaltopersonalnotsupportederror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`DestinationProcessingChannelNotSupportedError`](docs/models/errors/destinationprocessingchannelnotsupportederror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`DestinationRemittanceDataMaxLengthError`](docs/models/errors/destinationremittancedatamaxlengtherror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`WithdrawInvalidAmountError`](docs/models/errors/withdrawinvalidamounterror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`WithdrawInvalidFundingSourceError`](docs/models/errors/withdrawinvalidfundingsourceerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`WithdrawAccountRestrictedError`](docs/models/errors/withdrawaccountrestrictederror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`WithdrawInvalidAmountForClearingTypeError`](docs/models/errors/withdrawinvalidamountforclearingtypeerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`WithdrawInvalidWireBeneficiaryLocalityError`](docs/models/errors/withdrawinvalidwirebeneficiarylocalityerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`WithdrawInvalidWireBeneficiaryRegionError`](docs/models/errors/withdrawinvalidwirebeneficiaryregionerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`WithdrawInvalidWireBeneficiaryCountryError`](docs/models/errors/withdrawinvalidwirebeneficiarycountryerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`WithdrawInvalidWireOriginatorToBeneficiaryError`](docs/models/errors/withdrawinvalidwireoriginatortobeneficiaryerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`WithdrawProcessingChannelNotSupportedError`](docs/models/errors/withdrawprocessingchannelnotsupportederror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`WithdrawRtpUnverifiedSenderNotSupportedError`](docs/models/errors/withdrawrtpunverifiedsendernotsupportederror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`WithdrawRtpPersonalWithdrawalNotSupportedError`](docs/models/errors/withdrawrtppersonalwithdrawalnotsupportederror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`DepositAccountRestrictedError`](docs/models/errors/depositaccountrestrictederror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`WireInvalidImadError`](docs/models/errors/wireinvalidimaderror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`WireAccountRestrictedError`](docs/models/errors/wireaccountrestrictederror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`WireNotEnabledError`](docs/models/errors/wirenotenablederror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`WireAccountNotFoundError`](docs/models/errors/wireaccountnotfounderror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`StatusInvalidError`](docs/models/errors/statusinvaliderror.md): 400 Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`StatusNotAllowedError`](docs/models/errors/statusnotallowederror.md): 400 Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InvalidUrlFormatError`](docs/models/errors/invalidurlformaterror.md): Bad request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`SecretTooLongError`](docs/models/errors/secrettoolongerror.md): Bad request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`MaxSubscriptionsReachedError`](docs/models/errors/maxsubscriptionsreachederror.md): Bad request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONError`](docs/models/errors/createreauthexchangesessionbadrequestdwollav1haljsonerror.md): validation error. Status code `400`. Applicable to 1 of 81 methods.*
+* [`CreateCustomerExchangeSessionResponseBodyBadRequestError1`](docs/models/errors/createcustomerexchangesessionresponsebodybadrequesterror1.md): validation error. Status code `400`. Applicable to 1 of 81 methods.*
+* [`CreateCustomerExchangeSessionResponseBodyBadRequestError2`](docs/models/errors/createcustomerexchangesessionresponsebodybadrequesterror2.md): validation error. Status code `400`. Applicable to 1 of 81 methods.*
+* [`CreateCustomerExchangeSessionResponseBodyBadRequestError3`](docs/models/errors/createcustomerexchangesessionresponsebodybadrequesterror3.md): validation error. Status code `400`. Applicable to 1 of 81 methods.*
+* [`BadRequestSchemaError`](docs/models/errors/badrequestschemaerror.md): Bad request or duplicate resource. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InvalidExchangeTokenError`](docs/models/errors/invalidexchangetokenerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InvalidExchangeError`](docs/models/errors/invalidexchangeerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`UnauthorizedError`](docs/models/errors/unauthorizederror.md): Unauthorized. Status code `401`. Applicable to 1 of 81 methods.*
+* [`GetRootDwollaV1HalJSONError`](docs/models/errors/getrootdwollav1haljsonerror.md): unauthorized. Status code `401`. Applicable to 1 of 81 methods.*
+* [`GetExchangeUnauthorizedDwollaV1HalJSONError`](docs/models/errors/getexchangeunauthorizeddwollav1haljsonerror.md): Invalid Scope. Status code `401`. Applicable to 1 of 81 methods.*
+* [`CreateCustomerExchangeSessionDwollaV1HalJSONError`](docs/models/errors/createcustomerexchangesessiondwollav1haljsonerror.md): unauthorized. Status code `401`. Applicable to 1 of 81 methods.*
+* [`CreateAccountExchangeDwollaV1HalJSONError`](docs/models/errors/createaccountexchangedwollav1haljsonerror.md): Invalid Scope. Status code `401`. Applicable to 1 of 81 methods.*
+* [`CreateCustomerExchangeDwollaV1HalJSONError`](docs/models/errors/createcustomerexchangedwollav1haljsonerror.md): Invalid Scope. Status code `401`. Applicable to 1 of 81 methods.*
+* [`GetAccountDwollaV1HalJSONError`](docs/models/errors/getaccountdwollav1haljsonerror.md): forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`CreateCustomerForbiddenDwollaV1HalJSONError`](docs/models/errors/createcustomerforbiddendwollav1haljsonerror.md): forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`GetCustomerForbiddenDwollaV1HalJSONError`](docs/models/errors/getcustomerforbiddendwollav1haljsonerror.md): forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`UpdateForbiddenDwollaV1HalJSONError`](docs/models/errors/updateforbiddendwollav1haljsonerror.md): forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError`](docs/models/errors/updatebeneficialownerforbiddendwollav1haljsonerror.md): forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`GetBeneficialOwnershipStatusForCustomerForbiddenDwollaV1HalJSONError`](docs/models/errors/getbeneficialownershipstatusforcustomerforbiddendwollav1haljsonerror.md): forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError`](docs/models/errors/certifybeneficialownershipforcustomerdwollav1haljsonerror.md): forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`InvalidKbaSessionError`](docs/models/errors/invalidkbasessionerror.md): 403 Error. Status code `403`. Applicable to 1 of 81 methods.*
+* [`ExpiredKbaSessionError`](docs/models/errors/expiredkbasessionerror.md): 403 Error. Status code `403`. Applicable to 1 of 81 methods.*
+* [`CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError`](docs/models/errors/createcustomerfundingsourceforbiddendwollav1haljsonerror.md): forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError`](docs/models/errors/updateorremovefundingsourceforbiddendwollav1haljsonerror.md): forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`InvalidAttemptToFacilitateFundsError`](docs/models/errors/invalidattempttofacilitatefundserror.md): Forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`InvalidAttemptToPayInFundsError`](docs/models/errors/invalidattempttopayinfundserror.md): Forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`InvalidAttemptToPayOutFundsError`](docs/models/errors/invalidattempttopayoutfundserror.md): Forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`RtpAccountSettingNotEnabledError`](docs/models/errors/rtpaccountsettingnotenablederror.md): Forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`InitiateMassPaymentDwollaV1HalJSONError`](docs/models/errors/initiatemasspaymentdwollav1haljsonerror.md): Forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`GetMassPaymentForbiddenDwollaV1HalJSONError`](docs/models/errors/getmasspaymentforbiddendwollav1haljsonerror.md): Forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`UpdateMassPaymentForbiddenDwollaV1HalJSONError`](docs/models/errors/updatemasspaymentforbiddendwollav1haljsonerror.md): Forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`ListMassPaymentItemsForbiddenDwollaV1HalJSONError`](docs/models/errors/listmasspaymentitemsforbiddendwollav1haljsonerror.md): Not authorized to list mass payment items. Status code `403`. Applicable to 1 of 81 methods.*
+* [`GetMassPaymentItemForbiddenDwollaV1HalJSONError`](docs/models/errors/getmasspaymentitemforbiddendwollav1haljsonerror.md): Forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError`](docs/models/errors/listcustomermasspaymentsforbiddendwollav1haljsonerror.md): Not authorized to list mass payments. Status code `403`. Applicable to 1 of 81 methods.*
+* [`RemoveLabelDwollaV1HalJSONError`](docs/models/errors/removelabeldwollav1haljsonerror.md): forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`ListCustomerLabelsForbiddenDwollaV1HalJSONError`](docs/models/errors/listcustomerlabelsforbiddendwollav1haljsonerror.md): Forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`CreateCustomerLabelForbiddenDwollaV1HalJSONError`](docs/models/errors/createcustomerlabelforbiddendwollav1haljsonerror.md): Forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`CreateLabelReallocationForbiddenDwollaV1HalJSONError`](docs/models/errors/createlabelreallocationforbiddendwollav1haljsonerror.md): Forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`CreateReAuthExchangeSessionForbiddenDwollaV1HalJSONError`](docs/models/errors/createreauthexchangesessionforbiddendwollav1haljsonerror.md): forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`ResponseBodyForbiddenError1`](docs/models/errors/responsebodyforbiddenerror1.md): forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`ResponseBodyForbiddenError2`](docs/models/errors/responsebodyforbiddenerror2.md): forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`RetrieveCustomerExchangeSessionForbiddenDwollaV1HalJSONError`](docs/models/errors/retrievecustomerexchangesessionforbiddendwollav1haljsonerror.md): forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`CreateFundingSourceDwollaV1HalJSONError`](docs/models/errors/createfundingsourcedwollav1haljsonerror.md): forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`ListFundingSourcesForbiddenDwollaV1HalJSONError`](docs/models/errors/listfundingsourcesforbiddendwollav1haljsonerror.md): forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`ListMassPaymentsForbiddenDwollaV1HalJSONError`](docs/models/errors/listmasspaymentsforbiddendwollav1haljsonerror.md): forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`NotAuthorizedSchemaError`](docs/models/errors/notauthorizedschemaerror.md): not found. Status code `403`. Applicable to 1 of 81 methods.*
+* [`ListCustomerFundingSourcesForbiddenDwollaV1HalJSONError`](docs/models/errors/listcustomerfundingsourcesforbiddendwollav1haljsonerror.md): forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`CreateCustomerNotFoundDwollaV1HalJSONError`](docs/models/errors/createcustomernotfounddwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`GetCustomerNotFoundDwollaV1HalJSONError`](docs/models/errors/getcustomernotfounddwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`ListAvailableExchangeConnectionsDwollaV1HalJSONError`](docs/models/errors/listavailableexchangeconnectionsdwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`RetrieveBusinessClassificationDwollaV1HalJSONError`](docs/models/errors/retrievebusinessclassificationdwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`RetrieveBeneficialOwnerDwollaV1HalJSONError`](docs/models/errors/retrievebeneficialownerdwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`UpdateBeneficialOwnerNotFoundDwollaV1HalJSONError`](docs/models/errors/updatebeneficialownernotfounddwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`DeleteBeneficialOwnerDwollaV1HalJSONError`](docs/models/errors/deletebeneficialownerdwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONError`](docs/models/errors/getbeneficialownershipstatusforcustomernotfounddwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`GetKbaQuestionsDwollaV1HalJSONError`](docs/models/errors/getkbaquestionsdwollav1haljsonerror.md): 404 Error. Status code `404`. Applicable to 1 of 81 methods.*
+* [`VerifyDwollaV1HalJSONError`](docs/models/errors/verifydwollav1haljsonerror.md): 404 Error. Status code `404`. Applicable to 1 of 81 methods.*
+* [`CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError`](docs/models/errors/createcustomerfundingsourcenotfounddwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`GetFundingSourceDwollaV1HalJSONError`](docs/models/errors/getfundingsourcedwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`InitiateOrVerifyMicroDepositsDwollaV1HalJSONError`](docs/models/errors/initiateorverifymicrodepositsdwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`GetFundingSourceBalanceDwollaV1HalJSONError`](docs/models/errors/getfundingsourcebalancedwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`GetVanRoutingDwollaV1HalJSONError`](docs/models/errors/getvanroutingdwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`GetMassPaymentNotFoundDwollaV1HalJSONError`](docs/models/errors/getmasspaymentnotfounddwollav1haljsonerror.md): Not Found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`UpdateMassPaymentNotFoundDwollaV1HalJSONError`](docs/models/errors/updatemasspaymentnotfounddwollav1haljsonerror.md): Not Found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`ListMassPaymentItemsNotFoundDwollaV1HalJSONError`](docs/models/errors/listmasspaymentitemsnotfounddwollav1haljsonerror.md): Mass payment not found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`GetMassPaymentItemNotFoundDwollaV1HalJSONError`](docs/models/errors/getmasspaymentitemnotfounddwollav1haljsonerror.md): Not Found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`ListCustomerMassPaymentsNotFoundDwollaV1HalJSONError`](docs/models/errors/listcustomermasspaymentsnotfounddwollav1haljsonerror.md): Customer not found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`ListCustomerLabelsNotFoundDwollaV1HalJSONError`](docs/models/errors/listcustomerlabelsnotfounddwollav1haljsonerror.md): Not Found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`CreateCustomerLabelNotFoundDwollaV1HalJSONError`](docs/models/errors/createcustomerlabelnotfounddwollav1haljsonerror.md): Not Found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`CreateLabelReallocationNotFoundDwollaV1HalJSONError`](docs/models/errors/createlabelreallocationnotfounddwollav1haljsonerror.md): Not Found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`GetExchangeNotFoundDwollaV1HalJSONError`](docs/models/errors/getexchangenotfounddwollav1haljsonerror.md): Not Found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`RetrieveCustomerExchangeSessionNotFoundDwollaV1HalJSONError`](docs/models/errors/retrievecustomerexchangesessionnotfounddwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`ListFundingSourcesNotFoundDwollaV1HalJSONError`](docs/models/errors/listfundingsourcesnotfounddwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`ListAndSearchTransfersDwollaV1HalJSONError`](docs/models/errors/listandsearchtransfersdwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`ListMassPaymentsNotFoundDwollaV1HalJSONError`](docs/models/errors/listmasspaymentsnotfounddwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`ListBeneficialOwnersForCustomerDwollaV1HalJSONError`](docs/models/errors/listbeneficialownersforcustomerdwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`CreateCustomerDocumentNotFoundDwollaV1HalJSONError`](docs/models/errors/createcustomerdocumentnotfounddwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`ListCustomerFundingSourcesNotFoundDwollaV1HalJSONError`](docs/models/errors/listcustomerfundingsourcesnotfounddwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`ListCustomerExchangesDwollaV1HalJSONError`](docs/models/errors/listcustomerexchangesdwollav1haljsonerror.md): Not Found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError`](docs/models/errors/createcustomerdocumentrequestentitytoolargedwollav1haljsonerror.md): request entity too large. Status code `413`. Applicable to 1 of 81 methods.*
+* [`CreateBeneficialOwnerDocumentDwollaV1HalJSONError`](docs/models/errors/createbeneficialownerdocumentdwollav1haljsonerror.md): request entity too large. Status code `413`. Applicable to 1 of 81 methods.*
+* [`TooManyRequestsErrorError`](docs/models/errors/toomanyrequestserrorerror.md): Too Many Requests. Status code `429`. Applicable to 1 of 81 methods.*
+</details>
+
+
+\* Check [the method documentation](#available-resources-and-operations) to see if the error is applicable.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
@@ -693,17 +882,17 @@ import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
   serverIdx: 1,
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
   const result = await dwolla.tokens.createApplicationAccessToken({
-    username: "",
-    password: "",
-  }, {
     grantType: "client_credentials",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -719,17 +908,17 @@ import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
   serverURL: "https://api-sandbox.dwolla.com",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
   const result = await dwolla.tokens.createApplicationAccessToken({
-    username: "",
-    password: "",
-  }, {
     grantType: "client_credentials",
   });
 
-  // Handle the result
   console.log(result);
 }
 

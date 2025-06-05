@@ -5,13 +5,7 @@
 ```typescript
 import { InitiateOrVerifyMicroDepositsResponse } from "dwolla-typescript/models/operations";
 
-let value: InitiateOrVerifyMicroDepositsResponse = {
-  headers: {
-    "key": [
-      "<value>",
-    ],
-  },
-};
+let value: InitiateOrVerifyMicroDepositsResponse = {};
 ```
 
 ## Fields

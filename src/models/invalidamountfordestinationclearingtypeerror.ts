@@ -21,12 +21,6 @@ export type InvalidAmountForDestinationClearingTypeErrorEmbedded = {
   errors?: Array<InvalidAmountForDestinationClearingTypeErrorError> | undefined;
 };
 
-export type InvalidAmountForDestinationClearingTypeError = {
-  code: string;
-  message: string;
-  embedded?: InvalidAmountForDestinationClearingTypeErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const InvalidAmountForDestinationClearingTypeErrorLinks$inboundSchema:
   z.ZodType<
@@ -255,92 +249,5 @@ export function invalidAmountForDestinationClearingTypeErrorEmbeddedFromJSON(
         JSON.parse(x),
       ),
     `Failed to parse 'InvalidAmountForDestinationClearingTypeErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const InvalidAmountForDestinationClearingTypeError$inboundSchema:
-  z.ZodType<
-    InvalidAmountForDestinationClearingTypeError,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    code: z.string(),
-    message: z.string(),
-    _embedded: z.lazy(() =>
-      InvalidAmountForDestinationClearingTypeErrorEmbedded$inboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "_embedded": "embedded",
-    });
-  });
-
-/** @internal */
-export type InvalidAmountForDestinationClearingTypeError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?:
-    | InvalidAmountForDestinationClearingTypeErrorEmbedded$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const InvalidAmountForDestinationClearingTypeError$outboundSchema:
-  z.ZodType<
-    InvalidAmountForDestinationClearingTypeError$Outbound,
-    z.ZodTypeDef,
-    InvalidAmountForDestinationClearingTypeError
-  > = z.object({
-    code: z.string(),
-    message: z.string(),
-    embedded: z.lazy(() =>
-      InvalidAmountForDestinationClearingTypeErrorEmbedded$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      embedded: "_embedded",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidAmountForDestinationClearingTypeError$ {
-  /** @deprecated use `InvalidAmountForDestinationClearingTypeError$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidAmountForDestinationClearingTypeError$inboundSchema;
-  /** @deprecated use `InvalidAmountForDestinationClearingTypeError$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidAmountForDestinationClearingTypeError$outboundSchema;
-  /** @deprecated use `InvalidAmountForDestinationClearingTypeError$Outbound` instead. */
-  export type Outbound = InvalidAmountForDestinationClearingTypeError$Outbound;
-}
-
-export function invalidAmountForDestinationClearingTypeErrorToJSON(
-  invalidAmountForDestinationClearingTypeError:
-    InvalidAmountForDestinationClearingTypeError,
-): string {
-  return JSON.stringify(
-    InvalidAmountForDestinationClearingTypeError$outboundSchema.parse(
-      invalidAmountForDestinationClearingTypeError,
-    ),
-  );
-}
-
-export function invalidAmountForDestinationClearingTypeErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  InvalidAmountForDestinationClearingTypeError,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      InvalidAmountForDestinationClearingTypeError$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'InvalidAmountForDestinationClearingTypeError' from JSON`,
   );
 }

@@ -21,12 +21,6 @@ export type AchAddendaEntriesNotEnabledForAccountErrorEmbedded = {
   errors?: Array<AchAddendaEntriesNotEnabledForAccountErrorError> | undefined;
 };
 
-export type AchAddendaEntriesNotEnabledForAccountError = {
-  code: string;
-  message: string;
-  embedded?: AchAddendaEntriesNotEnabledForAccountErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const AchAddendaEntriesNotEnabledForAccountErrorLinks$inboundSchema:
   z.ZodType<
@@ -253,89 +247,5 @@ export function achAddendaEntriesNotEnabledForAccountErrorEmbeddedFromJSON(
         JSON.parse(x),
       ),
     `Failed to parse 'AchAddendaEntriesNotEnabledForAccountErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const AchAddendaEntriesNotEnabledForAccountError$inboundSchema:
-  z.ZodType<AchAddendaEntriesNotEnabledForAccountError, z.ZodTypeDef, unknown> =
-    z.object({
-      code: z.string(),
-      message: z.string(),
-      _embedded: z.lazy(() =>
-        AchAddendaEntriesNotEnabledForAccountErrorEmbedded$inboundSchema
-      ).optional(),
-    }).transform((v) => {
-      return remap$(v, {
-        "_embedded": "embedded",
-      });
-    });
-
-/** @internal */
-export type AchAddendaEntriesNotEnabledForAccountError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?:
-    | AchAddendaEntriesNotEnabledForAccountErrorEmbedded$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AchAddendaEntriesNotEnabledForAccountError$outboundSchema:
-  z.ZodType<
-    AchAddendaEntriesNotEnabledForAccountError$Outbound,
-    z.ZodTypeDef,
-    AchAddendaEntriesNotEnabledForAccountError
-  > = z.object({
-    code: z.string(),
-    message: z.string(),
-    embedded: z.lazy(() =>
-      AchAddendaEntriesNotEnabledForAccountErrorEmbedded$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      embedded: "_embedded",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AchAddendaEntriesNotEnabledForAccountError$ {
-  /** @deprecated use `AchAddendaEntriesNotEnabledForAccountError$inboundSchema` instead. */
-  export const inboundSchema =
-    AchAddendaEntriesNotEnabledForAccountError$inboundSchema;
-  /** @deprecated use `AchAddendaEntriesNotEnabledForAccountError$outboundSchema` instead. */
-  export const outboundSchema =
-    AchAddendaEntriesNotEnabledForAccountError$outboundSchema;
-  /** @deprecated use `AchAddendaEntriesNotEnabledForAccountError$Outbound` instead. */
-  export type Outbound = AchAddendaEntriesNotEnabledForAccountError$Outbound;
-}
-
-export function achAddendaEntriesNotEnabledForAccountErrorToJSON(
-  achAddendaEntriesNotEnabledForAccountError:
-    AchAddendaEntriesNotEnabledForAccountError,
-): string {
-  return JSON.stringify(
-    AchAddendaEntriesNotEnabledForAccountError$outboundSchema.parse(
-      achAddendaEntriesNotEnabledForAccountError,
-    ),
-  );
-}
-
-export function achAddendaEntriesNotEnabledForAccountErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  AchAddendaEntriesNotEnabledForAccountError,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      AchAddendaEntriesNotEnabledForAccountError$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'AchAddendaEntriesNotEnabledForAccountError' from JSON`,
   );
 }

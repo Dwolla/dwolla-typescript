@@ -7,12 +7,6 @@ import { CreateCustomerLabelRequest } from "dwolla-typescript/models/operations"
 
 let value: CreateCustomerLabelRequest = {
   id: "<id>",
-  requestBody: {
-    amount: {
-      currency: "12.34",
-      value: "USD",
-    },
-  },
 };
 ```
 

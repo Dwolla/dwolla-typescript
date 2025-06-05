@@ -21,12 +21,6 @@ export type StatusInvalidErrorEmbedded = {
   errors?: Array<StatusInvalidErrorError> | undefined;
 };
 
-export type StatusInvalidError = {
-  code: string;
-  message: string;
-  embedded?: StatusInvalidErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const StatusInvalidErrorLinks$inboundSchema: z.ZodType<
   StatusInvalidErrorLinks,
@@ -199,73 +193,5 @@ export function statusInvalidErrorEmbeddedFromJSON(
     jsonString,
     (x) => StatusInvalidErrorEmbedded$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'StatusInvalidErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const StatusInvalidError$inboundSchema: z.ZodType<
-  StatusInvalidError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() => StatusInvalidErrorEmbedded$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type StatusInvalidError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?: StatusInvalidErrorEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const StatusInvalidError$outboundSchema: z.ZodType<
-  StatusInvalidError$Outbound,
-  z.ZodTypeDef,
-  StatusInvalidError
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  embedded: z.lazy(() => StatusInvalidErrorEmbedded$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace StatusInvalidError$ {
-  /** @deprecated use `StatusInvalidError$inboundSchema` instead. */
-  export const inboundSchema = StatusInvalidError$inboundSchema;
-  /** @deprecated use `StatusInvalidError$outboundSchema` instead. */
-  export const outboundSchema = StatusInvalidError$outboundSchema;
-  /** @deprecated use `StatusInvalidError$Outbound` instead. */
-  export type Outbound = StatusInvalidError$Outbound;
-}
-
-export function statusInvalidErrorToJSON(
-  statusInvalidError: StatusInvalidError,
-): string {
-  return JSON.stringify(
-    StatusInvalidError$outboundSchema.parse(statusInvalidError),
-  );
-}
-
-export function statusInvalidErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<StatusInvalidError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => StatusInvalidError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'StatusInvalidError' from JSON`,
   );
 }

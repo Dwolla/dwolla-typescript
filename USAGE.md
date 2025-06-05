@@ -2,17 +2,18 @@
 ```typescript
 import { Dwolla } from "dwolla-typescript";
 
-const dwolla = new Dwolla();
+const dwolla = new Dwolla({
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
+});
 
 async function run() {
   const result = await dwolla.tokens.createApplicationAccessToken({
-    username: "",
-    password: "",
-  }, {
     grantType: "client_credentials",
   });
 
-  // Handle the result
   console.log(result);
 }
 

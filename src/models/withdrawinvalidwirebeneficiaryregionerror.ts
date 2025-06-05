@@ -21,12 +21,6 @@ export type WithdrawInvalidWireBeneficiaryRegionErrorEmbedded = {
   errors?: Array<WithdrawInvalidWireBeneficiaryRegionErrorError> | undefined;
 };
 
-export type WithdrawInvalidWireBeneficiaryRegionError = {
-  code: string;
-  message: string;
-  embedded?: WithdrawInvalidWireBeneficiaryRegionErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const WithdrawInvalidWireBeneficiaryRegionErrorLinks$inboundSchema:
   z.ZodType<
@@ -253,91 +247,5 @@ export function withdrawInvalidWireBeneficiaryRegionErrorEmbeddedFromJSON(
         JSON.parse(x),
       ),
     `Failed to parse 'WithdrawInvalidWireBeneficiaryRegionErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const WithdrawInvalidWireBeneficiaryRegionError$inboundSchema: z.ZodType<
-  WithdrawInvalidWireBeneficiaryRegionError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() =>
-    WithdrawInvalidWireBeneficiaryRegionErrorEmbedded$inboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type WithdrawInvalidWireBeneficiaryRegionError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?:
-    | WithdrawInvalidWireBeneficiaryRegionErrorEmbedded$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const WithdrawInvalidWireBeneficiaryRegionError$outboundSchema:
-  z.ZodType<
-    WithdrawInvalidWireBeneficiaryRegionError$Outbound,
-    z.ZodTypeDef,
-    WithdrawInvalidWireBeneficiaryRegionError
-  > = z.object({
-    code: z.string(),
-    message: z.string(),
-    embedded: z.lazy(() =>
-      WithdrawInvalidWireBeneficiaryRegionErrorEmbedded$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      embedded: "_embedded",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawInvalidWireBeneficiaryRegionError$ {
-  /** @deprecated use `WithdrawInvalidWireBeneficiaryRegionError$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawInvalidWireBeneficiaryRegionError$inboundSchema;
-  /** @deprecated use `WithdrawInvalidWireBeneficiaryRegionError$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawInvalidWireBeneficiaryRegionError$outboundSchema;
-  /** @deprecated use `WithdrawInvalidWireBeneficiaryRegionError$Outbound` instead. */
-  export type Outbound = WithdrawInvalidWireBeneficiaryRegionError$Outbound;
-}
-
-export function withdrawInvalidWireBeneficiaryRegionErrorToJSON(
-  withdrawInvalidWireBeneficiaryRegionError:
-    WithdrawInvalidWireBeneficiaryRegionError,
-): string {
-  return JSON.stringify(
-    WithdrawInvalidWireBeneficiaryRegionError$outboundSchema.parse(
-      withdrawInvalidWireBeneficiaryRegionError,
-    ),
-  );
-}
-
-export function withdrawInvalidWireBeneficiaryRegionErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  WithdrawInvalidWireBeneficiaryRegionError,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      WithdrawInvalidWireBeneficiaryRegionError$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'WithdrawInvalidWireBeneficiaryRegionError' from JSON`,
   );
 }

@@ -23,14 +23,6 @@ export type InvalidPointOfSaleAddendaIdentificationCodeErrorEmbedded = {
     | undefined;
 };
 
-export type InvalidPointOfSaleAddendaIdentificationCodeError = {
-  code: string;
-  message: string;
-  embedded?:
-    | InvalidPointOfSaleAddendaIdentificationCodeErrorEmbedded
-    | undefined;
-};
-
 /** @internal */
 export const InvalidPointOfSaleAddendaIdentificationCodeErrorLinks$inboundSchema:
   z.ZodType<
@@ -258,93 +250,5 @@ export function invalidPointOfSaleAddendaIdentificationCodeErrorEmbeddedFromJSON
       InvalidPointOfSaleAddendaIdentificationCodeErrorEmbedded$inboundSchema
         .parse(JSON.parse(x)),
     `Failed to parse 'InvalidPointOfSaleAddendaIdentificationCodeErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const InvalidPointOfSaleAddendaIdentificationCodeError$inboundSchema:
-  z.ZodType<
-    InvalidPointOfSaleAddendaIdentificationCodeError,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    code: z.string(),
-    message: z.string(),
-    _embedded: z.lazy(() =>
-      InvalidPointOfSaleAddendaIdentificationCodeErrorEmbedded$inboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "_embedded": "embedded",
-    });
-  });
-
-/** @internal */
-export type InvalidPointOfSaleAddendaIdentificationCodeError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?:
-    | InvalidPointOfSaleAddendaIdentificationCodeErrorEmbedded$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const InvalidPointOfSaleAddendaIdentificationCodeError$outboundSchema:
-  z.ZodType<
-    InvalidPointOfSaleAddendaIdentificationCodeError$Outbound,
-    z.ZodTypeDef,
-    InvalidPointOfSaleAddendaIdentificationCodeError
-  > = z.object({
-    code: z.string(),
-    message: z.string(),
-    embedded: z.lazy(() =>
-      InvalidPointOfSaleAddendaIdentificationCodeErrorEmbedded$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      embedded: "_embedded",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidPointOfSaleAddendaIdentificationCodeError$ {
-  /** @deprecated use `InvalidPointOfSaleAddendaIdentificationCodeError$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidPointOfSaleAddendaIdentificationCodeError$inboundSchema;
-  /** @deprecated use `InvalidPointOfSaleAddendaIdentificationCodeError$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidPointOfSaleAddendaIdentificationCodeError$outboundSchema;
-  /** @deprecated use `InvalidPointOfSaleAddendaIdentificationCodeError$Outbound` instead. */
-  export type Outbound =
-    InvalidPointOfSaleAddendaIdentificationCodeError$Outbound;
-}
-
-export function invalidPointOfSaleAddendaIdentificationCodeErrorToJSON(
-  invalidPointOfSaleAddendaIdentificationCodeError:
-    InvalidPointOfSaleAddendaIdentificationCodeError,
-): string {
-  return JSON.stringify(
-    InvalidPointOfSaleAddendaIdentificationCodeError$outboundSchema.parse(
-      invalidPointOfSaleAddendaIdentificationCodeError,
-    ),
-  );
-}
-
-export function invalidPointOfSaleAddendaIdentificationCodeErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  InvalidPointOfSaleAddendaIdentificationCodeError,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      InvalidPointOfSaleAddendaIdentificationCodeError$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'InvalidPointOfSaleAddendaIdentificationCodeError' from JSON`,
   );
 }

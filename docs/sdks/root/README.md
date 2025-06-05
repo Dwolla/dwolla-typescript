@@ -7,9 +7,9 @@ Root API operations
 
 ### Available Operations
 
-* [root](#root) - root
+* [get](#get) - root
 
-## root
+## get
 
 The entry point that clients can use to discover and explore the entire API.
 
@@ -19,13 +19,15 @@ The entry point that clients can use to discover and explore the entire API.
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.root.root();
+  const result = await dwolla.root.get();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -38,25 +40,25 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { rootRoot } from "dwolla-typescript/funcs/rootRoot.js";
+import { rootGet } from "dwolla-typescript/funcs/rootGet.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await rootRoot(dwolla);
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await rootGet(dwolla);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("rootGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -78,5 +80,5 @@ run();
 
 | Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| errors.RootDwollaV1HalJSONError    | 401                                | application/vnd.dwolla.v1.hal+json |
+| errors.GetRootDwollaV1HalJSONError | 401                                | application/vnd.dwolla.v1.hal+json |
 | errors.APIError                    | 4XX, 5XX                           | \*/\*                              |

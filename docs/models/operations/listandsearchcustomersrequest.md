@@ -12,7 +12,7 @@ let value: ListAndSearchCustomersRequest = {};
 
 | Field                      | Type                       | Required                   | Description                |
 | -------------------------- | -------------------------- | -------------------------- | -------------------------- |
-| `limit`                    | *string*                   | :heavy_minus_sign:         | How many results to return |
-| `offset`                   | *string*                   | :heavy_minus_sign:         | How many results to skip   |
+| `limit`                    | *number*                   | :heavy_minus_sign:         | How many results to return |
+| `offset`                   | *number*                   | :heavy_minus_sign:         | How many results to skip   |
 | `search`                   | *string*                   | :heavy_minus_sign:         | Searches on certain fields |
 | `status`                   | *string*                   | :heavy_minus_sign:         | Filter by customer status  |

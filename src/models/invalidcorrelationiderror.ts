@@ -21,12 +21,6 @@ export type InvalidCorrelationIdErrorEmbedded = {
   errors?: Array<InvalidCorrelationIdErrorError> | undefined;
 };
 
-export type InvalidCorrelationIdError = {
-  code: string;
-  message: string;
-  embedded?: InvalidCorrelationIdErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const InvalidCorrelationIdErrorLinks$inboundSchema: z.ZodType<
   InvalidCorrelationIdErrorLinks,
@@ -206,75 +200,5 @@ export function invalidCorrelationIdErrorEmbeddedFromJSON(
     jsonString,
     (x) => InvalidCorrelationIdErrorEmbedded$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'InvalidCorrelationIdErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const InvalidCorrelationIdError$inboundSchema: z.ZodType<
-  InvalidCorrelationIdError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() => InvalidCorrelationIdErrorEmbedded$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type InvalidCorrelationIdError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?: InvalidCorrelationIdErrorEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const InvalidCorrelationIdError$outboundSchema: z.ZodType<
-  InvalidCorrelationIdError$Outbound,
-  z.ZodTypeDef,
-  InvalidCorrelationIdError
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  embedded: z.lazy(() => InvalidCorrelationIdErrorEmbedded$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidCorrelationIdError$ {
-  /** @deprecated use `InvalidCorrelationIdError$inboundSchema` instead. */
-  export const inboundSchema = InvalidCorrelationIdError$inboundSchema;
-  /** @deprecated use `InvalidCorrelationIdError$outboundSchema` instead. */
-  export const outboundSchema = InvalidCorrelationIdError$outboundSchema;
-  /** @deprecated use `InvalidCorrelationIdError$Outbound` instead. */
-  export type Outbound = InvalidCorrelationIdError$Outbound;
-}
-
-export function invalidCorrelationIdErrorToJSON(
-  invalidCorrelationIdError: InvalidCorrelationIdError,
-): string {
-  return JSON.stringify(
-    InvalidCorrelationIdError$outboundSchema.parse(invalidCorrelationIdError),
-  );
-}
-
-export function invalidCorrelationIdErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<InvalidCorrelationIdError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InvalidCorrelationIdError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InvalidCorrelationIdError' from JSON`,
   );
 }

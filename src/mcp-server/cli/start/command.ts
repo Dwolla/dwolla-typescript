@@ -49,12 +49,29 @@ export const startCommand = buildCommand({
           },
         }
         : {}),
-      "bearer-auth": {
+      "client-id": {
         kind: "parsed",
-        brief: "Sets the bearerAuth auth field for the API",
+        brief: "Sets the clientID auth field for the API",
         optional: true,
         parse: (value) => {
           return z.string().parse(value);
+        },
+      },
+      "client-secret": {
+        kind: "parsed",
+        brief: "Sets the clientSecret auth field for the API",
+        optional: true,
+        parse: (value) => {
+          return z.string().parse(value);
+        },
+      },
+      "token-url": {
+        kind: "parsed",
+        brief: "Sets the tokenURL auth field for the API",
+        optional: false,
+        default: "/token",
+        parse: (value) => {
+          return z.string().default("/token").parse(value);
         },
       },
       "server-url": {

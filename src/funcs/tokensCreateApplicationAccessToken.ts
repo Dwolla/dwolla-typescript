@@ -8,7 +8,7 @@ import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
-import { resolveSecurity } from "../lib/security.js";
+import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
 import { APIError } from "../models/errors/apierror.js";
 import {
@@ -32,7 +32,6 @@ import { Result } from "../types/fp.js";
  */
 export function tokensCreateApplicationAccessToken(
   client: DwollaCore,
-  security: operations.CreateApplicationAccessTokenSecurity,
   request: operations.CreateApplicationAccessTokenRequest,
   options?: RequestOptions,
 ): APIPromise<
@@ -50,7 +49,6 @@ export function tokensCreateApplicationAccessToken(
 > {
   return new APIPromise($do(
     client,
-    security,
     request,
     options,
   ));
@@ -58,7 +56,6 @@ export function tokensCreateApplicationAccessToken(
 
 async function $do(
   client: DwollaCore,
-  security: operations.CreateApplicationAccessTokenSecurity,
   request: operations.CreateApplicationAccessTokenRequest,
   options?: RequestOptions,
 ): Promise<
@@ -101,23 +98,18 @@ async function $do(
     Accept: "application/json",
   }));
 
-  const requestSecurity = resolveSecurity(
-    [
-      {
-        type: "http:basic",
-        value: { username: security?.username, password: security?.password },
-      },
-    ],
-  );
+  const securityInput = await extractSecurity(client._options.security);
+  const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "createApplicationAccessToken",
-    oAuth2Scopes: null,
+    oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
 
-    securitySource: security,
+    securitySource: client._options.security,
     retryConfig: options?.retries
       || client._options.retryConfig
       || { strategy: "none" },
@@ -131,6 +123,7 @@ async function $do(
     path: path,
     headers: headers,
     body: body,
+    userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {

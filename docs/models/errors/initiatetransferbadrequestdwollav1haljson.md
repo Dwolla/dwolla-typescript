@@ -5,10 +5,10 @@ Bad Request
 
 ## Supported Types
 
-### `models.SourceNotFoundError`
+### `errors.SourceNotFoundError`
 
 ```typescript
-const value: models.SourceNotFoundError = {
+const value: errors.SourceNotFoundError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -25,10 +25,10 @@ const value: models.SourceNotFoundError = {
 };
 ```
 
-### `models.ReceiverNotFoundError`
+### `errors.ReceiverNotFoundError`
 
 ```typescript
-const value: models.ReceiverNotFoundError = {
+const value: errors.ReceiverNotFoundError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -45,10 +45,10 @@ const value: models.ReceiverNotFoundError = {
 };
 ```
 
-### `models.InvalidSourceFundingSourceError`
+### `errors.InvalidSourceFundingSourceError`
 
 ```typescript
-const value: models.InvalidSourceFundingSourceError = {
+const value: errors.InvalidSourceFundingSourceError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -65,10 +65,10 @@ const value: models.InvalidSourceFundingSourceError = {
 };
 ```
 
-### `models.SenderRestrictedError`
+### `errors.SenderRestrictedError`
 
 ```typescript
-const value: models.SenderRestrictedError = {
+const value: errors.SenderRestrictedError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -85,10 +85,10 @@ const value: models.SenderRestrictedError = {
 };
 ```
 
-### `models.ReceiverRestrictedError`
+### `errors.ReceiverRestrictedError`
 
 ```typescript
-const value: models.ReceiverRestrictedError = {
+const value: errors.ReceiverRestrictedError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -105,10 +105,10 @@ const value: models.ReceiverRestrictedError = {
 };
 ```
 
-### `models.InvalidMetadataError`
+### `errors.InvalidMetadataError`
 
 ```typescript
-const value: models.InvalidMetadataError = {
+const value: errors.InvalidMetadataError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -125,10 +125,10 @@ const value: models.InvalidMetadataError = {
 };
 ```
 
-### `models.OperationBlockedError`
+### `errors.OperationBlockedError`
 
 ```typescript
-const value: models.OperationBlockedError = {
+const value: errors.OperationBlockedError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -145,10 +145,10 @@ const value: models.OperationBlockedError = {
 };
 ```
 
-### `models.InvalidAmountLimitError`
+### `errors.InvalidAmountLimitError`
 
 ```typescript
-const value: models.InvalidAmountLimitError = {
+const value: errors.InvalidAmountLimitError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -166,10 +166,10 @@ const value: models.InvalidAmountLimitError = {
 };
 ```
 
-### `models.CannotParseAmountError`
+### `errors.CannotParseAmountError`
 
 ```typescript
-const value: models.CannotParseAmountError = {
+const value: errors.CannotParseAmountError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -187,10 +187,10 @@ const value: models.CannotParseAmountError = {
 };
 ```
 
-### `models.InsufficientFundsError`
+### `errors.InsufficientFundsError`
 
 ```typescript
-const value: models.InsufficientFundsError = {
+const value: errors.InsufficientFundsError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -207,10 +207,10 @@ const value: models.InsufficientFundsError = {
 };
 ```
 
-### `models.FacilitatorFeeAccountNotFoundError`
+### `errors.FacilitatorFeeAccountNotFoundError`
 
 ```typescript
-const value: models.FacilitatorFeeAccountNotFoundError = {
+const value: errors.FacilitatorFeeAccountNotFoundError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -227,10 +227,10 @@ const value: models.FacilitatorFeeAccountNotFoundError = {
 };
 ```
 
-### `models.FacilitatorFeeSumTooLargeError`
+### `errors.FacilitatorFeeSumTooLargeError`
 
 ```typescript
-const value: models.FacilitatorFeeSumTooLargeError = {
+const value: errors.FacilitatorFeeSumTooLargeError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -247,10 +247,10 @@ const value: models.FacilitatorFeeSumTooLargeError = {
 };
 ```
 
-### `models.FacilitatorFeeBelowMinimumError`
+### `errors.FacilitatorFeeBelowMinimumError`
 
 ```typescript
-const value: models.FacilitatorFeeBelowMinimumError = {
+const value: errors.FacilitatorFeeBelowMinimumError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -267,10 +267,10 @@ const value: models.FacilitatorFeeBelowMinimumError = {
 };
 ```
 
-### `models.HighRiskError`
+### `errors.HighRiskError`
 
 ```typescript
-const value: models.HighRiskError = {
+const value: errors.HighRiskError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -288,10 +288,10 @@ const value: models.HighRiskError = {
 };
 ```
 
-### `models.IncompatibleHoldingsError`
+### `errors.IncompatibleHoldingsError`
 
 ```typescript
-const value: models.IncompatibleHoldingsError = {
+const value: errors.IncompatibleHoldingsError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -308,10 +308,10 @@ const value: models.IncompatibleHoldingsError = {
 };
 ```
 
-### `models.DirectAccountWithoutBankError`
+### `errors.DirectAccountWithoutBankError`
 
 ```typescript
-const value: models.DirectAccountWithoutBankError = {
+const value: errors.DirectAccountWithoutBankError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -328,10 +328,10 @@ const value: models.DirectAccountWithoutBankError = {
 };
 ```
 
-### `models.SourceSameAsDestinationError`
+### `errors.SourceSameAsDestinationError`
 
 ```typescript
-const value: models.SourceSameAsDestinationError = {
+const value: errors.SourceSameAsDestinationError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -348,10 +348,10 @@ const value: models.SourceSameAsDestinationError = {
 };
 ```
 
-### `models.InvalidFacilitatorError`
+### `errors.InvalidFacilitatorError`
 
 ```typescript
-const value: models.InvalidFacilitatorError = {
+const value: errors.InvalidFacilitatorError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -368,10 +368,10 @@ const value: models.InvalidFacilitatorError = {
 };
 ```
 
-### `models.InvalidFacilitatorFeeCollectFromError`
+### `errors.InvalidFacilitatorFeeCollectFromError`
 
 ```typescript
-const value: models.InvalidFacilitatorFeeCollectFromError = {
+const value: errors.InvalidFacilitatorFeeCollectFromError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -388,10 +388,10 @@ const value: models.InvalidFacilitatorFeeCollectFromError = {
 };
 ```
 
-### `models.InvalidFacilitatorFeeCollectFromCombinationError`
+### `errors.InvalidFacilitatorFeeCollectFromCombinationError`
 
 ```typescript
-const value: models.InvalidFacilitatorFeeCollectFromCombinationError = {
+const value: errors.InvalidFacilitatorFeeCollectFromCombinationError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -408,10 +408,10 @@ const value: models.InvalidFacilitatorFeeCollectFromCombinationError = {
 };
 ```
 
-### `models.InvalidDestinationFundingSourceError`
+### `errors.InvalidDestinationFundingSourceError`
 
 ```typescript
-const value: models.InvalidDestinationFundingSourceError = {
+const value: errors.InvalidDestinationFundingSourceError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -428,10 +428,10 @@ const value: models.InvalidDestinationFundingSourceError = {
 };
 ```
 
-### `models.InvalidFacilitatorFeeAmountError`
+### `errors.InvalidFacilitatorFeeAmountError`
 
 ```typescript
-const value: models.InvalidFacilitatorFeeAmountError = {
+const value: errors.InvalidFacilitatorFeeAmountError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -448,10 +448,10 @@ const value: models.InvalidFacilitatorFeeAmountError = {
 };
 ```
 
-### `models.WeeklyReceiveLimitReachedError`
+### `errors.WeeklyReceiveLimitReachedError`
 
 ```typescript
-const value: models.WeeklyReceiveLimitReachedError = {
+const value: errors.WeeklyReceiveLimitReachedError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -468,10 +468,10 @@ const value: models.WeeklyReceiveLimitReachedError = {
 };
 ```
 
-### `models.InvalidDestinationClearingTypeError`
+### `errors.InvalidDestinationClearingTypeError`
 
 ```typescript
-const value: models.InvalidDestinationClearingTypeError = {
+const value: errors.InvalidDestinationClearingTypeError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -488,10 +488,10 @@ const value: models.InvalidDestinationClearingTypeError = {
 };
 ```
 
-### `models.InvalidAmountForDestinationClearingTypeError`
+### `errors.InvalidAmountForDestinationClearingTypeError`
 
 ```typescript
-const value: models.InvalidAmountForDestinationClearingTypeError = {
+const value: errors.InvalidAmountForDestinationClearingTypeError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -509,10 +509,10 @@ const value: models.InvalidAmountForDestinationClearingTypeError = {
 };
 ```
 
-### `models.InvalidCorrelationIdError`
+### `errors.InvalidCorrelationIdError`
 
 ```typescript
-const value: models.InvalidCorrelationIdError = {
+const value: errors.InvalidCorrelationIdError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -530,10 +530,10 @@ const value: models.InvalidCorrelationIdError = {
 };
 ```
 
-### `models.SourceAddendaMaxLengthError`
+### `errors.SourceAddendaMaxLengthError`
 
 ```typescript
-const value: models.SourceAddendaMaxLengthError = {
+const value: errors.SourceAddendaMaxLengthError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -551,10 +551,10 @@ const value: models.SourceAddendaMaxLengthError = {
 };
 ```
 
-### `models.DestinationAddendaMaxLengthError`
+### `errors.DestinationAddendaMaxLengthError`
 
 ```typescript
-const value: models.DestinationAddendaMaxLengthError = {
+const value: errors.DestinationAddendaMaxLengthError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -572,10 +572,10 @@ const value: models.DestinationAddendaMaxLengthError = {
 };
 ```
 
-### `models.AchAddendaEntriesNotEnabledForAccountError`
+### `errors.AchAddendaEntriesNotEnabledForAccountError`
 
 ```typescript
-const value: models.AchAddendaEntriesNotEnabledForAccountError = {
+const value: errors.AchAddendaEntriesNotEnabledForAccountError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -592,10 +592,10 @@ const value: models.AchAddendaEntriesNotEnabledForAccountError = {
 };
 ```
 
-### `models.PointOfSaleAddendaEntriesNotEnabledForAccountError`
+### `errors.PointOfSaleAddendaEntriesNotEnabledForAccountError`
 
 ```typescript
-const value: models.PointOfSaleAddendaEntriesNotEnabledForAccountError = {
+const value: errors.PointOfSaleAddendaEntriesNotEnabledForAccountError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -613,10 +613,10 @@ const value: models.PointOfSaleAddendaEntriesNotEnabledForAccountError = {
 };
 ```
 
-### `models.IncompatibleAddendaEntriesError`
+### `errors.IncompatibleAddendaEntriesError`
 
 ```typescript
-const value: models.IncompatibleAddendaEntriesError = {
+const value: errors.IncompatibleAddendaEntriesError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -634,10 +634,10 @@ const value: models.IncompatibleAddendaEntriesError = {
 };
 ```
 
-### `models.InvalidPointOfSaleAddendaIdentificationCodeError`
+### `errors.InvalidPointOfSaleAddendaIdentificationCodeError`
 
 ```typescript
-const value: models.InvalidPointOfSaleAddendaIdentificationCodeError = {
+const value: errors.InvalidPointOfSaleAddendaIdentificationCodeError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -655,10 +655,10 @@ const value: models.InvalidPointOfSaleAddendaIdentificationCodeError = {
 };
 ```
 
-### `models.InvalidPointOfSaleAddendaSerialNumberError`
+### `errors.InvalidPointOfSaleAddendaSerialNumberError`
 
 ```typescript
-const value: models.InvalidPointOfSaleAddendaSerialNumberError = {
+const value: errors.InvalidPointOfSaleAddendaSerialNumberError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -676,10 +676,10 @@ const value: models.InvalidPointOfSaleAddendaSerialNumberError = {
 };
 ```
 
-### `models.InvalidPointOfSaleAddendaDateError`
+### `errors.InvalidPointOfSaleAddendaDateError`
 
 ```typescript
-const value: models.InvalidPointOfSaleAddendaDateError = {
+const value: errors.InvalidPointOfSaleAddendaDateError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -697,10 +697,10 @@ const value: models.InvalidPointOfSaleAddendaDateError = {
 };
 ```
 
-### `models.InvalidPointOfSaleAddendaAddressError`
+### `errors.InvalidPointOfSaleAddendaAddressError`
 
 ```typescript
-const value: models.InvalidPointOfSaleAddendaAddressError = {
+const value: errors.InvalidPointOfSaleAddendaAddressError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -718,10 +718,10 @@ const value: models.InvalidPointOfSaleAddendaAddressError = {
 };
 ```
 
-### `models.InvalidPointOfSaleAddendaCityError`
+### `errors.InvalidPointOfSaleAddendaCityError`
 
 ```typescript
-const value: models.InvalidPointOfSaleAddendaCityError = {
+const value: errors.InvalidPointOfSaleAddendaCityError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -739,10 +739,10 @@ const value: models.InvalidPointOfSaleAddendaCityError = {
 };
 ```
 
-### `models.InvalidPointOfSaleAddendaStateError`
+### `errors.InvalidPointOfSaleAddendaStateError`
 
 ```typescript
-const value: models.InvalidPointOfSaleAddendaStateError = {
+const value: errors.InvalidPointOfSaleAddendaStateError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -760,10 +760,10 @@ const value: models.InvalidPointOfSaleAddendaStateError = {
 };
 ```
 
-### `models.TransferExpiredForFeeError`
+### `errors.TransferExpiredForFeeError`
 
 ```typescript
-const value: models.TransferExpiredForFeeError = {
+const value: errors.TransferExpiredForFeeError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -781,10 +781,10 @@ const value: models.TransferExpiredForFeeError = {
 };
 ```
 
-### `models.InvalidFeeOdfiError`
+### `errors.InvalidFeeOdfiError`
 
 ```typescript
-const value: models.InvalidFeeOdfiError = {
+const value: errors.InvalidFeeOdfiError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -801,10 +801,10 @@ const value: models.InvalidFeeOdfiError = {
 };
 ```
 
-### `models.InvalidSourceBankAccountTypeError`
+### `errors.InvalidSourceBankAccountTypeError`
 
 ```typescript
-const value: models.InvalidSourceBankAccountTypeError = {
+const value: errors.InvalidSourceBankAccountTypeError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -821,10 +821,10 @@ const value: models.InvalidSourceBankAccountTypeError = {
 };
 ```
 
-### `models.InvalidDestinationBankAccountTypeError`
+### `errors.InvalidDestinationBankAccountTypeError`
 
 ```typescript
-const value: models.InvalidDestinationBankAccountTypeError = {
+const value: errors.InvalidDestinationBankAccountTypeError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -841,10 +841,10 @@ const value: models.InvalidDestinationBankAccountTypeError = {
 };
 ```
 
-### `models.IncompatibleSourceAndDestinationTypesError`
+### `errors.IncompatibleSourceAndDestinationTypesError`
 
 ```typescript
-const value: models.IncompatibleSourceAndDestinationTypesError = {
+const value: errors.IncompatibleSourceAndDestinationTypesError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -862,10 +862,10 @@ const value: models.IncompatibleSourceAndDestinationTypesError = {
 };
 ```
 
-### `models.IncompatibleSourceForRtpDestinationError`
+### `errors.IncompatibleSourceForRtpDestinationError`
 
 ```typescript
-const value: models.IncompatibleSourceForRtpDestinationError = {
+const value: errors.IncompatibleSourceForRtpDestinationError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -883,10 +883,10 @@ const value: models.IncompatibleSourceForRtpDestinationError = {
 };
 ```
 
-### `models.InvalidAmountForDestinationProcessingChannelError`
+### `errors.InvalidAmountForDestinationProcessingChannelError`
 
 ```typescript
-const value: models.InvalidAmountForDestinationProcessingChannelError = {
+const value: errors.InvalidAmountForDestinationProcessingChannelError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -904,10 +904,10 @@ const value: models.InvalidAmountForDestinationProcessingChannelError = {
 };
 ```
 
-### `models.RtpFacilitatorFeeNotSupportedError`
+### `errors.RtpFacilitatorFeeNotSupportedError`
 
 ```typescript
-const value: models.RtpFacilitatorFeeNotSupportedError = {
+const value: errors.RtpFacilitatorFeeNotSupportedError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -925,10 +925,10 @@ const value: models.RtpFacilitatorFeeNotSupportedError = {
 };
 ```
 
-### `models.RtpUnverifiedSenderNotSupportedError`
+### `errors.RtpUnverifiedSenderNotSupportedError`
 
 ```typescript
-const value: models.RtpUnverifiedSenderNotSupportedError = {
+const value: errors.RtpUnverifiedSenderNotSupportedError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -946,10 +946,10 @@ const value: models.RtpUnverifiedSenderNotSupportedError = {
 };
 ```
 
-### `models.RtpPersonalToPersonalNotSupportedError`
+### `errors.RtpPersonalToPersonalNotSupportedError`
 
 ```typescript
-const value: models.RtpPersonalToPersonalNotSupportedError = {
+const value: errors.RtpPersonalToPersonalNotSupportedError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -967,10 +967,10 @@ const value: models.RtpPersonalToPersonalNotSupportedError = {
 };
 ```
 
-### `models.DestinationProcessingChannelNotSupportedError`
+### `errors.DestinationProcessingChannelNotSupportedError`
 
 ```typescript
-const value: models.DestinationProcessingChannelNotSupportedError = {
+const value: errors.DestinationProcessingChannelNotSupportedError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -988,10 +988,10 @@ const value: models.DestinationProcessingChannelNotSupportedError = {
 };
 ```
 
-### `models.DestinationRemittanceDataMaxLengthError`
+### `errors.DestinationRemittanceDataMaxLengthError`
 
 ```typescript
-const value: models.DestinationRemittanceDataMaxLengthError = {
+const value: errors.DestinationRemittanceDataMaxLengthError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -1009,10 +1009,10 @@ const value: models.DestinationRemittanceDataMaxLengthError = {
 };
 ```
 
-### `models.WithdrawInvalidAmountError`
+### `errors.WithdrawInvalidAmountError`
 
 ```typescript
-const value: models.WithdrawInvalidAmountError = {
+const value: errors.WithdrawInvalidAmountError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -1029,10 +1029,10 @@ const value: models.WithdrawInvalidAmountError = {
 };
 ```
 
-### `models.WithdrawInvalidFundingSourceError`
+### `errors.WithdrawInvalidFundingSourceError`
 
 ```typescript
-const value: models.WithdrawInvalidFundingSourceError = {
+const value: errors.WithdrawInvalidFundingSourceError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -1050,10 +1050,10 @@ const value: models.WithdrawInvalidFundingSourceError = {
 };
 ```
 
-### `models.WithdrawAccountRestrictedError`
+### `errors.WithdrawAccountRestrictedError`
 
 ```typescript
-const value: models.WithdrawAccountRestrictedError = {
+const value: errors.WithdrawAccountRestrictedError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -1070,10 +1070,10 @@ const value: models.WithdrawAccountRestrictedError = {
 };
 ```
 
-### `models.WithdrawInvalidAmountForClearingTypeError`
+### `errors.WithdrawInvalidAmountForClearingTypeError`
 
 ```typescript
-const value: models.WithdrawInvalidAmountForClearingTypeError = {
+const value: errors.WithdrawInvalidAmountForClearingTypeError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -1091,10 +1091,10 @@ const value: models.WithdrawInvalidAmountForClearingTypeError = {
 };
 ```
 
-### `models.WithdrawInvalidWireBeneficiaryLocalityError`
+### `errors.WithdrawInvalidWireBeneficiaryLocalityError`
 
 ```typescript
-const value: models.WithdrawInvalidWireBeneficiaryLocalityError = {
+const value: errors.WithdrawInvalidWireBeneficiaryLocalityError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -1112,10 +1112,10 @@ const value: models.WithdrawInvalidWireBeneficiaryLocalityError = {
 };
 ```
 
-### `models.WithdrawInvalidWireBeneficiaryRegionError`
+### `errors.WithdrawInvalidWireBeneficiaryRegionError`
 
 ```typescript
-const value: models.WithdrawInvalidWireBeneficiaryRegionError = {
+const value: errors.WithdrawInvalidWireBeneficiaryRegionError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -1133,10 +1133,10 @@ const value: models.WithdrawInvalidWireBeneficiaryRegionError = {
 };
 ```
 
-### `models.WithdrawInvalidWireBeneficiaryCountryError`
+### `errors.WithdrawInvalidWireBeneficiaryCountryError`
 
 ```typescript
-const value: models.WithdrawInvalidWireBeneficiaryCountryError = {
+const value: errors.WithdrawInvalidWireBeneficiaryCountryError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -1154,10 +1154,10 @@ const value: models.WithdrawInvalidWireBeneficiaryCountryError = {
 };
 ```
 
-### `models.WithdrawInvalidWireOriginatorToBeneficiaryError`
+### `errors.WithdrawInvalidWireOriginatorToBeneficiaryError`
 
 ```typescript
-const value: models.WithdrawInvalidWireOriginatorToBeneficiaryError = {
+const value: errors.WithdrawInvalidWireOriginatorToBeneficiaryError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -1175,10 +1175,10 @@ const value: models.WithdrawInvalidWireOriginatorToBeneficiaryError = {
 };
 ```
 
-### `models.WithdrawProcessingChannelNotSupportedError`
+### `errors.WithdrawProcessingChannelNotSupportedError`
 
 ```typescript
-const value: models.WithdrawProcessingChannelNotSupportedError = {
+const value: errors.WithdrawProcessingChannelNotSupportedError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -1195,10 +1195,10 @@ const value: models.WithdrawProcessingChannelNotSupportedError = {
 };
 ```
 
-### `models.WithdrawRtpUnverifiedSenderNotSupportedError`
+### `errors.WithdrawRtpUnverifiedSenderNotSupportedError`
 
 ```typescript
-const value: models.WithdrawRtpUnverifiedSenderNotSupportedError = {
+const value: errors.WithdrawRtpUnverifiedSenderNotSupportedError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -1216,10 +1216,10 @@ const value: models.WithdrawRtpUnverifiedSenderNotSupportedError = {
 };
 ```
 
-### `models.WithdrawRtpPersonalWithdrawalNotSupportedError`
+### `errors.WithdrawRtpPersonalWithdrawalNotSupportedError`
 
 ```typescript
-const value: models.WithdrawRtpPersonalWithdrawalNotSupportedError = {
+const value: errors.WithdrawRtpPersonalWithdrawalNotSupportedError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -1237,10 +1237,10 @@ const value: models.WithdrawRtpPersonalWithdrawalNotSupportedError = {
 };
 ```
 
-### `models.DepositAccountRestrictedError`
+### `errors.DepositAccountRestrictedError`
 
 ```typescript
-const value: models.DepositAccountRestrictedError = {
+const value: errors.DepositAccountRestrictedError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -1257,10 +1257,10 @@ const value: models.DepositAccountRestrictedError = {
 };
 ```
 
-### `models.WireInvalidImadError`
+### `errors.WireInvalidImadError`
 
 ```typescript
-const value: models.WireInvalidImadError = {
+const value: errors.WireInvalidImadError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -1277,10 +1277,10 @@ const value: models.WireInvalidImadError = {
 };
 ```
 
-### `models.WireAccountRestrictedError`
+### `errors.WireAccountRestrictedError`
 
 ```typescript
-const value: models.WireAccountRestrictedError = {
+const value: errors.WireAccountRestrictedError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -1297,10 +1297,10 @@ const value: models.WireAccountRestrictedError = {
 };
 ```
 
-### `models.WireNotEnabledError`
+### `errors.WireNotEnabledError`
 
 ```typescript
-const value: models.WireNotEnabledError = {
+const value: errors.WireNotEnabledError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -1317,10 +1317,10 @@ const value: models.WireNotEnabledError = {
 };
 ```
 
-### `models.WireAccountNotFoundError`
+### `errors.WireAccountNotFoundError`
 
 ```typescript
-const value: models.WireAccountNotFoundError = {
+const value: errors.WireAccountNotFoundError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",

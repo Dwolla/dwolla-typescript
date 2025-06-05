@@ -3,202 +3,15 @@
 
 ## Overview
 
-Operations related to Beneficial Owners
-
 ### Available Operations
 
-* [listBeneficialOwnersForCustomer](#listbeneficialownersforcustomer) - List beneficial owners
-* [createBeneficialOwnerForCustomer](#createbeneficialownerforcustomer) - Create beneficial owner
-* [retrieveBeneficialOwner](#retrievebeneficialowner) - Retrieve beneficial owner
-* [updateBeneficialOwner](#updatebeneficialowner) - Update beneficial owner
-* [deleteBeneficialOwner](#deletebeneficialowner) - Delete beneficial owner
-* [getBeneficialOwnershipStatusForCustomer](#getbeneficialownershipstatusforcustomer) - Retrieve beneficial ownership status
-* [certifyBeneficialOwnershipForCustomer](#certifybeneficialownershipforcustomer) - Certify beneficial ownership status
+* [get](#get) - Retrieve beneficial owner
+* [update](#update) - Update beneficial owner
+* [delete](#delete) - Delete beneficial owner
+* [getOwnershipStatus](#getownershipstatus) - Retrieve beneficial ownership status
+* [certifyOwnership](#certifyownership) - Certify beneficial ownership status
 
-## listBeneficialOwnersForCustomer
-
-Retrieve a list of beneficial owners that belong to a Customer
-
-### Example Usage
-
-```typescript
-import { Dwolla } from "dwolla-typescript";
-
-const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
-});
-
-async function run() {
-  const result = await dwolla.beneficialOwners.listBeneficialOwnersForCustomer({
-    id: "<id>",
-  });
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { beneficialOwnersListBeneficialOwnersForCustomer } from "dwolla-typescript/funcs/beneficialOwnersListBeneficialOwnersForCustomer.js";
-
-// Use `DwollaCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
-});
-
-async function run() {
-  const res = await beneficialOwnersListBeneficialOwnersForCustomer(dwolla, {
-    id: "<id>",
-  });
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.ListBeneficialOwnersForCustomerRequest](../../models/operations/listbeneficialownersforcustomerrequest.md)                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[models.BeneficialOwners](../../models/beneficialowners.md)\>**
-
-### Errors
-
-| Error Type                                                 | Status Code                                                | Content Type                                               |
-| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| errors.ListBeneficialOwnersForCustomerDwollaV1HalJSONError | 404                                                        | application/vnd.dwolla.v1.hal+json                         |
-| errors.APIError                                            | 4XX, 5XX                                                   | \*/\*                                                      |
-
-## createBeneficialOwnerForCustomer
-
-Create beneficial owner which is a natural person who, directly or indirectly, owns 25% or more of the equity interests of the company.
-
-### Example Usage
-
-```typescript
-import { Dwolla } from "dwolla-typescript";
-
-const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
-});
-
-async function run() {
-  const result = await dwolla.beneficialOwners.createBeneficialOwnerForCustomer({
-    id: "<id>",
-    requestBody: {
-      firstName: "Nyasia",
-      lastName: "Schamberger",
-      dateOfBirth: "1988-06-01",
-      address: {
-        address1: "462 Main Street",
-        address2: "Suite 123",
-        address3: "Unit 123",
-        city: "Des Moines",
-        postalCode: "50309",
-        country: "USA",
-        stateProvinceRegion: "IA",
-      },
-      ssn: "<value>",
-    },
-  });
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { beneficialOwnersCreateBeneficialOwnerForCustomer } from "dwolla-typescript/funcs/beneficialOwnersCreateBeneficialOwnerForCustomer.js";
-
-// Use `DwollaCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
-});
-
-async function run() {
-  const res = await beneficialOwnersCreateBeneficialOwnerForCustomer(dwolla, {
-    id: "<id>",
-    requestBody: {
-      firstName: "Nyasia",
-      lastName: "Schamberger",
-      dateOfBirth: "1988-06-01",
-      address: {
-        address1: "462 Main Street",
-        address2: "Suite 123",
-        address3: "Unit 123",
-        city: "Des Moines",
-        postalCode: "50309",
-        country: "USA",
-        stateProvinceRegion: "IA",
-      },
-      ssn: "<value>",
-    },
-  });
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.CreateBeneficialOwnerForCustomerRequest](../../models/operations/createbeneficialownerforcustomerrequest.md)                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[operations.CreateBeneficialOwnerForCustomerResponse](../../models/operations/createbeneficialownerforcustomerresponse.md)\>**
-
-### Errors
-
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
-
-## retrieveBeneficialOwner
+## get
 
 Retrieve details for a single beneficial owner
 
@@ -208,15 +21,17 @@ Retrieve details for a single beneficial owner
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.beneficialOwners.retrieveBeneficialOwner({
+  const result = await dwolla.beneficialOwners.get({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -229,27 +44,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { beneficialOwnersRetrieveBeneficialOwner } from "dwolla-typescript/funcs/beneficialOwnersRetrieveBeneficialOwner.js";
+import { beneficialOwnersGet } from "dwolla-typescript/funcs/beneficialOwnersGet.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await beneficialOwnersRetrieveBeneficialOwner(dwolla, {
+  const res = await beneficialOwnersGet(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("beneficialOwnersGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -275,7 +90,7 @@ run();
 | errors.RetrieveBeneficialOwnerDwollaV1HalJSONError | 404                                                | application/vnd.dwolla.v1.hal+json                 |
 | errors.APIError                                    | 4XX, 5XX                                           | \*/\*                                              |
 
-## updateBeneficialOwner
+## update
 
 Update beneficial owner
 
@@ -285,11 +100,14 @@ Update beneficial owner
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.beneficialOwners.updateBeneficialOwner({
+  const result = await dwolla.beneficialOwners.update({
     id: "<id>",
     requestBody: {
       firstName: "Lauryn",
@@ -311,7 +129,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -324,16 +141,19 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { beneficialOwnersUpdateBeneficialOwner } from "dwolla-typescript/funcs/beneficialOwnersUpdateBeneficialOwner.js";
+import { beneficialOwnersUpdate } from "dwolla-typescript/funcs/beneficialOwnersUpdate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await beneficialOwnersUpdateBeneficialOwner(dwolla, {
+  const res = await beneficialOwnersUpdate(dwolla, {
     id: "<id>",
     requestBody: {
       firstName: "Lauryn",
@@ -354,15 +174,12 @@ async function run() {
       },
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("beneficialOwnersUpdate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -383,14 +200,14 @@ run();
 
 ### Errors
 
-| Error Type                                                 | Status Code                                                | Content Type                                               |
-| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| errors.UpdateBeneficialOwnerBadRequestDwollaV1HalJSONError | 400                                                        | application/vnd.dwolla.v1.hal+json                         |
-| errors.UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError  | 403                                                        | application/vnd.dwolla.v1.hal+json                         |
-| errors.UpdateBeneficialOwnerNotFoundDwollaV1HalJSONError   | 404                                                        | application/vnd.dwolla.v1.hal+json                         |
-| errors.APIError                                            | 4XX, 5XX                                                   | \*/\*                                                      |
+| Error Type                                                | Status Code                                               | Content Type                                              |
+| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| errors.ValidationErrorSchema                              | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError | 403                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.UpdateBeneficialOwnerNotFoundDwollaV1HalJSONError  | 404                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.APIError                                           | 4XX, 5XX                                                  | \*/\*                                                     |
 
-## deleteBeneficialOwner
+## delete
 
 Delete beneficial owner
 
@@ -400,15 +217,17 @@ Delete beneficial owner
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.beneficialOwners.deleteBeneficialOwner({
+  const result = await dwolla.beneficialOwners.delete({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -421,27 +240,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { beneficialOwnersDeleteBeneficialOwner } from "dwolla-typescript/funcs/beneficialOwnersDeleteBeneficialOwner.js";
+import { beneficialOwnersDelete } from "dwolla-typescript/funcs/beneficialOwnersDelete.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await beneficialOwnersDeleteBeneficialOwner(dwolla, {
+  const res = await beneficialOwnersDelete(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("beneficialOwnersDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -467,7 +286,7 @@ run();
 | errors.DeleteBeneficialOwnerDwollaV1HalJSONError | 404                                              | application/vnd.dwolla.v1.hal+json               |
 | errors.APIError                                  | 4XX, 5XX                                         | \*/\*                                            |
 
-## getBeneficialOwnershipStatusForCustomer
+## getOwnershipStatus
 
 Retrieve beneficial ownership status
 
@@ -477,15 +296,17 @@ Retrieve beneficial ownership status
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.beneficialOwners.getBeneficialOwnershipStatusForCustomer({
+  const result = await dwolla.beneficialOwners.getOwnershipStatus({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -498,27 +319,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { beneficialOwnersGetBeneficialOwnershipStatusForCustomer } from "dwolla-typescript/funcs/beneficialOwnersGetBeneficialOwnershipStatusForCustomer.js";
+import { beneficialOwnersGetOwnershipStatus } from "dwolla-typescript/funcs/beneficialOwnersGetOwnershipStatus.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await beneficialOwnersGetBeneficialOwnershipStatusForCustomer(dwolla, {
+  const res = await beneficialOwnersGetOwnershipStatus(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("beneficialOwnersGetOwnershipStatus failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -545,7 +366,7 @@ run();
 | errors.GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONError  | 404                                                                         | application/vnd.dwolla.v1.hal+json                                          |
 | errors.APIError                                                             | 4XX, 5XX                                                                    | \*/\*                                                                       |
 
-## certifyBeneficialOwnershipForCustomer
+## certifyOwnership
 
 certify beneficial ownership status
 
@@ -555,18 +376,20 @@ certify beneficial ownership status
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.beneficialOwners.certifyBeneficialOwnershipForCustomer({
+  const result = await dwolla.beneficialOwners.certifyOwnership({
     id: "<id>",
     requestBody: {
       status: "<value>",
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -579,30 +402,30 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { beneficialOwnersCertifyBeneficialOwnershipForCustomer } from "dwolla-typescript/funcs/beneficialOwnersCertifyBeneficialOwnershipForCustomer.js";
+import { beneficialOwnersCertifyOwnership } from "dwolla-typescript/funcs/beneficialOwnersCertifyOwnership.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await beneficialOwnersCertifyBeneficialOwnershipForCustomer(dwolla, {
+  const res = await beneficialOwnersCertifyOwnership(dwolla, {
     id: "<id>",
     requestBody: {
       status: "<value>",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("beneficialOwnersCertifyOwnership failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -623,8 +446,8 @@ run();
 
 ### Errors
 
-| Error Type                                                                 | Status Code                                                                | Content Type                                                               |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| errors.CertifyBeneficialOwnershipForCustomerBadRequestDwollaV1HalJSONError | 400                                                                        | application/vnd.dwolla.v1.hal+json                                         |
-| errors.CertifyBeneficialOwnershipForCustomerForbiddenDwollaV1HalJSONError  | 403                                                                        | application/vnd.dwolla.v1.hal+json                                         |
-| errors.APIError                                                            | 4XX, 5XX                                                                   | \*/\*                                                                      |
+| Error Type                                                       | Status Code                                                      | Content Type                                                     |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| errors.ValidationErrorSchema                                     | 400                                                              | application/vnd.dwolla.v1.hal+json                               |
+| errors.CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError | 403                                                              | application/vnd.dwolla.v1.hal+json                               |
+| errors.APIError                                                  | 4XX, 5XX                                                         | \*/\*                                                            |

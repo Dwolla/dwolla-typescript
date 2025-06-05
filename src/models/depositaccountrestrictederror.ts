@@ -21,12 +21,6 @@ export type DepositAccountRestrictedErrorEmbedded = {
   errors?: Array<DepositAccountRestrictedErrorError> | undefined;
 };
 
-export type DepositAccountRestrictedError = {
-  code: string;
-  message: string;
-  embedded?: DepositAccountRestrictedErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const DepositAccountRestrictedErrorLinks$inboundSchema: z.ZodType<
   DepositAccountRestrictedErrorLinks,
@@ -216,77 +210,5 @@ export function depositAccountRestrictedErrorEmbeddedFromJSON(
     (x) =>
       DepositAccountRestrictedErrorEmbedded$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'DepositAccountRestrictedErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const DepositAccountRestrictedError$inboundSchema: z.ZodType<
-  DepositAccountRestrictedError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() => DepositAccountRestrictedErrorEmbedded$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type DepositAccountRestrictedError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?: DepositAccountRestrictedErrorEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const DepositAccountRestrictedError$outboundSchema: z.ZodType<
-  DepositAccountRestrictedError$Outbound,
-  z.ZodTypeDef,
-  DepositAccountRestrictedError
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  embedded: z.lazy(() => DepositAccountRestrictedErrorEmbedded$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DepositAccountRestrictedError$ {
-  /** @deprecated use `DepositAccountRestrictedError$inboundSchema` instead. */
-  export const inboundSchema = DepositAccountRestrictedError$inboundSchema;
-  /** @deprecated use `DepositAccountRestrictedError$outboundSchema` instead. */
-  export const outboundSchema = DepositAccountRestrictedError$outboundSchema;
-  /** @deprecated use `DepositAccountRestrictedError$Outbound` instead. */
-  export type Outbound = DepositAccountRestrictedError$Outbound;
-}
-
-export function depositAccountRestrictedErrorToJSON(
-  depositAccountRestrictedError: DepositAccountRestrictedError,
-): string {
-  return JSON.stringify(
-    DepositAccountRestrictedError$outboundSchema.parse(
-      depositAccountRestrictedError,
-    ),
-  );
-}
-
-export function depositAccountRestrictedErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<DepositAccountRestrictedError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DepositAccountRestrictedError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DepositAccountRestrictedError' from JSON`,
   );
 }

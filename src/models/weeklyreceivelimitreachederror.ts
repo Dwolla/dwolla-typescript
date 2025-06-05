@@ -21,12 +21,6 @@ export type WeeklyReceiveLimitReachedErrorEmbedded = {
   errors?: Array<WeeklyReceiveLimitReachedErrorError> | undefined;
 };
 
-export type WeeklyReceiveLimitReachedError = {
-  code: string;
-  message: string;
-  embedded?: WeeklyReceiveLimitReachedErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const WeeklyReceiveLimitReachedErrorLinks$inboundSchema: z.ZodType<
   WeeklyReceiveLimitReachedErrorLinks,
@@ -219,77 +213,5 @@ export function weeklyReceiveLimitReachedErrorEmbeddedFromJSON(
     (x) =>
       WeeklyReceiveLimitReachedErrorEmbedded$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'WeeklyReceiveLimitReachedErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const WeeklyReceiveLimitReachedError$inboundSchema: z.ZodType<
-  WeeklyReceiveLimitReachedError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() => WeeklyReceiveLimitReachedErrorEmbedded$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type WeeklyReceiveLimitReachedError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?: WeeklyReceiveLimitReachedErrorEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const WeeklyReceiveLimitReachedError$outboundSchema: z.ZodType<
-  WeeklyReceiveLimitReachedError$Outbound,
-  z.ZodTypeDef,
-  WeeklyReceiveLimitReachedError
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  embedded: z.lazy(() => WeeklyReceiveLimitReachedErrorEmbedded$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WeeklyReceiveLimitReachedError$ {
-  /** @deprecated use `WeeklyReceiveLimitReachedError$inboundSchema` instead. */
-  export const inboundSchema = WeeklyReceiveLimitReachedError$inboundSchema;
-  /** @deprecated use `WeeklyReceiveLimitReachedError$outboundSchema` instead. */
-  export const outboundSchema = WeeklyReceiveLimitReachedError$outboundSchema;
-  /** @deprecated use `WeeklyReceiveLimitReachedError$Outbound` instead. */
-  export type Outbound = WeeklyReceiveLimitReachedError$Outbound;
-}
-
-export function weeklyReceiveLimitReachedErrorToJSON(
-  weeklyReceiveLimitReachedError: WeeklyReceiveLimitReachedError,
-): string {
-  return JSON.stringify(
-    WeeklyReceiveLimitReachedError$outboundSchema.parse(
-      weeklyReceiveLimitReachedError,
-    ),
-  );
-}
-
-export function weeklyReceiveLimitReachedErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<WeeklyReceiveLimitReachedError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => WeeklyReceiveLimitReachedError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'WeeklyReceiveLimitReachedError' from JSON`,
   );
 }

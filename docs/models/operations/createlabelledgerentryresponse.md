@@ -5,13 +5,7 @@
 ```typescript
 import { CreateLabelLedgerEntryResponse } from "dwolla-typescript/models/operations";
 
-let value: CreateLabelLedgerEntryResponse = {
-  headers: {
-    "key": [
-      "<value>",
-    ],
-  },
-};
+let value: CreateLabelLedgerEntryResponse = {};
 ```
 
 ## Fields

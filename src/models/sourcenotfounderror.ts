@@ -21,12 +21,6 @@ export type SourceNotFoundErrorEmbedded = {
   errors?: Array<SourceNotFoundErrorError> | undefined;
 };
 
-export type SourceNotFoundError = {
-  code: string;
-  message: string;
-  embedded?: SourceNotFoundErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const SourceNotFoundErrorLinks$inboundSchema: z.ZodType<
   SourceNotFoundErrorLinks,
@@ -201,73 +195,5 @@ export function sourceNotFoundErrorEmbeddedFromJSON(
     jsonString,
     (x) => SourceNotFoundErrorEmbedded$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'SourceNotFoundErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const SourceNotFoundError$inboundSchema: z.ZodType<
-  SourceNotFoundError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() => SourceNotFoundErrorEmbedded$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type SourceNotFoundError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?: SourceNotFoundErrorEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const SourceNotFoundError$outboundSchema: z.ZodType<
-  SourceNotFoundError$Outbound,
-  z.ZodTypeDef,
-  SourceNotFoundError
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  embedded: z.lazy(() => SourceNotFoundErrorEmbedded$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SourceNotFoundError$ {
-  /** @deprecated use `SourceNotFoundError$inboundSchema` instead. */
-  export const inboundSchema = SourceNotFoundError$inboundSchema;
-  /** @deprecated use `SourceNotFoundError$outboundSchema` instead. */
-  export const outboundSchema = SourceNotFoundError$outboundSchema;
-  /** @deprecated use `SourceNotFoundError$Outbound` instead. */
-  export type Outbound = SourceNotFoundError$Outbound;
-}
-
-export function sourceNotFoundErrorToJSON(
-  sourceNotFoundError: SourceNotFoundError,
-): string {
-  return JSON.stringify(
-    SourceNotFoundError$outboundSchema.parse(sourceNotFoundError),
-  );
-}
-
-export function sourceNotFoundErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<SourceNotFoundError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SourceNotFoundError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SourceNotFoundError' from JSON`,
   );
 }

@@ -9,7 +9,7 @@ let value: CreateReAuthExchangeSession1 = {
   links: {
     redirectUrl: {
       href:
-        "{\"description\":\"Plaid Android example\",\"value\":\"com.example.app123\"}",
+        "{\"description\":\"Visa example\",\"value\":\"https://www.yourdomain.com/iav-callback\"}",
     },
   },
 };

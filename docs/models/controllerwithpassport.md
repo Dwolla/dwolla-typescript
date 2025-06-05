@@ -24,7 +24,7 @@ let value: ControllerWithPassport = {
   },
   passport: {
     number: "<value>",
-    country: "Belarus",
+    country: "Portugal",
   },
 };
 ```

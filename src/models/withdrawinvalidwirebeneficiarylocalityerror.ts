@@ -21,12 +21,6 @@ export type WithdrawInvalidWireBeneficiaryLocalityErrorEmbedded = {
   errors?: Array<WithdrawInvalidWireBeneficiaryLocalityErrorError> | undefined;
 };
 
-export type WithdrawInvalidWireBeneficiaryLocalityError = {
-  code: string;
-  message: string;
-  embedded?: WithdrawInvalidWireBeneficiaryLocalityErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const WithdrawInvalidWireBeneficiaryLocalityErrorLinks$inboundSchema:
   z.ZodType<
@@ -255,92 +249,5 @@ export function withdrawInvalidWireBeneficiaryLocalityErrorEmbeddedFromJSON(
         JSON.parse(x),
       ),
     `Failed to parse 'WithdrawInvalidWireBeneficiaryLocalityErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const WithdrawInvalidWireBeneficiaryLocalityError$inboundSchema:
-  z.ZodType<
-    WithdrawInvalidWireBeneficiaryLocalityError,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    code: z.string(),
-    message: z.string(),
-    _embedded: z.lazy(() =>
-      WithdrawInvalidWireBeneficiaryLocalityErrorEmbedded$inboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "_embedded": "embedded",
-    });
-  });
-
-/** @internal */
-export type WithdrawInvalidWireBeneficiaryLocalityError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?:
-    | WithdrawInvalidWireBeneficiaryLocalityErrorEmbedded$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const WithdrawInvalidWireBeneficiaryLocalityError$outboundSchema:
-  z.ZodType<
-    WithdrawInvalidWireBeneficiaryLocalityError$Outbound,
-    z.ZodTypeDef,
-    WithdrawInvalidWireBeneficiaryLocalityError
-  > = z.object({
-    code: z.string(),
-    message: z.string(),
-    embedded: z.lazy(() =>
-      WithdrawInvalidWireBeneficiaryLocalityErrorEmbedded$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      embedded: "_embedded",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawInvalidWireBeneficiaryLocalityError$ {
-  /** @deprecated use `WithdrawInvalidWireBeneficiaryLocalityError$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawInvalidWireBeneficiaryLocalityError$inboundSchema;
-  /** @deprecated use `WithdrawInvalidWireBeneficiaryLocalityError$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawInvalidWireBeneficiaryLocalityError$outboundSchema;
-  /** @deprecated use `WithdrawInvalidWireBeneficiaryLocalityError$Outbound` instead. */
-  export type Outbound = WithdrawInvalidWireBeneficiaryLocalityError$Outbound;
-}
-
-export function withdrawInvalidWireBeneficiaryLocalityErrorToJSON(
-  withdrawInvalidWireBeneficiaryLocalityError:
-    WithdrawInvalidWireBeneficiaryLocalityError,
-): string {
-  return JSON.stringify(
-    WithdrawInvalidWireBeneficiaryLocalityError$outboundSchema.parse(
-      withdrawInvalidWireBeneficiaryLocalityError,
-    ),
-  );
-}
-
-export function withdrawInvalidWireBeneficiaryLocalityErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  WithdrawInvalidWireBeneficiaryLocalityError,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      WithdrawInvalidWireBeneficiaryLocalityError$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'WithdrawInvalidWireBeneficiaryLocalityError' from JSON`,
   );
 }

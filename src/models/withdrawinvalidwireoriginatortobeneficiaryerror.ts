@@ -23,14 +23,6 @@ export type WithdrawInvalidWireOriginatorToBeneficiaryErrorEmbedded = {
     | undefined;
 };
 
-export type WithdrawInvalidWireOriginatorToBeneficiaryError = {
-  code: string;
-  message: string;
-  embedded?:
-    | WithdrawInvalidWireOriginatorToBeneficiaryErrorEmbedded
-    | undefined;
-};
-
 /** @internal */
 export const WithdrawInvalidWireOriginatorToBeneficiaryErrorLinks$inboundSchema:
   z.ZodType<
@@ -257,93 +249,5 @@ export function withdrawInvalidWireOriginatorToBeneficiaryErrorEmbeddedFromJSON(
       WithdrawInvalidWireOriginatorToBeneficiaryErrorEmbedded$inboundSchema
         .parse(JSON.parse(x)),
     `Failed to parse 'WithdrawInvalidWireOriginatorToBeneficiaryErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const WithdrawInvalidWireOriginatorToBeneficiaryError$inboundSchema:
-  z.ZodType<
-    WithdrawInvalidWireOriginatorToBeneficiaryError,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    code: z.string(),
-    message: z.string(),
-    _embedded: z.lazy(() =>
-      WithdrawInvalidWireOriginatorToBeneficiaryErrorEmbedded$inboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "_embedded": "embedded",
-    });
-  });
-
-/** @internal */
-export type WithdrawInvalidWireOriginatorToBeneficiaryError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?:
-    | WithdrawInvalidWireOriginatorToBeneficiaryErrorEmbedded$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const WithdrawInvalidWireOriginatorToBeneficiaryError$outboundSchema:
-  z.ZodType<
-    WithdrawInvalidWireOriginatorToBeneficiaryError$Outbound,
-    z.ZodTypeDef,
-    WithdrawInvalidWireOriginatorToBeneficiaryError
-  > = z.object({
-    code: z.string(),
-    message: z.string(),
-    embedded: z.lazy(() =>
-      WithdrawInvalidWireOriginatorToBeneficiaryErrorEmbedded$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      embedded: "_embedded",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawInvalidWireOriginatorToBeneficiaryError$ {
-  /** @deprecated use `WithdrawInvalidWireOriginatorToBeneficiaryError$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawInvalidWireOriginatorToBeneficiaryError$inboundSchema;
-  /** @deprecated use `WithdrawInvalidWireOriginatorToBeneficiaryError$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawInvalidWireOriginatorToBeneficiaryError$outboundSchema;
-  /** @deprecated use `WithdrawInvalidWireOriginatorToBeneficiaryError$Outbound` instead. */
-  export type Outbound =
-    WithdrawInvalidWireOriginatorToBeneficiaryError$Outbound;
-}
-
-export function withdrawInvalidWireOriginatorToBeneficiaryErrorToJSON(
-  withdrawInvalidWireOriginatorToBeneficiaryError:
-    WithdrawInvalidWireOriginatorToBeneficiaryError,
-): string {
-  return JSON.stringify(
-    WithdrawInvalidWireOriginatorToBeneficiaryError$outboundSchema.parse(
-      withdrawInvalidWireOriginatorToBeneficiaryError,
-    ),
-  );
-}
-
-export function withdrawInvalidWireOriginatorToBeneficiaryErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  WithdrawInvalidWireOriginatorToBeneficiaryError,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      WithdrawInvalidWireOriginatorToBeneficiaryError$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'WithdrawInvalidWireOriginatorToBeneficiaryError' from JSON`,
   );
 }

@@ -5,15 +5,26 @@
 import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as models from "../index.js";
+import {
+  ForbiddenError,
+  ForbiddenError$inboundSchema,
+  ForbiddenError$Outbound,
+  ForbiddenError$outboundSchema,
+} from "./forbiddenerror.js";
+import {
+  InvalidResourceStateSchemaError,
+  InvalidResourceStateSchemaError$inboundSchema,
+  InvalidResourceStateSchemaError$Outbound,
+  InvalidResourceStateSchemaError$outboundSchema,
+} from "./invalidresourcestateschemaerror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 /**
  * 403 Error
  */
 export type InitiateKbaForCustomerDwollaV1HalJSON =
-  | models.InvalidResourceStateSchema
-  | models.ForbiddenError;
+  | InvalidResourceStateSchemaError
+  | ForbiddenError;
 
 /** @internal */
 export const InitiateKbaForCustomerDwollaV1HalJSON$inboundSchema: z.ZodType<
@@ -21,14 +32,14 @@ export const InitiateKbaForCustomerDwollaV1HalJSON$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  models.InvalidResourceStateSchema$inboundSchema,
-  models.ForbiddenError$inboundSchema,
+  InvalidResourceStateSchemaError$inboundSchema,
+  ForbiddenError$inboundSchema,
 ]);
 
 /** @internal */
 export type InitiateKbaForCustomerDwollaV1HalJSON$Outbound =
-  | models.InvalidResourceStateSchema$Outbound
-  | models.ForbiddenError$Outbound;
+  | InvalidResourceStateSchemaError$Outbound
+  | ForbiddenError$Outbound;
 
 /** @internal */
 export const InitiateKbaForCustomerDwollaV1HalJSON$outboundSchema: z.ZodType<
@@ -36,8 +47,8 @@ export const InitiateKbaForCustomerDwollaV1HalJSON$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   InitiateKbaForCustomerDwollaV1HalJSON
 > = z.union([
-  models.InvalidResourceStateSchema$outboundSchema,
-  models.ForbiddenError$outboundSchema,
+  InvalidResourceStateSchemaError$outboundSchema,
+  ForbiddenError$outboundSchema,
 ]);
 
 /**

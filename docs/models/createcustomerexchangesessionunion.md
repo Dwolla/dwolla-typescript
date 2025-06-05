@@ -14,7 +14,7 @@ const value: models.CreateCustomerExchangeSession1 = {
     },
     redirectUrl: {
       href:
-        "{\"description\":\"Plaid iOS example\",\"value\":\"https://example.com/app123\"}",
+        "{\"description\":\"Visa example\",\"value\":\"https://www.yourdomain.com/iav-callback\"}",
     },
   },
 };

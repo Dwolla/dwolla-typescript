@@ -9,12 +9,18 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateLabelLedgerEntryAmount = {
-  value?: string | undefined;
-  currency?: string | undefined;
+  /**
+   * Amount of funds to increase or decrease for a Label. To decrease funds in a Label a string numeric value will be supplied and prepended with a "-" operator.
+   */
+  value: string;
+  /**
+   * Currency code for the amount
+   */
+  currency: string;
 };
 
 /**
- * Parameters to create label ledger entry
+ * Parameters to create a label ledger entry
  */
 export type CreateLabelLedgerEntryRequestBody = {
   amount: CreateLabelLedgerEntryAmount;
@@ -22,11 +28,11 @@ export type CreateLabelLedgerEntryRequestBody = {
 
 export type CreateLabelLedgerEntryRequest = {
   /**
-   * A label unique identifier
+   * The Id of the Label to update.
    */
   id: string;
   /**
-   * Parameters to create label ledger entry
+   * Parameters to create a label ledger entry
    */
   requestBody: CreateLabelLedgerEntryRequestBody;
 };
@@ -41,14 +47,14 @@ export const CreateLabelLedgerEntryAmount$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  value: z.string().optional(),
-  currency: z.string().optional(),
+  value: z.string(),
+  currency: z.string(),
 });
 
 /** @internal */
 export type CreateLabelLedgerEntryAmount$Outbound = {
-  value?: string | undefined;
-  currency?: string | undefined;
+  value: string;
+  currency: string;
 };
 
 /** @internal */
@@ -57,8 +63,8 @@ export const CreateLabelLedgerEntryAmount$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateLabelLedgerEntryAmount
 > = z.object({
-  value: z.string().optional(),
-  currency: z.string().optional(),
+  value: z.string(),
+  currency: z.string(),
 });
 
 /**

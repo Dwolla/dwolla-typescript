@@ -3,100 +3,17 @@
 
 ## Overview
 
-Operations related to Funding Sources
-
 ### Available Operations
 
-* [listCustomerFundingSources](#listcustomerfundingsources) - List customer funding sources
-* [createCustomerFundingSource](#createcustomerfundingsource) - Create customer funding source
-* [~~createCustomerFundingSourceToken~~](#createcustomerfundingsourcetoken) - Create a funding sources token for dwolla.js :warning: **Deprecated**
-* [~~createCustomerIavToken~~](#createcustomeriavtoken) - Create an IAV token for dwolla.js :warning: **Deprecated**
-* [getFundingSource](#getfundingsource) - Retrieve a funding source
-* [updateOrRemoveFundingSource](#updateorremovefundingsource) - Update or remove a funding source
+* [createForCustomer](#createforcustomer) - Create customer funding source
+* [get](#get) - Retrieve a funding source
+* [updateOrRemove](#updateorremove) - Update or remove a funding source
 * [getMicroDeposits](#getmicrodeposits) - Retrieve micro-deposits details
 * [initiateOrVerifyMicroDeposits](#initiateorverifymicrodeposits) - Initiate or Verify micro-deposits
-* [getFundingSourceBalance](#getfundingsourcebalance) - Retrieve funding source balance
-* [getVanAchRouting](#getvanachrouting) - Retrieve account and routing numbers for a VAN (Virtual Account Number)
+* [getBalance](#getbalance) - Retrieve funding source balance
+* [getVanRouting](#getvanrouting) - Retrieve VAN account and routing numbers
 
-## listCustomerFundingSources
-
-List customer funding sources
-
-### Example Usage
-
-```typescript
-import { Dwolla } from "dwolla-typescript";
-
-const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
-});
-
-async function run() {
-  const result = await dwolla.fundingSources.listCustomerFundingSources({
-    id: "<id>",
-  });
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { fundingSourcesListCustomerFundingSources } from "dwolla-typescript/funcs/fundingSourcesListCustomerFundingSources.js";
-
-// Use `DwollaCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
-});
-
-async function run() {
-  const res = await fundingSourcesListCustomerFundingSources(dwolla, {
-    id: "<id>",
-  });
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.ListCustomerFundingSourcesRequest](../../models/operations/listcustomerfundingsourcesrequest.md)                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[models.FundingSources[]](../../models/.md)\>**
-
-### Errors
-
-| Error Type                                                     | Status Code                                                    | Content Type                                                   |
-| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
-| errors.ListCustomerFundingSourcesForbiddenDwollaV1HalJSONError | 403                                                            | application/vnd.dwolla.v1.hal+json                             |
-| errors.ListCustomerFundingSourcesNotFoundDwollaV1HalJSONError  | 404                                                            | application/vnd.dwolla.v1.hal+json                             |
-| errors.APIError                                                | 4XX, 5XX                                                       | \*/\*                                                          |
-
-## createCustomerFundingSource
+## createForCustomer
 
 Create a new funding source for a customer.
 There are multiple methods available:
@@ -110,11 +27,14 @@ There are multiple methods available:
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.fundingSources.createCustomerFundingSource({
+  const result = await dwolla.fundingSources.createForCustomer({
     id: "<id>",
     createCustomerFundingSource: {
       links: {
@@ -130,7 +50,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -143,16 +62,19 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { fundingSourcesCreateCustomerFundingSource } from "dwolla-typescript/funcs/fundingSourcesCreateCustomerFundingSource.js";
+import { fundingSourcesCreateForCustomer } from "dwolla-typescript/funcs/fundingSourcesCreateForCustomer.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await fundingSourcesCreateCustomerFundingSource(dwolla, {
+  const res = await fundingSourcesCreateForCustomer(dwolla, {
     id: "<id>",
     createCustomerFundingSource: {
       links: {
@@ -167,15 +89,12 @@ async function run() {
       name: "Jane Doe's Checking",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("fundingSourcesCreateForCustomer failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -198,170 +117,14 @@ run();
 
 | Error Type                                                      | Status Code                                                     | Content Type                                                    |
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
-| errors.CreateCustomerFundingSourceDwollaV1HalJSON               | 400                                                             | application/vnd.dwolla.v1.hal+json                              |
+| errors.CreateCustomerFundingSourceResponseBodyError1            | 400                                                             | application/vnd.dwolla.v1.hal+json                              |
+| errors.CreateCustomerFundingSourceResponseBodyError2            | 400                                                             | application/vnd.dwolla.v1.hal+json                              |
+| errors.CreateCustomerFundingSourceResponseBodyError3            | 400                                                             | application/vnd.dwolla.v1.hal+json                              |
 | errors.CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError | 403                                                             | application/vnd.dwolla.v1.hal+json                              |
 | errors.CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError  | 404                                                             | application/vnd.dwolla.v1.hal+json                              |
 | errors.APIError                                                 | 4XX, 5XX                                                        | \*/\*                                                           |
 
-## ~~createCustomerFundingSourceToken~~
-
-Create a funding sources token for dwolla.js
-
-> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
-
-### Example Usage
-
-```typescript
-import { Dwolla } from "dwolla-typescript";
-
-const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
-});
-
-async function run() {
-  const result = await dwolla.fundingSources.createCustomerFundingSourceToken({
-    id: "<id>",
-  });
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { fundingSourcesCreateCustomerFundingSourceToken } from "dwolla-typescript/funcs/fundingSourcesCreateCustomerFundingSourceToken.js";
-
-// Use `DwollaCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
-});
-
-async function run() {
-  const res = await fundingSourcesCreateCustomerFundingSourceToken(dwolla, {
-    id: "<id>",
-  });
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.CreateCustomerFundingSourceTokenRequest](../../models/operations/createcustomerfundingsourcetokenrequest.md)                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[operations.CreateCustomerFundingSourceTokenResponse](../../models/operations/createcustomerfundingsourcetokenresponse.md)\>**
-
-### Errors
-
-| Error Type                                                  | Status Code                                                 | Content Type                                                |
-| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| errors.CreateCustomerFundingSourceTokenDwollaV1HalJSONError | 404                                                         | application/vnd.dwolla.v1.hal+json                          |
-| errors.APIError                                             | 4XX, 5XX                                                    | \*/\*                                                       |
-
-## ~~createCustomerIavToken~~
-
-Create an IAV token for dwolla.js
-
-> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
-
-### Example Usage
-
-```typescript
-import { Dwolla } from "dwolla-typescript";
-
-const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
-});
-
-async function run() {
-  const result = await dwolla.fundingSources.createCustomerIavToken({
-    id: "<id>",
-  });
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { fundingSourcesCreateCustomerIavToken } from "dwolla-typescript/funcs/fundingSourcesCreateCustomerIavToken.js";
-
-// Use `DwollaCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
-});
-
-async function run() {
-  const res = await fundingSourcesCreateCustomerIavToken(dwolla, {
-    id: "<id>",
-  });
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.CreateCustomerIavTokenRequest](../../models/operations/createcustomeriavtokenrequest.md)                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[operations.CreateCustomerIavTokenResponse](../../models/operations/createcustomeriavtokenresponse.md)\>**
-
-### Errors
-
-| Error Type                                        | Status Code                                       | Content Type                                      |
-| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| errors.CreateCustomerIavTokenDwollaV1HalJSONError | 404                                               | application/vnd.dwolla.v1.hal+json                |
-| errors.APIError                                   | 4XX, 5XX                                          | \*/\*                                             |
-
-## getFundingSource
+## get
 
 Retrieve a funding source
 
@@ -371,15 +134,17 @@ Retrieve a funding source
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.fundingSources.getFundingSource({
+  const result = await dwolla.fundingSources.get({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -392,27 +157,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { fundingSourcesGetFundingSource } from "dwolla-typescript/funcs/fundingSourcesGetFundingSource.js";
+import { fundingSourcesGet } from "dwolla-typescript/funcs/fundingSourcesGet.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await fundingSourcesGetFundingSource(dwolla, {
+  const res = await fundingSourcesGet(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("fundingSourcesGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -438,7 +203,7 @@ run();
 | errors.GetFundingSourceDwollaV1HalJSONError | 404                                         | application/vnd.dwolla.v1.hal+json          |
 | errors.APIError                             | 4XX, 5XX                                    | \*/\*                                       |
 
-## updateOrRemoveFundingSource
+## updateOrRemove
 
 Update or remove a funding source
 
@@ -448,18 +213,20 @@ Update or remove a funding source
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.fundingSources.updateOrRemoveFundingSource({
+  const result = await dwolla.fundingSources.updateOrRemove({
     id: "<id>",
     requestBody: {
       removed: true,
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -472,30 +239,30 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { fundingSourcesUpdateOrRemoveFundingSource } from "dwolla-typescript/funcs/fundingSourcesUpdateOrRemoveFundingSource.js";
+import { fundingSourcesUpdateOrRemove } from "dwolla-typescript/funcs/fundingSourcesUpdateOrRemove.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await fundingSourcesUpdateOrRemoveFundingSource(dwolla, {
+  const res = await fundingSourcesUpdateOrRemove(dwolla, {
     id: "<id>",
     requestBody: {
       removed: true,
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("fundingSourcesUpdateOrRemove failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -532,7 +299,10 @@ Retrieve micro-deposits details
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
@@ -540,7 +310,6 @@ async function run() {
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -558,22 +327,22 @@ import { fundingSourcesGetMicroDeposits } from "dwolla-typescript/funcs/fundingS
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
   const res = await fundingSourcesGetMicroDeposits(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("fundingSourcesGetMicroDeposits failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -601,9 +370,13 @@ run();
 
 ## initiateOrVerifyMicroDeposits
 
-Initiate or Verify micro-deposits.
-For initiating micro-deposits, no request body is required.
-For verifying micro-deposits, a request body with the micro-deposit amounts is required.
+This endpoint handles two different actions:
+1. Initiating micro-deposits: No request body is required
+2. Verifying micro-deposits: Request body with micro-deposit amounts is required
+
+The action is determined by the presence of a request body:
+- If no request body is provided, the endpoint will initiate micro-deposits
+- If a request body with micro-deposit amounts is provided, the endpoint will verify the micro-deposits
 
 
 ### Example Usage
@@ -612,7 +385,10 @@ For verifying micro-deposits, a request body with the micro-deposit amounts is r
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
@@ -621,7 +397,6 @@ async function run() {
     requestBody: {},
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -639,7 +414,10 @@ import { fundingSourcesInitiateOrVerifyMicroDeposits } from "dwolla-typescript/f
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
@@ -647,15 +425,12 @@ async function run() {
     id: "<id>",
     requestBody: {},
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("fundingSourcesInitiateOrVerifyMicroDeposits failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -681,7 +456,7 @@ run();
 | errors.InitiateOrVerifyMicroDepositsDwollaV1HalJSONError | 404                                                      | application/vnd.dwolla.v1.hal+json                       |
 | errors.APIError                                          | 4XX, 5XX                                                 | \*/\*                                                    |
 
-## getFundingSourceBalance
+## getBalance
 
 Retrieve funding source balance
 
@@ -691,15 +466,17 @@ Retrieve funding source balance
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.fundingSources.getFundingSourceBalance({
+  const result = await dwolla.fundingSources.getBalance({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -712,27 +489,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { fundingSourcesGetFundingSourceBalance } from "dwolla-typescript/funcs/fundingSourcesGetFundingSourceBalance.js";
+import { fundingSourcesGetBalance } from "dwolla-typescript/funcs/fundingSourcesGetBalance.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await fundingSourcesGetFundingSourceBalance(dwolla, {
+  const res = await fundingSourcesGetBalance(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("fundingSourcesGetBalance failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -758,7 +535,7 @@ run();
 | errors.GetFundingSourceBalanceDwollaV1HalJSONError | 404                                                | application/vnd.dwolla.v1.hal+json                 |
 | errors.APIError                                    | 4XX, 5XX                                           | \*/\*                                              |
 
-## getVanAchRouting
+## getVanRouting
 
 Retrieve account and routing numbers for a VAN (Virtual Account Number)
 
@@ -768,15 +545,17 @@ Retrieve account and routing numbers for a VAN (Virtual Account Number)
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.fundingSources.getVanAchRouting({
+  const result = await dwolla.fundingSources.getVanRouting({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -789,27 +568,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { fundingSourcesGetVanAchRouting } from "dwolla-typescript/funcs/fundingSourcesGetVanAchRouting.js";
+import { fundingSourcesGetVanRouting } from "dwolla-typescript/funcs/fundingSourcesGetVanRouting.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await fundingSourcesGetVanAchRouting(dwolla, {
+  const res = await fundingSourcesGetVanRouting(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("fundingSourcesGetVanRouting failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -819,18 +598,18 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.GetVanAchRoutingRequest](../../models/operations/getvanachroutingrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.GetVanRoutingRequest](../../models/operations/getvanroutingrequest.md)                                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.GetVanAchRoutingResponse](../../models/operations/getvanachroutingresponse.md)\>**
+**Promise\<[operations.GetVanRoutingResponse](../../models/operations/getvanroutingresponse.md)\>**
 
 ### Errors
 
-| Error Type                                  | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| errors.GetVanAchRoutingDwollaV1HalJSONError | 404                                         | application/vnd.dwolla.v1.hal+json          |
-| errors.APIError                             | 4XX, 5XX                                    | \*/\*                                       |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| errors.GetVanRoutingDwollaV1HalJSONError | 404                                      | application/vnd.dwolla.v1.hal+json       |
+| errors.APIError                          | 4XX, 5XX                                 | \*/\*                                    |

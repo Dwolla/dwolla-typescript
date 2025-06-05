@@ -21,12 +21,6 @@ export type InvalidPointOfSaleAddendaSerialNumberErrorEmbedded = {
   errors?: Array<InvalidPointOfSaleAddendaSerialNumberErrorError> | undefined;
 };
 
-export type InvalidPointOfSaleAddendaSerialNumberError = {
-  code: string;
-  message: string;
-  embedded?: InvalidPointOfSaleAddendaSerialNumberErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const InvalidPointOfSaleAddendaSerialNumberErrorLinks$inboundSchema:
   z.ZodType<
@@ -253,89 +247,5 @@ export function invalidPointOfSaleAddendaSerialNumberErrorEmbeddedFromJSON(
         JSON.parse(x),
       ),
     `Failed to parse 'InvalidPointOfSaleAddendaSerialNumberErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const InvalidPointOfSaleAddendaSerialNumberError$inboundSchema:
-  z.ZodType<InvalidPointOfSaleAddendaSerialNumberError, z.ZodTypeDef, unknown> =
-    z.object({
-      code: z.string(),
-      message: z.string(),
-      _embedded: z.lazy(() =>
-        InvalidPointOfSaleAddendaSerialNumberErrorEmbedded$inboundSchema
-      ).optional(),
-    }).transform((v) => {
-      return remap$(v, {
-        "_embedded": "embedded",
-      });
-    });
-
-/** @internal */
-export type InvalidPointOfSaleAddendaSerialNumberError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?:
-    | InvalidPointOfSaleAddendaSerialNumberErrorEmbedded$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const InvalidPointOfSaleAddendaSerialNumberError$outboundSchema:
-  z.ZodType<
-    InvalidPointOfSaleAddendaSerialNumberError$Outbound,
-    z.ZodTypeDef,
-    InvalidPointOfSaleAddendaSerialNumberError
-  > = z.object({
-    code: z.string(),
-    message: z.string(),
-    embedded: z.lazy(() =>
-      InvalidPointOfSaleAddendaSerialNumberErrorEmbedded$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      embedded: "_embedded",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidPointOfSaleAddendaSerialNumberError$ {
-  /** @deprecated use `InvalidPointOfSaleAddendaSerialNumberError$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidPointOfSaleAddendaSerialNumberError$inboundSchema;
-  /** @deprecated use `InvalidPointOfSaleAddendaSerialNumberError$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidPointOfSaleAddendaSerialNumberError$outboundSchema;
-  /** @deprecated use `InvalidPointOfSaleAddendaSerialNumberError$Outbound` instead. */
-  export type Outbound = InvalidPointOfSaleAddendaSerialNumberError$Outbound;
-}
-
-export function invalidPointOfSaleAddendaSerialNumberErrorToJSON(
-  invalidPointOfSaleAddendaSerialNumberError:
-    InvalidPointOfSaleAddendaSerialNumberError,
-): string {
-  return JSON.stringify(
-    InvalidPointOfSaleAddendaSerialNumberError$outboundSchema.parse(
-      invalidPointOfSaleAddendaSerialNumberError,
-    ),
-  );
-}
-
-export function invalidPointOfSaleAddendaSerialNumberErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  InvalidPointOfSaleAddendaSerialNumberError,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      InvalidPointOfSaleAddendaSerialNumberError$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'InvalidPointOfSaleAddendaSerialNumberError' from JSON`,
   );
 }

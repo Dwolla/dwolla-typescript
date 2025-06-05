@@ -16,9 +16,13 @@ export const tool$fundingSourcesInitiateOrVerifyMicroDeposits: ToolDefinition<
   name: "funding-sources-initiate-or-verify-micro-deposits",
   description: `Initiate or Verify micro-deposits
 
-Initiate or Verify micro-deposits.
-For initiating micro-deposits, no request body is required.
-For verifying micro-deposits, a request body with the micro-deposit amounts is required.
+This endpoint handles two different actions:
+1. Initiating micro-deposits: No request body is required
+2. Verifying micro-deposits: Request body with micro-deposit amounts is required
+
+The action is determined by the presence of a request body:
+- If no request body is provided, the endpoint will initiate micro-deposits
+- If a request body with micro-deposit amounts is provided, the endpoint will verify the micro-deposits
 `,
   args,
   tool: async (client, args, ctx) => {

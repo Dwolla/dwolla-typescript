@@ -21,12 +21,6 @@ export type InvalidAmountLimitErrorEmbedded = {
   errors?: Array<InvalidAmountLimitErrorError> | undefined;
 };
 
-export type InvalidAmountLimitError = {
-  code: string;
-  message: string;
-  embedded?: InvalidAmountLimitErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const InvalidAmountLimitErrorLinks$inboundSchema: z.ZodType<
   InvalidAmountLimitErrorLinks,
@@ -205,75 +199,5 @@ export function invalidAmountLimitErrorEmbeddedFromJSON(
     jsonString,
     (x) => InvalidAmountLimitErrorEmbedded$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'InvalidAmountLimitErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const InvalidAmountLimitError$inboundSchema: z.ZodType<
-  InvalidAmountLimitError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() => InvalidAmountLimitErrorEmbedded$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type InvalidAmountLimitError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?: InvalidAmountLimitErrorEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const InvalidAmountLimitError$outboundSchema: z.ZodType<
-  InvalidAmountLimitError$Outbound,
-  z.ZodTypeDef,
-  InvalidAmountLimitError
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  embedded: z.lazy(() => InvalidAmountLimitErrorEmbedded$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidAmountLimitError$ {
-  /** @deprecated use `InvalidAmountLimitError$inboundSchema` instead. */
-  export const inboundSchema = InvalidAmountLimitError$inboundSchema;
-  /** @deprecated use `InvalidAmountLimitError$outboundSchema` instead. */
-  export const outboundSchema = InvalidAmountLimitError$outboundSchema;
-  /** @deprecated use `InvalidAmountLimitError$Outbound` instead. */
-  export type Outbound = InvalidAmountLimitError$Outbound;
-}
-
-export function invalidAmountLimitErrorToJSON(
-  invalidAmountLimitError: InvalidAmountLimitError,
-): string {
-  return JSON.stringify(
-    InvalidAmountLimitError$outboundSchema.parse(invalidAmountLimitError),
-  );
-}
-
-export function invalidAmountLimitErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<InvalidAmountLimitError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InvalidAmountLimitError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InvalidAmountLimitError' from JSON`,
   );
 }

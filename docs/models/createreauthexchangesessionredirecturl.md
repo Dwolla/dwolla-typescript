@@ -7,7 +7,7 @@ import { CreateReAuthExchangeSessionRedirectUrl } from "dwolla-typescript";
 
 let value: CreateReAuthExchangeSessionRedirectUrl = {
   href:
-    "{\"description\":\"Plaid iOS example\",\"value\":\"https://example.com/app123\"}",
+    "{\"description\":\"Visa example\",\"value\":\"https://www.yourdomain.com/iav-callback\"}",
 };
 ```
 

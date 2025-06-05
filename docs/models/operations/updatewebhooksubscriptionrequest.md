@@ -7,9 +7,6 @@ import { UpdateWebhookSubscriptionRequest } from "dwolla-typescript/models/opera
 
 let value: UpdateWebhookSubscriptionRequest = {
   id: "<id>",
-  requestBody: {
-    paused: true,
-  },
 };
 ```
 

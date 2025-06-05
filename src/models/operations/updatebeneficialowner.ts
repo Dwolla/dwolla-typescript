@@ -29,11 +29,6 @@ export type UpdateBeneficialOwnerRequest = {
     | models.BeneficialOwnerWithPassport;
 };
 
-export type UpdateBeneficialOwnerEmbedded = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
 /** @internal */
 export const UpdateBeneficialOwnerRequestBody$inboundSchema: z.ZodType<
   UpdateBeneficialOwnerRequestBody,
@@ -164,64 +159,5 @@ export function updateBeneficialOwnerRequestFromJSON(
     jsonString,
     (x) => UpdateBeneficialOwnerRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'UpdateBeneficialOwnerRequest' from JSON`,
-  );
-}
-
-/** @internal */
-export const UpdateBeneficialOwnerEmbedded$inboundSchema: z.ZodType<
-  UpdateBeneficialOwnerEmbedded,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-});
-
-/** @internal */
-export type UpdateBeneficialOwnerEmbedded$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const UpdateBeneficialOwnerEmbedded$outboundSchema: z.ZodType<
-  UpdateBeneficialOwnerEmbedded$Outbound,
-  z.ZodTypeDef,
-  UpdateBeneficialOwnerEmbedded
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateBeneficialOwnerEmbedded$ {
-  /** @deprecated use `UpdateBeneficialOwnerEmbedded$inboundSchema` instead. */
-  export const inboundSchema = UpdateBeneficialOwnerEmbedded$inboundSchema;
-  /** @deprecated use `UpdateBeneficialOwnerEmbedded$outboundSchema` instead. */
-  export const outboundSchema = UpdateBeneficialOwnerEmbedded$outboundSchema;
-  /** @deprecated use `UpdateBeneficialOwnerEmbedded$Outbound` instead. */
-  export type Outbound = UpdateBeneficialOwnerEmbedded$Outbound;
-}
-
-export function updateBeneficialOwnerEmbeddedToJSON(
-  updateBeneficialOwnerEmbedded: UpdateBeneficialOwnerEmbedded,
-): string {
-  return JSON.stringify(
-    UpdateBeneficialOwnerEmbedded$outboundSchema.parse(
-      updateBeneficialOwnerEmbedded,
-    ),
-  );
-}
-
-export function updateBeneficialOwnerEmbeddedFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateBeneficialOwnerEmbedded, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateBeneficialOwnerEmbedded$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateBeneficialOwnerEmbedded' from JSON`,
   );
 }

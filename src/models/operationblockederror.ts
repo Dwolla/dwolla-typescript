@@ -21,12 +21,6 @@ export type OperationBlockedErrorEmbedded = {
   errors?: Array<OperationBlockedErrorError> | undefined;
 };
 
-export type OperationBlockedError = {
-  code: string;
-  message: string;
-  embedded?: OperationBlockedErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const OperationBlockedErrorLinks$inboundSchema: z.ZodType<
   OperationBlockedErrorLinks,
@@ -201,75 +195,5 @@ export function operationBlockedErrorEmbeddedFromJSON(
     jsonString,
     (x) => OperationBlockedErrorEmbedded$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'OperationBlockedErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const OperationBlockedError$inboundSchema: z.ZodType<
-  OperationBlockedError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() => OperationBlockedErrorEmbedded$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type OperationBlockedError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?: OperationBlockedErrorEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const OperationBlockedError$outboundSchema: z.ZodType<
-  OperationBlockedError$Outbound,
-  z.ZodTypeDef,
-  OperationBlockedError
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  embedded: z.lazy(() => OperationBlockedErrorEmbedded$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OperationBlockedError$ {
-  /** @deprecated use `OperationBlockedError$inboundSchema` instead. */
-  export const inboundSchema = OperationBlockedError$inboundSchema;
-  /** @deprecated use `OperationBlockedError$outboundSchema` instead. */
-  export const outboundSchema = OperationBlockedError$outboundSchema;
-  /** @deprecated use `OperationBlockedError$Outbound` instead. */
-  export type Outbound = OperationBlockedError$Outbound;
-}
-
-export function operationBlockedErrorToJSON(
-  operationBlockedError: OperationBlockedError,
-): string {
-  return JSON.stringify(
-    OperationBlockedError$outboundSchema.parse(operationBlockedError),
-  );
-}
-
-export function operationBlockedErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<OperationBlockedError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => OperationBlockedError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'OperationBlockedError' from JSON`,
   );
 }

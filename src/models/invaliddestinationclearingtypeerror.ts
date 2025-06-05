@@ -21,12 +21,6 @@ export type InvalidDestinationClearingTypeErrorEmbedded = {
   errors?: Array<InvalidDestinationClearingTypeErrorError> | undefined;
 };
 
-export type InvalidDestinationClearingTypeError = {
-  code: string;
-  message: string;
-  embedded?: InvalidDestinationClearingTypeErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const InvalidDestinationClearingTypeErrorLinks$inboundSchema: z.ZodType<
   InvalidDestinationClearingTypeErrorLinks,
@@ -238,82 +232,5 @@ export function invalidDestinationClearingTypeErrorEmbeddedFromJSON(
         JSON.parse(x),
       ),
     `Failed to parse 'InvalidDestinationClearingTypeErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const InvalidDestinationClearingTypeError$inboundSchema: z.ZodType<
-  InvalidDestinationClearingTypeError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() =>
-    InvalidDestinationClearingTypeErrorEmbedded$inboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type InvalidDestinationClearingTypeError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?: InvalidDestinationClearingTypeErrorEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const InvalidDestinationClearingTypeError$outboundSchema: z.ZodType<
-  InvalidDestinationClearingTypeError$Outbound,
-  z.ZodTypeDef,
-  InvalidDestinationClearingTypeError
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  embedded: z.lazy(() =>
-    InvalidDestinationClearingTypeErrorEmbedded$outboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidDestinationClearingTypeError$ {
-  /** @deprecated use `InvalidDestinationClearingTypeError$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidDestinationClearingTypeError$inboundSchema;
-  /** @deprecated use `InvalidDestinationClearingTypeError$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidDestinationClearingTypeError$outboundSchema;
-  /** @deprecated use `InvalidDestinationClearingTypeError$Outbound` instead. */
-  export type Outbound = InvalidDestinationClearingTypeError$Outbound;
-}
-
-export function invalidDestinationClearingTypeErrorToJSON(
-  invalidDestinationClearingTypeError: InvalidDestinationClearingTypeError,
-): string {
-  return JSON.stringify(
-    InvalidDestinationClearingTypeError$outboundSchema.parse(
-      invalidDestinationClearingTypeError,
-    ),
-  );
-}
-
-export function invalidDestinationClearingTypeErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<InvalidDestinationClearingTypeError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      InvalidDestinationClearingTypeError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InvalidDestinationClearingTypeError' from JSON`,
   );
 }

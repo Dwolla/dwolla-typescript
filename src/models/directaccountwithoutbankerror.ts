@@ -21,12 +21,6 @@ export type DirectAccountWithoutBankErrorEmbedded = {
   errors?: Array<DirectAccountWithoutBankErrorError> | undefined;
 };
 
-export type DirectAccountWithoutBankError = {
-  code: string;
-  message: string;
-  embedded?: DirectAccountWithoutBankErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const DirectAccountWithoutBankErrorLinks$inboundSchema: z.ZodType<
   DirectAccountWithoutBankErrorLinks,
@@ -216,77 +210,5 @@ export function directAccountWithoutBankErrorEmbeddedFromJSON(
     (x) =>
       DirectAccountWithoutBankErrorEmbedded$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'DirectAccountWithoutBankErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const DirectAccountWithoutBankError$inboundSchema: z.ZodType<
-  DirectAccountWithoutBankError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() => DirectAccountWithoutBankErrorEmbedded$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type DirectAccountWithoutBankError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?: DirectAccountWithoutBankErrorEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const DirectAccountWithoutBankError$outboundSchema: z.ZodType<
-  DirectAccountWithoutBankError$Outbound,
-  z.ZodTypeDef,
-  DirectAccountWithoutBankError
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  embedded: z.lazy(() => DirectAccountWithoutBankErrorEmbedded$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DirectAccountWithoutBankError$ {
-  /** @deprecated use `DirectAccountWithoutBankError$inboundSchema` instead. */
-  export const inboundSchema = DirectAccountWithoutBankError$inboundSchema;
-  /** @deprecated use `DirectAccountWithoutBankError$outboundSchema` instead. */
-  export const outboundSchema = DirectAccountWithoutBankError$outboundSchema;
-  /** @deprecated use `DirectAccountWithoutBankError$Outbound` instead. */
-  export type Outbound = DirectAccountWithoutBankError$Outbound;
-}
-
-export function directAccountWithoutBankErrorToJSON(
-  directAccountWithoutBankError: DirectAccountWithoutBankError,
-): string {
-  return JSON.stringify(
-    DirectAccountWithoutBankError$outboundSchema.parse(
-      directAccountWithoutBankError,
-    ),
-  );
-}
-
-export function directAccountWithoutBankErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<DirectAccountWithoutBankError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DirectAccountWithoutBankError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DirectAccountWithoutBankError' from JSON`,
   );
 }

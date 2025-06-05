@@ -3,11 +3,14 @@
  */
 
 import { ClientSDK } from "../lib/sdks.js";
-import { Account } from "./account.js";
+import { Accounts } from "./accounts.js";
 import { BeneficialOwners } from "./beneficialowners.js";
+import { BusinessClassifications } from "./businessclassifications.js";
+import { ClientTokens } from "./clienttokens.js";
 import { Customers } from "./customers.js";
 import { Documents } from "./documents.js";
 import { Events } from "./events.js";
+import { ExchangePartners } from "./exchangepartners.js";
 import { Exchanges } from "./exchanges.js";
 import { ExchangeSessions } from "./exchangesessions.js";
 import { FundingSources } from "./fundingsources.js";
@@ -31,14 +34,21 @@ export class Dwolla extends ClientSDK {
     return (this._root ??= new Root(this._options));
   }
 
-  private _account?: Account;
-  get account(): Account {
-    return (this._account ??= new Account(this._options));
+  private _accounts?: Accounts;
+  get accounts(): Accounts {
+    return (this._accounts ??= new Accounts(this._options));
   }
 
   private _customers?: Customers;
   get customers(): Customers {
     return (this._customers ??= new Customers(this._options));
+  }
+
+  private _businessClassifications?: BusinessClassifications;
+  get businessClassifications(): BusinessClassifications {
+    return (this._businessClassifications ??= new BusinessClassifications(
+      this._options,
+    ));
   }
 
   private _beneficialOwners?: BeneficialOwners;
@@ -93,6 +103,11 @@ export class Dwolla extends ClientSDK {
     return (this._webhooks ??= new Webhooks(this._options));
   }
 
+  private _exchangePartners?: ExchangePartners;
+  get exchangePartners(): ExchangePartners {
+    return (this._exchangePartners ??= new ExchangePartners(this._options));
+  }
+
   private _exchanges?: Exchanges;
   get exchanges(): Exchanges {
     return (this._exchanges ??= new Exchanges(this._options));
@@ -101,5 +116,10 @@ export class Dwolla extends ClientSDK {
   private _exchangeSessions?: ExchangeSessions;
   get exchangeSessions(): ExchangeSessions {
     return (this._exchangeSessions ??= new ExchangeSessions(this._options));
+  }
+
+  private _clientTokens?: ClientTokens;
+  get clientTokens(): ClientTokens {
+    return (this._clientTokens ??= new ClientTokens(this._options));
   }
 }

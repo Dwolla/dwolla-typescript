@@ -18,6 +18,7 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
+import * as errors from "../models/errors/index.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
@@ -36,6 +37,8 @@ export function webhookSubscriptionsListWebhooks(
 ): APIPromise<
   Result<
     operations.ListWebhooksResponse,
+    | errors.ForbiddenError
+    | errors.NotFoundError
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -60,6 +63,8 @@ async function $do(
   [
     Result<
       operations.ListWebhooksResponse,
+      | errors.ForbiddenError
+      | errors.NotFoundError
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -102,18 +107,18 @@ async function $do(
     Accept: "application/vnd.dwolla.v1.hal+json",
   }));
 
-  const secConfig = await extractSecurity(client._options.bearerAuth);
-  const securityInput = secConfig == null ? {} : { bearerAuth: secConfig };
+  const securityInput = await extractSecurity(client._options.security);
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "listWebhooks",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
 
-    securitySource: client._options.bearerAuth,
+    securitySource: client._options.security,
     retryConfig: options?.retries
       || client._options.retryConfig
       || { strategy: "none" },
@@ -128,6 +133,7 @@ async function $do(
     headers: headers,
     query: query,
     body: body,
+    userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
@@ -137,7 +143,7 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["4XX", "5XX"],
+    errorCodes: ["403", "404", "4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -146,8 +152,14 @@ async function $do(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
     operations.ListWebhooksResponse,
+    | errors.ForbiddenError
+    | errors.NotFoundError
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -159,9 +171,15 @@ async function $do(
     M.json(200, operations.ListWebhooksResponse$inboundSchema, {
       ctype: "application/vnd.dwolla.v1.hal+json",
     }),
+    M.jsonErr(403, errors.ForbiddenError$inboundSchema, {
+      ctype: "application/vnd.dwolla.v1.hal+json",
+    }),
+    M.jsonErr(404, errors.NotFoundError$inboundSchema, {
+      ctype: "application/vnd.dwolla.v1.hal+json",
+    }),
     M.fail("4XX"),
     M.fail("5XX"),
-  )(response);
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];
   }

@@ -1,6 +1,6 @@
 # CreateApplicationAccessTokenRequest
 
-OAuth get token request
+OAuth get token request. Client credentials are sent in the Authorization header using Basic authentication.
 
 ## Example Usage
 
@@ -14,6 +14,6 @@ let value: CreateApplicationAccessTokenRequest = {
 
 ## Fields
 
-| Field              | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `grantType`        | *string*           | :heavy_check_mark: | N/A                | client_credentials |
+| Field                                                        | Type                                                         | Required                                                     | Description                                                  | Example                                                      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `grantType`                                                  | [operations.GrantType](../../models/operations/granttype.md) | :heavy_check_mark:                                           | Must be set to "client_credentials"                          | client_credentials                                           |

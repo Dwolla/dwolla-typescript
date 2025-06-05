@@ -21,12 +21,6 @@ export type WireInvalidImadErrorEmbedded = {
   errors?: Array<WireInvalidImadErrorError> | undefined;
 };
 
-export type WireInvalidImadError = {
-  code: string;
-  message: string;
-  embedded?: WireInvalidImadErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const WireInvalidImadErrorLinks$inboundSchema: z.ZodType<
   WireInvalidImadErrorLinks,
@@ -201,75 +195,5 @@ export function wireInvalidImadErrorEmbeddedFromJSON(
     jsonString,
     (x) => WireInvalidImadErrorEmbedded$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'WireInvalidImadErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const WireInvalidImadError$inboundSchema: z.ZodType<
-  WireInvalidImadError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() => WireInvalidImadErrorEmbedded$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type WireInvalidImadError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?: WireInvalidImadErrorEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const WireInvalidImadError$outboundSchema: z.ZodType<
-  WireInvalidImadError$Outbound,
-  z.ZodTypeDef,
-  WireInvalidImadError
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  embedded: z.lazy(() => WireInvalidImadErrorEmbedded$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WireInvalidImadError$ {
-  /** @deprecated use `WireInvalidImadError$inboundSchema` instead. */
-  export const inboundSchema = WireInvalidImadError$inboundSchema;
-  /** @deprecated use `WireInvalidImadError$outboundSchema` instead. */
-  export const outboundSchema = WireInvalidImadError$outboundSchema;
-  /** @deprecated use `WireInvalidImadError$Outbound` instead. */
-  export type Outbound = WireInvalidImadError$Outbound;
-}
-
-export function wireInvalidImadErrorToJSON(
-  wireInvalidImadError: WireInvalidImadError,
-): string {
-  return JSON.stringify(
-    WireInvalidImadError$outboundSchema.parse(wireInvalidImadError),
-  );
-}
-
-export function wireInvalidImadErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<WireInvalidImadError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => WireInvalidImadError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'WireInvalidImadError' from JSON`,
   );
 }

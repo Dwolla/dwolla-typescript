@@ -1,17 +1,17 @@
 # InitiateOrVerifyMicroDepositsRequestBody
 
-Parameters for initiating or verifying micro-deposits.
-- For initiating micro-deposits: No request body is required
-- For verifying micro-deposits: Request body with micro-deposit amounts is required
+Optional request body for verifying micro-deposits.
+- If omitted: Endpoint will initiate micro-deposits
+- If provided: Must contain micro-deposit amounts for verification
 
 
 
 ## Supported Types
 
-### `operations.RequestBody`
+### `operations.InitiateMicroDeposits`
 
 ```typescript
-const value: operations.RequestBody = {};
+const value: operations.InitiateMicroDeposits = {};
 ```
 
 ### `models.VerifyMicroDeposits`

@@ -5,27 +5,61 @@
 import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as models from "../index.js";
+import {
+  DuplicateResourceSchemaError,
+  DuplicateResourceSchemaError$inboundSchema,
+  DuplicateResourceSchemaError$Outbound,
+  DuplicateResourceSchemaError$outboundSchema,
+} from "./duplicateresourceschemaerror.js";
+import {
+  InvalidFileTypeSchemaError,
+  InvalidFileTypeSchemaError$inboundSchema,
+  InvalidFileTypeSchemaError$Outbound,
+  InvalidFileTypeSchemaError$outboundSchema,
+} from "./invalidfiletypeschemaerror.js";
+import {
+  InvalidResourceStateSchemaError,
+  InvalidResourceStateSchemaError$inboundSchema,
+  InvalidResourceStateSchemaError$Outbound,
+  InvalidResourceStateSchemaError$outboundSchema,
+} from "./invalidresourcestateschemaerror.js";
+import {
+  MaximumNumberOfResourcesSchemaError,
+  MaximumNumberOfResourcesSchemaError$inboundSchema,
+  MaximumNumberOfResourcesSchemaError$Outbound,
+  MaximumNumberOfResourcesSchemaError$outboundSchema,
+} from "./maximumnumberofresourcesschemaerror.js";
+import {
+  NotAuthorizedSchemaError,
+  NotAuthorizedSchemaError$inboundSchema,
+  NotAuthorizedSchemaError$Outbound,
+  NotAuthorizedSchemaError$outboundSchema,
+} from "./notauthorizedschemaerror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 /**
  * request entity too large
  */
-export type RequestEntityTooLargeDwollaV1HalJSONErrorData = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
+export type CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONErrorData =
+  {
+    code?: string | undefined;
+    message?: string | undefined;
+  };
 
 /**
  * request entity too large
  */
-export class RequestEntityTooLargeDwollaV1HalJSONError extends Error {
+export class CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError
+  extends Error
+{
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: RequestEntityTooLargeDwollaV1HalJSONErrorData;
+  data$: CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONErrorData;
 
-  constructor(err: RequestEntityTooLargeDwollaV1HalJSONErrorData) {
+  constructor(
+    err: CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONErrorData,
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
@@ -34,7 +68,8 @@ export class RequestEntityTooLargeDwollaV1HalJSONError extends Error {
 
     if (err.code != null) this.code = err.code;
 
-    this.name = "RequestEntityTooLargeDwollaV1HalJSONError";
+    this.name =
+      "CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError";
   }
 }
 
@@ -72,43 +107,49 @@ export class CreateCustomerDocumentNotFoundDwollaV1HalJSONError extends Error {
  * not found
  */
 export type CreateCustomerDocumentForbiddenDwollaV1HalJSON =
-  | models.InvalidResourceStateSchema
-  | models.NotAuthorizedSchema;
+  | InvalidResourceStateSchemaError
+  | NotAuthorizedSchemaError;
 
 /**
  * Bad Request
  */
 export type CreateCustomerDocumentBadRequestDwollaV1HalJSON =
-  | models.MaximumNumberOfResourcesSchema
-  | models.InvalidFileTypeSchema
-  | models.DuplicateResourceSchema;
+  | MaximumNumberOfResourcesSchemaError
+  | InvalidFileTypeSchemaError
+  | DuplicateResourceSchemaError;
 
 /** @internal */
-export const RequestEntityTooLargeDwollaV1HalJSONError$inboundSchema: z.ZodType<
-  RequestEntityTooLargeDwollaV1HalJSONError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-})
-  .transform((v) => {
-    return new RequestEntityTooLargeDwollaV1HalJSONError(v);
-  });
-
-/** @internal */
-export type RequestEntityTooLargeDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const RequestEntityTooLargeDwollaV1HalJSONError$outboundSchema:
+export const CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError$inboundSchema:
   z.ZodType<
-    RequestEntityTooLargeDwollaV1HalJSONError$Outbound,
+    CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError,
     z.ZodTypeDef,
-    RequestEntityTooLargeDwollaV1HalJSONError
-  > = z.instanceof(RequestEntityTooLargeDwollaV1HalJSONError)
+    unknown
+  > = z.object({
+    code: z.string().optional(),
+    message: z.string().optional(),
+  })
+    .transform((v) => {
+      return new CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError(
+        v,
+      );
+    });
+
+/** @internal */
+export type CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError$Outbound =
+  {
+    code?: string | undefined;
+    message?: string | undefined;
+  };
+
+/** @internal */
+export const CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError$outboundSchema:
+  z.ZodType<
+    CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError$Outbound,
+    z.ZodTypeDef,
+    CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError
+  > = z.instanceof(
+    CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError,
+  )
     .transform(v => v.data$)
     .pipe(z.object({
       code: z.string().optional(),
@@ -119,15 +160,16 @@ export const RequestEntityTooLargeDwollaV1HalJSONError$outboundSchema:
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace RequestEntityTooLargeDwollaV1HalJSONError$ {
-  /** @deprecated use `RequestEntityTooLargeDwollaV1HalJSONError$inboundSchema` instead. */
+export namespace CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError$ {
+  /** @deprecated use `CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError$inboundSchema` instead. */
   export const inboundSchema =
-    RequestEntityTooLargeDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `RequestEntityTooLargeDwollaV1HalJSONError$outboundSchema` instead. */
+    CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError$inboundSchema;
+  /** @deprecated use `CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError$outboundSchema` instead. */
   export const outboundSchema =
-    RequestEntityTooLargeDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `RequestEntityTooLargeDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound = RequestEntityTooLargeDwollaV1HalJSONError$Outbound;
+    CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError$outboundSchema;
+  /** @deprecated use `CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError$Outbound` instead. */
+  export type Outbound =
+    CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError$Outbound;
 }
 
 /** @internal */
@@ -186,14 +228,14 @@ export const CreateCustomerDocumentForbiddenDwollaV1HalJSON$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.union([
-    models.InvalidResourceStateSchema$inboundSchema,
-    models.NotAuthorizedSchema$inboundSchema,
+    InvalidResourceStateSchemaError$inboundSchema,
+    NotAuthorizedSchemaError$inboundSchema,
   ]);
 
 /** @internal */
 export type CreateCustomerDocumentForbiddenDwollaV1HalJSON$Outbound =
-  | models.InvalidResourceStateSchema$Outbound
-  | models.NotAuthorizedSchema$Outbound;
+  | InvalidResourceStateSchemaError$Outbound
+  | NotAuthorizedSchemaError$Outbound;
 
 /** @internal */
 export const CreateCustomerDocumentForbiddenDwollaV1HalJSON$outboundSchema:
@@ -202,8 +244,8 @@ export const CreateCustomerDocumentForbiddenDwollaV1HalJSON$outboundSchema:
     z.ZodTypeDef,
     CreateCustomerDocumentForbiddenDwollaV1HalJSON
   > = z.union([
-    models.InvalidResourceStateSchema$outboundSchema,
-    models.NotAuthorizedSchema$outboundSchema,
+    InvalidResourceStateSchemaError$outboundSchema,
+    NotAuthorizedSchemaError$outboundSchema,
   ]);
 
 /**
@@ -256,16 +298,16 @@ export const CreateCustomerDocumentBadRequestDwollaV1HalJSON$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.union([
-    models.MaximumNumberOfResourcesSchema$inboundSchema,
-    models.InvalidFileTypeSchema$inboundSchema,
-    models.DuplicateResourceSchema$inboundSchema,
+    MaximumNumberOfResourcesSchemaError$inboundSchema,
+    InvalidFileTypeSchemaError$inboundSchema,
+    DuplicateResourceSchemaError$inboundSchema,
   ]);
 
 /** @internal */
 export type CreateCustomerDocumentBadRequestDwollaV1HalJSON$Outbound =
-  | models.MaximumNumberOfResourcesSchema$Outbound
-  | models.InvalidFileTypeSchema$Outbound
-  | models.DuplicateResourceSchema$Outbound;
+  | MaximumNumberOfResourcesSchemaError$Outbound
+  | InvalidFileTypeSchemaError$Outbound
+  | DuplicateResourceSchemaError$Outbound;
 
 /** @internal */
 export const CreateCustomerDocumentBadRequestDwollaV1HalJSON$outboundSchema:
@@ -274,9 +316,9 @@ export const CreateCustomerDocumentBadRequestDwollaV1HalJSON$outboundSchema:
     z.ZodTypeDef,
     CreateCustomerDocumentBadRequestDwollaV1HalJSON
   > = z.union([
-    models.MaximumNumberOfResourcesSchema$outboundSchema,
-    models.InvalidFileTypeSchema$outboundSchema,
-    models.DuplicateResourceSchema$outboundSchema,
+    MaximumNumberOfResourcesSchemaError$outboundSchema,
+    InvalidFileTypeSchemaError$outboundSchema,
+    DuplicateResourceSchemaError$outboundSchema,
   ]);
 
 /**

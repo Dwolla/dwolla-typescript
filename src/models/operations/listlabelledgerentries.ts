@@ -15,11 +15,11 @@ export type ListLabelLedgerEntriesRequest = {
   /**
    * How many results to return
    */
-  limit?: string | undefined;
+  limit?: number | undefined;
   /**
    * How many results to skip
    */
-  offset?: string | undefined;
+  offset?: number | undefined;
 };
 
 /** @internal */
@@ -29,15 +29,15 @@ export const ListLabelLedgerEntriesRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
-  limit: z.string().optional(),
-  offset: z.string().optional(),
+  limit: z.number().int().optional(),
+  offset: z.number().int().optional(),
 });
 
 /** @internal */
 export type ListLabelLedgerEntriesRequest$Outbound = {
   id: string;
-  limit?: string | undefined;
-  offset?: string | undefined;
+  limit?: number | undefined;
+  offset?: number | undefined;
 };
 
 /** @internal */
@@ -47,8 +47,8 @@ export const ListLabelLedgerEntriesRequest$outboundSchema: z.ZodType<
   ListLabelLedgerEntriesRequest
 > = z.object({
   id: z.string(),
-  limit: z.string().optional(),
-  offset: z.string().optional(),
+  limit: z.number().int().optional(),
+  offset: z.number().int().optional(),
 });
 
 /**

@@ -5,13 +5,7 @@
 ```typescript
 import { CreateBeneficialOwnerForCustomerResponse } from "dwolla-typescript/models/operations";
 
-let value: CreateBeneficialOwnerForCustomerResponse = {
-  headers: {
-    "key": [
-      "<value>",
-    ],
-  },
-};
+let value: CreateBeneficialOwnerForCustomerResponse = {};
 ```
 
 ## Fields

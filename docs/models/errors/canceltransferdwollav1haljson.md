@@ -5,19 +5,19 @@
 
 ## Supported Types
 
-### `models.BadRequestError`
+### `errors.BadRequestError`
 
 ```typescript
-const value: models.BadRequestError = {
+const value: errors.BadRequestError = {
   code: "BadRequest",
   message: "The request body contains bad syntax or is incomplete.",
 };
 ```
 
-### `models.StatusInvalidError`
+### `errors.StatusInvalidError`
 
 ```typescript
-const value: models.StatusInvalidError = {
+const value: errors.StatusInvalidError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
@@ -34,10 +34,10 @@ const value: models.StatusInvalidError = {
 };
 ```
 
-### `models.StatusNotAllowedError`
+### `errors.StatusNotAllowedError`
 
 ```typescript
-const value: models.StatusNotAllowedError = {
+const value: errors.StatusNotAllowedError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",

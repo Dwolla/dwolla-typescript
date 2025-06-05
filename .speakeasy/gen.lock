@@ -1,33 +1,33 @@
 lockVersion: 2.0.0
 id: 53ac026a-ff11-435d-914b-31df5268afb0
 management:
-  docChecksum: 1cafd98f8bcc1efe92531da6b81b7b28
+  docChecksum: afa6e560761b40a62da7ed7c562c6d00
   docVersion: "2.0"
-  speakeasyVersion: 1.548.1
-  generationVersion: 2.605.0
+  speakeasyVersion: 1.556.2
+  generationVersion: 2.621.3
   releaseVersion: 0.0.1
-  configChecksum: 89e7b10e2765dc72cef0aee92f7d3755
+  configChecksum: 851502ced756b16b5e0cf1da256139eb
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.21.8
+    core: 3.21.10
     defaultEnabledRetries: 0.1.0
-    deprecations: 2.81.1
     devContainers: 2.90.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
     errorUnions: 0.1.1
     globalSecurity: 2.82.13
     globalSecurityCallbacks: 0.1.0
-    globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.5
+    groups: 2.81.2
     mcpServer: 0.9.2
-    methodSecurity: 2.82.6
+    nameOverrides: 2.81.2
     nullables: 0.1.1
+    oauth2ClientCredentials: 0.4.1
     responseFormat: 0.2.3
     retries: 2.83.0
-    sdkHooks: 0.2.0
+    sdkHooks: 0.3.0
     unions: 2.85.8
     uploadStreams: 0.1.0
 generatedFiles:
@@ -43,7 +43,6 @@ generatedFiles:
   - docs/models/about.md
   - docs/models/accessperiod.md
   - docs/models/account.md
-  - docs/models/achaddendaentriesnotenabledforaccounterror.md
   - docs/models/achaddendaentriesnotenabledforaccounterrorembedded.md
   - docs/models/achaddendaentriesnotenabledforaccounterrorerror.md
   - docs/models/achaddendaentriesnotenabledforaccounterrorlinks.md
@@ -60,7 +59,6 @@ generatedFiles:
   - docs/models/availableexchangeconnectionsembedded.md
   - docs/models/availableexchangeconnectionslinks.md
   - docs/models/availableexchangeconnectionsself.md
-  - docs/models/badrequestschema.md
   - docs/models/badrequestschemaembedded.md
   - docs/models/bankaccounttypechecking.md
   - docs/models/beneficialowner.md
@@ -75,7 +73,6 @@ generatedFiles:
   - docs/models/businessclassificationlinks.md
   - docs/models/businessclassifications.md
   - docs/models/businessclassificationsembedded.md
-  - docs/models/cannotparseamounterror.md
   - docs/models/cannotparseamounterrorembedded.md
   - docs/models/cannotparseamounterrorerror.md
   - docs/models/cannotparseamounterrorlinks.md
@@ -123,24 +120,19 @@ generatedFiles:
   - docs/models/customers.md
   - docs/models/customersembedded.md
   - docs/models/deactivatecustomer.md
-  - docs/models/depositaccountrestrictederror.md
   - docs/models/depositaccountrestrictederrorembedded.md
   - docs/models/depositaccountrestrictederrorerror.md
   - docs/models/depositaccountrestrictederrorlinks.md
   - docs/models/destinationaddenda.md
-  - docs/models/destinationaddendamaxlengtherror.md
   - docs/models/destinationaddendamaxlengtherrorembedded.md
   - docs/models/destinationaddendamaxlengtherrorerror.md
   - docs/models/destinationaddendamaxlengtherrorlinks.md
-  - docs/models/destinationprocessingchannelnotsupportederror.md
   - docs/models/destinationprocessingchannelnotsupportederrorembedded.md
   - docs/models/destinationprocessingchannelnotsupportederrorerror.md
   - docs/models/destinationprocessingchannelnotsupportederrorlinks.md
-  - docs/models/destinationremittancedatamaxlengtherror.md
   - docs/models/destinationremittancedatamaxlengtherrorembedded.md
   - docs/models/destinationremittancedatamaxlengtherrorerror.md
   - docs/models/destinationremittancedatamaxlengtherrorlinks.md
-  - docs/models/directaccountwithoutbankerror.md
   - docs/models/directaccountwithoutbankerrorembedded.md
   - docs/models/directaccountwithoutbankerrorerror.md
   - docs/models/directaccountwithoutbankerrorlinks.md
@@ -148,84 +140,190 @@ generatedFiles:
   - docs/models/documentlinks.md
   - docs/models/documents.md
   - docs/models/documentsembedded.md
-  - docs/models/duplicateresourceschema.md
   - docs/models/duplicateresourceschemalinks.md
+  - docs/models/errors/achaddendaentriesnotenabledforaccounterror.md
   - docs/models/errors/badrequesterror.md
+  - docs/models/errors/badrequestschemaerror.md
   - docs/models/errors/canceltransferdwollav1haljson.md
-  - docs/models/errors/certifybeneficialownershipforcustomerbadrequestdwollav1haljsonerror.md
-  - docs/models/errors/certifybeneficialownershipforcustomerforbiddendwollav1haljsonerror.md
+  - docs/models/errors/cannotparseamounterror.md
+  - docs/models/errors/certifybeneficialownershipforcustomerdwollav1haljsonerror.md
   - docs/models/errors/createaccountexchangedwollav1haljson.md
   - docs/models/errors/createaccountexchangedwollav1haljsonerror.md
-  - docs/models/errors/createaccountfundingsourcedwollav1haljson.md
-  - docs/models/errors/createaccountfundingsourcedwollav1haljsonerror.md
+  - docs/models/errors/createbeneficialownerdocumentdwollav1haljson.md
+  - docs/models/errors/createbeneficialownerdocumentdwollav1haljsonerror.md
   - docs/models/errors/createcustomerdocumentbadrequestdwollav1haljson.md
   - docs/models/errors/createcustomerdocumentforbiddendwollav1haljson.md
   - docs/models/errors/createcustomerdocumentnotfounddwollav1haljsonerror.md
-  - docs/models/errors/createcustomerexchangebadrequestdwollav1haljsonerror.md
-  - docs/models/errors/createcustomerexchangenotfounddwollav1haljsonerror.md
+  - docs/models/errors/createcustomerdocumentrequestentitytoolargedwollav1haljsonerror.md
+  - docs/models/errors/createcustomerexchangedwollav1haljsonerror.md
   - docs/models/errors/createcustomerexchangesessionbadrequestdwollav1haljson.md
+  - docs/models/errors/createcustomerexchangesessiondwollav1haljsonerror.md
   - docs/models/errors/createcustomerexchangesessionforbiddendwollav1haljson.md
-  - docs/models/errors/createcustomerexchangesessionnotfounddwollav1haljsonerror.md
-  - docs/models/errors/createcustomerexchangesessionunauthorizeddwollav1haljsonerror.md
-  - docs/models/errors/createcustomerexchangeunauthorizeddwollav1haljsonerror.md
+  - docs/models/errors/createcustomerexchangesessionresponsebodybadrequesterror1.md
+  - docs/models/errors/createcustomerexchangesessionresponsebodybadrequesterror2.md
+  - docs/models/errors/createcustomerexchangesessionresponsebodybadrequesterror3.md
   - docs/models/errors/createcustomerforbiddendwollav1haljsonerror.md
   - docs/models/errors/createcustomerfundingsourcedwollav1haljson.md
   - docs/models/errors/createcustomerfundingsourceforbiddendwollav1haljsonerror.md
   - docs/models/errors/createcustomerfundingsourcenotfounddwollav1haljsonerror.md
-  - docs/models/errors/createcustomerfundingsourcetokendwollav1haljsonerror.md
-  - docs/models/errors/createcustomeriavtokendwollav1haljsonerror.md
+  - docs/models/errors/createcustomerfundingsourceresponsebodyerror1.md
+  - docs/models/errors/createcustomerfundingsourceresponsebodyerror2.md
+  - docs/models/errors/createcustomerfundingsourceresponsebodyerror3.md
+  - docs/models/errors/createcustomerlabelforbiddendwollav1haljsonerror.md
+  - docs/models/errors/createcustomerlabelnotfounddwollav1haljsonerror.md
   - docs/models/errors/createcustomernotfounddwollav1haljsonerror.md
+  - docs/models/errors/createfundingsourcedwollav1haljson.md
+  - docs/models/errors/createfundingsourcedwollav1haljsonerror.md
+  - docs/models/errors/createlabelreallocationforbiddendwollav1haljsonerror.md
+  - docs/models/errors/createlabelreallocationnotfounddwollav1haljsonerror.md
   - docs/models/errors/createreauthexchangesessionbadrequestdwollav1haljsonerror.md
   - docs/models/errors/createreauthexchangesessionforbiddendwollav1haljsonerror.md
+  - docs/models/errors/createwebhooksubscriptiondwollav1haljson.md
   - docs/models/errors/deletebeneficialownerdwollav1haljsonerror.md
+  - docs/models/errors/depositaccountrestrictederror.md
+  - docs/models/errors/destinationaddendamaxlengtherror.md
+  - docs/models/errors/destinationprocessingchannelnotsupportederror.md
+  - docs/models/errors/destinationremittancedatamaxlengtherror.md
+  - docs/models/errors/directaccountwithoutbankerror.md
+  - docs/models/errors/duplicateresourceschemaerror.md
+  - docs/models/errors/expiredkbasessionerror.md
+  - docs/models/errors/facilitatorfeeaccountnotfounderror.md
+  - docs/models/errors/facilitatorfeebelowminimumerror.md
+  - docs/models/errors/facilitatorfeesumtoolargeerror.md
   - docs/models/errors/forbiddenerror.md
   - docs/models/errors/getaccountdwollav1haljsonerror.md
   - docs/models/errors/getbeneficialownershipstatusforcustomerforbiddendwollav1haljsonerror.md
   - docs/models/errors/getbeneficialownershipstatusforcustomernotfounddwollav1haljsonerror.md
   - docs/models/errors/getcustomerforbiddendwollav1haljsonerror.md
   - docs/models/errors/getcustomernotfounddwollav1haljsonerror.md
-  - docs/models/errors/geteventdwollav1haljsonerror.md
   - docs/models/errors/getexchangenotfounddwollav1haljsonerror.md
-  - docs/models/errors/getexchangepartnerdwollav1haljsonerror.md
   - docs/models/errors/getexchangeunauthorizeddwollav1haljsonerror.md
   - docs/models/errors/getfundingsourcebalancedwollav1haljsonerror.md
   - docs/models/errors/getfundingsourcedwollav1haljsonerror.md
   - docs/models/errors/getkbaquestionsdwollav1haljsonerror.md
-  - docs/models/errors/getvanachroutingdwollav1haljsonerror.md
+  - docs/models/errors/getmasspaymentforbiddendwollav1haljsonerror.md
+  - docs/models/errors/getmasspaymentitemforbiddendwollav1haljsonerror.md
+  - docs/models/errors/getmasspaymentitemnotfounddwollav1haljsonerror.md
+  - docs/models/errors/getmasspaymentnotfounddwollav1haljsonerror.md
+  - docs/models/errors/getrootdwollav1haljsonerror.md
+  - docs/models/errors/getvanroutingdwollav1haljsonerror.md
+  - docs/models/errors/highriskerror.md
+  - docs/models/errors/incompatibleaddendaentrieserror.md
+  - docs/models/errors/incompatibleholdingserror.md
+  - docs/models/errors/incompatiblesourceanddestinationtypeserror.md
+  - docs/models/errors/incompatiblesourceforrtpdestinationerror.md
   - docs/models/errors/initiatekbaforcustomerdwollav1haljson.md
+  - docs/models/errors/initiatemasspaymentdwollav1haljsonerror.md
   - docs/models/errors/initiateorverifymicrodepositsdwollav1haljsonerror.md
   - docs/models/errors/initiatetransferbadrequestdwollav1haljson.md
   - docs/models/errors/initiatetransferforbiddendwollav1haljson.md
-  - docs/models/errors/listaccountfundingsourcesforbiddendwollav1haljsonerror.md
-  - docs/models/errors/listaccountfundingsourcesnotfounddwollav1haljsonerror.md
-  - docs/models/errors/listaccountmasspaymentsforbiddendwollav1haljsonerror.md
-  - docs/models/errors/listaccountmasspaymentsnotfounddwollav1haljsonerror.md
-  - docs/models/errors/listandsearchaccounttransfersdwollav1haljsonerror.md
+  - docs/models/errors/insufficientfundserror.md
+  - docs/models/errors/invalidamountfordestinationclearingtypeerror.md
+  - docs/models/errors/invalidamountfordestinationprocessingchannelerror.md
+  - docs/models/errors/invalidamountlimiterror.md
+  - docs/models/errors/invalidattempttofacilitatefundserror.md
+  - docs/models/errors/invalidattempttopayinfundserror.md
+  - docs/models/errors/invalidattempttopayoutfundserror.md
+  - docs/models/errors/invalidcorrelationiderror.md
+  - docs/models/errors/invaliddestinationbankaccounttypeerror.md
+  - docs/models/errors/invaliddestinationclearingtypeerror.md
+  - docs/models/errors/invaliddestinationfundingsourceerror.md
+  - docs/models/errors/invalidexchangeerror.md
+  - docs/models/errors/invalidexchangetokenerror.md
+  - docs/models/errors/invalidfacilitatorerror.md
+  - docs/models/errors/invalidfacilitatorfeeamounterror.md
+  - docs/models/errors/invalidfacilitatorfeecollectfromcombinationerror.md
+  - docs/models/errors/invalidfacilitatorfeecollectfromerror.md
+  - docs/models/errors/invalidfeeodfierror.md
+  - docs/models/errors/invalidfiletypeschemaerror.md
+  - docs/models/errors/invalidkbasessionerror.md
+  - docs/models/errors/invalidmetadataerror.md
+  - docs/models/errors/invalidpointofsaleaddendaaddresserror.md
+  - docs/models/errors/invalidpointofsaleaddendacityerror.md
+  - docs/models/errors/invalidpointofsaleaddendadateerror.md
+  - docs/models/errors/invalidpointofsaleaddendaidentificationcodeerror.md
+  - docs/models/errors/invalidpointofsaleaddendaserialnumbererror.md
+  - docs/models/errors/invalidpointofsaleaddendastateerror.md
+  - docs/models/errors/invalidresourcestateschemaerror.md
+  - docs/models/errors/invalidsourcebankaccounttypeerror.md
+  - docs/models/errors/invalidsourcefundingsourceerror.md
+  - docs/models/errors/invalidurlformaterror.md
+  - docs/models/errors/listandsearchtransfersdwollav1haljsonerror.md
   - docs/models/errors/listavailableexchangeconnectionsdwollav1haljsonerror.md
   - docs/models/errors/listbeneficialownersforcustomerdwollav1haljsonerror.md
   - docs/models/errors/listcustomerexchangesdwollav1haljsonerror.md
   - docs/models/errors/listcustomerfundingsourcesforbiddendwollav1haljsonerror.md
   - docs/models/errors/listcustomerfundingsourcesnotfounddwollav1haljsonerror.md
+  - docs/models/errors/listcustomerlabelsforbiddendwollav1haljsonerror.md
+  - docs/models/errors/listcustomerlabelsnotfounddwollav1haljsonerror.md
+  - docs/models/errors/listcustomermasspaymentsforbiddendwollav1haljsonerror.md
+  - docs/models/errors/listcustomermasspaymentsnotfounddwollav1haljsonerror.md
+  - docs/models/errors/listfundingsourcesforbiddendwollav1haljsonerror.md
+  - docs/models/errors/listfundingsourcesnotfounddwollav1haljsonerror.md
+  - docs/models/errors/listmasspaymentitemsforbiddendwollav1haljsonerror.md
+  - docs/models/errors/listmasspaymentitemsnotfounddwollav1haljsonerror.md
+  - docs/models/errors/listmasspaymentsforbiddendwollav1haljsonerror.md
+  - docs/models/errors/listmasspaymentsnotfounddwollav1haljsonerror.md
+  - docs/models/errors/maximumnumberofresourcesschemaerror.md
+  - docs/models/errors/maxsubscriptionsreachederror.md
+  - docs/models/errors/notauthorizedschemaerror.md
   - docs/models/errors/notfounderror.md
+  - docs/models/errors/operationblockederror.md
+  - docs/models/errors/pointofsaleaddendaentriesnotenabledforaccounterror.md
+  - docs/models/errors/receivernotfounderror.md
+  - docs/models/errors/receiverrestrictederror.md
   - docs/models/errors/removelabeldwollav1haljsonerror.md
-  - docs/models/errors/requestentitytoolargedwollav1haljsonerror.md
+  - docs/models/errors/responsebodyforbiddenerror1.md
+  - docs/models/errors/responsebodyforbiddenerror2.md
   - docs/models/errors/retrievebeneficialownerdwollav1haljsonerror.md
   - docs/models/errors/retrievebusinessclassificationdwollav1haljsonerror.md
   - docs/models/errors/retrievecustomerexchangesessionforbiddendwollav1haljsonerror.md
   - docs/models/errors/retrievecustomerexchangesessionnotfounddwollav1haljsonerror.md
-  - docs/models/errors/rootdwollav1haljsonerror.md
+  - docs/models/errors/rtpaccountsettingnotenablederror.md
+  - docs/models/errors/rtpfacilitatorfeenotsupportederror.md
+  - docs/models/errors/rtppersonaltopersonalnotsupportederror.md
+  - docs/models/errors/rtpunverifiedsendernotsupportederror.md
+  - docs/models/errors/secrettoolongerror.md
+  - docs/models/errors/senderrestrictederror.md
+  - docs/models/errors/sourceaddendamaxlengtherror.md
+  - docs/models/errors/sourcenotfounderror.md
+  - docs/models/errors/sourcesameasdestinationerror.md
+  - docs/models/errors/statusinvaliderror.md
+  - docs/models/errors/statusnotallowederror.md
   - docs/models/errors/toomanyrequestserrorerror.md
+  - docs/models/errors/transferexpiredforfeeerror.md
   - docs/models/errors/unauthorizederror.md
   - docs/models/errors/updatebadrequestdwollav1haljsonerror.md
-  - docs/models/errors/updatebeneficialownerbadrequestdwollav1haljsonerror.md
   - docs/models/errors/updatebeneficialownerforbiddendwollav1haljsonerror.md
   - docs/models/errors/updatebeneficialownernotfounddwollav1haljsonerror.md
   - docs/models/errors/updateforbiddendwollav1haljsonerror.md
+  - docs/models/errors/updatemasspaymentforbiddendwollav1haljsonerror.md
+  - docs/models/errors/updatemasspaymentnotfounddwollav1haljsonerror.md
   - docs/models/errors/updateorremovefundingsourcebadrequestdwollav1haljsonerror.md
   - docs/models/errors/updateorremovefundingsourceforbiddendwollav1haljsonerror.md
-  - docs/models/errors/verifykbaquestionsdwollav1haljson.md
-  - docs/models/errors/verifykbaquestionsdwollav1haljsonerror.md
+  - docs/models/errors/validationerrorschema.md
+  - docs/models/errors/verifydwollav1haljson.md
+  - docs/models/errors/verifydwollav1haljsonerror.md
+  - docs/models/errors/weeklyreceivelimitreachederror.md
+  - docs/models/errors/wireaccountnotfounderror.md
+  - docs/models/errors/wireaccountrestrictederror.md
+  - docs/models/errors/wireinvalidimaderror.md
+  - docs/models/errors/wirenotenablederror.md
+  - docs/models/errors/withdrawaccountrestrictederror.md
+  - docs/models/errors/withdrawinvalidamounterror.md
+  - docs/models/errors/withdrawinvalidamountforclearingtypeerror.md
+  - docs/models/errors/withdrawinvalidfundingsourceerror.md
+  - docs/models/errors/withdrawinvalidwirebeneficiarycountryerror.md
+  - docs/models/errors/withdrawinvalidwirebeneficiarylocalityerror.md
+  - docs/models/errors/withdrawinvalidwirebeneficiaryregionerror.md
+  - docs/models/errors/withdrawinvalidwireoriginatortobeneficiaryerror.md
+  - docs/models/errors/withdrawprocessingchannelnotsupportederror.md
+  - docs/models/errors/withdrawrtppersonalwithdrawalnotsupportederror.md
+  - docs/models/errors/withdrawrtpunverifiedsendernotsupportederror.md
   - docs/models/event.md
+  - docs/models/events.md
+  - docs/models/eventsembedded.md
+  - docs/models/eventslinks.md
   - docs/models/exchange.md
   - docs/models/exchangepartner.md
   - docs/models/exchangepartners.md
@@ -236,17 +334,13 @@ generatedFiles:
   - docs/models/exchangesessionexchangepartner.md
   - docs/models/exchangesessionlinks.md
   - docs/models/exchangesessionself.md
-  - docs/models/expiredkbasessionerror.md
   - docs/models/externalprovidersession.md
-  - docs/models/facilitatorfeeaccountnotfounderror.md
   - docs/models/facilitatorfeeaccountnotfounderrorembedded.md
   - docs/models/facilitatorfeeaccountnotfounderrorerror.md
   - docs/models/facilitatorfeeaccountnotfounderrorlinks.md
-  - docs/models/facilitatorfeebelowminimumerror.md
   - docs/models/facilitatorfeebelowminimumerrorembedded.md
   - docs/models/facilitatorfeebelowminimumerrorerror.md
   - docs/models/facilitatorfeebelowminimumerrorlinks.md
-  - docs/models/facilitatorfeesumtoolargeerror.md
   - docs/models/facilitatorfeesumtoolargeerrorembedded.md
   - docs/models/facilitatorfeesumtoolargeerrorerror.md
   - docs/models/facilitatorfeesumtoolargeerrorlinks.md
@@ -257,129 +351,96 @@ generatedFiles:
   - docs/models/flinkssecureexchangecreateexchangerequestbody.md
   - docs/models/flinkssecureexchangecreateexchangerequestbodyexchangepartner.md
   - docs/models/flinkssecureexchangecreateexchangerequestbodylinks.md
-  - docs/models/forbiddenerror.md
   - docs/models/fundingsource.md
   - docs/models/fundingsources.md
   - docs/models/fundingsourcesembedded.md
   - docs/models/hallink.md
-  - docs/models/highriskerror.md
   - docs/models/highriskerrorembedded.md
   - docs/models/highriskerrorerror.md
   - docs/models/highriskerrorlinks.md
-  - docs/models/incompatibleaddendaentrieserror.md
   - docs/models/incompatibleaddendaentrieserrorembedded.md
   - docs/models/incompatibleaddendaentrieserrorerror.md
   - docs/models/incompatibleaddendaentrieserrorlinks.md
-  - docs/models/incompatibleholdingserror.md
   - docs/models/incompatibleholdingserrorembedded.md
   - docs/models/incompatibleholdingserrorerror.md
   - docs/models/incompatibleholdingserrorlinks.md
-  - docs/models/incompatiblesourceanddestinationtypeserror.md
   - docs/models/incompatiblesourceanddestinationtypeserrorembedded.md
   - docs/models/incompatiblesourceanddestinationtypeserrorerror.md
   - docs/models/incompatiblesourceanddestinationtypeserrorlinks.md
-  - docs/models/incompatiblesourceforrtpdestinationerror.md
   - docs/models/incompatiblesourceforrtpdestinationerrorembedded.md
   - docs/models/incompatiblesourceforrtpdestinationerrorerror.md
   - docs/models/incompatiblesourceforrtpdestinationerrorlinks.md
   - docs/models/industryclassification.md
-  - docs/models/insufficientfundserror.md
   - docs/models/insufficientfundserrorembedded.md
   - docs/models/insufficientfundserrorerror.md
   - docs/models/insufficientfundserrorlinks.md
   - docs/models/internationaladdress.md
-  - docs/models/invalidamountfordestinationclearingtypeerror.md
   - docs/models/invalidamountfordestinationclearingtypeerrorembedded.md
   - docs/models/invalidamountfordestinationclearingtypeerrorerror.md
   - docs/models/invalidamountfordestinationclearingtypeerrorlinks.md
-  - docs/models/invalidamountfordestinationprocessingchannelerror.md
   - docs/models/invalidamountfordestinationprocessingchannelerrorembedded.md
   - docs/models/invalidamountfordestinationprocessingchannelerrorerror.md
   - docs/models/invalidamountfordestinationprocessingchannelerrorlinks.md
-  - docs/models/invalidamountlimiterror.md
   - docs/models/invalidamountlimiterrorembedded.md
   - docs/models/invalidamountlimiterrorerror.md
   - docs/models/invalidamountlimiterrorlinks.md
-  - docs/models/invalidattempttofacilitatefundserror.md
-  - docs/models/invalidattempttopayinfundserror.md
-  - docs/models/invalidattempttopayoutfundserror.md
-  - docs/models/invalidcorrelationiderror.md
   - docs/models/invalidcorrelationiderrorembedded.md
   - docs/models/invalidcorrelationiderrorerror.md
   - docs/models/invalidcorrelationiderrorlinks.md
-  - docs/models/invaliddestinationbankaccounttypeerror.md
   - docs/models/invaliddestinationbankaccounttypeerrorembedded.md
   - docs/models/invaliddestinationbankaccounttypeerrorerror.md
   - docs/models/invaliddestinationbankaccounttypeerrorlinks.md
-  - docs/models/invaliddestinationclearingtypeerror.md
   - docs/models/invaliddestinationclearingtypeerrorembedded.md
   - docs/models/invaliddestinationclearingtypeerrorerror.md
   - docs/models/invaliddestinationclearingtypeerrorlinks.md
-  - docs/models/invaliddestinationfundingsourceerror.md
   - docs/models/invaliddestinationfundingsourceerrorembedded.md
   - docs/models/invaliddestinationfundingsourceerrorerror.md
   - docs/models/invaliddestinationfundingsourceerrorlinks.md
-  - docs/models/invalidexchange.md
-  - docs/models/invalidexchangetoken.md
-  - docs/models/invalidfacilitatorerror.md
   - docs/models/invalidfacilitatorerrorembedded.md
   - docs/models/invalidfacilitatorerrorerror.md
   - docs/models/invalidfacilitatorerrorlinks.md
-  - docs/models/invalidfacilitatorfeeamounterror.md
   - docs/models/invalidfacilitatorfeeamounterrorembedded.md
   - docs/models/invalidfacilitatorfeeamounterrorerror.md
   - docs/models/invalidfacilitatorfeeamounterrorlinks.md
-  - docs/models/invalidfacilitatorfeecollectfromcombinationerror.md
   - docs/models/invalidfacilitatorfeecollectfromcombinationerrorembedded.md
   - docs/models/invalidfacilitatorfeecollectfromcombinationerrorerror.md
   - docs/models/invalidfacilitatorfeecollectfromcombinationerrorlinks.md
-  - docs/models/invalidfacilitatorfeecollectfromerror.md
   - docs/models/invalidfacilitatorfeecollectfromerrorembedded.md
   - docs/models/invalidfacilitatorfeecollectfromerrorerror.md
   - docs/models/invalidfacilitatorfeecollectfromerrorlinks.md
-  - docs/models/invalidfeeodfierror.md
   - docs/models/invalidfeeodfierrorembedded.md
   - docs/models/invalidfeeodfierrorerror.md
   - docs/models/invalidfeeodfierrorlinks.md
-  - docs/models/invalidfiletypeschema.md
-  - docs/models/invalidkbasessionerror.md
-  - docs/models/invalidmetadataerror.md
   - docs/models/invalidmetadataerrorembedded.md
   - docs/models/invalidmetadataerrorerror.md
   - docs/models/invalidmetadataerrorlinks.md
-  - docs/models/invalidpointofsaleaddendaaddresserror.md
   - docs/models/invalidpointofsaleaddendaaddresserrorembedded.md
   - docs/models/invalidpointofsaleaddendaaddresserrorerror.md
   - docs/models/invalidpointofsaleaddendaaddresserrorlinks.md
-  - docs/models/invalidpointofsaleaddendacityerror.md
   - docs/models/invalidpointofsaleaddendacityerrorembedded.md
   - docs/models/invalidpointofsaleaddendacityerrorerror.md
   - docs/models/invalidpointofsaleaddendacityerrorlinks.md
-  - docs/models/invalidpointofsaleaddendadateerror.md
   - docs/models/invalidpointofsaleaddendadateerrorembedded.md
   - docs/models/invalidpointofsaleaddendadateerrorerror.md
   - docs/models/invalidpointofsaleaddendadateerrorlinks.md
-  - docs/models/invalidpointofsaleaddendaidentificationcodeerror.md
   - docs/models/invalidpointofsaleaddendaidentificationcodeerrorembedded.md
   - docs/models/invalidpointofsaleaddendaidentificationcodeerrorerror.md
   - docs/models/invalidpointofsaleaddendaidentificationcodeerrorlinks.md
-  - docs/models/invalidpointofsaleaddendaserialnumbererror.md
   - docs/models/invalidpointofsaleaddendaserialnumbererrorembedded.md
   - docs/models/invalidpointofsaleaddendaserialnumbererrorerror.md
   - docs/models/invalidpointofsaleaddendaserialnumbererrorlinks.md
-  - docs/models/invalidpointofsaleaddendastateerror.md
   - docs/models/invalidpointofsaleaddendastateerrorembedded.md
   - docs/models/invalidpointofsaleaddendastateerrorerror.md
   - docs/models/invalidpointofsaleaddendastateerrorlinks.md
-  - docs/models/invalidresourcestateschema.md
-  - docs/models/invalidsourcebankaccounttypeerror.md
   - docs/models/invalidsourcebankaccounttypeerrorembedded.md
   - docs/models/invalidsourcebankaccounttypeerrorerror.md
   - docs/models/invalidsourcebankaccounttypeerrorlinks.md
-  - docs/models/invalidsourcefundingsourceerror.md
   - docs/models/invalidsourcefundingsourceerrorembedded.md
   - docs/models/invalidsourcefundingsourceerrorerror.md
   - docs/models/invalidsourcefundingsourceerrorlinks.md
+  - docs/models/invalidurlformaterrorembedded.md
+  - docs/models/invalidurlformaterrorerror.md
+  - docs/models/invalidurlformaterrorlinks.md
   - docs/models/label.md
   - docs/models/labelamount.md
   - docs/models/labelledgerentries.md
@@ -401,7 +462,6 @@ generatedFiles:
   - docs/models/masspaymentmetadata.md
   - docs/models/masspayments.md
   - docs/models/masspaymentsembedded.md
-  - docs/models/maximumnumberofresourcesschema.md
   - docs/models/mx.md
   - docs/models/mxopenbankingcreateexchangerequestbody.md
   - docs/models/mxopenbankingcreateexchangerequestbodyexchangepartner.md
@@ -409,29 +469,27 @@ generatedFiles:
   - docs/models/mxsecureexchangecreateexchangerequestbody.md
   - docs/models/mxsecureexchangecreateexchangerequestbodyexchangepartner.md
   - docs/models/mxsecureexchangecreateexchangerequestbodylinks.md
-  - docs/models/notauthorizedschema.md
   - docs/models/ondemandauthorization.md
   - docs/models/ondemandauthorizationlinks.md
   - docs/models/ondemandauthorizationself.md
-  - docs/models/operationblockederror.md
   - docs/models/operationblockederrorembedded.md
   - docs/models/operationblockederrorerror.md
   - docs/models/operationblockederrorlinks.md
+  - docs/models/operations/available.md
   - docs/models/operations/balance.md
+  - docs/models/operations/bankbalanceresponse.md
   - docs/models/operations/canceltransferrequest.md
   - docs/models/operations/canceltransferrequestbody.md
   - docs/models/operations/canceltransferresponse.md
-  - docs/models/operations/certifybeneficialownershipforcustomerembedded.md
   - docs/models/operations/certifybeneficialownershipforcustomerrequest.md
   - docs/models/operations/certifybeneficialownershipforcustomerrequestbody.md
   - docs/models/operations/chargeto.md
+  - docs/models/operations/closing.md
   - docs/models/operations/createaccountexchangerequest.md
   - docs/models/operations/createaccountexchangeresponse.md
   - docs/models/operations/createaccountexchangeresponsebody.md
-  - docs/models/operations/createaccountfundingsourceresponse.md
   - docs/models/operations/createapplicationaccesstokenrequest.md
   - docs/models/operations/createapplicationaccesstokenresponse.md
-  - docs/models/operations/createapplicationaccesstokensecurity.md
   - docs/models/operations/createbeneficialownerdocumentfile.md
   - docs/models/operations/createbeneficialownerdocumentrequest.md
   - docs/models/operations/createbeneficialownerdocumentrequestbody.md
@@ -439,6 +497,10 @@ generatedFiles:
   - docs/models/operations/createbeneficialownerforcustomerrequest.md
   - docs/models/operations/createbeneficialownerforcustomerrequestbody.md
   - docs/models/operations/createbeneficialownerforcustomerresponse.md
+  - docs/models/operations/createclienttokencustomer.md
+  - docs/models/operations/createclienttokenlinks.md
+  - docs/models/operations/createclienttokenrequest.md
+  - docs/models/operations/createclienttokenresponse.md
   - docs/models/operations/createcustomerdocumentfile.md
   - docs/models/operations/createcustomerdocumentrequest.md
   - docs/models/operations/createcustomerdocumentrequestbody.md
@@ -448,30 +510,15 @@ generatedFiles:
   - docs/models/operations/createcustomerexchangeresponse.md
   - docs/models/operations/createcustomerexchangesessionrequest.md
   - docs/models/operations/createcustomerexchangesessionresponse.md
-  - docs/models/operations/createcustomerexchangesessionresponsebodybadrequest1.md
-  - docs/models/operations/createcustomerexchangesessionresponsebodybadrequest2.md
-  - docs/models/operations/createcustomerexchangesessionresponsebodybadrequest3.md
   - docs/models/operations/createcustomerfundingsourcerequest.md
   - docs/models/operations/createcustomerfundingsourceresponse.md
-  - docs/models/operations/createcustomerfundingsourceresponsebody1.md
-  - docs/models/operations/createcustomerfundingsourceresponsebody2.md
-  - docs/models/operations/createcustomerfundingsourceresponsebody3.md
-  - docs/models/operations/createcustomerfundingsourcetokenlinks.md
-  - docs/models/operations/createcustomerfundingsourcetokenrequest.md
-  - docs/models/operations/createcustomerfundingsourcetokenresponse.md
-  - docs/models/operations/createcustomerfundingsourcetokenself.md
-  - docs/models/operations/createcustomerfundingsourcetokentoken.md
-  - docs/models/operations/createcustomeriavtokenlinks.md
-  - docs/models/operations/createcustomeriavtokenrequest.md
-  - docs/models/operations/createcustomeriavtokenresponse.md
-  - docs/models/operations/createcustomeriavtokenself.md
-  - docs/models/operations/createcustomeriavtokentoken.md
   - docs/models/operations/createcustomerlabelamount.md
   - docs/models/operations/createcustomerlabelrequest.md
   - docs/models/operations/createcustomerlabelrequestbody.md
   - docs/models/operations/createcustomerlabelresponse.md
   - docs/models/operations/createcustomerrequest.md
   - docs/models/operations/createcustomerresponse.md
+  - docs/models/operations/createfundingsourceresponse.md
   - docs/models/operations/createlabelledgerentryamount.md
   - docs/models/operations/createlabelledgerentryrequest.md
   - docs/models/operations/createlabelledgerentryrequestbody.md
@@ -484,15 +531,16 @@ generatedFiles:
   - docs/models/operations/createreauthexchangesessionresponse.md
   - docs/models/operations/createwebhooksubscriptionrequest.md
   - docs/models/operations/createwebhooksubscriptionresponse.md
-  - docs/models/operations/customer.md
   - docs/models/operations/deletebeneficialownerrequest.md
   - docs/models/operations/deletebeneficialownerresponse.md
   - docs/models/operations/deleterequest.md
+  - docs/models/operations/dwollabalanceresponse.md
   - docs/models/operations/failure.md
   - docs/models/operations/fee.md
   - docs/models/operations/feelinks.md
   - docs/models/operations/from.md
   - docs/models/operations/fromledgerentry.md
+  - docs/models/operations/fundingsource.md
   - docs/models/operations/getaccountrequest.md
   - docs/models/operations/getbeneficialownershipstatusforcustomerrequest.md
   - docs/models/operations/getcustomerrequest.md
@@ -500,8 +548,10 @@ generatedFiles:
   - docs/models/operations/geteventrequest.md
   - docs/models/operations/getexchangepartnerrequest.md
   - docs/models/operations/getexchangerequest.md
+  - docs/models/operations/getfundingsourcebalancelinks.md
   - docs/models/operations/getfundingsourcebalancerequest.md
   - docs/models/operations/getfundingsourcebalanceresponse.md
+  - docs/models/operations/getfundingsourcebalanceself.md
   - docs/models/operations/getfundingsourcerequest.md
   - docs/models/operations/getkbaquestionslinks.md
   - docs/models/operations/getkbaquestionsrequest.md
@@ -515,10 +565,11 @@ generatedFiles:
   - docs/models/operations/gettransferfailurereasonrequest.md
   - docs/models/operations/gettransferfailurereasonresponse.md
   - docs/models/operations/gettransferrequest.md
-  - docs/models/operations/getvanachroutingrequest.md
-  - docs/models/operations/getvanachroutingresponse.md
+  - docs/models/operations/getvanroutingrequest.md
+  - docs/models/operations/getvanroutingresponse.md
   - docs/models/operations/getwebhookrequest.md
   - docs/models/operations/getwebhooksubscriptionrequest.md
+  - docs/models/operations/granttype.md
   - docs/models/operations/initiatekbaforcustomerrequest.md
   - docs/models/operations/initiatekbaforcustomerresponse.md
   - docs/models/operations/initiatemasspaymentachdetails.md
@@ -533,6 +584,7 @@ generatedFiles:
   - docs/models/operations/initiatemasspaymentrequest.md
   - docs/models/operations/initiatemasspaymentresponse.md
   - docs/models/operations/initiatemasspaymentsourceaddenda.md
+  - docs/models/operations/initiatemicrodeposits.md
   - docs/models/operations/initiateorverifymicrodepositsrequest.md
   - docs/models/operations/initiateorverifymicrodepositsrequestbody.md
   - docs/models/operations/initiateorverifymicrodepositsresponse.md
@@ -557,10 +609,8 @@ generatedFiles:
   - docs/models/operations/itemlinks.md
   - docs/models/operations/itemmetadata.md
   - docs/models/operations/linksanswer.md
-  - docs/models/operations/listaccountfundingsourcesrequest.md
-  - docs/models/operations/listaccountmasspaymentsrequest.md
-  - docs/models/operations/listandsearchaccounttransfersrequest.md
   - docs/models/operations/listandsearchcustomersrequest.md
+  - docs/models/operations/listandsearchtransfersrequest.md
   - docs/models/operations/listavailableexchangeconnectionsrequest.md
   - docs/models/operations/listbeneficialownerdocumentsrequest.md
   - docs/models/operations/listbeneficialownersforcustomerrequest.md
@@ -573,6 +623,8 @@ generatedFiles:
   - docs/models/operations/listcustomerlabelsrequest.md
   - docs/models/operations/listcustomermasspaymentsrequest.md
   - docs/models/operations/listcustomertransfersrequest.md
+  - docs/models/operations/listeventsrequest.md
+  - docs/models/operations/listfundingsourcesrequest.md
   - docs/models/operations/listlabelledgerentriesrequest.md
   - docs/models/operations/listmasspaymentitemsembedded.md
   - docs/models/operations/listmasspaymentitemsfirst.md
@@ -581,6 +633,7 @@ generatedFiles:
   - docs/models/operations/listmasspaymentitemsrequest.md
   - docs/models/operations/listmasspaymentitemsresponse.md
   - docs/models/operations/listmasspaymentitemsself.md
+  - docs/models/operations/listmasspaymentsrequest.md
   - docs/models/operations/listtransferfeesamount.md
   - docs/models/operations/listtransferfeesrequest.md
   - docs/models/operations/listtransferfeesresponse.md
@@ -600,25 +653,22 @@ generatedFiles:
   - docs/models/operations/question.md
   - docs/models/operations/questionanswer.md
   - docs/models/operations/removelabelrequest.md
-  - docs/models/operations/requestbody.md
-  - docs/models/operations/responsebodyforbidden1.md
-  - docs/models/operations/responsebodyforbidden2.md
   - docs/models/operations/retrievebeneficialownerrequest.md
   - docs/models/operations/retrievebusinessclassificationrequest.md
   - docs/models/operations/retrievecustomerexchangesessionrequest.md
-  - docs/models/operations/retrievelabelledgerentrylinks.md
-  - docs/models/operations/retrievelabelledgerentryrequest.md
-  - docs/models/operations/retrievelabelledgerentryresponse.md
-  - docs/models/operations/retrievelabelledgerentryself.md
+  - docs/models/operations/retrievelabelreallocationlinks.md
+  - docs/models/operations/retrievelabelreallocationrequest.md
+  - docs/models/operations/retrievelabelreallocationresponse.md
+  - docs/models/operations/retrievelabelreallocationself.md
   - docs/models/operations/retrywebhookrequest.md
   - docs/models/operations/retrywebhookresponse.md
   - docs/models/operations/rtpdetails.md
   - docs/models/operations/rtpdetailsdestination.md
   - docs/models/operations/to.md
+  - docs/models/operations/tokentype.md
   - docs/models/operations/toledgerentry.md
   - docs/models/operations/total.md
   - docs/models/operations/transaction.md
-  - docs/models/operations/updatebeneficialownerembedded.md
   - docs/models/operations/updatebeneficialownerrequest.md
   - docs/models/operations/updatebeneficialownerrequestbody.md
   - docs/models/operations/updatemasspaymentrequest.md
@@ -630,11 +680,12 @@ generatedFiles:
   - docs/models/operations/updaterequestbody.md
   - docs/models/operations/updatewebhooksubscriptionrequest.md
   - docs/models/operations/updatewebhooksubscriptionrequestbody.md
-  - docs/models/operations/verifykbaquestionsanswer.md
-  - docs/models/operations/verifykbaquestionslinks.md
-  - docs/models/operations/verifykbaquestionsrequest.md
-  - docs/models/operations/verifykbaquestionsrequestbody.md
-  - docs/models/operations/verifykbaquestionsresponse.md
+  - docs/models/operations/verifyanswer.md
+  - docs/models/operations/verifycustomer.md
+  - docs/models/operations/verifylinks.md
+  - docs/models/operations/verifyrequest.md
+  - docs/models/operations/verifyrequestbody.md
+  - docs/models/operations/verifyresponse.md
   - docs/models/passport.md
   - docs/models/plaid.md
   - docs/models/plaidopenbankingcreateexchangerequestbody.md
@@ -643,17 +694,14 @@ generatedFiles:
   - docs/models/plaidsecureexchangecreateexchangerequestbody.md
   - docs/models/plaidsecureexchangecreateexchangerequestbodyexchangepartner.md
   - docs/models/plaidsecureexchangecreateexchangerequestbodylinks.md
-  - docs/models/pointofsaleaddendaentriesnotenabledforaccounterror.md
   - docs/models/pointofsaleaddendaentriesnotenabledforaccounterrorembedded.md
   - docs/models/pointofsaleaddendaentriesnotenabledforaccounterrorerror.md
   - docs/models/pointofsaleaddendaentriesnotenabledforaccounterrorlinks.md
   - docs/models/product.md
   - docs/models/reactivatecustomer.md
-  - docs/models/receivernotfounderror.md
   - docs/models/receivernotfounderrorembedded.md
   - docs/models/receivernotfounderrorerror.md
   - docs/models/receivernotfounderrorlinks.md
-  - docs/models/receiverrestrictederror.md
   - docs/models/receiverrestrictederrorembedded.md
   - docs/models/receiverrestrictederrorerror.md
   - docs/models/receiverrestrictederrorlinks.md
@@ -670,45 +718,38 @@ generatedFiles:
   - docs/models/retryverifiedpersonal.md
   - docs/models/retryverifiedsoleprop.md
   - docs/models/root.md
-  - docs/models/rtpaccountsettingnotenablederror.md
   - docs/models/rtpdetails.md
   - docs/models/rtpdetailsdestination.md
-  - docs/models/rtpfacilitatorfeenotsupportederror.md
   - docs/models/rtpfacilitatorfeenotsupportederrorembedded.md
   - docs/models/rtpfacilitatorfeenotsupportederrorerror.md
   - docs/models/rtpfacilitatorfeenotsupportederrorlinks.md
-  - docs/models/rtppersonaltopersonalnotsupportederror.md
   - docs/models/rtppersonaltopersonalnotsupportederrorembedded.md
   - docs/models/rtppersonaltopersonalnotsupportederrorerror.md
   - docs/models/rtppersonaltopersonalnotsupportederrorlinks.md
-  - docs/models/rtpunverifiedsendernotsupportederror.md
   - docs/models/rtpunverifiedsendernotsupportederrorembedded.md
   - docs/models/rtpunverifiedsendernotsupportederrorerror.md
   - docs/models/rtpunverifiedsendernotsupportederrorlinks.md
+  - docs/models/secrettoolongerrorembedded.md
+  - docs/models/secrettoolongerrorerror.md
+  - docs/models/secrettoolongerrorlinks.md
   - docs/models/security.md
-  - docs/models/senderrestrictederror.md
   - docs/models/senderrestrictederrorembedded.md
   - docs/models/senderrestrictederrorerror.md
   - docs/models/senderrestrictederrorlinks.md
   - docs/models/source.md
   - docs/models/sourceaddenda.md
-  - docs/models/sourceaddendamaxlengtherror.md
   - docs/models/sourceaddendamaxlengtherrorembedded.md
   - docs/models/sourceaddendamaxlengtherrorerror.md
   - docs/models/sourceaddendamaxlengtherrorlinks.md
-  - docs/models/sourcenotfounderror.md
   - docs/models/sourcenotfounderrorembedded.md
   - docs/models/sourcenotfounderrorerror.md
   - docs/models/sourcenotfounderrorlinks.md
-  - docs/models/sourcesameasdestinationerror.md
   - docs/models/sourcesameasdestinationerrorembedded.md
   - docs/models/sourcesameasdestinationerrorerror.md
   - docs/models/sourcesameasdestinationerrorlinks.md
-  - docs/models/statusinvaliderror.md
   - docs/models/statusinvaliderrorembedded.md
   - docs/models/statusinvaliderrorerror.md
   - docs/models/statusinvaliderrorlinks.md
-  - docs/models/statusnotallowederror.md
   - docs/models/statusnotallowederrorembedded.md
   - docs/models/statusnotallowederrorerror.md
   - docs/models/statusnotallowederrorlinks.md
@@ -717,7 +758,6 @@ generatedFiles:
   - docs/models/transfer.md
   - docs/models/transferamount.md
   - docs/models/transferamount1.md
-  - docs/models/transferexpiredforfeeerror.md
   - docs/models/transferexpiredforfeeerrorembedded.md
   - docs/models/transferexpiredforfeeerrorerror.md
   - docs/models/transferexpiredforfeeerrorlinks.md
@@ -738,6 +778,7 @@ generatedFiles:
   - docs/models/upgradetoverifiedbusinesscontroller.md
   - docs/models/upgradetoverifiedpersonal.md
   - docs/models/upgradetoverifiedsoleprop.md
+  - docs/models/validationerrorschemaembedded.md
   - docs/models/verifiedbusinesscustomer.md
   - docs/models/verifiedpersonalcustomer.md
   - docs/models/verifiedsolepropcustomer.md
@@ -757,76 +798,72 @@ generatedFiles:
   - docs/models/webhooksubscription.md
   - docs/models/webhooksubscriptionlinks.md
   - docs/models/webhooksubscriptionself.md
-  - docs/models/weeklyreceivelimitreachederror.md
   - docs/models/weeklyreceivelimitreachederrorembedded.md
   - docs/models/weeklyreceivelimitreachederrorerror.md
   - docs/models/weeklyreceivelimitreachederrorlinks.md
-  - docs/models/wireaccountnotfounderror.md
   - docs/models/wireaccountnotfounderrorembedded.md
   - docs/models/wireaccountnotfounderrorerror.md
   - docs/models/wireaccountnotfounderrorlinks.md
-  - docs/models/wireaccountrestrictederror.md
   - docs/models/wireaccountrestrictederrorembedded.md
   - docs/models/wireaccountrestrictederrorerror.md
   - docs/models/wireaccountrestrictederrorlinks.md
-  - docs/models/wireinvalidimaderror.md
   - docs/models/wireinvalidimaderrorembedded.md
   - docs/models/wireinvalidimaderrorerror.md
   - docs/models/wireinvalidimaderrorlinks.md
-  - docs/models/wirenotenablederror.md
   - docs/models/wirenotenablederrorembedded.md
   - docs/models/wirenotenablederrorerror.md
   - docs/models/wirenotenablederrorlinks.md
-  - docs/models/withdrawaccountrestrictederror.md
   - docs/models/withdrawaccountrestrictederrorembedded.md
   - docs/models/withdrawaccountrestrictederrorerror.md
   - docs/models/withdrawaccountrestrictederrorlinks.md
-  - docs/models/withdrawinvalidamounterror.md
   - docs/models/withdrawinvalidamounterrorembedded.md
   - docs/models/withdrawinvalidamounterrorerror.md
   - docs/models/withdrawinvalidamounterrorlinks.md
-  - docs/models/withdrawinvalidamountforclearingtypeerror.md
   - docs/models/withdrawinvalidamountforclearingtypeerrorembedded.md
   - docs/models/withdrawinvalidamountforclearingtypeerrorerror.md
   - docs/models/withdrawinvalidamountforclearingtypeerrorlinks.md
-  - docs/models/withdrawinvalidfundingsourceerror.md
   - docs/models/withdrawinvalidfundingsourceerrorembedded.md
   - docs/models/withdrawinvalidfundingsourceerrorerror.md
   - docs/models/withdrawinvalidfundingsourceerrorlinks.md
-  - docs/models/withdrawinvalidwirebeneficiarycountryerror.md
   - docs/models/withdrawinvalidwirebeneficiarycountryerrorembedded.md
   - docs/models/withdrawinvalidwirebeneficiarycountryerrorerror.md
   - docs/models/withdrawinvalidwirebeneficiarycountryerrorlinks.md
-  - docs/models/withdrawinvalidwirebeneficiarylocalityerror.md
   - docs/models/withdrawinvalidwirebeneficiarylocalityerrorembedded.md
   - docs/models/withdrawinvalidwirebeneficiarylocalityerrorerror.md
   - docs/models/withdrawinvalidwirebeneficiarylocalityerrorlinks.md
-  - docs/models/withdrawinvalidwirebeneficiaryregionerror.md
   - docs/models/withdrawinvalidwirebeneficiaryregionerrorembedded.md
   - docs/models/withdrawinvalidwirebeneficiaryregionerrorerror.md
   - docs/models/withdrawinvalidwirebeneficiaryregionerrorlinks.md
-  - docs/models/withdrawinvalidwireoriginatortobeneficiaryerror.md
   - docs/models/withdrawinvalidwireoriginatortobeneficiaryerrorembedded.md
   - docs/models/withdrawinvalidwireoriginatortobeneficiaryerrorerror.md
   - docs/models/withdrawinvalidwireoriginatortobeneficiaryerrorlinks.md
-  - docs/models/withdrawprocessingchannelnotsupportederror.md
   - docs/models/withdrawprocessingchannelnotsupportederrorembedded.md
   - docs/models/withdrawprocessingchannelnotsupportederrorerror.md
   - docs/models/withdrawprocessingchannelnotsupportederrorlinks.md
-  - docs/models/withdrawrtppersonalwithdrawalnotsupportederror.md
   - docs/models/withdrawrtppersonalwithdrawalnotsupportederrorembedded.md
   - docs/models/withdrawrtppersonalwithdrawalnotsupportederrorerror.md
   - docs/models/withdrawrtppersonalwithdrawalnotsupportederrorlinks.md
-  - docs/models/withdrawrtpunverifiedsendernotsupportederror.md
   - docs/models/withdrawrtpunverifiedsendernotsupportederrorembedded.md
   - docs/models/withdrawrtpunverifiedsendernotsupportederrorerror.md
   - docs/models/withdrawrtpunverifiedsendernotsupportederrorlinks.md
-  - docs/sdks/account/README.md
+  - docs/sdks/accounts/README.md
+  - docs/sdks/accountsexchanges/README.md
+  - docs/sdks/accountsfundingsources/README.md
+  - docs/sdks/accountsmasspayments/README.md
+  - docs/sdks/accountstransfers/README.md
   - docs/sdks/beneficialowners/README.md
+  - docs/sdks/beneficialownersdocuments/README.md
+  - docs/sdks/businessclassifications/README.md
+  - docs/sdks/clienttokens/README.md
   - docs/sdks/customers/README.md
+  - docs/sdks/customersbeneficialowners/README.md
+  - docs/sdks/customersdocuments/README.md
+  - docs/sdks/customersexchanges/README.md
+  - docs/sdks/customersfundingsources/README.md
   - docs/sdks/documents/README.md
   - docs/sdks/dwolla/README.md
   - docs/sdks/events/README.md
+  - docs/sdks/exchangepartners/README.md
   - docs/sdks/exchanges/README.md
   - docs/sdks/exchangesessions/README.md
   - docs/sdks/fundingsources/README.md
@@ -843,87 +880,88 @@ generatedFiles:
   - jsr.json
   - package.json
   - src/core.ts
-  - src/funcs/accountCreateAccountFundingSource.ts
-  - src/funcs/accountGetAccount.ts
-  - src/funcs/accountListAccountFundingSources.ts
-  - src/funcs/accountListAccountMassPayments.ts
-  - src/funcs/accountListAndSearchAccountTransfers.ts
-  - src/funcs/beneficialOwnersCertifyBeneficialOwnershipForCustomer.ts
-  - src/funcs/beneficialOwnersCreateBeneficialOwnerForCustomer.ts
-  - src/funcs/beneficialOwnersDeleteBeneficialOwner.ts
-  - src/funcs/beneficialOwnersGetBeneficialOwnershipStatusForCustomer.ts
-  - src/funcs/beneficialOwnersListBeneficialOwnersForCustomer.ts
-  - src/funcs/beneficialOwnersRetrieveBeneficialOwner.ts
-  - src/funcs/beneficialOwnersUpdateBeneficialOwner.ts
-  - src/funcs/customersCreateCustomer.ts
-  - src/funcs/customersGetCustomer.ts
-  - src/funcs/customersListAndSearchCustomers.ts
-  - src/funcs/customersListBusinessClassifications.ts
-  - src/funcs/customersRetrieveBusinessClassification.ts
+  - src/funcs/accountsExchangesCreate.ts
+  - src/funcs/accountsExchangesList.ts
+  - src/funcs/accountsFundingSourcesCreate.ts
+  - src/funcs/accountsFundingSourcesList.ts
+  - src/funcs/accountsGet.ts
+  - src/funcs/accountsMassPaymentsList.ts
+  - src/funcs/accountsTransfersList.ts
+  - src/funcs/beneficialOwnersCertifyOwnership.ts
+  - src/funcs/beneficialOwnersDelete.ts
+  - src/funcs/beneficialOwnersDocumentsCreate.ts
+  - src/funcs/beneficialOwnersDocumentsList.ts
+  - src/funcs/beneficialOwnersGet.ts
+  - src/funcs/beneficialOwnersGetOwnershipStatus.ts
+  - src/funcs/beneficialOwnersUpdate.ts
+  - src/funcs/businessClassificationsGet.ts
+  - src/funcs/businessClassificationsList.ts
+  - src/funcs/clientTokensCreate.ts
+  - src/funcs/customersBeneficialOwnersCreate.ts
+  - src/funcs/customersBeneficialOwnersList.ts
+  - src/funcs/customersCreate.ts
+  - src/funcs/customersDocumentsCreate.ts
+  - src/funcs/customersDocumentsList.ts
+  - src/funcs/customersExchangesCreate.ts
+  - src/funcs/customersExchangesList.ts
+  - src/funcs/customersFundingSourcesList.ts
+  - src/funcs/customersGet.ts
+  - src/funcs/customersList.ts
+  - src/funcs/customersListAvailableConnections.ts
   - src/funcs/customersUpdate.ts
-  - src/funcs/documentsCreateBeneficialOwnerDocument.ts
-  - src/funcs/documentsCreateCustomerDocument.ts
-  - src/funcs/documentsGetDocument.ts
-  - src/funcs/documentsListBeneficialOwnerDocuments.ts
-  - src/funcs/documentsListCustomerDocuments.ts
-  - src/funcs/eventsGetEvent.ts
-  - src/funcs/exchangeSessionsCreateCustomerExchangeSession.ts
-  - src/funcs/exchangeSessionsCreateReAuthExchangeSession.ts
-  - src/funcs/exchangeSessionsListAvailableExchangeConnections.ts
-  - src/funcs/exchangeSessionsRetrieveCustomerExchangeSession.ts
-  - src/funcs/exchangesCreateAccountExchange.ts
-  - src/funcs/exchangesCreateCustomerExchange.ts
-  - src/funcs/exchangesGetExchange.ts
-  - src/funcs/exchangesGetExchangePartner.ts
-  - src/funcs/exchangesListAccountExchanges.ts
-  - src/funcs/exchangesListCustomerExchanges.ts
-  - src/funcs/exchangesListExchangePartners.ts
-  - src/funcs/fundingSourcesCreateCustomerFundingSource.ts
-  - src/funcs/fundingSourcesCreateCustomerFundingSourceToken.ts
-  - src/funcs/fundingSourcesCreateCustomerIavToken.ts
-  - src/funcs/fundingSourcesGetFundingSource.ts
-  - src/funcs/fundingSourcesGetFundingSourceBalance.ts
+  - src/funcs/documentsGet.ts
+  - src/funcs/eventsGet.ts
+  - src/funcs/eventsList.ts
+  - src/funcs/exchangePartnersGet.ts
+  - src/funcs/exchangePartnersList.ts
+  - src/funcs/exchangeSessionsCreate.ts
+  - src/funcs/exchangeSessionsGet.ts
+  - src/funcs/exchangesCreateReAuth.ts
+  - src/funcs/exchangesGet.ts
+  - src/funcs/fundingSourcesCreateForCustomer.ts
+  - src/funcs/fundingSourcesGet.ts
+  - src/funcs/fundingSourcesGetBalance.ts
   - src/funcs/fundingSourcesGetMicroDeposits.ts
-  - src/funcs/fundingSourcesGetVanAchRouting.ts
+  - src/funcs/fundingSourcesGetVanRouting.ts
   - src/funcs/fundingSourcesInitiateOrVerifyMicroDeposits.ts
-  - src/funcs/fundingSourcesListCustomerFundingSources.ts
-  - src/funcs/fundingSourcesUpdateOrRemoveFundingSource.ts
-  - src/funcs/kbaGetKbaQuestions.ts
-  - src/funcs/kbaInitiateKbaForCustomer.ts
-  - src/funcs/kbaVerifyKbaQuestions.ts
-  - src/funcs/labelsCreateCustomerLabel.ts
-  - src/funcs/labelsCreateLabelLedgerEntry.ts
-  - src/funcs/labelsCreateLabelReallocation.ts
-  - src/funcs/labelsGetLabel.ts
-  - src/funcs/labelsGetLabelLedgerEntry.ts
-  - src/funcs/labelsListCustomerLabels.ts
-  - src/funcs/labelsListLabelLedgerEntries.ts
-  - src/funcs/labelsRemoveLabel.ts
-  - src/funcs/labelsRetrieveLabelLedgerEntry.ts
-  - src/funcs/massPaymentsGetMassPayment.ts
-  - src/funcs/massPaymentsGetMassPaymentItem.ts
-  - src/funcs/massPaymentsInitiateMassPayment.ts
-  - src/funcs/massPaymentsListCustomerMassPayments.ts
-  - src/funcs/massPaymentsListMassPaymentItems.ts
-  - src/funcs/massPaymentsUpdateMassPayment.ts
-  - src/funcs/rootRoot.ts
+  - src/funcs/fundingSourcesUpdateOrRemove.ts
+  - src/funcs/kbaGetQuestions.ts
+  - src/funcs/kbaInitiate.ts
+  - src/funcs/kbaVerify.ts
+  - src/funcs/labelsCreateForCustomer.ts
+  - src/funcs/labelsCreateLedgerEntry.ts
+  - src/funcs/labelsCreateReallocation.ts
+  - src/funcs/labelsGet.ts
+  - src/funcs/labelsGetLedgerEntry.ts
+  - src/funcs/labelsGetReallocation.ts
+  - src/funcs/labelsListForCustomer.ts
+  - src/funcs/labelsListLedgerEntries.ts
+  - src/funcs/labelsRemove.ts
+  - src/funcs/massPaymentsCreate.ts
+  - src/funcs/massPaymentsGet.ts
+  - src/funcs/massPaymentsGetItem.ts
+  - src/funcs/massPaymentsListForCustomer.ts
+  - src/funcs/massPaymentsListItems.ts
+  - src/funcs/massPaymentsUpdate.ts
+  - src/funcs/rootGet.ts
   - src/funcs/tokensCreateApplicationAccessToken.ts
-  - src/funcs/transfersCancelTransfer.ts
-  - src/funcs/transfersCreateOnDemandTransferAuthorization.ts
-  - src/funcs/transfersGetTransfer.ts
-  - src/funcs/transfersGetTransferFailureReason.ts
-  - src/funcs/transfersInitiateTransfer.ts
-  - src/funcs/transfersListCustomerTransfers.ts
-  - src/funcs/transfersListTransferFees.ts
-  - src/funcs/webhookSubscriptionsCreateWebhookSubscription.ts
+  - src/funcs/transfersCancel.ts
+  - src/funcs/transfersCreate.ts
+  - src/funcs/transfersCreateOnDemandAuthorization.ts
+  - src/funcs/transfersGet.ts
+  - src/funcs/transfersGetFailureReason.ts
+  - src/funcs/transfersListFees.ts
+  - src/funcs/transfersListForCustomer.ts
+  - src/funcs/webhookSubscriptionsCreate.ts
   - src/funcs/webhookSubscriptionsDelete.ts
-  - src/funcs/webhookSubscriptionsGetWebhookSubscription.ts
-  - src/funcs/webhookSubscriptionsListWebhookSubscriptions.ts
+  - src/funcs/webhookSubscriptionsGet.ts
+  - src/funcs/webhookSubscriptionsList.ts
   - src/funcs/webhookSubscriptionsListWebhooks.ts
-  - src/funcs/webhookSubscriptionsUpdateWebhookSubscription.ts
-  - src/funcs/webhooksGetWebhook.ts
-  - src/funcs/webhooksListWebhookRetries.ts
-  - src/funcs/webhooksRetryWebhook.ts
+  - src/funcs/webhookSubscriptionsUpdate.ts
+  - src/funcs/webhooksGet.ts
+  - src/funcs/webhooksListRetries.ts
+  - src/funcs/webhooksRetry.ts
+  - src/hooks/clientcredentials.ts
   - src/hooks/hooks.ts
   - src/hooks/index.ts
   - src/hooks/types.ts
@@ -957,92 +995,92 @@ generatedFiles:
   - src/mcp-server/server.ts
   - src/mcp-server/shared.ts
   - src/mcp-server/tools.ts
-  - src/mcp-server/tools/accountCreateAccountFundingSource.ts
-  - src/mcp-server/tools/accountGetAccount.ts
-  - src/mcp-server/tools/accountListAccountFundingSources.ts
-  - src/mcp-server/tools/accountListAccountMassPayments.ts
-  - src/mcp-server/tools/accountListAndSearchAccountTransfers.ts
-  - src/mcp-server/tools/beneficialOwnersCertifyBeneficialOwnershipForCustomer.ts
-  - src/mcp-server/tools/beneficialOwnersCreateBeneficialOwnerForCustomer.ts
-  - src/mcp-server/tools/beneficialOwnersDeleteBeneficialOwner.ts
-  - src/mcp-server/tools/beneficialOwnersGetBeneficialOwnershipStatusForCustomer.ts
-  - src/mcp-server/tools/beneficialOwnersListBeneficialOwnersForCustomer.ts
-  - src/mcp-server/tools/beneficialOwnersRetrieveBeneficialOwner.ts
-  - src/mcp-server/tools/beneficialOwnersUpdateBeneficialOwner.ts
-  - src/mcp-server/tools/customersCreateCustomer.ts
-  - src/mcp-server/tools/customersGetCustomer.ts
-  - src/mcp-server/tools/customersListAndSearchCustomers.ts
-  - src/mcp-server/tools/customersListBusinessClassifications.ts
-  - src/mcp-server/tools/customersRetrieveBusinessClassification.ts
+  - src/mcp-server/tools/accountsExchangesCreate.ts
+  - src/mcp-server/tools/accountsExchangesList.ts
+  - src/mcp-server/tools/accountsFundingSourcesCreate.ts
+  - src/mcp-server/tools/accountsFundingSourcesList.ts
+  - src/mcp-server/tools/accountsGet.ts
+  - src/mcp-server/tools/accountsMassPaymentsList.ts
+  - src/mcp-server/tools/accountsTransfersList.ts
+  - src/mcp-server/tools/beneficialOwnersCertifyOwnership.ts
+  - src/mcp-server/tools/beneficialOwnersDelete.ts
+  - src/mcp-server/tools/beneficialOwnersDocumentsCreate.ts
+  - src/mcp-server/tools/beneficialOwnersDocumentsList.ts
+  - src/mcp-server/tools/beneficialOwnersGet.ts
+  - src/mcp-server/tools/beneficialOwnersGetOwnershipStatus.ts
+  - src/mcp-server/tools/beneficialOwnersUpdate.ts
+  - src/mcp-server/tools/businessClassificationsGet.ts
+  - src/mcp-server/tools/businessClassificationsList.ts
+  - src/mcp-server/tools/clientTokensCreate.ts
+  - src/mcp-server/tools/customersBeneficialOwnersCreate.ts
+  - src/mcp-server/tools/customersBeneficialOwnersList.ts
+  - src/mcp-server/tools/customersCreate.ts
+  - src/mcp-server/tools/customersDocumentsCreate.ts
+  - src/mcp-server/tools/customersDocumentsList.ts
+  - src/mcp-server/tools/customersExchangesCreate.ts
+  - src/mcp-server/tools/customersExchangesList.ts
+  - src/mcp-server/tools/customersFundingSourcesList.ts
+  - src/mcp-server/tools/customersGet.ts
+  - src/mcp-server/tools/customersList.ts
+  - src/mcp-server/tools/customersListAvailableConnections.ts
   - src/mcp-server/tools/customersUpdate.ts
-  - src/mcp-server/tools/documentsCreateBeneficialOwnerDocument.ts
-  - src/mcp-server/tools/documentsCreateCustomerDocument.ts
-  - src/mcp-server/tools/documentsGetDocument.ts
-  - src/mcp-server/tools/documentsListBeneficialOwnerDocuments.ts
-  - src/mcp-server/tools/documentsListCustomerDocuments.ts
-  - src/mcp-server/tools/eventsGetEvent.ts
-  - src/mcp-server/tools/exchangeSessionsCreateCustomerExchangeSession.ts
-  - src/mcp-server/tools/exchangeSessionsCreateReAuthExchangeSession.ts
-  - src/mcp-server/tools/exchangeSessionsListAvailableExchangeConnections.ts
-  - src/mcp-server/tools/exchangeSessionsRetrieveCustomerExchangeSession.ts
-  - src/mcp-server/tools/exchangesCreateAccountExchange.ts
-  - src/mcp-server/tools/exchangesCreateCustomerExchange.ts
-  - src/mcp-server/tools/exchangesGetExchange.ts
-  - src/mcp-server/tools/exchangesGetExchangePartner.ts
-  - src/mcp-server/tools/exchangesListAccountExchanges.ts
-  - src/mcp-server/tools/exchangesListCustomerExchanges.ts
-  - src/mcp-server/tools/exchangesListExchangePartners.ts
-  - src/mcp-server/tools/fundingSourcesCreateCustomerFundingSource.ts
-  - src/mcp-server/tools/fundingSourcesCreateCustomerFundingSourceToken.ts
-  - src/mcp-server/tools/fundingSourcesCreateCustomerIavToken.ts
-  - src/mcp-server/tools/fundingSourcesGetFundingSource.ts
-  - src/mcp-server/tools/fundingSourcesGetFundingSourceBalance.ts
+  - src/mcp-server/tools/documentsGet.ts
+  - src/mcp-server/tools/eventsGet.ts
+  - src/mcp-server/tools/eventsList.ts
+  - src/mcp-server/tools/exchangePartnersGet.ts
+  - src/mcp-server/tools/exchangePartnersList.ts
+  - src/mcp-server/tools/exchangeSessionsCreate.ts
+  - src/mcp-server/tools/exchangeSessionsGet.ts
+  - src/mcp-server/tools/exchangesCreateReAuth.ts
+  - src/mcp-server/tools/exchangesGet.ts
+  - src/mcp-server/tools/fundingSourcesCreateForCustomer.ts
+  - src/mcp-server/tools/fundingSourcesGet.ts
+  - src/mcp-server/tools/fundingSourcesGetBalance.ts
   - src/mcp-server/tools/fundingSourcesGetMicroDeposits.ts
-  - src/mcp-server/tools/fundingSourcesGetVanAchRouting.ts
+  - src/mcp-server/tools/fundingSourcesGetVanRouting.ts
   - src/mcp-server/tools/fundingSourcesInitiateOrVerifyMicroDeposits.ts
-  - src/mcp-server/tools/fundingSourcesListCustomerFundingSources.ts
-  - src/mcp-server/tools/fundingSourcesUpdateOrRemoveFundingSource.ts
-  - src/mcp-server/tools/kbaGetKbaQuestions.ts
-  - src/mcp-server/tools/kbaInitiateKbaForCustomer.ts
-  - src/mcp-server/tools/kbaVerifyKbaQuestions.ts
-  - src/mcp-server/tools/labelsCreateCustomerLabel.ts
-  - src/mcp-server/tools/labelsCreateLabelLedgerEntry.ts
-  - src/mcp-server/tools/labelsCreateLabelReallocation.ts
-  - src/mcp-server/tools/labelsGetLabel.ts
-  - src/mcp-server/tools/labelsGetLabelLedgerEntry.ts
-  - src/mcp-server/tools/labelsListCustomerLabels.ts
-  - src/mcp-server/tools/labelsListLabelLedgerEntries.ts
-  - src/mcp-server/tools/labelsRemoveLabel.ts
-  - src/mcp-server/tools/labelsRetrieveLabelLedgerEntry.ts
-  - src/mcp-server/tools/massPaymentsGetMassPayment.ts
-  - src/mcp-server/tools/massPaymentsGetMassPaymentItem.ts
-  - src/mcp-server/tools/massPaymentsInitiateMassPayment.ts
-  - src/mcp-server/tools/massPaymentsListCustomerMassPayments.ts
-  - src/mcp-server/tools/massPaymentsListMassPaymentItems.ts
-  - src/mcp-server/tools/massPaymentsUpdateMassPayment.ts
-  - src/mcp-server/tools/rootRoot.ts
-  - src/mcp-server/tools/transfersCancelTransfer.ts
-  - src/mcp-server/tools/transfersCreateOnDemandTransferAuthorization.ts
-  - src/mcp-server/tools/transfersGetTransfer.ts
-  - src/mcp-server/tools/transfersGetTransferFailureReason.ts
-  - src/mcp-server/tools/transfersInitiateTransfer.ts
-  - src/mcp-server/tools/transfersListCustomerTransfers.ts
-  - src/mcp-server/tools/transfersListTransferFees.ts
-  - src/mcp-server/tools/webhookSubscriptionsCreateWebhookSubscription.ts
+  - src/mcp-server/tools/fundingSourcesUpdateOrRemove.ts
+  - src/mcp-server/tools/kbaGetQuestions.ts
+  - src/mcp-server/tools/kbaInitiate.ts
+  - src/mcp-server/tools/kbaVerify.ts
+  - src/mcp-server/tools/labelsCreateForCustomer.ts
+  - src/mcp-server/tools/labelsCreateLedgerEntry.ts
+  - src/mcp-server/tools/labelsCreateReallocation.ts
+  - src/mcp-server/tools/labelsGet.ts
+  - src/mcp-server/tools/labelsGetLedgerEntry.ts
+  - src/mcp-server/tools/labelsGetReallocation.ts
+  - src/mcp-server/tools/labelsListForCustomer.ts
+  - src/mcp-server/tools/labelsListLedgerEntries.ts
+  - src/mcp-server/tools/labelsRemove.ts
+  - src/mcp-server/tools/massPaymentsCreate.ts
+  - src/mcp-server/tools/massPaymentsGet.ts
+  - src/mcp-server/tools/massPaymentsGetItem.ts
+  - src/mcp-server/tools/massPaymentsListForCustomer.ts
+  - src/mcp-server/tools/massPaymentsListItems.ts
+  - src/mcp-server/tools/massPaymentsUpdate.ts
+  - src/mcp-server/tools/rootGet.ts
+  - src/mcp-server/tools/tokensCreateApplicationAccessToken.ts
+  - src/mcp-server/tools/transfersCancel.ts
+  - src/mcp-server/tools/transfersCreate.ts
+  - src/mcp-server/tools/transfersCreateOnDemandAuthorization.ts
+  - src/mcp-server/tools/transfersGet.ts
+  - src/mcp-server/tools/transfersGetFailureReason.ts
+  - src/mcp-server/tools/transfersListFees.ts
+  - src/mcp-server/tools/transfersListForCustomer.ts
+  - src/mcp-server/tools/webhookSubscriptionsCreate.ts
   - src/mcp-server/tools/webhookSubscriptionsDelete.ts
-  - src/mcp-server/tools/webhookSubscriptionsGetWebhookSubscription.ts
-  - src/mcp-server/tools/webhookSubscriptionsListWebhookSubscriptions.ts
+  - src/mcp-server/tools/webhookSubscriptionsGet.ts
+  - src/mcp-server/tools/webhookSubscriptionsList.ts
   - src/mcp-server/tools/webhookSubscriptionsListWebhooks.ts
-  - src/mcp-server/tools/webhookSubscriptionsUpdateWebhookSubscription.ts
-  - src/mcp-server/tools/webhooksGetWebhook.ts
-  - src/mcp-server/tools/webhooksListWebhookRetries.ts
-  - src/mcp-server/tools/webhooksRetryWebhook.ts
+  - src/mcp-server/tools/webhookSubscriptionsUpdate.ts
+  - src/mcp-server/tools/webhooksGet.ts
+  - src/mcp-server/tools/webhooksListRetries.ts
+  - src/mcp-server/tools/webhooksRetry.ts
   - src/models/account.ts
   - src/models/achaddendaentriesnotenabledforaccounterror.ts
   - src/models/address.ts
   - src/models/availableexchangeconnections.ts
-  - src/models/badrequesterror.ts
-  - src/models/badrequestschema.ts
+  - src/models/badrequestschemaerror.ts
   - src/models/beneficialowner.ts
   - src/models/beneficialowners.ts
   - src/models/beneficialownership.ts
@@ -1073,71 +1111,162 @@ generatedFiles:
   - src/models/directaccountwithoutbankerror.ts
   - src/models/document.ts
   - src/models/documents.ts
-  - src/models/duplicateresourceschema.ts
+  - src/models/duplicateresourceschemaerror.ts
+  - src/models/errors/achaddendaentriesnotenabledforaccounterror.ts
   - src/models/errors/apierror.ts
   - src/models/errors/badrequesterror.ts
+  - src/models/errors/badrequestschemaerror.ts
   - src/models/errors/canceltransfer.ts
+  - src/models/errors/cannotparseamounterror.ts
   - src/models/errors/certifybeneficialownershipforcustomer.ts
   - src/models/errors/createaccountexchange.ts
-  - src/models/errors/createaccountfundingsource.ts
   - src/models/errors/createapplicationaccesstoken.ts
+  - src/models/errors/createbeneficialownerdocument.ts
   - src/models/errors/createcustomer.ts
   - src/models/errors/createcustomerdocument.ts
   - src/models/errors/createcustomerexchange.ts
   - src/models/errors/createcustomerexchangesession.ts
   - src/models/errors/createcustomerfundingsource.ts
-  - src/models/errors/createcustomerfundingsourcetoken.ts
-  - src/models/errors/createcustomeriavtoken.ts
+  - src/models/errors/createcustomerlabel.ts
+  - src/models/errors/createfundingsource.ts
+  - src/models/errors/createlabelreallocation.ts
   - src/models/errors/createreauthexchangesession.ts
+  - src/models/errors/createwebhooksubscription.ts
   - src/models/errors/deletebeneficialowner.ts
+  - src/models/errors/depositaccountrestrictederror.ts
+  - src/models/errors/destinationaddendamaxlengtherror.ts
+  - src/models/errors/destinationprocessingchannelnotsupportederror.ts
+  - src/models/errors/destinationremittancedatamaxlengtherror.ts
+  - src/models/errors/directaccountwithoutbankerror.ts
+  - src/models/errors/duplicateresourceschemaerror.ts
+  - src/models/errors/expiredkbasessionerror.ts
+  - src/models/errors/facilitatorfeeaccountnotfounderror.ts
+  - src/models/errors/facilitatorfeebelowminimumerror.ts
+  - src/models/errors/facilitatorfeesumtoolargeerror.ts
   - src/models/errors/forbiddenerror.ts
   - src/models/errors/getaccount.ts
   - src/models/errors/getbeneficialownershipstatusforcustomer.ts
   - src/models/errors/getcustomer.ts
-  - src/models/errors/getevent.ts
   - src/models/errors/getexchange.ts
-  - src/models/errors/getexchangepartner.ts
   - src/models/errors/getfundingsource.ts
   - src/models/errors/getfundingsourcebalance.ts
   - src/models/errors/getkbaquestions.ts
-  - src/models/errors/getvanachrouting.ts
+  - src/models/errors/getmasspayment.ts
+  - src/models/errors/getmasspaymentitem.ts
+  - src/models/errors/getroot.ts
+  - src/models/errors/getvanrouting.ts
+  - src/models/errors/highriskerror.ts
   - src/models/errors/httpclienterrors.ts
+  - src/models/errors/incompatibleaddendaentrieserror.ts
+  - src/models/errors/incompatibleholdingserror.ts
+  - src/models/errors/incompatiblesourceanddestinationtypeserror.ts
+  - src/models/errors/incompatiblesourceforrtpdestinationerror.ts
   - src/models/errors/index.ts
   - src/models/errors/initiatekbaforcustomer.ts
+  - src/models/errors/initiatemasspayment.ts
   - src/models/errors/initiateorverifymicrodeposits.ts
   - src/models/errors/initiatetransfer.ts
-  - src/models/errors/listaccountfundingsources.ts
-  - src/models/errors/listaccountmasspayments.ts
-  - src/models/errors/listandsearchaccounttransfers.ts
+  - src/models/errors/insufficientfundserror.ts
+  - src/models/errors/invalidamountfordestinationclearingtypeerror.ts
+  - src/models/errors/invalidamountfordestinationprocessingchannelerror.ts
+  - src/models/errors/invalidamountlimiterror.ts
+  - src/models/errors/invalidattempttofacilitatefundserror.ts
+  - src/models/errors/invalidattempttopayinfundserror.ts
+  - src/models/errors/invalidattempttopayoutfundserror.ts
+  - src/models/errors/invalidcorrelationiderror.ts
+  - src/models/errors/invaliddestinationbankaccounttypeerror.ts
+  - src/models/errors/invaliddestinationclearingtypeerror.ts
+  - src/models/errors/invaliddestinationfundingsourceerror.ts
+  - src/models/errors/invalidexchangeerror.ts
+  - src/models/errors/invalidexchangetokenerror.ts
+  - src/models/errors/invalidfacilitatorerror.ts
+  - src/models/errors/invalidfacilitatorfeeamounterror.ts
+  - src/models/errors/invalidfacilitatorfeecollectfromcombinationerror.ts
+  - src/models/errors/invalidfacilitatorfeecollectfromerror.ts
+  - src/models/errors/invalidfeeodfierror.ts
+  - src/models/errors/invalidfiletypeschemaerror.ts
+  - src/models/errors/invalidkbasessionerror.ts
+  - src/models/errors/invalidmetadataerror.ts
+  - src/models/errors/invalidpointofsaleaddendaaddresserror.ts
+  - src/models/errors/invalidpointofsaleaddendacityerror.ts
+  - src/models/errors/invalidpointofsaleaddendadateerror.ts
+  - src/models/errors/invalidpointofsaleaddendaidentificationcodeerror.ts
+  - src/models/errors/invalidpointofsaleaddendaserialnumbererror.ts
+  - src/models/errors/invalidpointofsaleaddendastateerror.ts
+  - src/models/errors/invalidresourcestateschemaerror.ts
+  - src/models/errors/invalidsourcebankaccounttypeerror.ts
+  - src/models/errors/invalidsourcefundingsourceerror.ts
+  - src/models/errors/invalidurlformaterror.ts
+  - src/models/errors/listandsearchtransfers.ts
   - src/models/errors/listavailableexchangeconnections.ts
   - src/models/errors/listbeneficialownersforcustomer.ts
   - src/models/errors/listcustomerexchanges.ts
   - src/models/errors/listcustomerfundingsources.ts
+  - src/models/errors/listcustomerlabels.ts
+  - src/models/errors/listcustomermasspayments.ts
+  - src/models/errors/listfundingsources.ts
+  - src/models/errors/listmasspaymentitems.ts
+  - src/models/errors/listmasspayments.ts
+  - src/models/errors/maximumnumberofresourcesschemaerror.ts
+  - src/models/errors/maxsubscriptionsreachederror.ts
+  - src/models/errors/notauthorizedschemaerror.ts
   - src/models/errors/notfounderror.ts
+  - src/models/errors/operationblockederror.ts
+  - src/models/errors/pointofsaleaddendaentriesnotenabledforaccounterror.ts
+  - src/models/errors/receivernotfounderror.ts
+  - src/models/errors/receiverrestrictederror.ts
   - src/models/errors/removelabel.ts
   - src/models/errors/retrievebeneficialowner.ts
   - src/models/errors/retrievebusinessclassification.ts
   - src/models/errors/retrievecustomerexchangesession.ts
-  - src/models/errors/root.ts
+  - src/models/errors/rtpaccountsettingnotenablederror.ts
+  - src/models/errors/rtpfacilitatorfeenotsupportederror.ts
+  - src/models/errors/rtppersonaltopersonalnotsupportederror.ts
+  - src/models/errors/rtpunverifiedsendernotsupportederror.ts
   - src/models/errors/sdkvalidationerror.ts
+  - src/models/errors/secrettoolongerror.ts
+  - src/models/errors/senderrestrictederror.ts
+  - src/models/errors/sourceaddendamaxlengtherror.ts
+  - src/models/errors/sourcenotfounderror.ts
+  - src/models/errors/sourcesameasdestinationerror.ts
+  - src/models/errors/statusinvaliderror.ts
+  - src/models/errors/statusnotallowederror.ts
   - src/models/errors/toomanyrequestserrorerror.ts
+  - src/models/errors/transferexpiredforfeeerror.ts
   - src/models/errors/update.ts
   - src/models/errors/updatebeneficialowner.ts
+  - src/models/errors/updatemasspayment.ts
   - src/models/errors/updateorremovefundingsource.ts
-  - src/models/errors/verifykbaquestions.ts
+  - src/models/errors/validationerrorschema.ts
+  - src/models/errors/verify.ts
+  - src/models/errors/weeklyreceivelimitreachederror.ts
+  - src/models/errors/wireaccountnotfounderror.ts
+  - src/models/errors/wireaccountrestrictederror.ts
+  - src/models/errors/wireinvalidimaderror.ts
+  - src/models/errors/wirenotenablederror.ts
+  - src/models/errors/withdrawaccountrestrictederror.ts
+  - src/models/errors/withdrawinvalidamounterror.ts
+  - src/models/errors/withdrawinvalidamountforclearingtypeerror.ts
+  - src/models/errors/withdrawinvalidfundingsourceerror.ts
+  - src/models/errors/withdrawinvalidwirebeneficiarycountryerror.ts
+  - src/models/errors/withdrawinvalidwirebeneficiarylocalityerror.ts
+  - src/models/errors/withdrawinvalidwirebeneficiaryregionerror.ts
+  - src/models/errors/withdrawinvalidwireoriginatortobeneficiaryerror.ts
+  - src/models/errors/withdrawprocessingchannelnotsupportederror.ts
+  - src/models/errors/withdrawrtppersonalwithdrawalnotsupportederror.ts
+  - src/models/errors/withdrawrtpunverifiedsendernotsupportederror.ts
   - src/models/event.ts
+  - src/models/events.ts
   - src/models/exchange.ts
   - src/models/exchangepartner.ts
   - src/models/exchangepartners.ts
   - src/models/exchanges.ts
   - src/models/exchangesession.ts
-  - src/models/expiredkbasessionerror.ts
   - src/models/facilitatorfeeaccountnotfounderror.ts
   - src/models/facilitatorfeebelowminimumerror.ts
   - src/models/facilitatorfeesumtoolargeerror.ts
   - src/models/finicitysecureexchangecreateexchangerequestbody.ts
   - src/models/flinkssecureexchangecreateexchangerequestbody.ts
-  - src/models/forbiddenerror.ts
   - src/models/fundingsource.ts
   - src/models/fundingsources.ts
   - src/models/hallink.ts
@@ -1152,22 +1281,15 @@ generatedFiles:
   - src/models/invalidamountfordestinationclearingtypeerror.ts
   - src/models/invalidamountfordestinationprocessingchannelerror.ts
   - src/models/invalidamountlimiterror.ts
-  - src/models/invalidattempttofacilitatefundserror.ts
-  - src/models/invalidattempttopayinfundserror.ts
-  - src/models/invalidattempttopayoutfundserror.ts
   - src/models/invalidcorrelationiderror.ts
   - src/models/invaliddestinationbankaccounttypeerror.ts
   - src/models/invaliddestinationclearingtypeerror.ts
   - src/models/invaliddestinationfundingsourceerror.ts
-  - src/models/invalidexchange.ts
-  - src/models/invalidexchangetoken.ts
   - src/models/invalidfacilitatorerror.ts
   - src/models/invalidfacilitatorfeeamounterror.ts
   - src/models/invalidfacilitatorfeecollectfromcombinationerror.ts
   - src/models/invalidfacilitatorfeecollectfromerror.ts
   - src/models/invalidfeeodfierror.ts
-  - src/models/invalidfiletypeschema.ts
-  - src/models/invalidkbasessionerror.ts
   - src/models/invalidmetadataerror.ts
   - src/models/invalidpointofsaleaddendaaddresserror.ts
   - src/models/invalidpointofsaleaddendacityerror.ts
@@ -1175,9 +1297,9 @@ generatedFiles:
   - src/models/invalidpointofsaleaddendaidentificationcodeerror.ts
   - src/models/invalidpointofsaleaddendaserialnumbererror.ts
   - src/models/invalidpointofsaleaddendastateerror.ts
-  - src/models/invalidresourcestateschema.ts
   - src/models/invalidsourcebankaccounttypeerror.ts
   - src/models/invalidsourcefundingsourceerror.ts
+  - src/models/invalidurlformaterror.ts
   - src/models/label.ts
   - src/models/labelledgerentries.ts
   - src/models/labelledgerentry.ts
@@ -1185,27 +1307,24 @@ generatedFiles:
   - src/models/masspayment.ts
   - src/models/masspaymentitem.ts
   - src/models/masspayments.ts
-  - src/models/maximumnumberofresourcesschema.ts
   - src/models/mxopenbankingcreateexchangerequestbody.ts
   - src/models/mxsecureexchangecreateexchangerequestbody.ts
-  - src/models/notauthorizedschema.ts
   - src/models/ondemandauthorization.ts
   - src/models/operationblockederror.ts
   - src/models/operations/canceltransfer.ts
   - src/models/operations/certifybeneficialownershipforcustomer.ts
   - src/models/operations/createaccountexchange.ts
-  - src/models/operations/createaccountfundingsource.ts
   - src/models/operations/createapplicationaccesstoken.ts
   - src/models/operations/createbeneficialownerdocument.ts
   - src/models/operations/createbeneficialownerforcustomer.ts
+  - src/models/operations/createclienttoken.ts
   - src/models/operations/createcustomer.ts
   - src/models/operations/createcustomerdocument.ts
   - src/models/operations/createcustomerexchange.ts
   - src/models/operations/createcustomerexchangesession.ts
   - src/models/operations/createcustomerfundingsource.ts
-  - src/models/operations/createcustomerfundingsourcetoken.ts
-  - src/models/operations/createcustomeriavtoken.ts
   - src/models/operations/createcustomerlabel.ts
+  - src/models/operations/createfundingsource.ts
   - src/models/operations/createlabelledgerentry.ts
   - src/models/operations/createlabelreallocation.ts
   - src/models/operations/createreauthexchangesession.ts
@@ -1229,7 +1348,7 @@ generatedFiles:
   - src/models/operations/getmicrodeposits.ts
   - src/models/operations/gettransfer.ts
   - src/models/operations/gettransferfailurereason.ts
-  - src/models/operations/getvanachrouting.ts
+  - src/models/operations/getvanrouting.ts
   - src/models/operations/getwebhook.ts
   - src/models/operations/getwebhooksubscription.ts
   - src/models/operations/index.ts
@@ -1237,10 +1356,8 @@ generatedFiles:
   - src/models/operations/initiatemasspayment.ts
   - src/models/operations/initiateorverifymicrodeposits.ts
   - src/models/operations/initiatetransfer.ts
-  - src/models/operations/listaccountfundingsources.ts
-  - src/models/operations/listaccountmasspayments.ts
-  - src/models/operations/listandsearchaccounttransfers.ts
   - src/models/operations/listandsearchcustomers.ts
+  - src/models/operations/listandsearchtransfers.ts
   - src/models/operations/listavailableexchangeconnections.ts
   - src/models/operations/listbeneficialownerdocuments.ts
   - src/models/operations/listbeneficialownersforcustomer.ts
@@ -1251,8 +1368,11 @@ generatedFiles:
   - src/models/operations/listcustomerlabels.ts
   - src/models/operations/listcustomermasspayments.ts
   - src/models/operations/listcustomertransfers.ts
+  - src/models/operations/listevents.ts
+  - src/models/operations/listfundingsources.ts
   - src/models/operations/listlabelledgerentries.ts
   - src/models/operations/listmasspaymentitems.ts
+  - src/models/operations/listmasspayments.ts
   - src/models/operations/listtransferfees.ts
   - src/models/operations/listwebhookretries.ts
   - src/models/operations/listwebhooks.ts
@@ -1261,14 +1381,14 @@ generatedFiles:
   - src/models/operations/retrievebeneficialowner.ts
   - src/models/operations/retrievebusinessclassification.ts
   - src/models/operations/retrievecustomerexchangesession.ts
-  - src/models/operations/retrievelabelledgerentry.ts
+  - src/models/operations/retrievelabelreallocation.ts
   - src/models/operations/retrywebhook.ts
   - src/models/operations/update.ts
   - src/models/operations/updatebeneficialowner.ts
   - src/models/operations/updatemasspayment.ts
   - src/models/operations/updateorremovefundingsource.ts
   - src/models/operations/updatewebhooksubscription.ts
-  - src/models/operations/verifykbaquestions.ts
+  - src/models/operations/verify.ts
   - src/models/passport.ts
   - src/models/plaidopenbankingcreateexchangerequestbody.ts
   - src/models/plaidsecureexchangecreateexchangerequestbody.ts
@@ -1281,10 +1401,10 @@ generatedFiles:
   - src/models/retryverifiedpersonal.ts
   - src/models/retryverifiedsoleprop.ts
   - src/models/root.ts
-  - src/models/rtpaccountsettingnotenablederror.ts
   - src/models/rtpfacilitatorfeenotsupportederror.ts
   - src/models/rtppersonaltopersonalnotsupportederror.ts
   - src/models/rtpunverifiedsendernotsupportederror.ts
+  - src/models/secrettoolongerror.ts
   - src/models/security.ts
   - src/models/senderrestrictederror.ts
   - src/models/sourceaddendamaxlengtherror.ts
@@ -1307,6 +1427,7 @@ generatedFiles:
   - src/models/upgradetoverifiedbusiness.ts
   - src/models/upgradetoverifiedpersonal.ts
   - src/models/upgradetoverifiedsoleprop.ts
+  - src/models/validationerrorschema.ts
   - src/models/verifiedbusinesscustomer.ts
   - src/models/verifiedpersonalcustomer.ts
   - src/models/verifiedsolepropcustomer.ts
@@ -1330,11 +1451,23 @@ generatedFiles:
   - src/models/withdrawprocessingchannelnotsupportederror.ts
   - src/models/withdrawrtppersonalwithdrawalnotsupportederror.ts
   - src/models/withdrawrtpunverifiedsendernotsupportederror.ts
-  - src/sdk/account.ts
+  - src/sdk/accounts.ts
+  - src/sdk/accountsexchanges.ts
+  - src/sdk/accountsfundingsources.ts
+  - src/sdk/accountsmasspayments.ts
+  - src/sdk/accountstransfers.ts
   - src/sdk/beneficialowners.ts
+  - src/sdk/beneficialownersdocuments.ts
+  - src/sdk/businessclassifications.ts
+  - src/sdk/clienttokens.ts
   - src/sdk/customers.ts
+  - src/sdk/customersbeneficialowners.ts
+  - src/sdk/customersdocuments.ts
+  - src/sdk/customersexchanges.ts
+  - src/sdk/customersfundingsources.ts
   - src/sdk/documents.ts
   - src/sdk/events.ts
+  - src/sdk/exchangepartners.ts
   - src/sdk/exchanges.ts
   - src/sdk/exchangesessions.ts
   - src/sdk/fundingsources.ts
@@ -1440,6 +1573,8 @@ examples:
       responses:
         "200":
           application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"customers": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "c41125c5-99c4-4303-a9f6-d066d28a61e3", "firstName": "Jane", "lastName": "Doe", "email": "janedoe@mail.com", "type": "personal", "status": "verified", "correlationId": "CID-abe2bb3d-d2ff-433b-95a3-0debd960ed25", "created": "2022-10-07T16:46:13.023Z", "address1": "123 Main Street", "address2": "Ste 123", "city": "Des Moines", "state": "IA", "postalCode": "50309"}]}}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
   createCustomer:
     speakeasy-default-create-customer:
       requestBody:
@@ -1482,6 +1617,10 @@ examples:
       responses:
         "200":
           application/vnd.dwolla.v1.hal+json: {"_embedded": {"business-classifications": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"mass-payments": [{"_links": {"self": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"industry-classifications": [{"id": "9ed3f66b-7d6f-11e3-95ac-5404a6144203", "name": "Wineries"}, {"id": "9ed3f66b-7d6f-11e3-95ac-5404a6144203", "name": "Wineries"}, {"id": "9ed3f66b-7d6f-11e3-95ac-5404a6144203", "name": "Wineries"}]}, "id": "9ed3f669-7d6f-11e3-b545-5404a6144203", "name": "Food retail and service"}, {"_links": {"self": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"industry-classifications": [{"id": "9ed3f66b-7d6f-11e3-95ac-5404a6144203", "name": "Wineries"}, {"id": "9ed3f66b-7d6f-11e3-95ac-5404a6144203", "name": "Wineries"}, {"id": "9ed3f66b-7d6f-11e3-95ac-5404a6144203", "name": "Wineries"}]}, "id": "9ed3f669-7d6f-11e3-b545-5404a6144203", "name": "Food retail and service"}]}}, {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"mass-payments": [{"_links": {"self": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"industry-classifications": [{"id": "9ed3f66b-7d6f-11e3-95ac-5404a6144203", "name": "Wineries"}, {"id": "9ed3f66b-7d6f-11e3-95ac-5404a6144203", "name": "Wineries"}, {"id": "9ed3f66b-7d6f-11e3-95ac-5404a6144203", "name": "Wineries"}]}, "id": "9ed3f669-7d6f-11e3-b545-5404a6144203", "name": "Food retail and service"}, {"_links": {"self": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"industry-classifications": [{"id": "9ed3f66b-7d6f-11e3-95ac-5404a6144203", "name": "Wineries"}, {"id": "9ed3f66b-7d6f-11e3-95ac-5404a6144203", "name": "Wineries"}, {"id": "9ed3f66b-7d6f-11e3-95ac-5404a6144203", "name": "Wineries"}]}, "id": "9ed3f669-7d6f-11e3-b545-5404a6144203", "name": "Food retail and service"}]}}]}}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
   retrieveBusinessClassification:
     speakeasy-default-retrieve-business-classification:
       parameters:
@@ -1509,6 +1648,13 @@ examples:
           id: "<id>"
       requestBody:
         application/json: {"firstName": "Nyasia", "lastName": "Schamberger", "dateOfBirth": "1988-06-01", "address": {"address1": "462 Main Street", "address2": "Suite 123", "address3": "Unit 123", "city": "Des Moines", "postalCode": "50309", "country": "USA", "stateProvinceRegion": "IA"}, "ssn": "<value>"}
+      responses:
+        "400":
+          application/vnd.dwolla.v1.hal+json: {"code": "BadRequest", "message": "The request body contains bad syntax or is incomplete."}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
   retrieveBeneficialOwner:
     speakeasy-default-retrieve-beneficial-owner:
       parameters:
@@ -1579,6 +1725,10 @@ examples:
       responses:
         "200":
           application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"documents": [{"_links": {"self": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc", "status": "reviewed", "type": "passport", "created": "2015-09-29T21:42:16.000Z", "documentVerificationStatus": "rejected", "failureReason": "ScanDobMismatch", "allFailureReasons": [{"reason": "ScanDobMismatch", "description": "Scan DOB does not match DOB on account"}, {"reason": "ScanDobMismatch", "description": "Scan DOB does not match DOB on account"}]}]}, "total": 100}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
   createCustomerDocument:
     speakeasy-default-create-customer-document:
       parameters:
@@ -1603,6 +1753,10 @@ examples:
       responses:
         "200":
           application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"documents": [{"_links": {"self": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc", "status": "reviewed", "type": "passport", "created": "2015-09-29T21:42:16.000Z", "documentVerificationStatus": "rejected", "failureReason": "ScanDobMismatch", "allFailureReasons": [{"reason": "ScanDobMismatch", "description": "Scan DOB does not match DOB on account"}, {"reason": "ScanDobMismatch", "description": "Scan DOB does not match DOB on account"}]}]}, "total": 100}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
   createBeneficialOwnerDocument:
     speakeasy-default-create-beneficial-owner-document:
       parameters:
@@ -1610,6 +1764,15 @@ examples:
           id: "<id>"
       requestBody:
         multipart/form-data: {}
+      responses:
+        "400":
+          application/vnd.dwolla.v1.hal+json: {"code": "DuplicateResource", "message": "Bank already exists: id=df8392e5-4c06-42ed-b247-c098ed6f5a11", "_links": {"about": {"href": "https://api.dwolla.com/funding-sources/df8392e5-4c06-42ed-b247-c098ed6f5a11", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "funding-source"}}}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
+        "413":
+          application/vnd.dwolla.v1.hal+json: {"code": "fileTooLarge", "message": "Document requests are limited to 10 MiB."}
   getDocument:
     speakeasy-default-get-document:
       parameters:
@@ -1618,6 +1781,10 @@ examples:
       responses:
         "200":
           application/vnd.dwolla.v1.hal+json: {"_links": {"self": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc", "status": "reviewed", "type": "passport", "created": "2015-09-29T21:42:16.000Z", "documentVerificationStatus": "rejected", "failureReason": "ScanDobMismatch", "allFailureReasons": [{"reason": "ScanDobMismatch", "description": "Scan DOB does not match DOB on account"}, {"reason": "ScanDobMismatch", "description": "Scan DOB does not match DOB on account"}]}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
   initiateKbaForCustomer:
     speakeasy-default-initiate-kba-for-customer:
       parameters:
@@ -1849,6 +2016,11 @@ examples:
     speakeasy-default-initiate-mass-payment:
       requestBody:
         application/json: {"_links": {"source": {"href": "https://api.dwolla.com/funding-sources/707177c3-bf15-4e7e-b37c-55c3898d9bf4"}}, "items": [{"_links": {"destination": {"href": "https://api.dwolla.com/funding-sources/9c7f8d57-cd45-4e7a-bf7a-914dbd6131db"}}, "amount": {"value": "5.00", "currency": "USD"}, "processingChannel": {"destination": "real-time-payments"}, "clearing": {"destination": "next-available"}, "achDetails": {"destination": {"addenda": {"values": ["XYZ987_AddendaValue"]}}}, "correlationId": "ad6ca82d-59f7-45f0-a8d2-94c2cd4e8841"}, {"_links": {"destination": {"href": "https://api.dwolla.com/funding-sources/9c7f8d57-cd45-4e7a-bf7a-914dbd6131db"}}, "amount": {"value": "5.00", "currency": "USD"}, "processingChannel": {"destination": "real-time-payments"}, "clearing": {"destination": "next-available"}, "achDetails": {"destination": {"addenda": {"values": ["XYZ987_AddendaValue"]}}}, "correlationId": "ad6ca82d-59f7-45f0-a8d2-94c2cd4e8841"}], "status": "deferred", "achDetails": {"source": {"addenda": {"values": ["ZYX987_AddendaValue"]}}}, "clearing": {"source": "next-available"}, "correlationId": "ad6ca82d-59f7-45f0-a8d2-94c2cd4e8841"}
+      responses:
+        "400":
+          application/vnd.dwolla.v1.hal+json: {"code": "BadRequest", "message": "The request body contains bad syntax or is incomplete."}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "Not authorized to create mass payment"}
   getMassPayment:
     speakeasy-default-get-mass-payment:
       parameters:
@@ -1857,6 +2029,10 @@ examples:
       responses:
         "200":
           application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "11ac4051-7b76-44fc-87ab-ae23012393f0", "status": "complete", "created": "2022-01-20T17:41:41.000Z", "total": {"value": "5.00", "currency": "USD"}, "totalFees": {"value": "5.00", "currency": "USD"}, "correlationId": "CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2"}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "Not authorized to retrieve mass payment"}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "Mass payment not found"}
   updateMassPayment:
     speakeasy-default-update-mass-payment:
       parameters:
@@ -1867,6 +2043,12 @@ examples:
       responses:
         "200":
           application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "11ac4051-7b76-44fc-87ab-ae23012393f0", "status": "complete", "created": "2022-01-20T17:41:41.000Z", "total": {"value": "5.00", "currency": "USD"}, "totalFees": {"value": "5.00", "currency": "USD"}, "correlationId": "CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2"}
+        "400":
+          application/vnd.dwolla.v1.hal+json: {"code": "BadRequest", "message": "The request body contains bad syntax or is incomplete."}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "Not authorized to update mass payment"}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "Mass payment not found"}
   listMassPaymentItems:
     speakeasy-default-list-mass-payment-items:
       parameters:
@@ -1876,6 +2058,10 @@ examples:
       responses:
         "200":
           application/vnd.dwolla.v1.hal+json: {"_links": {"self": {"href": "https://api.dwolla.com/mass-payments/eb467252-808c-4bc0-b86f-a5cd01454563/items"}, "first": {"href": "https://api.dwolla.com/mass-payments/eb467252-808c-4bc0-b86f-a5cd01454563/items?limit=25&offset=0"}, "last": {"href": "https://api.dwolla.com/mass-payments/eb467252-808c-4bc0-b86f-a5cd01454563/items?limit=25&offset=0"}}, "_embedded": {"items": [{"_links": {"self": {"href": "https://api.dwolla.com/mass-payment-items/c1c7d293-63ec-e511-80df-0aa34a9b2388"}, "mass-payment": {"href": "https://api.dwolla.com/mass-payments/eb467252-808c-4bc0-b86f-a5cd01454563"}, "destination": {"href": "https://api.dwolla.com/funding-sources/b442c936-1f87-465d-a4e2-a982164b26bd"}, "transfer": {"href": "https://api.dwolla.com/transfers/fa3999db-41ed-e511-80df-0aa34a9b2388"}}, "id": "2f845bc9-41ed-e511-80df-0aa34a9b2388", "status": "success", "amount": {"value": "1", "currency": "USD"}, "metadata": {"item1": "item1"}, "processingChannel": {"destination": "real-time-payments"}}, {"_links": {"self": {"href": "https://api.dwolla.com/mass-payment-items/c1c7d293-63ec-e511-80df-0aa34a9b2388"}, "mass-payment": {"href": "https://api.dwolla.com/mass-payments/eb467252-808c-4bc0-b86f-a5cd01454563"}, "destination": {"href": "https://api.dwolla.com/funding-sources/b442c936-1f87-465d-a4e2-a982164b26bd"}, "transfer": {"href": "https://api.dwolla.com/transfers/fa3999db-41ed-e511-80df-0aa34a9b2388"}}, "id": "2f845bc9-41ed-e511-80df-0aa34a9b2388", "status": "success", "amount": {"value": "1", "currency": "USD"}, "metadata": {"item1": "item1"}, "processingChannel": {"destination": "real-time-payments"}}]}, "total": 3}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "Not authorized to list mass payment items."}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "Mass payment not found."}
   getMassPaymentItem:
     speakeasy-default-get-mass-payment-item:
       parameters:
@@ -1884,6 +2070,10 @@ examples:
       responses:
         "200":
           application/vnd.dwolla.v1.hal+json: {"_links": {"self": {"href": "https://api.dwolla.com/mass-payment-items/c1c7d293-63ec-e511-80df-0aa34a9b2388"}, "mass-payment": {"href": "https://api.dwolla.com/mass-payments/eb467252-808c-4bc0-b86f-a5cd01454563"}, "destination": {"href": "https://api.dwolla.com/funding-sources/b442c936-1f87-465d-a4e2-a982164b26bd"}, "transfer": {"href": "https://api.dwolla.com/transfers/fa3999db-41ed-e511-80df-0aa34a9b2388"}}, "id": "2f845bc9-41ed-e511-80df-0aa34a9b2388", "status": "success", "amount": {"value": "1", "currency": "USD"}, "metadata": {"item1": "item1"}, "processingChannel": {"destination": "real-time-payments"}}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "Not authorized to retrieve mass payment item"}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "Mass payment item not found"}
   listCustomerMassPayments:
     speakeasy-default-list-customer-mass-payments:
       parameters:
@@ -1893,6 +2083,10 @@ examples:
       responses:
         "200":
           application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"mass-payments": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "11ac4051-7b76-44fc-87ab-ae23012393f0", "status": "complete", "created": "2022-01-20T17:41:41.000Z", "total": {"value": "5.00", "currency": "USD"}, "totalFees": {"value": "5.00", "currency": "USD"}, "correlationId": "CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2"}]}, "total": 100}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotAuthorized", "message": "Not authorized to list mass payments."}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "Customer not found."}
   getLabel:
     speakeasy-default-get-label:
       parameters:
@@ -1901,6 +2095,10 @@ examples:
       responses:
         "200":
           application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "7e042ffe-e25e-40d2-b86e-748b98845ecc", "created": "2022-05-15T22:19:09.635Z", "amount": {"value": "10", "currency": "USD"}}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
   removeLabel:
     speakeasy-default-remove-label:
       parameters:
@@ -1911,6 +2109,8 @@ examples:
           application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "7e042ffe-e25e-40d2-b86e-748b98845ecc", "created": "2022-05-15T22:19:09.635Z", "amount": {"value": "10", "currency": "USD"}}
         "403":
           application/vnd.dwolla.v1.hal+json: {"code": "InvalidResourceState", "message": "Amount must be zero to remove label."}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
   listCustomerLabels:
     speakeasy-default-list-customer-labels:
       parameters:
@@ -1920,6 +2120,10 @@ examples:
       responses:
         "200":
           application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"labels": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "7e042ffe-e25e-40d2-b86e-748b98845ecc", "created": "2022-05-15T22:19:09.635Z", "amount": {"value": "10", "currency": "USD"}}]}, "total": 100}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "Not authorized to list customer labels"}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "Customer not found"}
   createCustomerLabel:
     speakeasy-default-create-customer-label:
       parameters:
@@ -1927,6 +2131,13 @@ examples:
           id: "<id>"
       requestBody:
         application/json: {"amount": {"currency": "12.34", "value": "USD"}}
+      responses:
+        "400":
+          application/vnd.dwolla.v1.hal+json: {"code": "BadRequest", "message": "The request body contains bad syntax or is incomplete."}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "Not authorized to create customer label"}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "Customer not found"}
   listLabelLedgerEntries:
     speakeasy-default-list-label-ledger-entries:
       parameters:
@@ -1936,13 +2147,26 @@ examples:
       responses:
         "200":
           application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"ledger-entries": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "32d68709-62dd-43d6-a6df-562f4baec526", "amount": {"value": "-5", "currency": "USD"}, "created": "2019-05-16T01:54:58.062Z"}, {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "32d68709-62dd-43d6-a6df-562f4baec526", "amount": {"value": "-5", "currency": "USD"}, "created": "2019-05-16T01:54:58.062Z"}]}, "total": 100}
+        "400":
+          application/vnd.dwolla.v1.hal+json: {"code": "BadRequest", "message": "The request body contains bad syntax or is incomplete."}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
   createLabelLedgerEntry:
     speakeasy-default-create-label-ledger-entry:
       parameters:
         path:
           id: "<id>"
       requestBody:
-        application/json: {"amount": {}}
+        application/json: {"amount": {"value": "-5.00", "currency": "USD"}}
+      responses:
+        "400":
+          application/vnd.dwolla.v1.hal+json: {"code": "BadRequest", "message": "The request body contains bad syntax or is incomplete."}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
   getLabelLedgerEntry:
     speakeasy-default-get-label-ledger-entry:
       parameters:
@@ -1951,10 +2175,21 @@ examples:
       responses:
         "200":
           application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "32d68709-62dd-43d6-a6df-562f4baec526", "amount": {"value": "-5", "currency": "USD"}, "created": "2019-05-16T01:54:58.062Z"}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
   createLabelReallocation:
     speakeasy-default-create-label-reallocation:
       requestBody:
         application/json: {"_links": {"from": {"href": "https://api.dwolla.com/labels/c91c501c-f49b-48be-a93b-12b45e152d45"}, "to": {"href": "https://api.dwolla.com/labels/7e042ffe-e25e-40d2-b86e-748b98845ecc"}}, "amount": {"currency": "15.00", "value": "USD"}}
+      responses:
+        "400":
+          application/vnd.dwolla.v1.hal+json: {"code": "BadRequest", "message": "The request body contains bad syntax or is incomplete."}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "Not authorized to create label reallocation"}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "Label not found"}
   retrieveLabelLedgerEntry:
     speakeasy-default-retrieve-label-ledger-entry:
       parameters:
@@ -1972,16 +2207,27 @@ examples:
         "200":
           application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "81f6e13c-557c-4449-9331-da5c65e61095", "created": "2015-10-16T15:37:02.000Z", "topic": "customer_transfer_created", "resourceId": "09A166BC-1B74-E511-80DB-0AA34A9B2388"}
         "404":
-          application/vnd.dwolla.v1.hal+json: {"code": "notFound", "message": "Application event not found."}
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
   listWebhookSubscriptions:
     speakeasy-default-list-webhook-subscriptions:
       responses:
         "200":
           application/vnd.dwolla.v1.hal+json: {"_links": {"self": {"href": "https://api.dwolla.com/webhook-subscriptions"}}, "_embedded": {"webhook-subscriptions": [{"_links": {"self": {"href": "https://api.dwolla.com/webhook-subscriptions/077dfffb-4852-412f-96b6-0fe668066589"}, "webhooks": {"href": "https://api.dwolla.com/webhook-subscriptions/077dfffb-4852-412f-96b6-0fe668066589/webhooks"}}, "id": "077dfffb-4852-412f-96b6-0fe668066589", "url": "http://myapplication.com/webhooks", "paused": true, "created": "2022-10-28T16:20:47+00:00"}]}, "total": 1}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
   createWebhookSubscription:
     speakeasy-default-create-webhook-subscription:
       requestBody:
         application/json: {"url": "http://myapplication.com/webhooks", "secret": "sshhhhhh"}
+      responses:
+        "400":
+          application/vnd.dwolla.v1.hal+json: {"code": "ValidationError", "message": "Validation error(s) present. See embedded errors list for more details.", "_embedded": {"errors": [{"code": "InvalidFormat", "message": "Secret must be 128 or fewer characters.", "path": "/secret", "_links": {}}]}}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
   getWebhookSubscription:
     speakeasy-default-get-webhook-subscription:
       parameters:
@@ -1990,6 +2236,8 @@ examples:
       responses:
         "200":
           application/vnd.dwolla.v1.hal+json: {"_links": {"self": {"href": "https://api.dwolla.com/webhook-subscriptions/077dfffb-4852-412f-96b6-0fe668066589"}, "webhooks": {"href": "https://api.dwolla.com/webhook-subscriptions/077dfffb-4852-412f-96b6-0fe668066589/webhooks"}}, "id": "077dfffb-4852-412f-96b6-0fe668066589", "url": "http://myapplication.com/webhooks", "paused": true, "created": "2022-10-28T16:20:47+00:00"}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
   updateWebhookSubscription:
     speakeasy-default-update-webhook-subscription:
       parameters:
@@ -2023,6 +2271,10 @@ examples:
       responses:
         "200":
           application/vnd.dwolla.v1.hal+json: {"_links": {"self": {"href": "https://api.dwolla.com/webhook-subscriptions/a0943041-7a5c-4e8f-92de-b55711ef3a83/webhooks"}, "first": {"href": "https://api.dwolla.com/webhook-subscriptions/a0943041-7a5c-4e8f-92de-b55711ef3a83/webhooks?limit=25&offset=0"}, "last": {"href": "https://api.dwolla.com/webhook-subscriptions/a0943041-7a5c-4e8f-92de-b55711ef3a83/webhooks?limit=25&offset=150"}, "next": {"href": "https://api.dwolla.com/webhook-subscriptions/a0943041-7a5c-4e8f-92de-b55711ef3a83/webhooks?limit=25&offset=25"}}, "_embedded": {"webhooks": [{"_links": {"self": {"href": "https://api.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8"}, "subscription": {"href": "https://api.dwolla.com/webhook-subscriptions/a0943041-7a5c-4e8f-92de-b55711ef3a83"}, "retry": {"href": "https://api.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8/retries"}, "event": {"href": "https://api.dwolla.com/events/03c7e14c-7f15-44a2-bcf7-83f2f7e95d50"}}, "id": "9ece9660-aa34-41eb-80d7-0125d53b45e8", "topic": "transfer_created", "accountId": "ca32853c-48fa-40be-ae75-77b37504581b", "eventId": "03c7e14c-7f15-44a2-bcf7-83f2f7e95d50", "subscriptionId": "a0943041-7a5c-4e8f-92de-b55711ef3a83", "attempts": [{"id": "d4d16621-c6b0-40cb-8dc3-0469fa9dc4e8", "request": {"timestamp": "2022-10-27T17:07:34.304Z", "url": "https://myapp.runscope.net", "headers": [{"name": "X-Dwolla-Topic", "value": "transfer_created"}], "body": "id:03c7e14c-7f15-44a2-bcf7-83f2f7e95d50resourceId:81BA6F36-CD7C-E511-80DB-0AA34A9B2388topic:transfer_createdtimestamp:2022-10-27T17:07:34.207Z_links:self:href:https://api.dwolla.com/events/03c7e14c-7f15-44a2-bcf7-83f2f7e95d50account:href:https://api.dwolla.com/accounts/ca32853c-48fa-40be-ae75-77b37504581bresource:href:https://api.dwolla.com/transfers/81BA6F36-CD7C-E511-80DB-0AA34A9B2388"}, "response": {"timestamp": "2022-10-27T17:07:34.308Z", "headers": [{"name": "Date", "value": "Tue 27 Oct 2022 17:07:34 GMT"}], "statusCode": 200, "body": "body:id:03c7e14c-7f15-44a2-bcf7-83f2f7e95d50resourceId:81BA6F36-CD7C-E511-80DB-0AA34A9B2388topic:transfer_createdtimestamp:2022-10-27T17:07:34.207Z_links:self:href:https://api.dwolla.com/events/03c7e14c-7f15-44a2-bcf7-83f2f7e95d50account:href:https://api.dwolla.com/accounts/ca32853c-48fa-40be-ae75-77b37504581bresource:href:https://api.dwolla.com/transfers/81BA6F36-CD7C-E511-80DB-0AA34A9B2388files:[]form:fragment:headers:Connection:[close]Content-Length:[453]Content-Type:[application/json; charset=UTF-8]Host:[myapp.runscope.net]User-Agent:[dwolla-webhooks/1.0]X-Dwolla-Topic:[transfer_created]X-Request-Signature:[bd93780bd7e1ad77ab821094aaa0f9e3dece5ee3]host:myapp.runscope.netmethod:POSTparams:path:/region:us5runscope_host:prod078.runscope.inscheme:httpssource:capturesource_ip:52.24.10.184timestamp:1.4459656543078682e+09url:https://myapp.runscope.net/"}}]}]}, "total": 1}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
   getWebhook:
     speakeasy-default-get-webhook:
       parameters:
@@ -2056,6 +2308,8 @@ examples:
       responses:
         "200":
           application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"exchange-partners": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "total": 3}, {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "total": 3}, {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "total": 3}]}, "total": 3}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
   getExchangePartner:
     speakeasy-default-get-exchange-partner:
       parameters:
@@ -2071,6 +2325,10 @@ examples:
       responses:
         "200":
           application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"exchanges": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "status": "unverified", "created": "2022-07-23T00:18:21.419Z"}, {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "status": "unverified", "created": "2022-07-23T00:18:21.419Z"}]}, "total": 3}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
   createAccountExchange:
     speakeasy-default-create-account-exchange:
       requestBody:
@@ -2083,7 +2341,9 @@ examples:
         "401":
           application/vnd.dwolla.v1.hal+json: {"code": "InvalidExchange", "message": "The exchange is no longer active."}
         "403":
-          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "Not authorized to create exchange."}
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
   getExchange:
     speakeasy-default-get-exchange:
       parameters:
@@ -2115,7 +2375,7 @@ examples:
         application/json: {"_links": {"exchange-partner": {"href": "https://api.dwolla.com/exchange-partners/f53ffb32-c84f-496a-9d9d-acd100d396ef"}}, "plaid": {"publicToken": "public-production-d5456acb-01d5-4932-9783-e4c883cf1c0c"}}
       responses:
         "400":
-          application/vnd.dwolla.v1.hal+json: {"code": "ValidationError", "message": "Validation error(s) present. See embedded errors list for more details."}
+          application/vnd.dwolla.v1.hal+json: {"code": "ValidationError", "message": "Validation error(s) present. See embedded errors list for more details.", "_embedded": {"code": "ValidationError", "message": "Validation error(s) present. See embedded errors list for more details."}}
         "401":
           application/vnd.dwolla.v1.hal+json: {"code": "InvalidScope", "message": "Missing or invalid scopes for requested endpoint."}
         "404":
@@ -2135,7 +2395,7 @@ examples:
         "403":
           application/vnd.dwolla.v1.hal+json: {"code": "forbidden", "message": "Exchange sessions with this exchange partner are not enabled for your account"}
         "404":
-          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found"}
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
   retrieveCustomerExchangeSession:
     speakeasy-default-retrieve-customer-exchange-session:
       parameters:
@@ -2170,5 +2430,112 @@ examples:
           application/vnd.dwolla.v1.hal+json: {"_links": {"self": {"href": "https://api.dwolla.com/customers/1b54c81a-261f-4779-bb57-9405e6e00694/available-exchange-connections", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "customer"}, "customers": {"href": "https://api.dwolla.com/customers/1b54c81a-261f-4779-bb57-9405e6e00694", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "customer"}}, "_embedded": {"available-exchange-connections": []}}
         "404":
           application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found. Check Customer ID."}
+  getRoot:
+    speakeasy-default-get-root:
+      responses:
+        "200":
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}}
+        "401":
+          application/vnd.dwolla.v1.hal+json: {"code": "InvalidAccessToken", "message": "Invalid access token."}
+  createFundingSource:
+    speakeasy-default-create-funding-source:
+      requestBody:
+        application/json: {"name": "<value>", "bankAccountType": "checking", "accountNumber": "<value>", "routingNumber": "<value>"}
+      responses:
+        "400":
+          application/vnd.dwolla.v1.hal+json: {"code": "DuplicateResource", "message": "Bank already exists: id=df8392e5-4c06-42ed-b247-c098ed6f5a11", "_links": {"about": {"href": "https://api.dwolla.com/funding-sources/df8392e5-4c06-42ed-b247-c098ed6f5a11", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "funding-source"}}}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "forbidden", "message": "Not authorized to create funding source."}
+  listFundingSources:
+    speakeasy-default-list-funding-sources:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"funding-sources": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "status": "unverified", "type": "bank", "bankAccountType": "checking", "name": "My bank", "created": "2022-07-23T00:18:21.419Z", "removed": true, "channels": ["ach"], "bankName": "SANDBOX TEST BANK", "fingerprint": "5012989b55af15400e8102f95d2ec5e7ce3aef45c01613280d80a236dd8d6c"}]}, "total": 3}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "forbidden", "message": "Not authorized to list funding sources."}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "notFound", "message": "Account not found."}
+  listAndSearchTransfers:
+    speakeasy-default-list-and-search-transfers:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"transfers": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "15c6bcce-46f7-e811-8112-e8dd3bececa8", "status": "pending", "amount": {"value": "42.00", "currency": "USD"}, "created": "2018-12-03T22:00:22.970Z", "clearing": {"source": "standard", "destination": "same-day"}, "metadata": {"paymentId": "12345678", "note": "Payment for completed work Dec. 1"}, "achDetails": {"source": {"addenda": {"values": ["ABC123_AddendaValue"]}}, "destination": {"addenda": {"values": ["ZYX987_AddendaValue"]}}}, "rtpDetails": {"destination": {"remittanceData": "ABC_123 Remittance Data"}}, "correlationId": "8a2cdc8d-629d-4a24-98ac-40b735229fe2", "processingChannel": {"destination": "real-time-payments"}}]}, "total": 100}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "notFound", "message": "Account not found."}
+  listMassPayments:
+    speakeasy-default-list-mass-payments:
+      parameters:
+        path:
+          id: "<id>"
+        query:
+          limit: 25
+          offset: 0
+      responses:
+        "200":
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"mass-payments": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "11ac4051-7b76-44fc-87ab-ae23012393f0", "status": "complete", "created": "2022-01-20T17:41:41.000Z", "total": {"value": "5.00", "currency": "USD"}, "totalFees": {"value": "5.00", "currency": "USD"}, "correlationId": "CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2"}]}, "total": 100}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "forbidden", "message": "Not authorized to list mass payments."}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "notFound", "message": "Account not found."}
+  verify:
+    speakeasy-default-verify:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {"answers": []}
+      responses:
+        "200":
+          application/vnd.dwolla.v1.hal+json: {"_links": {"customer": {"href": "https://api.dwolla.com/customers/b5fd802d-d8c7-43ce-94a8-7c14485b7042", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "customer"}}, "verificationStatus": "verified"}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "InvalidResourceState", "message": "The kba session is no longer valid."}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "KBA session not found."}
+  getVanRouting:
+    speakeasy-default-get-van-routing:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "accountNumber": "9619991490430833", "routingNumber": "084106768"}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "notFound", "message": "Funding source not found."}
+  retrieveLabelReallocation:
+    speakeasy-default-retrieve-label-reallocation:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/vnd.dwolla.v1.hal+json: {"_links": {"self": {"href": "https://api.dwolla.com/label-reallocations/fd36b78c-42f3-4e21-8efb-09196fccbd21", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "label-reallocation"}, "to-ledger-entry": {"href": "https://api.dwolla.com/ledger-entries/d8a4bf7a-3fa0-48b9-873c-765d7375c59f", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "ledger-entry"}, "from-ledger-entry": {"href": "https://api.dwolla.com/ledger-entries/f6a44994-b4da-48e3-bd10-d3a168e6a77d", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "ledger-entry"}}, "created": "2022-05-16T13:41:31.036Z"}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
+  listEvents:
+    speakeasy-default-list-events:
+      responses:
+        "200":
+          application/vnd.dwolla.v1.hal+json: {"additionalProperties": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "_embedded": {"events": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "81f6e13c-557c-4449-9331-da5c65e61095", "created": "2015-10-16T15:37:02.000Z", "topic": "customer_transfer_created", "resourceId": "09A166BC-1B74-E511-80DB-0AA34A9B2388"}]}, "total": 3}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
+  createClientToken:
+    speakeasy-default-create-client-token:
+      requestBody:
+        application/json: {"action": "customer.update", "_links": {"customer": {"href": "https://api-sandbox.dwolla.com/customers/707177c3-bf15-4e7e-b37c-55c3898d9bf4"}}}
+      responses:
+        "200":
+          application/json: {"token": "4adF858jPeQ9RnojMHdqSD2KwsvmhO7Ti7cI5woOiBGCpH5krY"}
+        "400":
+          application/vnd.dwolla.v1.hal+json: {"code": "BadRequest", "message": "The request body contains bad syntax or is incomplete."}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
 examplesVersion: 1.0.2
 generatedTests: {}

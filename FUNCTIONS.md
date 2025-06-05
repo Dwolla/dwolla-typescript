@@ -21,41 +21,26 @@ specific category of applications.
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
 import { tokensCreateApplicationAccessToken } from "dwolla-typescript/funcs/tokensCreateApplicationAccessToken.js";
-import { SDKValidationError } from "dwolla-typescript/models/errors/sdkvalidationerror.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const dwolla = new DwollaCore();
+const dwolla = new DwollaCore({
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
+});
 
 async function run() {
   const res = await tokensCreateApplicationAccessToken(dwolla, {
-    username: "",
-    password: "",
-  }, {
     grantType: "client_credentials",
   });
-
-  switch (true) {
-    case res.ok:
-      // The success case will be handled outside of the switch block
-      break;
-    case res.error instanceof SDKValidationError:
-      // Pretty-print validation errors.
-      return console.log(res.error.pretty());
-    case res.error instanceof Error:
-      return console.log(res.error);
-    default:
-      // TypeScript's type checking will fail on the following line if the above
-      // cases were not exhaustive.
-      res.error satisfies never;
-      throw new Error("Assertion failed: expected error checks to be exhaustive: " + res.error);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("tokensCreateApplicationAccessToken failed:", res.error);
   }
-
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

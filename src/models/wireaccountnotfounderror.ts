@@ -21,12 +21,6 @@ export type WireAccountNotFoundErrorEmbedded = {
   errors?: Array<WireAccountNotFoundErrorError> | undefined;
 };
 
-export type WireAccountNotFoundError = {
-  code: string;
-  message: string;
-  embedded?: WireAccountNotFoundErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const WireAccountNotFoundErrorLinks$inboundSchema: z.ZodType<
   WireAccountNotFoundErrorLinks,
@@ -205,75 +199,5 @@ export function wireAccountNotFoundErrorEmbeddedFromJSON(
     jsonString,
     (x) => WireAccountNotFoundErrorEmbedded$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'WireAccountNotFoundErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const WireAccountNotFoundError$inboundSchema: z.ZodType<
-  WireAccountNotFoundError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() => WireAccountNotFoundErrorEmbedded$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type WireAccountNotFoundError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?: WireAccountNotFoundErrorEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const WireAccountNotFoundError$outboundSchema: z.ZodType<
-  WireAccountNotFoundError$Outbound,
-  z.ZodTypeDef,
-  WireAccountNotFoundError
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  embedded: z.lazy(() => WireAccountNotFoundErrorEmbedded$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WireAccountNotFoundError$ {
-  /** @deprecated use `WireAccountNotFoundError$inboundSchema` instead. */
-  export const inboundSchema = WireAccountNotFoundError$inboundSchema;
-  /** @deprecated use `WireAccountNotFoundError$outboundSchema` instead. */
-  export const outboundSchema = WireAccountNotFoundError$outboundSchema;
-  /** @deprecated use `WireAccountNotFoundError$Outbound` instead. */
-  export type Outbound = WireAccountNotFoundError$Outbound;
-}
-
-export function wireAccountNotFoundErrorToJSON(
-  wireAccountNotFoundError: WireAccountNotFoundError,
-): string {
-  return JSON.stringify(
-    WireAccountNotFoundError$outboundSchema.parse(wireAccountNotFoundError),
-  );
-}
-
-export function wireAccountNotFoundErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<WireAccountNotFoundError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => WireAccountNotFoundError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'WireAccountNotFoundError' from JSON`,
   );
 }

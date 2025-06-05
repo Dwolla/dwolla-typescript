@@ -5,19 +5,19 @@ Bad Request
 
 ## Supported Types
 
-### `models.InvalidExchangeToken`
+### `errors.InvalidExchangeTokenError`
 
 ```typescript
-const value: models.InvalidExchangeToken = {
+const value: errors.InvalidExchangeTokenError = {
   code: "InvalidExchangeToken",
   message: "Exchange token is expired.",
 };
 ```
 
-### `models.InvalidExchange`
+### `errors.InvalidExchangeError`
 
 ```typescript
-const value: models.InvalidExchange = {
+const value: errors.InvalidExchangeError = {
   code: "InvalidExchange",
   message: "The exchange is no longer active.",
 };

@@ -5,13 +5,7 @@
 ```typescript
 import { RetryWebhookResponse } from "dwolla-typescript/models/operations";
 
-let value: RetryWebhookResponse = {
-  headers: {
-    "key": [
-      "<value>",
-    ],
-  },
-};
+let value: RetryWebhookResponse = {};
 ```
 
 ## Fields

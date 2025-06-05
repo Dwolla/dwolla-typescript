@@ -10,19 +10,19 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
 
 /**
- * Optional request body for initiating micro-deposits
+ * No request body is required for initiating micro-deposits.
  */
-export type RequestBody = {};
+export type InitiateMicroDeposits = {};
 
 /**
- * Parameters for initiating or verifying micro-deposits.
+ * Optional request body for verifying micro-deposits.
  *
  * @remarks
- * - For initiating micro-deposits: No request body is required
- * - For verifying micro-deposits: Request body with micro-deposit amounts is required
+ * - If omitted: Endpoint will initiate micro-deposits
+ * - If provided: Must contain micro-deposit amounts for verification
  */
 export type InitiateOrVerifyMicroDepositsRequestBody =
-  | RequestBody
+  | InitiateMicroDeposits
   | models.VerifyMicroDeposits;
 
 export type InitiateOrVerifyMicroDepositsRequest = {
@@ -31,13 +31,17 @@ export type InitiateOrVerifyMicroDepositsRequest = {
    */
   id: string;
   /**
-   * Parameters for initiating or verifying micro-deposits.
+   * Optional request body for verifying micro-deposits.
    *
    * @remarks
-   * - For initiating micro-deposits: No request body is required
-   * - For verifying micro-deposits: Request body with micro-deposit amounts is required
+   * - If omitted: Endpoint will initiate micro-deposits
+   * - If provided: Must contain micro-deposit amounts for verification
    */
-  requestBody?: RequestBody | models.VerifyMicroDeposits | null | undefined;
+  requestBody?:
+    | InitiateMicroDeposits
+    | models.VerifyMicroDeposits
+    | null
+    | undefined;
 };
 
 export type InitiateOrVerifyMicroDepositsResponse = {
@@ -45,46 +49,50 @@ export type InitiateOrVerifyMicroDepositsResponse = {
 };
 
 /** @internal */
-export const RequestBody$inboundSchema: z.ZodType<
-  RequestBody,
+export const InitiateMicroDeposits$inboundSchema: z.ZodType<
+  InitiateMicroDeposits,
   z.ZodTypeDef,
   unknown
 > = z.object({});
 
 /** @internal */
-export type RequestBody$Outbound = {};
+export type InitiateMicroDeposits$Outbound = {};
 
 /** @internal */
-export const RequestBody$outboundSchema: z.ZodType<
-  RequestBody$Outbound,
+export const InitiateMicroDeposits$outboundSchema: z.ZodType<
+  InitiateMicroDeposits$Outbound,
   z.ZodTypeDef,
-  RequestBody
+  InitiateMicroDeposits
 > = z.object({});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace RequestBody$ {
-  /** @deprecated use `RequestBody$inboundSchema` instead. */
-  export const inboundSchema = RequestBody$inboundSchema;
-  /** @deprecated use `RequestBody$outboundSchema` instead. */
-  export const outboundSchema = RequestBody$outboundSchema;
-  /** @deprecated use `RequestBody$Outbound` instead. */
-  export type Outbound = RequestBody$Outbound;
+export namespace InitiateMicroDeposits$ {
+  /** @deprecated use `InitiateMicroDeposits$inboundSchema` instead. */
+  export const inboundSchema = InitiateMicroDeposits$inboundSchema;
+  /** @deprecated use `InitiateMicroDeposits$outboundSchema` instead. */
+  export const outboundSchema = InitiateMicroDeposits$outboundSchema;
+  /** @deprecated use `InitiateMicroDeposits$Outbound` instead. */
+  export type Outbound = InitiateMicroDeposits$Outbound;
 }
 
-export function requestBodyToJSON(requestBody: RequestBody): string {
-  return JSON.stringify(RequestBody$outboundSchema.parse(requestBody));
+export function initiateMicroDepositsToJSON(
+  initiateMicroDeposits: InitiateMicroDeposits,
+): string {
+  return JSON.stringify(
+    InitiateMicroDeposits$outboundSchema.parse(initiateMicroDeposits),
+  );
 }
 
-export function requestBodyFromJSON(
+export function initiateMicroDepositsFromJSON(
   jsonString: string,
-): SafeParseResult<RequestBody, SDKValidationError> {
+): SafeParseResult<InitiateMicroDeposits, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => RequestBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'RequestBody' from JSON`,
+    (x) => InitiateMicroDeposits$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'InitiateMicroDeposits' from JSON`,
   );
 }
 
@@ -94,13 +102,13 @@ export const InitiateOrVerifyMicroDepositsRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => RequestBody$inboundSchema),
+  z.lazy(() => InitiateMicroDeposits$inboundSchema),
   models.VerifyMicroDeposits$inboundSchema,
 ]);
 
 /** @internal */
 export type InitiateOrVerifyMicroDepositsRequestBody$Outbound =
-  | RequestBody$Outbound
+  | InitiateMicroDeposits$Outbound
   | models.VerifyMicroDeposits$Outbound;
 
 /** @internal */
@@ -109,7 +117,7 @@ export const InitiateOrVerifyMicroDepositsRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   InitiateOrVerifyMicroDepositsRequestBody
 > = z.union([
-  z.lazy(() => RequestBody$outboundSchema),
+  z.lazy(() => InitiateMicroDeposits$outboundSchema),
   models.VerifyMicroDeposits$outboundSchema,
 ]);
 
@@ -164,7 +172,7 @@ export const InitiateOrVerifyMicroDepositsRequest$inboundSchema: z.ZodType<
   id: z.string(),
   RequestBody: z.nullable(
     z.union([
-      z.lazy(() => RequestBody$inboundSchema),
+      z.lazy(() => InitiateMicroDeposits$inboundSchema),
       models.VerifyMicroDeposits$inboundSchema,
     ]),
   ).optional(),
@@ -178,7 +186,7 @@ export const InitiateOrVerifyMicroDepositsRequest$inboundSchema: z.ZodType<
 export type InitiateOrVerifyMicroDepositsRequest$Outbound = {
   id: string;
   RequestBody?:
-    | RequestBody$Outbound
+    | InitiateMicroDeposits$Outbound
     | models.VerifyMicroDeposits$Outbound
     | null
     | undefined;
@@ -193,7 +201,7 @@ export const InitiateOrVerifyMicroDepositsRequest$outboundSchema: z.ZodType<
   id: z.string(),
   requestBody: z.nullable(
     z.union([
-      z.lazy(() => RequestBody$outboundSchema),
+      z.lazy(() => InitiateMicroDeposits$outboundSchema),
       models.VerifyMicroDeposits$outboundSchema,
     ]),
   ).optional(),

@@ -21,12 +21,6 @@ export type ReceiverRestrictedErrorEmbedded = {
   errors?: Array<ReceiverRestrictedErrorError> | undefined;
 };
 
-export type ReceiverRestrictedError = {
-  code: string;
-  message: string;
-  embedded?: ReceiverRestrictedErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const ReceiverRestrictedErrorLinks$inboundSchema: z.ZodType<
   ReceiverRestrictedErrorLinks,
@@ -205,75 +199,5 @@ export function receiverRestrictedErrorEmbeddedFromJSON(
     jsonString,
     (x) => ReceiverRestrictedErrorEmbedded$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'ReceiverRestrictedErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const ReceiverRestrictedError$inboundSchema: z.ZodType<
-  ReceiverRestrictedError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() => ReceiverRestrictedErrorEmbedded$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type ReceiverRestrictedError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?: ReceiverRestrictedErrorEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const ReceiverRestrictedError$outboundSchema: z.ZodType<
-  ReceiverRestrictedError$Outbound,
-  z.ZodTypeDef,
-  ReceiverRestrictedError
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  embedded: z.lazy(() => ReceiverRestrictedErrorEmbedded$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReceiverRestrictedError$ {
-  /** @deprecated use `ReceiverRestrictedError$inboundSchema` instead. */
-  export const inboundSchema = ReceiverRestrictedError$inboundSchema;
-  /** @deprecated use `ReceiverRestrictedError$outboundSchema` instead. */
-  export const outboundSchema = ReceiverRestrictedError$outboundSchema;
-  /** @deprecated use `ReceiverRestrictedError$Outbound` instead. */
-  export type Outbound = ReceiverRestrictedError$Outbound;
-}
-
-export function receiverRestrictedErrorToJSON(
-  receiverRestrictedError: ReceiverRestrictedError,
-): string {
-  return JSON.stringify(
-    ReceiverRestrictedError$outboundSchema.parse(receiverRestrictedError),
-  );
-}
-
-export function receiverRestrictedErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<ReceiverRestrictedError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ReceiverRestrictedError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ReceiverRestrictedError' from JSON`,
   );
 }

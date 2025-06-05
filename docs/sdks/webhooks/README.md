@@ -7,11 +7,11 @@ Operations related to Webhooks
 
 ### Available Operations
 
-* [getWebhook](#getwebhook) - Retrieve a webhook
-* [listWebhookRetries](#listwebhookretries) - List retries for a webhook
-* [retryWebhook](#retrywebhook) - Retry a webhook
+* [get](#get) - Retrieve a webhook
+* [listRetries](#listretries) - List retries for a webhook
+* [retry](#retry) - Retry a webhook
 
-## getWebhook
+## get
 
 Retrieve a webhook
 
@@ -21,15 +21,17 @@ Retrieve a webhook
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.webhooks.getWebhook({
+  const result = await dwolla.webhooks.get({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -42,27 +44,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { webhooksGetWebhook } from "dwolla-typescript/funcs/webhooksGetWebhook.js";
+import { webhooksGet } from "dwolla-typescript/funcs/webhooksGet.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await webhooksGetWebhook(dwolla, {
+  const res = await webhooksGet(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("webhooksGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -88,7 +90,7 @@ run();
 | errors.NotFoundError               | 404                                | application/vnd.dwolla.v1.hal+json |
 | errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
 
-## listWebhookRetries
+## listRetries
 
 List retries for a webhook
 
@@ -98,15 +100,17 @@ List retries for a webhook
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.webhooks.listWebhookRetries({
+  const result = await dwolla.webhooks.listRetries({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -119,27 +123,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { webhooksListWebhookRetries } from "dwolla-typescript/funcs/webhooksListWebhookRetries.js";
+import { webhooksListRetries } from "dwolla-typescript/funcs/webhooksListRetries.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await webhooksListWebhookRetries(dwolla, {
+  const res = await webhooksListRetries(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("webhooksListRetries failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -165,7 +169,7 @@ run();
 | errors.NotFoundError               | 404                                | application/vnd.dwolla.v1.hal+json |
 | errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
 
-## retryWebhook
+## retry
 
 Retry a webhook
 
@@ -175,15 +179,17 @@ Retry a webhook
 import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const result = await dwolla.webhooks.retryWebhook({
+  const result = await dwolla.webhooks.retry({
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -196,27 +202,27 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla-typescript/core.js";
-import { webhooksRetryWebhook } from "dwolla-typescript/funcs/webhooksRetryWebhook.js";
+import { webhooksRetry } from "dwolla-typescript/funcs/webhooksRetry.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
-  bearerAuth: process.env["DWOLLA_BEARER_AUTH"] ?? "",
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
 });
 
 async function run() {
-  const res = await webhooksRetryWebhook(dwolla, {
+  const res = await webhooksRetry(dwolla, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("webhooksRetry failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

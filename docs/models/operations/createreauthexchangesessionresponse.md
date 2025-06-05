@@ -5,13 +5,7 @@
 ```typescript
 import { CreateReAuthExchangeSessionResponse } from "dwolla-typescript/models/operations";
 
-let value: CreateReAuthExchangeSessionResponse = {
-  headers: {
-    "key": [
-      "<value>",
-    ],
-  },
-};
+let value: CreateReAuthExchangeSessionResponse = {};
 ```
 
 ## Fields

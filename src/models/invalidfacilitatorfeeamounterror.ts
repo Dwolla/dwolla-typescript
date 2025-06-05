@@ -21,12 +21,6 @@ export type InvalidFacilitatorFeeAmountErrorEmbedded = {
   errors?: Array<InvalidFacilitatorFeeAmountErrorError> | undefined;
 };
 
-export type InvalidFacilitatorFeeAmountError = {
-  code: string;
-  message: string;
-  embedded?: InvalidFacilitatorFeeAmountErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const InvalidFacilitatorFeeAmountErrorLinks$inboundSchema: z.ZodType<
   InvalidFacilitatorFeeAmountErrorLinks,
@@ -224,79 +218,5 @@ export function invalidFacilitatorFeeAmountErrorEmbeddedFromJSON(
         JSON.parse(x),
       ),
     `Failed to parse 'InvalidFacilitatorFeeAmountErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const InvalidFacilitatorFeeAmountError$inboundSchema: z.ZodType<
-  InvalidFacilitatorFeeAmountError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() =>
-    InvalidFacilitatorFeeAmountErrorEmbedded$inboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type InvalidFacilitatorFeeAmountError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?: InvalidFacilitatorFeeAmountErrorEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const InvalidFacilitatorFeeAmountError$outboundSchema: z.ZodType<
-  InvalidFacilitatorFeeAmountError$Outbound,
-  z.ZodTypeDef,
-  InvalidFacilitatorFeeAmountError
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  embedded: z.lazy(() =>
-    InvalidFacilitatorFeeAmountErrorEmbedded$outboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidFacilitatorFeeAmountError$ {
-  /** @deprecated use `InvalidFacilitatorFeeAmountError$inboundSchema` instead. */
-  export const inboundSchema = InvalidFacilitatorFeeAmountError$inboundSchema;
-  /** @deprecated use `InvalidFacilitatorFeeAmountError$outboundSchema` instead. */
-  export const outboundSchema = InvalidFacilitatorFeeAmountError$outboundSchema;
-  /** @deprecated use `InvalidFacilitatorFeeAmountError$Outbound` instead. */
-  export type Outbound = InvalidFacilitatorFeeAmountError$Outbound;
-}
-
-export function invalidFacilitatorFeeAmountErrorToJSON(
-  invalidFacilitatorFeeAmountError: InvalidFacilitatorFeeAmountError,
-): string {
-  return JSON.stringify(
-    InvalidFacilitatorFeeAmountError$outboundSchema.parse(
-      invalidFacilitatorFeeAmountError,
-    ),
-  );
-}
-
-export function invalidFacilitatorFeeAmountErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<InvalidFacilitatorFeeAmountError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InvalidFacilitatorFeeAmountError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InvalidFacilitatorFeeAmountError' from JSON`,
   );
 }

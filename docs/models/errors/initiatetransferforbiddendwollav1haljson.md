@@ -5,40 +5,40 @@ Forbidden
 
 ## Supported Types
 
-### `models.InvalidAttemptToFacilitateFundsError`
+### `errors.InvalidAttemptToFacilitateFundsError`
 
 ```typescript
-const value: models.InvalidAttemptToFacilitateFundsError = {
+const value: errors.InvalidAttemptToFacilitateFundsError = {
   code: "Forbidden",
   message:
     "Invalid Funds Flow: this operation requires the funds flow 'Facilitate' to be enabled",
 };
 ```
 
-### `models.InvalidAttemptToPayInFundsError`
+### `errors.InvalidAttemptToPayInFundsError`
 
 ```typescript
-const value: models.InvalidAttemptToPayInFundsError = {
+const value: errors.InvalidAttemptToPayInFundsError = {
   code: "Forbidden",
   message:
     "Invalid Funds Flow: this operation requires the funds flow 'Receive' to be enabled",
 };
 ```
 
-### `models.InvalidAttemptToPayOutFundsError`
+### `errors.InvalidAttemptToPayOutFundsError`
 
 ```typescript
-const value: models.InvalidAttemptToPayOutFundsError = {
+const value: errors.InvalidAttemptToPayOutFundsError = {
   code: "Forbidden",
   message:
     "Invalid Funds Flow: this operation requires the funds flow 'Send' to be enabled",
 };
 ```
 
-### `models.RtpAccountSettingNotEnabledError`
+### `errors.RtpAccountSettingNotEnabledError`
 
 ```typescript
-const value: models.RtpAccountSettingNotEnabledError = {
+const value: errors.RtpAccountSettingNotEnabledError = {
   code: "Forbidden",
   message: "Real Time Payments not enabled for this account",
 };

@@ -13,9 +13,7 @@ let value: ExchangePartners = {
       resourceType: "resource-type",
     },
   },
-  embedded: {
-    exchangePartners: [],
-  },
+  embedded: {},
   total: 3,
 };
 ```

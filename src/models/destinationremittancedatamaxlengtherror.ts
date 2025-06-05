@@ -21,12 +21,6 @@ export type DestinationRemittanceDataMaxLengthErrorEmbedded = {
   errors?: Array<DestinationRemittanceDataMaxLengthErrorError> | undefined;
 };
 
-export type DestinationRemittanceDataMaxLengthError = {
-  code: string;
-  message: string;
-  embedded?: DestinationRemittanceDataMaxLengthErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const DestinationRemittanceDataMaxLengthErrorLinks$inboundSchema:
   z.ZodType<
@@ -247,90 +241,5 @@ export function destinationRemittanceDataMaxLengthErrorEmbeddedFromJSON(
         JSON.parse(x),
       ),
     `Failed to parse 'DestinationRemittanceDataMaxLengthErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const DestinationRemittanceDataMaxLengthError$inboundSchema: z.ZodType<
-  DestinationRemittanceDataMaxLengthError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() =>
-    DestinationRemittanceDataMaxLengthErrorEmbedded$inboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type DestinationRemittanceDataMaxLengthError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?:
-    | DestinationRemittanceDataMaxLengthErrorEmbedded$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const DestinationRemittanceDataMaxLengthError$outboundSchema: z.ZodType<
-  DestinationRemittanceDataMaxLengthError$Outbound,
-  z.ZodTypeDef,
-  DestinationRemittanceDataMaxLengthError
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  embedded: z.lazy(() =>
-    DestinationRemittanceDataMaxLengthErrorEmbedded$outboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DestinationRemittanceDataMaxLengthError$ {
-  /** @deprecated use `DestinationRemittanceDataMaxLengthError$inboundSchema` instead. */
-  export const inboundSchema =
-    DestinationRemittanceDataMaxLengthError$inboundSchema;
-  /** @deprecated use `DestinationRemittanceDataMaxLengthError$outboundSchema` instead. */
-  export const outboundSchema =
-    DestinationRemittanceDataMaxLengthError$outboundSchema;
-  /** @deprecated use `DestinationRemittanceDataMaxLengthError$Outbound` instead. */
-  export type Outbound = DestinationRemittanceDataMaxLengthError$Outbound;
-}
-
-export function destinationRemittanceDataMaxLengthErrorToJSON(
-  destinationRemittanceDataMaxLengthError:
-    DestinationRemittanceDataMaxLengthError,
-): string {
-  return JSON.stringify(
-    DestinationRemittanceDataMaxLengthError$outboundSchema.parse(
-      destinationRemittanceDataMaxLengthError,
-    ),
-  );
-}
-
-export function destinationRemittanceDataMaxLengthErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  DestinationRemittanceDataMaxLengthError,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      DestinationRemittanceDataMaxLengthError$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'DestinationRemittanceDataMaxLengthError' from JSON`,
   );
 }

@@ -21,12 +21,6 @@ export type InvalidFeeOdfiErrorEmbedded = {
   errors?: Array<InvalidFeeOdfiErrorError> | undefined;
 };
 
-export type InvalidFeeOdfiError = {
-  code: string;
-  message: string;
-  embedded?: InvalidFeeOdfiErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const InvalidFeeOdfiErrorLinks$inboundSchema: z.ZodType<
   InvalidFeeOdfiErrorLinks,
@@ -201,73 +195,5 @@ export function invalidFeeOdfiErrorEmbeddedFromJSON(
     jsonString,
     (x) => InvalidFeeOdfiErrorEmbedded$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'InvalidFeeOdfiErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const InvalidFeeOdfiError$inboundSchema: z.ZodType<
-  InvalidFeeOdfiError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() => InvalidFeeOdfiErrorEmbedded$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type InvalidFeeOdfiError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?: InvalidFeeOdfiErrorEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const InvalidFeeOdfiError$outboundSchema: z.ZodType<
-  InvalidFeeOdfiError$Outbound,
-  z.ZodTypeDef,
-  InvalidFeeOdfiError
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  embedded: z.lazy(() => InvalidFeeOdfiErrorEmbedded$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidFeeOdfiError$ {
-  /** @deprecated use `InvalidFeeOdfiError$inboundSchema` instead. */
-  export const inboundSchema = InvalidFeeOdfiError$inboundSchema;
-  /** @deprecated use `InvalidFeeOdfiError$outboundSchema` instead. */
-  export const outboundSchema = InvalidFeeOdfiError$outboundSchema;
-  /** @deprecated use `InvalidFeeOdfiError$Outbound` instead. */
-  export type Outbound = InvalidFeeOdfiError$Outbound;
-}
-
-export function invalidFeeOdfiErrorToJSON(
-  invalidFeeOdfiError: InvalidFeeOdfiError,
-): string {
-  return JSON.stringify(
-    InvalidFeeOdfiError$outboundSchema.parse(invalidFeeOdfiError),
-  );
-}
-
-export function invalidFeeOdfiErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<InvalidFeeOdfiError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InvalidFeeOdfiError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InvalidFeeOdfiError' from JSON`,
   );
 }

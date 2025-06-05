@@ -21,12 +21,6 @@ export type InvalidSourceBankAccountTypeErrorEmbedded = {
   errors?: Array<InvalidSourceBankAccountTypeErrorError> | undefined;
 };
 
-export type InvalidSourceBankAccountTypeError = {
-  code: string;
-  message: string;
-  embedded?: InvalidSourceBankAccountTypeErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const InvalidSourceBankAccountTypeErrorLinks$inboundSchema: z.ZodType<
   InvalidSourceBankAccountTypeErrorLinks,
@@ -227,80 +221,5 @@ export function invalidSourceBankAccountTypeErrorEmbeddedFromJSON(
         JSON.parse(x),
       ),
     `Failed to parse 'InvalidSourceBankAccountTypeErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const InvalidSourceBankAccountTypeError$inboundSchema: z.ZodType<
-  InvalidSourceBankAccountTypeError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() =>
-    InvalidSourceBankAccountTypeErrorEmbedded$inboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type InvalidSourceBankAccountTypeError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?: InvalidSourceBankAccountTypeErrorEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const InvalidSourceBankAccountTypeError$outboundSchema: z.ZodType<
-  InvalidSourceBankAccountTypeError$Outbound,
-  z.ZodTypeDef,
-  InvalidSourceBankAccountTypeError
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  embedded: z.lazy(() =>
-    InvalidSourceBankAccountTypeErrorEmbedded$outboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidSourceBankAccountTypeError$ {
-  /** @deprecated use `InvalidSourceBankAccountTypeError$inboundSchema` instead. */
-  export const inboundSchema = InvalidSourceBankAccountTypeError$inboundSchema;
-  /** @deprecated use `InvalidSourceBankAccountTypeError$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidSourceBankAccountTypeError$outboundSchema;
-  /** @deprecated use `InvalidSourceBankAccountTypeError$Outbound` instead. */
-  export type Outbound = InvalidSourceBankAccountTypeError$Outbound;
-}
-
-export function invalidSourceBankAccountTypeErrorToJSON(
-  invalidSourceBankAccountTypeError: InvalidSourceBankAccountTypeError,
-): string {
-  return JSON.stringify(
-    InvalidSourceBankAccountTypeError$outboundSchema.parse(
-      invalidSourceBankAccountTypeError,
-    ),
-  );
-}
-
-export function invalidSourceBankAccountTypeErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<InvalidSourceBankAccountTypeError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InvalidSourceBankAccountTypeError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InvalidSourceBankAccountTypeError' from JSON`,
   );
 }

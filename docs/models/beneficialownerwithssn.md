@@ -8,9 +8,9 @@ Request body for creating and updating a Beneficial Owner with an SSN
 import { BeneficialOwnerWithSsn } from "dwolla-typescript";
 
 let value: BeneficialOwnerWithSsn = {
-  firstName: "Tyrique",
-  lastName: "Zulauf-Fay",
-  dateOfBirth: "1999-06-15",
+  firstName: "Jalon",
+  lastName: "Reichel",
+  dateOfBirth: "1958-05-16",
   address: {
     address1: "462 Main Street",
     address2: "Suite 123",

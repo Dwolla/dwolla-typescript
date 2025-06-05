@@ -21,12 +21,6 @@ export type InsufficientFundsErrorEmbedded = {
   errors?: Array<InsufficientFundsErrorError> | undefined;
 };
 
-export type InsufficientFundsError = {
-  code: string;
-  message: string;
-  embedded?: InsufficientFundsErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const InsufficientFundsErrorLinks$inboundSchema: z.ZodType<
   InsufficientFundsErrorLinks,
@@ -205,75 +199,5 @@ export function insufficientFundsErrorEmbeddedFromJSON(
     jsonString,
     (x) => InsufficientFundsErrorEmbedded$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'InsufficientFundsErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const InsufficientFundsError$inboundSchema: z.ZodType<
-  InsufficientFundsError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() => InsufficientFundsErrorEmbedded$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type InsufficientFundsError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?: InsufficientFundsErrorEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const InsufficientFundsError$outboundSchema: z.ZodType<
-  InsufficientFundsError$Outbound,
-  z.ZodTypeDef,
-  InsufficientFundsError
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  embedded: z.lazy(() => InsufficientFundsErrorEmbedded$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InsufficientFundsError$ {
-  /** @deprecated use `InsufficientFundsError$inboundSchema` instead. */
-  export const inboundSchema = InsufficientFundsError$inboundSchema;
-  /** @deprecated use `InsufficientFundsError$outboundSchema` instead. */
-  export const outboundSchema = InsufficientFundsError$outboundSchema;
-  /** @deprecated use `InsufficientFundsError$Outbound` instead. */
-  export type Outbound = InsufficientFundsError$Outbound;
-}
-
-export function insufficientFundsErrorToJSON(
-  insufficientFundsError: InsufficientFundsError,
-): string {
-  return JSON.stringify(
-    InsufficientFundsError$outboundSchema.parse(insufficientFundsError),
-  );
-}
-
-export function insufficientFundsErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<InsufficientFundsError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InsufficientFundsError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InsufficientFundsError' from JSON`,
   );
 }

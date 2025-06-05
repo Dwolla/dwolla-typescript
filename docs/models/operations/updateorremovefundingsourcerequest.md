@@ -7,12 +7,6 @@ import { UpdateOrRemoveFundingSourceRequest } from "dwolla-typescript/models/ope
 
 let value: UpdateOrRemoveFundingSourceRequest = {
   id: "<id>",
-  requestBody: {
-    routingNumber: "222222226",
-    accountNumber: "123456789",
-    bankAccountType: "checking",
-    name: "Jane Doe’s Checking",
-  },
 };
 ```
 

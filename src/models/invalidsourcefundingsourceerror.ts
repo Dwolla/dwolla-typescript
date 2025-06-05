@@ -21,12 +21,6 @@ export type InvalidSourceFundingSourceErrorEmbedded = {
   errors?: Array<InvalidSourceFundingSourceErrorError> | undefined;
 };
 
-export type InvalidSourceFundingSourceError = {
-  code: string;
-  message: string;
-  embedded?: InvalidSourceFundingSourceErrorEmbedded | undefined;
-};
-
 /** @internal */
 export const InvalidSourceFundingSourceErrorLinks$inboundSchema: z.ZodType<
   InvalidSourceFundingSourceErrorLinks,
@@ -224,77 +218,5 @@ export function invalidSourceFundingSourceErrorEmbeddedFromJSON(
         JSON.parse(x),
       ),
     `Failed to parse 'InvalidSourceFundingSourceErrorEmbedded' from JSON`,
-  );
-}
-
-/** @internal */
-export const InvalidSourceFundingSourceError$inboundSchema: z.ZodType<
-  InvalidSourceFundingSourceError,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() => InvalidSourceFundingSourceErrorEmbedded$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_embedded": "embedded",
-  });
-});
-
-/** @internal */
-export type InvalidSourceFundingSourceError$Outbound = {
-  code: string;
-  message: string;
-  _embedded?: InvalidSourceFundingSourceErrorEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const InvalidSourceFundingSourceError$outboundSchema: z.ZodType<
-  InvalidSourceFundingSourceError$Outbound,
-  z.ZodTypeDef,
-  InvalidSourceFundingSourceError
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  embedded: z.lazy(() => InvalidSourceFundingSourceErrorEmbedded$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidSourceFundingSourceError$ {
-  /** @deprecated use `InvalidSourceFundingSourceError$inboundSchema` instead. */
-  export const inboundSchema = InvalidSourceFundingSourceError$inboundSchema;
-  /** @deprecated use `InvalidSourceFundingSourceError$outboundSchema` instead. */
-  export const outboundSchema = InvalidSourceFundingSourceError$outboundSchema;
-  /** @deprecated use `InvalidSourceFundingSourceError$Outbound` instead. */
-  export type Outbound = InvalidSourceFundingSourceError$Outbound;
-}
-
-export function invalidSourceFundingSourceErrorToJSON(
-  invalidSourceFundingSourceError: InvalidSourceFundingSourceError,
-): string {
-  return JSON.stringify(
-    InvalidSourceFundingSourceError$outboundSchema.parse(
-      invalidSourceFundingSourceError,
-    ),
-  );
-}
-
-export function invalidSourceFundingSourceErrorFromJSON(
-  jsonString: string,
-): SafeParseResult<InvalidSourceFundingSourceError, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InvalidSourceFundingSourceError$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InvalidSourceFundingSourceError' from JSON`,
   );
 }

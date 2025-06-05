@@ -7,11 +7,6 @@ import { CreateCustomerFundingSourceRequest } from "dwolla-typescript/models/ope
 
 let value: CreateCustomerFundingSourceRequest = {
   id: "<id>",
-  createCustomerFundingSource: {
-    name: "My First VAN",
-    type: "virtual",
-    bankAccountType: "checking",
-  },
 };
 ```
 
