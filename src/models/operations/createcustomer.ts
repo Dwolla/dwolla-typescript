@@ -13,11 +13,11 @@ import * as models from "../index.js";
  * Parameters for customer to be created
  */
 export type CreateCustomerRequest =
-  | models.CreateUnverifiedCustomerRequestBody
-  | models.CreateReceiveOnlyRequestBody
-  | models.CreateVerifiedPersonalRequestBody
+  | models.CreateVerifiedBusinessRequestBody
   | models.CreateVerifiedSolePropRequestBody
-  | models.CreateVerifiedBusinessRequestBody;
+  | models.CreateVerifiedPersonalRequestBody
+  | models.CreateReceiveOnlyRequestBody
+  | models.CreateUnverifiedCustomerRequestBody;
 
 export type CreateCustomerResponse = {
   headers: { [k: string]: Array<string> };
@@ -29,20 +29,20 @@ export const CreateCustomerRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  models.CreateUnverifiedCustomerRequestBody$inboundSchema,
-  models.CreateReceiveOnlyRequestBody$inboundSchema,
-  models.CreateVerifiedPersonalRequestBody$inboundSchema,
-  models.CreateVerifiedSolePropRequestBody$inboundSchema,
   models.CreateVerifiedBusinessRequestBody$inboundSchema,
+  models.CreateVerifiedSolePropRequestBody$inboundSchema,
+  models.CreateVerifiedPersonalRequestBody$inboundSchema,
+  models.CreateReceiveOnlyRequestBody$inboundSchema,
+  models.CreateUnverifiedCustomerRequestBody$inboundSchema,
 ]);
 
 /** @internal */
 export type CreateCustomerRequest$Outbound =
-  | models.CreateUnverifiedCustomerRequestBody$Outbound
-  | models.CreateReceiveOnlyRequestBody$Outbound
-  | models.CreateVerifiedPersonalRequestBody$Outbound
+  | models.CreateVerifiedBusinessRequestBody$Outbound
   | models.CreateVerifiedSolePropRequestBody$Outbound
-  | models.CreateVerifiedBusinessRequestBody$Outbound;
+  | models.CreateVerifiedPersonalRequestBody$Outbound
+  | models.CreateReceiveOnlyRequestBody$Outbound
+  | models.CreateUnverifiedCustomerRequestBody$Outbound;
 
 /** @internal */
 export const CreateCustomerRequest$outboundSchema: z.ZodType<
@@ -50,11 +50,11 @@ export const CreateCustomerRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateCustomerRequest
 > = z.union([
-  models.CreateUnverifiedCustomerRequestBody$outboundSchema,
-  models.CreateReceiveOnlyRequestBody$outboundSchema,
-  models.CreateVerifiedPersonalRequestBody$outboundSchema,
-  models.CreateVerifiedSolePropRequestBody$outboundSchema,
   models.CreateVerifiedBusinessRequestBody$outboundSchema,
+  models.CreateVerifiedSolePropRequestBody$outboundSchema,
+  models.CreateVerifiedPersonalRequestBody$outboundSchema,
+  models.CreateReceiveOnlyRequestBody$outboundSchema,
+  models.CreateUnverifiedCustomerRequestBody$outboundSchema,
 ]);
 
 /**

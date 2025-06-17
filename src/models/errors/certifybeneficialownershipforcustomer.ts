@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { DwollaError } from "./dwollaerror.js";
 
 /**
  * forbidden
@@ -16,7 +17,7 @@ export type CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONErrorData = {
  * forbidden
  */
 export class CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError
-  extends Error
+  extends DwollaError
 {
   code?: string | undefined;
 
@@ -25,13 +26,13 @@ export class CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError
 
   constructor(
     err: CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
   ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError";
@@ -47,9 +48,16 @@ export const CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError$inboundSc
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError(v);
+      return new CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */

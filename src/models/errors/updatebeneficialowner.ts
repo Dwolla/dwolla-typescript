@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { DwollaError } from "./dwollaerror.js";
 
 /**
  * not found
@@ -15,19 +16,23 @@ export type UpdateBeneficialOwnerNotFoundDwollaV1HalJSONErrorData = {
 /**
  * not found
  */
-export class UpdateBeneficialOwnerNotFoundDwollaV1HalJSONError extends Error {
+export class UpdateBeneficialOwnerNotFoundDwollaV1HalJSONError
+  extends DwollaError
+{
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: UpdateBeneficialOwnerNotFoundDwollaV1HalJSONErrorData;
 
-  constructor(err: UpdateBeneficialOwnerNotFoundDwollaV1HalJSONErrorData) {
+  constructor(
+    err: UpdateBeneficialOwnerNotFoundDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "UpdateBeneficialOwnerNotFoundDwollaV1HalJSONError";
@@ -45,19 +50,23 @@ export type UpdateBeneficialOwnerForbiddenDwollaV1HalJSONErrorData = {
 /**
  * forbidden
  */
-export class UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError extends Error {
+export class UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError
+  extends DwollaError
+{
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: UpdateBeneficialOwnerForbiddenDwollaV1HalJSONErrorData;
 
-  constructor(err: UpdateBeneficialOwnerForbiddenDwollaV1HalJSONErrorData) {
+  constructor(
+    err: UpdateBeneficialOwnerForbiddenDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError";
@@ -73,9 +82,16 @@ export const UpdateBeneficialOwnerNotFoundDwollaV1HalJSONError$inboundSchema:
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new UpdateBeneficialOwnerNotFoundDwollaV1HalJSONError(v);
+      return new UpdateBeneficialOwnerNotFoundDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */
@@ -122,9 +138,16 @@ export const UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError$inboundSchema:
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError(v);
+      return new UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */

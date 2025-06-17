@@ -3,25 +3,28 @@
  */
 
 import * as z from "zod";
+import { DwollaError } from "./dwollaerror.js";
 
 export type NotAuthorizedSchemaErrorData = {
   code: string;
   message: string;
 };
 
-export class NotAuthorizedSchemaError extends Error {
+export class NotAuthorizedSchemaError extends DwollaError {
   code: string;
 
   /** The original data that was passed to this error instance. */
   data$: NotAuthorizedSchemaErrorData;
 
-  constructor(err: NotAuthorizedSchemaErrorData) {
+  constructor(
+    err: NotAuthorizedSchemaErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.code = err.code;
 
     this.name = "NotAuthorizedSchemaError";
@@ -36,9 +39,16 @@ export const NotAuthorizedSchemaError$inboundSchema: z.ZodType<
 > = z.object({
   code: z.string(),
   message: z.string(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
-    return new NotAuthorizedSchemaError(v);
+    return new NotAuthorizedSchemaError(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

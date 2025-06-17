@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { DwollaError } from "./dwollaerror.js";
 
 /**
  * not found
@@ -16,20 +17,22 @@ export type ListCustomerFundingSourcesNotFoundDwollaV1HalJSONErrorData = {
  * not found
  */
 export class ListCustomerFundingSourcesNotFoundDwollaV1HalJSONError
-  extends Error
+  extends DwollaError
 {
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: ListCustomerFundingSourcesNotFoundDwollaV1HalJSONErrorData;
 
-  constructor(err: ListCustomerFundingSourcesNotFoundDwollaV1HalJSONErrorData) {
+  constructor(
+    err: ListCustomerFundingSourcesNotFoundDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "ListCustomerFundingSourcesNotFoundDwollaV1HalJSONError";
@@ -48,7 +51,7 @@ export type ListCustomerFundingSourcesForbiddenDwollaV1HalJSONErrorData = {
  * forbidden
  */
 export class ListCustomerFundingSourcesForbiddenDwollaV1HalJSONError
-  extends Error
+  extends DwollaError
 {
   code?: string | undefined;
 
@@ -57,13 +60,13 @@ export class ListCustomerFundingSourcesForbiddenDwollaV1HalJSONError
 
   constructor(
     err: ListCustomerFundingSourcesForbiddenDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
   ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "ListCustomerFundingSourcesForbiddenDwollaV1HalJSONError";
@@ -79,9 +82,16 @@ export const ListCustomerFundingSourcesNotFoundDwollaV1HalJSONError$inboundSchem
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new ListCustomerFundingSourcesNotFoundDwollaV1HalJSONError(v);
+      return new ListCustomerFundingSourcesNotFoundDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */
@@ -128,9 +138,16 @@ export const ListCustomerFundingSourcesForbiddenDwollaV1HalJSONError$inboundSche
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new ListCustomerFundingSourcesForbiddenDwollaV1HalJSONError(v);
+      return new ListCustomerFundingSourcesForbiddenDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */

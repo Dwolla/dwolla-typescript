@@ -5,6 +5,7 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as models from "../index.js";
+import { DwollaError } from "./dwollaerror.js";
 
 export type InvalidAmountForDestinationClearingTypeErrorData = {
   code: string;
@@ -14,7 +15,7 @@ export type InvalidAmountForDestinationClearingTypeErrorData = {
     | undefined;
 };
 
-export class InvalidAmountForDestinationClearingTypeError extends Error {
+export class InvalidAmountForDestinationClearingTypeError extends DwollaError {
   code: string;
   embedded?:
     | models.InvalidAmountForDestinationClearingTypeErrorEmbedded
@@ -23,13 +24,15 @@ export class InvalidAmountForDestinationClearingTypeError extends Error {
   /** The original data that was passed to this error instance. */
   data$: InvalidAmountForDestinationClearingTypeErrorData;
 
-  constructor(err: InvalidAmountForDestinationClearingTypeErrorData) {
+  constructor(
+    err: InvalidAmountForDestinationClearingTypeErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.code = err.code;
     if (err.embedded != null) this.embedded = err.embedded;
 
@@ -49,13 +52,20 @@ export const InvalidAmountForDestinationClearingTypeError$inboundSchema:
     _embedded: z.lazy(() =>
       models.InvalidAmountForDestinationClearingTypeErrorEmbedded$inboundSchema
     ).optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
       const remapped = remap$(v, {
         "_embedded": "embedded",
       });
 
-      return new InvalidAmountForDestinationClearingTypeError(remapped);
+      return new InvalidAmountForDestinationClearingTypeError(remapped, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */

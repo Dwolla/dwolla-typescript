@@ -6,7 +6,6 @@
 /sdk
 /funcs
 /react-query
-/mcp-server
 /hooks
 /index.*
 /core.*

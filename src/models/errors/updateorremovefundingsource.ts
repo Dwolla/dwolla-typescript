@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { DwollaError } from "./dwollaerror.js";
 
 /**
  * forbidden
@@ -16,7 +17,7 @@ export type UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONErrorData = {
  * forbidden
  */
 export class UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError
-  extends Error
+  extends DwollaError
 {
   code?: string | undefined;
 
@@ -25,13 +26,13 @@ export class UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError
 
   constructor(
     err: UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
   ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError";
@@ -50,7 +51,7 @@ export type UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONErrorData = {
  * validation error
  */
 export class UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError
-  extends Error
+  extends DwollaError
 {
   code?: string | undefined;
 
@@ -59,13 +60,13 @@ export class UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError
 
   constructor(
     err: UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
   ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError";
@@ -81,9 +82,16 @@ export const UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError$inboundSch
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError(v);
+      return new UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */
@@ -131,9 +139,16 @@ export const UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError$inboundSc
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError(v);
+      return new UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */

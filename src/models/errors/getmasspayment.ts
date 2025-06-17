@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { DwollaError } from "./dwollaerror.js";
 
 /**
  * Not Found
@@ -15,19 +16,21 @@ export type GetMassPaymentNotFoundDwollaV1HalJSONErrorData = {
 /**
  * Not Found
  */
-export class GetMassPaymentNotFoundDwollaV1HalJSONError extends Error {
+export class GetMassPaymentNotFoundDwollaV1HalJSONError extends DwollaError {
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetMassPaymentNotFoundDwollaV1HalJSONErrorData;
 
-  constructor(err: GetMassPaymentNotFoundDwollaV1HalJSONErrorData) {
+  constructor(
+    err: GetMassPaymentNotFoundDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "GetMassPaymentNotFoundDwollaV1HalJSONError";
@@ -45,19 +48,21 @@ export type GetMassPaymentForbiddenDwollaV1HalJSONErrorData = {
 /**
  * Forbidden
  */
-export class GetMassPaymentForbiddenDwollaV1HalJSONError extends Error {
+export class GetMassPaymentForbiddenDwollaV1HalJSONError extends DwollaError {
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetMassPaymentForbiddenDwollaV1HalJSONErrorData;
 
-  constructor(err: GetMassPaymentForbiddenDwollaV1HalJSONErrorData) {
+  constructor(
+    err: GetMassPaymentForbiddenDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "GetMassPaymentForbiddenDwollaV1HalJSONError";
@@ -70,9 +75,16 @@ export const GetMassPaymentNotFoundDwollaV1HalJSONError$inboundSchema:
     z.object({
       code: z.string().optional(),
       message: z.string().optional(),
+      request$: z.instanceof(Request),
+      response$: z.instanceof(Response),
+      body$: z.string(),
     })
       .transform((v) => {
-        return new GetMassPaymentNotFoundDwollaV1HalJSONError(v);
+        return new GetMassPaymentNotFoundDwollaV1HalJSONError(v, {
+          request: v.request$,
+          response: v.response$,
+          body: v.body$,
+        });
       });
 
 /** @internal */
@@ -118,9 +130,16 @@ export const GetMassPaymentForbiddenDwollaV1HalJSONError$inboundSchema:
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new GetMassPaymentForbiddenDwollaV1HalJSONError(v);
+      return new GetMassPaymentForbiddenDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */

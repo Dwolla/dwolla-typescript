@@ -5,6 +5,7 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as models from "../index.js";
+import { DwollaError } from "./dwollaerror.js";
 
 export type WithdrawInvalidWireBeneficiaryRegionErrorData = {
   code: string;
@@ -14,7 +15,7 @@ export type WithdrawInvalidWireBeneficiaryRegionErrorData = {
     | undefined;
 };
 
-export class WithdrawInvalidWireBeneficiaryRegionError extends Error {
+export class WithdrawInvalidWireBeneficiaryRegionError extends DwollaError {
   code: string;
   embedded?:
     | models.WithdrawInvalidWireBeneficiaryRegionErrorEmbedded
@@ -23,13 +24,15 @@ export class WithdrawInvalidWireBeneficiaryRegionError extends Error {
   /** The original data that was passed to this error instance. */
   data$: WithdrawInvalidWireBeneficiaryRegionErrorData;
 
-  constructor(err: WithdrawInvalidWireBeneficiaryRegionErrorData) {
+  constructor(
+    err: WithdrawInvalidWireBeneficiaryRegionErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.code = err.code;
     if (err.embedded != null) this.embedded = err.embedded;
 
@@ -48,13 +51,20 @@ export const WithdrawInvalidWireBeneficiaryRegionError$inboundSchema: z.ZodType<
   _embedded: z.lazy(() =>
     models.WithdrawInvalidWireBeneficiaryRegionErrorEmbedded$inboundSchema
   ).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "_embedded": "embedded",
     });
 
-    return new WithdrawInvalidWireBeneficiaryRegionError(remapped);
+    return new WithdrawInvalidWireBeneficiaryRegionError(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

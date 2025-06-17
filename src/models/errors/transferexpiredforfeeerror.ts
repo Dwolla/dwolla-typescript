@@ -5,6 +5,7 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as models from "../index.js";
+import { DwollaError } from "./dwollaerror.js";
 
 export type TransferExpiredForFeeErrorData = {
   code: string;
@@ -12,20 +13,22 @@ export type TransferExpiredForFeeErrorData = {
   embedded?: models.TransferExpiredForFeeErrorEmbedded | undefined;
 };
 
-export class TransferExpiredForFeeError extends Error {
+export class TransferExpiredForFeeError extends DwollaError {
   code: string;
   embedded?: models.TransferExpiredForFeeErrorEmbedded | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: TransferExpiredForFeeErrorData;
 
-  constructor(err: TransferExpiredForFeeErrorData) {
+  constructor(
+    err: TransferExpiredForFeeErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.code = err.code;
     if (err.embedded != null) this.embedded = err.embedded;
 
@@ -44,13 +47,20 @@ export const TransferExpiredForFeeError$inboundSchema: z.ZodType<
   _embedded: z.lazy(() =>
     models.TransferExpiredForFeeErrorEmbedded$inboundSchema
   ).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "_embedded": "embedded",
     });
 
-    return new TransferExpiredForFeeError(remapped);
+    return new TransferExpiredForFeeError(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

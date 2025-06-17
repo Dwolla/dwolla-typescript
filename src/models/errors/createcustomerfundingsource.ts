@@ -5,6 +5,7 @@
 import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { DwollaError } from "./dwollaerror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 /**
@@ -19,7 +20,7 @@ export type CreateCustomerFundingSourceNotFoundDwollaV1HalJSONErrorData = {
  * not found
  */
 export class CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError
-  extends Error
+  extends DwollaError
 {
   code?: string | undefined;
 
@@ -28,13 +29,13 @@ export class CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError
 
   constructor(
     err: CreateCustomerFundingSourceNotFoundDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
   ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError";
@@ -53,7 +54,7 @@ export type CreateCustomerFundingSourceForbiddenDwollaV1HalJSONErrorData = {
  * forbidden
  */
 export class CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError
-  extends Error
+  extends DwollaError
 {
   code?: string | undefined;
 
@@ -62,13 +63,13 @@ export class CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError
 
   constructor(
     err: CreateCustomerFundingSourceForbiddenDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
   ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError";
@@ -80,19 +81,21 @@ export type CreateCustomerFundingSourceResponseBodyError3Data = {
   message: string;
 };
 
-export class CreateCustomerFundingSourceResponseBodyError3 extends Error {
+export class CreateCustomerFundingSourceResponseBodyError3 extends DwollaError {
   code: string;
 
   /** The original data that was passed to this error instance. */
   data$: CreateCustomerFundingSourceResponseBodyError3Data;
 
-  constructor(err: CreateCustomerFundingSourceResponseBodyError3Data) {
+  constructor(
+    err: CreateCustomerFundingSourceResponseBodyError3Data,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.code = err.code;
 
     this.name = "CreateCustomerFundingSourceResponseBodyError3";
@@ -104,19 +107,21 @@ export type CreateCustomerFundingSourceResponseBodyError2Data = {
   message: string;
 };
 
-export class CreateCustomerFundingSourceResponseBodyError2 extends Error {
+export class CreateCustomerFundingSourceResponseBodyError2 extends DwollaError {
   code: string;
 
   /** The original data that was passed to this error instance. */
   data$: CreateCustomerFundingSourceResponseBodyError2Data;
 
-  constructor(err: CreateCustomerFundingSourceResponseBodyError2Data) {
+  constructor(
+    err: CreateCustomerFundingSourceResponseBodyError2Data,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.code = err.code;
 
     this.name = "CreateCustomerFundingSourceResponseBodyError2";
@@ -128,19 +133,21 @@ export type CreateCustomerFundingSourceResponseBodyError1Data = {
   message: string;
 };
 
-export class CreateCustomerFundingSourceResponseBodyError1 extends Error {
+export class CreateCustomerFundingSourceResponseBodyError1 extends DwollaError {
   code: string;
 
   /** The original data that was passed to this error instance. */
   data$: CreateCustomerFundingSourceResponseBodyError1Data;
 
-  constructor(err: CreateCustomerFundingSourceResponseBodyError1Data) {
+  constructor(
+    err: CreateCustomerFundingSourceResponseBodyError1Data,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.code = err.code;
 
     this.name = "CreateCustomerFundingSourceResponseBodyError1";
@@ -164,9 +171,16 @@ export const CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError$inboundSche
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError(v);
+      return new CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */
@@ -213,9 +227,16 @@ export const CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError$inboundSch
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError(v);
+      return new CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */
@@ -263,9 +284,16 @@ export const CreateCustomerFundingSourceResponseBodyError3$inboundSchema:
   > = z.object({
     code: z.string(),
     message: z.string(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new CreateCustomerFundingSourceResponseBodyError3(v);
+      return new CreateCustomerFundingSourceResponseBodyError3(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */
@@ -311,9 +339,16 @@ export const CreateCustomerFundingSourceResponseBodyError2$inboundSchema:
   > = z.object({
     code: z.string(),
     message: z.string(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new CreateCustomerFundingSourceResponseBodyError2(v);
+      return new CreateCustomerFundingSourceResponseBodyError2(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */
@@ -359,9 +394,16 @@ export const CreateCustomerFundingSourceResponseBodyError1$inboundSchema:
   > = z.object({
     code: z.string(),
     message: z.string(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new CreateCustomerFundingSourceResponseBodyError1(v);
+      return new CreateCustomerFundingSourceResponseBodyError1(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */

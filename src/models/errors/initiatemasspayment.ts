@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { DwollaError } from "./dwollaerror.js";
 
 /**
  * Forbidden
@@ -15,19 +16,21 @@ export type InitiateMassPaymentDwollaV1HalJSONErrorData = {
 /**
  * Forbidden
  */
-export class InitiateMassPaymentDwollaV1HalJSONError extends Error {
+export class InitiateMassPaymentDwollaV1HalJSONError extends DwollaError {
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: InitiateMassPaymentDwollaV1HalJSONErrorData;
 
-  constructor(err: InitiateMassPaymentDwollaV1HalJSONErrorData) {
+  constructor(
+    err: InitiateMassPaymentDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "InitiateMassPaymentDwollaV1HalJSONError";
@@ -42,9 +45,16 @@ export const InitiateMassPaymentDwollaV1HalJSONError$inboundSchema: z.ZodType<
 > = z.object({
   code: z.string().optional(),
   message: z.string().optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
-    return new InitiateMassPaymentDwollaV1HalJSONError(v);
+    return new InitiateMassPaymentDwollaV1HalJSONError(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

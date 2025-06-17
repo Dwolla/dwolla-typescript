@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { DwollaError } from "./dwollaerror.js";
 
 /**
  * 404 Error
@@ -15,19 +16,21 @@ export type GetKbaQuestionsDwollaV1HalJSONErrorData = {
 /**
  * 404 Error
  */
-export class GetKbaQuestionsDwollaV1HalJSONError extends Error {
+export class GetKbaQuestionsDwollaV1HalJSONError extends DwollaError {
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetKbaQuestionsDwollaV1HalJSONErrorData;
 
-  constructor(err: GetKbaQuestionsDwollaV1HalJSONErrorData) {
+  constructor(
+    err: GetKbaQuestionsDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "GetKbaQuestionsDwollaV1HalJSONError";
@@ -42,9 +45,16 @@ export const GetKbaQuestionsDwollaV1HalJSONError$inboundSchema: z.ZodType<
 > = z.object({
   code: z.string().optional(),
   message: z.string().optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
-    return new GetKbaQuestionsDwollaV1HalJSONError(v);
+    return new GetKbaQuestionsDwollaV1HalJSONError(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
