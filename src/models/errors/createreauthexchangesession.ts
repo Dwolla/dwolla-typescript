@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { DwollaError } from "./dwollaerror.js";
 
 /**
  * forbidden
@@ -16,7 +17,7 @@ export type CreateReAuthExchangeSessionForbiddenDwollaV1HalJSONErrorData = {
  * forbidden
  */
 export class CreateReAuthExchangeSessionForbiddenDwollaV1HalJSONError
-  extends Error
+  extends DwollaError
 {
   code?: string | undefined;
 
@@ -25,13 +26,13 @@ export class CreateReAuthExchangeSessionForbiddenDwollaV1HalJSONError
 
   constructor(
     err: CreateReAuthExchangeSessionForbiddenDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
   ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "CreateReAuthExchangeSessionForbiddenDwollaV1HalJSONError";
@@ -50,7 +51,7 @@ export type CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONErrorData = {
  * validation error
  */
 export class CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONError
-  extends Error
+  extends DwollaError
 {
   code?: string | undefined;
 
@@ -59,13 +60,13 @@ export class CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONError
 
   constructor(
     err: CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
   ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONError";
@@ -81,9 +82,16 @@ export const CreateReAuthExchangeSessionForbiddenDwollaV1HalJSONError$inboundSch
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new CreateReAuthExchangeSessionForbiddenDwollaV1HalJSONError(v);
+      return new CreateReAuthExchangeSessionForbiddenDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */
@@ -131,9 +139,16 @@ export const CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONError$inboundSc
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONError(v);
+      return new CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */

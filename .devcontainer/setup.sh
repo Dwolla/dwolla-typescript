@@ -27,4 +27,4 @@ EOL
 echo "$TS_CONFIG_CONTENT" > samples/tsconfig.json
 
 # Generate starter usage sample with speakeasy
-speakeasy generate usage -s /Users/sthapa/Documents/Projects/DevRel/speakeasy-sdk-gen/dwolla-openapi/openapi.yml -l typescript -o samples/root.ts
+speakeasy generate usage -s https://raw.githubusercontent.com/Dwolla/dwolla-openapi/refs/heads/main/openapi.yml -l typescript -o samples/root.ts

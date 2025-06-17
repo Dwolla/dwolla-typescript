@@ -3,25 +3,28 @@
  */
 
 import * as z from "zod";
+import { DwollaError } from "./dwollaerror.js";
 
 export type InvalidKbaSessionErrorData = {
   code: string;
   message: string;
 };
 
-export class InvalidKbaSessionError extends Error {
+export class InvalidKbaSessionError extends DwollaError {
   code: string;
 
   /** The original data that was passed to this error instance. */
   data$: InvalidKbaSessionErrorData;
 
-  constructor(err: InvalidKbaSessionErrorData) {
+  constructor(
+    err: InvalidKbaSessionErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.code = err.code;
 
     this.name = "InvalidKbaSessionError";
@@ -36,9 +39,16 @@ export const InvalidKbaSessionError$inboundSchema: z.ZodType<
 > = z.object({
   code: z.string(),
   message: z.string(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
-    return new InvalidKbaSessionError(v);
+    return new InvalidKbaSessionError(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

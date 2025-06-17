@@ -14,7 +14,7 @@ export const tool$accountsGet: ToolDefinition<typeof args> = {
   name: "accounts-get",
   description: `Retrieve Account Details
 
-Retrieve basic account information belonging to the authorized Dwolla account.`,
+Retrieve basic account details belonging to the authorized Dwolla account.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await accountsGet(

@@ -5,6 +5,7 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as models from "../index.js";
+import { DwollaError } from "./dwollaerror.js";
 
 export type DirectAccountWithoutBankErrorData = {
   code: string;
@@ -12,20 +13,22 @@ export type DirectAccountWithoutBankErrorData = {
   embedded?: models.DirectAccountWithoutBankErrorEmbedded | undefined;
 };
 
-export class DirectAccountWithoutBankError extends Error {
+export class DirectAccountWithoutBankError extends DwollaError {
   code: string;
   embedded?: models.DirectAccountWithoutBankErrorEmbedded | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: DirectAccountWithoutBankErrorData;
 
-  constructor(err: DirectAccountWithoutBankErrorData) {
+  constructor(
+    err: DirectAccountWithoutBankErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.code = err.code;
     if (err.embedded != null) this.embedded = err.embedded;
 
@@ -44,13 +47,20 @@ export const DirectAccountWithoutBankError$inboundSchema: z.ZodType<
   _embedded: z.lazy(() =>
     models.DirectAccountWithoutBankErrorEmbedded$inboundSchema
   ).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "_embedded": "embedded",
     });
 
-    return new DirectAccountWithoutBankError(remapped);
+    return new DirectAccountWithoutBankError(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

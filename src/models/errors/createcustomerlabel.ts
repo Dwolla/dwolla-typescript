@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { DwollaError } from "./dwollaerror.js";
 
 /**
  * Not Found
@@ -15,19 +16,23 @@ export type CreateCustomerLabelNotFoundDwollaV1HalJSONErrorData = {
 /**
  * Not Found
  */
-export class CreateCustomerLabelNotFoundDwollaV1HalJSONError extends Error {
+export class CreateCustomerLabelNotFoundDwollaV1HalJSONError
+  extends DwollaError
+{
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: CreateCustomerLabelNotFoundDwollaV1HalJSONErrorData;
 
-  constructor(err: CreateCustomerLabelNotFoundDwollaV1HalJSONErrorData) {
+  constructor(
+    err: CreateCustomerLabelNotFoundDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "CreateCustomerLabelNotFoundDwollaV1HalJSONError";
@@ -45,19 +50,23 @@ export type CreateCustomerLabelForbiddenDwollaV1HalJSONErrorData = {
 /**
  * Forbidden
  */
-export class CreateCustomerLabelForbiddenDwollaV1HalJSONError extends Error {
+export class CreateCustomerLabelForbiddenDwollaV1HalJSONError
+  extends DwollaError
+{
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: CreateCustomerLabelForbiddenDwollaV1HalJSONErrorData;
 
-  constructor(err: CreateCustomerLabelForbiddenDwollaV1HalJSONErrorData) {
+  constructor(
+    err: CreateCustomerLabelForbiddenDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "CreateCustomerLabelForbiddenDwollaV1HalJSONError";
@@ -73,9 +82,16 @@ export const CreateCustomerLabelNotFoundDwollaV1HalJSONError$inboundSchema:
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new CreateCustomerLabelNotFoundDwollaV1HalJSONError(v);
+      return new CreateCustomerLabelNotFoundDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */
@@ -122,9 +138,16 @@ export const CreateCustomerLabelForbiddenDwollaV1HalJSONError$inboundSchema:
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new CreateCustomerLabelForbiddenDwollaV1HalJSONError(v);
+      return new CreateCustomerLabelForbiddenDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */

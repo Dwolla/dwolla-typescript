@@ -11,7 +11,7 @@ Operations related to Accounts
 
 ## get
 
-Retrieve basic account information belonging to the authorized Dwolla account.
+Retrieve basic account details belonging to the authorized Dwolla account.
 
 ### Example Usage
 

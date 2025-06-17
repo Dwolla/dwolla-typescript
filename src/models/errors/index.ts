@@ -105,6 +105,7 @@ export * from "./pointofsaleaddendaentriesnotenabledforaccounterror.js";
 export * from "./receivernotfounderror.js";
 export * from "./receiverrestrictederror.js";
 export * from "./removelabel.js";
+export * from "./responsevalidationerror.js";
 export * from "./retrievebeneficialowner.js";
 export * from "./retrievebusinessclassification.js";
 export * from "./retrievecustomerexchangesession.js";

@@ -5,6 +5,7 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as models from "../index.js";
+import { DwollaError } from "./dwollaerror.js";
 
 export type DuplicateResourceSchemaErrorData = {
   code: string;
@@ -12,20 +13,22 @@ export type DuplicateResourceSchemaErrorData = {
   links?: models.DuplicateResourceSchemaLinks | undefined;
 };
 
-export class DuplicateResourceSchemaError extends Error {
+export class DuplicateResourceSchemaError extends DwollaError {
   code: string;
   links?: models.DuplicateResourceSchemaLinks | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: DuplicateResourceSchemaErrorData;
 
-  constructor(err: DuplicateResourceSchemaErrorData) {
+  constructor(
+    err: DuplicateResourceSchemaErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.code = err.code;
     if (err.links != null) this.links = err.links;
 
@@ -43,13 +46,20 @@ export const DuplicateResourceSchemaError$inboundSchema: z.ZodType<
   message: z.string(),
   _links: z.lazy(() => models.DuplicateResourceSchemaLinks$inboundSchema)
     .optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "_links": "links",
     });
 
-    return new DuplicateResourceSchemaError(remapped);
+    return new DuplicateResourceSchemaError(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

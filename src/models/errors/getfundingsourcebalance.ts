@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { DwollaError } from "./dwollaerror.js";
 
 /**
  * not found
@@ -15,19 +16,21 @@ export type GetFundingSourceBalanceDwollaV1HalJSONErrorData = {
 /**
  * not found
  */
-export class GetFundingSourceBalanceDwollaV1HalJSONError extends Error {
+export class GetFundingSourceBalanceDwollaV1HalJSONError extends DwollaError {
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetFundingSourceBalanceDwollaV1HalJSONErrorData;
 
-  constructor(err: GetFundingSourceBalanceDwollaV1HalJSONErrorData) {
+  constructor(
+    err: GetFundingSourceBalanceDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "GetFundingSourceBalanceDwollaV1HalJSONError";
@@ -43,9 +46,16 @@ export const GetFundingSourceBalanceDwollaV1HalJSONError$inboundSchema:
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new GetFundingSourceBalanceDwollaV1HalJSONError(v);
+      return new GetFundingSourceBalanceDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */

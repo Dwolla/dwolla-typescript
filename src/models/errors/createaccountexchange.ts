@@ -5,6 +5,7 @@
 import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { DwollaError } from "./dwollaerror.js";
 import {
   InvalidExchangeError,
   InvalidExchangeError$inboundSchema,
@@ -30,19 +31,21 @@ export type CreateAccountExchangeDwollaV1HalJSONErrorData = {
 /**
  * Invalid Scope
  */
-export class CreateAccountExchangeDwollaV1HalJSONError extends Error {
+export class CreateAccountExchangeDwollaV1HalJSONError extends DwollaError {
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: CreateAccountExchangeDwollaV1HalJSONErrorData;
 
-  constructor(err: CreateAccountExchangeDwollaV1HalJSONErrorData) {
+  constructor(
+    err: CreateAccountExchangeDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "CreateAccountExchangeDwollaV1HalJSONError";
@@ -64,9 +67,16 @@ export const CreateAccountExchangeDwollaV1HalJSONError$inboundSchema: z.ZodType<
 > = z.object({
   code: z.string().optional(),
   message: z.string().optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
-    return new CreateAccountExchangeDwollaV1HalJSONError(v);
+    return new CreateAccountExchangeDwollaV1HalJSONError(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

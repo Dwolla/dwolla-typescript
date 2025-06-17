@@ -5,6 +5,7 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as models from "../index.js";
+import { DwollaError } from "./dwollaerror.js";
 
 export type WithdrawAccountRestrictedErrorData = {
   code: string;
@@ -12,20 +13,22 @@ export type WithdrawAccountRestrictedErrorData = {
   embedded?: models.WithdrawAccountRestrictedErrorEmbedded | undefined;
 };
 
-export class WithdrawAccountRestrictedError extends Error {
+export class WithdrawAccountRestrictedError extends DwollaError {
   code: string;
   embedded?: models.WithdrawAccountRestrictedErrorEmbedded | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: WithdrawAccountRestrictedErrorData;
 
-  constructor(err: WithdrawAccountRestrictedErrorData) {
+  constructor(
+    err: WithdrawAccountRestrictedErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.code = err.code;
     if (err.embedded != null) this.embedded = err.embedded;
 
@@ -44,13 +47,20 @@ export const WithdrawAccountRestrictedError$inboundSchema: z.ZodType<
   _embedded: z.lazy(() =>
     models.WithdrawAccountRestrictedErrorEmbedded$inboundSchema
   ).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "_embedded": "embedded",
     });
 
-    return new WithdrawAccountRestrictedError(remapped);
+    return new WithdrawAccountRestrictedError(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

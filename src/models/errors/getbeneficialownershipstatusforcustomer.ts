@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { DwollaError } from "./dwollaerror.js";
 
 /**
  * not found
@@ -17,7 +18,7 @@ export type GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONErrorD
  * not found
  */
 export class GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONError
-  extends Error
+  extends DwollaError
 {
   code?: string | undefined;
 
@@ -28,13 +29,13 @@ export class GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONError
   constructor(
     err:
       GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
   ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name =
@@ -55,7 +56,7 @@ export type GetBeneficialOwnershipStatusForCustomerForbiddenDwollaV1HalJSONError
  * forbidden
  */
 export class GetBeneficialOwnershipStatusForCustomerForbiddenDwollaV1HalJSONError
-  extends Error
+  extends DwollaError
 {
   code?: string | undefined;
 
@@ -66,13 +67,13 @@ export class GetBeneficialOwnershipStatusForCustomerForbiddenDwollaV1HalJSONErro
   constructor(
     err:
       GetBeneficialOwnershipStatusForCustomerForbiddenDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
   ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name =
@@ -89,10 +90,14 @@ export const GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONError
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
       return new GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONError(
         v,
+        { request: v.request$, response: v.response$, body: v.body$ },
       );
     });
 
@@ -143,10 +148,14 @@ export const GetBeneficialOwnershipStatusForCustomerForbiddenDwollaV1HalJSONErro
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
       return new GetBeneficialOwnershipStatusForCustomerForbiddenDwollaV1HalJSONError(
         v,
+        { request: v.request$, response: v.response$, body: v.body$ },
       );
     });
 

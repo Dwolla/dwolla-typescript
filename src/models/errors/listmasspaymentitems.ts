@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { DwollaError } from "./dwollaerror.js";
 
 /**
  * Mass payment not found
@@ -15,19 +16,23 @@ export type ListMassPaymentItemsNotFoundDwollaV1HalJSONErrorData = {
 /**
  * Mass payment not found
  */
-export class ListMassPaymentItemsNotFoundDwollaV1HalJSONError extends Error {
+export class ListMassPaymentItemsNotFoundDwollaV1HalJSONError
+  extends DwollaError
+{
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: ListMassPaymentItemsNotFoundDwollaV1HalJSONErrorData;
 
-  constructor(err: ListMassPaymentItemsNotFoundDwollaV1HalJSONErrorData) {
+  constructor(
+    err: ListMassPaymentItemsNotFoundDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "ListMassPaymentItemsNotFoundDwollaV1HalJSONError";
@@ -45,19 +50,23 @@ export type ListMassPaymentItemsForbiddenDwollaV1HalJSONErrorData = {
 /**
  * Not authorized to list mass payment items
  */
-export class ListMassPaymentItemsForbiddenDwollaV1HalJSONError extends Error {
+export class ListMassPaymentItemsForbiddenDwollaV1HalJSONError
+  extends DwollaError
+{
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: ListMassPaymentItemsForbiddenDwollaV1HalJSONErrorData;
 
-  constructor(err: ListMassPaymentItemsForbiddenDwollaV1HalJSONErrorData) {
+  constructor(
+    err: ListMassPaymentItemsForbiddenDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "ListMassPaymentItemsForbiddenDwollaV1HalJSONError";
@@ -73,9 +82,16 @@ export const ListMassPaymentItemsNotFoundDwollaV1HalJSONError$inboundSchema:
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new ListMassPaymentItemsNotFoundDwollaV1HalJSONError(v);
+      return new ListMassPaymentItemsNotFoundDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */
@@ -122,9 +138,16 @@ export const ListMassPaymentItemsForbiddenDwollaV1HalJSONError$inboundSchema:
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new ListMassPaymentItemsForbiddenDwollaV1HalJSONError(v);
+      return new ListMassPaymentItemsForbiddenDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */

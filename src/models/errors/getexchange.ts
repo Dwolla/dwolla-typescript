@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { DwollaError } from "./dwollaerror.js";
 
 /**
  * Not Found
@@ -15,19 +16,21 @@ export type GetExchangeNotFoundDwollaV1HalJSONErrorData = {
 /**
  * Not Found
  */
-export class GetExchangeNotFoundDwollaV1HalJSONError extends Error {
+export class GetExchangeNotFoundDwollaV1HalJSONError extends DwollaError {
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetExchangeNotFoundDwollaV1HalJSONErrorData;
 
-  constructor(err: GetExchangeNotFoundDwollaV1HalJSONErrorData) {
+  constructor(
+    err: GetExchangeNotFoundDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "GetExchangeNotFoundDwollaV1HalJSONError";
@@ -45,19 +48,21 @@ export type GetExchangeUnauthorizedDwollaV1HalJSONErrorData = {
 /**
  * Invalid Scope
  */
-export class GetExchangeUnauthorizedDwollaV1HalJSONError extends Error {
+export class GetExchangeUnauthorizedDwollaV1HalJSONError extends DwollaError {
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetExchangeUnauthorizedDwollaV1HalJSONErrorData;
 
-  constructor(err: GetExchangeUnauthorizedDwollaV1HalJSONErrorData) {
+  constructor(
+    err: GetExchangeUnauthorizedDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "GetExchangeUnauthorizedDwollaV1HalJSONError";
@@ -72,9 +77,16 @@ export const GetExchangeNotFoundDwollaV1HalJSONError$inboundSchema: z.ZodType<
 > = z.object({
   code: z.string().optional(),
   message: z.string().optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
-    return new GetExchangeNotFoundDwollaV1HalJSONError(v);
+    return new GetExchangeNotFoundDwollaV1HalJSONError(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -119,9 +131,16 @@ export const GetExchangeUnauthorizedDwollaV1HalJSONError$inboundSchema:
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new GetExchangeUnauthorizedDwollaV1HalJSONError(v);
+      return new GetExchangeUnauthorizedDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */

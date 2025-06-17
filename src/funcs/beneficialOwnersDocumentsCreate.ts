@@ -4,14 +4,17 @@
 
 import { DwollaCore } from "../core.js";
 import { appendForm, encodeSimple } from "../lib/encodings.js";
-import { readableStreamToArrayBuffer } from "../lib/files.js";
+import {
+  getContentTypeFromFileName,
+  readableStreamToArrayBuffer,
+} from "../lib/files.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import { APIError } from "../models/errors/apierror.js";
+import { DwollaError } from "../models/errors/dwollaerror.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -20,6 +23,7 @@ import {
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
 import * as errors from "../models/errors/index.js";
+import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
@@ -44,13 +48,14 @@ export function beneficialOwnersDocumentsCreate(
     | errors.ForbiddenError
     | errors.NotFoundError
     | errors.CreateBeneficialOwnerDocumentDwollaV1HalJSONError
-    | APIError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | DwollaError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >
 > {
   return new APIPromise($do(
@@ -72,13 +77,14 @@ async function $do(
       | errors.ForbiddenError
       | errors.NotFoundError
       | errors.CreateBeneficialOwnerDocumentDwollaV1HalJSONError
-      | APIError
-      | SDKValidationError
-      | UnexpectedClientError
-      | InvalidRequestError
+      | DwollaError
+      | ResponseValidationError
+      | ConnectionError
       | RequestAbortedError
       | RequestTimeoutError
-      | ConnectionError
+      | InvalidRequestError
+      | UnexpectedClientError
+      | SDKValidationError
     >,
     APICall,
   ]
@@ -107,15 +113,19 @@ async function $do(
       const buffer = await readableStreamToArrayBuffer(
         payload.RequestBody.file.content,
       );
-      const blob = new Blob([buffer], { type: "application/octet-stream" });
-      appendForm(body, "file", blob);
+      const contentType =
+        getContentTypeFromFileName(payload.RequestBody.file.fileName)
+        || "application/octet-stream";
+      const blob = new Blob([buffer], { type: contentType });
+      appendForm(body, "file", blob, payload.RequestBody.file.fileName);
     } else {
+      const contentType =
+        getContentTypeFromFileName(payload.RequestBody.file.fileName)
+        || "application/octet-stream";
       appendForm(
         body,
         "file",
-        new Blob([payload.RequestBody.file.content], {
-          type: "application/octet-stream",
-        }),
+        new Blob([payload.RequestBody.file.content], { type: contentType }),
         payload.RequestBody.file.fileName,
       );
     }
@@ -188,13 +198,14 @@ async function $do(
     | errors.ForbiddenError
     | errors.NotFoundError
     | errors.CreateBeneficialOwnerDocumentDwollaV1HalJSONError
-    | APIError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | DwollaError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >(
     M.nil(
       201,
@@ -219,7 +230,7 @@ async function $do(
     ),
     M.fail("4XX"),
     M.fail("5XX"),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];
   }

@@ -5,6 +5,7 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as models from "../index.js";
+import { DwollaError } from "./dwollaerror.js";
 
 export type PointOfSaleAddendaEntriesNotEnabledForAccountErrorData = {
   code: string;
@@ -14,7 +15,9 @@ export type PointOfSaleAddendaEntriesNotEnabledForAccountErrorData = {
     | undefined;
 };
 
-export class PointOfSaleAddendaEntriesNotEnabledForAccountError extends Error {
+export class PointOfSaleAddendaEntriesNotEnabledForAccountError
+  extends DwollaError
+{
   code: string;
   embedded?:
     | models.PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded
@@ -23,13 +26,15 @@ export class PointOfSaleAddendaEntriesNotEnabledForAccountError extends Error {
   /** The original data that was passed to this error instance. */
   data$: PointOfSaleAddendaEntriesNotEnabledForAccountErrorData;
 
-  constructor(err: PointOfSaleAddendaEntriesNotEnabledForAccountErrorData) {
+  constructor(
+    err: PointOfSaleAddendaEntriesNotEnabledForAccountErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.code = err.code;
     if (err.embedded != null) this.embedded = err.embedded;
 
@@ -50,13 +55,20 @@ export const PointOfSaleAddendaEntriesNotEnabledForAccountError$inboundSchema:
       models
         .PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded$inboundSchema
     ).optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
       const remapped = remap$(v, {
         "_embedded": "embedded",
       });
 
-      return new PointOfSaleAddendaEntriesNotEnabledForAccountError(remapped);
+      return new PointOfSaleAddendaEntriesNotEnabledForAccountError(remapped, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */

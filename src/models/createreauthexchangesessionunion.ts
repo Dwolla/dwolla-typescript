@@ -29,8 +29,8 @@ export type CreateReAuthExchangeSession1 = {
 };
 
 export type CreateReAuthExchangeSessionUnion =
-  | CreateReAuthExchangeSession2
-  | CreateReAuthExchangeSession1;
+  | CreateReAuthExchangeSession1
+  | CreateReAuthExchangeSession2;
 
 /** @internal */
 export const CreateReAuthExchangeSession2$inboundSchema: z.ZodType<
@@ -280,14 +280,14 @@ export const CreateReAuthExchangeSessionUnion$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => CreateReAuthExchangeSession2$inboundSchema),
   z.lazy(() => CreateReAuthExchangeSession1$inboundSchema),
+  z.lazy(() => CreateReAuthExchangeSession2$inboundSchema),
 ]);
 
 /** @internal */
 export type CreateReAuthExchangeSessionUnion$Outbound =
-  | CreateReAuthExchangeSession2$Outbound
-  | CreateReAuthExchangeSession1$Outbound;
+  | CreateReAuthExchangeSession1$Outbound
+  | CreateReAuthExchangeSession2$Outbound;
 
 /** @internal */
 export const CreateReAuthExchangeSessionUnion$outboundSchema: z.ZodType<
@@ -295,8 +295,8 @@ export const CreateReAuthExchangeSessionUnion$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateReAuthExchangeSessionUnion
 > = z.union([
-  z.lazy(() => CreateReAuthExchangeSession2$outboundSchema),
   z.lazy(() => CreateReAuthExchangeSession1$outboundSchema),
+  z.lazy(() => CreateReAuthExchangeSession2$outboundSchema),
 ]);
 
 /**

@@ -13,9 +13,9 @@ import * as models from "../index.js";
  * Parameters to update a customer funding source
  */
 export type UpdateOrRemoveFundingSourceRequestBody =
+  | models.UpdateUnverifiedBank
   | models.UpdateVerifiedBank
-  | models.RemoveBank
-  | models.UpdateUnverifiedBank;
+  | models.RemoveBank;
 
 export type UpdateOrRemoveFundingSourceRequest = {
   /**
@@ -26,9 +26,9 @@ export type UpdateOrRemoveFundingSourceRequest = {
    * Parameters to update a customer funding source
    */
   requestBody:
+    | models.UpdateUnverifiedBank
     | models.UpdateVerifiedBank
-    | models.RemoveBank
-    | models.UpdateUnverifiedBank;
+    | models.RemoveBank;
 };
 
 /**
@@ -42,16 +42,16 @@ export const UpdateOrRemoveFundingSourceRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
+  models.UpdateUnverifiedBank$inboundSchema,
   models.UpdateVerifiedBank$inboundSchema,
   models.RemoveBank$inboundSchema,
-  models.UpdateUnverifiedBank$inboundSchema,
 ]);
 
 /** @internal */
 export type UpdateOrRemoveFundingSourceRequestBody$Outbound =
+  | models.UpdateUnverifiedBank$Outbound
   | models.UpdateVerifiedBank$Outbound
-  | models.RemoveBank$Outbound
-  | models.UpdateUnverifiedBank$Outbound;
+  | models.RemoveBank$Outbound;
 
 /** @internal */
 export const UpdateOrRemoveFundingSourceRequestBody$outboundSchema: z.ZodType<
@@ -59,9 +59,9 @@ export const UpdateOrRemoveFundingSourceRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UpdateOrRemoveFundingSourceRequestBody
 > = z.union([
+  models.UpdateUnverifiedBank$outboundSchema,
   models.UpdateVerifiedBank$outboundSchema,
   models.RemoveBank$outboundSchema,
-  models.UpdateUnverifiedBank$outboundSchema,
 ]);
 
 /**
@@ -109,9 +109,9 @@ export const UpdateOrRemoveFundingSourceRequest$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   RequestBody: z.union([
+    models.UpdateUnverifiedBank$inboundSchema,
     models.UpdateVerifiedBank$inboundSchema,
     models.RemoveBank$inboundSchema,
-    models.UpdateUnverifiedBank$inboundSchema,
   ]),
 }).transform((v) => {
   return remap$(v, {
@@ -123,9 +123,9 @@ export const UpdateOrRemoveFundingSourceRequest$inboundSchema: z.ZodType<
 export type UpdateOrRemoveFundingSourceRequest$Outbound = {
   id: string;
   RequestBody:
+    | models.UpdateUnverifiedBank$Outbound
     | models.UpdateVerifiedBank$Outbound
-    | models.RemoveBank$Outbound
-    | models.UpdateUnverifiedBank$Outbound;
+    | models.RemoveBank$Outbound;
 };
 
 /** @internal */
@@ -136,9 +136,9 @@ export const UpdateOrRemoveFundingSourceRequest$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   requestBody: z.union([
+    models.UpdateUnverifiedBank$outboundSchema,
     models.UpdateVerifiedBank$outboundSchema,
     models.RemoveBank$outboundSchema,
-    models.UpdateUnverifiedBank$outboundSchema,
   ]),
 }).transform((v) => {
   return remap$(v, {

@@ -13,18 +13,18 @@ import * as models from "../index.js";
  * Parameters for updating a Customer
  */
 export type UpdateRequestBody =
+  | models.UpgradeToVerifiedSoleProp
+  | models.RetryVerifiedSoleProp
+  | models.UpgradeToVerifiedBusiness
+  | models.RetryVerifiedBusiness
+  | models.UpgradeToVerifiedPersonal
+  | models.RetryVerifiedPersonal
   | models.DeactivateCustomer
   | models.ReactivateCustomer
   | models.SuspendCustomer
   | models.UpdateUnverifiedAndReceiveOnly
   | models.UpdateVerifiedPersonal
-  | models.UpdateVerifiedBusiness
-  | models.UpgradeToVerifiedPersonal
-  | models.RetryVerifiedPersonal
-  | models.UpgradeToVerifiedBusiness
-  | models.RetryVerifiedBusiness
-  | models.UpgradeToVerifiedSoleProp
-  | models.RetryVerifiedSoleProp;
+  | models.UpdateVerifiedBusiness;
 
 export type UpdateRequest = {
   /**
@@ -35,18 +35,18 @@ export type UpdateRequest = {
    * Parameters for updating a Customer
    */
   requestBody:
+    | models.UpgradeToVerifiedSoleProp
+    | models.RetryVerifiedSoleProp
+    | models.UpgradeToVerifiedBusiness
+    | models.RetryVerifiedBusiness
+    | models.UpgradeToVerifiedPersonal
+    | models.RetryVerifiedPersonal
     | models.DeactivateCustomer
     | models.ReactivateCustomer
     | models.SuspendCustomer
     | models.UpdateUnverifiedAndReceiveOnly
     | models.UpdateVerifiedPersonal
-    | models.UpdateVerifiedBusiness
-    | models.UpgradeToVerifiedPersonal
-    | models.RetryVerifiedPersonal
-    | models.UpgradeToVerifiedBusiness
-    | models.RetryVerifiedBusiness
-    | models.UpgradeToVerifiedSoleProp
-    | models.RetryVerifiedSoleProp;
+    | models.UpdateVerifiedBusiness;
 };
 
 /** @internal */
@@ -55,34 +55,34 @@ export const UpdateRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
+  models.UpgradeToVerifiedSoleProp$inboundSchema,
+  models.RetryVerifiedSoleProp$inboundSchema,
+  models.UpgradeToVerifiedBusiness$inboundSchema,
+  models.RetryVerifiedBusiness$inboundSchema,
+  models.UpgradeToVerifiedPersonal$inboundSchema,
+  models.RetryVerifiedPersonal$inboundSchema,
   models.DeactivateCustomer$inboundSchema,
   models.ReactivateCustomer$inboundSchema,
   models.SuspendCustomer$inboundSchema,
   models.UpdateUnverifiedAndReceiveOnly$inboundSchema,
   models.UpdateVerifiedPersonal$inboundSchema,
   models.UpdateVerifiedBusiness$inboundSchema,
-  models.UpgradeToVerifiedPersonal$inboundSchema,
-  models.RetryVerifiedPersonal$inboundSchema,
-  models.UpgradeToVerifiedBusiness$inboundSchema,
-  models.RetryVerifiedBusiness$inboundSchema,
-  models.UpgradeToVerifiedSoleProp$inboundSchema,
-  models.RetryVerifiedSoleProp$inboundSchema,
 ]);
 
 /** @internal */
 export type UpdateRequestBody$Outbound =
+  | models.UpgradeToVerifiedSoleProp$Outbound
+  | models.RetryVerifiedSoleProp$Outbound
+  | models.UpgradeToVerifiedBusiness$Outbound
+  | models.RetryVerifiedBusiness$Outbound
+  | models.UpgradeToVerifiedPersonal$Outbound
+  | models.RetryVerifiedPersonal$Outbound
   | models.DeactivateCustomer$Outbound
   | models.ReactivateCustomer$Outbound
   | models.SuspendCustomer$Outbound
   | models.UpdateUnverifiedAndReceiveOnly$Outbound
   | models.UpdateVerifiedPersonal$Outbound
-  | models.UpdateVerifiedBusiness$Outbound
-  | models.UpgradeToVerifiedPersonal$Outbound
-  | models.RetryVerifiedPersonal$Outbound
-  | models.UpgradeToVerifiedBusiness$Outbound
-  | models.RetryVerifiedBusiness$Outbound
-  | models.UpgradeToVerifiedSoleProp$Outbound
-  | models.RetryVerifiedSoleProp$Outbound;
+  | models.UpdateVerifiedBusiness$Outbound;
 
 /** @internal */
 export const UpdateRequestBody$outboundSchema: z.ZodType<
@@ -90,18 +90,18 @@ export const UpdateRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UpdateRequestBody
 > = z.union([
+  models.UpgradeToVerifiedSoleProp$outboundSchema,
+  models.RetryVerifiedSoleProp$outboundSchema,
+  models.UpgradeToVerifiedBusiness$outboundSchema,
+  models.RetryVerifiedBusiness$outboundSchema,
+  models.UpgradeToVerifiedPersonal$outboundSchema,
+  models.RetryVerifiedPersonal$outboundSchema,
   models.DeactivateCustomer$outboundSchema,
   models.ReactivateCustomer$outboundSchema,
   models.SuspendCustomer$outboundSchema,
   models.UpdateUnverifiedAndReceiveOnly$outboundSchema,
   models.UpdateVerifiedPersonal$outboundSchema,
   models.UpdateVerifiedBusiness$outboundSchema,
-  models.UpgradeToVerifiedPersonal$outboundSchema,
-  models.RetryVerifiedPersonal$outboundSchema,
-  models.UpgradeToVerifiedBusiness$outboundSchema,
-  models.RetryVerifiedBusiness$outboundSchema,
-  models.UpgradeToVerifiedSoleProp$outboundSchema,
-  models.RetryVerifiedSoleProp$outboundSchema,
 ]);
 
 /**
@@ -143,18 +143,18 @@ export const UpdateRequest$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   RequestBody: z.union([
+    models.UpgradeToVerifiedSoleProp$inboundSchema,
+    models.RetryVerifiedSoleProp$inboundSchema,
+    models.UpgradeToVerifiedBusiness$inboundSchema,
+    models.RetryVerifiedBusiness$inboundSchema,
+    models.UpgradeToVerifiedPersonal$inboundSchema,
+    models.RetryVerifiedPersonal$inboundSchema,
     models.DeactivateCustomer$inboundSchema,
     models.ReactivateCustomer$inboundSchema,
     models.SuspendCustomer$inboundSchema,
     models.UpdateUnverifiedAndReceiveOnly$inboundSchema,
     models.UpdateVerifiedPersonal$inboundSchema,
     models.UpdateVerifiedBusiness$inboundSchema,
-    models.UpgradeToVerifiedPersonal$inboundSchema,
-    models.RetryVerifiedPersonal$inboundSchema,
-    models.UpgradeToVerifiedBusiness$inboundSchema,
-    models.RetryVerifiedBusiness$inboundSchema,
-    models.UpgradeToVerifiedSoleProp$inboundSchema,
-    models.RetryVerifiedSoleProp$inboundSchema,
   ]),
 }).transform((v) => {
   return remap$(v, {
@@ -166,18 +166,18 @@ export const UpdateRequest$inboundSchema: z.ZodType<
 export type UpdateRequest$Outbound = {
   id: string;
   RequestBody:
+    | models.UpgradeToVerifiedSoleProp$Outbound
+    | models.RetryVerifiedSoleProp$Outbound
+    | models.UpgradeToVerifiedBusiness$Outbound
+    | models.RetryVerifiedBusiness$Outbound
+    | models.UpgradeToVerifiedPersonal$Outbound
+    | models.RetryVerifiedPersonal$Outbound
     | models.DeactivateCustomer$Outbound
     | models.ReactivateCustomer$Outbound
     | models.SuspendCustomer$Outbound
     | models.UpdateUnverifiedAndReceiveOnly$Outbound
     | models.UpdateVerifiedPersonal$Outbound
-    | models.UpdateVerifiedBusiness$Outbound
-    | models.UpgradeToVerifiedPersonal$Outbound
-    | models.RetryVerifiedPersonal$Outbound
-    | models.UpgradeToVerifiedBusiness$Outbound
-    | models.RetryVerifiedBusiness$Outbound
-    | models.UpgradeToVerifiedSoleProp$Outbound
-    | models.RetryVerifiedSoleProp$Outbound;
+    | models.UpdateVerifiedBusiness$Outbound;
 };
 
 /** @internal */
@@ -188,18 +188,18 @@ export const UpdateRequest$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   requestBody: z.union([
+    models.UpgradeToVerifiedSoleProp$outboundSchema,
+    models.RetryVerifiedSoleProp$outboundSchema,
+    models.UpgradeToVerifiedBusiness$outboundSchema,
+    models.RetryVerifiedBusiness$outboundSchema,
+    models.UpgradeToVerifiedPersonal$outboundSchema,
+    models.RetryVerifiedPersonal$outboundSchema,
     models.DeactivateCustomer$outboundSchema,
     models.ReactivateCustomer$outboundSchema,
     models.SuspendCustomer$outboundSchema,
     models.UpdateUnverifiedAndReceiveOnly$outboundSchema,
     models.UpdateVerifiedPersonal$outboundSchema,
     models.UpdateVerifiedBusiness$outboundSchema,
-    models.UpgradeToVerifiedPersonal$outboundSchema,
-    models.RetryVerifiedPersonal$outboundSchema,
-    models.UpgradeToVerifiedBusiness$outboundSchema,
-    models.RetryVerifiedBusiness$outboundSchema,
-    models.UpgradeToVerifiedSoleProp$outboundSchema,
-    models.RetryVerifiedSoleProp$outboundSchema,
   ]),
 }).transform((v) => {
   return remap$(v, {

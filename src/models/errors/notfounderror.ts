@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { DwollaError } from "./dwollaerror.js";
 
 /**
  * Error response schema for 404 NotFound
@@ -15,19 +16,21 @@ export type NotFoundErrorData = {
 /**
  * Error response schema for 404 NotFound
  */
-export class NotFoundError extends Error {
+export class NotFoundError extends DwollaError {
   code: string;
 
   /** The original data that was passed to this error instance. */
   data$: NotFoundErrorData;
 
-  constructor(err: NotFoundErrorData) {
+  constructor(
+    err: NotFoundErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.code = err.code;
 
     this.name = "NotFoundError";
@@ -42,9 +45,16 @@ export const NotFoundError$inboundSchema: z.ZodType<
 > = z.object({
   code: z.string(),
   message: z.string(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
-    return new NotFoundError(v);
+    return new NotFoundError(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

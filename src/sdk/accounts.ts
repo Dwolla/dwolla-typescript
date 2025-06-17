@@ -37,7 +37,7 @@ export class Accounts extends ClientSDK {
    * Retrieve Account Details
    *
    * @remarks
-   * Retrieve basic account information belonging to the authorized Dwolla account.
+   * Retrieve basic account details belonging to the authorized Dwolla account.
    */
   async get(
     request: operations.GetAccountRequest,

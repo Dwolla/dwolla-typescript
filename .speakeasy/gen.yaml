@@ -2,7 +2,7 @@ configVersion: 2.0.0
 generation:
   devContainers:
     enabled: true
-    schemaPath: /Users/sthapa/Documents/Projects/DevRel/speakeasy-sdk-gen/dwolla-openapi/openapi.yml
+    schemaPath: https://raw.githubusercontent.com/Dwolla/dwolla-openapi/refs/heads/main/openapi.yml
   sdkClassName: Dwolla
   maintainOpenAPIOrder: true
   usageSnippets:
@@ -28,7 +28,9 @@ typescript:
     peerDependencies: {}
   additionalPackageJSON: {}
   author: Speakeasy
+  baseErrorName: DwollaError
   clientServerStatusCodesAsErrors: true
+  constFieldsAlwaysOptional: true
   defaultErrorName: APIError
   enableCustomCodeRegions: false
   enableMCPServer: true

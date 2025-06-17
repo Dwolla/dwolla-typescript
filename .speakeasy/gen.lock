@@ -1,17 +1,17 @@
 lockVersion: 2.0.0
 id: 53ac026a-ff11-435d-914b-31df5268afb0
 management:
-  docChecksum: afa6e560761b40a62da7ed7c562c6d00
+  docChecksum: 1ef9a5439f9ad17aa02b9f03251b249b
   docVersion: "2.0"
-  speakeasyVersion: 1.556.2
-  generationVersion: 2.621.3
+  speakeasyVersion: 1.564.0
+  generationVersion: 2.630.8
   releaseVersion: 0.0.1
-  configChecksum: 851502ced756b16b5e0cf1da256139eb
+  configChecksum: 65648cc2d7ba4585a6639859cfe178fa
 features:
   typescript:
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.11
-    core: 3.21.10
+    constsAndDefaults: 0.1.12
+    core: 3.21.11
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     enumUnions: 0.1.0
@@ -28,7 +28,7 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.3.0
-    unions: 2.85.8
+    unions: 2.85.10
     uploadStreams: 0.1.0
 generatedFiles:
   - .devcontainer/README.md
@@ -1139,6 +1139,7 @@ generatedFiles:
   - src/models/errors/destinationremittancedatamaxlengtherror.ts
   - src/models/errors/directaccountwithoutbankerror.ts
   - src/models/errors/duplicateresourceschemaerror.ts
+  - src/models/errors/dwollaerror.ts
   - src/models/errors/expiredkbasessionerror.ts
   - src/models/errors/facilitatorfeeaccountnotfounderror.ts
   - src/models/errors/facilitatorfeebelowminimumerror.ts
@@ -1216,6 +1217,7 @@ generatedFiles:
   - src/models/errors/receivernotfounderror.ts
   - src/models/errors/receiverrestrictederror.ts
   - src/models/errors/removelabel.ts
+  - src/models/errors/responsevalidationerror.ts
   - src/models/errors/retrievebeneficialowner.ts
   - src/models/errors/retrievebusinessclassification.ts
   - src/models/errors/retrievecustomerexchangesession.ts

@@ -5,6 +5,7 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as models from "../index.js";
+import { DwollaError } from "./dwollaerror.js";
 
 export type SourceAddendaMaxLengthErrorData = {
   code: string;
@@ -12,20 +13,22 @@ export type SourceAddendaMaxLengthErrorData = {
   embedded?: models.SourceAddendaMaxLengthErrorEmbedded | undefined;
 };
 
-export class SourceAddendaMaxLengthError extends Error {
+export class SourceAddendaMaxLengthError extends DwollaError {
   code: string;
   embedded?: models.SourceAddendaMaxLengthErrorEmbedded | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: SourceAddendaMaxLengthErrorData;
 
-  constructor(err: SourceAddendaMaxLengthErrorData) {
+  constructor(
+    err: SourceAddendaMaxLengthErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.code = err.code;
     if (err.embedded != null) this.embedded = err.embedded;
 
@@ -44,13 +47,20 @@ export const SourceAddendaMaxLengthError$inboundSchema: z.ZodType<
   _embedded: z.lazy(() =>
     models.SourceAddendaMaxLengthErrorEmbedded$inboundSchema
   ).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "_embedded": "embedded",
     });
 
-    return new SourceAddendaMaxLengthError(remapped);
+    return new SourceAddendaMaxLengthError(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
