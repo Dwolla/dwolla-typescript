@@ -1,12 +1,14 @@
 lockVersion: 2.0.0
 id: 53ac026a-ff11-435d-914b-31df5268afb0
 management:
-  docChecksum: 873e7ee4097a0a0b5f1f0bc82223e0bb
+  docChecksum: 1ef9a5439f9ad17aa02b9f03251b249b
   docVersion: "2.0"
-  speakeasyVersion: 1.564.0
-  generationVersion: 2.630.8
-  releaseVersion: 0.0.1-beta.1
-  configChecksum: 2c88337d9d0ddae531be034c536639e7
+  speakeasyVersion: 1.566.0
+  generationVersion: 2.630.9
+  releaseVersion: 0.0.1-beta.2
+  configChecksum: 2c6fa87f775774b3aca3761fed0821a3
+  repoURL: https://github.com/Dwolla/dwolla-typescript.git
+  installationURL: https://github.com/Dwolla/dwolla-typescript
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -728,7 +730,6 @@ generatedFiles:
   - docs/models/rtpunverifiedsendernotsupportederrorembedded.md
   - docs/models/rtpunverifiedsendernotsupportederrorerror.md
   - docs/models/rtpunverifiedsendernotsupportederrorlinks.md
-  - docs/models/schemeclientcredentials.md
   - docs/models/secrettoolongerrorembedded.md
   - docs/models/secrettoolongerrorerror.md
   - docs/models/secrettoolongerrorlinks.md
@@ -1312,7 +1313,6 @@ generatedFiles:
   - src/models/rtpfacilitatorfeenotsupportederror.ts
   - src/models/rtppersonaltopersonalnotsupportederror.ts
   - src/models/rtpunverifiedsendernotsupportederror.ts
-  - src/models/schemeclientcredentials.ts
   - src/models/secrettoolongerror.ts
   - src/models/security.ts
   - src/models/senderrestrictederror.ts

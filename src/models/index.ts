@@ -108,7 +108,6 @@ export * from "./root.js";
 export * from "./rtpfacilitatorfeenotsupportederror.js";
 export * from "./rtppersonaltopersonalnotsupportederror.js";
 export * from "./rtpunverifiedsendernotsupportederror.js";
-export * from "./schemeclientcredentials.js";
 export * from "./secrettoolongerror.js";
 export * from "./security.js";
 export * from "./senderrestrictederror.js";
