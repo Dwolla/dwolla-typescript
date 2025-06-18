@@ -21,7 +21,7 @@ workflow:
     sources:
         Dwolla API:
             inputs:
-                - location: ../dwolla-openapi/openapi.yml
+                - location: https://raw.githubusercontent.com/Dwolla/dwolla-openapi/refs/heads/main/openapi.yml
             registry:
                 location: registry.speakeasyapi.dev/dwolla-vc3/dwolla/dwolla-api
     targets:
