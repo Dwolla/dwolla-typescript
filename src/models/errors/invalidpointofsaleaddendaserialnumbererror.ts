@@ -5,6 +5,7 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as models from "../index.js";
+import { DwollaError } from "./dwollaerror.js";
 
 export type InvalidPointOfSaleAddendaSerialNumberErrorData = {
   code: string;
@@ -14,7 +15,7 @@ export type InvalidPointOfSaleAddendaSerialNumberErrorData = {
     | undefined;
 };
 
-export class InvalidPointOfSaleAddendaSerialNumberError extends Error {
+export class InvalidPointOfSaleAddendaSerialNumberError extends DwollaError {
   code: string;
   embedded?:
     | models.InvalidPointOfSaleAddendaSerialNumberErrorEmbedded
@@ -23,13 +24,15 @@ export class InvalidPointOfSaleAddendaSerialNumberError extends Error {
   /** The original data that was passed to this error instance. */
   data$: InvalidPointOfSaleAddendaSerialNumberErrorData;
 
-  constructor(err: InvalidPointOfSaleAddendaSerialNumberErrorData) {
+  constructor(
+    err: InvalidPointOfSaleAddendaSerialNumberErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.code = err.code;
     if (err.embedded != null) this.embedded = err.embedded;
 
@@ -46,13 +49,20 @@ export const InvalidPointOfSaleAddendaSerialNumberError$inboundSchema:
       _embedded: z.lazy(() =>
         models.InvalidPointOfSaleAddendaSerialNumberErrorEmbedded$inboundSchema
       ).optional(),
+      request$: z.instanceof(Request),
+      response$: z.instanceof(Response),
+      body$: z.string(),
     })
       .transform((v) => {
         const remapped = remap$(v, {
           "_embedded": "embedded",
         });
 
-        return new InvalidPointOfSaleAddendaSerialNumberError(remapped);
+        return new InvalidPointOfSaleAddendaSerialNumberError(remapped, {
+          request: v.request$,
+          response: v.response$,
+          body: v.body$,
+        });
       });
 
 /** @internal */

@@ -11,6 +11,7 @@ import {
   DuplicateResourceSchemaError$Outbound,
   DuplicateResourceSchemaError$outboundSchema,
 } from "./duplicateresourceschemaerror.js";
+import { DwollaError } from "./dwollaerror.js";
 import {
   InvalidFileTypeSchemaError,
   InvalidFileTypeSchemaError$inboundSchema,
@@ -50,7 +51,7 @@ export type CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONErrorData 
  * request entity too large
  */
 export class CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError
-  extends Error
+  extends DwollaError
 {
   code?: string | undefined;
 
@@ -59,13 +60,13 @@ export class CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError
 
   constructor(
     err: CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
   ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name =
@@ -84,19 +85,23 @@ export type CreateCustomerDocumentNotFoundDwollaV1HalJSONErrorData = {
 /**
  * not found
  */
-export class CreateCustomerDocumentNotFoundDwollaV1HalJSONError extends Error {
+export class CreateCustomerDocumentNotFoundDwollaV1HalJSONError
+  extends DwollaError
+{
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: CreateCustomerDocumentNotFoundDwollaV1HalJSONErrorData;
 
-  constructor(err: CreateCustomerDocumentNotFoundDwollaV1HalJSONErrorData) {
+  constructor(
+    err: CreateCustomerDocumentNotFoundDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "CreateCustomerDocumentNotFoundDwollaV1HalJSONError";
@@ -127,10 +132,14 @@ export const CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError$inb
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
       return new CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError(
         v,
+        { request: v.request$, response: v.response$, body: v.body$ },
       );
     });
 
@@ -181,9 +190,16 @@ export const CreateCustomerDocumentNotFoundDwollaV1HalJSONError$inboundSchema:
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new CreateCustomerDocumentNotFoundDwollaV1HalJSONError(v);
+      return new CreateCustomerDocumentNotFoundDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */

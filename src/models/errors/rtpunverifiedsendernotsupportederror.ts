@@ -5,6 +5,7 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as models from "../index.js";
+import { DwollaError } from "./dwollaerror.js";
 
 export type RtpUnverifiedSenderNotSupportedErrorData = {
   code: string;
@@ -12,20 +13,22 @@ export type RtpUnverifiedSenderNotSupportedErrorData = {
   embedded?: models.RtpUnverifiedSenderNotSupportedErrorEmbedded | undefined;
 };
 
-export class RtpUnverifiedSenderNotSupportedError extends Error {
+export class RtpUnverifiedSenderNotSupportedError extends DwollaError {
   code: string;
   embedded?: models.RtpUnverifiedSenderNotSupportedErrorEmbedded | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: RtpUnverifiedSenderNotSupportedErrorData;
 
-  constructor(err: RtpUnverifiedSenderNotSupportedErrorData) {
+  constructor(
+    err: RtpUnverifiedSenderNotSupportedErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.code = err.code;
     if (err.embedded != null) this.embedded = err.embedded;
 
@@ -44,13 +47,20 @@ export const RtpUnverifiedSenderNotSupportedError$inboundSchema: z.ZodType<
   _embedded: z.lazy(() =>
     models.RtpUnverifiedSenderNotSupportedErrorEmbedded$inboundSchema
   ).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "_embedded": "embedded",
     });
 
-    return new RtpUnverifiedSenderNotSupportedError(remapped);
+    return new RtpUnverifiedSenderNotSupportedError(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

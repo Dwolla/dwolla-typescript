@@ -11,7 +11,7 @@ Operations related to Accounts
 
 ## get
 
-Retrieve basic account information belonging to the authorized Dwolla account.
+Retrieve basic account details belonging to the authorized Dwolla account.
 
 ### Example Usage
 
@@ -20,8 +20,11 @@ import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
   security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+    clientCredentials: {
+      clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+      clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+      tokenURL: process.env["DWOLLA_TOKEN_URL"] ?? "",
+    },
   },
 });
 
@@ -48,8 +51,11 @@ import { accountsGet } from "dwolla-typescript/funcs/accountsGet.js";
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
   security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+    clientCredentials: {
+      clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+      clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+      tokenURL: process.env["DWOLLA_TOKEN_URL"] ?? "",
+    },
   },
 });
 

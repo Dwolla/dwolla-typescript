@@ -5,6 +5,7 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as models from "../index.js";
+import { DwollaError } from "./dwollaerror.js";
 
 export type ReceiverNotFoundErrorData = {
   code: string;
@@ -12,20 +13,22 @@ export type ReceiverNotFoundErrorData = {
   embedded?: models.ReceiverNotFoundErrorEmbedded | undefined;
 };
 
-export class ReceiverNotFoundError extends Error {
+export class ReceiverNotFoundError extends DwollaError {
   code: string;
   embedded?: models.ReceiverNotFoundErrorEmbedded | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: ReceiverNotFoundErrorData;
 
-  constructor(err: ReceiverNotFoundErrorData) {
+  constructor(
+    err: ReceiverNotFoundErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.code = err.code;
     if (err.embedded != null) this.embedded = err.embedded;
 
@@ -43,13 +46,20 @@ export const ReceiverNotFoundError$inboundSchema: z.ZodType<
   message: z.string(),
   _embedded: z.lazy(() => models.ReceiverNotFoundErrorEmbedded$inboundSchema)
     .optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "_embedded": "embedded",
     });
 
-    return new ReceiverNotFoundError(remapped);
+    return new ReceiverNotFoundError(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

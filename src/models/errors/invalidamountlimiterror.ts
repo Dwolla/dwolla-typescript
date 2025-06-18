@@ -5,6 +5,7 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as models from "../index.js";
+import { DwollaError } from "./dwollaerror.js";
 
 export type InvalidAmountLimitErrorData = {
   code: string;
@@ -12,20 +13,22 @@ export type InvalidAmountLimitErrorData = {
   embedded?: models.InvalidAmountLimitErrorEmbedded | undefined;
 };
 
-export class InvalidAmountLimitError extends Error {
+export class InvalidAmountLimitError extends DwollaError {
   code: string;
   embedded?: models.InvalidAmountLimitErrorEmbedded | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: InvalidAmountLimitErrorData;
 
-  constructor(err: InvalidAmountLimitErrorData) {
+  constructor(
+    err: InvalidAmountLimitErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.code = err.code;
     if (err.embedded != null) this.embedded = err.embedded;
 
@@ -43,13 +46,20 @@ export const InvalidAmountLimitError$inboundSchema: z.ZodType<
   message: z.string(),
   _embedded: z.lazy(() => models.InvalidAmountLimitErrorEmbedded$inboundSchema)
     .optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "_embedded": "embedded",
     });
 
-    return new InvalidAmountLimitError(remapped);
+    return new InvalidAmountLimitError(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

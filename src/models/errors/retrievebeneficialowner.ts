@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { DwollaError } from "./dwollaerror.js";
 
 /**
  * not found
@@ -15,19 +16,21 @@ export type RetrieveBeneficialOwnerDwollaV1HalJSONErrorData = {
 /**
  * not found
  */
-export class RetrieveBeneficialOwnerDwollaV1HalJSONError extends Error {
+export class RetrieveBeneficialOwnerDwollaV1HalJSONError extends DwollaError {
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: RetrieveBeneficialOwnerDwollaV1HalJSONErrorData;
 
-  constructor(err: RetrieveBeneficialOwnerDwollaV1HalJSONErrorData) {
+  constructor(
+    err: RetrieveBeneficialOwnerDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "RetrieveBeneficialOwnerDwollaV1HalJSONError";
@@ -43,9 +46,16 @@ export const RetrieveBeneficialOwnerDwollaV1HalJSONError$inboundSchema:
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new RetrieveBeneficialOwnerDwollaV1HalJSONError(v);
+      return new RetrieveBeneficialOwnerDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */

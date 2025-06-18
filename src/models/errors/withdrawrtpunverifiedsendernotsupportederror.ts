@@ -5,6 +5,7 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as models from "../index.js";
+import { DwollaError } from "./dwollaerror.js";
 
 export type WithdrawRtpUnverifiedSenderNotSupportedErrorData = {
   code: string;
@@ -14,7 +15,7 @@ export type WithdrawRtpUnverifiedSenderNotSupportedErrorData = {
     | undefined;
 };
 
-export class WithdrawRtpUnverifiedSenderNotSupportedError extends Error {
+export class WithdrawRtpUnverifiedSenderNotSupportedError extends DwollaError {
   code: string;
   embedded?:
     | models.WithdrawRtpUnverifiedSenderNotSupportedErrorEmbedded
@@ -23,13 +24,15 @@ export class WithdrawRtpUnverifiedSenderNotSupportedError extends Error {
   /** The original data that was passed to this error instance. */
   data$: WithdrawRtpUnverifiedSenderNotSupportedErrorData;
 
-  constructor(err: WithdrawRtpUnverifiedSenderNotSupportedErrorData) {
+  constructor(
+    err: WithdrawRtpUnverifiedSenderNotSupportedErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.code = err.code;
     if (err.embedded != null) this.embedded = err.embedded;
 
@@ -49,13 +52,20 @@ export const WithdrawRtpUnverifiedSenderNotSupportedError$inboundSchema:
     _embedded: z.lazy(() =>
       models.WithdrawRtpUnverifiedSenderNotSupportedErrorEmbedded$inboundSchema
     ).optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
       const remapped = remap$(v, {
         "_embedded": "embedded",
       });
 
-      return new WithdrawRtpUnverifiedSenderNotSupportedError(remapped);
+      return new WithdrawRtpUnverifiedSenderNotSupportedError(remapped, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { DwollaError } from "./dwollaerror.js";
 
 /**
  * Not Found
@@ -15,19 +16,21 @@ export type UpdateMassPaymentNotFoundDwollaV1HalJSONErrorData = {
 /**
  * Not Found
  */
-export class UpdateMassPaymentNotFoundDwollaV1HalJSONError extends Error {
+export class UpdateMassPaymentNotFoundDwollaV1HalJSONError extends DwollaError {
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: UpdateMassPaymentNotFoundDwollaV1HalJSONErrorData;
 
-  constructor(err: UpdateMassPaymentNotFoundDwollaV1HalJSONErrorData) {
+  constructor(
+    err: UpdateMassPaymentNotFoundDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "UpdateMassPaymentNotFoundDwollaV1HalJSONError";
@@ -45,19 +48,23 @@ export type UpdateMassPaymentForbiddenDwollaV1HalJSONErrorData = {
 /**
  * Forbidden
  */
-export class UpdateMassPaymentForbiddenDwollaV1HalJSONError extends Error {
+export class UpdateMassPaymentForbiddenDwollaV1HalJSONError
+  extends DwollaError
+{
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: UpdateMassPaymentForbiddenDwollaV1HalJSONErrorData;
 
-  constructor(err: UpdateMassPaymentForbiddenDwollaV1HalJSONErrorData) {
+  constructor(
+    err: UpdateMassPaymentForbiddenDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "UpdateMassPaymentForbiddenDwollaV1HalJSONError";
@@ -73,9 +80,16 @@ export const UpdateMassPaymentNotFoundDwollaV1HalJSONError$inboundSchema:
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new UpdateMassPaymentNotFoundDwollaV1HalJSONError(v);
+      return new UpdateMassPaymentNotFoundDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */
@@ -121,9 +135,16 @@ export const UpdateMassPaymentForbiddenDwollaV1HalJSONError$inboundSchema:
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new UpdateMassPaymentForbiddenDwollaV1HalJSONError(v);
+      return new UpdateMassPaymentForbiddenDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */

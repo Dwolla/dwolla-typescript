@@ -160,9 +160,9 @@ export type CreateCustomerFundingSource1 = {
 };
 
 export type CreateCustomerFundingSourceUnion =
+  | CreateCustomerFundingSource1
   | CreateCustomerFundingSource2
-  | CreateCustomerFundingSourceChecking
-  | CreateCustomerFundingSource1;
+  | CreateCustomerFundingSourceChecking;
 
 /** @internal */
 export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
@@ -835,16 +835,16 @@ export const CreateCustomerFundingSourceUnion$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
+  z.lazy(() => CreateCustomerFundingSource1$inboundSchema),
   z.lazy(() => CreateCustomerFundingSource2$inboundSchema),
   z.lazy(() => CreateCustomerFundingSourceChecking$inboundSchema),
-  z.lazy(() => CreateCustomerFundingSource1$inboundSchema),
 ]);
 
 /** @internal */
 export type CreateCustomerFundingSourceUnion$Outbound =
+  | CreateCustomerFundingSource1$Outbound
   | CreateCustomerFundingSource2$Outbound
-  | CreateCustomerFundingSourceChecking$Outbound
-  | CreateCustomerFundingSource1$Outbound;
+  | CreateCustomerFundingSourceChecking$Outbound;
 
 /** @internal */
 export const CreateCustomerFundingSourceUnion$outboundSchema: z.ZodType<
@@ -852,9 +852,9 @@ export const CreateCustomerFundingSourceUnion$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateCustomerFundingSourceUnion
 > = z.union([
+  z.lazy(() => CreateCustomerFundingSource1$outboundSchema),
   z.lazy(() => CreateCustomerFundingSource2$outboundSchema),
   z.lazy(() => CreateCustomerFundingSourceChecking$outboundSchema),
-  z.lazy(() => CreateCustomerFundingSource1$outboundSchema),
 ]);
 
 /**

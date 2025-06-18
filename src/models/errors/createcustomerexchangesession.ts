@@ -5,6 +5,7 @@
 import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { DwollaError } from "./dwollaerror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type ResponseBodyForbiddenError2Data = {
@@ -12,19 +13,21 @@ export type ResponseBodyForbiddenError2Data = {
   message: string;
 };
 
-export class ResponseBodyForbiddenError2 extends Error {
+export class ResponseBodyForbiddenError2 extends DwollaError {
   code: string;
 
   /** The original data that was passed to this error instance. */
   data$: ResponseBodyForbiddenError2Data;
 
-  constructor(err: ResponseBodyForbiddenError2Data) {
+  constructor(
+    err: ResponseBodyForbiddenError2Data,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.code = err.code;
 
     this.name = "ResponseBodyForbiddenError2";
@@ -36,19 +39,21 @@ export type ResponseBodyForbiddenError1Data = {
   message: string;
 };
 
-export class ResponseBodyForbiddenError1 extends Error {
+export class ResponseBodyForbiddenError1 extends DwollaError {
   code: string;
 
   /** The original data that was passed to this error instance. */
   data$: ResponseBodyForbiddenError1Data;
 
-  constructor(err: ResponseBodyForbiddenError1Data) {
+  constructor(
+    err: ResponseBodyForbiddenError1Data,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.code = err.code;
 
     this.name = "ResponseBodyForbiddenError1";
@@ -73,19 +78,23 @@ export type CreateCustomerExchangeSessionDwollaV1HalJSONErrorData = {
 /**
  * unauthorized
  */
-export class CreateCustomerExchangeSessionDwollaV1HalJSONError extends Error {
+export class CreateCustomerExchangeSessionDwollaV1HalJSONError
+  extends DwollaError
+{
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: CreateCustomerExchangeSessionDwollaV1HalJSONErrorData;
 
-  constructor(err: CreateCustomerExchangeSessionDwollaV1HalJSONErrorData) {
+  constructor(
+    err: CreateCustomerExchangeSessionDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "CreateCustomerExchangeSessionDwollaV1HalJSONError";
@@ -98,7 +107,7 @@ export type CreateCustomerExchangeSessionResponseBodyBadRequestError3Data = {
 };
 
 export class CreateCustomerExchangeSessionResponseBodyBadRequestError3
-  extends Error
+  extends DwollaError
 {
   code: string;
 
@@ -107,13 +116,13 @@ export class CreateCustomerExchangeSessionResponseBodyBadRequestError3
 
   constructor(
     err: CreateCustomerExchangeSessionResponseBodyBadRequestError3Data,
+    httpMeta: { response: Response; request: Request; body: string },
   ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.code = err.code;
 
     this.name = "CreateCustomerExchangeSessionResponseBodyBadRequestError3";
@@ -126,7 +135,7 @@ export type CreateCustomerExchangeSessionResponseBodyBadRequestError2Data = {
 };
 
 export class CreateCustomerExchangeSessionResponseBodyBadRequestError2
-  extends Error
+  extends DwollaError
 {
   code: string;
 
@@ -135,13 +144,13 @@ export class CreateCustomerExchangeSessionResponseBodyBadRequestError2
 
   constructor(
     err: CreateCustomerExchangeSessionResponseBodyBadRequestError2Data,
+    httpMeta: { response: Response; request: Request; body: string },
   ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.code = err.code;
 
     this.name = "CreateCustomerExchangeSessionResponseBodyBadRequestError2";
@@ -154,7 +163,7 @@ export type CreateCustomerExchangeSessionResponseBodyBadRequestError1Data = {
 };
 
 export class CreateCustomerExchangeSessionResponseBodyBadRequestError1
-  extends Error
+  extends DwollaError
 {
   code: string;
 
@@ -163,13 +172,13 @@ export class CreateCustomerExchangeSessionResponseBodyBadRequestError1
 
   constructor(
     err: CreateCustomerExchangeSessionResponseBodyBadRequestError1Data,
+    httpMeta: { response: Response; request: Request; body: string },
   ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.code = err.code;
 
     this.name = "CreateCustomerExchangeSessionResponseBodyBadRequestError1";
@@ -192,9 +201,16 @@ export const ResponseBodyForbiddenError2$inboundSchema: z.ZodType<
 > = z.object({
   code: z.string(),
   message: z.string(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
-    return new ResponseBodyForbiddenError2(v);
+    return new ResponseBodyForbiddenError2(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -236,9 +252,16 @@ export const ResponseBodyForbiddenError1$inboundSchema: z.ZodType<
 > = z.object({
   code: z.string(),
   message: z.string(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
-    return new ResponseBodyForbiddenError1(v);
+    return new ResponseBodyForbiddenError1(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -351,9 +374,16 @@ export const CreateCustomerExchangeSessionDwollaV1HalJSONError$inboundSchema:
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new CreateCustomerExchangeSessionDwollaV1HalJSONError(v);
+      return new CreateCustomerExchangeSessionDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */
@@ -400,9 +430,16 @@ export const CreateCustomerExchangeSessionResponseBodyBadRequestError3$inboundSc
   > = z.object({
     code: z.string(),
     message: z.string(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new CreateCustomerExchangeSessionResponseBodyBadRequestError3(v);
+      return new CreateCustomerExchangeSessionResponseBodyBadRequestError3(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */
@@ -450,9 +487,16 @@ export const CreateCustomerExchangeSessionResponseBodyBadRequestError2$inboundSc
   > = z.object({
     code: z.string(),
     message: z.string(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new CreateCustomerExchangeSessionResponseBodyBadRequestError2(v);
+      return new CreateCustomerExchangeSessionResponseBodyBadRequestError2(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */
@@ -500,9 +544,16 @@ export const CreateCustomerExchangeSessionResponseBodyBadRequestError1$inboundSc
   > = z.object({
     code: z.string(),
     message: z.string(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new CreateCustomerExchangeSessionResponseBodyBadRequestError1(v);
+      return new CreateCustomerExchangeSessionResponseBodyBadRequestError1(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */

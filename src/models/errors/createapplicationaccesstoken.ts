@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { DwollaError } from "./dwollaerror.js";
 
 /**
  * Unauthorized
@@ -14,19 +15,21 @@ export type UnauthorizedErrorData = {
 /**
  * Unauthorized
  */
-export class UnauthorizedError extends Error {
+export class UnauthorizedError extends DwollaError {
   error?: string | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: UnauthorizedErrorData;
 
-  constructor(err: UnauthorizedErrorData) {
+  constructor(
+    err: UnauthorizedErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.error != null) this.error = err.error;
 
     this.name = "UnauthorizedError";
@@ -40,9 +43,16 @@ export const UnauthorizedError$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   error: z.string().optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
-    return new UnauthorizedError(v);
+    return new UnauthorizedError(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { DwollaError } from "./dwollaerror.js";
 
 /**
  * Customer not found
@@ -16,20 +17,22 @@ export type ListCustomerMassPaymentsNotFoundDwollaV1HalJSONErrorData = {
  * Customer not found
  */
 export class ListCustomerMassPaymentsNotFoundDwollaV1HalJSONError
-  extends Error
+  extends DwollaError
 {
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: ListCustomerMassPaymentsNotFoundDwollaV1HalJSONErrorData;
 
-  constructor(err: ListCustomerMassPaymentsNotFoundDwollaV1HalJSONErrorData) {
+  constructor(
+    err: ListCustomerMassPaymentsNotFoundDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "ListCustomerMassPaymentsNotFoundDwollaV1HalJSONError";
@@ -48,20 +51,22 @@ export type ListCustomerMassPaymentsForbiddenDwollaV1HalJSONErrorData = {
  * Not authorized to list mass payments
  */
 export class ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError
-  extends Error
+  extends DwollaError
 {
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: ListCustomerMassPaymentsForbiddenDwollaV1HalJSONErrorData;
 
-  constructor(err: ListCustomerMassPaymentsForbiddenDwollaV1HalJSONErrorData) {
+  constructor(
+    err: ListCustomerMassPaymentsForbiddenDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError";
@@ -77,9 +82,16 @@ export const ListCustomerMassPaymentsNotFoundDwollaV1HalJSONError$inboundSchema:
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new ListCustomerMassPaymentsNotFoundDwollaV1HalJSONError(v);
+      return new ListCustomerMassPaymentsNotFoundDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */
@@ -126,9 +138,16 @@ export const ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError$inboundSchema
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError(v);
+      return new ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { DwollaError } from "./dwollaerror.js";
 
 /**
  * not found
@@ -16,7 +17,7 @@ export type RetrieveCustomerExchangeSessionNotFoundDwollaV1HalJSONErrorData = {
  * not found
  */
 export class RetrieveCustomerExchangeSessionNotFoundDwollaV1HalJSONError
-  extends Error
+  extends DwollaError
 {
   code?: string | undefined;
 
@@ -25,13 +26,13 @@ export class RetrieveCustomerExchangeSessionNotFoundDwollaV1HalJSONError
 
   constructor(
     err: RetrieveCustomerExchangeSessionNotFoundDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
   ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "RetrieveCustomerExchangeSessionNotFoundDwollaV1HalJSONError";
@@ -50,7 +51,7 @@ export type RetrieveCustomerExchangeSessionForbiddenDwollaV1HalJSONErrorData = {
  * forbidden
  */
 export class RetrieveCustomerExchangeSessionForbiddenDwollaV1HalJSONError
-  extends Error
+  extends DwollaError
 {
   code?: string | undefined;
 
@@ -59,13 +60,13 @@ export class RetrieveCustomerExchangeSessionForbiddenDwollaV1HalJSONError
 
   constructor(
     err: RetrieveCustomerExchangeSessionForbiddenDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
   ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
 
     this.name = "RetrieveCustomerExchangeSessionForbiddenDwollaV1HalJSONError";
@@ -81,9 +82,15 @@ export const RetrieveCustomerExchangeSessionNotFoundDwollaV1HalJSONError$inbound
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
-      return new RetrieveCustomerExchangeSessionNotFoundDwollaV1HalJSONError(v);
+      return new RetrieveCustomerExchangeSessionNotFoundDwollaV1HalJSONError(
+        v,
+        { request: v.request$, response: v.response$, body: v.body$ },
+      );
     });
 
 /** @internal */
@@ -131,10 +138,14 @@ export const RetrieveCustomerExchangeSessionForbiddenDwollaV1HalJSONError$inboun
   > = z.object({
     code: z.string().optional(),
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .transform((v) => {
       return new RetrieveCustomerExchangeSessionForbiddenDwollaV1HalJSONError(
         v,
+        { request: v.request$, response: v.response$, body: v.body$ },
       );
     });
 

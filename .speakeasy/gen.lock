@@ -1,17 +1,17 @@
 lockVersion: 2.0.0
 id: 53ac026a-ff11-435d-914b-31df5268afb0
 management:
-  docChecksum: afa6e560761b40a62da7ed7c562c6d00
+  docChecksum: 873e7ee4097a0a0b5f1f0bc82223e0bb
   docVersion: "2.0"
-  speakeasyVersion: 1.556.2
-  generationVersion: 2.621.3
-  releaseVersion: 0.0.1
-  configChecksum: 851502ced756b16b5e0cf1da256139eb
+  speakeasyVersion: 1.564.0
+  generationVersion: 2.630.8
+  releaseVersion: 0.0.1-beta.1
+  configChecksum: 2c88337d9d0ddae531be034c536639e7
 features:
   typescript:
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.11
-    core: 3.21.10
+    constsAndDefaults: 0.1.12
+    core: 3.21.11
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     enumUnions: 0.1.0
@@ -21,14 +21,13 @@ features:
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.5
     groups: 2.81.2
-    mcpServer: 0.9.2
     nameOverrides: 2.81.2
     nullables: 0.1.1
     oauth2ClientCredentials: 0.4.1
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.3.0
-    unions: 2.85.8
+    unions: 2.85.10
     uploadStreams: 0.1.0
 generatedFiles:
   - .devcontainer/README.md
@@ -729,6 +728,7 @@ generatedFiles:
   - docs/models/rtpunverifiedsendernotsupportederrorembedded.md
   - docs/models/rtpunverifiedsendernotsupportederrorerror.md
   - docs/models/rtpunverifiedsendernotsupportederrorlinks.md
+  - docs/models/schemeclientcredentials.md
   - docs/models/secrettoolongerrorembedded.md
   - docs/models/secrettoolongerrorerror.md
   - docs/models/secrettoolongerrorlinks.md
@@ -982,100 +982,6 @@ generatedFiles:
   - src/lib/sdks.ts
   - src/lib/security.ts
   - src/lib/url.ts
-  - src/mcp-server/build.mts
-  - src/mcp-server/cli.ts
-  - src/mcp-server/cli/start/command.ts
-  - src/mcp-server/cli/start/impl.ts
-  - src/mcp-server/console-logger.ts
-  - src/mcp-server/extensions.ts
-  - src/mcp-server/mcp-server.ts
-  - src/mcp-server/prompts.ts
-  - src/mcp-server/resources.ts
-  - src/mcp-server/scopes.ts
-  - src/mcp-server/server.ts
-  - src/mcp-server/shared.ts
-  - src/mcp-server/tools.ts
-  - src/mcp-server/tools/accountsExchangesCreate.ts
-  - src/mcp-server/tools/accountsExchangesList.ts
-  - src/mcp-server/tools/accountsFundingSourcesCreate.ts
-  - src/mcp-server/tools/accountsFundingSourcesList.ts
-  - src/mcp-server/tools/accountsGet.ts
-  - src/mcp-server/tools/accountsMassPaymentsList.ts
-  - src/mcp-server/tools/accountsTransfersList.ts
-  - src/mcp-server/tools/beneficialOwnersCertifyOwnership.ts
-  - src/mcp-server/tools/beneficialOwnersDelete.ts
-  - src/mcp-server/tools/beneficialOwnersDocumentsCreate.ts
-  - src/mcp-server/tools/beneficialOwnersDocumentsList.ts
-  - src/mcp-server/tools/beneficialOwnersGet.ts
-  - src/mcp-server/tools/beneficialOwnersGetOwnershipStatus.ts
-  - src/mcp-server/tools/beneficialOwnersUpdate.ts
-  - src/mcp-server/tools/businessClassificationsGet.ts
-  - src/mcp-server/tools/businessClassificationsList.ts
-  - src/mcp-server/tools/clientTokensCreate.ts
-  - src/mcp-server/tools/customersBeneficialOwnersCreate.ts
-  - src/mcp-server/tools/customersBeneficialOwnersList.ts
-  - src/mcp-server/tools/customersCreate.ts
-  - src/mcp-server/tools/customersDocumentsCreate.ts
-  - src/mcp-server/tools/customersDocumentsList.ts
-  - src/mcp-server/tools/customersExchangesCreate.ts
-  - src/mcp-server/tools/customersExchangesList.ts
-  - src/mcp-server/tools/customersFundingSourcesList.ts
-  - src/mcp-server/tools/customersGet.ts
-  - src/mcp-server/tools/customersList.ts
-  - src/mcp-server/tools/customersListAvailableConnections.ts
-  - src/mcp-server/tools/customersUpdate.ts
-  - src/mcp-server/tools/documentsGet.ts
-  - src/mcp-server/tools/eventsGet.ts
-  - src/mcp-server/tools/eventsList.ts
-  - src/mcp-server/tools/exchangePartnersGet.ts
-  - src/mcp-server/tools/exchangePartnersList.ts
-  - src/mcp-server/tools/exchangeSessionsCreate.ts
-  - src/mcp-server/tools/exchangeSessionsGet.ts
-  - src/mcp-server/tools/exchangesCreateReAuth.ts
-  - src/mcp-server/tools/exchangesGet.ts
-  - src/mcp-server/tools/fundingSourcesCreateForCustomer.ts
-  - src/mcp-server/tools/fundingSourcesGet.ts
-  - src/mcp-server/tools/fundingSourcesGetBalance.ts
-  - src/mcp-server/tools/fundingSourcesGetMicroDeposits.ts
-  - src/mcp-server/tools/fundingSourcesGetVanRouting.ts
-  - src/mcp-server/tools/fundingSourcesInitiateOrVerifyMicroDeposits.ts
-  - src/mcp-server/tools/fundingSourcesUpdateOrRemove.ts
-  - src/mcp-server/tools/kbaGetQuestions.ts
-  - src/mcp-server/tools/kbaInitiate.ts
-  - src/mcp-server/tools/kbaVerify.ts
-  - src/mcp-server/tools/labelsCreateForCustomer.ts
-  - src/mcp-server/tools/labelsCreateLedgerEntry.ts
-  - src/mcp-server/tools/labelsCreateReallocation.ts
-  - src/mcp-server/tools/labelsGet.ts
-  - src/mcp-server/tools/labelsGetLedgerEntry.ts
-  - src/mcp-server/tools/labelsGetReallocation.ts
-  - src/mcp-server/tools/labelsListForCustomer.ts
-  - src/mcp-server/tools/labelsListLedgerEntries.ts
-  - src/mcp-server/tools/labelsRemove.ts
-  - src/mcp-server/tools/massPaymentsCreate.ts
-  - src/mcp-server/tools/massPaymentsGet.ts
-  - src/mcp-server/tools/massPaymentsGetItem.ts
-  - src/mcp-server/tools/massPaymentsListForCustomer.ts
-  - src/mcp-server/tools/massPaymentsListItems.ts
-  - src/mcp-server/tools/massPaymentsUpdate.ts
-  - src/mcp-server/tools/rootGet.ts
-  - src/mcp-server/tools/tokensCreateApplicationAccessToken.ts
-  - src/mcp-server/tools/transfersCancel.ts
-  - src/mcp-server/tools/transfersCreate.ts
-  - src/mcp-server/tools/transfersCreateOnDemandAuthorization.ts
-  - src/mcp-server/tools/transfersGet.ts
-  - src/mcp-server/tools/transfersGetFailureReason.ts
-  - src/mcp-server/tools/transfersListFees.ts
-  - src/mcp-server/tools/transfersListForCustomer.ts
-  - src/mcp-server/tools/webhookSubscriptionsCreate.ts
-  - src/mcp-server/tools/webhookSubscriptionsDelete.ts
-  - src/mcp-server/tools/webhookSubscriptionsGet.ts
-  - src/mcp-server/tools/webhookSubscriptionsList.ts
-  - src/mcp-server/tools/webhookSubscriptionsListWebhooks.ts
-  - src/mcp-server/tools/webhookSubscriptionsUpdate.ts
-  - src/mcp-server/tools/webhooksGet.ts
-  - src/mcp-server/tools/webhooksListRetries.ts
-  - src/mcp-server/tools/webhooksRetry.ts
   - src/models/account.ts
   - src/models/achaddendaentriesnotenabledforaccounterror.ts
   - src/models/address.ts
@@ -1139,6 +1045,7 @@ generatedFiles:
   - src/models/errors/destinationremittancedatamaxlengtherror.ts
   - src/models/errors/directaccountwithoutbankerror.ts
   - src/models/errors/duplicateresourceschemaerror.ts
+  - src/models/errors/dwollaerror.ts
   - src/models/errors/expiredkbasessionerror.ts
   - src/models/errors/facilitatorfeeaccountnotfounderror.ts
   - src/models/errors/facilitatorfeebelowminimumerror.ts
@@ -1216,6 +1123,7 @@ generatedFiles:
   - src/models/errors/receivernotfounderror.ts
   - src/models/errors/receiverrestrictederror.ts
   - src/models/errors/removelabel.ts
+  - src/models/errors/responsevalidationerror.ts
   - src/models/errors/retrievebeneficialowner.ts
   - src/models/errors/retrievebusinessclassification.ts
   - src/models/errors/retrievecustomerexchangesession.ts
@@ -1404,6 +1312,7 @@ generatedFiles:
   - src/models/rtpfacilitatorfeenotsupportederror.ts
   - src/models/rtppersonaltopersonalnotsupportederror.ts
   - src/models/rtpunverifiedsendernotsupportederror.ts
+  - src/models/schemeclientcredentials.ts
   - src/models/secrettoolongerror.ts
   - src/models/security.ts
   - src/models/senderrestrictederror.ts

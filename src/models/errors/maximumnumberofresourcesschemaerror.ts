@@ -3,25 +3,28 @@
  */
 
 import * as z from "zod";
+import { DwollaError } from "./dwollaerror.js";
 
 export type MaximumNumberOfResourcesSchemaErrorData = {
   code: string;
   message: string;
 };
 
-export class MaximumNumberOfResourcesSchemaError extends Error {
+export class MaximumNumberOfResourcesSchemaError extends DwollaError {
   code: string;
 
   /** The original data that was passed to this error instance. */
   data$: MaximumNumberOfResourcesSchemaErrorData;
 
-  constructor(err: MaximumNumberOfResourcesSchemaErrorData) {
+  constructor(
+    err: MaximumNumberOfResourcesSchemaErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.code = err.code;
 
     this.name = "MaximumNumberOfResourcesSchemaError";
@@ -36,9 +39,16 @@ export const MaximumNumberOfResourcesSchemaError$inboundSchema: z.ZodType<
 > = z.object({
   code: z.string(),
   message: z.string(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
-    return new MaximumNumberOfResourcesSchemaError(v);
+    return new MaximumNumberOfResourcesSchemaError(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

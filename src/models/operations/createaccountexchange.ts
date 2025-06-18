@@ -13,9 +13,9 @@ import * as models from "../index.js";
  * Parameters for creating an exchange
  */
 export type CreateAccountExchangeRequest =
+  | models.FlinksSecureExchangeCreateExchangeRequestBody
   | models.FinicitySecureExchangeCreateExchangeRequestBody
   | models.MXSecureExchangeCreateExchangeRequestBody
-  | models.FlinksSecureExchangeCreateExchangeRequestBody
   | models.PlaidSecureExchangeCreateExchangeRequestBody;
 
 /**
@@ -34,17 +34,17 @@ export const CreateAccountExchangeRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
+  models.FlinksSecureExchangeCreateExchangeRequestBody$inboundSchema,
   models.FinicitySecureExchangeCreateExchangeRequestBody$inboundSchema,
   models.MXSecureExchangeCreateExchangeRequestBody$inboundSchema,
-  models.FlinksSecureExchangeCreateExchangeRequestBody$inboundSchema,
   models.PlaidSecureExchangeCreateExchangeRequestBody$inboundSchema,
 ]);
 
 /** @internal */
 export type CreateAccountExchangeRequest$Outbound =
+  | models.FlinksSecureExchangeCreateExchangeRequestBody$Outbound
   | models.FinicitySecureExchangeCreateExchangeRequestBody$Outbound
   | models.MXSecureExchangeCreateExchangeRequestBody$Outbound
-  | models.FlinksSecureExchangeCreateExchangeRequestBody$Outbound
   | models.PlaidSecureExchangeCreateExchangeRequestBody$Outbound;
 
 /** @internal */
@@ -53,9 +53,9 @@ export const CreateAccountExchangeRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateAccountExchangeRequest
 > = z.union([
+  models.FlinksSecureExchangeCreateExchangeRequestBody$outboundSchema,
   models.FinicitySecureExchangeCreateExchangeRequestBody$outboundSchema,
   models.MXSecureExchangeCreateExchangeRequestBody$outboundSchema,
-  models.FlinksSecureExchangeCreateExchangeRequestBody$outboundSchema,
   models.PlaidSecureExchangeCreateExchangeRequestBody$outboundSchema,
 ]);
 

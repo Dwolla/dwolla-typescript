@@ -22,8 +22,8 @@ export type InitiateMicroDeposits = {};
  * - If provided: Must contain micro-deposit amounts for verification
  */
 export type InitiateOrVerifyMicroDepositsRequestBody =
-  | InitiateMicroDeposits
-  | models.VerifyMicroDeposits;
+  | models.VerifyMicroDeposits
+  | InitiateMicroDeposits;
 
 export type InitiateOrVerifyMicroDepositsRequest = {
   /**
@@ -38,8 +38,8 @@ export type InitiateOrVerifyMicroDepositsRequest = {
    * - If provided: Must contain micro-deposit amounts for verification
    */
   requestBody?:
-    | InitiateMicroDeposits
     | models.VerifyMicroDeposits
+    | InitiateMicroDeposits
     | null
     | undefined;
 };
@@ -102,14 +102,14 @@ export const InitiateOrVerifyMicroDepositsRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => InitiateMicroDeposits$inboundSchema),
   models.VerifyMicroDeposits$inboundSchema,
+  z.lazy(() => InitiateMicroDeposits$inboundSchema),
 ]);
 
 /** @internal */
 export type InitiateOrVerifyMicroDepositsRequestBody$Outbound =
-  | InitiateMicroDeposits$Outbound
-  | models.VerifyMicroDeposits$Outbound;
+  | models.VerifyMicroDeposits$Outbound
+  | InitiateMicroDeposits$Outbound;
 
 /** @internal */
 export const InitiateOrVerifyMicroDepositsRequestBody$outboundSchema: z.ZodType<
@@ -117,8 +117,8 @@ export const InitiateOrVerifyMicroDepositsRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   InitiateOrVerifyMicroDepositsRequestBody
 > = z.union([
-  z.lazy(() => InitiateMicroDeposits$outboundSchema),
   models.VerifyMicroDeposits$outboundSchema,
+  z.lazy(() => InitiateMicroDeposits$outboundSchema),
 ]);
 
 /**
@@ -172,8 +172,8 @@ export const InitiateOrVerifyMicroDepositsRequest$inboundSchema: z.ZodType<
   id: z.string(),
   RequestBody: z.nullable(
     z.union([
-      z.lazy(() => InitiateMicroDeposits$inboundSchema),
       models.VerifyMicroDeposits$inboundSchema,
+      z.lazy(() => InitiateMicroDeposits$inboundSchema),
     ]),
   ).optional(),
 }).transform((v) => {
@@ -186,8 +186,8 @@ export const InitiateOrVerifyMicroDepositsRequest$inboundSchema: z.ZodType<
 export type InitiateOrVerifyMicroDepositsRequest$Outbound = {
   id: string;
   RequestBody?:
-    | InitiateMicroDeposits$Outbound
     | models.VerifyMicroDeposits$Outbound
+    | InitiateMicroDeposits$Outbound
     | null
     | undefined;
 };
@@ -201,8 +201,8 @@ export const InitiateOrVerifyMicroDepositsRequest$outboundSchema: z.ZodType<
   id: z.string(),
   requestBody: z.nullable(
     z.union([
-      z.lazy(() => InitiateMicroDeposits$outboundSchema),
       models.VerifyMicroDeposits$outboundSchema,
+      z.lazy(() => InitiateMicroDeposits$outboundSchema),
     ]),
   ).optional(),
 }).transform((v) => {
