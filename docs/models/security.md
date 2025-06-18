@@ -10,8 +10,7 @@ let value: Security = {};
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `clientID`         | *string*           | :heavy_minus_sign: | N/A                |
-| `clientSecret`     | *string*           | :heavy_minus_sign: | N/A                |
-| `tokenURL`         | *string*           | :heavy_minus_sign: | N/A                |
+| Field                                                                  | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `clientCredentials`                                                    | [models.SchemeClientCredentials](../models/schemeclientcredentials.md) | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `bearerAuth`                                                           | *string*                                                               | :heavy_minus_sign:                                                     | N/A                                                                    |
