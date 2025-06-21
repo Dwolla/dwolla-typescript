@@ -117,8 +117,9 @@ export class ClientCredentialsHook
       "Content-Type": "application/x-www-form-urlencoded",
     };
 
-    formData.append("client_id", credentials.clientID);
-    formData.append("client_secret", credentials.clientSecret);
+    headers["Authorization"] = `Basic ${
+      stringToBase64(`${credentials.clientID}:${credentials.clientSecret}`)
+    }`;
 
     if (scopes.length > 0) {
       formData.append("scope", scopes.join(" "));
@@ -197,12 +198,9 @@ export class ClientCredentialsHook
     );
 
     return {
-      clientID: out?.clientCredentials?.clientID ?? env().DWOLLA_CLIENT_ID
-        ?? "",
-      clientSecret: out?.clientCredentials?.clientSecret
-        ?? env().DWOLLA_CLIENT_SECRET ?? "",
-      tokenURL: out?.clientCredentials?.tokenURL ?? env().DWOLLA_TOKEN_URL
-        ?? "",
+      clientID: out?.clientID ?? env().DWOLLA_CLIENT_ID ?? "",
+      clientSecret: out?.clientSecret ?? env().DWOLLA_CLIENT_SECRET ?? "",
+      tokenURL: out?.tokenURL ?? env().DWOLLA_TOKEN_URL ?? "",
     };
   }
 

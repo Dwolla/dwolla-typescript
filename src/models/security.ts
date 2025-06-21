@@ -6,16 +6,11 @@ import * as z from "zod";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  SchemeClientCredentials,
-  SchemeClientCredentials$inboundSchema,
-  SchemeClientCredentials$Outbound,
-  SchemeClientCredentials$outboundSchema,
-} from "./schemeclientcredentials.js";
 
 export type Security = {
-  clientCredentials?: SchemeClientCredentials | undefined;
-  bearerAuth?: string | undefined;
+  clientID?: string | undefined;
+  clientSecret?: string | undefined;
+  tokenURL?: string | undefined;
 };
 
 /** @internal */
@@ -24,14 +19,16 @@ export const Security$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  clientCredentials: SchemeClientCredentials$inboundSchema.optional(),
-  bearerAuth: z.string().optional(),
+  clientID: z.string().optional(),
+  clientSecret: z.string().optional(),
+  tokenURL: z.string().default("/token"),
 });
 
 /** @internal */
 export type Security$Outbound = {
-  clientCredentials?: SchemeClientCredentials$Outbound | undefined;
-  bearerAuth?: string | undefined;
+  clientID?: string | undefined;
+  clientSecret?: string | undefined;
+  tokenURL: string;
 };
 
 /** @internal */
@@ -40,8 +37,9 @@ export const Security$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Security
 > = z.object({
-  clientCredentials: SchemeClientCredentials$outboundSchema.optional(),
-  bearerAuth: z.string().optional(),
+  clientID: z.string().optional(),
+  clientSecret: z.string().optional(),
+  tokenURL: z.string().default("/token"),
 });
 
 /**
