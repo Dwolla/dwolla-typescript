@@ -22,11 +22,8 @@ import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
   security: {
-    clientCredentials: {
-      clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-      clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-      tokenURL: process.env["DWOLLA_TOKEN_URL"] ?? "",
-    },
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
   },
 });
 
@@ -53,11 +50,8 @@ import { kbaInitiate } from "dwolla-typescript/funcs/kbaInitiate.js";
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
   security: {
-    clientCredentials: {
-      clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-      clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-      tokenURL: process.env["DWOLLA_TOKEN_URL"] ?? "",
-    },
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
   },
 });
 
@@ -109,11 +103,8 @@ import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
   security: {
-    clientCredentials: {
-      clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-      clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-      tokenURL: process.env["DWOLLA_TOKEN_URL"] ?? "",
-    },
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
   },
 });
 
@@ -140,11 +131,8 @@ import { kbaGetQuestions } from "dwolla-typescript/funcs/kbaGetQuestions.js";
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
   security: {
-    clientCredentials: {
-      clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-      clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-      tokenURL: process.env["DWOLLA_TOKEN_URL"] ?? "",
-    },
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
   },
 });
 
@@ -195,11 +183,8 @@ import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
   security: {
-    clientCredentials: {
-      clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-      clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-      tokenURL: process.env["DWOLLA_TOKEN_URL"] ?? "",
-    },
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
   },
 });
 
@@ -229,11 +214,8 @@ import { kbaVerify } from "dwolla-typescript/funcs/kbaVerify.js";
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
   security: {
-    clientCredentials: {
-      clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-      clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-      tokenURL: process.env["DWOLLA_TOKEN_URL"] ?? "",
-    },
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
   },
 });
 
