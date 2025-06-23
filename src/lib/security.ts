@@ -242,20 +242,14 @@ export function resolveGlobalSecurity(
   return resolveSecurity(
     [
       {
+        fieldName: "clientID",
         type: "oauth2:client_credentials",
-        value: {
-          clientID: security?.clientCredentials?.clientID
-            ?? env().DWOLLA_CLIENT_ID,
-          clientSecret: security?.clientCredentials?.clientSecret
-            ?? env().DWOLLA_CLIENT_SECRET,
-        },
+        value: security?.clientID ?? env().DWOLLA_CLIENT_ID,
       },
-    ],
-    [
       {
-        fieldName: "Authorization",
-        type: "http:bearer",
-        value: security?.bearerAuth ?? env().DWOLLA_BEARER_AUTH,
+        fieldName: "clientSecret",
+        type: "oauth2:client_credentials",
+        value: security?.clientSecret ?? env().DWOLLA_CLIENT_SECRET,
       },
     ],
   );
