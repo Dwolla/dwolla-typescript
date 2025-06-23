@@ -10,7 +10,6 @@ export interface Env {
   DWOLLA_CLIENT_ID?: string | undefined;
   DWOLLA_CLIENT_SECRET?: string | undefined;
   DWOLLA_TOKEN_URL: string;
-  DWOLLA_BEARER_AUTH?: string | undefined;
 
   DWOLLA_DEBUG?: boolean | undefined;
 }
@@ -19,7 +18,6 @@ export const envSchema: z.ZodType<Env, z.ZodTypeDef, unknown> = z.object({
   DWOLLA_CLIENT_ID: z.string().optional(),
   DWOLLA_CLIENT_SECRET: z.string().optional(),
   DWOLLA_TOKEN_URL: z.string().default("/token"),
-  DWOLLA_BEARER_AUTH: z.string().optional(),
 
   DWOLLA_DEBUG: z.coerce.boolean().optional(),
 });

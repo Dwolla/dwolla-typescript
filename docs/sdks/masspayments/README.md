@@ -23,11 +23,8 @@ import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
   security: {
-    clientCredentials: {
-      clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-      clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-      tokenURL: process.env["DWOLLA_TOKEN_URL"] ?? "",
-    },
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
   },
 });
 
@@ -128,11 +125,8 @@ import { massPaymentsCreate } from "dwolla-typescript/funcs/massPaymentsCreate.j
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
   security: {
-    clientCredentials: {
-      clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-      clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-      tokenURL: process.env["DWOLLA_TOKEN_URL"] ?? "",
-    },
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
   },
 });
 
@@ -257,11 +251,8 @@ import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
   security: {
-    clientCredentials: {
-      clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-      clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-      tokenURL: process.env["DWOLLA_TOKEN_URL"] ?? "",
-    },
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
   },
 });
 
@@ -288,11 +279,8 @@ import { massPaymentsGet } from "dwolla-typescript/funcs/massPaymentsGet.js";
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
   security: {
-    clientCredentials: {
-      clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-      clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-      tokenURL: process.env["DWOLLA_TOKEN_URL"] ?? "",
-    },
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
   },
 });
 
@@ -343,11 +331,8 @@ import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
   security: {
-    clientCredentials: {
-      clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-      clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-      tokenURL: process.env["DWOLLA_TOKEN_URL"] ?? "",
-    },
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
   },
 });
 
@@ -377,11 +362,8 @@ import { massPaymentsUpdate } from "dwolla-typescript/funcs/massPaymentsUpdate.j
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
   security: {
-    clientCredentials: {
-      clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-      clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-      tokenURL: process.env["DWOLLA_TOKEN_URL"] ?? "",
-    },
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
   },
 });
 
@@ -436,11 +418,8 @@ import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
   security: {
-    clientCredentials: {
-      clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-      clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-      tokenURL: process.env["DWOLLA_TOKEN_URL"] ?? "",
-    },
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
   },
 });
 
@@ -467,11 +446,8 @@ import { massPaymentsListItems } from "dwolla-typescript/funcs/massPaymentsListI
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
   security: {
-    clientCredentials: {
-      clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-      clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-      tokenURL: process.env["DWOLLA_TOKEN_URL"] ?? "",
-    },
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
   },
 });
 
@@ -522,11 +498,8 @@ import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
   security: {
-    clientCredentials: {
-      clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-      clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-      tokenURL: process.env["DWOLLA_TOKEN_URL"] ?? "",
-    },
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
   },
 });
 
@@ -553,11 +526,8 @@ import { massPaymentsGetItem } from "dwolla-typescript/funcs/massPaymentsGetItem
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
   security: {
-    clientCredentials: {
-      clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-      clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-      tokenURL: process.env["DWOLLA_TOKEN_URL"] ?? "",
-    },
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
   },
 });
 
@@ -608,11 +578,8 @@ import { Dwolla } from "dwolla-typescript";
 
 const dwolla = new Dwolla({
   security: {
-    clientCredentials: {
-      clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-      clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-      tokenURL: process.env["DWOLLA_TOKEN_URL"] ?? "",
-    },
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
   },
 });
 
@@ -639,11 +606,8 @@ import { massPaymentsListForCustomer } from "dwolla-typescript/funcs/massPayment
 // You can create one instance of it to use across an application.
 const dwolla = new DwollaCore({
   security: {
-    clientCredentials: {
-      clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-      clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-      tokenURL: process.env["DWOLLA_TOKEN_URL"] ?? "",
-    },
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
   },
 });
 
