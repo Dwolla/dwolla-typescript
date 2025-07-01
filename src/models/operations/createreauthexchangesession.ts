@@ -9,6 +9,20 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
 
+/**
+ * Request body containing the redirect URL.
+ *
+ * @remarks
+ * Required for:
+ * - Visa exchange sessions
+ * - Plaid mobile sessions
+ * Not required for:
+ * - Plaid web sessions
+ */
+export type CreateReAuthExchangeSessionRequestBody =
+  | models.CreateReAuthExchangeSessionWithRedirect
+  | models.CreateReAuthExchangeSessionForWeb;
+
 export type CreateReAuthExchangeSessionRequest = {
   /**
    * Exchange's unique identifier
@@ -24,8 +38,9 @@ export type CreateReAuthExchangeSessionRequest = {
    * Not required for:
    * - Plaid web sessions
    */
-  createReAuthExchangeSession?:
-    | models.CreateReAuthExchangeSessionUnion
+  requestBody?:
+    | models.CreateReAuthExchangeSessionWithRedirect
+    | models.CreateReAuthExchangeSessionForWeb
     | undefined;
 };
 
@@ -34,25 +49,90 @@ export type CreateReAuthExchangeSessionResponse = {
 };
 
 /** @internal */
+export const CreateReAuthExchangeSessionRequestBody$inboundSchema: z.ZodType<
+  CreateReAuthExchangeSessionRequestBody,
+  z.ZodTypeDef,
+  unknown
+> = z.union([
+  models.CreateReAuthExchangeSessionWithRedirect$inboundSchema,
+  models.CreateReAuthExchangeSessionForWeb$inboundSchema,
+]);
+
+/** @internal */
+export type CreateReAuthExchangeSessionRequestBody$Outbound =
+  | models.CreateReAuthExchangeSessionWithRedirect$Outbound
+  | models.CreateReAuthExchangeSessionForWeb$Outbound;
+
+/** @internal */
+export const CreateReAuthExchangeSessionRequestBody$outboundSchema: z.ZodType<
+  CreateReAuthExchangeSessionRequestBody$Outbound,
+  z.ZodTypeDef,
+  CreateReAuthExchangeSessionRequestBody
+> = z.union([
+  models.CreateReAuthExchangeSessionWithRedirect$outboundSchema,
+  models.CreateReAuthExchangeSessionForWeb$outboundSchema,
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateReAuthExchangeSessionRequestBody$ {
+  /** @deprecated use `CreateReAuthExchangeSessionRequestBody$inboundSchema` instead. */
+  export const inboundSchema =
+    CreateReAuthExchangeSessionRequestBody$inboundSchema;
+  /** @deprecated use `CreateReAuthExchangeSessionRequestBody$outboundSchema` instead. */
+  export const outboundSchema =
+    CreateReAuthExchangeSessionRequestBody$outboundSchema;
+  /** @deprecated use `CreateReAuthExchangeSessionRequestBody$Outbound` instead. */
+  export type Outbound = CreateReAuthExchangeSessionRequestBody$Outbound;
+}
+
+export function createReAuthExchangeSessionRequestBodyToJSON(
+  createReAuthExchangeSessionRequestBody:
+    CreateReAuthExchangeSessionRequestBody,
+): string {
+  return JSON.stringify(
+    CreateReAuthExchangeSessionRequestBody$outboundSchema.parse(
+      createReAuthExchangeSessionRequestBody,
+    ),
+  );
+}
+
+export function createReAuthExchangeSessionRequestBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateReAuthExchangeSessionRequestBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CreateReAuthExchangeSessionRequestBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateReAuthExchangeSessionRequestBody' from JSON`,
+  );
+}
+
+/** @internal */
 export const CreateReAuthExchangeSessionRequest$inboundSchema: z.ZodType<
   CreateReAuthExchangeSessionRequest,
   z.ZodTypeDef,
   unknown
 > = z.object({
   id: z.string(),
-  CreateReAuthExchangeSession: models
-    .CreateReAuthExchangeSessionUnion$inboundSchema.optional(),
+  RequestBody: z.union([
+    models.CreateReAuthExchangeSessionWithRedirect$inboundSchema,
+    models.CreateReAuthExchangeSessionForWeb$inboundSchema,
+  ]).optional(),
 }).transform((v) => {
   return remap$(v, {
-    "CreateReAuthExchangeSession": "createReAuthExchangeSession",
+    "RequestBody": "requestBody",
   });
 });
 
 /** @internal */
 export type CreateReAuthExchangeSessionRequest$Outbound = {
   id: string;
-  CreateReAuthExchangeSession?:
-    | models.CreateReAuthExchangeSessionUnion$Outbound
+  RequestBody?:
+    | models.CreateReAuthExchangeSessionWithRedirect$Outbound
+    | models.CreateReAuthExchangeSessionForWeb$Outbound
     | undefined;
 };
 
@@ -63,11 +143,13 @@ export const CreateReAuthExchangeSessionRequest$outboundSchema: z.ZodType<
   CreateReAuthExchangeSessionRequest
 > = z.object({
   id: z.string(),
-  createReAuthExchangeSession: models
-    .CreateReAuthExchangeSessionUnion$outboundSchema.optional(),
+  requestBody: z.union([
+    models.CreateReAuthExchangeSessionWithRedirect$outboundSchema,
+    models.CreateReAuthExchangeSessionForWeb$outboundSchema,
+  ]).optional(),
 }).transform((v) => {
   return remap$(v, {
-    createReAuthExchangeSession: "CreateReAuthExchangeSession",
+    requestBody: "RequestBody",
   });
 });
 

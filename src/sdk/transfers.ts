@@ -8,7 +8,6 @@ import { transfersCreateOnDemandAuthorization } from "../funcs/transfersCreateOn
 import { transfersGet } from "../funcs/transfersGet.js";
 import { transfersGetFailureReason } from "../funcs/transfersGetFailureReason.js";
 import { transfersListFees } from "../funcs/transfersListFees.js";
-import { transfersListForCustomer } from "../funcs/transfersListForCustomer.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as models from "../models/index.js";
 import * as operations from "../models/operations/index.js";
@@ -60,23 +59,6 @@ export class Transfers extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.CancelTransferResponse> {
     return unwrapAsync(transfersCancel(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * List and search transfers for a customer
-   *
-   * @remarks
-   * List and search transfers for a customer
-   */
-  async listForCustomer(
-    request: operations.ListCustomerTransfersRequest,
-    options?: RequestOptions,
-  ): Promise<models.Transfers> {
-    return unwrapAsync(transfersListForCustomer(
       this,
       request,
       options,

@@ -101,21 +101,19 @@ export class CreateCustomerExchangeSessionDwollaV1HalJSONError
   }
 }
 
-export type CreateCustomerExchangeSessionResponseBodyBadRequestError3Data = {
+export type ResponseBodyBadRequestError3Data = {
   code: string;
   message: string;
 };
 
-export class CreateCustomerExchangeSessionResponseBodyBadRequestError3
-  extends DwollaError
-{
+export class ResponseBodyBadRequestError3 extends DwollaError {
   code: string;
 
   /** The original data that was passed to this error instance. */
-  data$: CreateCustomerExchangeSessionResponseBodyBadRequestError3Data;
+  data$: ResponseBodyBadRequestError3Data;
 
   constructor(
-    err: CreateCustomerExchangeSessionResponseBodyBadRequestError3Data,
+    err: ResponseBodyBadRequestError3Data,
     httpMeta: { response: Response; request: Request; body: string },
   ) {
     const message = "message" in err && typeof err.message === "string"
@@ -125,25 +123,23 @@ export class CreateCustomerExchangeSessionResponseBodyBadRequestError3
     this.data$ = err;
     this.code = err.code;
 
-    this.name = "CreateCustomerExchangeSessionResponseBodyBadRequestError3";
+    this.name = "ResponseBodyBadRequestError3";
   }
 }
 
-export type CreateCustomerExchangeSessionResponseBodyBadRequestError2Data = {
+export type ResponseBodyBadRequestError2Data = {
   code: string;
   message: string;
 };
 
-export class CreateCustomerExchangeSessionResponseBodyBadRequestError2
-  extends DwollaError
-{
+export class ResponseBodyBadRequestError2 extends DwollaError {
   code: string;
 
   /** The original data that was passed to this error instance. */
-  data$: CreateCustomerExchangeSessionResponseBodyBadRequestError2Data;
+  data$: ResponseBodyBadRequestError2Data;
 
   constructor(
-    err: CreateCustomerExchangeSessionResponseBodyBadRequestError2Data,
+    err: ResponseBodyBadRequestError2Data,
     httpMeta: { response: Response; request: Request; body: string },
   ) {
     const message = "message" in err && typeof err.message === "string"
@@ -153,25 +149,23 @@ export class CreateCustomerExchangeSessionResponseBodyBadRequestError2
     this.data$ = err;
     this.code = err.code;
 
-    this.name = "CreateCustomerExchangeSessionResponseBodyBadRequestError2";
+    this.name = "ResponseBodyBadRequestError2";
   }
 }
 
-export type CreateCustomerExchangeSessionResponseBodyBadRequestError1Data = {
+export type ResponseBodyBadRequestError1Data = {
   code: string;
   message: string;
 };
 
-export class CreateCustomerExchangeSessionResponseBodyBadRequestError1
-  extends DwollaError
-{
+export class ResponseBodyBadRequestError1 extends DwollaError {
   code: string;
 
   /** The original data that was passed to this error instance. */
-  data$: CreateCustomerExchangeSessionResponseBodyBadRequestError1Data;
+  data$: ResponseBodyBadRequestError1Data;
 
   constructor(
-    err: CreateCustomerExchangeSessionResponseBodyBadRequestError1Data,
+    err: ResponseBodyBadRequestError1Data,
     httpMeta: { response: Response; request: Request; body: string },
   ) {
     const message = "message" in err && typeof err.message === "string"
@@ -181,7 +175,7 @@ export class CreateCustomerExchangeSessionResponseBodyBadRequestError1
     this.data$ = err;
     this.code = err.code;
 
-    this.name = "CreateCustomerExchangeSessionResponseBodyBadRequestError1";
+    this.name = "ResponseBodyBadRequestError1";
   }
 }
 
@@ -189,9 +183,9 @@ export class CreateCustomerExchangeSessionResponseBodyBadRequestError1
  * validation error
  */
 export type CreateCustomerExchangeSessionBadRequestDwollaV1HalJSON =
-  | CreateCustomerExchangeSessionResponseBodyBadRequestError1
-  | CreateCustomerExchangeSessionResponseBodyBadRequestError2
-  | CreateCustomerExchangeSessionResponseBodyBadRequestError3;
+  | ResponseBodyBadRequestError1
+  | ResponseBodyBadRequestError2
+  | ResponseBodyBadRequestError3;
 
 /** @internal */
 export const ResponseBodyForbiddenError2$inboundSchema: z.ZodType<
@@ -422,174 +416,156 @@ export namespace CreateCustomerExchangeSessionDwollaV1HalJSONError$ {
 }
 
 /** @internal */
-export const CreateCustomerExchangeSessionResponseBodyBadRequestError3$inboundSchema:
-  z.ZodType<
-    CreateCustomerExchangeSessionResponseBodyBadRequestError3,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
+export const ResponseBodyBadRequestError3$inboundSchema: z.ZodType<
+  ResponseBodyBadRequestError3,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  code: z.string(),
+  message: z.string(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
+})
+  .transform((v) => {
+    return new ResponseBodyBadRequestError3(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
+  });
+
+/** @internal */
+export type ResponseBodyBadRequestError3$Outbound = {
+  code: string;
+  message: string;
+};
+
+/** @internal */
+export const ResponseBodyBadRequestError3$outboundSchema: z.ZodType<
+  ResponseBodyBadRequestError3$Outbound,
+  z.ZodTypeDef,
+  ResponseBodyBadRequestError3
+> = z.instanceof(ResponseBodyBadRequestError3)
+  .transform(v => v.data$)
+  .pipe(z.object({
     code: z.string(),
     message: z.string(),
-    request$: z.instanceof(Request),
-    response$: z.instanceof(Response),
-    body$: z.string(),
-  })
-    .transform((v) => {
-      return new CreateCustomerExchangeSessionResponseBodyBadRequestError3(v, {
-        request: v.request$,
-        response: v.response$,
-        body: v.body$,
-      });
-    });
-
-/** @internal */
-export type CreateCustomerExchangeSessionResponseBodyBadRequestError3$Outbound =
-  {
-    code: string;
-    message: string;
-  };
-
-/** @internal */
-export const CreateCustomerExchangeSessionResponseBodyBadRequestError3$outboundSchema:
-  z.ZodType<
-    CreateCustomerExchangeSessionResponseBodyBadRequestError3$Outbound,
-    z.ZodTypeDef,
-    CreateCustomerExchangeSessionResponseBodyBadRequestError3
-  > = z.instanceof(CreateCustomerExchangeSessionResponseBodyBadRequestError3)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string(),
-      message: z.string(),
-    }));
+  }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateCustomerExchangeSessionResponseBodyBadRequestError3$ {
-  /** @deprecated use `CreateCustomerExchangeSessionResponseBodyBadRequestError3$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerExchangeSessionResponseBodyBadRequestError3$inboundSchema;
-  /** @deprecated use `CreateCustomerExchangeSessionResponseBodyBadRequestError3$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerExchangeSessionResponseBodyBadRequestError3$outboundSchema;
-  /** @deprecated use `CreateCustomerExchangeSessionResponseBodyBadRequestError3$Outbound` instead. */
-  export type Outbound =
-    CreateCustomerExchangeSessionResponseBodyBadRequestError3$Outbound;
+export namespace ResponseBodyBadRequestError3$ {
+  /** @deprecated use `ResponseBodyBadRequestError3$inboundSchema` instead. */
+  export const inboundSchema = ResponseBodyBadRequestError3$inboundSchema;
+  /** @deprecated use `ResponseBodyBadRequestError3$outboundSchema` instead. */
+  export const outboundSchema = ResponseBodyBadRequestError3$outboundSchema;
+  /** @deprecated use `ResponseBodyBadRequestError3$Outbound` instead. */
+  export type Outbound = ResponseBodyBadRequestError3$Outbound;
 }
 
 /** @internal */
-export const CreateCustomerExchangeSessionResponseBodyBadRequestError2$inboundSchema:
-  z.ZodType<
-    CreateCustomerExchangeSessionResponseBodyBadRequestError2,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
+export const ResponseBodyBadRequestError2$inboundSchema: z.ZodType<
+  ResponseBodyBadRequestError2,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  code: z.string(),
+  message: z.string(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
+})
+  .transform((v) => {
+    return new ResponseBodyBadRequestError2(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
+  });
+
+/** @internal */
+export type ResponseBodyBadRequestError2$Outbound = {
+  code: string;
+  message: string;
+};
+
+/** @internal */
+export const ResponseBodyBadRequestError2$outboundSchema: z.ZodType<
+  ResponseBodyBadRequestError2$Outbound,
+  z.ZodTypeDef,
+  ResponseBodyBadRequestError2
+> = z.instanceof(ResponseBodyBadRequestError2)
+  .transform(v => v.data$)
+  .pipe(z.object({
     code: z.string(),
     message: z.string(),
-    request$: z.instanceof(Request),
-    response$: z.instanceof(Response),
-    body$: z.string(),
-  })
-    .transform((v) => {
-      return new CreateCustomerExchangeSessionResponseBodyBadRequestError2(v, {
-        request: v.request$,
-        response: v.response$,
-        body: v.body$,
-      });
-    });
-
-/** @internal */
-export type CreateCustomerExchangeSessionResponseBodyBadRequestError2$Outbound =
-  {
-    code: string;
-    message: string;
-  };
-
-/** @internal */
-export const CreateCustomerExchangeSessionResponseBodyBadRequestError2$outboundSchema:
-  z.ZodType<
-    CreateCustomerExchangeSessionResponseBodyBadRequestError2$Outbound,
-    z.ZodTypeDef,
-    CreateCustomerExchangeSessionResponseBodyBadRequestError2
-  > = z.instanceof(CreateCustomerExchangeSessionResponseBodyBadRequestError2)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string(),
-      message: z.string(),
-    }));
+  }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateCustomerExchangeSessionResponseBodyBadRequestError2$ {
-  /** @deprecated use `CreateCustomerExchangeSessionResponseBodyBadRequestError2$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerExchangeSessionResponseBodyBadRequestError2$inboundSchema;
-  /** @deprecated use `CreateCustomerExchangeSessionResponseBodyBadRequestError2$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerExchangeSessionResponseBodyBadRequestError2$outboundSchema;
-  /** @deprecated use `CreateCustomerExchangeSessionResponseBodyBadRequestError2$Outbound` instead. */
-  export type Outbound =
-    CreateCustomerExchangeSessionResponseBodyBadRequestError2$Outbound;
+export namespace ResponseBodyBadRequestError2$ {
+  /** @deprecated use `ResponseBodyBadRequestError2$inboundSchema` instead. */
+  export const inboundSchema = ResponseBodyBadRequestError2$inboundSchema;
+  /** @deprecated use `ResponseBodyBadRequestError2$outboundSchema` instead. */
+  export const outboundSchema = ResponseBodyBadRequestError2$outboundSchema;
+  /** @deprecated use `ResponseBodyBadRequestError2$Outbound` instead. */
+  export type Outbound = ResponseBodyBadRequestError2$Outbound;
 }
 
 /** @internal */
-export const CreateCustomerExchangeSessionResponseBodyBadRequestError1$inboundSchema:
-  z.ZodType<
-    CreateCustomerExchangeSessionResponseBodyBadRequestError1,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
+export const ResponseBodyBadRequestError1$inboundSchema: z.ZodType<
+  ResponseBodyBadRequestError1,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  code: z.string(),
+  message: z.string(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
+})
+  .transform((v) => {
+    return new ResponseBodyBadRequestError1(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
+  });
+
+/** @internal */
+export type ResponseBodyBadRequestError1$Outbound = {
+  code: string;
+  message: string;
+};
+
+/** @internal */
+export const ResponseBodyBadRequestError1$outboundSchema: z.ZodType<
+  ResponseBodyBadRequestError1$Outbound,
+  z.ZodTypeDef,
+  ResponseBodyBadRequestError1
+> = z.instanceof(ResponseBodyBadRequestError1)
+  .transform(v => v.data$)
+  .pipe(z.object({
     code: z.string(),
     message: z.string(),
-    request$: z.instanceof(Request),
-    response$: z.instanceof(Response),
-    body$: z.string(),
-  })
-    .transform((v) => {
-      return new CreateCustomerExchangeSessionResponseBodyBadRequestError1(v, {
-        request: v.request$,
-        response: v.response$,
-        body: v.body$,
-      });
-    });
-
-/** @internal */
-export type CreateCustomerExchangeSessionResponseBodyBadRequestError1$Outbound =
-  {
-    code: string;
-    message: string;
-  };
-
-/** @internal */
-export const CreateCustomerExchangeSessionResponseBodyBadRequestError1$outboundSchema:
-  z.ZodType<
-    CreateCustomerExchangeSessionResponseBodyBadRequestError1$Outbound,
-    z.ZodTypeDef,
-    CreateCustomerExchangeSessionResponseBodyBadRequestError1
-  > = z.instanceof(CreateCustomerExchangeSessionResponseBodyBadRequestError1)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string(),
-      message: z.string(),
-    }));
+  }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateCustomerExchangeSessionResponseBodyBadRequestError1$ {
-  /** @deprecated use `CreateCustomerExchangeSessionResponseBodyBadRequestError1$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerExchangeSessionResponseBodyBadRequestError1$inboundSchema;
-  /** @deprecated use `CreateCustomerExchangeSessionResponseBodyBadRequestError1$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerExchangeSessionResponseBodyBadRequestError1$outboundSchema;
-  /** @deprecated use `CreateCustomerExchangeSessionResponseBodyBadRequestError1$Outbound` instead. */
-  export type Outbound =
-    CreateCustomerExchangeSessionResponseBodyBadRequestError1$Outbound;
+export namespace ResponseBodyBadRequestError1$ {
+  /** @deprecated use `ResponseBodyBadRequestError1$inboundSchema` instead. */
+  export const inboundSchema = ResponseBodyBadRequestError1$inboundSchema;
+  /** @deprecated use `ResponseBodyBadRequestError1$outboundSchema` instead. */
+  export const outboundSchema = ResponseBodyBadRequestError1$outboundSchema;
+  /** @deprecated use `ResponseBodyBadRequestError1$Outbound` instead. */
+  export type Outbound = ResponseBodyBadRequestError1$Outbound;
 }
 
 /** @internal */
@@ -599,22 +575,16 @@ export const CreateCustomerExchangeSessionBadRequestDwollaV1HalJSON$inboundSchem
     z.ZodTypeDef,
     unknown
   > = z.union([
-    z.lazy(() =>
-      CreateCustomerExchangeSessionResponseBodyBadRequestError1$inboundSchema
-    ),
-    z.lazy(() =>
-      CreateCustomerExchangeSessionResponseBodyBadRequestError2$inboundSchema
-    ),
-    z.lazy(() =>
-      CreateCustomerExchangeSessionResponseBodyBadRequestError3$inboundSchema
-    ),
+    z.lazy(() => ResponseBodyBadRequestError1$inboundSchema),
+    z.lazy(() => ResponseBodyBadRequestError2$inboundSchema),
+    z.lazy(() => ResponseBodyBadRequestError3$inboundSchema),
   ]);
 
 /** @internal */
 export type CreateCustomerExchangeSessionBadRequestDwollaV1HalJSON$Outbound =
-  | CreateCustomerExchangeSessionResponseBodyBadRequestError1$Outbound
-  | CreateCustomerExchangeSessionResponseBodyBadRequestError2$Outbound
-  | CreateCustomerExchangeSessionResponseBodyBadRequestError3$Outbound;
+  | ResponseBodyBadRequestError1$Outbound
+  | ResponseBodyBadRequestError2$Outbound
+  | ResponseBodyBadRequestError3$Outbound;
 
 /** @internal */
 export const CreateCustomerExchangeSessionBadRequestDwollaV1HalJSON$outboundSchema:
@@ -623,15 +593,9 @@ export const CreateCustomerExchangeSessionBadRequestDwollaV1HalJSON$outboundSche
     z.ZodTypeDef,
     CreateCustomerExchangeSessionBadRequestDwollaV1HalJSON
   > = z.union([
-    z.lazy(() =>
-      CreateCustomerExchangeSessionResponseBodyBadRequestError1$outboundSchema
-    ),
-    z.lazy(() =>
-      CreateCustomerExchangeSessionResponseBodyBadRequestError2$outboundSchema
-    ),
-    z.lazy(() =>
-      CreateCustomerExchangeSessionResponseBodyBadRequestError3$outboundSchema
-    ),
+    z.lazy(() => ResponseBodyBadRequestError1$outboundSchema),
+    z.lazy(() => ResponseBodyBadRequestError2$outboundSchema),
+    z.lazy(() => ResponseBodyBadRequestError3$outboundSchema),
   ]);
 
 /**

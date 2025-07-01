@@ -118,7 +118,7 @@ const dwolla = new Dwolla({
 async function run() {
   const result = await dwolla.exchanges.createReAuth({
     id: "<id>",
-    createReAuthExchangeSession: {},
+    requestBody: {},
   });
 
   console.log(result);
@@ -147,7 +147,7 @@ const dwolla = new DwollaCore({
 async function run() {
   const res = await exchangesCreateReAuth(dwolla, {
     id: "<id>",
-    createReAuthExchangeSession: {},
+    requestBody: {},
   });
   if (res.ok) {
     const { value: result } = res;

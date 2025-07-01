@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 53ac026a-ff11-435d-914b-31df5268afb0
 management:
-  docChecksum: 5bc59b58a514bc7f8a2dd21915afdc8a
+  docChecksum: 003a0b629e6db45dead57668ee2e8ddd
   docVersion: "2.0"
-  speakeasyVersion: 1.568.0
-  generationVersion: 2.632.2
-  releaseVersion: 0.0.1-beta.2
-  configChecksum: 2c6fa87f775774b3aca3761fed0821a3
+  speakeasyVersion: 1.573.0
+  generationVersion: 2.644.1
+  releaseVersion: 0.0.1-beta.3
+  configChecksum: a1d8db3beb130b4cd6223ae30a16b8db
   repoURL: https://github.com/Dwolla/dwolla-typescript.git
   installationURL: https://github.com/Dwolla/dwolla-typescript
 features:
@@ -61,14 +61,11 @@ generatedFiles:
   - docs/models/availableexchangeconnectionslinks.md
   - docs/models/availableexchangeconnectionsself.md
   - docs/models/badrequestschemaembedded.md
-  - docs/models/bankaccounttypechecking.md
   - docs/models/beneficialowner.md
   - docs/models/beneficialowners.md
   - docs/models/beneficialownersembedded.md
   - docs/models/beneficialownership.md
   - docs/models/beneficialownershiplinks.md
-  - docs/models/beneficialownerwithpassport.md
-  - docs/models/beneficialownerwithssn.md
   - docs/models/businessclassification.md
   - docs/models/businessclassificationembedded.md
   - docs/models/businessclassificationlinks.md
@@ -79,44 +76,62 @@ generatedFiles:
   - docs/models/cannotparseamounterrorlinks.md
   - docs/models/channel.md
   - docs/models/clearing.md
-  - docs/models/controller.md
-  - docs/models/controlleraddress.md
-  - docs/models/controllerunion.md
-  - docs/models/controllerwithpassport.md
-  - docs/models/controllerwithssn.md
-  - docs/models/createcustomerexchangesession1.md
-  - docs/models/createcustomerexchangesession2.md
-  - docs/models/createcustomerexchangesessionexchangepartner1.md
-  - docs/models/createcustomerexchangesessionexchangepartner2.md
-  - docs/models/createcustomerexchangesessionlinks1.md
-  - docs/models/createcustomerexchangesessionlinks2.md
-  - docs/models/createcustomerexchangesessionredirecturl.md
-  - docs/models/createcustomerexchangesessionunion.md
-  - docs/models/createcustomerfundingsource1.md
-  - docs/models/createcustomerfundingsource2.md
-  - docs/models/createcustomerfundingsourcebankaccounttype1.md
-  - docs/models/createcustomerfundingsourcebankaccounttype2.md
-  - docs/models/createcustomerfundingsourcechecking.md
-  - docs/models/createcustomerfundingsourceexchange.md
-  - docs/models/createcustomerfundingsourcelinks1.md
-  - docs/models/createcustomerfundingsourcelinks2.md
-  - docs/models/createcustomerfundingsourceondemandauthorization1.md
-  - docs/models/createcustomerfundingsourceondemandauthorization2.md
-  - docs/models/createcustomerfundingsourceunion.md
-  - docs/models/createfundingsourceforaccountrequestbody.md
-  - docs/models/createfundingsourceforaccountrequestbodybankaccounttype.md
-  - docs/models/createfundingsourceforaccountrequestbodyexchange.md
-  - docs/models/createfundingsourceforaccountrequestbodylinks.md
-  - docs/models/createreauthexchangesession1.md
-  - docs/models/createreauthexchangesession2.md
-  - docs/models/createreauthexchangesessionlinks.md
-  - docs/models/createreauthexchangesessionredirecturl.md
-  - docs/models/createreauthexchangesessionunion.md
-  - docs/models/createreceiveonlyrequestbody.md
-  - docs/models/createunverifiedcustomerrequestbody.md
-  - docs/models/createverifiedbusinessrequestbody.md
-  - docs/models/createverifiedpersonalrequestbody.md
-  - docs/models/createverifiedsoleproprequestbody.md
+  - docs/models/createaccountfundingsource.md
+  - docs/models/createaccountfundingsourcebankaccounttype.md
+  - docs/models/createaccountfundingsourceexchange.md
+  - docs/models/createaccountfundingsourcelinks.md
+  - docs/models/createcustomerbankfundingsource.md
+  - docs/models/createcustomerbankfundingsourcebankaccounttype.md
+  - docs/models/createcustomerbankfundingsourcelinks.md
+  - docs/models/createcustomerbankfundingsourceondemandauthorization.md
+  - docs/models/createcustomerexchangefundingsource.md
+  - docs/models/createcustomerexchangefundingsourcebankaccounttype.md
+  - docs/models/createcustomerexchangefundingsourceexchange.md
+  - docs/models/createcustomerexchangefundingsourcelinks.md
+  - docs/models/createcustomerexchangefundingsourceondemandauthorization.md
+  - docs/models/createcustomerexchangesessionforweb.md
+  - docs/models/createcustomerexchangesessionforwebexchangepartner.md
+  - docs/models/createcustomerexchangesessionforweblinks.md
+  - docs/models/createcustomerexchangesessionwithredirect.md
+  - docs/models/createcustomerexchangesessionwithredirectexchangepartner.md
+  - docs/models/createcustomerexchangesessionwithredirectlinks.md
+  - docs/models/createcustomerexchangesessionwithredirectredirecturl.md
+  - docs/models/createcustomervirtualfundingsource.md
+  - docs/models/createcustomervirtualfundingsourcebankaccounttype.md
+  - docs/models/createfinicitysecureexchange.md
+  - docs/models/createfinicitysecureexchangeexchangepartner.md
+  - docs/models/createfinicitysecureexchangelinks.md
+  - docs/models/createflinkssecureexchange.md
+  - docs/models/createflinkssecureexchangeexchangepartner.md
+  - docs/models/createflinkssecureexchangelinks.md
+  - docs/models/createinternationalbeneficialowner.md
+  - docs/models/createmxopenbankingexchange.md
+  - docs/models/createmxopenbankingexchangeexchangepartner.md
+  - docs/models/createmxopenbankingexchangelinks.md
+  - docs/models/createmxsecureexchange.md
+  - docs/models/createmxsecureexchangeexchangepartner.md
+  - docs/models/createmxsecureexchangelinks.md
+  - docs/models/createplaidopenbankingexchange.md
+  - docs/models/createplaidopenbankingexchangeexchangepartner.md
+  - docs/models/createplaidopenbankingexchangelinks.md
+  - docs/models/createplaidsecureexchange.md
+  - docs/models/createplaidsecureexchangeexchangepartner.md
+  - docs/models/createplaidsecureexchangelinks.md
+  - docs/models/createreauthexchangesessionforweb.md
+  - docs/models/createreauthexchangesessionwithredirect.md
+  - docs/models/createreauthexchangesessionwithredirectlinks.md
+  - docs/models/createreauthexchangesessionwithredirectredirecturl.md
+  - docs/models/createreceiveonlyuser.md
+  - docs/models/createunverifiedcustomer.md
+  - docs/models/createusbeneficialowner.md
+  - docs/models/createverifiedbusinesscustomerwithcontroller.md
+  - docs/models/createverifiedbusinesscustomerwithcontrollerbusinesstype.md
+  - docs/models/createverifiedbusinesscustomerwithcontrollercontroller.md
+  - docs/models/createverifiedbusinesscustomerwithinternationalcontroller.md
+  - docs/models/createverifiedbusinesscustomerwithinternationalcontrollerbusinesstype.md
+  - docs/models/createverifiedbusinesscustomerwithinternationalcontrollercontroller.md
+  - docs/models/createverifiedpersonalcustomer.md
+  - docs/models/createverifiedsolepropcustomer.md
   - docs/models/customer.md
   - docs/models/customers.md
   - docs/models/customersembedded.md
@@ -160,16 +175,10 @@ generatedFiles:
   - docs/models/errors/createcustomerexchangesessionbadrequestdwollav1haljson.md
   - docs/models/errors/createcustomerexchangesessiondwollav1haljsonerror.md
   - docs/models/errors/createcustomerexchangesessionforbiddendwollav1haljson.md
-  - docs/models/errors/createcustomerexchangesessionresponsebodybadrequesterror1.md
-  - docs/models/errors/createcustomerexchangesessionresponsebodybadrequesterror2.md
-  - docs/models/errors/createcustomerexchangesessionresponsebodybadrequesterror3.md
   - docs/models/errors/createcustomerforbiddendwollav1haljsonerror.md
   - docs/models/errors/createcustomerfundingsourcedwollav1haljson.md
   - docs/models/errors/createcustomerfundingsourceforbiddendwollav1haljsonerror.md
   - docs/models/errors/createcustomerfundingsourcenotfounddwollav1haljsonerror.md
-  - docs/models/errors/createcustomerfundingsourceresponsebodyerror1.md
-  - docs/models/errors/createcustomerfundingsourceresponsebodyerror2.md
-  - docs/models/errors/createcustomerfundingsourceresponsebodyerror3.md
   - docs/models/errors/createcustomerlabelforbiddendwollav1haljsonerror.md
   - docs/models/errors/createcustomerlabelnotfounddwollav1haljsonerror.md
   - docs/models/errors/createcustomernotfounddwollav1haljsonerror.md
@@ -186,6 +195,7 @@ generatedFiles:
   - docs/models/errors/destinationprocessingchannelnotsupportederror.md
   - docs/models/errors/destinationremittancedatamaxlengtherror.md
   - docs/models/errors/directaccountwithoutbankerror.md
+  - docs/models/errors/duplicatefundingsourceerror.md
   - docs/models/errors/duplicateresourceschemaerror.md
   - docs/models/errors/expiredkbasessionerror.md
   - docs/models/errors/facilitatorfeeaccountnotfounderror.md
@@ -209,6 +219,7 @@ generatedFiles:
   - docs/models/errors/getrootdwollav1haljsonerror.md
   - docs/models/errors/getvanroutingdwollav1haljsonerror.md
   - docs/models/errors/highriskerror.md
+  - docs/models/errors/inactiveexchangeerror.md
   - docs/models/errors/incompatibleaddendaentrieserror.md
   - docs/models/errors/incompatibleholdingserror.md
   - docs/models/errors/incompatiblesourceanddestinationtypeserror.md
@@ -231,6 +242,7 @@ generatedFiles:
   - docs/models/errors/invaliddestinationfundingsourceerror.md
   - docs/models/errors/invalidexchangeerror.md
   - docs/models/errors/invalidexchangetokenerror.md
+  - docs/models/errors/invalidexchangetokenerrorerror.md
   - docs/models/errors/invalidfacilitatorerror.md
   - docs/models/errors/invalidfacilitatorfeeamounterror.md
   - docs/models/errors/invalidfacilitatorfeecollectfromcombinationerror.md
@@ -274,6 +286,9 @@ generatedFiles:
   - docs/models/errors/receivernotfounderror.md
   - docs/models/errors/receiverrestrictederror.md
   - docs/models/errors/removelabeldwollav1haljsonerror.md
+  - docs/models/errors/responsebodybadrequesterror1.md
+  - docs/models/errors/responsebodybadrequesterror2.md
+  - docs/models/errors/responsebodybadrequesterror3.md
   - docs/models/errors/responsebodyforbiddenerror1.md
   - docs/models/errors/responsebodyforbiddenerror2.md
   - docs/models/errors/retrievebeneficialownerdwollav1haljsonerror.md
@@ -346,12 +361,6 @@ generatedFiles:
   - docs/models/facilitatorfeesumtoolargeerrorerror.md
   - docs/models/facilitatorfeesumtoolargeerrorlinks.md
   - docs/models/finicity.md
-  - docs/models/finicitysecureexchangecreateexchangerequestbody.md
-  - docs/models/finicitysecureexchangecreateexchangerequestbodyexchangepartner.md
-  - docs/models/finicitysecureexchangecreateexchangerequestbodylinks.md
-  - docs/models/flinkssecureexchangecreateexchangerequestbody.md
-  - docs/models/flinkssecureexchangecreateexchangerequestbodyexchangepartner.md
-  - docs/models/flinkssecureexchangecreateexchangerequestbodylinks.md
   - docs/models/fundingsource.md
   - docs/models/fundingsources.md
   - docs/models/fundingsourcesembedded.md
@@ -464,12 +473,6 @@ generatedFiles:
   - docs/models/masspayments.md
   - docs/models/masspaymentsembedded.md
   - docs/models/mx.md
-  - docs/models/mxopenbankingcreateexchangerequestbody.md
-  - docs/models/mxopenbankingcreateexchangerequestbodyexchangepartner.md
-  - docs/models/mxopenbankingcreateexchangerequestbodylinks.md
-  - docs/models/mxsecureexchangecreateexchangerequestbody.md
-  - docs/models/mxsecureexchangecreateexchangerequestbodyexchangepartner.md
-  - docs/models/mxsecureexchangecreateexchangerequestbodylinks.md
   - docs/models/ondemandauthorization.md
   - docs/models/ondemandauthorizationlinks.md
   - docs/models/ondemandauthorizationself.md
@@ -510,8 +513,10 @@ generatedFiles:
   - docs/models/operations/createcustomerexchangerequestbody.md
   - docs/models/operations/createcustomerexchangeresponse.md
   - docs/models/operations/createcustomerexchangesessionrequest.md
+  - docs/models/operations/createcustomerexchangesessionrequestbody.md
   - docs/models/operations/createcustomerexchangesessionresponse.md
   - docs/models/operations/createcustomerfundingsourcerequest.md
+  - docs/models/operations/createcustomerfundingsourcerequestbody.md
   - docs/models/operations/createcustomerfundingsourceresponse.md
   - docs/models/operations/createcustomerlabelamount.md
   - docs/models/operations/createcustomerlabelrequest.md
@@ -529,6 +534,7 @@ generatedFiles:
   - docs/models/operations/createlabelreallocationrequest.md
   - docs/models/operations/createlabelreallocationresponse.md
   - docs/models/operations/createreauthexchangesessionrequest.md
+  - docs/models/operations/createreauthexchangesessionrequestbody.md
   - docs/models/operations/createreauthexchangesessionresponse.md
   - docs/models/operations/createwebhooksubscriptionrequest.md
   - docs/models/operations/createwebhooksubscriptionresponse.md
@@ -545,6 +551,7 @@ generatedFiles:
   - docs/models/operations/getaccountrequest.md
   - docs/models/operations/getbeneficialownershipstatusforcustomerrequest.md
   - docs/models/operations/getcustomerrequest.md
+  - docs/models/operations/getcustomerresponse.md
   - docs/models/operations/getdocumentrequest.md
   - docs/models/operations/geteventrequest.md
   - docs/models/operations/getexchangepartnerrequest.md
@@ -679,6 +686,7 @@ generatedFiles:
   - docs/models/operations/updateorremovefundingsourceresponse.md
   - docs/models/operations/updaterequest.md
   - docs/models/operations/updaterequestbody.md
+  - docs/models/operations/updateresponse.md
   - docs/models/operations/updatewebhooksubscriptionrequest.md
   - docs/models/operations/updatewebhooksubscriptionrequestbody.md
   - docs/models/operations/verifyanswer.md
@@ -689,12 +697,6 @@ generatedFiles:
   - docs/models/operations/verifyresponse.md
   - docs/models/passport.md
   - docs/models/plaid.md
-  - docs/models/plaidopenbankingcreateexchangerequestbody.md
-  - docs/models/plaidopenbankingcreateexchangerequestbodyexchangepartner.md
-  - docs/models/plaidopenbankingcreateexchangerequestbodylinks.md
-  - docs/models/plaidsecureexchangecreateexchangerequestbody.md
-  - docs/models/plaidsecureexchangecreateexchangerequestbodyexchangepartner.md
-  - docs/models/plaidsecureexchangecreateexchangerequestbodylinks.md
   - docs/models/pointofsaleaddendaentriesnotenabledforaccounterrorembedded.md
   - docs/models/pointofsaleaddendaentriesnotenabledforaccounterrorerror.md
   - docs/models/pointofsaleaddendaentriesnotenabledforaccounterrorlinks.md
@@ -707,10 +709,10 @@ generatedFiles:
   - docs/models/receiverrestrictederrorerror.md
   - docs/models/receiverrestrictederrorlinks.md
   - docs/models/removebank.md
-  - docs/models/request.md
   - docs/models/requestheader.md
-  - docs/models/response.md
+  - docs/models/requestt.md
   - docs/models/responseheader.md
+  - docs/models/responset.md
   - docs/models/retrylinks.md
   - docs/models/retryself.md
   - docs/models/retryverifiedbusiness.md
@@ -781,6 +783,8 @@ generatedFiles:
   - docs/models/upgradetoverifiedsoleprop.md
   - docs/models/validationerrorschemaembedded.md
   - docs/models/verifiedbusinesscustomer.md
+  - docs/models/verifiedbusinesscustomeraddress.md
+  - docs/models/verifiedbusinesscustomercontroller.md
   - docs/models/verifiedpersonalcustomer.md
   - docs/models/verifiedsolepropcustomer.md
   - docs/models/verifymicrodeposits.md
@@ -856,11 +860,15 @@ generatedFiles:
   - docs/sdks/beneficialownersdocuments/README.md
   - docs/sdks/businessclassifications/README.md
   - docs/sdks/clienttokens/README.md
+  - docs/sdks/customer/README.md
+  - docs/sdks/customerfundingsources/README.md
+  - docs/sdks/customermasspayments/README.md
   - docs/sdks/customers/README.md
   - docs/sdks/customersbeneficialowners/README.md
   - docs/sdks/customersdocuments/README.md
   - docs/sdks/customersexchanges/README.md
   - docs/sdks/customersfundingsources/README.md
+  - docs/sdks/customertransfers/README.md
   - docs/sdks/documents/README.md
   - docs/sdks/dwolla/README.md
   - docs/sdks/events/README.md
@@ -898,6 +906,9 @@ generatedFiles:
   - src/funcs/businessClassificationsGet.ts
   - src/funcs/businessClassificationsList.ts
   - src/funcs/clientTokensCreate.ts
+  - src/funcs/customerFundingSourcesCreate.ts
+  - src/funcs/customerMassPaymentsList.ts
+  - src/funcs/customerTransfersList.ts
   - src/funcs/customersBeneficialOwnersCreate.ts
   - src/funcs/customersBeneficialOwnersList.ts
   - src/funcs/customersCreate.ts
@@ -919,7 +930,6 @@ generatedFiles:
   - src/funcs/exchangeSessionsGet.ts
   - src/funcs/exchangesCreateReAuth.ts
   - src/funcs/exchangesGet.ts
-  - src/funcs/fundingSourcesCreateForCustomer.ts
   - src/funcs/fundingSourcesGet.ts
   - src/funcs/fundingSourcesGetBalance.ts
   - src/funcs/fundingSourcesGetMicroDeposits.ts
@@ -941,7 +951,6 @@ generatedFiles:
   - src/funcs/massPaymentsCreate.ts
   - src/funcs/massPaymentsGet.ts
   - src/funcs/massPaymentsGetItem.ts
-  - src/funcs/massPaymentsListForCustomer.ts
   - src/funcs/massPaymentsListItems.ts
   - src/funcs/massPaymentsUpdate.ts
   - src/funcs/rootGet.ts
@@ -952,7 +961,6 @@ generatedFiles:
   - src/funcs/transfersGet.ts
   - src/funcs/transfersGetFailureReason.ts
   - src/funcs/transfersListFees.ts
-  - src/funcs/transfersListForCustomer.ts
   - src/funcs/webhookSubscriptionsCreate.ts
   - src/funcs/webhookSubscriptionsDelete.ts
   - src/funcs/webhookSubscriptionsGet.ts
@@ -991,24 +999,31 @@ generatedFiles:
   - src/models/beneficialowner.ts
   - src/models/beneficialowners.ts
   - src/models/beneficialownership.ts
-  - src/models/beneficialownerwithpassport.ts
-  - src/models/beneficialownerwithssn.ts
   - src/models/businessclassification.ts
   - src/models/businessclassifications.ts
   - src/models/cannotparseamounterror.ts
-  - src/models/controller.ts
-  - src/models/controllerwithpassport.ts
-  - src/models/controllerwithssn.ts
-  - src/models/createcustomerexchangesessionunion.ts
-  - src/models/createcustomerfundingsourceunion.ts
-  - src/models/createfundingsourceforaccountrequestbody.ts
-  - src/models/createreauthexchangesessionunion.ts
-  - src/models/createreceiveonlyrequestbody.ts
-  - src/models/createunverifiedcustomerrequestbody.ts
-  - src/models/createverifiedbusinessrequestbody.ts
-  - src/models/createverifiedpersonalrequestbody.ts
-  - src/models/createverifiedsoleproprequestbody.ts
-  - src/models/customer.ts
+  - src/models/createaccountfundingsource.ts
+  - src/models/createcustomerbankfundingsource.ts
+  - src/models/createcustomerexchangefundingsource.ts
+  - src/models/createcustomerexchangesessionforweb.ts
+  - src/models/createcustomerexchangesessionwithredirect.ts
+  - src/models/createcustomervirtualfundingsource.ts
+  - src/models/createfinicitysecureexchange.ts
+  - src/models/createflinkssecureexchange.ts
+  - src/models/createinternationalbeneficialowner.ts
+  - src/models/createmxopenbankingexchange.ts
+  - src/models/createmxsecureexchange.ts
+  - src/models/createplaidopenbankingexchange.ts
+  - src/models/createplaidsecureexchange.ts
+  - src/models/createreauthexchangesessionforweb.ts
+  - src/models/createreauthexchangesessionwithredirect.ts
+  - src/models/createreceiveonlyuser.ts
+  - src/models/createunverifiedcustomer.ts
+  - src/models/createusbeneficialowner.ts
+  - src/models/createverifiedbusinesscustomerwithcontroller.ts
+  - src/models/createverifiedbusinesscustomerwithinternationalcontroller.ts
+  - src/models/createverifiedpersonalcustomer.ts
+  - src/models/createverifiedsolepropcustomer.ts
   - src/models/customers.ts
   - src/models/deactivatecustomer.ts
   - src/models/depositaccountrestrictederror.ts
@@ -1045,6 +1060,7 @@ generatedFiles:
   - src/models/errors/destinationprocessingchannelnotsupportederror.ts
   - src/models/errors/destinationremittancedatamaxlengtherror.ts
   - src/models/errors/directaccountwithoutbankerror.ts
+  - src/models/errors/duplicatefundingsourceerror.ts
   - src/models/errors/duplicateresourceschemaerror.ts
   - src/models/errors/dwollaerror.ts
   - src/models/errors/expiredkbasessionerror.ts
@@ -1065,6 +1081,7 @@ generatedFiles:
   - src/models/errors/getvanrouting.ts
   - src/models/errors/highriskerror.ts
   - src/models/errors/httpclienterrors.ts
+  - src/models/errors/inactiveexchangeerror.ts
   - src/models/errors/incompatibleaddendaentrieserror.ts
   - src/models/errors/incompatibleholdingserror.ts
   - src/models/errors/incompatiblesourceanddestinationtypeserror.ts
@@ -1087,6 +1104,7 @@ generatedFiles:
   - src/models/errors/invaliddestinationfundingsourceerror.ts
   - src/models/errors/invalidexchangeerror.ts
   - src/models/errors/invalidexchangetokenerror.ts
+  - src/models/errors/invalidexchangetokenerrorerror.ts
   - src/models/errors/invalidfacilitatorerror.ts
   - src/models/errors/invalidfacilitatorfeeamounterror.ts
   - src/models/errors/invalidfacilitatorfeecollectfromcombinationerror.ts
@@ -1174,8 +1192,6 @@ generatedFiles:
   - src/models/facilitatorfeeaccountnotfounderror.ts
   - src/models/facilitatorfeebelowminimumerror.ts
   - src/models/facilitatorfeesumtoolargeerror.ts
-  - src/models/finicitysecureexchangecreateexchangerequestbody.ts
-  - src/models/flinkssecureexchangecreateexchangerequestbody.ts
   - src/models/fundingsource.ts
   - src/models/fundingsources.ts
   - src/models/hallink.ts
@@ -1216,8 +1232,6 @@ generatedFiles:
   - src/models/masspayment.ts
   - src/models/masspaymentitem.ts
   - src/models/masspayments.ts
-  - src/models/mxopenbankingcreateexchangerequestbody.ts
-  - src/models/mxsecureexchangecreateexchangerequestbody.ts
   - src/models/ondemandauthorization.ts
   - src/models/operationblockederror.ts
   - src/models/operations/canceltransfer.ts
@@ -1299,8 +1313,6 @@ generatedFiles:
   - src/models/operations/updatewebhooksubscription.ts
   - src/models/operations/verify.ts
   - src/models/passport.ts
-  - src/models/plaidopenbankingcreateexchangerequestbody.ts
-  - src/models/plaidsecureexchangecreateexchangerequestbody.ts
   - src/models/pointofsaleaddendaentriesnotenabledforaccounterror.ts
   - src/models/reactivatecustomer.ts
   - src/models/receivernotfounderror.ts
@@ -1369,11 +1381,15 @@ generatedFiles:
   - src/sdk/beneficialownersdocuments.ts
   - src/sdk/businessclassifications.ts
   - src/sdk/clienttokens.ts
+  - src/sdk/customer.ts
+  - src/sdk/customerfundingsources.ts
+  - src/sdk/customermasspayments.ts
   - src/sdk/customers.ts
   - src/sdk/customersbeneficialowners.ts
   - src/sdk/customersdocuments.ts
   - src/sdk/customersexchanges.ts
   - src/sdk/customersfundingsources.ts
+  - src/sdk/customertransfers.ts
   - src/sdk/documents.ts
   - src/sdk/events.ts
   - src/sdk/exchangepartners.ts

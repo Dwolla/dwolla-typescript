@@ -17,7 +17,7 @@ export class AccountsFundingSources extends ClientSDK {
    * Create a funding source for an account
    */
   async create(
-    request: models.CreateFundingSourceForAccountRequestBody,
+    request: models.CreateAccountFundingSource,
     options?: RequestOptions,
   ): Promise<operations.CreateFundingSourceResponse | undefined> {
     return unwrapAsync(accountsFundingSourcesCreate(

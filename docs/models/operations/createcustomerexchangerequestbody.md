@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### `models.FinicitySecureExchangeCreateExchangeRequestBody`
+### `models.CreateFinicitySecureExchange`
 
 ```typescript
-const value: models.FinicitySecureExchangeCreateExchangeRequestBody = {
+const value: models.CreateFinicitySecureExchange = {
   links: {
     exchangePartner: {
       href:
@@ -36,10 +36,10 @@ const value: models.FinicitySecureExchangeCreateExchangeRequestBody = {
 };
 ```
 
-### `models.MXSecureExchangeCreateExchangeRequestBody`
+### `models.CreateMXSecureExchange`
 
 ```typescript
-const value: models.MXSecureExchangeCreateExchangeRequestBody = {
+const value: models.CreateMXSecureExchange = {
   links: {
     exchangePartner: {
       href:
@@ -50,10 +50,10 @@ const value: models.MXSecureExchangeCreateExchangeRequestBody = {
 };
 ```
 
-### `models.MXOpenBankingCreateExchangeRequestBody`
+### `models.CreateMXOpenBankingExchange`
 
 ```typescript
-const value: models.MXOpenBankingCreateExchangeRequestBody = {
+const value: models.CreateMXOpenBankingExchange = {
   links: {
     exchangePartner: {
       href:
@@ -67,10 +67,10 @@ const value: models.MXOpenBankingCreateExchangeRequestBody = {
 };
 ```
 
-### `models.FlinksSecureExchangeCreateExchangeRequestBody`
+### `models.CreateFlinksSecureExchange`
 
 ```typescript
-const value: models.FlinksSecureExchangeCreateExchangeRequestBody = {
+const value: models.CreateFlinksSecureExchange = {
   links: {
     exchangePartner: {
       href:
@@ -82,10 +82,10 @@ const value: models.FlinksSecureExchangeCreateExchangeRequestBody = {
 };
 ```
 
-### `models.PlaidSecureExchangeCreateExchangeRequestBody`
+### `models.CreatePlaidSecureExchange`
 
 ```typescript
-const value: models.PlaidSecureExchangeCreateExchangeRequestBody = {
+const value: models.CreatePlaidSecureExchange = {
   links: {
     exchangePartner: {
       href:
@@ -96,10 +96,10 @@ const value: models.PlaidSecureExchangeCreateExchangeRequestBody = {
 };
 ```
 
-### `models.PlaidOpenBankingCreateExchangeRequestBody`
+### `models.CreatePlaidOpenBankingExchange`
 
 ```typescript
-const value: models.PlaidOpenBankingCreateExchangeRequestBody = {
+const value: models.CreatePlaidOpenBankingExchange = {
   links: {
     exchangePartner: {
       href:

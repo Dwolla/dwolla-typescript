@@ -10,12 +10,12 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
 
 export type CreateCustomerExchangeRequestBody =
-  | models.MXOpenBankingCreateExchangeRequestBody
-  | models.FlinksSecureExchangeCreateExchangeRequestBody
-  | models.PlaidOpenBankingCreateExchangeRequestBody
-  | models.FinicitySecureExchangeCreateExchangeRequestBody
-  | models.MXSecureExchangeCreateExchangeRequestBody
-  | models.PlaidSecureExchangeCreateExchangeRequestBody;
+  | models.CreateMXOpenBankingExchange
+  | models.CreateFlinksSecureExchange
+  | models.CreatePlaidOpenBankingExchange
+  | models.CreateFinicitySecureExchange
+  | models.CreateMXSecureExchange
+  | models.CreatePlaidSecureExchange;
 
 export type CreateCustomerExchangeRequest = {
   /**
@@ -23,12 +23,12 @@ export type CreateCustomerExchangeRequest = {
    */
   id: string;
   requestBody:
-    | models.MXOpenBankingCreateExchangeRequestBody
-    | models.FlinksSecureExchangeCreateExchangeRequestBody
-    | models.PlaidOpenBankingCreateExchangeRequestBody
-    | models.FinicitySecureExchangeCreateExchangeRequestBody
-    | models.MXSecureExchangeCreateExchangeRequestBody
-    | models.PlaidSecureExchangeCreateExchangeRequestBody;
+    | models.CreateMXOpenBankingExchange
+    | models.CreateFlinksSecureExchange
+    | models.CreatePlaidOpenBankingExchange
+    | models.CreateFinicitySecureExchange
+    | models.CreateMXSecureExchange
+    | models.CreatePlaidSecureExchange;
 };
 
 export type CreateCustomerExchangeResponse = {
@@ -41,22 +41,22 @@ export const CreateCustomerExchangeRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  models.MXOpenBankingCreateExchangeRequestBody$inboundSchema,
-  models.FlinksSecureExchangeCreateExchangeRequestBody$inboundSchema,
-  models.PlaidOpenBankingCreateExchangeRequestBody$inboundSchema,
-  models.FinicitySecureExchangeCreateExchangeRequestBody$inboundSchema,
-  models.MXSecureExchangeCreateExchangeRequestBody$inboundSchema,
-  models.PlaidSecureExchangeCreateExchangeRequestBody$inboundSchema,
+  models.CreateMXOpenBankingExchange$inboundSchema,
+  models.CreateFlinksSecureExchange$inboundSchema,
+  models.CreatePlaidOpenBankingExchange$inboundSchema,
+  models.CreateFinicitySecureExchange$inboundSchema,
+  models.CreateMXSecureExchange$inboundSchema,
+  models.CreatePlaidSecureExchange$inboundSchema,
 ]);
 
 /** @internal */
 export type CreateCustomerExchangeRequestBody$Outbound =
-  | models.MXOpenBankingCreateExchangeRequestBody$Outbound
-  | models.FlinksSecureExchangeCreateExchangeRequestBody$Outbound
-  | models.PlaidOpenBankingCreateExchangeRequestBody$Outbound
-  | models.FinicitySecureExchangeCreateExchangeRequestBody$Outbound
-  | models.MXSecureExchangeCreateExchangeRequestBody$Outbound
-  | models.PlaidSecureExchangeCreateExchangeRequestBody$Outbound;
+  | models.CreateMXOpenBankingExchange$Outbound
+  | models.CreateFlinksSecureExchange$Outbound
+  | models.CreatePlaidOpenBankingExchange$Outbound
+  | models.CreateFinicitySecureExchange$Outbound
+  | models.CreateMXSecureExchange$Outbound
+  | models.CreatePlaidSecureExchange$Outbound;
 
 /** @internal */
 export const CreateCustomerExchangeRequestBody$outboundSchema: z.ZodType<
@@ -64,12 +64,12 @@ export const CreateCustomerExchangeRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateCustomerExchangeRequestBody
 > = z.union([
-  models.MXOpenBankingCreateExchangeRequestBody$outboundSchema,
-  models.FlinksSecureExchangeCreateExchangeRequestBody$outboundSchema,
-  models.PlaidOpenBankingCreateExchangeRequestBody$outboundSchema,
-  models.FinicitySecureExchangeCreateExchangeRequestBody$outboundSchema,
-  models.MXSecureExchangeCreateExchangeRequestBody$outboundSchema,
-  models.PlaidSecureExchangeCreateExchangeRequestBody$outboundSchema,
+  models.CreateMXOpenBankingExchange$outboundSchema,
+  models.CreateFlinksSecureExchange$outboundSchema,
+  models.CreatePlaidOpenBankingExchange$outboundSchema,
+  models.CreateFinicitySecureExchange$outboundSchema,
+  models.CreateMXSecureExchange$outboundSchema,
+  models.CreatePlaidSecureExchange$outboundSchema,
 ]);
 
 /**
@@ -114,12 +114,12 @@ export const CreateCustomerExchangeRequest$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   RequestBody: z.union([
-    models.MXOpenBankingCreateExchangeRequestBody$inboundSchema,
-    models.FlinksSecureExchangeCreateExchangeRequestBody$inboundSchema,
-    models.PlaidOpenBankingCreateExchangeRequestBody$inboundSchema,
-    models.FinicitySecureExchangeCreateExchangeRequestBody$inboundSchema,
-    models.MXSecureExchangeCreateExchangeRequestBody$inboundSchema,
-    models.PlaidSecureExchangeCreateExchangeRequestBody$inboundSchema,
+    models.CreateMXOpenBankingExchange$inboundSchema,
+    models.CreateFlinksSecureExchange$inboundSchema,
+    models.CreatePlaidOpenBankingExchange$inboundSchema,
+    models.CreateFinicitySecureExchange$inboundSchema,
+    models.CreateMXSecureExchange$inboundSchema,
+    models.CreatePlaidSecureExchange$inboundSchema,
   ]),
 }).transform((v) => {
   return remap$(v, {
@@ -131,12 +131,12 @@ export const CreateCustomerExchangeRequest$inboundSchema: z.ZodType<
 export type CreateCustomerExchangeRequest$Outbound = {
   id: string;
   RequestBody:
-    | models.MXOpenBankingCreateExchangeRequestBody$Outbound
-    | models.FlinksSecureExchangeCreateExchangeRequestBody$Outbound
-    | models.PlaidOpenBankingCreateExchangeRequestBody$Outbound
-    | models.FinicitySecureExchangeCreateExchangeRequestBody$Outbound
-    | models.MXSecureExchangeCreateExchangeRequestBody$Outbound
-    | models.PlaidSecureExchangeCreateExchangeRequestBody$Outbound;
+    | models.CreateMXOpenBankingExchange$Outbound
+    | models.CreateFlinksSecureExchange$Outbound
+    | models.CreatePlaidOpenBankingExchange$Outbound
+    | models.CreateFinicitySecureExchange$Outbound
+    | models.CreateMXSecureExchange$Outbound
+    | models.CreatePlaidSecureExchange$Outbound;
 };
 
 /** @internal */
@@ -147,12 +147,12 @@ export const CreateCustomerExchangeRequest$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   requestBody: z.union([
-    models.MXOpenBankingCreateExchangeRequestBody$outboundSchema,
-    models.FlinksSecureExchangeCreateExchangeRequestBody$outboundSchema,
-    models.PlaidOpenBankingCreateExchangeRequestBody$outboundSchema,
-    models.FinicitySecureExchangeCreateExchangeRequestBody$outboundSchema,
-    models.MXSecureExchangeCreateExchangeRequestBody$outboundSchema,
-    models.PlaidSecureExchangeCreateExchangeRequestBody$outboundSchema,
+    models.CreateMXOpenBankingExchange$outboundSchema,
+    models.CreateFlinksSecureExchange$outboundSchema,
+    models.CreatePlaidOpenBankingExchange$outboundSchema,
+    models.CreateFinicitySecureExchange$outboundSchema,
+    models.CreateMXSecureExchange$outboundSchema,
+    models.CreatePlaidSecureExchange$outboundSchema,
   ]),
 }).transform((v) => {
   return remap$(v, {

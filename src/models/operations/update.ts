@@ -49,6 +49,16 @@ export type UpdateRequest = {
     | models.UpdateVerifiedBusiness;
 };
 
+/**
+ * successful operation
+ */
+export type UpdateResponse =
+  | models.UnverifiedCustomer
+  | models.UnverifiedBusinessCustomer
+  | models.VerifiedPersonalCustomer
+  | models.VerifiedSolePropCustomer
+  | models.VerifiedBusinessCustomer;
+
 /** @internal */
 export const UpdateRequestBody$inboundSchema: z.ZodType<
   UpdateRequestBody,
@@ -231,5 +241,66 @@ export function updateRequestFromJSON(
     jsonString,
     (x) => UpdateRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'UpdateRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const UpdateResponse$inboundSchema: z.ZodType<
+  UpdateResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.union([
+  models.UnverifiedCustomer$inboundSchema,
+  models.UnverifiedBusinessCustomer$inboundSchema,
+  models.VerifiedPersonalCustomer$inboundSchema,
+  models.VerifiedSolePropCustomer$inboundSchema,
+  models.VerifiedBusinessCustomer$inboundSchema,
+]);
+
+/** @internal */
+export type UpdateResponse$Outbound =
+  | models.UnverifiedCustomer$Outbound
+  | models.UnverifiedBusinessCustomer$Outbound
+  | models.VerifiedPersonalCustomer$Outbound
+  | models.VerifiedSolePropCustomer$Outbound
+  | models.VerifiedBusinessCustomer$Outbound;
+
+/** @internal */
+export const UpdateResponse$outboundSchema: z.ZodType<
+  UpdateResponse$Outbound,
+  z.ZodTypeDef,
+  UpdateResponse
+> = z.union([
+  models.UnverifiedCustomer$outboundSchema,
+  models.UnverifiedBusinessCustomer$outboundSchema,
+  models.VerifiedPersonalCustomer$outboundSchema,
+  models.VerifiedSolePropCustomer$outboundSchema,
+  models.VerifiedBusinessCustomer$outboundSchema,
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace UpdateResponse$ {
+  /** @deprecated use `UpdateResponse$inboundSchema` instead. */
+  export const inboundSchema = UpdateResponse$inboundSchema;
+  /** @deprecated use `UpdateResponse$outboundSchema` instead. */
+  export const outboundSchema = UpdateResponse$outboundSchema;
+  /** @deprecated use `UpdateResponse$Outbound` instead. */
+  export type Outbound = UpdateResponse$Outbound;
+}
+
+export function updateResponseToJSON(updateResponse: UpdateResponse): string {
+  return JSON.stringify(UpdateResponse$outboundSchema.parse(updateResponse));
+}
+
+export function updateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateResponse' from JSON`,
   );
 }

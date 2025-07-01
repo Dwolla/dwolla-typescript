@@ -36,7 +36,7 @@ export type RequestHeader = {
   value?: string | undefined;
 };
 
-export type Request = {
+export type RequestT = {
   timestamp?: Date | undefined;
   url?: string | undefined;
   headers?: Array<RequestHeader> | undefined;
@@ -48,7 +48,7 @@ export type ResponseHeader = {
   value?: string | undefined;
 };
 
-export type Response = {
+export type ResponseT = {
   timestamp?: Date | undefined;
   headers?: Array<ResponseHeader> | undefined;
   statusCode?: number | undefined;
@@ -57,8 +57,8 @@ export type Response = {
 
 export type Attempt = {
   id?: string | undefined;
-  request?: Request | undefined;
-  response?: Response | undefined;
+  request?: RequestT | undefined;
+  response?: ResponseT | undefined;
 };
 
 export type Webhook = {
@@ -384,17 +384,20 @@ export function requestHeaderFromJSON(
 }
 
 /** @internal */
-export const Request$inboundSchema: z.ZodType<Request, z.ZodTypeDef, unknown> =
-  z.object({
-    timestamp: z.string().datetime({ offset: true }).transform(v => new Date(v))
-      .optional(),
-    url: z.string().optional(),
-    headers: z.array(z.lazy(() => RequestHeader$inboundSchema)).optional(),
-    body: z.string().optional(),
-  });
+export const RequestT$inboundSchema: z.ZodType<
+  RequestT,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  timestamp: z.string().datetime({ offset: true }).transform(v => new Date(v))
+    .optional(),
+  url: z.string().optional(),
+  headers: z.array(z.lazy(() => RequestHeader$inboundSchema)).optional(),
+  body: z.string().optional(),
+});
 
 /** @internal */
-export type Request$Outbound = {
+export type RequestT$Outbound = {
   timestamp?: string | undefined;
   url?: string | undefined;
   headers?: Array<RequestHeader$Outbound> | undefined;
@@ -402,10 +405,10 @@ export type Request$Outbound = {
 };
 
 /** @internal */
-export const Request$outboundSchema: z.ZodType<
-  Request$Outbound,
+export const RequestT$outboundSchema: z.ZodType<
+  RequestT$Outbound,
   z.ZodTypeDef,
-  Request
+  RequestT
 > = z.object({
   timestamp: z.date().transform(v => v.toISOString()).optional(),
   url: z.string().optional(),
@@ -417,26 +420,26 @@ export const Request$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Request$ {
-  /** @deprecated use `Request$inboundSchema` instead. */
-  export const inboundSchema = Request$inboundSchema;
-  /** @deprecated use `Request$outboundSchema` instead. */
-  export const outboundSchema = Request$outboundSchema;
-  /** @deprecated use `Request$Outbound` instead. */
-  export type Outbound = Request$Outbound;
+export namespace RequestT$ {
+  /** @deprecated use `RequestT$inboundSchema` instead. */
+  export const inboundSchema = RequestT$inboundSchema;
+  /** @deprecated use `RequestT$outboundSchema` instead. */
+  export const outboundSchema = RequestT$outboundSchema;
+  /** @deprecated use `RequestT$Outbound` instead. */
+  export type Outbound = RequestT$Outbound;
 }
 
-export function requestToJSON(request: Request): string {
-  return JSON.stringify(Request$outboundSchema.parse(request));
+export function requestToJSON(requestT: RequestT): string {
+  return JSON.stringify(RequestT$outboundSchema.parse(requestT));
 }
 
 export function requestFromJSON(
   jsonString: string,
-): SafeParseResult<Request, SDKValidationError> {
+): SafeParseResult<RequestT, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Request$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Request' from JSON`,
+    (x) => RequestT$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RequestT' from JSON`,
   );
 }
 
@@ -494,8 +497,8 @@ export function responseHeaderFromJSON(
 }
 
 /** @internal */
-export const Response$inboundSchema: z.ZodType<
-  Response,
+export const ResponseT$inboundSchema: z.ZodType<
+  ResponseT,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -507,7 +510,7 @@ export const Response$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type Response$Outbound = {
+export type ResponseT$Outbound = {
   timestamp?: string | undefined;
   headers?: Array<ResponseHeader$Outbound> | undefined;
   statusCode?: number | undefined;
@@ -515,10 +518,10 @@ export type Response$Outbound = {
 };
 
 /** @internal */
-export const Response$outboundSchema: z.ZodType<
-  Response$Outbound,
+export const ResponseT$outboundSchema: z.ZodType<
+  ResponseT$Outbound,
   z.ZodTypeDef,
-  Response
+  ResponseT
 > = z.object({
   timestamp: z.date().transform(v => v.toISOString()).optional(),
   headers: z.array(z.lazy(() => ResponseHeader$outboundSchema)).optional(),
@@ -530,26 +533,26 @@ export const Response$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Response$ {
-  /** @deprecated use `Response$inboundSchema` instead. */
-  export const inboundSchema = Response$inboundSchema;
-  /** @deprecated use `Response$outboundSchema` instead. */
-  export const outboundSchema = Response$outboundSchema;
-  /** @deprecated use `Response$Outbound` instead. */
-  export type Outbound = Response$Outbound;
+export namespace ResponseT$ {
+  /** @deprecated use `ResponseT$inboundSchema` instead. */
+  export const inboundSchema = ResponseT$inboundSchema;
+  /** @deprecated use `ResponseT$outboundSchema` instead. */
+  export const outboundSchema = ResponseT$outboundSchema;
+  /** @deprecated use `ResponseT$Outbound` instead. */
+  export type Outbound = ResponseT$Outbound;
 }
 
-export function responseToJSON(response: Response): string {
-  return JSON.stringify(Response$outboundSchema.parse(response));
+export function responseToJSON(responseT: ResponseT): string {
+  return JSON.stringify(ResponseT$outboundSchema.parse(responseT));
 }
 
 export function responseFromJSON(
   jsonString: string,
-): SafeParseResult<Response, SDKValidationError> {
+): SafeParseResult<ResponseT, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Response$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Response' from JSON`,
+    (x) => ResponseT$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ResponseT' from JSON`,
   );
 }
 
@@ -557,15 +560,15 @@ export function responseFromJSON(
 export const Attempt$inboundSchema: z.ZodType<Attempt, z.ZodTypeDef, unknown> =
   z.object({
     id: z.string().optional(),
-    request: z.lazy(() => Request$inboundSchema).optional(),
-    response: z.lazy(() => Response$inboundSchema).optional(),
+    request: z.lazy(() => RequestT$inboundSchema).optional(),
+    response: z.lazy(() => ResponseT$inboundSchema).optional(),
   });
 
 /** @internal */
 export type Attempt$Outbound = {
   id?: string | undefined;
-  request?: Request$Outbound | undefined;
-  response?: Response$Outbound | undefined;
+  request?: RequestT$Outbound | undefined;
+  response?: ResponseT$Outbound | undefined;
 };
 
 /** @internal */
@@ -575,8 +578,8 @@ export const Attempt$outboundSchema: z.ZodType<
   Attempt
 > = z.object({
   id: z.string().optional(),
-  request: z.lazy(() => Request$outboundSchema).optional(),
-  response: z.lazy(() => Response$outboundSchema).optional(),
+  request: z.lazy(() => RequestT$outboundSchema).optional(),
+  response: z.lazy(() => ResponseT$outboundSchema).optional(),
 });
 
 /**

@@ -13,10 +13,10 @@ import * as models from "../index.js";
  * Parameters for creating an exchange
  */
 export type CreateAccountExchangeRequest =
-  | models.FlinksSecureExchangeCreateExchangeRequestBody
-  | models.FinicitySecureExchangeCreateExchangeRequestBody
-  | models.MXSecureExchangeCreateExchangeRequestBody
-  | models.PlaidSecureExchangeCreateExchangeRequestBody;
+  | models.CreateFlinksSecureExchange
+  | models.CreateFinicitySecureExchange
+  | models.CreateMXSecureExchange
+  | models.CreatePlaidSecureExchange;
 
 /**
  * Created
@@ -34,18 +34,18 @@ export const CreateAccountExchangeRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  models.FlinksSecureExchangeCreateExchangeRequestBody$inboundSchema,
-  models.FinicitySecureExchangeCreateExchangeRequestBody$inboundSchema,
-  models.MXSecureExchangeCreateExchangeRequestBody$inboundSchema,
-  models.PlaidSecureExchangeCreateExchangeRequestBody$inboundSchema,
+  models.CreateFlinksSecureExchange$inboundSchema,
+  models.CreateFinicitySecureExchange$inboundSchema,
+  models.CreateMXSecureExchange$inboundSchema,
+  models.CreatePlaidSecureExchange$inboundSchema,
 ]);
 
 /** @internal */
 export type CreateAccountExchangeRequest$Outbound =
-  | models.FlinksSecureExchangeCreateExchangeRequestBody$Outbound
-  | models.FinicitySecureExchangeCreateExchangeRequestBody$Outbound
-  | models.MXSecureExchangeCreateExchangeRequestBody$Outbound
-  | models.PlaidSecureExchangeCreateExchangeRequestBody$Outbound;
+  | models.CreateFlinksSecureExchange$Outbound
+  | models.CreateFinicitySecureExchange$Outbound
+  | models.CreateMXSecureExchange$Outbound
+  | models.CreatePlaidSecureExchange$Outbound;
 
 /** @internal */
 export const CreateAccountExchangeRequest$outboundSchema: z.ZodType<
@@ -53,10 +53,10 @@ export const CreateAccountExchangeRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateAccountExchangeRequest
 > = z.union([
-  models.FlinksSecureExchangeCreateExchangeRequestBody$outboundSchema,
-  models.FinicitySecureExchangeCreateExchangeRequestBody$outboundSchema,
-  models.MXSecureExchangeCreateExchangeRequestBody$outboundSchema,
-  models.PlaidSecureExchangeCreateExchangeRequestBody$outboundSchema,
+  models.CreateFlinksSecureExchange$outboundSchema,
+  models.CreateFinicitySecureExchange$outboundSchema,
+  models.CreateMXSecureExchange$outboundSchema,
+  models.CreatePlaidSecureExchange$outboundSchema,
 ]);
 
 /**

@@ -216,6 +216,21 @@ run();
 
 * [create](docs/sdks/clienttokens/README.md#create) - Create a client token
 
+### [customer](docs/sdks/customer/README.md)
+
+
+#### [customer.fundingSources](docs/sdks/customerfundingsources/README.md)
+
+* [create](docs/sdks/customerfundingsources/README.md#create) - Create customer funding source
+
+#### [customer.massPayments](docs/sdks/customermasspayments/README.md)
+
+* [list](docs/sdks/customermasspayments/README.md#list) - List mass payments for customer
+
+#### [customer.transfers](docs/sdks/customertransfers/README.md)
+
+* [list](docs/sdks/customertransfers/README.md#list) - List and search transfers for a customer
+
 ### [customers](docs/sdks/customers/README.md)
 
 * [list](docs/sdks/customers/README.md#list) - List and search customers
@@ -270,7 +285,6 @@ run();
 
 ### [fundingSources](docs/sdks/fundingsources/README.md)
 
-* [createForCustomer](docs/sdks/fundingsources/README.md#createforcustomer) - Create customer funding source
 * [get](docs/sdks/fundingsources/README.md#get) - Retrieve a funding source
 * [updateOrRemove](docs/sdks/fundingsources/README.md#updateorremove) - Update or remove a funding source
 * [getMicroDeposits](docs/sdks/fundingsources/README.md#getmicrodeposits) - Retrieve micro-deposits details
@@ -303,7 +317,6 @@ run();
 * [update](docs/sdks/masspayments/README.md#update) - Update a mass payment
 * [listItems](docs/sdks/masspayments/README.md#listitems) - List items for a mass payment
 * [getItem](docs/sdks/masspayments/README.md#getitem) - Retrieve mass payment item
-* [listForCustomer](docs/sdks/masspayments/README.md#listforcustomer) - List mass payments for customer
 
 ### [root](docs/sdks/root/README.md)
 
@@ -318,7 +331,6 @@ run();
 * [create](docs/sdks/transfers/README.md#create) - Initiate a transfer
 * [get](docs/sdks/transfers/README.md#get) - Retrieve a transfer
 * [cancel](docs/sdks/transfers/README.md#cancel) - Cancel a transfer
-* [listForCustomer](docs/sdks/transfers/README.md#listforcustomer) - List and search transfers for a customer
 * [listFees](docs/sdks/transfers/README.md#listfees) - List fees for a transfer
 * [getFailureReason](docs/sdks/transfers/README.md#getfailurereason) - Retrieve a transfer failure reason
 * [createOnDemandAuthorization](docs/sdks/transfers/README.md#createondemandauthorization) - Create an on-demand transfer authorization
@@ -373,6 +385,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`businessClassificationsGet`](docs/sdks/businessclassifications/README.md#get) - Retrieve a business classification
 - [`businessClassificationsList`](docs/sdks/businessclassifications/README.md#list) - List business classifications
 - [`clientTokensCreate`](docs/sdks/clienttokens/README.md#create) - Create a client token
+- [`customerFundingSourcesCreate`](docs/sdks/customerfundingsources/README.md#create) - Create customer funding source
+- [`customerMassPaymentsList`](docs/sdks/customermasspayments/README.md#list) - List mass payments for customer
 - [`customersBeneficialOwnersCreate`](docs/sdks/customersbeneficialowners/README.md#create) - Create beneficial owner
 - [`customersBeneficialOwnersList`](docs/sdks/customersbeneficialowners/README.md#list) - List beneficial owners
 - [`customersCreate`](docs/sdks/customers/README.md#create) - Create a customer
@@ -385,6 +399,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`customersList`](docs/sdks/customers/README.md#list) - List and search customers
 - [`customersListAvailableConnections`](docs/sdks/customers/README.md#listavailableconnections) - List available exchange connections
 - [`customersUpdate`](docs/sdks/customers/README.md#update) - Update a customer
+- [`customerTransfersList`](docs/sdks/customertransfers/README.md#list) - List and search transfers for a customer
 - [`documentsGet`](docs/sdks/documents/README.md#get) - Retrieve a document
 - [`eventsGet`](docs/sdks/events/README.md#get) - Retrieve event
 - [`eventsList`](docs/sdks/events/README.md#list) - List events
@@ -394,7 +409,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`exchangeSessionsCreate`](docs/sdks/exchangesessions/README.md#create) - Create customer exchange session
 - [`exchangeSessionsGet`](docs/sdks/exchangesessions/README.md#get) - Retrieve exchange session
 - [`exchangesGet`](docs/sdks/exchanges/README.md#get) - Retrieve exchange resource
-- [`fundingSourcesCreateForCustomer`](docs/sdks/fundingsources/README.md#createforcustomer) - Create customer funding source
 - [`fundingSourcesGet`](docs/sdks/fundingsources/README.md#get) - Retrieve a funding source
 - [`fundingSourcesGetBalance`](docs/sdks/fundingsources/README.md#getbalance) - Retrieve funding source balance
 - [`fundingSourcesGetMicroDeposits`](docs/sdks/fundingsources/README.md#getmicrodeposits) - Retrieve micro-deposits details
@@ -416,7 +430,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`massPaymentsCreate`](docs/sdks/masspayments/README.md#create) - Initiate a mass payment
 - [`massPaymentsGet`](docs/sdks/masspayments/README.md#get) - Retrieve a mass payment
 - [`massPaymentsGetItem`](docs/sdks/masspayments/README.md#getitem) - Retrieve mass payment item
-- [`massPaymentsListForCustomer`](docs/sdks/masspayments/README.md#listforcustomer) - List mass payments for customer
 - [`massPaymentsListItems`](docs/sdks/masspayments/README.md#listitems) - List items for a mass payment
 - [`massPaymentsUpdate`](docs/sdks/masspayments/README.md#update) - Update a mass payment
 - [`rootGet`](docs/sdks/root/README.md#get) - root
@@ -427,7 +440,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`transfersGet`](docs/sdks/transfers/README.md#get) - Retrieve a transfer
 - [`transfersGetFailureReason`](docs/sdks/transfers/README.md#getfailurereason) - Retrieve a transfer failure reason
 - [`transfersListFees`](docs/sdks/transfers/README.md#listfees) - List fees for a transfer
-- [`transfersListForCustomer`](docs/sdks/transfers/README.md#listforcustomer) - List and search transfers for a customer
 - [`webhooksGet`](docs/sdks/webhooks/README.md#get) - Retrieve a webhook
 - [`webhooksListRetries`](docs/sdks/webhooks/README.md#listretries) - List retries for a webhook
 - [`webhooksRetry`](docs/sdks/webhooks/README.md#retry) - Retry a webhook
@@ -631,9 +643,6 @@ run();
 * [`InvalidFileTypeSchemaError`](docs/models/errors/invalidfiletypeschemaerror.md): Bad Request. Status code `400`. Applicable to 2 of 81 methods.*
 * [`InvalidResourceStateSchemaError`](docs/models/errors/invalidresourcestateschemaerror.md): Status code `403`. Applicable to 2 of 81 methods.*
 * [`UpdateBadRequestDwollaV1HalJSONError`](docs/models/errors/updatebadrequestdwollav1haljsonerror.md): bad request. Status code `400`. Applicable to 1 of 81 methods.*
-* [`CreateCustomerFundingSourceResponseBodyError1`](docs/models/errors/createcustomerfundingsourceresponsebodyerror1.md): validation error. Status code `400`. Applicable to 1 of 81 methods.*
-* [`CreateCustomerFundingSourceResponseBodyError2`](docs/models/errors/createcustomerfundingsourceresponsebodyerror2.md): validation error. Status code `400`. Applicable to 1 of 81 methods.*
-* [`CreateCustomerFundingSourceResponseBodyError3`](docs/models/errors/createcustomerfundingsourceresponsebodyerror3.md): validation error. Status code `400`. Applicable to 1 of 81 methods.*
 * [`UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError`](docs/models/errors/updateorremovefundingsourcebadrequestdwollav1haljsonerror.md): validation error. Status code `400`. Applicable to 1 of 81 methods.*
 * [`SourceNotFoundError`](docs/models/errors/sourcenotfounderror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
 * [`ReceiverNotFoundError`](docs/models/errors/receivernotfounderror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
@@ -706,12 +715,15 @@ run();
 * [`SecretTooLongError`](docs/models/errors/secrettoolongerror.md): Bad request. Status code `400`. Applicable to 1 of 81 methods.*
 * [`MaxSubscriptionsReachedError`](docs/models/errors/maxsubscriptionsreachederror.md): Bad request. Status code `400`. Applicable to 1 of 81 methods.*
 * [`CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONError`](docs/models/errors/createreauthexchangesessionbadrequestdwollav1haljsonerror.md): validation error. Status code `400`. Applicable to 1 of 81 methods.*
-* [`CreateCustomerExchangeSessionResponseBodyBadRequestError1`](docs/models/errors/createcustomerexchangesessionresponsebodybadrequesterror1.md): validation error. Status code `400`. Applicable to 1 of 81 methods.*
-* [`CreateCustomerExchangeSessionResponseBodyBadRequestError2`](docs/models/errors/createcustomerexchangesessionresponsebodybadrequesterror2.md): validation error. Status code `400`. Applicable to 1 of 81 methods.*
-* [`CreateCustomerExchangeSessionResponseBodyBadRequestError3`](docs/models/errors/createcustomerexchangesessionresponsebodybadrequesterror3.md): validation error. Status code `400`. Applicable to 1 of 81 methods.*
+* [`ResponseBodyBadRequestError1`](docs/models/errors/responsebodybadrequesterror1.md): validation error. Status code `400`. Applicable to 1 of 81 methods.*
+* [`ResponseBodyBadRequestError2`](docs/models/errors/responsebodybadrequesterror2.md): validation error. Status code `400`. Applicable to 1 of 81 methods.*
+* [`ResponseBodyBadRequestError3`](docs/models/errors/responsebodybadrequesterror3.md): validation error. Status code `400`. Applicable to 1 of 81 methods.*
 * [`BadRequestSchemaError`](docs/models/errors/badrequestschemaerror.md): Bad request or duplicate resource. Status code `400`. Applicable to 1 of 81 methods.*
 * [`InvalidExchangeTokenError`](docs/models/errors/invalidexchangetokenerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
 * [`InvalidExchangeError`](docs/models/errors/invalidexchangeerror.md): Bad Request. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InactiveExchangeError`](docs/models/errors/inactiveexchangeerror.md): validation error. Status code `400`. Applicable to 1 of 81 methods.*
+* [`InvalidExchangeTokenErrorError`](docs/models/errors/invalidexchangetokenerrorerror.md): validation error. Status code `400`. Applicable to 1 of 81 methods.*
+* [`DuplicateFundingSourceError`](docs/models/errors/duplicatefundingsourceerror.md): validation error. Status code `400`. Applicable to 1 of 81 methods.*
 * [`UnauthorizedError`](docs/models/errors/unauthorizederror.md): Unauthorized. Status code `401`. Applicable to 1 of 81 methods.*
 * [`GetRootDwollaV1HalJSONError`](docs/models/errors/getrootdwollav1haljsonerror.md): unauthorized. Status code `401`. Applicable to 1 of 81 methods.*
 * [`GetExchangeUnauthorizedDwollaV1HalJSONError`](docs/models/errors/getexchangeunauthorizeddwollav1haljsonerror.md): Invalid Scope. Status code `401`. Applicable to 1 of 81 methods.*
@@ -727,7 +739,6 @@ run();
 * [`CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError`](docs/models/errors/certifybeneficialownershipforcustomerdwollav1haljsonerror.md): forbidden. Status code `403`. Applicable to 1 of 81 methods.*
 * [`InvalidKbaSessionError`](docs/models/errors/invalidkbasessionerror.md): 403 Error. Status code `403`. Applicable to 1 of 81 methods.*
 * [`ExpiredKbaSessionError`](docs/models/errors/expiredkbasessionerror.md): 403 Error. Status code `403`. Applicable to 1 of 81 methods.*
-* [`CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError`](docs/models/errors/createcustomerfundingsourceforbiddendwollav1haljsonerror.md): forbidden. Status code `403`. Applicable to 1 of 81 methods.*
 * [`UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError`](docs/models/errors/updateorremovefundingsourceforbiddendwollav1haljsonerror.md): forbidden. Status code `403`. Applicable to 1 of 81 methods.*
 * [`InvalidAttemptToFacilitateFundsError`](docs/models/errors/invalidattempttofacilitatefundserror.md): Forbidden. Status code `403`. Applicable to 1 of 81 methods.*
 * [`InvalidAttemptToPayInFundsError`](docs/models/errors/invalidattempttopayinfundserror.md): Forbidden. Status code `403`. Applicable to 1 of 81 methods.*
@@ -738,7 +749,6 @@ run();
 * [`UpdateMassPaymentForbiddenDwollaV1HalJSONError`](docs/models/errors/updatemasspaymentforbiddendwollav1haljsonerror.md): Forbidden. Status code `403`. Applicable to 1 of 81 methods.*
 * [`ListMassPaymentItemsForbiddenDwollaV1HalJSONError`](docs/models/errors/listmasspaymentitemsforbiddendwollav1haljsonerror.md): Not authorized to list mass payment items. Status code `403`. Applicable to 1 of 81 methods.*
 * [`GetMassPaymentItemForbiddenDwollaV1HalJSONError`](docs/models/errors/getmasspaymentitemforbiddendwollav1haljsonerror.md): Forbidden. Status code `403`. Applicable to 1 of 81 methods.*
-* [`ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError`](docs/models/errors/listcustomermasspaymentsforbiddendwollav1haljsonerror.md): Not authorized to list mass payments. Status code `403`. Applicable to 1 of 81 methods.*
 * [`RemoveLabelDwollaV1HalJSONError`](docs/models/errors/removelabeldwollav1haljsonerror.md): forbidden. Status code `403`. Applicable to 1 of 81 methods.*
 * [`ListCustomerLabelsForbiddenDwollaV1HalJSONError`](docs/models/errors/listcustomerlabelsforbiddendwollav1haljsonerror.md): Forbidden. Status code `403`. Applicable to 1 of 81 methods.*
 * [`CreateCustomerLabelForbiddenDwollaV1HalJSONError`](docs/models/errors/createcustomerlabelforbiddendwollav1haljsonerror.md): Forbidden. Status code `403`. Applicable to 1 of 81 methods.*
@@ -752,6 +762,8 @@ run();
 * [`ListMassPaymentsForbiddenDwollaV1HalJSONError`](docs/models/errors/listmasspaymentsforbiddendwollav1haljsonerror.md): forbidden. Status code `403`. Applicable to 1 of 81 methods.*
 * [`NotAuthorizedSchemaError`](docs/models/errors/notauthorizedschemaerror.md): not found. Status code `403`. Applicable to 1 of 81 methods.*
 * [`ListCustomerFundingSourcesForbiddenDwollaV1HalJSONError`](docs/models/errors/listcustomerfundingsourcesforbiddendwollav1haljsonerror.md): forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError`](docs/models/errors/createcustomerfundingsourceforbiddendwollav1haljsonerror.md): forbidden. Status code `403`. Applicable to 1 of 81 methods.*
+* [`ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError`](docs/models/errors/listcustomermasspaymentsforbiddendwollav1haljsonerror.md): Not authorized to list mass payments. Status code `403`. Applicable to 1 of 81 methods.*
 * [`CreateCustomerNotFoundDwollaV1HalJSONError`](docs/models/errors/createcustomernotfounddwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
 * [`GetCustomerNotFoundDwollaV1HalJSONError`](docs/models/errors/getcustomernotfounddwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
 * [`ListAvailableExchangeConnectionsDwollaV1HalJSONError`](docs/models/errors/listavailableexchangeconnectionsdwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
@@ -762,7 +774,6 @@ run();
 * [`GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONError`](docs/models/errors/getbeneficialownershipstatusforcustomernotfounddwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
 * [`GetKbaQuestionsDwollaV1HalJSONError`](docs/models/errors/getkbaquestionsdwollav1haljsonerror.md): 404 Error. Status code `404`. Applicable to 1 of 81 methods.*
 * [`VerifyDwollaV1HalJSONError`](docs/models/errors/verifydwollav1haljsonerror.md): 404 Error. Status code `404`. Applicable to 1 of 81 methods.*
-* [`CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError`](docs/models/errors/createcustomerfundingsourcenotfounddwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
 * [`GetFundingSourceDwollaV1HalJSONError`](docs/models/errors/getfundingsourcedwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
 * [`InitiateOrVerifyMicroDepositsDwollaV1HalJSONError`](docs/models/errors/initiateorverifymicrodepositsdwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
 * [`GetFundingSourceBalanceDwollaV1HalJSONError`](docs/models/errors/getfundingsourcebalancedwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
@@ -771,7 +782,6 @@ run();
 * [`UpdateMassPaymentNotFoundDwollaV1HalJSONError`](docs/models/errors/updatemasspaymentnotfounddwollav1haljsonerror.md): Not Found. Status code `404`. Applicable to 1 of 81 methods.*
 * [`ListMassPaymentItemsNotFoundDwollaV1HalJSONError`](docs/models/errors/listmasspaymentitemsnotfounddwollav1haljsonerror.md): Mass payment not found. Status code `404`. Applicable to 1 of 81 methods.*
 * [`GetMassPaymentItemNotFoundDwollaV1HalJSONError`](docs/models/errors/getmasspaymentitemnotfounddwollav1haljsonerror.md): Not Found. Status code `404`. Applicable to 1 of 81 methods.*
-* [`ListCustomerMassPaymentsNotFoundDwollaV1HalJSONError`](docs/models/errors/listcustomermasspaymentsnotfounddwollav1haljsonerror.md): Customer not found. Status code `404`. Applicable to 1 of 81 methods.*
 * [`ListCustomerLabelsNotFoundDwollaV1HalJSONError`](docs/models/errors/listcustomerlabelsnotfounddwollav1haljsonerror.md): Not Found. Status code `404`. Applicable to 1 of 81 methods.*
 * [`CreateCustomerLabelNotFoundDwollaV1HalJSONError`](docs/models/errors/createcustomerlabelnotfounddwollav1haljsonerror.md): Not Found. Status code `404`. Applicable to 1 of 81 methods.*
 * [`CreateLabelReallocationNotFoundDwollaV1HalJSONError`](docs/models/errors/createlabelreallocationnotfounddwollav1haljsonerror.md): Not Found. Status code `404`. Applicable to 1 of 81 methods.*
@@ -784,6 +794,8 @@ run();
 * [`CreateCustomerDocumentNotFoundDwollaV1HalJSONError`](docs/models/errors/createcustomerdocumentnotfounddwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
 * [`ListCustomerFundingSourcesNotFoundDwollaV1HalJSONError`](docs/models/errors/listcustomerfundingsourcesnotfounddwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
 * [`ListCustomerExchangesDwollaV1HalJSONError`](docs/models/errors/listcustomerexchangesdwollav1haljsonerror.md): Not Found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError`](docs/models/errors/createcustomerfundingsourcenotfounddwollav1haljsonerror.md): not found. Status code `404`. Applicable to 1 of 81 methods.*
+* [`ListCustomerMassPaymentsNotFoundDwollaV1HalJSONError`](docs/models/errors/listcustomermasspaymentsnotfounddwollav1haljsonerror.md): Customer not found. Status code `404`. Applicable to 1 of 81 methods.*
 * [`CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError`](docs/models/errors/createcustomerdocumentrequestentitytoolargedwollav1haljsonerror.md): request entity too large. Status code `413`. Applicable to 1 of 81 methods.*
 * [`CreateBeneficialOwnerDocumentDwollaV1HalJSONError`](docs/models/errors/createbeneficialownerdocumentdwollav1haljsonerror.md): request entity too large. Status code `413`. Applicable to 1 of 81 methods.*
 * [`TooManyRequestsErrorError`](docs/models/errors/toomanyrequestserrorerror.md): Too Many Requests. Status code `429`. Applicable to 1 of 81 methods.*

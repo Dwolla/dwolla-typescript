@@ -6,6 +6,7 @@ import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import * as models from "../index.js";
 
 export type GetCustomerRequest = {
   /**
@@ -13,6 +14,16 @@ export type GetCustomerRequest = {
    */
   id: string;
 };
+
+/**
+ * successful operation
+ */
+export type GetCustomerResponse =
+  | models.UnverifiedCustomer
+  | models.UnverifiedBusinessCustomer
+  | models.VerifiedPersonalCustomer
+  | models.VerifiedSolePropCustomer
+  | models.VerifiedBusinessCustomer;
 
 /** @internal */
 export const GetCustomerRequest$inboundSchema: z.ZodType<
@@ -65,5 +76,70 @@ export function getCustomerRequestFromJSON(
     jsonString,
     (x) => GetCustomerRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'GetCustomerRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetCustomerResponse$inboundSchema: z.ZodType<
+  GetCustomerResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.union([
+  models.UnverifiedCustomer$inboundSchema,
+  models.UnverifiedBusinessCustomer$inboundSchema,
+  models.VerifiedPersonalCustomer$inboundSchema,
+  models.VerifiedSolePropCustomer$inboundSchema,
+  models.VerifiedBusinessCustomer$inboundSchema,
+]);
+
+/** @internal */
+export type GetCustomerResponse$Outbound =
+  | models.UnverifiedCustomer$Outbound
+  | models.UnverifiedBusinessCustomer$Outbound
+  | models.VerifiedPersonalCustomer$Outbound
+  | models.VerifiedSolePropCustomer$Outbound
+  | models.VerifiedBusinessCustomer$Outbound;
+
+/** @internal */
+export const GetCustomerResponse$outboundSchema: z.ZodType<
+  GetCustomerResponse$Outbound,
+  z.ZodTypeDef,
+  GetCustomerResponse
+> = z.union([
+  models.UnverifiedCustomer$outboundSchema,
+  models.UnverifiedBusinessCustomer$outboundSchema,
+  models.VerifiedPersonalCustomer$outboundSchema,
+  models.VerifiedSolePropCustomer$outboundSchema,
+  models.VerifiedBusinessCustomer$outboundSchema,
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetCustomerResponse$ {
+  /** @deprecated use `GetCustomerResponse$inboundSchema` instead. */
+  export const inboundSchema = GetCustomerResponse$inboundSchema;
+  /** @deprecated use `GetCustomerResponse$outboundSchema` instead. */
+  export const outboundSchema = GetCustomerResponse$outboundSchema;
+  /** @deprecated use `GetCustomerResponse$Outbound` instead. */
+  export type Outbound = GetCustomerResponse$Outbound;
+}
+
+export function getCustomerResponseToJSON(
+  getCustomerResponse: GetCustomerResponse,
+): string {
+  return JSON.stringify(
+    GetCustomerResponse$outboundSchema.parse(getCustomerResponse),
+  );
+}
+
+export function getCustomerResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetCustomerResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetCustomerResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetCustomerResponse' from JSON`,
   );
 }

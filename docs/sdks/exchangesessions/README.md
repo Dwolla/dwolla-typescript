@@ -34,7 +34,7 @@ const dwolla = new Dwolla({
 async function run() {
   const result = await dwolla.exchangeSessions.create({
     id: "<id>",
-    createCustomerExchangeSession: {
+    requestBody: {
       links: {
         exchangePartner: {
           href: "https://api.dwolla.com/exchange-partners/292317ec-e252-47d8-93c3-2d128e037aa4",
@@ -72,7 +72,7 @@ const dwolla = new DwollaCore({
 async function run() {
   const res = await exchangeSessionsCreate(dwolla, {
     id: "<id>",
-    createCustomerExchangeSession: {
+    requestBody: {
       links: {
         exchangePartner: {
           href: "https://api.dwolla.com/exchange-partners/292317ec-e252-47d8-93c3-2d128e037aa4",
@@ -109,16 +109,16 @@ run();
 
 ### Errors
 
-| Error Type                                                       | Status Code                                                      | Content Type                                                     |
-| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
-| errors.CreateCustomerExchangeSessionResponseBodyBadRequestError1 | 400                                                              | application/vnd.dwolla.v1.hal+json                               |
-| errors.CreateCustomerExchangeSessionResponseBodyBadRequestError2 | 400                                                              | application/vnd.dwolla.v1.hal+json                               |
-| errors.CreateCustomerExchangeSessionResponseBodyBadRequestError3 | 400                                                              | application/vnd.dwolla.v1.hal+json                               |
-| errors.CreateCustomerExchangeSessionDwollaV1HalJSONError         | 401                                                              | application/vnd.dwolla.v1.hal+json                               |
-| errors.ResponseBodyForbiddenError1                               | 403                                                              | application/vnd.dwolla.v1.hal+json                               |
-| errors.ResponseBodyForbiddenError2                               | 403                                                              | application/vnd.dwolla.v1.hal+json                               |
-| errors.NotFoundError                                             | 404                                                              | application/vnd.dwolla.v1.hal+json                               |
-| errors.APIError                                                  | 4XX, 5XX                                                         | \*/\*                                                            |
+| Error Type                                               | Status Code                                              | Content Type                                             |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| errors.ResponseBodyBadRequestError1                      | 400                                                      | application/vnd.dwolla.v1.hal+json                       |
+| errors.ResponseBodyBadRequestError2                      | 400                                                      | application/vnd.dwolla.v1.hal+json                       |
+| errors.ResponseBodyBadRequestError3                      | 400                                                      | application/vnd.dwolla.v1.hal+json                       |
+| errors.CreateCustomerExchangeSessionDwollaV1HalJSONError | 401                                                      | application/vnd.dwolla.v1.hal+json                       |
+| errors.ResponseBodyForbiddenError1                       | 403                                                      | application/vnd.dwolla.v1.hal+json                       |
+| errors.ResponseBodyForbiddenError2                       | 403                                                      | application/vnd.dwolla.v1.hal+json                       |
+| errors.NotFoundError                                     | 404                                                      | application/vnd.dwolla.v1.hal+json                       |
+| errors.APIError                                          | 4XX, 5XX                                                 | \*/\*                                                    |
 
 ## get
 
