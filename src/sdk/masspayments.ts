@@ -5,7 +5,6 @@
 import { massPaymentsCreate } from "../funcs/massPaymentsCreate.js";
 import { massPaymentsGet } from "../funcs/massPaymentsGet.js";
 import { massPaymentsGetItem } from "../funcs/massPaymentsGetItem.js";
-import { massPaymentsListForCustomer } from "../funcs/massPaymentsListForCustomer.js";
 import { massPaymentsListItems } from "../funcs/massPaymentsListItems.js";
 import { massPaymentsUpdate } from "../funcs/massPaymentsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
@@ -93,23 +92,6 @@ export class MassPayments extends ClientSDK {
     options?: RequestOptions,
   ): Promise<models.MassPaymentItem> {
     return unwrapAsync(massPaymentsGetItem(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * List mass payments for customer
-   *
-   * @remarks
-   * List mass payments for customer
-   */
-  async listForCustomer(
-    request: operations.ListCustomerMassPaymentsRequest,
-    options?: RequestOptions,
-  ): Promise<models.MassPayments> {
-    return unwrapAsync(massPaymentsListForCustomer(
       this,
       request,
       options,

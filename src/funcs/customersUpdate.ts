@@ -21,7 +21,6 @@ import {
 import * as errors from "../models/errors/index.js";
 import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
-import * as models from "../models/index.js";
 import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
@@ -38,7 +37,7 @@ export function customersUpdate(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    models.Customer,
+    operations.UpdateResponse,
     | errors.UpdateBadRequestDwollaV1HalJSONError
     | errors.UpdateForbiddenDwollaV1HalJSONError
     | DwollaError
@@ -65,7 +64,7 @@ async function $do(
 ): Promise<
   [
     Result<
-      models.Customer,
+      operations.UpdateResponse,
       | errors.UpdateBadRequestDwollaV1HalJSONError
       | errors.UpdateForbiddenDwollaV1HalJSONError
       | DwollaError
@@ -154,7 +153,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    models.Customer,
+    operations.UpdateResponse,
     | errors.UpdateBadRequestDwollaV1HalJSONError
     | errors.UpdateForbiddenDwollaV1HalJSONError
     | DwollaError
@@ -166,7 +165,7 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, models.Customer$inboundSchema, {
+    M.json(200, operations.UpdateResponse$inboundSchema, {
       ctype: "application/vnd.dwolla.v1.hal+json",
     }),
     M.jsonErr(400, errors.UpdateBadRequestDwollaV1HalJSONError$inboundSchema, {

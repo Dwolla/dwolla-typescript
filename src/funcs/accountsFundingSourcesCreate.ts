@@ -34,7 +34,7 @@ import { Result } from "../types/fp.js";
  */
 export function accountsFundingSourcesCreate(
   client: DwollaCore,
-  request: models.CreateFundingSourceForAccountRequestBody,
+  request: models.CreateAccountFundingSource,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -60,7 +60,7 @@ export function accountsFundingSourcesCreate(
 
 async function $do(
   client: DwollaCore,
-  request: models.CreateFundingSourceForAccountRequestBody,
+  request: models.CreateAccountFundingSource,
   options?: RequestOptions,
 ): Promise<
   [
@@ -82,10 +82,7 @@ async function $do(
 > {
   const parsed = safeParse(
     request,
-    (value) =>
-      models.CreateFundingSourceForAccountRequestBody$outboundSchema.parse(
-        value,
-      ),
+    (value) => models.CreateAccountFundingSource$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {

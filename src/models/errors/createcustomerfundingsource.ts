@@ -5,7 +5,25 @@
 import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import {
+  DuplicateFundingSourceError,
+  DuplicateFundingSourceError$inboundSchema,
+  DuplicateFundingSourceError$Outbound,
+  DuplicateFundingSourceError$outboundSchema,
+} from "./duplicatefundingsourceerror.js";
 import { DwollaError } from "./dwollaerror.js";
+import {
+  InactiveExchangeError,
+  InactiveExchangeError$inboundSchema,
+  InactiveExchangeError$Outbound,
+  InactiveExchangeError$outboundSchema,
+} from "./inactiveexchangeerror.js";
+import {
+  InvalidExchangeTokenErrorError,
+  InvalidExchangeTokenErrorError$inboundSchema,
+  InvalidExchangeTokenErrorError$Outbound,
+  InvalidExchangeTokenErrorError$outboundSchema,
+} from "./invalidexchangetokenerrorerror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 /**
@@ -76,91 +94,13 @@ export class CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError
   }
 }
 
-export type CreateCustomerFundingSourceResponseBodyError3Data = {
-  code: string;
-  message: string;
-};
-
-export class CreateCustomerFundingSourceResponseBodyError3 extends DwollaError {
-  code: string;
-
-  /** The original data that was passed to this error instance. */
-  data$: CreateCustomerFundingSourceResponseBodyError3Data;
-
-  constructor(
-    err: CreateCustomerFundingSourceResponseBodyError3Data,
-    httpMeta: { response: Response; request: Request; body: string },
-  ) {
-    const message = "message" in err && typeof err.message === "string"
-      ? err.message
-      : `API error occurred: ${JSON.stringify(err)}`;
-    super(message, httpMeta);
-    this.data$ = err;
-    this.code = err.code;
-
-    this.name = "CreateCustomerFundingSourceResponseBodyError3";
-  }
-}
-
-export type CreateCustomerFundingSourceResponseBodyError2Data = {
-  code: string;
-  message: string;
-};
-
-export class CreateCustomerFundingSourceResponseBodyError2 extends DwollaError {
-  code: string;
-
-  /** The original data that was passed to this error instance. */
-  data$: CreateCustomerFundingSourceResponseBodyError2Data;
-
-  constructor(
-    err: CreateCustomerFundingSourceResponseBodyError2Data,
-    httpMeta: { response: Response; request: Request; body: string },
-  ) {
-    const message = "message" in err && typeof err.message === "string"
-      ? err.message
-      : `API error occurred: ${JSON.stringify(err)}`;
-    super(message, httpMeta);
-    this.data$ = err;
-    this.code = err.code;
-
-    this.name = "CreateCustomerFundingSourceResponseBodyError2";
-  }
-}
-
-export type CreateCustomerFundingSourceResponseBodyError1Data = {
-  code: string;
-  message: string;
-};
-
-export class CreateCustomerFundingSourceResponseBodyError1 extends DwollaError {
-  code: string;
-
-  /** The original data that was passed to this error instance. */
-  data$: CreateCustomerFundingSourceResponseBodyError1Data;
-
-  constructor(
-    err: CreateCustomerFundingSourceResponseBodyError1Data,
-    httpMeta: { response: Response; request: Request; body: string },
-  ) {
-    const message = "message" in err && typeof err.message === "string"
-      ? err.message
-      : `API error occurred: ${JSON.stringify(err)}`;
-    super(message, httpMeta);
-    this.data$ = err;
-    this.code = err.code;
-
-    this.name = "CreateCustomerFundingSourceResponseBodyError1";
-  }
-}
-
 /**
  * validation error
  */
 export type CreateCustomerFundingSourceDwollaV1HalJSON =
-  | CreateCustomerFundingSourceResponseBodyError1
-  | CreateCustomerFundingSourceResponseBodyError2
-  | CreateCustomerFundingSourceResponseBodyError3;
+  | InactiveExchangeError
+  | InvalidExchangeTokenErrorError
+  | DuplicateFundingSourceError;
 
 /** @internal */
 export const CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError$inboundSchema:
@@ -276,184 +216,19 @@ export namespace CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError$ {
 }
 
 /** @internal */
-export const CreateCustomerFundingSourceResponseBodyError3$inboundSchema:
-  z.ZodType<
-    CreateCustomerFundingSourceResponseBodyError3,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    code: z.string(),
-    message: z.string(),
-    request$: z.instanceof(Request),
-    response$: z.instanceof(Response),
-    body$: z.string(),
-  })
-    .transform((v) => {
-      return new CreateCustomerFundingSourceResponseBodyError3(v, {
-        request: v.request$,
-        response: v.response$,
-        body: v.body$,
-      });
-    });
-
-/** @internal */
-export type CreateCustomerFundingSourceResponseBodyError3$Outbound = {
-  code: string;
-  message: string;
-};
-
-/** @internal */
-export const CreateCustomerFundingSourceResponseBodyError3$outboundSchema:
-  z.ZodType<
-    CreateCustomerFundingSourceResponseBodyError3$Outbound,
-    z.ZodTypeDef,
-    CreateCustomerFundingSourceResponseBodyError3
-  > = z.instanceof(CreateCustomerFundingSourceResponseBodyError3)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string(),
-      message: z.string(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerFundingSourceResponseBodyError3$ {
-  /** @deprecated use `CreateCustomerFundingSourceResponseBodyError3$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerFundingSourceResponseBodyError3$inboundSchema;
-  /** @deprecated use `CreateCustomerFundingSourceResponseBodyError3$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerFundingSourceResponseBodyError3$outboundSchema;
-  /** @deprecated use `CreateCustomerFundingSourceResponseBodyError3$Outbound` instead. */
-  export type Outbound = CreateCustomerFundingSourceResponseBodyError3$Outbound;
-}
-
-/** @internal */
-export const CreateCustomerFundingSourceResponseBodyError2$inboundSchema:
-  z.ZodType<
-    CreateCustomerFundingSourceResponseBodyError2,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    code: z.string(),
-    message: z.string(),
-    request$: z.instanceof(Request),
-    response$: z.instanceof(Response),
-    body$: z.string(),
-  })
-    .transform((v) => {
-      return new CreateCustomerFundingSourceResponseBodyError2(v, {
-        request: v.request$,
-        response: v.response$,
-        body: v.body$,
-      });
-    });
-
-/** @internal */
-export type CreateCustomerFundingSourceResponseBodyError2$Outbound = {
-  code: string;
-  message: string;
-};
-
-/** @internal */
-export const CreateCustomerFundingSourceResponseBodyError2$outboundSchema:
-  z.ZodType<
-    CreateCustomerFundingSourceResponseBodyError2$Outbound,
-    z.ZodTypeDef,
-    CreateCustomerFundingSourceResponseBodyError2
-  > = z.instanceof(CreateCustomerFundingSourceResponseBodyError2)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string(),
-      message: z.string(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerFundingSourceResponseBodyError2$ {
-  /** @deprecated use `CreateCustomerFundingSourceResponseBodyError2$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerFundingSourceResponseBodyError2$inboundSchema;
-  /** @deprecated use `CreateCustomerFundingSourceResponseBodyError2$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerFundingSourceResponseBodyError2$outboundSchema;
-  /** @deprecated use `CreateCustomerFundingSourceResponseBodyError2$Outbound` instead. */
-  export type Outbound = CreateCustomerFundingSourceResponseBodyError2$Outbound;
-}
-
-/** @internal */
-export const CreateCustomerFundingSourceResponseBodyError1$inboundSchema:
-  z.ZodType<
-    CreateCustomerFundingSourceResponseBodyError1,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    code: z.string(),
-    message: z.string(),
-    request$: z.instanceof(Request),
-    response$: z.instanceof(Response),
-    body$: z.string(),
-  })
-    .transform((v) => {
-      return new CreateCustomerFundingSourceResponseBodyError1(v, {
-        request: v.request$,
-        response: v.response$,
-        body: v.body$,
-      });
-    });
-
-/** @internal */
-export type CreateCustomerFundingSourceResponseBodyError1$Outbound = {
-  code: string;
-  message: string;
-};
-
-/** @internal */
-export const CreateCustomerFundingSourceResponseBodyError1$outboundSchema:
-  z.ZodType<
-    CreateCustomerFundingSourceResponseBodyError1$Outbound,
-    z.ZodTypeDef,
-    CreateCustomerFundingSourceResponseBodyError1
-  > = z.instanceof(CreateCustomerFundingSourceResponseBodyError1)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string(),
-      message: z.string(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerFundingSourceResponseBodyError1$ {
-  /** @deprecated use `CreateCustomerFundingSourceResponseBodyError1$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerFundingSourceResponseBodyError1$inboundSchema;
-  /** @deprecated use `CreateCustomerFundingSourceResponseBodyError1$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerFundingSourceResponseBodyError1$outboundSchema;
-  /** @deprecated use `CreateCustomerFundingSourceResponseBodyError1$Outbound` instead. */
-  export type Outbound = CreateCustomerFundingSourceResponseBodyError1$Outbound;
-}
-
-/** @internal */
 export const CreateCustomerFundingSourceDwollaV1HalJSON$inboundSchema:
   z.ZodType<CreateCustomerFundingSourceDwollaV1HalJSON, z.ZodTypeDef, unknown> =
     z.union([
-      z.lazy(() => CreateCustomerFundingSourceResponseBodyError1$inboundSchema),
-      z.lazy(() => CreateCustomerFundingSourceResponseBodyError2$inboundSchema),
-      z.lazy(() => CreateCustomerFundingSourceResponseBodyError3$inboundSchema),
+      InactiveExchangeError$inboundSchema,
+      InvalidExchangeTokenErrorError$inboundSchema,
+      DuplicateFundingSourceError$inboundSchema,
     ]);
 
 /** @internal */
 export type CreateCustomerFundingSourceDwollaV1HalJSON$Outbound =
-  | CreateCustomerFundingSourceResponseBodyError1$Outbound
-  | CreateCustomerFundingSourceResponseBodyError2$Outbound
-  | CreateCustomerFundingSourceResponseBodyError3$Outbound;
+  | InactiveExchangeError$Outbound
+  | InvalidExchangeTokenErrorError$Outbound
+  | DuplicateFundingSourceError$Outbound;
 
 /** @internal */
 export const CreateCustomerFundingSourceDwollaV1HalJSON$outboundSchema:
@@ -462,9 +237,9 @@ export const CreateCustomerFundingSourceDwollaV1HalJSON$outboundSchema:
     z.ZodTypeDef,
     CreateCustomerFundingSourceDwollaV1HalJSON
   > = z.union([
-    z.lazy(() => CreateCustomerFundingSourceResponseBodyError1$outboundSchema),
-    z.lazy(() => CreateCustomerFundingSourceResponseBodyError2$outboundSchema),
-    z.lazy(() => CreateCustomerFundingSourceResponseBodyError3$outboundSchema),
+    InactiveExchangeError$outboundSchema,
+    InvalidExchangeTokenErrorError$outboundSchema,
+    DuplicateFundingSourceError$outboundSchema,
   ]);
 
 /**

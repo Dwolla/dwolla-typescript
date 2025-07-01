@@ -5,13 +5,13 @@ Parameters for updating a beneficial owner
 
 ## Supported Types
 
-### `models.BeneficialOwnerWithSsn`
+### `models.CreateUSBeneficialOwner`
 
 ```typescript
-const value: models.BeneficialOwnerWithSsn = {
-  firstName: "Jalon",
-  lastName: "Reichel",
-  dateOfBirth: "1958-05-16",
+const value: models.CreateUSBeneficialOwner = {
+  firstName: "Joe",
+  lastName: "Deckow",
+  dateOfBirth: "1991-04-28",
   address: {
     address1: "462 Main Street",
     address2: "Suite 123",
@@ -25,13 +25,13 @@ const value: models.BeneficialOwnerWithSsn = {
 };
 ```
 
-### `models.BeneficialOwnerWithPassport`
+### `models.CreateInternationalBeneficialOwner`
 
 ```typescript
-const value: models.BeneficialOwnerWithPassport = {
-  firstName: "Therese",
-  lastName: "Nitzsche",
-  dateOfBirth: "1983-08-02",
+const value: models.CreateInternationalBeneficialOwner = {
+  firstName: "Josie",
+  lastName: "Watsica",
+  dateOfBirth: "1988-10-24",
   address: {
     address1: "462 Main Street",
     address2: "Suite 123",
@@ -43,7 +43,7 @@ const value: models.BeneficialOwnerWithPassport = {
   },
   passport: {
     number: "<value>",
-    country: "Portugal",
+    country: "South Sudan",
   },
 };
 ```

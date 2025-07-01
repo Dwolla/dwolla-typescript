@@ -13,8 +13,8 @@ import * as models from "../index.js";
  * Parameters for updating a beneficial owner
  */
 export type UpdateBeneficialOwnerRequestBody =
-  | models.BeneficialOwnerWithSsn
-  | models.BeneficialOwnerWithPassport;
+  | models.CreateUSBeneficialOwner
+  | models.CreateInternationalBeneficialOwner;
 
 export type UpdateBeneficialOwnerRequest = {
   /**
@@ -25,8 +25,8 @@ export type UpdateBeneficialOwnerRequest = {
    * Parameters for updating a beneficial owner
    */
   requestBody:
-    | models.BeneficialOwnerWithSsn
-    | models.BeneficialOwnerWithPassport;
+    | models.CreateUSBeneficialOwner
+    | models.CreateInternationalBeneficialOwner;
 };
 
 /** @internal */
@@ -35,14 +35,14 @@ export const UpdateBeneficialOwnerRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  models.BeneficialOwnerWithSsn$inboundSchema,
-  models.BeneficialOwnerWithPassport$inboundSchema,
+  models.CreateUSBeneficialOwner$inboundSchema,
+  models.CreateInternationalBeneficialOwner$inboundSchema,
 ]);
 
 /** @internal */
 export type UpdateBeneficialOwnerRequestBody$Outbound =
-  | models.BeneficialOwnerWithSsn$Outbound
-  | models.BeneficialOwnerWithPassport$Outbound;
+  | models.CreateUSBeneficialOwner$Outbound
+  | models.CreateInternationalBeneficialOwner$Outbound;
 
 /** @internal */
 export const UpdateBeneficialOwnerRequestBody$outboundSchema: z.ZodType<
@@ -50,8 +50,8 @@ export const UpdateBeneficialOwnerRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UpdateBeneficialOwnerRequestBody
 > = z.union([
-  models.BeneficialOwnerWithSsn$outboundSchema,
-  models.BeneficialOwnerWithPassport$outboundSchema,
+  models.CreateUSBeneficialOwner$outboundSchema,
+  models.CreateInternationalBeneficialOwner$outboundSchema,
 ]);
 
 /**
@@ -95,8 +95,8 @@ export const UpdateBeneficialOwnerRequest$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   RequestBody: z.union([
-    models.BeneficialOwnerWithSsn$inboundSchema,
-    models.BeneficialOwnerWithPassport$inboundSchema,
+    models.CreateUSBeneficialOwner$inboundSchema,
+    models.CreateInternationalBeneficialOwner$inboundSchema,
   ]),
 }).transform((v) => {
   return remap$(v, {
@@ -108,8 +108,8 @@ export const UpdateBeneficialOwnerRequest$inboundSchema: z.ZodType<
 export type UpdateBeneficialOwnerRequest$Outbound = {
   id: string;
   RequestBody:
-    | models.BeneficialOwnerWithSsn$Outbound
-    | models.BeneficialOwnerWithPassport$Outbound;
+    | models.CreateUSBeneficialOwner$Outbound
+    | models.CreateInternationalBeneficialOwner$Outbound;
 };
 
 /** @internal */
@@ -120,8 +120,8 @@ export const UpdateBeneficialOwnerRequest$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   requestBody: z.union([
-    models.BeneficialOwnerWithSsn$outboundSchema,
-    models.BeneficialOwnerWithPassport$outboundSchema,
+    models.CreateUSBeneficialOwner$outboundSchema,
+    models.CreateInternationalBeneficialOwner$outboundSchema,
   ]),
 }).transform((v) => {
   return remap$(v, {

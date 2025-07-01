@@ -9,6 +9,13 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
 
+/**
+ * Parameters for creating an exchange session
+ */
+export type CreateCustomerExchangeSessionRequestBody =
+  | models.CreateCustomerExchangeSessionWithRedirect
+  | models.CreateCustomerExchangeSessionForWeb;
+
 export type CreateCustomerExchangeSessionRequest = {
   /**
    * Customer's unique identifier
@@ -17,12 +24,81 @@ export type CreateCustomerExchangeSessionRequest = {
   /**
    * Parameters for creating an exchange session
    */
-  createCustomerExchangeSession: models.CreateCustomerExchangeSessionUnion;
+  requestBody:
+    | models.CreateCustomerExchangeSessionWithRedirect
+    | models.CreateCustomerExchangeSessionForWeb;
 };
 
 export type CreateCustomerExchangeSessionResponse = {
   headers: { [k: string]: Array<string> };
 };
+
+/** @internal */
+export const CreateCustomerExchangeSessionRequestBody$inboundSchema: z.ZodType<
+  CreateCustomerExchangeSessionRequestBody,
+  z.ZodTypeDef,
+  unknown
+> = z.union([
+  models.CreateCustomerExchangeSessionWithRedirect$inboundSchema,
+  models.CreateCustomerExchangeSessionForWeb$inboundSchema,
+]);
+
+/** @internal */
+export type CreateCustomerExchangeSessionRequestBody$Outbound =
+  | models.CreateCustomerExchangeSessionWithRedirect$Outbound
+  | models.CreateCustomerExchangeSessionForWeb$Outbound;
+
+/** @internal */
+export const CreateCustomerExchangeSessionRequestBody$outboundSchema: z.ZodType<
+  CreateCustomerExchangeSessionRequestBody$Outbound,
+  z.ZodTypeDef,
+  CreateCustomerExchangeSessionRequestBody
+> = z.union([
+  models.CreateCustomerExchangeSessionWithRedirect$outboundSchema,
+  models.CreateCustomerExchangeSessionForWeb$outboundSchema,
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateCustomerExchangeSessionRequestBody$ {
+  /** @deprecated use `CreateCustomerExchangeSessionRequestBody$inboundSchema` instead. */
+  export const inboundSchema =
+    CreateCustomerExchangeSessionRequestBody$inboundSchema;
+  /** @deprecated use `CreateCustomerExchangeSessionRequestBody$outboundSchema` instead. */
+  export const outboundSchema =
+    CreateCustomerExchangeSessionRequestBody$outboundSchema;
+  /** @deprecated use `CreateCustomerExchangeSessionRequestBody$Outbound` instead. */
+  export type Outbound = CreateCustomerExchangeSessionRequestBody$Outbound;
+}
+
+export function createCustomerExchangeSessionRequestBodyToJSON(
+  createCustomerExchangeSessionRequestBody:
+    CreateCustomerExchangeSessionRequestBody,
+): string {
+  return JSON.stringify(
+    CreateCustomerExchangeSessionRequestBody$outboundSchema.parse(
+      createCustomerExchangeSessionRequestBody,
+    ),
+  );
+}
+
+export function createCustomerExchangeSessionRequestBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CreateCustomerExchangeSessionRequestBody,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CreateCustomerExchangeSessionRequestBody$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CreateCustomerExchangeSessionRequestBody' from JSON`,
+  );
+}
 
 /** @internal */
 export const CreateCustomerExchangeSessionRequest$inboundSchema: z.ZodType<
@@ -31,19 +107,22 @@ export const CreateCustomerExchangeSessionRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
-  CreateCustomerExchangeSession:
-    models.CreateCustomerExchangeSessionUnion$inboundSchema,
+  RequestBody: z.union([
+    models.CreateCustomerExchangeSessionWithRedirect$inboundSchema,
+    models.CreateCustomerExchangeSessionForWeb$inboundSchema,
+  ]),
 }).transform((v) => {
   return remap$(v, {
-    "CreateCustomerExchangeSession": "createCustomerExchangeSession",
+    "RequestBody": "requestBody",
   });
 });
 
 /** @internal */
 export type CreateCustomerExchangeSessionRequest$Outbound = {
   id: string;
-  CreateCustomerExchangeSession:
-    models.CreateCustomerExchangeSessionUnion$Outbound;
+  RequestBody:
+    | models.CreateCustomerExchangeSessionWithRedirect$Outbound
+    | models.CreateCustomerExchangeSessionForWeb$Outbound;
 };
 
 /** @internal */
@@ -53,11 +132,13 @@ export const CreateCustomerExchangeSessionRequest$outboundSchema: z.ZodType<
   CreateCustomerExchangeSessionRequest
 > = z.object({
   id: z.string(),
-  createCustomerExchangeSession:
-    models.CreateCustomerExchangeSessionUnion$outboundSchema,
+  requestBody: z.union([
+    models.CreateCustomerExchangeSessionWithRedirect$outboundSchema,
+    models.CreateCustomerExchangeSessionForWeb$outboundSchema,
+  ]),
 }).transform((v) => {
   return remap$(v, {
-    createCustomerExchangeSession: "CreateCustomerExchangeSession",
+    requestBody: "RequestBody",
   });
 });
 

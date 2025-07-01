@@ -10,7 +10,6 @@ Operations related to Transfers
 * [create](#create) - Initiate a transfer
 * [get](#get) - Retrieve a transfer
 * [cancel](#cancel) - Cancel a transfer
-* [listForCustomer](#listforcustomer) - List and search transfers for a customer
 * [listFees](#listfees) - List fees for a transfer
 * [getFailureReason](#getfailurereason) - Retrieve a transfer failure reason
 * [createOnDemandAuthorization](#createondemandauthorization) - Create an on-demand transfer authorization
@@ -275,9 +274,7 @@ const dwolla = new Dwolla({
 async function run() {
   const result = await dwolla.transfers.cancel({
     id: "<id>",
-    requestBody: {
-      status: "cancelled",
-    },
+    requestBody: {},
   });
 
   console.log(result);
@@ -306,9 +303,7 @@ const dwolla = new DwollaCore({
 async function run() {
   const res = await transfersCancel(dwolla, {
     id: "<id>",
-    requestBody: {
-      status: "cancelled",
-    },
+    requestBody: {},
   });
   if (res.ok) {
     const { value: result } = res;
@@ -341,85 +336,6 @@ run();
 | errors.BadRequestError             | 400                                | application/vnd.dwolla.v1.hal+json |
 | errors.StatusInvalidError          | 400                                | application/vnd.dwolla.v1.hal+json |
 | errors.StatusNotAllowedError       | 400                                | application/vnd.dwolla.v1.hal+json |
-| errors.NotFoundError               | 404                                | application/vnd.dwolla.v1.hal+json |
-| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
-
-## listForCustomer
-
-List and search transfers for a customer
-
-### Example Usage
-
-```typescript
-import { Dwolla } from "dwolla-typescript";
-
-const dwolla = new Dwolla({
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
-});
-
-async function run() {
-  const result = await dwolla.transfers.listForCustomer({
-    id: "<id>",
-  });
-
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { transfersListForCustomer } from "dwolla-typescript/funcs/transfersListForCustomer.js";
-
-// Use `DwollaCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const dwolla = new DwollaCore({
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
-});
-
-async function run() {
-  const res = await transfersListForCustomer(dwolla, {
-    id: "<id>",
-  });
-  if (res.ok) {
-    const { value: result } = res;
-    console.log(result);
-  } else {
-    console.log("transfersListForCustomer failed:", res.error);
-  }
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.ListCustomerTransfersRequest](../../models/operations/listcustomertransfersrequest.md)                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[models.Transfers](../../models/transfers.md)\>**
-
-### Errors
-
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | errors.NotFoundError               | 404                                | application/vnd.dwolla.v1.hal+json |
 | errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
 

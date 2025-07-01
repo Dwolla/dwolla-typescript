@@ -5,10 +5,10 @@ Parameters for creating an exchange
 
 ## Supported Types
 
-### `models.FinicitySecureExchangeCreateExchangeRequestBody`
+### `models.CreateFinicitySecureExchange`
 
 ```typescript
-const value: models.FinicitySecureExchangeCreateExchangeRequestBody = {
+const value: models.CreateFinicitySecureExchange = {
   links: {
     exchangePartner: {
       href:
@@ -38,10 +38,10 @@ const value: models.FinicitySecureExchangeCreateExchangeRequestBody = {
 };
 ```
 
-### `models.MXSecureExchangeCreateExchangeRequestBody`
+### `models.CreateMXSecureExchange`
 
 ```typescript
-const value: models.MXSecureExchangeCreateExchangeRequestBody = {
+const value: models.CreateMXSecureExchange = {
   links: {
     exchangePartner: {
       href:
@@ -52,10 +52,10 @@ const value: models.MXSecureExchangeCreateExchangeRequestBody = {
 };
 ```
 
-### `models.FlinksSecureExchangeCreateExchangeRequestBody`
+### `models.CreateFlinksSecureExchange`
 
 ```typescript
-const value: models.FlinksSecureExchangeCreateExchangeRequestBody = {
+const value: models.CreateFlinksSecureExchange = {
   links: {
     exchangePartner: {
       href:
@@ -67,10 +67,10 @@ const value: models.FlinksSecureExchangeCreateExchangeRequestBody = {
 };
 ```
 
-### `models.PlaidSecureExchangeCreateExchangeRequestBody`
+### `models.CreatePlaidSecureExchange`
 
 ```typescript
-const value: models.PlaidSecureExchangeCreateExchangeRequestBody = {
+const value: models.CreatePlaidSecureExchange = {
   links: {
     exchangePartner: {
       href:

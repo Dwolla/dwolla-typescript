@@ -12,7 +12,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  * Parameters to cancel a transfer
  */
 export type CancelTransferRequestBody = {
-  status: string;
+  status?: "cancelled" | undefined;
 };
 
 export type CancelTransferRequest = {
@@ -37,12 +37,12 @@ export const CancelTransferRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  status: z.string(),
+  status: z.literal("cancelled").default("cancelled").optional(),
 });
 
 /** @internal */
 export type CancelTransferRequestBody$Outbound = {
-  status: string;
+  status: "cancelled";
 };
 
 /** @internal */
@@ -51,7 +51,7 @@ export const CancelTransferRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CancelTransferRequestBody
 > = z.object({
-  status: z.string(),
+  status: z.literal("cancelled").default("cancelled" as const),
 });
 
 /**

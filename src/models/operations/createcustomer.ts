@@ -13,11 +13,12 @@ import * as models from "../index.js";
  * Parameters for customer to be created
  */
 export type CreateCustomerRequest =
-  | models.CreateVerifiedBusinessRequestBody
-  | models.CreateVerifiedSolePropRequestBody
-  | models.CreateVerifiedPersonalRequestBody
-  | models.CreateReceiveOnlyRequestBody
-  | models.CreateUnverifiedCustomerRequestBody;
+  | models.CreateVerifiedSolePropCustomer
+  | models.CreateVerifiedBusinessCustomerWithController
+  | models.CreateVerifiedBusinessCustomerWithInternationalController
+  | models.CreateVerifiedPersonalCustomer
+  | models.CreateReceiveOnlyUser
+  | models.CreateUnverifiedCustomer;
 
 export type CreateCustomerResponse = {
   headers: { [k: string]: Array<string> };
@@ -29,20 +30,23 @@ export const CreateCustomerRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  models.CreateVerifiedBusinessRequestBody$inboundSchema,
-  models.CreateVerifiedSolePropRequestBody$inboundSchema,
-  models.CreateVerifiedPersonalRequestBody$inboundSchema,
-  models.CreateReceiveOnlyRequestBody$inboundSchema,
-  models.CreateUnverifiedCustomerRequestBody$inboundSchema,
+  models.CreateVerifiedSolePropCustomer$inboundSchema,
+  models.CreateVerifiedBusinessCustomerWithController$inboundSchema,
+  models
+    .CreateVerifiedBusinessCustomerWithInternationalController$inboundSchema,
+  models.CreateVerifiedPersonalCustomer$inboundSchema,
+  models.CreateReceiveOnlyUser$inboundSchema,
+  models.CreateUnverifiedCustomer$inboundSchema,
 ]);
 
 /** @internal */
 export type CreateCustomerRequest$Outbound =
-  | models.CreateVerifiedBusinessRequestBody$Outbound
-  | models.CreateVerifiedSolePropRequestBody$Outbound
-  | models.CreateVerifiedPersonalRequestBody$Outbound
-  | models.CreateReceiveOnlyRequestBody$Outbound
-  | models.CreateUnverifiedCustomerRequestBody$Outbound;
+  | models.CreateVerifiedSolePropCustomer$Outbound
+  | models.CreateVerifiedBusinessCustomerWithController$Outbound
+  | models.CreateVerifiedBusinessCustomerWithInternationalController$Outbound
+  | models.CreateVerifiedPersonalCustomer$Outbound
+  | models.CreateReceiveOnlyUser$Outbound
+  | models.CreateUnverifiedCustomer$Outbound;
 
 /** @internal */
 export const CreateCustomerRequest$outboundSchema: z.ZodType<
@@ -50,11 +54,13 @@ export const CreateCustomerRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateCustomerRequest
 > = z.union([
-  models.CreateVerifiedBusinessRequestBody$outboundSchema,
-  models.CreateVerifiedSolePropRequestBody$outboundSchema,
-  models.CreateVerifiedPersonalRequestBody$outboundSchema,
-  models.CreateReceiveOnlyRequestBody$outboundSchema,
-  models.CreateUnverifiedCustomerRequestBody$outboundSchema,
+  models.CreateVerifiedSolePropCustomer$outboundSchema,
+  models.CreateVerifiedBusinessCustomerWithController$outboundSchema,
+  models
+    .CreateVerifiedBusinessCustomerWithInternationalController$outboundSchema,
+  models.CreateVerifiedPersonalCustomer$outboundSchema,
+  models.CreateReceiveOnlyUser$outboundSchema,
+  models.CreateUnverifiedCustomer$outboundSchema,
 ]);
 
 /**

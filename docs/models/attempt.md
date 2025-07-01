@@ -36,8 +36,8 @@ let value: Attempt = {
 
 ## Fields
 
-| Field                                    | Type                                     | Required                                 | Description                              | Example                                  |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `id`                                     | *string*                                 | :heavy_minus_sign:                       | N/A                                      | d4d16621-c6b0-40cb-8dc3-0469fa9dc4e8     |
-| `request`                                | [models.Request](../models/request.md)   | :heavy_minus_sign:                       | N/A                                      |                                          |
-| `response`                               | [models.Response](../models/response.md) | :heavy_minus_sign:                       | N/A                                      |                                          |
+| Field                                      | Type                                       | Required                                   | Description                                | Example                                    |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| `id`                                       | *string*                                   | :heavy_minus_sign:                         | N/A                                        | d4d16621-c6b0-40cb-8dc3-0469fa9dc4e8       |
+| `request`                                  | [models.RequestT](../models/requestt.md)   | :heavy_minus_sign:                         | N/A                                        |                                            |
+| `response`                                 | [models.ResponseT](../models/responset.md) | :heavy_minus_sign:                         | N/A                                        |                                            |

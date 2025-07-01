@@ -6,12 +6,6 @@ import * as z from "zod";
 import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
-import {
-  Customer,
-  Customer$inboundSchema,
-  Customer$Outbound,
-  Customer$outboundSchema,
-} from "./customer.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import {
   HalLink,
@@ -19,9 +13,54 @@ import {
   HalLink$Outbound,
   HalLink$outboundSchema,
 } from "./hallink.js";
+import {
+  UnverifiedBusinessCustomer,
+  UnverifiedBusinessCustomer$inboundSchema,
+  UnverifiedBusinessCustomer$Outbound,
+  UnverifiedBusinessCustomer$outboundSchema,
+} from "./unverifiedbusinesscustomer.js";
+import {
+  UnverifiedCustomer,
+  UnverifiedCustomer$inboundSchema,
+  UnverifiedCustomer$Outbound,
+  UnverifiedCustomer$outboundSchema,
+} from "./unverifiedcustomer.js";
+import {
+  VerifiedBusinessCustomer,
+  VerifiedBusinessCustomer$inboundSchema,
+  VerifiedBusinessCustomer$Outbound,
+  VerifiedBusinessCustomer$outboundSchema,
+} from "./verifiedbusinesscustomer.js";
+import {
+  VerifiedPersonalCustomer,
+  VerifiedPersonalCustomer$inboundSchema,
+  VerifiedPersonalCustomer$Outbound,
+  VerifiedPersonalCustomer$outboundSchema,
+} from "./verifiedpersonalcustomer.js";
+import {
+  VerifiedSolePropCustomer,
+  VerifiedSolePropCustomer$inboundSchema,
+  VerifiedSolePropCustomer$Outbound,
+  VerifiedSolePropCustomer$outboundSchema,
+} from "./verifiedsolepropcustomer.js";
+
+export type Customer =
+  | UnverifiedCustomer
+  | UnverifiedBusinessCustomer
+  | VerifiedPersonalCustomer
+  | VerifiedSolePropCustomer
+  | VerifiedBusinessCustomer;
 
 export type CustomersEmbedded = {
-  customers?: Array<Customer> | undefined;
+  customers?:
+    | Array<
+      | UnverifiedCustomer
+      | UnverifiedBusinessCustomer
+      | VerifiedPersonalCustomer
+      | VerifiedSolePropCustomer
+      | VerifiedBusinessCustomer
+    >
+    | undefined;
 };
 
 export type Customers = {
@@ -30,17 +69,94 @@ export type Customers = {
 };
 
 /** @internal */
+export const Customer$inboundSchema: z.ZodType<
+  Customer,
+  z.ZodTypeDef,
+  unknown
+> = z.union([
+  UnverifiedCustomer$inboundSchema,
+  UnverifiedBusinessCustomer$inboundSchema,
+  VerifiedPersonalCustomer$inboundSchema,
+  VerifiedSolePropCustomer$inboundSchema,
+  VerifiedBusinessCustomer$inboundSchema,
+]);
+
+/** @internal */
+export type Customer$Outbound =
+  | UnverifiedCustomer$Outbound
+  | UnverifiedBusinessCustomer$Outbound
+  | VerifiedPersonalCustomer$Outbound
+  | VerifiedSolePropCustomer$Outbound
+  | VerifiedBusinessCustomer$Outbound;
+
+/** @internal */
+export const Customer$outboundSchema: z.ZodType<
+  Customer$Outbound,
+  z.ZodTypeDef,
+  Customer
+> = z.union([
+  UnverifiedCustomer$outboundSchema,
+  UnverifiedBusinessCustomer$outboundSchema,
+  VerifiedPersonalCustomer$outboundSchema,
+  VerifiedSolePropCustomer$outboundSchema,
+  VerifiedBusinessCustomer$outboundSchema,
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Customer$ {
+  /** @deprecated use `Customer$inboundSchema` instead. */
+  export const inboundSchema = Customer$inboundSchema;
+  /** @deprecated use `Customer$outboundSchema` instead. */
+  export const outboundSchema = Customer$outboundSchema;
+  /** @deprecated use `Customer$Outbound` instead. */
+  export type Outbound = Customer$Outbound;
+}
+
+export function customerToJSON(customer: Customer): string {
+  return JSON.stringify(Customer$outboundSchema.parse(customer));
+}
+
+export function customerFromJSON(
+  jsonString: string,
+): SafeParseResult<Customer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Customer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Customer' from JSON`,
+  );
+}
+
+/** @internal */
 export const CustomersEmbedded$inboundSchema: z.ZodType<
   CustomersEmbedded,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customers: z.array(Customer$inboundSchema).optional(),
+  customers: z.array(
+    z.union([
+      UnverifiedCustomer$inboundSchema,
+      UnverifiedBusinessCustomer$inboundSchema,
+      VerifiedPersonalCustomer$inboundSchema,
+      VerifiedSolePropCustomer$inboundSchema,
+      VerifiedBusinessCustomer$inboundSchema,
+    ]),
+  ).optional(),
 });
 
 /** @internal */
 export type CustomersEmbedded$Outbound = {
-  customers?: Array<Customer$Outbound> | undefined;
+  customers?:
+    | Array<
+      | UnverifiedCustomer$Outbound
+      | UnverifiedBusinessCustomer$Outbound
+      | VerifiedPersonalCustomer$Outbound
+      | VerifiedSolePropCustomer$Outbound
+      | VerifiedBusinessCustomer$Outbound
+    >
+    | undefined;
 };
 
 /** @internal */
@@ -49,7 +165,15 @@ export const CustomersEmbedded$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CustomersEmbedded
 > = z.object({
-  customers: z.array(Customer$outboundSchema).optional(),
+  customers: z.array(
+    z.union([
+      UnverifiedCustomer$outboundSchema,
+      UnverifiedBusinessCustomer$outboundSchema,
+      VerifiedPersonalCustomer$outboundSchema,
+      VerifiedSolePropCustomer$outboundSchema,
+      VerifiedBusinessCustomer$outboundSchema,
+    ]),
+  ).optional(),
 });
 
 /**

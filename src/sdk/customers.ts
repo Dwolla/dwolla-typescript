@@ -84,7 +84,7 @@ export class Customers extends ClientSDK {
   async get(
     request: operations.GetCustomerRequest,
     options?: RequestOptions,
-  ): Promise<models.Customer> {
+  ): Promise<operations.GetCustomerResponse> {
     return unwrapAsync(customersGet(
       this,
       request,
@@ -101,7 +101,7 @@ export class Customers extends ClientSDK {
   async update(
     request: operations.UpdateRequest,
     options?: RequestOptions,
-  ): Promise<models.Customer> {
+  ): Promise<operations.UpdateResponse> {
     return unwrapAsync(customersUpdate(
       this,
       request,
