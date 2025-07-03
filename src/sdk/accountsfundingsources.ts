@@ -31,7 +31,7 @@ export class AccountsFundingSources extends ClientSDK {
    * List funding sources for an account
    *
    * @remarks
-   * List funding source for an account
+   * List funding sources for an account
    */
   async list(
     request: operations.ListFundingSourcesRequest,

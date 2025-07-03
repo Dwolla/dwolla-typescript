@@ -6,7 +6,7 @@
 import { GetExchangeRequest } from "dwolla-typescript/models/operations";
 
 let value: GetExchangeRequest = {
-  id: "292317ec-e252-47d8-93c3-2d128e037aa4",
+  id: "e5e9f2d3-a96c-4abd-a097-8ec7ae28aa8a",
 };
 ```
 
@@ -14,4 +14,4 @@ let value: GetExchangeRequest = {
 
 | Field                                | Type                                 | Required                             | Description                          | Example                              |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| `id`                                 | *string*                             | :heavy_check_mark:                   | Exchange resource unique identifier. | 292317ec-e252-47d8-93c3-2d128e037aa4 |
+| `id`                                 | *string*                             | :heavy_check_mark:                   | Exchange resource unique identifier. | e5e9f2d3-a96c-4abd-a097-8ec7ae28aa8a |

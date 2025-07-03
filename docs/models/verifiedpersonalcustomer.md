@@ -5,7 +5,7 @@ Shared models between all Customer types
 ## Example Usage
 
 ```typescript
-import { VerifiedPersonalCustomer } from "dwolla-typescript";
+import { VerifiedPersonalCustomer } from "dwolla-typescript/models";
 
 let value: VerifiedPersonalCustomer = {
   links: {

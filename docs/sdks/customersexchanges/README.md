@@ -10,7 +10,7 @@
 
 ## list
 
-List exchanges for a customer
+Retrieve the list of exchanges associated with a Customer resource.
 
 ### Example Usage
 
@@ -188,9 +188,11 @@ run();
 
 ### Errors
 
-| Error Type                                        | Status Code                                       | Content Type                                      |
-| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| errors.ValidationErrorSchema                      | 400                                               | application/vnd.dwolla.v1.hal+json                |
-| errors.CreateCustomerExchangeDwollaV1HalJSONError | 401                                               | application/vnd.dwolla.v1.hal+json                |
-| errors.NotFoundError                              | 404                                               | application/vnd.dwolla.v1.hal+json                |
-| errors.APIError                                   | 4XX, 5XX                                          | \*/\*                                             |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| errors.InvalidExchangeTokenError                | 400                                             | application/vnd.dwolla.v1.hal+json              |
+| errors.InvalidExchangeError                     | 400                                             | application/vnd.dwolla.v1.hal+json              |
+| errors.CreateCustomerExchangeResponseBodyError1 | 401                                             | application/vnd.dwolla.v1.hal+json              |
+| errors.CreateCustomerExchangeResponseBodyError2 | 401                                             | application/vnd.dwolla.v1.hal+json              |
+| errors.NotFoundError                            | 404                                             | application/vnd.dwolla.v1.hal+json              |
+| errors.APIError                                 | 4XX, 5XX                                        | \*/\*                                           |

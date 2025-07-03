@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateCustomerBankFundingSourceLinks } from "dwolla-typescript";
+import { CreateCustomerBankFundingSourceLinks } from "dwolla-typescript/models";
 
 let value: CreateCustomerBankFundingSourceLinks = {
   onDemandAuthorization: {

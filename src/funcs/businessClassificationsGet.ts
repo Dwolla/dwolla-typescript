@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Retrieve a business classification
  *
  * @remarks
- * Retrieve a business classification
+ * Retrieve a business classification by id.
  */
 export function businessClassificationsGet(
   client: DwollaCore,

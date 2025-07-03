@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { HighRiskErrorEmbedded } from "dwolla-typescript";
+import { HighRiskErrorEmbedded } from "dwolla-typescript/models";
 
 let value: HighRiskErrorEmbedded = {
   errors: [

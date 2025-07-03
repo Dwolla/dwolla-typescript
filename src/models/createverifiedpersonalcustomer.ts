@@ -17,7 +17,6 @@ export type CreateVerifiedPersonalCustomer = {
   ipAddress?: string | undefined;
   phone?: string | undefined;
   correlationId?: string | undefined;
-  businessName?: string | undefined;
   type?: "personal" | undefined;
   address1: string;
   address2?: string | undefined;
@@ -40,7 +39,6 @@ export const CreateVerifiedPersonalCustomer$inboundSchema: z.ZodType<
   ipAddress: z.string().optional(),
   phone: z.string().optional(),
   correlationId: z.string().optional(),
-  businessName: z.string().optional(),
   type: z.literal("personal").default("personal").optional(),
   address1: z.string(),
   address2: z.string().optional(),
@@ -59,7 +57,6 @@ export type CreateVerifiedPersonalCustomer$Outbound = {
   ipAddress?: string | undefined;
   phone?: string | undefined;
   correlationId?: string | undefined;
-  businessName?: string | undefined;
   type: "personal";
   address1: string;
   address2?: string | undefined;
@@ -82,7 +79,6 @@ export const CreateVerifiedPersonalCustomer$outboundSchema: z.ZodType<
   ipAddress: z.string().optional(),
   phone: z.string().optional(),
   correlationId: z.string().optional(),
-  businessName: z.string().optional(),
   type: z.literal("personal").default("personal" as const),
   address1: z.string(),
   address2: z.string().optional(),

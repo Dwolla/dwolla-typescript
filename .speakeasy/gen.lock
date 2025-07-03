@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 53ac026a-ff11-435d-914b-31df5268afb0
 management:
-  docChecksum: 003a0b629e6db45dead57668ee2e8ddd
+  docChecksum: 63e113577b999fe5c28283ba83e2bd8e
   docVersion: "2.0"
-  speakeasyVersion: 1.573.0
-  generationVersion: 2.644.1
-  releaseVersion: 0.0.1-beta.3
-  configChecksum: a1d8db3beb130b4cd6223ae30a16b8db
+  speakeasyVersion: 1.575.4
+  generationVersion: 2.648.7
+  releaseVersion: 0.0.1-beta.4
+  configChecksum: 692de85664c2b3feca7e4214b5b36478
   repoURL: https://github.com/Dwolla/dwolla-typescript.git
   installationURL: https://github.com/Dwolla/dwolla-typescript
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.21.11
+    core: 3.21.13
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     enumUnions: 0.1.0
@@ -96,8 +96,9 @@ generatedFiles:
   - docs/models/createcustomerexchangesessionwithredirectexchangepartner.md
   - docs/models/createcustomerexchangesessionwithredirectlinks.md
   - docs/models/createcustomerexchangesessionwithredirectredirecturl.md
-  - docs/models/createcustomervirtualfundingsource.md
-  - docs/models/createcustomervirtualfundingsourcebankaccounttype.md
+  - docs/models/createcustomerfundingsource.md
+  - docs/models/createcustomervirtualaccountfundingsource.md
+  - docs/models/createcustomervirtualaccountfundingsourcebankaccounttype.md
   - docs/models/createfinicitysecureexchange.md
   - docs/models/createfinicitysecureexchangeexchangepartner.md
   - docs/models/createfinicitysecureexchangelinks.md
@@ -171,7 +172,9 @@ generatedFiles:
   - docs/models/errors/createcustomerdocumentforbiddendwollav1haljson.md
   - docs/models/errors/createcustomerdocumentnotfounddwollav1haljsonerror.md
   - docs/models/errors/createcustomerdocumentrequestentitytoolargedwollav1haljsonerror.md
-  - docs/models/errors/createcustomerexchangedwollav1haljsonerror.md
+  - docs/models/errors/createcustomerexchangebadrequestdwollav1haljson.md
+  - docs/models/errors/createcustomerexchangeresponsebodyerror1.md
+  - docs/models/errors/createcustomerexchangeresponsebodyerror2.md
   - docs/models/errors/createcustomerexchangesessionbadrequestdwollav1haljson.md
   - docs/models/errors/createcustomerexchangesessiondwollav1haljsonerror.md
   - docs/models/errors/createcustomerexchangesessionforbiddendwollav1haljson.md
@@ -226,7 +229,8 @@ generatedFiles:
   - docs/models/errors/incompatiblesourceforrtpdestinationerror.md
   - docs/models/errors/initiatekbaforcustomerdwollav1haljson.md
   - docs/models/errors/initiatemasspaymentdwollav1haljsonerror.md
-  - docs/models/errors/initiateorverifymicrodepositsdwollav1haljsonerror.md
+  - docs/models/errors/initiateorverifymicrodepositsforbiddendwollav1haljsonerror.md
+  - docs/models/errors/initiateorverifymicrodepositsnotfounddwollav1haljsonerror.md
   - docs/models/errors/initiatetransferbadrequestdwollav1haljson.md
   - docs/models/errors/initiatetransferforbiddendwollav1haljson.md
   - docs/models/errors/insufficientfundserror.md
@@ -308,6 +312,7 @@ generatedFiles:
   - docs/models/errors/statusnotallowederror.md
   - docs/models/errors/toomanyrequestserrorerror.md
   - docs/models/errors/transferexpiredforfeeerror.md
+  - docs/models/errors/unauthorizeddwollav1haljson.md
   - docs/models/errors/unauthorizederror.md
   - docs/models/errors/updatebadrequestdwollav1haljsonerror.md
   - docs/models/errors/updatebeneficialownerforbiddendwollav1haljsonerror.md
@@ -516,7 +521,6 @@ generatedFiles:
   - docs/models/operations/createcustomerexchangesessionrequestbody.md
   - docs/models/operations/createcustomerexchangesessionresponse.md
   - docs/models/operations/createcustomerfundingsourcerequest.md
-  - docs/models/operations/createcustomerfundingsourcerequestbody.md
   - docs/models/operations/createcustomerfundingsourceresponse.md
   - docs/models/operations/createcustomerlabelamount.md
   - docs/models/operations/createcustomerlabelrequest.md
@@ -552,7 +556,6 @@ generatedFiles:
   - docs/models/operations/getbeneficialownershipstatusforcustomerrequest.md
   - docs/models/operations/getcustomerrequest.md
   - docs/models/operations/getcustomerresponse.md
-  - docs/models/operations/getdocumentrequest.md
   - docs/models/operations/geteventrequest.md
   - docs/models/operations/getexchangepartnerrequest.md
   - docs/models/operations/getexchangerequest.md
@@ -593,9 +596,12 @@ generatedFiles:
   - docs/models/operations/initiatemasspaymentresponse.md
   - docs/models/operations/initiatemasspaymentsourceaddenda.md
   - docs/models/operations/initiatemicrodeposits.md
+  - docs/models/operations/initiateorverifymicrodepositslinks.md
   - docs/models/operations/initiateorverifymicrodepositsrequest.md
   - docs/models/operations/initiateorverifymicrodepositsrequestbody.md
   - docs/models/operations/initiateorverifymicrodepositsresponse.md
+  - docs/models/operations/initiateorverifymicrodepositsresponsebody.md
+  - docs/models/operations/initiateorverifymicrodepositsself.md
   - docs/models/operations/initiatetransferachdetails.md
   - docs/models/operations/initiatetransferachdetailsdestination.md
   - docs/models/operations/initiatetransferachdetailssource.md
@@ -664,6 +670,7 @@ generatedFiles:
   - docs/models/operations/retrievebeneficialownerrequest.md
   - docs/models/operations/retrievebusinessclassificationrequest.md
   - docs/models/operations/retrievecustomerexchangesessionrequest.md
+  - docs/models/operations/retrievedocumentrequest.md
   - docs/models/operations/retrievelabelreallocationlinks.md
   - docs/models/operations/retrievelabelreallocationrequest.md
   - docs/models/operations/retrievelabelreallocationresponse.md
@@ -860,15 +867,13 @@ generatedFiles:
   - docs/sdks/beneficialownersdocuments/README.md
   - docs/sdks/businessclassifications/README.md
   - docs/sdks/clienttokens/README.md
-  - docs/sdks/customer/README.md
-  - docs/sdks/customerfundingsources/README.md
-  - docs/sdks/customermasspayments/README.md
   - docs/sdks/customers/README.md
   - docs/sdks/customersbeneficialowners/README.md
   - docs/sdks/customersdocuments/README.md
   - docs/sdks/customersexchanges/README.md
   - docs/sdks/customersfundingsources/README.md
-  - docs/sdks/customertransfers/README.md
+  - docs/sdks/customersmasspayments/README.md
+  - docs/sdks/customerstransfers/README.md
   - docs/sdks/documents/README.md
   - docs/sdks/dwolla/README.md
   - docs/sdks/events/README.md
@@ -906,9 +911,6 @@ generatedFiles:
   - src/funcs/businessClassificationsGet.ts
   - src/funcs/businessClassificationsList.ts
   - src/funcs/clientTokensCreate.ts
-  - src/funcs/customerFundingSourcesCreate.ts
-  - src/funcs/customerMassPaymentsList.ts
-  - src/funcs/customerTransfersList.ts
   - src/funcs/customersBeneficialOwnersCreate.ts
   - src/funcs/customersBeneficialOwnersList.ts
   - src/funcs/customersCreate.ts
@@ -916,10 +918,13 @@ generatedFiles:
   - src/funcs/customersDocumentsList.ts
   - src/funcs/customersExchangesCreate.ts
   - src/funcs/customersExchangesList.ts
+  - src/funcs/customersFundingSourcesCreate.ts
   - src/funcs/customersFundingSourcesList.ts
   - src/funcs/customersGet.ts
   - src/funcs/customersList.ts
   - src/funcs/customersListAvailableConnections.ts
+  - src/funcs/customersMassPaymentsList.ts
+  - src/funcs/customersTransfersList.ts
   - src/funcs/customersUpdate.ts
   - src/funcs/documentsGet.ts
   - src/funcs/eventsGet.ts
@@ -1007,7 +1012,8 @@ generatedFiles:
   - src/models/createcustomerexchangefundingsource.ts
   - src/models/createcustomerexchangesessionforweb.ts
   - src/models/createcustomerexchangesessionwithredirect.ts
-  - src/models/createcustomervirtualfundingsource.ts
+  - src/models/createcustomerfundingsource.ts
+  - src/models/createcustomervirtualaccountfundingsource.ts
   - src/models/createfinicitysecureexchange.ts
   - src/models/createflinkssecureexchange.ts
   - src/models/createinternationalbeneficialowner.ts
@@ -1257,7 +1263,6 @@ generatedFiles:
   - src/models/operations/getaccount.ts
   - src/models/operations/getbeneficialownershipstatusforcustomer.ts
   - src/models/operations/getcustomer.ts
-  - src/models/operations/getdocument.ts
   - src/models/operations/getevent.ts
   - src/models/operations/getexchange.ts
   - src/models/operations/getexchangepartner.ts
@@ -1304,6 +1309,7 @@ generatedFiles:
   - src/models/operations/retrievebeneficialowner.ts
   - src/models/operations/retrievebusinessclassification.ts
   - src/models/operations/retrievecustomerexchangesession.ts
+  - src/models/operations/retrievedocument.ts
   - src/models/operations/retrievelabelreallocation.ts
   - src/models/operations/retrywebhook.ts
   - src/models/operations/update.ts
@@ -1381,15 +1387,13 @@ generatedFiles:
   - src/sdk/beneficialownersdocuments.ts
   - src/sdk/businessclassifications.ts
   - src/sdk/clienttokens.ts
-  - src/sdk/customer.ts
-  - src/sdk/customerfundingsources.ts
-  - src/sdk/customermasspayments.ts
   - src/sdk/customers.ts
   - src/sdk/customersbeneficialowners.ts
   - src/sdk/customersdocuments.ts
   - src/sdk/customersexchanges.ts
   - src/sdk/customersfundingsources.ts
-  - src/sdk/customertransfers.ts
+  - src/sdk/customersmasspayments.ts
+  - src/sdk/customerstransfers.ts
   - src/sdk/documents.ts
   - src/sdk/events.ts
   - src/sdk/exchangepartners.ts
@@ -1839,7 +1843,11 @@ examples:
         application/json: {}
       responses:
         "404":
-          application/vnd.dwolla.v1.hal+json: {"code": "notFound", "message": "Funding source not found"}
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
+        "200":
+          application/vnd.dwolla.v1.hal+json: {"_links": {"self": {"href": "https://api-sandbox.dwolla.com/funding-sources/2e446d1b-fb3c-42a0-9691-5d1d6a4dbbf0/micro-deposits", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "micro-deposits"}}}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "InvalidResourceState", "message": "Bank already verified."}
   getFundingSourceBalance:
     speakeasy-default-get-funding-source-balance:
       parameters:
@@ -2273,7 +2281,7 @@ examples:
     speakeasy-default-get-exchange:
       parameters:
         path:
-          id: "292317ec-e252-47d8-93c3-2d128e037aa4"
+          id: "e5e9f2d3-a96c-4abd-a097-8ec7ae28aa8a"
       responses:
         "200":
           application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "status": "unverified", "created": "2022-07-23T00:18:21.419Z"}
@@ -2298,9 +2306,10 @@ examples:
           id: "<id>"
       requestBody:
         application/json: {"_links": {"exchange-partner": {"href": "https://api.dwolla.com/exchange-partners/f53ffb32-c84f-496a-9d9d-acd100d396ef"}}, "plaid": {"publicToken": "public-production-d5456acb-01d5-4932-9783-e4c883cf1c0c"}}
+        application/vnd.dwolla.v1.hal+json: {"_links": {"exchange-partner": {"href": "https://api.dwolla.com/exchange-partners/f53ffb32-c84f-496a-9d9d-acd100d396ef"}}, "plaid": {"publicToken": "public-production-d5456acb-01d5-4932-9783-e4c883cf1c0c"}}
       responses:
         "400":
-          application/vnd.dwolla.v1.hal+json: {"code": "ValidationError", "message": "Validation error(s) present. See embedded errors list for more details.", "_embedded": {"code": "ValidationError", "message": "Validation error(s) present. See embedded errors list for more details."}}
+          application/vnd.dwolla.v1.hal+json: {"code": "InvalidExchangeToken", "message": "Exchange token is expired."}
         "401":
           application/vnd.dwolla.v1.hal+json: {"code": "InvalidScope", "message": "Missing or invalid scopes for requested endpoint."}
         "404":
@@ -2462,5 +2471,17 @@ examples:
           application/vnd.dwolla.v1.hal+json: {"code": "BadRequest", "message": "The request body contains bad syntax or is incomplete."}
         "403":
           application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
+  retrieveDocument:
+    speakeasy-default-retrieve-document:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/vnd.dwolla.v1.hal+json: {"_links": {"self": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc", "status": "reviewed", "type": "passport", "created": "2015-09-29T21:42:16.000Z", "documentVerificationStatus": "rejected", "failureReason": "ScanDobMismatch", "allFailureReasons": [{"reason": "ScanDobMismatch", "description": "Scan DOB does not match DOB on account"}]}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
 examplesVersion: 1.0.2
 generatedTests: {}

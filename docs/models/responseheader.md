@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ResponseHeader } from "dwolla-typescript";
+import { ResponseHeader } from "dwolla-typescript/models";
 
 let value: ResponseHeader = {
   name: "Date",

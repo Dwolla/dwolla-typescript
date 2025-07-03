@@ -26,9 +26,7 @@ export class ListMassPaymentsNotFoundDwollaV1HalJSONError extends DwollaError {
     err: ListMassPaymentsNotFoundDwollaV1HalJSONErrorData,
     httpMeta: { response: Response; request: Request; body: string },
   ) {
-    const message = "message" in err && typeof err.message === "string"
-      ? err.message
-      : `API error occurred: ${JSON.stringify(err)}`;
+    const message = err.message || `API error occurred: ${JSON.stringify(err)}`;
     super(message, httpMeta);
     this.data$ = err;
     if (err.code != null) this.code = err.code;
@@ -58,9 +56,7 @@ export class ListMassPaymentsForbiddenDwollaV1HalJSONError extends DwollaError {
     err: ListMassPaymentsForbiddenDwollaV1HalJSONErrorData,
     httpMeta: { response: Response; request: Request; body: string },
   ) {
-    const message = "message" in err && typeof err.message === "string"
-      ? err.message
-      : `API error occurred: ${JSON.stringify(err)}`;
+    const message = err.message || `API error occurred: ${JSON.stringify(err)}`;
     super(message, httpMeta);
     this.data$ = err;
     if (err.code != null) this.code = err.code;

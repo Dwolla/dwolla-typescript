@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InvalidAmountLimitErrorLinks } from "dwolla-typescript";
+import { InvalidAmountLimitErrorLinks } from "dwolla-typescript/models";
 
 let value: InvalidAmountLimitErrorLinks = {};
 ```

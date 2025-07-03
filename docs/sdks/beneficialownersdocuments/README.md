@@ -5,12 +5,12 @@
 
 ### Available Operations
 
-* [list](#list) - List document for beneficial owner
+* [list](#list) - List documents for beneficial owner
 * [create](#create) - Create a document for beneficial owner
 
 ## list
 
-List document for beneficial owner
+List documents for beneficial owner
 
 ### Example Usage
 

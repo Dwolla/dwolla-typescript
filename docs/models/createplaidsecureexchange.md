@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreatePlaidSecureExchange } from "dwolla-typescript";
+import { CreatePlaidSecureExchange } from "dwolla-typescript/models";
 
 let value: CreatePlaidSecureExchange = {
   links: {

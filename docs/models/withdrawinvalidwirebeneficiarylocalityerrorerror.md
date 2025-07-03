@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WithdrawInvalidWireBeneficiaryLocalityErrorError } from "dwolla-typescript";
+import { WithdrawInvalidWireBeneficiaryLocalityErrorError } from "dwolla-typescript/models";
 
 let value: WithdrawInvalidWireBeneficiaryLocalityErrorError = {
   code: "InvalidFormat",

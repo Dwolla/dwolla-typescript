@@ -5,7 +5,7 @@ Create exchange session with redirect URL (required for Visa and for mobile sess
 ## Example Usage
 
 ```typescript
-import { CreateCustomerExchangeSessionWithRedirect } from "dwolla-typescript";
+import { CreateCustomerExchangeSessionWithRedirect } from "dwolla-typescript/models";
 
 let value: CreateCustomerExchangeSessionWithRedirect = {
   links: {

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { PointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks } from "dwolla-typescript";
+import { PointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks } from "dwolla-typescript/models";
 
 let value: PointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks = {};
 ```

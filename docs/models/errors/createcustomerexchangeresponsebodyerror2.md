@@ -1,0 +1,16 @@
+# CreateCustomerExchangeResponseBodyError2
+
+## Example Usage
+
+```typescript
+import { CreateCustomerExchangeResponseBodyError2 } from "dwolla-typescript/models/errors";
+
+// No examples available for this model
+```
+
+## Fields
+
+| Field                                                                                                                                      | Type                                                                                                                                       | Required                                                                                                                                   | Description                                                                                                                                | Example                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `code`                                                                                                                                     | *string*                                                                                                                                   | :heavy_minus_sign:                                                                                                                         | N/A                                                                                                                                        | InvalidScope                                                                                                                               |
+| `message`                                                                                                                                  | *string*                                                                                                                                   | :heavy_minus_sign:                                                                                                                         | N/A                                                                                                                                        | The scopes for creating an exchange resource for a customer is not enabled for this application. Reach out to Dwolla for more information. |

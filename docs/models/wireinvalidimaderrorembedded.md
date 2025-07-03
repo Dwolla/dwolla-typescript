@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WireInvalidImadErrorEmbedded } from "dwolla-typescript";
+import { WireInvalidImadErrorEmbedded } from "dwolla-typescript/models";
 
 let value: WireInvalidImadErrorEmbedded = {
   errors: [

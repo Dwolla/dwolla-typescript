@@ -9,14 +9,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
 
-/**
- * Parameters for creating a funding source
- */
-export type CreateCustomerFundingSourceRequestBody =
-  | models.CreateCustomerBankFundingSource
-  | models.CreateCustomerExchangeFundingSource
-  | models.CreateCustomerVirtualFundingSource;
-
 export type CreateCustomerFundingSourceRequest = {
   /**
    * Customer's unique identifier
@@ -25,80 +17,12 @@ export type CreateCustomerFundingSourceRequest = {
   /**
    * Parameters for creating a funding source
    */
-  requestBody:
-    | models.CreateCustomerBankFundingSource
-    | models.CreateCustomerExchangeFundingSource
-    | models.CreateCustomerVirtualFundingSource;
+  createCustomerFundingSource: models.CreateCustomerFundingSource;
 };
 
 export type CreateCustomerFundingSourceResponse = {
   headers: { [k: string]: Array<string> };
 };
-
-/** @internal */
-export const CreateCustomerFundingSourceRequestBody$inboundSchema: z.ZodType<
-  CreateCustomerFundingSourceRequestBody,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  models.CreateCustomerBankFundingSource$inboundSchema,
-  models.CreateCustomerExchangeFundingSource$inboundSchema,
-  models.CreateCustomerVirtualFundingSource$inboundSchema,
-]);
-
-/** @internal */
-export type CreateCustomerFundingSourceRequestBody$Outbound =
-  | models.CreateCustomerBankFundingSource$Outbound
-  | models.CreateCustomerExchangeFundingSource$Outbound
-  | models.CreateCustomerVirtualFundingSource$Outbound;
-
-/** @internal */
-export const CreateCustomerFundingSourceRequestBody$outboundSchema: z.ZodType<
-  CreateCustomerFundingSourceRequestBody$Outbound,
-  z.ZodTypeDef,
-  CreateCustomerFundingSourceRequestBody
-> = z.union([
-  models.CreateCustomerBankFundingSource$outboundSchema,
-  models.CreateCustomerExchangeFundingSource$outboundSchema,
-  models.CreateCustomerVirtualFundingSource$outboundSchema,
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerFundingSourceRequestBody$ {
-  /** @deprecated use `CreateCustomerFundingSourceRequestBody$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerFundingSourceRequestBody$inboundSchema;
-  /** @deprecated use `CreateCustomerFundingSourceRequestBody$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerFundingSourceRequestBody$outboundSchema;
-  /** @deprecated use `CreateCustomerFundingSourceRequestBody$Outbound` instead. */
-  export type Outbound = CreateCustomerFundingSourceRequestBody$Outbound;
-}
-
-export function createCustomerFundingSourceRequestBodyToJSON(
-  createCustomerFundingSourceRequestBody:
-    CreateCustomerFundingSourceRequestBody,
-): string {
-  return JSON.stringify(
-    CreateCustomerFundingSourceRequestBody$outboundSchema.parse(
-      createCustomerFundingSourceRequestBody,
-    ),
-  );
-}
-
-export function createCustomerFundingSourceRequestBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateCustomerFundingSourceRequestBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateCustomerFundingSourceRequestBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateCustomerFundingSourceRequestBody' from JSON`,
-  );
-}
 
 /** @internal */
 export const CreateCustomerFundingSourceRequest$inboundSchema: z.ZodType<
@@ -107,24 +31,17 @@ export const CreateCustomerFundingSourceRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
-  RequestBody: z.union([
-    models.CreateCustomerBankFundingSource$inboundSchema,
-    models.CreateCustomerExchangeFundingSource$inboundSchema,
-    models.CreateCustomerVirtualFundingSource$inboundSchema,
-  ]),
+  CreateCustomerFundingSource: models.CreateCustomerFundingSource$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    "RequestBody": "requestBody",
+    "CreateCustomerFundingSource": "createCustomerFundingSource",
   });
 });
 
 /** @internal */
 export type CreateCustomerFundingSourceRequest$Outbound = {
   id: string;
-  RequestBody:
-    | models.CreateCustomerBankFundingSource$Outbound
-    | models.CreateCustomerExchangeFundingSource$Outbound
-    | models.CreateCustomerVirtualFundingSource$Outbound;
+  CreateCustomerFundingSource: models.CreateCustomerFundingSource$Outbound;
 };
 
 /** @internal */
@@ -134,14 +51,11 @@ export const CreateCustomerFundingSourceRequest$outboundSchema: z.ZodType<
   CreateCustomerFundingSourceRequest
 > = z.object({
   id: z.string(),
-  requestBody: z.union([
-    models.CreateCustomerBankFundingSource$outboundSchema,
-    models.CreateCustomerExchangeFundingSource$outboundSchema,
-    models.CreateCustomerVirtualFundingSource$outboundSchema,
-  ]),
+  createCustomerFundingSource:
+    models.CreateCustomerFundingSource$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    requestBody: "RequestBody",
+    createCustomerFundingSource: "CreateCustomerFundingSource",
   });
 });
 

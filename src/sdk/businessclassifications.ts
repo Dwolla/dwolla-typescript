@@ -29,7 +29,7 @@ export class BusinessClassifications extends ClientSDK {
    * Retrieve a business classification
    *
    * @remarks
-   * Retrieve a business classification
+   * Retrieve a business classification by id.
    */
   async get(
     request: operations.RetrieveBusinessClassificationRequest,

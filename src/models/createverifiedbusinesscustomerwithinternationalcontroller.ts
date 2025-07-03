@@ -6,7 +6,6 @@ import * as z from "zod";
 import { safeParse } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
-import { RFCDate } from "../types/rfcdate.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import {
   InternationalAddress,
@@ -26,7 +25,7 @@ export type CreateVerifiedBusinessCustomerWithInternationalControllerController 
     firstName: string;
     lastName: string;
     title: string;
-    dateOfBirth: RFCDate;
+    dateOfBirth: string;
     address: InternationalAddress;
     passport: Passport;
   };
@@ -79,7 +78,7 @@ export const CreateVerifiedBusinessCustomerWithInternationalControllerController
     firstName: z.string(),
     lastName: z.string(),
     title: z.string(),
-    dateOfBirth: z.string().transform(v => new RFCDate(v)),
+    dateOfBirth: z.string(),
     address: InternationalAddress$inboundSchema,
     passport: Passport$inboundSchema,
   });
@@ -105,7 +104,7 @@ export const CreateVerifiedBusinessCustomerWithInternationalControllerController
     firstName: z.string(),
     lastName: z.string(),
     title: z.string(),
-    dateOfBirth: z.instanceof(RFCDate).transform(v => v.toString()),
+    dateOfBirth: z.string(),
     address: InternationalAddress$outboundSchema,
     passport: Passport$outboundSchema,
   });

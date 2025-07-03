@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DuplicateResourceSchemaLinks } from "dwolla-typescript";
+import { DuplicateResourceSchemaLinks } from "dwolla-typescript/models";
 
 let value: DuplicateResourceSchemaLinks = {
   about: {

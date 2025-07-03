@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Events } from "dwolla-typescript";
+import { Events } from "dwolla-typescript/models";
 
 let value: Events = {
   additionalProperties: {

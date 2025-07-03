@@ -5,7 +5,7 @@ Request model for list beneficial owners
 ## Example Usage
 
 ```typescript
-import { BeneficialOwners } from "dwolla-typescript";
+import { BeneficialOwners } from "dwolla-typescript/models";
 
 let value: BeneficialOwners = {
   links: {

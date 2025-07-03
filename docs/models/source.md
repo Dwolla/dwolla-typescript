@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Source } from "dwolla-typescript";
+import { Source } from "dwolla-typescript/models";
 
 let value: Source = {
   addenda: {

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { OperationBlockedErrorEmbedded } from "dwolla-typescript";
+import { OperationBlockedErrorEmbedded } from "dwolla-typescript/models";
 
 let value: OperationBlockedErrorEmbedded = {
   errors: [

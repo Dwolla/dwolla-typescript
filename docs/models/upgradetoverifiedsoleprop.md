@@ -5,7 +5,7 @@ Upgrade Unverified Customer to Verified Business Customer (Sole Proprietorship)
 ## Example Usage
 
 ```typescript
-import { UpgradeToVerifiedSoleProp } from "dwolla-typescript";
+import { UpgradeToVerifiedSoleProp } from "dwolla-typescript/models";
 import { RFCDate } from "dwolla-typescript/types";
 
 let value: UpgradeToVerifiedSoleProp = {

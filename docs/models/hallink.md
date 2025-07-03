@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { HalLink } from "dwolla-typescript";
+import { HalLink } from "dwolla-typescript/models";
 
 let value: HalLink = {
   href: "https://api.dwolla.com",

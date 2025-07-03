@@ -15,6 +15,8 @@ import { CustomersBeneficialOwners } from "./customersbeneficialowners.js";
 import { CustomersDocuments } from "./customersdocuments.js";
 import { CustomersExchanges } from "./customersexchanges.js";
 import { CustomersFundingSources } from "./customersfundingsources.js";
+import { CustomersMassPayments } from "./customersmasspayments.js";
+import { CustomersTransfers } from "./customerstransfers.js";
 
 export class Customers extends ClientSDK {
   private _beneficialOwners?: CustomersBeneficialOwners;
@@ -34,6 +36,16 @@ export class Customers extends ClientSDK {
     return (this._fundingSources ??= new CustomersFundingSources(
       this._options,
     ));
+  }
+
+  private _transfers?: CustomersTransfers;
+  get transfers(): CustomersTransfers {
+    return (this._transfers ??= new CustomersTransfers(this._options));
+  }
+
+  private _massPayments?: CustomersMassPayments;
+  get massPayments(): CustomersMassPayments {
+    return (this._massPayments ??= new CustomersMassPayments(this._options));
   }
 
   private _exchanges?: CustomersExchanges;

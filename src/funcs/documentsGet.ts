@@ -34,7 +34,7 @@ import { Result } from "../types/fp.js";
  */
 export function documentsGet(
   client: DwollaCore,
-  request: operations.GetDocumentRequest,
+  request: operations.RetrieveDocumentRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -60,7 +60,7 @@ export function documentsGet(
 
 async function $do(
   client: DwollaCore,
-  request: operations.GetDocumentRequest,
+  request: operations.RetrieveDocumentRequest,
   options?: RequestOptions,
 ): Promise<
   [
@@ -82,7 +82,7 @@ async function $do(
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.GetDocumentRequest$outboundSchema.parse(value),
+    (value) => operations.RetrieveDocumentRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -110,7 +110,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "getDocument",
+    operationID: "retrieveDocument",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,

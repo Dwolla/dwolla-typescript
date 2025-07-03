@@ -5,7 +5,7 @@ Create a Receive Only User
 ## Example Usage
 
 ```typescript
-import { CreateReceiveOnlyUser } from "dwolla-typescript";
+import { CreateReceiveOnlyUser } from "dwolla-typescript/models";
 
 let value: CreateReceiveOnlyUser = {
   firstName: "Account",

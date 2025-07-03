@@ -28,9 +28,7 @@ export class UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError
     err: UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONErrorData,
     httpMeta: { response: Response; request: Request; body: string },
   ) {
-    const message = "message" in err && typeof err.message === "string"
-      ? err.message
-      : `API error occurred: ${JSON.stringify(err)}`;
+    const message = err.message || `API error occurred: ${JSON.stringify(err)}`;
     super(message, httpMeta);
     this.data$ = err;
     if (err.code != null) this.code = err.code;
@@ -62,9 +60,7 @@ export class UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError
     err: UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONErrorData,
     httpMeta: { response: Response; request: Request; body: string },
   ) {
-    const message = "message" in err && typeof err.message === "string"
-      ? err.message
-      : `API error occurred: ${JSON.stringify(err)}`;
+    const message = err.message || `API error occurred: ${JSON.stringify(err)}`;
     super(message, httpMeta);
     this.data$ = err;
     if (err.code != null) this.code = err.code;

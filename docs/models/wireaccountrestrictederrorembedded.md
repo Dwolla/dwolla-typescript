@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WireAccountRestrictedErrorEmbedded } from "dwolla-typescript";
+import { WireAccountRestrictedErrorEmbedded } from "dwolla-typescript/models";
 
 let value: WireAccountRestrictedErrorEmbedded = {
   errors: [

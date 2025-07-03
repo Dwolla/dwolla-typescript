@@ -5,7 +5,7 @@ Create exchange session for web (MX and Plaid web sessions where redirect-url is
 ## Example Usage
 
 ```typescript
-import { CreateCustomerExchangeSessionForWeb } from "dwolla-typescript";
+import { CreateCustomerExchangeSessionForWeb } from "dwolla-typescript/models";
 
 let value: CreateCustomerExchangeSessionForWeb = {
   links: {

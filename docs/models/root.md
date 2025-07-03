@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Root } from "dwolla-typescript";
+import { Root } from "dwolla-typescript/models";
 
 let value: Root = {
   links: {

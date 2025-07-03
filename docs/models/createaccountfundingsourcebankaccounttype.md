@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateAccountFundingSourceBankAccountType } from "dwolla-typescript";
+import { CreateAccountFundingSourceBankAccountType } from "dwolla-typescript/models";
 
 let value: CreateAccountFundingSourceBankAccountType = "savings";
 ```

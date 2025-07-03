@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SecretTooLongErrorLinks } from "dwolla-typescript";
+import { SecretTooLongErrorLinks } from "dwolla-typescript/models";
 
 let value: SecretTooLongErrorLinks = {};
 ```
