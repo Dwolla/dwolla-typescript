@@ -14,12 +14,12 @@ import type {
   CreateUSBeneficialOwner,
   VerifyMicroDeposits,
   TransferAmount,
-} from '../dist/esm/models/index.js';
+} from '../../dist/esm/models/index.js';
 import type {
   CreateCustomerResponse,
   CreateCustomerFundingSourceResponse,
   InitiateTransferRequest,
-} from '../dist/esm/models/operations/index.js';
+} from '../../dist/esm/models/operations/index.js';
 
 // Load sandbox credentials
 dotenv.config({ path: path.join(process.cwd(), './tests/sandbox/sandbox.env') });
