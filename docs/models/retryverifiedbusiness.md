@@ -5,7 +5,7 @@ Retry Verification for Verified Business Customer
 ## Example Usage
 
 ```typescript
-import { RetryVerifiedBusiness } from "dwolla-typescript";
+import { RetryVerifiedBusiness } from "dwolla-typescript/models";
 import { RFCDate } from "dwolla-typescript/types";
 
 let value: RetryVerifiedBusiness = {

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { AllFailureReason } from "dwolla-typescript";
+import { AllFailureReason } from "dwolla-typescript/models";
 
 let value: AllFailureReason = {
   reason: "ScanDobMismatch",

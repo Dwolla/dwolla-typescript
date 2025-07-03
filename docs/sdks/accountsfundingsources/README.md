@@ -97,7 +97,7 @@ run();
 
 ## list
 
-List funding source for an account
+List funding sources for an account
 
 ### Example Usage
 

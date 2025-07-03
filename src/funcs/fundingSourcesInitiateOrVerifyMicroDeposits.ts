@@ -44,7 +44,8 @@ export function fundingSourcesInitiateOrVerifyMicroDeposits(
 ): APIPromise<
   Result<
     operations.InitiateOrVerifyMicroDepositsResponse | undefined,
-    | errors.InitiateOrVerifyMicroDepositsDwollaV1HalJSONError
+    | errors.InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONError
+    | errors.InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError
     | DwollaError
     | ResponseValidationError
     | ConnectionError
@@ -70,7 +71,8 @@ async function $do(
   [
     Result<
       operations.InitiateOrVerifyMicroDepositsResponse | undefined,
-      | errors.InitiateOrVerifyMicroDepositsDwollaV1HalJSONError
+      | errors.InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONError
+      | errors.InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError
       | DwollaError
       | ResponseValidationError
       | ConnectionError
@@ -146,7 +148,7 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["404", "4XX", "5XX"],
+    errorCodes: ["403", "404", "4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -161,7 +163,8 @@ async function $do(
 
   const [result] = await M.match<
     operations.InitiateOrVerifyMicroDepositsResponse | undefined,
-    | errors.InitiateOrVerifyMicroDepositsDwollaV1HalJSONError
+    | errors.InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONError
+    | errors.InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError
     | DwollaError
     | ResponseValidationError
     | ConnectionError
@@ -171,14 +174,26 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
+    M.json(
+      200,
+      operations.InitiateOrVerifyMicroDepositsResponse$inboundSchema.optional(),
+      { ctype: "application/vnd.dwolla.v1.hal+json", key: "Result" },
+    ),
     M.nil(
       201,
       operations.InitiateOrVerifyMicroDepositsResponse$inboundSchema.optional(),
       { hdrs: true },
     ),
     M.jsonErr(
+      403,
+      errors
+        .InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONError$inboundSchema,
+      { ctype: "application/vnd.dwolla.v1.hal+json" },
+    ),
+    M.jsonErr(
       404,
-      errors.InitiateOrVerifyMicroDepositsDwollaV1HalJSONError$inboundSchema,
+      errors
+        .InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError$inboundSchema,
       { ctype: "application/vnd.dwolla.v1.hal+json" },
     ),
     M.fail("4XX"),

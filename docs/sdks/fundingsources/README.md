@@ -339,10 +339,11 @@ run();
 
 ### Errors
 
-| Error Type                                               | Status Code                                              | Content Type                                             |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| errors.InitiateOrVerifyMicroDepositsDwollaV1HalJSONError | 404                                                      | application/vnd.dwolla.v1.hal+json                       |
-| errors.APIError                                          | 4XX, 5XX                                                 | \*/\*                                                    |
+| Error Type                                                        | Status Code                                                       | Content Type                                                      |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| errors.InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONError | 403                                                               | application/vnd.dwolla.v1.hal+json                                |
+| errors.InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError  | 404                                                               | application/vnd.dwolla.v1.hal+json                                |
+| errors.APIError                                                   | 4XX, 5XX                                                          | \*/\*                                                             |
 
 ## getBalance
 

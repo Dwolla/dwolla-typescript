@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WebhookRetriesEmbedded } from "dwolla-typescript";
+import { WebhookRetriesEmbedded } from "dwolla-typescript/models";
 
 let value: WebhookRetriesEmbedded = {
   retries: [

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Finicity } from "dwolla-typescript";
+import { Finicity } from "dwolla-typescript/models";
 import { RFCDate } from "dwolla-typescript/types";
 
 let value: Finicity = {

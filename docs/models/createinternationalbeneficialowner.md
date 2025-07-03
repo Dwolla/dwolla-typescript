@@ -5,7 +5,7 @@ Create an International Beneficial Owner (identified by Passport)
 ## Example Usage
 
 ```typescript
-import { CreateInternationalBeneficialOwner } from "dwolla-typescript";
+import { CreateInternationalBeneficialOwner } from "dwolla-typescript/models";
 
 let value: CreateInternationalBeneficialOwner = {
   firstName: "Josie",

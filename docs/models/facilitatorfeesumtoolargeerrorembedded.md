@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { FacilitatorFeeSumTooLargeErrorEmbedded } from "dwolla-typescript";
+import { FacilitatorFeeSumTooLargeErrorEmbedded } from "dwolla-typescript/models";
 
 let value: FacilitatorFeeSumTooLargeErrorEmbedded = {
   errors: [

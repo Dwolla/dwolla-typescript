@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CannotParseAmountErrorError } from "dwolla-typescript";
+import { CannotParseAmountErrorError } from "dwolla-typescript/models";
 
 let value: CannotParseAmountErrorError = {
   code: "InvalidFormat",

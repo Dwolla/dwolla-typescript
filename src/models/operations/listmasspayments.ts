@@ -9,11 +9,11 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListMassPaymentsRequest = {
   /**
-   * Account ID
+   * Account's unique identifier
    */
   id: string;
   /**
-   * How many results to return.
+   * Maximum number of results to return
    */
   limit?: number | undefined;
   /**

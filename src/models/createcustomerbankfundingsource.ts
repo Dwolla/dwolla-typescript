@@ -61,6 +61,10 @@ export type CreateCustomerBankFundingSource = {
    */
   name: string;
   /**
+   * Use when creating an unverified bank account.
+   */
+  verified?: false | undefined;
+  /**
    * A processor token obtained from Plaid for adding and verifying a bank
    */
   plaidToken?: string | undefined;
@@ -264,6 +268,7 @@ export const CreateCustomerBankFundingSource$inboundSchema: z.ZodType<
   accountNumber: z.string(),
   bankAccountType: CreateCustomerBankFundingSourceBankAccountType$inboundSchema,
   name: z.string(),
+  verified: z.literal(false).default(false).optional(),
   plaidToken: z.string().optional(),
   channels: z.array(Channel$inboundSchema).optional(),
   _links: z.lazy(() => CreateCustomerBankFundingSourceLinks$inboundSchema)
@@ -280,6 +285,7 @@ export type CreateCustomerBankFundingSource$Outbound = {
   accountNumber: string;
   bankAccountType: string;
   name: string;
+  verified: false;
   plaidToken?: string | undefined;
   channels?: Array<string> | undefined;
   _links?: CreateCustomerBankFundingSourceLinks$Outbound | undefined;
@@ -296,6 +302,7 @@ export const CreateCustomerBankFundingSource$outboundSchema: z.ZodType<
   bankAccountType:
     CreateCustomerBankFundingSourceBankAccountType$outboundSchema,
   name: z.string(),
+  verified: z.literal(false).default(false as const),
   plaidToken: z.string().optional(),
   channels: z.array(Channel$outboundSchema).optional(),
   links: z.lazy(() => CreateCustomerBankFundingSourceLinks$outboundSchema)

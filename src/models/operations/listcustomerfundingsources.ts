@@ -9,7 +9,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListCustomerFundingSourcesRequest = {
   /**
-   * Customer funding sources
+   * Customer's unique identifier
    */
   id: string;
 };

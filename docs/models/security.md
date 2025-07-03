@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Security } from "dwolla-typescript";
+import { Security } from "dwolla-typescript/models";
 
 let value: Security = {};
 ```

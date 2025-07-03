@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { UpgradeToVerifiedBusinessController } from "dwolla-typescript";
+import { UpgradeToVerifiedBusinessController } from "dwolla-typescript/models";
 import { RFCDate } from "dwolla-typescript/types";
 
 let value: UpgradeToVerifiedBusinessController = {

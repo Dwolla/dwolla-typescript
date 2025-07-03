@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WebhookRetriesRetry } from "dwolla-typescript";
+import { WebhookRetriesRetry } from "dwolla-typescript/models";
 
 let value: WebhookRetriesRetry = {
   links: {

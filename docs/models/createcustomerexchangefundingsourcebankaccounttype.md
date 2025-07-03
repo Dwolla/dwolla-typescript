@@ -5,7 +5,7 @@ Type of bank account
 ## Example Usage
 
 ```typescript
-import { CreateCustomerExchangeFundingSourceBankAccountType } from "dwolla-typescript";
+import { CreateCustomerExchangeFundingSourceBankAccountType } from "dwolla-typescript/models";
 
 let value: CreateCustomerExchangeFundingSourceBankAccountType = "checking";
 ```

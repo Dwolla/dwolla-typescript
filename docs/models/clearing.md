@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Clearing } from "dwolla-typescript";
+import { Clearing } from "dwolla-typescript/models";
 
 let value: Clearing = {
   source: "standard",

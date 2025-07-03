@@ -43,7 +43,6 @@ const value: models.CreateVerifiedPersonalCustomer = {
   ipAddress: "143.156.7.8",
   phone: "5555555555",
   correlationId: "fc451a7a-ae30-4404-aB95-e3553fcd733",
-  businessName: "Jane Corp llc",
   address1: "99-99 33rd St",
   address2: "99-99 33rd St",
   city: "Some City",
@@ -103,7 +102,7 @@ const value: models.CreateVerifiedBusinessCustomerWithController = {
     firstName: "John",
     lastName: "Controller",
     title: "CEO",
-    dateOfBirth: new RFCDate("1980-01-31"),
+    dateOfBirth: "1980-01-31",
     address: {
       address1: "462 Main Street",
       address2: "Suite 123",
@@ -144,7 +143,7 @@ const value: models.CreateVerifiedBusinessCustomerWithInternationalController =
       firstName: "John",
       lastName: "Controller",
       title: "CEO",
-      dateOfBirth: new RFCDate("1980-01-31"),
+      dateOfBirth: "1980-01-31",
       address: {
         address1: "462 Main Street",
         address2: "Suite 123",

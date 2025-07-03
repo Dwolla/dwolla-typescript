@@ -85,7 +85,7 @@ run();
 
 ## get
 
-Retrieve a business classification
+Retrieve a business classification by id.
 
 ### Example Usage
 

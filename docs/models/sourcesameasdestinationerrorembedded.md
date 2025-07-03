@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SourceSameAsDestinationErrorEmbedded } from "dwolla-typescript";
+import { SourceSameAsDestinationErrorEmbedded } from "dwolla-typescript/models";
 
 let value: SourceSameAsDestinationErrorEmbedded = {
   errors: [

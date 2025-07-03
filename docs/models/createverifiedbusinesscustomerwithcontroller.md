@@ -5,8 +5,7 @@ Create a Verified Business customer with a US controller
 ## Example Usage
 
 ```typescript
-import { CreateVerifiedBusinessCustomerWithController } from "dwolla-typescript";
-import { RFCDate } from "dwolla-typescript/types";
+import { CreateVerifiedBusinessCustomerWithController } from "dwolla-typescript/models";
 
 let value: CreateVerifiedBusinessCustomerWithController = {
   firstName: "Jane",
@@ -29,7 +28,7 @@ let value: CreateVerifiedBusinessCustomerWithController = {
     firstName: "John",
     lastName: "Controller",
     title: "CEO",
-    dateOfBirth: new RFCDate("1980-01-31"),
+    dateOfBirth: "1980-01-31",
     address: {
       address1: "462 Main Street",
       address2: "Suite 123",

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InvalidFacilitatorFeeCollectFromCombinationErrorLinks } from "dwolla-typescript";
+import { InvalidFacilitatorFeeCollectFromCombinationErrorLinks } from "dwolla-typescript/models";
 
 let value: InvalidFacilitatorFeeCollectFromCombinationErrorLinks = {};
 ```

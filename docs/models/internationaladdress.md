@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InternationalAddress } from "dwolla-typescript";
+import { InternationalAddress } from "dwolla-typescript/models";
 
 let value: InternationalAddress = {
   address1: "462 Main Street",

@@ -5,7 +5,7 @@ Update Verified Business Customer Information (both Sole Proprietorship and Non-
 ## Example Usage
 
 ```typescript
-import { UpdateVerifiedBusiness } from "dwolla-typescript";
+import { UpdateVerifiedBusiness } from "dwolla-typescript/models";
 
 let value: UpdateVerifiedBusiness = {
   email: "accountAdmin@email.com",

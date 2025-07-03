@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InvalidFacilitatorErrorEmbedded } from "dwolla-typescript";
+import { InvalidFacilitatorErrorEmbedded } from "dwolla-typescript/models";
 
 let value: InvalidFacilitatorErrorEmbedded = {
   errors: [

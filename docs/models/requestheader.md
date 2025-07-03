@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { RequestHeader } from "dwolla-typescript";
+import { RequestHeader } from "dwolla-typescript/models";
 
 let value: RequestHeader = {
   name: "X-Dwolla-Topic",

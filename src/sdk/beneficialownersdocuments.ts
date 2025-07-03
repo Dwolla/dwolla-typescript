@@ -11,10 +11,10 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class BeneficialOwnersDocuments extends ClientSDK {
   /**
-   * List document for beneficial owner
+   * List documents for beneficial owner
    *
    * @remarks
-   * List document for beneficial owner
+   * List documents for beneficial owner
    */
   async list(
     request: operations.ListBeneficialOwnerDocumentsRequest,

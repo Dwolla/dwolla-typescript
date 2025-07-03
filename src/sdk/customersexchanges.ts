@@ -14,7 +14,7 @@ export class CustomersExchanges extends ClientSDK {
    * List exchanges for a customer
    *
    * @remarks
-   * List exchanges for a customer
+   * Retrieve the list of exchanges associated with a Customer resource.
    */
   async list(
     request: operations.ListCustomerExchangesRequest,

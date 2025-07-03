@@ -5,7 +5,7 @@ Request body for removing a bank funding source
 ## Example Usage
 
 ```typescript
-import { RemoveBank } from "dwolla-typescript";
+import { RemoveBank } from "dwolla-typescript/models";
 
 let value: RemoveBank = {
   removed: true,

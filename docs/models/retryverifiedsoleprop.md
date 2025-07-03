@@ -5,7 +5,7 @@ Retry Verification for Verified Business Customer (Sole Proprietorship)
 ## Example Usage
 
 ```typescript
-import { RetryVerifiedSoleProp } from "dwolla-typescript";
+import { RetryVerifiedSoleProp } from "dwolla-typescript/models";
 import { RFCDate } from "dwolla-typescript/types";
 
 let value: RetryVerifiedSoleProp = {

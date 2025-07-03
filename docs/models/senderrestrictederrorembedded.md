@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SenderRestrictedErrorEmbedded } from "dwolla-typescript";
+import { SenderRestrictedErrorEmbedded } from "dwolla-typescript/models";
 
 let value: SenderRestrictedErrorEmbedded = {
   errors: [

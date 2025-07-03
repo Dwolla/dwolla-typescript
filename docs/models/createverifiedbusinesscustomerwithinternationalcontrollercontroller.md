@@ -3,15 +3,14 @@
 ## Example Usage
 
 ```typescript
-import { CreateVerifiedBusinessCustomerWithInternationalControllerController } from "dwolla-typescript";
-import { RFCDate } from "dwolla-typescript/types";
+import { CreateVerifiedBusinessCustomerWithInternationalControllerController } from "dwolla-typescript/models";
 
 let value: CreateVerifiedBusinessCustomerWithInternationalControllerController =
   {
     firstName: "John",
     lastName: "Controller",
     title: "CEO",
-    dateOfBirth: new RFCDate("1980-01-31"),
+    dateOfBirth: "1980-01-31",
     address: {
       address1: "462 Main Street",
       address2: "Suite 123",
@@ -35,6 +34,6 @@ let value: CreateVerifiedBusinessCustomerWithInternationalControllerController =
 | `firstName`                                                      | *string*                                                         | :heavy_check_mark:                                               | N/A                                                              | John                                                             |
 | `lastName`                                                       | *string*                                                         | :heavy_check_mark:                                               | N/A                                                              | Controller                                                       |
 | `title`                                                          | *string*                                                         | :heavy_check_mark:                                               | N/A                                                              | CEO                                                              |
-| `dateOfBirth`                                                    | [RFCDate](../types/rfcdate.md)                                   | :heavy_check_mark:                                               | N/A                                                              | 1980-01-31                                                       |
+| `dateOfBirth`                                                    | *string*                                                         | :heavy_check_mark:                                               | N/A                                                              | 1980-01-31                                                       |
 | `address`                                                        | [models.InternationalAddress](../models/internationaladdress.md) | :heavy_check_mark:                                               | N/A                                                              |                                                                  |
 | `passport`                                                       | [models.Passport](../models/passport.md)                         | :heavy_check_mark:                                               | N/A                                                              |                                                                  |

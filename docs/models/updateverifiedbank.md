@@ -5,7 +5,7 @@ Request body for updating information of a Verified bank funding source
 ## Example Usage
 
 ```typescript
-import { UpdateVerifiedBank } from "dwolla-typescript";
+import { UpdateVerifiedBank } from "dwolla-typescript/models";
 
 let value: UpdateVerifiedBank = {
   name: "Jane Doe’s Checking",
