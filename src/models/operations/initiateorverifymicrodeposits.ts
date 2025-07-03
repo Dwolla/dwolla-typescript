@@ -44,8 +44,26 @@ export type InitiateOrVerifyMicroDepositsRequest = {
     | undefined;
 };
 
+export type InitiateOrVerifyMicroDepositsSelf = {
+  href?: string | undefined;
+  type?: string | undefined;
+  resourceType?: string | undefined;
+};
+
+export type InitiateOrVerifyMicroDepositsLinks = {
+  self?: InitiateOrVerifyMicroDepositsSelf | undefined;
+};
+
+/**
+ * Response for microdeposits operations (initiation and verification)
+ */
+export type InitiateOrVerifyMicroDepositsResponseBody = {
+  links?: InitiateOrVerifyMicroDepositsLinks | undefined;
+};
+
 export type InitiateOrVerifyMicroDepositsResponse = {
   headers: { [k: string]: Array<string> };
+  result: InitiateOrVerifyMicroDepositsResponseBody;
 };
 
 /** @internal */
@@ -248,21 +266,231 @@ export function initiateOrVerifyMicroDepositsRequestFromJSON(
 }
 
 /** @internal */
+export const InitiateOrVerifyMicroDepositsSelf$inboundSchema: z.ZodType<
+  InitiateOrVerifyMicroDepositsSelf,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  href: z.string().optional(),
+  type: z.string().optional(),
+  "resource-type": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "resource-type": "resourceType",
+  });
+});
+
+/** @internal */
+export type InitiateOrVerifyMicroDepositsSelf$Outbound = {
+  href?: string | undefined;
+  type?: string | undefined;
+  "resource-type"?: string | undefined;
+};
+
+/** @internal */
+export const InitiateOrVerifyMicroDepositsSelf$outboundSchema: z.ZodType<
+  InitiateOrVerifyMicroDepositsSelf$Outbound,
+  z.ZodTypeDef,
+  InitiateOrVerifyMicroDepositsSelf
+> = z.object({
+  href: z.string().optional(),
+  type: z.string().optional(),
+  resourceType: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    resourceType: "resource-type",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace InitiateOrVerifyMicroDepositsSelf$ {
+  /** @deprecated use `InitiateOrVerifyMicroDepositsSelf$inboundSchema` instead. */
+  export const inboundSchema = InitiateOrVerifyMicroDepositsSelf$inboundSchema;
+  /** @deprecated use `InitiateOrVerifyMicroDepositsSelf$outboundSchema` instead. */
+  export const outboundSchema =
+    InitiateOrVerifyMicroDepositsSelf$outboundSchema;
+  /** @deprecated use `InitiateOrVerifyMicroDepositsSelf$Outbound` instead. */
+  export type Outbound = InitiateOrVerifyMicroDepositsSelf$Outbound;
+}
+
+export function initiateOrVerifyMicroDepositsSelfToJSON(
+  initiateOrVerifyMicroDepositsSelf: InitiateOrVerifyMicroDepositsSelf,
+): string {
+  return JSON.stringify(
+    InitiateOrVerifyMicroDepositsSelf$outboundSchema.parse(
+      initiateOrVerifyMicroDepositsSelf,
+    ),
+  );
+}
+
+export function initiateOrVerifyMicroDepositsSelfFromJSON(
+  jsonString: string,
+): SafeParseResult<InitiateOrVerifyMicroDepositsSelf, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => InitiateOrVerifyMicroDepositsSelf$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'InitiateOrVerifyMicroDepositsSelf' from JSON`,
+  );
+}
+
+/** @internal */
+export const InitiateOrVerifyMicroDepositsLinks$inboundSchema: z.ZodType<
+  InitiateOrVerifyMicroDepositsLinks,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  self: z.lazy(() => InitiateOrVerifyMicroDepositsSelf$inboundSchema)
+    .optional(),
+});
+
+/** @internal */
+export type InitiateOrVerifyMicroDepositsLinks$Outbound = {
+  self?: InitiateOrVerifyMicroDepositsSelf$Outbound | undefined;
+};
+
+/** @internal */
+export const InitiateOrVerifyMicroDepositsLinks$outboundSchema: z.ZodType<
+  InitiateOrVerifyMicroDepositsLinks$Outbound,
+  z.ZodTypeDef,
+  InitiateOrVerifyMicroDepositsLinks
+> = z.object({
+  self: z.lazy(() => InitiateOrVerifyMicroDepositsSelf$outboundSchema)
+    .optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace InitiateOrVerifyMicroDepositsLinks$ {
+  /** @deprecated use `InitiateOrVerifyMicroDepositsLinks$inboundSchema` instead. */
+  export const inboundSchema = InitiateOrVerifyMicroDepositsLinks$inboundSchema;
+  /** @deprecated use `InitiateOrVerifyMicroDepositsLinks$outboundSchema` instead. */
+  export const outboundSchema =
+    InitiateOrVerifyMicroDepositsLinks$outboundSchema;
+  /** @deprecated use `InitiateOrVerifyMicroDepositsLinks$Outbound` instead. */
+  export type Outbound = InitiateOrVerifyMicroDepositsLinks$Outbound;
+}
+
+export function initiateOrVerifyMicroDepositsLinksToJSON(
+  initiateOrVerifyMicroDepositsLinks: InitiateOrVerifyMicroDepositsLinks,
+): string {
+  return JSON.stringify(
+    InitiateOrVerifyMicroDepositsLinks$outboundSchema.parse(
+      initiateOrVerifyMicroDepositsLinks,
+    ),
+  );
+}
+
+export function initiateOrVerifyMicroDepositsLinksFromJSON(
+  jsonString: string,
+): SafeParseResult<InitiateOrVerifyMicroDepositsLinks, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      InitiateOrVerifyMicroDepositsLinks$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'InitiateOrVerifyMicroDepositsLinks' from JSON`,
+  );
+}
+
+/** @internal */
+export const InitiateOrVerifyMicroDepositsResponseBody$inboundSchema: z.ZodType<
+  InitiateOrVerifyMicroDepositsResponseBody,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  _links: z.lazy(() => InitiateOrVerifyMicroDepositsLinks$inboundSchema)
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "_links": "links",
+  });
+});
+
+/** @internal */
+export type InitiateOrVerifyMicroDepositsResponseBody$Outbound = {
+  _links?: InitiateOrVerifyMicroDepositsLinks$Outbound | undefined;
+};
+
+/** @internal */
+export const InitiateOrVerifyMicroDepositsResponseBody$outboundSchema:
+  z.ZodType<
+    InitiateOrVerifyMicroDepositsResponseBody$Outbound,
+    z.ZodTypeDef,
+    InitiateOrVerifyMicroDepositsResponseBody
+  > = z.object({
+    links: z.lazy(() => InitiateOrVerifyMicroDepositsLinks$outboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      links: "_links",
+    });
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace InitiateOrVerifyMicroDepositsResponseBody$ {
+  /** @deprecated use `InitiateOrVerifyMicroDepositsResponseBody$inboundSchema` instead. */
+  export const inboundSchema =
+    InitiateOrVerifyMicroDepositsResponseBody$inboundSchema;
+  /** @deprecated use `InitiateOrVerifyMicroDepositsResponseBody$outboundSchema` instead. */
+  export const outboundSchema =
+    InitiateOrVerifyMicroDepositsResponseBody$outboundSchema;
+  /** @deprecated use `InitiateOrVerifyMicroDepositsResponseBody$Outbound` instead. */
+  export type Outbound = InitiateOrVerifyMicroDepositsResponseBody$Outbound;
+}
+
+export function initiateOrVerifyMicroDepositsResponseBodyToJSON(
+  initiateOrVerifyMicroDepositsResponseBody:
+    InitiateOrVerifyMicroDepositsResponseBody,
+): string {
+  return JSON.stringify(
+    InitiateOrVerifyMicroDepositsResponseBody$outboundSchema.parse(
+      initiateOrVerifyMicroDepositsResponseBody,
+    ),
+  );
+}
+
+export function initiateOrVerifyMicroDepositsResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  InitiateOrVerifyMicroDepositsResponseBody,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      InitiateOrVerifyMicroDepositsResponseBody$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'InitiateOrVerifyMicroDepositsResponseBody' from JSON`,
+  );
+}
+
+/** @internal */
 export const InitiateOrVerifyMicroDepositsResponse$inboundSchema: z.ZodType<
   InitiateOrVerifyMicroDepositsResponse,
   z.ZodTypeDef,
   unknown
 > = z.object({
   Headers: z.record(z.array(z.string())),
+  Result: z.lazy(() => InitiateOrVerifyMicroDepositsResponseBody$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "Headers": "headers",
+    "Result": "result",
   });
 });
 
 /** @internal */
 export type InitiateOrVerifyMicroDepositsResponse$Outbound = {
   Headers: { [k: string]: Array<string> };
+  Result: InitiateOrVerifyMicroDepositsResponseBody$Outbound;
 };
 
 /** @internal */
@@ -272,9 +500,13 @@ export const InitiateOrVerifyMicroDepositsResponse$outboundSchema: z.ZodType<
   InitiateOrVerifyMicroDepositsResponse
 > = z.object({
   headers: z.record(z.array(z.string())),
+  result: z.lazy(() =>
+    InitiateOrVerifyMicroDepositsResponseBody$outboundSchema
+  ),
 }).transform((v) => {
   return remap$(v, {
     headers: "Headers",
+    result: "Result",
   });
 });
 

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { MassPaymentMetaData } from "dwolla-typescript";
+import { MassPaymentMetaData } from "dwolla-typescript/models";
 
 let value: MassPaymentMetaData = {};
 ```

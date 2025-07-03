@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InvalidCorrelationIdErrorEmbedded } from "dwolla-typescript";
+import { InvalidCorrelationIdErrorEmbedded } from "dwolla-typescript/models";
 
 let value: InvalidCorrelationIdErrorEmbedded = {
   errors: [

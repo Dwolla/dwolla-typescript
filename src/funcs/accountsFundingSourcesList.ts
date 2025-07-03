@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * List funding sources for an account
  *
  * @remarks
- * List funding source for an account
+ * List funding sources for an account
  */
 export function accountsFundingSourcesList(
   client: DwollaCore,

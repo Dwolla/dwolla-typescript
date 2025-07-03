@@ -8,7 +8,7 @@ import { DwollaError } from "./dwollaerror.js";
 /**
  * not found
  */
-export type InitiateOrVerifyMicroDepositsDwollaV1HalJSONErrorData = {
+export type InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONErrorData = {
   code?: string | undefined;
   message?: string | undefined;
 };
@@ -16,33 +16,63 @@ export type InitiateOrVerifyMicroDepositsDwollaV1HalJSONErrorData = {
 /**
  * not found
  */
-export class InitiateOrVerifyMicroDepositsDwollaV1HalJSONError
+export class InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError
   extends DwollaError
 {
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: InitiateOrVerifyMicroDepositsDwollaV1HalJSONErrorData;
+  data$: InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONErrorData;
 
   constructor(
-    err: InitiateOrVerifyMicroDepositsDwollaV1HalJSONErrorData,
+    err: InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONErrorData,
     httpMeta: { response: Response; request: Request; body: string },
   ) {
-    const message = "message" in err && typeof err.message === "string"
-      ? err.message
-      : `API error occurred: ${JSON.stringify(err)}`;
+    const message = err.message || `API error occurred: ${JSON.stringify(err)}`;
     super(message, httpMeta);
     this.data$ = err;
     if (err.code != null) this.code = err.code;
 
-    this.name = "InitiateOrVerifyMicroDepositsDwollaV1HalJSONError";
+    this.name = "InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError";
+  }
+}
+
+/**
+ * forbidden
+ */
+export type InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONErrorData = {
+  code?: string | undefined;
+  message?: string | undefined;
+};
+
+/**
+ * forbidden
+ */
+export class InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONError
+  extends DwollaError
+{
+  code?: string | undefined;
+
+  /** The original data that was passed to this error instance. */
+  data$: InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONErrorData;
+
+  constructor(
+    err: InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
+    const message = err.message || `API error occurred: ${JSON.stringify(err)}`;
+    super(message, httpMeta);
+    this.data$ = err;
+    if (err.code != null) this.code = err.code;
+
+    this.name = "InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONError";
   }
 }
 
 /** @internal */
-export const InitiateOrVerifyMicroDepositsDwollaV1HalJSONError$inboundSchema:
+export const InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError$inboundSchema:
   z.ZodType<
-    InitiateOrVerifyMicroDepositsDwollaV1HalJSONError,
+    InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError,
     z.ZodTypeDef,
     unknown
   > = z.object({
@@ -53,7 +83,7 @@ export const InitiateOrVerifyMicroDepositsDwollaV1HalJSONError$inboundSchema:
     body$: z.string(),
   })
     .transform((v) => {
-      return new InitiateOrVerifyMicroDepositsDwollaV1HalJSONError(v, {
+      return new InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError(v, {
         request: v.request$,
         response: v.response$,
         body: v.body$,
@@ -61,18 +91,19 @@ export const InitiateOrVerifyMicroDepositsDwollaV1HalJSONError$inboundSchema:
     });
 
 /** @internal */
-export type InitiateOrVerifyMicroDepositsDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
+export type InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError$Outbound =
+  {
+    code?: string | undefined;
+    message?: string | undefined;
+  };
 
 /** @internal */
-export const InitiateOrVerifyMicroDepositsDwollaV1HalJSONError$outboundSchema:
+export const InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError$outboundSchema:
   z.ZodType<
-    InitiateOrVerifyMicroDepositsDwollaV1HalJSONError$Outbound,
+    InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError$Outbound,
     z.ZodTypeDef,
-    InitiateOrVerifyMicroDepositsDwollaV1HalJSONError
-  > = z.instanceof(InitiateOrVerifyMicroDepositsDwollaV1HalJSONError)
+    InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError
+  > = z.instanceof(InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError)
     .transform(v => v.data$)
     .pipe(z.object({
       code: z.string().optional(),
@@ -83,14 +114,71 @@ export const InitiateOrVerifyMicroDepositsDwollaV1HalJSONError$outboundSchema:
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace InitiateOrVerifyMicroDepositsDwollaV1HalJSONError$ {
-  /** @deprecated use `InitiateOrVerifyMicroDepositsDwollaV1HalJSONError$inboundSchema` instead. */
+export namespace InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError$ {
+  /** @deprecated use `InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError$inboundSchema` instead. */
   export const inboundSchema =
-    InitiateOrVerifyMicroDepositsDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `InitiateOrVerifyMicroDepositsDwollaV1HalJSONError$outboundSchema` instead. */
+    InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError$inboundSchema;
+  /** @deprecated use `InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError$outboundSchema` instead. */
   export const outboundSchema =
-    InitiateOrVerifyMicroDepositsDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `InitiateOrVerifyMicroDepositsDwollaV1HalJSONError$Outbound` instead. */
+    InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError$outboundSchema;
+  /** @deprecated use `InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError$Outbound` instead. */
   export type Outbound =
-    InitiateOrVerifyMicroDepositsDwollaV1HalJSONError$Outbound;
+    InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError$Outbound;
+}
+
+/** @internal */
+export const InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONError$inboundSchema:
+  z.ZodType<
+    InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONError,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    code: z.string().optional(),
+    message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
+  })
+    .transform((v) => {
+      return new InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
+    });
+
+/** @internal */
+export type InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONError$Outbound =
+  {
+    code?: string | undefined;
+    message?: string | undefined;
+  };
+
+/** @internal */
+export const InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONError$outboundSchema:
+  z.ZodType<
+    InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONError$Outbound,
+    z.ZodTypeDef,
+    InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONError
+  > = z.instanceof(InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONError)
+    .transform(v => v.data$)
+    .pipe(z.object({
+      code: z.string().optional(),
+      message: z.string().optional(),
+    }));
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONError$ {
+  /** @deprecated use `InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONError$inboundSchema` instead. */
+  export const inboundSchema =
+    InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONError$inboundSchema;
+  /** @deprecated use `InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONError$outboundSchema` instead. */
+  export const outboundSchema =
+    InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONError$outboundSchema;
+  /** @deprecated use `InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONError$Outbound` instead. */
+  export type Outbound =
+    InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONError$Outbound;
 }

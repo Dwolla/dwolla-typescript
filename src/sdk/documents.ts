@@ -16,7 +16,7 @@ export class Documents extends ClientSDK {
    * Retrieve a document for a customer or beneficial owner
    */
   async get(
-    request: operations.GetDocumentRequest,
+    request: operations.RetrieveDocumentRequest,
     options?: RequestOptions,
   ): Promise<models.Document> {
     return unwrapAsync(documentsGet(

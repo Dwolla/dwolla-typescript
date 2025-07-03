@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateFinicitySecureExchange } from "dwolla-typescript";
+import { CreateFinicitySecureExchange } from "dwolla-typescript/models";
 import { RFCDate } from "dwolla-typescript/types";
 
 let value: CreateFinicitySecureExchange = {

@@ -5,7 +5,7 @@ Create a Verified Personal customer
 ## Example Usage
 
 ```typescript
-import { CreateVerifiedPersonalCustomer } from "dwolla-typescript";
+import { CreateVerifiedPersonalCustomer } from "dwolla-typescript/models";
 
 let value: CreateVerifiedPersonalCustomer = {
   firstName: "Account",
@@ -14,7 +14,6 @@ let value: CreateVerifiedPersonalCustomer = {
   ipAddress: "143.156.7.8",
   phone: "5555555555",
   correlationId: "fc451a7a-ae30-4404-aB95-e3553fcd733",
-  businessName: "Jane Corp llc",
   address1: "99-99 33rd St",
   address2: "99-99 33rd St",
   city: "Some City",
@@ -35,7 +34,6 @@ let value: CreateVerifiedPersonalCustomer = {
 | `ipAddress`                         | *string*                            | :heavy_minus_sign:                  | N/A                                 | 143.156.7.8                         |
 | `phone`                             | *string*                            | :heavy_minus_sign:                  | N/A                                 | 5555555555                          |
 | `correlationId`                     | *string*                            | :heavy_minus_sign:                  | N/A                                 | fc451a7a-ae30-4404-aB95-e3553fcd733 |
-| `businessName`                      | *string*                            | :heavy_minus_sign:                  | N/A                                 | Jane Corp llc                       |
 | `type`                              | *string*                            | :heavy_check_mark:                  | N/A                                 |                                     |
 | `address1`                          | *string*                            | :heavy_check_mark:                  | N/A                                 | 99-99 33rd St                       |
 | `address2`                          | *string*                            | :heavy_minus_sign:                  | N/A                                 | 99-99 33rd St                       |

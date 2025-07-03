@@ -5,7 +5,7 @@ Create an Unverified Customer
 ## Example Usage
 
 ```typescript
-import { CreateUnverifiedCustomer } from "dwolla-typescript";
+import { CreateUnverifiedCustomer } from "dwolla-typescript/models";
 
 let value: CreateUnverifiedCustomer = {
   firstName: "Account",

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { OnDemandAuthorization } from "dwolla-typescript";
+import { OnDemandAuthorization } from "dwolla-typescript/models";
 
 let value: OnDemandAuthorization = {
   links: {

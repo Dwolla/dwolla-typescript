@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { AchDetailsDestination } from "dwolla-typescript";
+import { AchDetailsDestination } from "dwolla-typescript/models";
 
 let value: AchDetailsDestination = {
   addenda: {

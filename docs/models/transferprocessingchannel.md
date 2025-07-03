@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { TransferProcessingChannel } from "dwolla-typescript";
+import { TransferProcessingChannel } from "dwolla-typescript/models";
 
 let value: TransferProcessingChannel = {
   destination: "real-time-payments",

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InvalidUrlFormatErrorEmbedded } from "dwolla-typescript";
+import { InvalidUrlFormatErrorEmbedded } from "dwolla-typescript/models";
 
 let value: InvalidUrlFormatErrorEmbedded = {
   errors: [

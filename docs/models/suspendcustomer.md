@@ -5,7 +5,7 @@ Suspend a Customer
 ## Example Usage
 
 ```typescript
-import { SuspendCustomer } from "dwolla-typescript";
+import { SuspendCustomer } from "dwolla-typescript/models";
 
 let value: SuspendCustomer = {
   status: "suspended",

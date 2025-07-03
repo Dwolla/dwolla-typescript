@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Channel } from "dwolla-typescript";
+import { Channel } from "dwolla-typescript/models";
 
 let value: Channel = "wire";
 ```

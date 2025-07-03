@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WithdrawProcessingChannelNotSupportedErrorLinks } from "dwolla-typescript";
+import { WithdrawProcessingChannelNotSupportedErrorLinks } from "dwolla-typescript/models";
 
 let value: WithdrawProcessingChannelNotSupportedErrorLinks = {};
 ```

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded } from "dwolla-typescript";
+import { PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded } from "dwolla-typescript/models";
 
 let value: PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded = {
   errors: [

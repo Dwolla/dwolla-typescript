@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateMXOpenBankingExchangeExchangePartner } from "dwolla-typescript";
+import { CreateMXOpenBankingExchangeExchangePartner } from "dwolla-typescript/models";
 
 let value: CreateMXOpenBankingExchangeExchangePartner = {
   href:

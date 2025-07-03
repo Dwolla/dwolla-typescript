@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { UpgradeToVerifiedBusinessAddress } from "dwolla-typescript";
+import { UpgradeToVerifiedBusinessAddress } from "dwolla-typescript/models";
 
 let value: UpgradeToVerifiedBusinessAddress = {
   address1: "1749 18th st",

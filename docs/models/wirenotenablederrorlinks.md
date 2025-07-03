@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WireNotEnabledErrorLinks } from "dwolla-typescript";
+import { WireNotEnabledErrorLinks } from "dwolla-typescript/models";
 
 let value: WireNotEnabledErrorLinks = {};
 ```

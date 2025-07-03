@@ -7,7 +7,6 @@ import { Accounts } from "./accounts.js";
 import { BeneficialOwners } from "./beneficialowners.js";
 import { BusinessClassifications } from "./businessclassifications.js";
 import { ClientTokens } from "./clienttokens.js";
-import { Customer } from "./customer.js";
 import { Customers } from "./customers.js";
 import { Documents } from "./documents.js";
 import { Events } from "./events.js";
@@ -65,11 +64,6 @@ export class Dwolla extends ClientSDK {
   private _kba?: Kba;
   get kba(): Kba {
     return (this._kba ??= new Kba(this._options));
-  }
-
-  private _customer?: Customer;
-  get customer(): Customer {
-    return (this._customer ??= new Customer(this._options));
   }
 
   private _fundingSources?: FundingSources;

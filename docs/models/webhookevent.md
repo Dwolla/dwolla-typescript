@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WebhookEvent } from "dwolla-typescript";
+import { WebhookEvent } from "dwolla-typescript/models";
 
 let value: WebhookEvent = {
   href: "https://api.dwolla.com/events/03c7e14c-7f15-44a2-bcf7-83f2f7e95d50",

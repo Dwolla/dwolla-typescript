@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { IncompatibleSourceForRtpDestinationErrorError } from "dwolla-typescript";
+import { IncompatibleSourceForRtpDestinationErrorError } from "dwolla-typescript/models";
 
 let value: IncompatibleSourceForRtpDestinationErrorError = {
   code: "NotAllowed",

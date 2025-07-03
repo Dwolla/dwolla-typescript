@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { TransferMetadata } from "dwolla-typescript";
+import { TransferMetadata } from "dwolla-typescript/models";
 
 let value: TransferMetadata = {
   paymentId: "12345678",

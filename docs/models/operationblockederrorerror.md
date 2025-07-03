@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { OperationBlockedErrorError } from "dwolla-typescript";
+import { OperationBlockedErrorError } from "dwolla-typescript/models";
 
 let value: OperationBlockedErrorError = {
   code: "NotAllowed",

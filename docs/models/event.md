@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Event } from "dwolla-typescript";
+import { Event } from "dwolla-typescript/models";
 
 let value: Event = {
   links: {

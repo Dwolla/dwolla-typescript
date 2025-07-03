@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WeeklyReceiveLimitReachedErrorEmbedded } from "dwolla-typescript";
+import { WeeklyReceiveLimitReachedErrorEmbedded } from "dwolla-typescript/models";
 
 let value: WeeklyReceiveLimitReachedErrorEmbedded = {
   errors: [

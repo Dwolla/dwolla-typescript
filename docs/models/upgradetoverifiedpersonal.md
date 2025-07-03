@@ -5,7 +5,7 @@ Upgrade Unverified Customer to Verified Personal Customer
 ## Example Usage
 
 ```typescript
-import { UpgradeToVerifiedPersonal } from "dwolla-typescript";
+import { UpgradeToVerifiedPersonal } from "dwolla-typescript/models";
 
 let value: UpgradeToVerifiedPersonal = {
   firstName: "John",

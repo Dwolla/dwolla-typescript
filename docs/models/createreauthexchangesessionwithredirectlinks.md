@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateReAuthExchangeSessionWithRedirectLinks } from "dwolla-typescript";
+import { CreateReAuthExchangeSessionWithRedirectLinks } from "dwolla-typescript/models";
 
 let value: CreateReAuthExchangeSessionWithRedirectLinks = {
   redirectUrl: {

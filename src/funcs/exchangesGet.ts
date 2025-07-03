@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Retrieve exchange resource
  *
  * @remarks
- * Retrieve exchange resource
+ * Retrieve an exchange resource by its ID.
  */
 export function exchangesGet(
   client: DwollaCore,

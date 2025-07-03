@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * List exchanges for a customer
  *
  * @remarks
- * List exchanges for a customer
+ * Retrieve the list of exchanges associated with a Customer resource.
  */
 export function customersExchangesList(
   client: DwollaCore,

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ReceiverNotFoundErrorLinks } from "dwolla-typescript";
+import { ReceiverNotFoundErrorLinks } from "dwolla-typescript/models";
 
 let value: ReceiverNotFoundErrorLinks = {};
 ```

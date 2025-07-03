@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Attempt } from "dwolla-typescript";
+import { Attempt } from "dwolla-typescript/models";
 
 let value: Attempt = {
   id: "d4d16621-c6b0-40cb-8dc3-0469fa9dc4e8",

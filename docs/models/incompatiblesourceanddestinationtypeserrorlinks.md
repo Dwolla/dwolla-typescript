@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { IncompatibleSourceAndDestinationTypesErrorLinks } from "dwolla-typescript";
+import { IncompatibleSourceAndDestinationTypesErrorLinks } from "dwolla-typescript/models";
 
 let value: IncompatibleSourceAndDestinationTypesErrorLinks = {};
 ```

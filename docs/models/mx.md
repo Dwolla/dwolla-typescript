@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Mx } from "dwolla-typescript";
+import { Mx } from "dwolla-typescript/models";
 
 let value: Mx = {
   availableConnectionToken:

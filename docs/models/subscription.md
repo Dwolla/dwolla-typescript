@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Subscription } from "dwolla-typescript";
+import { Subscription } from "dwolla-typescript/models";
 
 let value: Subscription = {
   href:

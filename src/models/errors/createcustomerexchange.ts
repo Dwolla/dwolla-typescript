@@ -3,88 +3,315 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import { DwollaError } from "./dwollaerror.js";
+import {
+  InvalidExchangeError,
+  InvalidExchangeError$inboundSchema,
+  InvalidExchangeError$Outbound,
+  InvalidExchangeError$outboundSchema,
+} from "./invalidexchangeerror.js";
+import {
+  InvalidExchangeTokenError,
+  InvalidExchangeTokenError$inboundSchema,
+  InvalidExchangeTokenError$Outbound,
+  InvalidExchangeTokenError$outboundSchema,
+} from "./invalidexchangetokenerror.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
-/**
- * Invalid Scope
- */
-export type CreateCustomerExchangeDwollaV1HalJSONErrorData = {
+export type CreateCustomerExchangeResponseBodyError2Data = {
   code?: string | undefined;
   message?: string | undefined;
 };
 
-/**
- * Invalid Scope
- */
-export class CreateCustomerExchangeDwollaV1HalJSONError extends DwollaError {
+export class CreateCustomerExchangeResponseBodyError2 extends DwollaError {
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: CreateCustomerExchangeDwollaV1HalJSONErrorData;
+  data$: CreateCustomerExchangeResponseBodyError2Data;
 
   constructor(
-    err: CreateCustomerExchangeDwollaV1HalJSONErrorData,
+    err: CreateCustomerExchangeResponseBodyError2Data,
     httpMeta: { response: Response; request: Request; body: string },
   ) {
-    const message = "message" in err && typeof err.message === "string"
-      ? err.message
-      : `API error occurred: ${JSON.stringify(err)}`;
+    const message = err.message || `API error occurred: ${JSON.stringify(err)}`;
     super(message, httpMeta);
     this.data$ = err;
     if (err.code != null) this.code = err.code;
 
-    this.name = "CreateCustomerExchangeDwollaV1HalJSONError";
+    this.name = "CreateCustomerExchangeResponseBodyError2";
   }
 }
 
-/** @internal */
-export const CreateCustomerExchangeDwollaV1HalJSONError$inboundSchema:
-  z.ZodType<CreateCustomerExchangeDwollaV1HalJSONError, z.ZodTypeDef, unknown> =
-    z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-      request$: z.instanceof(Request),
-      response$: z.instanceof(Response),
-      body$: z.string(),
-    })
-      .transform((v) => {
-        return new CreateCustomerExchangeDwollaV1HalJSONError(v, {
-          request: v.request$,
-          response: v.response$,
-          body: v.body$,
-        });
-      });
+export type CreateCustomerExchangeResponseBodyError1Data = {
+  code?: string | undefined;
+  message?: string | undefined;
+};
+
+export class CreateCustomerExchangeResponseBodyError1 extends DwollaError {
+  code?: string | undefined;
+
+  /** The original data that was passed to this error instance. */
+  data$: CreateCustomerExchangeResponseBodyError1Data;
+
+  constructor(
+    err: CreateCustomerExchangeResponseBodyError1Data,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
+    const message = err.message || `API error occurred: ${JSON.stringify(err)}`;
+    super(message, httpMeta);
+    this.data$ = err;
+    if (err.code != null) this.code = err.code;
+
+    this.name = "CreateCustomerExchangeResponseBodyError1";
+  }
+}
+
+/**
+ * Unauthorized
+ */
+export type UnauthorizedDwollaV1HalJSON =
+  | CreateCustomerExchangeResponseBodyError1
+  | CreateCustomerExchangeResponseBodyError2;
+
+/**
+ * Bad Request
+ */
+export type CreateCustomerExchangeBadRequestDwollaV1HalJSON =
+  | InvalidExchangeTokenError
+  | InvalidExchangeError;
 
 /** @internal */
-export type CreateCustomerExchangeDwollaV1HalJSONError$Outbound = {
+export const CreateCustomerExchangeResponseBodyError2$inboundSchema: z.ZodType<
+  CreateCustomerExchangeResponseBodyError2,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  code: z.string().optional(),
+  message: z.string().optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
+})
+  .transform((v) => {
+    return new CreateCustomerExchangeResponseBodyError2(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
+  });
+
+/** @internal */
+export type CreateCustomerExchangeResponseBodyError2$Outbound = {
   code?: string | undefined;
   message?: string | undefined;
 };
 
 /** @internal */
-export const CreateCustomerExchangeDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    CreateCustomerExchangeDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    CreateCustomerExchangeDwollaV1HalJSONError
-  > = z.instanceof(CreateCustomerExchangeDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
+export const CreateCustomerExchangeResponseBodyError2$outboundSchema: z.ZodType<
+  CreateCustomerExchangeResponseBodyError2$Outbound,
+  z.ZodTypeDef,
+  CreateCustomerExchangeResponseBodyError2
+> = z.instanceof(CreateCustomerExchangeResponseBodyError2)
+  .transform(v => v.data$)
+  .pipe(z.object({
+    code: z.string().optional(),
+    message: z.string().optional(),
+  }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateCustomerExchangeDwollaV1HalJSONError$ {
-  /** @deprecated use `CreateCustomerExchangeDwollaV1HalJSONError$inboundSchema` instead. */
+export namespace CreateCustomerExchangeResponseBodyError2$ {
+  /** @deprecated use `CreateCustomerExchangeResponseBodyError2$inboundSchema` instead. */
   export const inboundSchema =
-    CreateCustomerExchangeDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `CreateCustomerExchangeDwollaV1HalJSONError$outboundSchema` instead. */
+    CreateCustomerExchangeResponseBodyError2$inboundSchema;
+  /** @deprecated use `CreateCustomerExchangeResponseBodyError2$outboundSchema` instead. */
   export const outboundSchema =
-    CreateCustomerExchangeDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `CreateCustomerExchangeDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound = CreateCustomerExchangeDwollaV1HalJSONError$Outbound;
+    CreateCustomerExchangeResponseBodyError2$outboundSchema;
+  /** @deprecated use `CreateCustomerExchangeResponseBodyError2$Outbound` instead. */
+  export type Outbound = CreateCustomerExchangeResponseBodyError2$Outbound;
+}
+
+/** @internal */
+export const CreateCustomerExchangeResponseBodyError1$inboundSchema: z.ZodType<
+  CreateCustomerExchangeResponseBodyError1,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  code: z.string().optional(),
+  message: z.string().optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
+})
+  .transform((v) => {
+    return new CreateCustomerExchangeResponseBodyError1(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
+  });
+
+/** @internal */
+export type CreateCustomerExchangeResponseBodyError1$Outbound = {
+  code?: string | undefined;
+  message?: string | undefined;
+};
+
+/** @internal */
+export const CreateCustomerExchangeResponseBodyError1$outboundSchema: z.ZodType<
+  CreateCustomerExchangeResponseBodyError1$Outbound,
+  z.ZodTypeDef,
+  CreateCustomerExchangeResponseBodyError1
+> = z.instanceof(CreateCustomerExchangeResponseBodyError1)
+  .transform(v => v.data$)
+  .pipe(z.object({
+    code: z.string().optional(),
+    message: z.string().optional(),
+  }));
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateCustomerExchangeResponseBodyError1$ {
+  /** @deprecated use `CreateCustomerExchangeResponseBodyError1$inboundSchema` instead. */
+  export const inboundSchema =
+    CreateCustomerExchangeResponseBodyError1$inboundSchema;
+  /** @deprecated use `CreateCustomerExchangeResponseBodyError1$outboundSchema` instead. */
+  export const outboundSchema =
+    CreateCustomerExchangeResponseBodyError1$outboundSchema;
+  /** @deprecated use `CreateCustomerExchangeResponseBodyError1$Outbound` instead. */
+  export type Outbound = CreateCustomerExchangeResponseBodyError1$Outbound;
+}
+
+/** @internal */
+export const UnauthorizedDwollaV1HalJSON$inboundSchema: z.ZodType<
+  UnauthorizedDwollaV1HalJSON,
+  z.ZodTypeDef,
+  unknown
+> = z.union([
+  z.lazy(() => CreateCustomerExchangeResponseBodyError1$inboundSchema),
+  z.lazy(() => CreateCustomerExchangeResponseBodyError2$inboundSchema),
+]);
+
+/** @internal */
+export type UnauthorizedDwollaV1HalJSON$Outbound =
+  | CreateCustomerExchangeResponseBodyError1$Outbound
+  | CreateCustomerExchangeResponseBodyError2$Outbound;
+
+/** @internal */
+export const UnauthorizedDwollaV1HalJSON$outboundSchema: z.ZodType<
+  UnauthorizedDwollaV1HalJSON$Outbound,
+  z.ZodTypeDef,
+  UnauthorizedDwollaV1HalJSON
+> = z.union([
+  z.lazy(() => CreateCustomerExchangeResponseBodyError1$outboundSchema),
+  z.lazy(() => CreateCustomerExchangeResponseBodyError2$outboundSchema),
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace UnauthorizedDwollaV1HalJSON$ {
+  /** @deprecated use `UnauthorizedDwollaV1HalJSON$inboundSchema` instead. */
+  export const inboundSchema = UnauthorizedDwollaV1HalJSON$inboundSchema;
+  /** @deprecated use `UnauthorizedDwollaV1HalJSON$outboundSchema` instead. */
+  export const outboundSchema = UnauthorizedDwollaV1HalJSON$outboundSchema;
+  /** @deprecated use `UnauthorizedDwollaV1HalJSON$Outbound` instead. */
+  export type Outbound = UnauthorizedDwollaV1HalJSON$Outbound;
+}
+
+export function unauthorizedDwollaV1HalJSONToJSON(
+  unauthorizedDwollaV1HalJSON: UnauthorizedDwollaV1HalJSON,
+): string {
+  return JSON.stringify(
+    UnauthorizedDwollaV1HalJSON$outboundSchema.parse(
+      unauthorizedDwollaV1HalJSON,
+    ),
+  );
+}
+
+export function unauthorizedDwollaV1HalJSONFromJSON(
+  jsonString: string,
+): SafeParseResult<UnauthorizedDwollaV1HalJSON, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UnauthorizedDwollaV1HalJSON$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UnauthorizedDwollaV1HalJSON' from JSON`,
+  );
+}
+
+/** @internal */
+export const CreateCustomerExchangeBadRequestDwollaV1HalJSON$inboundSchema:
+  z.ZodType<
+    CreateCustomerExchangeBadRequestDwollaV1HalJSON,
+    z.ZodTypeDef,
+    unknown
+  > = z.union([
+    InvalidExchangeTokenError$inboundSchema,
+    InvalidExchangeError$inboundSchema,
+  ]);
+
+/** @internal */
+export type CreateCustomerExchangeBadRequestDwollaV1HalJSON$Outbound =
+  | InvalidExchangeTokenError$Outbound
+  | InvalidExchangeError$Outbound;
+
+/** @internal */
+export const CreateCustomerExchangeBadRequestDwollaV1HalJSON$outboundSchema:
+  z.ZodType<
+    CreateCustomerExchangeBadRequestDwollaV1HalJSON$Outbound,
+    z.ZodTypeDef,
+    CreateCustomerExchangeBadRequestDwollaV1HalJSON
+  > = z.union([
+    InvalidExchangeTokenError$outboundSchema,
+    InvalidExchangeError$outboundSchema,
+  ]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateCustomerExchangeBadRequestDwollaV1HalJSON$ {
+  /** @deprecated use `CreateCustomerExchangeBadRequestDwollaV1HalJSON$inboundSchema` instead. */
+  export const inboundSchema =
+    CreateCustomerExchangeBadRequestDwollaV1HalJSON$inboundSchema;
+  /** @deprecated use `CreateCustomerExchangeBadRequestDwollaV1HalJSON$outboundSchema` instead. */
+  export const outboundSchema =
+    CreateCustomerExchangeBadRequestDwollaV1HalJSON$outboundSchema;
+  /** @deprecated use `CreateCustomerExchangeBadRequestDwollaV1HalJSON$Outbound` instead. */
+  export type Outbound =
+    CreateCustomerExchangeBadRequestDwollaV1HalJSON$Outbound;
+}
+
+export function createCustomerExchangeBadRequestDwollaV1HalJSONToJSON(
+  createCustomerExchangeBadRequestDwollaV1HalJSON:
+    CreateCustomerExchangeBadRequestDwollaV1HalJSON,
+): string {
+  return JSON.stringify(
+    CreateCustomerExchangeBadRequestDwollaV1HalJSON$outboundSchema.parse(
+      createCustomerExchangeBadRequestDwollaV1HalJSON,
+    ),
+  );
+}
+
+export function createCustomerExchangeBadRequestDwollaV1HalJSONFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CreateCustomerExchangeBadRequestDwollaV1HalJSON,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CreateCustomerExchangeBadRequestDwollaV1HalJSON$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CreateCustomerExchangeBadRequestDwollaV1HalJSON' from JSON`,
+  );
 }

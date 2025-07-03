@@ -44,8 +44,8 @@ export function customersExchangesCreate(
 ): APIPromise<
   Result<
     operations.CreateCustomerExchangeResponse | undefined,
-    | errors.ValidationErrorSchema
-    | errors.CreateCustomerExchangeDwollaV1HalJSONError
+    | errors.CreateCustomerExchangeBadRequestDwollaV1HalJSON
+    | errors.UnauthorizedDwollaV1HalJSON
     | errors.NotFoundError
     | DwollaError
     | ResponseValidationError
@@ -72,8 +72,8 @@ async function $do(
   [
     Result<
       operations.CreateCustomerExchangeResponse | undefined,
-      | errors.ValidationErrorSchema
-      | errors.CreateCustomerExchangeDwollaV1HalJSONError
+      | errors.CreateCustomerExchangeBadRequestDwollaV1HalJSON
+      | errors.UnauthorizedDwollaV1HalJSON
       | errors.NotFoundError
       | DwollaError
       | ResponseValidationError
@@ -109,7 +109,7 @@ async function $do(
   const path = pathToFunc("/customers/{id}/exchanges")(pathParams);
 
   const headers = new Headers(compactMap({
-    "Content-Type": "application/json",
+    "Content-Type": "application/vnd.dwolla.v1.hal+json",
     Accept: "application/vnd.dwolla.v1.hal+json",
   }));
 
@@ -163,8 +163,8 @@ async function $do(
 
   const [result] = await M.match<
     operations.CreateCustomerExchangeResponse | undefined,
-    | errors.ValidationErrorSchema
-    | errors.CreateCustomerExchangeDwollaV1HalJSONError
+    | errors.CreateCustomerExchangeBadRequestDwollaV1HalJSON
+    | errors.UnauthorizedDwollaV1HalJSON
     | errors.NotFoundError
     | DwollaError
     | ResponseValidationError
@@ -180,14 +180,14 @@ async function $do(
       operations.CreateCustomerExchangeResponse$inboundSchema.optional(),
       { hdrs: true },
     ),
-    M.jsonErr(400, errors.ValidationErrorSchema$inboundSchema, {
-      ctype: "application/vnd.dwolla.v1.hal+json",
-    }),
     M.jsonErr(
-      401,
-      errors.CreateCustomerExchangeDwollaV1HalJSONError$inboundSchema,
+      400,
+      errors.CreateCustomerExchangeBadRequestDwollaV1HalJSON$inboundSchema,
       { ctype: "application/vnd.dwolla.v1.hal+json" },
     ),
+    M.jsonErr(401, errors.UnauthorizedDwollaV1HalJSON$inboundSchema, {
+      ctype: "application/vnd.dwolla.v1.hal+json",
+    }),
     M.jsonErr(404, errors.NotFoundError$inboundSchema, {
       ctype: "application/vnd.dwolla.v1.hal+json",
     }),

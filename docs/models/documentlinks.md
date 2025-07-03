@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DocumentLinks } from "dwolla-typescript";
+import { DocumentLinks } from "dwolla-typescript/models";
 
 let value: DocumentLinks = {
   self: {

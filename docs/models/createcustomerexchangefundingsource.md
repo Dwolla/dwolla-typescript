@@ -5,7 +5,7 @@ Schema for creating a funding source using an exchange resource. This method is 
 ## Example Usage
 
 ```typescript
-import { CreateCustomerExchangeFundingSource } from "dwolla-typescript";
+import { CreateCustomerExchangeFundingSource } from "dwolla-typescript/models";
 
 let value: CreateCustomerExchangeFundingSource = {
   links: {

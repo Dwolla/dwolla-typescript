@@ -5,7 +5,7 @@ Request body for updating information of an unverified bank funding source
 ## Example Usage
 
 ```typescript
-import { UpdateUnverifiedBank } from "dwolla-typescript";
+import { UpdateUnverifiedBank } from "dwolla-typescript/models";
 
 let value: UpdateUnverifiedBank = {
   routingNumber: "222222226",

@@ -31,9 +31,7 @@ export class GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONError
       GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONErrorData,
     httpMeta: { response: Response; request: Request; body: string },
   ) {
-    const message = "message" in err && typeof err.message === "string"
-      ? err.message
-      : `API error occurred: ${JSON.stringify(err)}`;
+    const message = err.message || `API error occurred: ${JSON.stringify(err)}`;
     super(message, httpMeta);
     this.data$ = err;
     if (err.code != null) this.code = err.code;
@@ -69,9 +67,7 @@ export class GetBeneficialOwnershipStatusForCustomerForbiddenDwollaV1HalJSONErro
       GetBeneficialOwnershipStatusForCustomerForbiddenDwollaV1HalJSONErrorData,
     httpMeta: { response: Response; request: Request; body: string },
   ) {
-    const message = "message" in err && typeof err.message === "string"
-      ? err.message
-      : `API error occurred: ${JSON.stringify(err)}`;
+    const message = err.message || `API error occurred: ${JSON.stringify(err)}`;
     super(message, httpMeta);
     this.data$ = err;
     if (err.code != null) this.code = err.code;

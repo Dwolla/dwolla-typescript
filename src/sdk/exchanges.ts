@@ -14,7 +14,7 @@ export class Exchanges extends ClientSDK {
    * Retrieve exchange resource
    *
    * @remarks
-   * Retrieve exchange resource
+   * Retrieve an exchange resource by its ID.
    */
   async get(
     request: operations.GetExchangeRequest,

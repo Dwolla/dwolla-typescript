@@ -27,10 +27,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * List document for beneficial owner
+ * List documents for beneficial owner
  *
  * @remarks
- * List document for beneficial owner
+ * List documents for beneficial owner
  */
 export function beneficialOwnersDocumentsList(
   client: DwollaCore,

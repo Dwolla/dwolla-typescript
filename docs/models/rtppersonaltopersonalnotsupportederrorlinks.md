@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { RtpPersonalToPersonalNotSupportedErrorLinks } from "dwolla-typescript";
+import { RtpPersonalToPersonalNotSupportedErrorLinks } from "dwolla-typescript/models";
 
 let value: RtpPersonalToPersonalNotSupportedErrorLinks = {};
 ```

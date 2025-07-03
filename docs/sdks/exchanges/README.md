@@ -12,7 +12,7 @@ Operations related to Exchanges
 
 ## get
 
-Retrieve exchange resource
+Retrieve an exchange resource by its ID.
 
 ### Example Usage
 
@@ -28,7 +28,7 @@ const dwolla = new Dwolla({
 
 async function run() {
   const result = await dwolla.exchanges.get({
-    id: "292317ec-e252-47d8-93c3-2d128e037aa4",
+    id: "e5e9f2d3-a96c-4abd-a097-8ec7ae28aa8a",
   });
 
   console.log(result);
@@ -56,7 +56,7 @@ const dwolla = new DwollaCore({
 
 async function run() {
   const res = await exchangesGet(dwolla, {
-    id: "292317ec-e252-47d8-93c3-2d128e037aa4",
+    id: "e5e9f2d3-a96c-4abd-a097-8ec7ae28aa8a",
   });
   if (res.ok) {
     const { value: result } = res;
