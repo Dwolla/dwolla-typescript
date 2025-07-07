@@ -26,21 +26,16 @@
   "scripts": {
     "lint": "eslint --cache --max-warnings=0 src",
     "build": "tshy",
-    "prepublishOnly": "npm run build",
-    "test:core": "npx tsx tests/scripts/test-core-operations.ts"
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
     "zod": ">= 3"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
-    "@faker-js/faker": "^9.3.0",
-    "@types/node": "^24.0.10",
-    "dotenv": "^16.4.5",
     "eslint": "^9.19.0",
     "globals": "^15.14.0",
     "tshy": "^2.0.0",
-    "tsx": "^4.19.2",
     "typescript": "^5.4.5",
     "typescript-eslint": "^8.22.0",
     "zod": "^3.25.17"
