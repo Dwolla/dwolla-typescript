@@ -7,6 +7,12 @@ import { CreateLabelLedgerEntryRequest } from "dwolla-typescript/models/operatio
 
 let value: CreateLabelLedgerEntryRequest = {
   id: "<id>",
+  requestBody: {
+    amount: {
+      value: "-5.00",
+      currency: "USD",
+    },
+  },
 };
 ```
 

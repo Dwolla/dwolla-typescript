@@ -3,17 +3,17 @@ id: 53ac026a-ff11-435d-914b-31df5268afb0
 management:
   docChecksum: 63e113577b999fe5c28283ba83e2bd8e
   docVersion: "2.0"
-  speakeasyVersion: 1.575.4
-  generationVersion: 2.648.7
-  releaseVersion: 0.0.1-beta.4
-  configChecksum: 692de85664c2b3feca7e4214b5b36478
+  speakeasyVersion: 1.582.0
+  generationVersion: 2.657.1
+  releaseVersion: 0.0.1-beta.1
+  configChecksum: 812a87e44ec829ea4eada5acd68d2be5
   repoURL: https://github.com/Dwolla/dwolla-typescript.git
   installationURL: https://github.com/Dwolla/dwolla-typescript
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.21.13
+    core: 3.21.14
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     enumUnions: 0.1.0
@@ -891,6 +891,10 @@ generatedFiles:
   - docs/sdks/webhooksubscriptions/README.md
   - docs/types/rfcdate.md
   - eslint.config.mjs
+  - examples/.env.template
+  - examples/README.md
+  - examples/package.json
+  - examples/tokensCreateApplicationAccessToken.example.ts
   - jsr.json
   - package.json
   - src/core.ts
