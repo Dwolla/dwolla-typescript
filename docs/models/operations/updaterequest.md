@@ -7,6 +7,12 @@ import { UpdateRequest } from "dwolla-typescript/models/operations";
 
 let value: UpdateRequest = {
   id: "<id>",
+  requestBody: {
+    firstName: "John",
+    lastName: "Doe",
+    email: "accountAdmin@email.com",
+    businessName: "Jane Corp",
+  },
 };
 ```
 

@@ -7,6 +7,9 @@ import { VerifyRequest } from "dwolla-typescript/models/operations";
 
 let value: VerifyRequest = {
   id: "<id>",
+  requestBody: {
+    answers: [],
+  },
 };
 ```
 

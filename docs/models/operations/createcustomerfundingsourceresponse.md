@@ -5,7 +5,9 @@
 ```typescript
 import { CreateCustomerFundingSourceResponse } from "dwolla-typescript/models/operations";
 
-let value: CreateCustomerFundingSourceResponse = {};
+let value: CreateCustomerFundingSourceResponse = {
+  headers: {},
+};
 ```
 
 ## Fields

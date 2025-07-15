@@ -5,7 +5,19 @@
 ```typescript
 import { InitiateTransferResponse } from "dwolla-typescript/models/operations";
 
-let value: InitiateTransferResponse = {};
+let value: InitiateTransferResponse = {
+  headers: {
+    "key": [
+      "<value 1>",
+      "<value 2>",
+    ],
+    "key1": [
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
+    ],
+  },
+};
 ```
 
 ## Fields

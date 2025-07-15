@@ -7,6 +7,9 @@ import { UpdateOrRemoveFundingSourceRequest } from "dwolla-typescript/models/ope
 
 let value: UpdateOrRemoveFundingSourceRequest = {
   id: "<id>",
+  requestBody: {
+    removed: true,
+  },
 };
 ```
 
