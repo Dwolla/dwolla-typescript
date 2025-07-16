@@ -5,7 +5,13 @@
 ```typescript
 import { CreateWebhookSubscriptionResponse } from "dwolla-typescript/models/operations";
 
-let value: CreateWebhookSubscriptionResponse = {};
+let value: CreateWebhookSubscriptionResponse = {
+  headers: {
+    "key": [
+      "<value 1>",
+    ],
+  },
+};
 ```
 
 ## Fields

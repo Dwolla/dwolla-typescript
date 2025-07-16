@@ -5,7 +5,20 @@
 ```typescript
 import { InitiateKbaForCustomerResponse } from "dwolla-typescript/models/operations";
 
-let value: InitiateKbaForCustomerResponse = {};
+let value: InitiateKbaForCustomerResponse = {
+  headers: {
+    "key": [
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
+    ],
+    "key1": [
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
+    ],
+  },
+};
 ```
 
 ## Fields
