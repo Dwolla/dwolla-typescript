@@ -1,0 +1,17 @@
+{
+  "name": "dwolla-typescript-tests",
+  "version": "1.0.0",
+  "description": "Test suite for Dwolla TypeScript SDK",
+  "type": "module",
+  "scripts": {
+    "test-core": "tsx scripts/test-core-operations.ts"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "dotenv": "^16.4.5",
+    "tsx": "^4.20.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0"
+  }
+} 

@@ -3,8 +3,6 @@
 import { Dwolla } from '../../dist/esm/index.js';
 import { faker } from '@faker-js/faker';
 import * as dotenv from 'dotenv';
-import * as path from 'path';
-import process from 'process';
 
 // Import SDK types for type safety
 import type {
@@ -21,14 +19,16 @@ import type {
   InitiateTransferRequest,
 } from '../../dist/esm/models/operations/index.js';
 
-// Load sandbox credentials
-dotenv.config({ path: path.join(process.cwd(), './tests/sandbox/sandbox.env') });
+// Load sandbox credentials  
+dotenv.config({ path: './sandbox/sandbox.env' });
 
 const SANDBOX_CONFIG = {
   CLIENT_ID: process.env.DWOLLA_CLIENT_ID,
   CLIENT_SECRET: process.env.DWOLLA_CLIENT_SECRET,
   BASE_URL: process.env.DWOLLA_BASE_URL || 'https://api-sandbox.dwolla.com',
 };
+
+const DEBUG_MODE = process.env.DEBUG === 'true' || process.env.DEBUG === '1';
 
 // Create SDK instance with proper typing
 function createSDK(): Dwolla {
@@ -143,6 +143,95 @@ function log(message: string, level: 'info' | 'success' | 'error' = 'info'): voi
   console.log(`[${timestamp}] ${icon} ${message}`);
 }
 
+function logDebug(message: string, data?: any): void {
+  if (DEBUG_MODE) {
+    const timestamp = new Date().toLocaleTimeString();
+    console.log(`[${timestamp}] 🐛 DEBUG: ${message}`);
+    if (data !== undefined) {
+      console.log('   📊 Data:', JSON.stringify(data, null, 2));
+    }
+  }
+}
+
+function logRawResponse(operationName: string, response: any, error?: any): void {
+  if (DEBUG_MODE) {
+    console.log(`\n🔍 RAW API RESPONSE DEBUG - ${operationName}`);
+    console.log('─'.repeat(50));
+    
+    if (error) {
+      console.log('❌ Error Details:');
+      console.log(`   Type: ${error.name || 'Unknown'}`);
+      console.log(`   Message: ${error.message || 'No message'}`);
+      console.log(`   Status Code: ${error.statusCode || 'Unknown'}`);
+      
+      if (error.data$) {
+        console.log('   Raw Error Data:');
+        console.log(JSON.stringify(error.data$, null, 2));
+      }
+      
+      if (error.rawResponse) {
+        console.log('   Raw Response:');
+        console.log(JSON.stringify(error.rawResponse, null, 2));
+      }
+    }
+    
+    if (response) {
+      console.log('✅ Response Data:');
+      console.log(JSON.stringify(response, null, 2));
+    }
+    
+    console.log('─'.repeat(50));
+  }
+}
+
+// Enhanced logging with timing
+function logSection(title: string): void {
+  console.log('\n' + '─'.repeat(60));
+  console.log(`🔧 ${title}`);
+  if (DEBUG_MODE) {
+    console.log(`🐛 Debug mode: ON - Raw responses will be shown for errors`);
+  }
+  console.log('─'.repeat(60));
+}
+
+function logTimed(message: string, startTime: number, level: 'info' | 'success' | 'error' = 'info'): void {
+  const duration = Date.now() - startTime;
+  const timestamp = new Date().toLocaleTimeString();
+  const icon = level === 'success' ? '✅' : level === 'error' ? '❌' : '📋';
+  console.log(`[${timestamp}] ${icon} ${message} (${duration}ms)`);
+}
+
+// Track test metrics
+interface TestMetrics {
+  testsRun: number;
+  testsPassed: number;
+  startTime: number;
+  apiCalls: string[];
+  resourcesCreated: { type: string; id: string; status: string }[];
+  knownIssues: { operation: string; reason: string }[];
+}
+
+const metrics: TestMetrics = {
+  testsRun: 0,
+  testsPassed: 0,
+  startTime: Date.now(),
+  apiCalls: [],
+  resourcesCreated: [],
+  knownIssues: []
+};
+
+function trackApiCall(endpoint: string): void {
+  metrics.apiCalls.push(endpoint);
+}
+
+function trackResource(type: string, id: string, status: string = 'created'): void {
+  metrics.resourcesCreated.push({ type, id, status });
+}
+
+function trackKnownIssue(operation: string, reason: string): void {
+  metrics.knownIssues.push({ operation, reason });
+}
+
 // Simple retry helper
 async function retry<T>(
   fn: () => Promise<T>,
@@ -202,6 +291,9 @@ async function runCoreTests(): Promise<void> {
   console.log(`Testing against: ${SANDBOX_CONFIG.BASE_URL}`);
   console.log(`Start time: ${new Date().toLocaleString()}`);
   console.log('✨ Using TypeScript for type safety');
+  if (DEBUG_MODE) {
+    console.log('🐛 DEBUG MODE: ON - Raw API responses will be shown');
+  }
   console.log('');
 
   const dwolla = createSDK();
@@ -210,17 +302,24 @@ async function runCoreTests(): Promise<void> {
 
   try {
     // Test 1: Personal Customer Operations
+    logSection('Personal Customer Operations');
+    let testStart = Date.now();
     log('Testing personal customer creation...', 'info');
     testsRun++;
 
     const personalCustomerData = generatePersonalCustomer();
     const personalResponse = await retry(() => dwolla.customers.create(personalCustomerData));
     const personalCustomerId = extractIdFromLocation(personalResponse, 'personal customer');
+    trackApiCall('POST /customers');
+    trackResource('Personal Customer', personalCustomerId);
+    logRawResponse('Personal Customer Creation', personalResponse);
 
-    log(`Personal customer created: ${personalCustomerId}`, 'success');
+    logTimed(`Personal customer created: ${personalCustomerId}`, testStart, 'success');
     testsPassed++;
 
     // Test 2: Business Customer Operations
+    logSection('Business Customer Operations');
+    testStart = Date.now();
     log('Testing business customer creation...', 'info');
     testsRun++;
 
@@ -231,11 +330,15 @@ async function runCoreTests(): Promise<void> {
       const businessCustomerData = generateBusinessCustomer();
       const businessResponse = await retry(() => dwolla.customers.create(businessCustomerData));
       businessCustomerId = extractIdFromLocation(businessResponse, 'business customer');
+      trackApiCall('POST /customers');
+      trackResource('Business Customer', businessCustomerId);
+      logRawResponse('Business Customer Creation', businessResponse);
 
-      log(`Business customer created: ${businessCustomerId}`, 'success');
+      logTimed(`Business customer created: ${businessCustomerId}`, testStart, 'success');
       testsPassed++;
     } catch (error: any) {
       log(`Business customer creation failed (known issue): ${error.message}`, 'info');
+      logRawResponse('Business Customer Creation - Failed', null, error);
       console.log('   → This is a business validation issue, not a TypeScript structure issue');
       console.log(
         '   → TypeScript ensures the structure is correct, but Dwolla has business rules'
@@ -245,7 +348,10 @@ async function runCoreTests(): Promise<void> {
 
     // Test 3: Beneficial Owner Operations (only if business customer was created)
     if (businessCustomerId !== 'SKIP_BUSINESS') {
+      logSection('Beneficial Owner Operations');
+      
       // Test 3a: Create Beneficial Owner
+      testStart = Date.now();
       log('Testing beneficial owner creation...', 'info');
       testsRun++;
 
@@ -262,14 +368,19 @@ async function runCoreTests(): Promise<void> {
           beneficialOwnerResponse,
           'beneficial owner'
         );
-        log(`Beneficial owner created: ${beneficialOwnerId}`, 'success');
+        trackApiCall('POST /customers/{id}/beneficial-owners');
+        trackResource('Beneficial Owner', beneficialOwnerId);
+        logRawResponse('Beneficial Owner Creation', beneficialOwnerResponse);
+        logTimed(`Beneficial owner created: ${beneficialOwnerId}`, testStart, 'success');
         testsPassed++;
       } catch (error: any) {
         log(`Beneficial owner creation failed: ${error.message}`, 'error');
+        logRawResponse('Beneficial Owner Creation - Failed', null, error);
         console.log('   → This may be due to business validation rules or customer state');
       }
 
       // Test 3b: List Beneficial Owners
+      testStart = Date.now();
       log('Testing beneficial owners listing...', 'info');
       testsRun++;
 
@@ -277,10 +388,12 @@ async function runCoreTests(): Promise<void> {
         const beneficialOwnersList = await dwolla.customers.beneficialOwners.list({
           id: businessCustomerId,
         });
-        log(
+        trackApiCall('GET /customers/{id}/beneficial-owners');
+        logTimed(
           `Listed ${
             beneficialOwnersList.embedded?.beneficialOwners?.length || 0
           } beneficial owners`,
+          testStart,
           'success'
         );
         testsPassed++;
@@ -328,16 +441,23 @@ async function runCoreTests(): Promise<void> {
     }
 
     // Test 4: Retrieve Customers
+    logSection('Customer Retrieval Operations');
+    testStart = Date.now();
     log('Testing customer retrieval...', 'info');
 
     const retrievedPersonal = await dwolla.customers.get({ id: personalCustomerId });
-    log(`Retrieved personal customer: ${retrievedPersonal.id}`, 'success');
+    trackApiCall('GET /customers/{id}');
+    logRawResponse('Personal Customer Retrieval', retrievedPersonal);
+    logTimed(`Retrieved personal customer: ${retrievedPersonal.id}`, testStart, 'success');
     testsRun++;
     testsPassed++;
 
     if (businessCustomerId !== 'SKIP_BUSINESS') {
+      testStart = Date.now();
       const retrievedBusiness = await dwolla.customers.get({ id: businessCustomerId });
-      log(`Retrieved business customer: ${retrievedBusiness.id}`, 'success');
+      trackApiCall('GET /customers/{id}');
+      logRawResponse('Business Customer Retrieval', retrievedBusiness);
+      logTimed(`Retrieved business customer: ${retrievedBusiness.id}`, testStart, 'success');
       testsRun++;
       testsPassed++;
     } else {
@@ -345,6 +465,8 @@ async function runCoreTests(): Promise<void> {
     }
 
     // Test 5: Create Funding Sources
+    logSection('Funding Source Operations');
+    testStart = Date.now();
     log('Testing funding source creation...', 'info');
 
     const personalBankData = generateUnverifiedBankAccount();
@@ -355,7 +477,10 @@ async function runCoreTests(): Promise<void> {
       })
     );
     const personalFSId = extractIdFromLocation(personalFSResponse, 'personal funding source');
-    log(`Personal funding source created (unverified): ${personalFSId}`, 'success');
+    trackApiCall('POST /customers/{id}/funding-sources');
+    trackResource('Personal Funding Source', personalFSId, 'unverified');
+    logRawResponse('Personal Funding Source Creation', personalFSResponse);
+    logTimed(`Personal funding source created (unverified): ${personalFSId}`, testStart, 'success');
     log(
       '   → This funding source requires microdeposits verification due to verified: false',
       'info'
@@ -367,6 +492,7 @@ async function runCoreTests(): Promise<void> {
     const initialStatus = await checkFundingSourceStatus(dwolla, personalFSId);
 
     // Test 5a: Initiate Microdeposits
+    testStart = Date.now();
     log('Testing microdeposits initiation...', 'info');
     testsRun++;
 
@@ -376,46 +502,57 @@ async function runCoreTests(): Promise<void> {
         id: personalFSId,
         // No requestBody = initiate microdeposits
       });
+      trackApiCall('POST /funding-sources/{id}/micro-deposits');
 
       // Check if response is defined and has expected structure
       if (initiateResponse && initiateResponse.result) {
-        log('Microdeposits initiated successfully', 'success');
+        logTimed('Microdeposits initiated successfully', testStart, 'success');
+        logRawResponse('Microdeposits Initiation', initiateResponse);
         testsPassed++;
       } else if (initiateResponse === undefined) {
         // Some API responses may return undefined for successful operations
-        log('Microdeposits initiated successfully (undefined response)', 'success');
+        logTimed('Microdeposits initiated successfully (undefined response)', testStart, 'success');
+        logDebug('Microdeposits initiation returned undefined - this may be normal for this endpoint');
         testsPassed++;
       } else {
         log('Microdeposits initiation returned unexpected response format', 'error');
-        console.log('Response:', initiateResponse);
+        logRawResponse('Microdeposits Initiation - Unexpected Format', initiateResponse);
       }
     } catch (error: any) {
       // Handle specific error types
       if (error.name === 'ResponseValidationError') {
         // The API call worked but SDK validation failed - check status code
         if (error.statusCode === 201) {
-          log('Microdeposits initiated successfully (API worked, SDK validation issue)', 'success');
+          logTimed('Microdeposits initiated successfully ⚠️ (Known SDK Issue)', testStart, 'success');
+          trackKnownIssue('Microdeposits Initiation', 'SDK expects JSON response, API correctly returns empty body');
+          logRawResponse('Microdeposits Initiation - Validation Error', null, error);
+          console.log('   💡 This is expected: Dwolla returns 201 + empty body, SDK expects JSON');
           testsPassed++;
         } else {
           log(`Microdeposits initiation failed with status ${error.statusCode}`, 'error');
+          logRawResponse('Microdeposits Initiation - Failed', null, error);
           console.log('   → Response validation error for status code:', error.statusCode);
         }
       } else if (error.name === 'InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONError') {
         log(`Microdeposits initiation forbidden: ${error.message}`, 'info');
+        logRawResponse('Microdeposits Initiation - Forbidden', null, error);
         console.log(
           '   → This may indicate microdeposits already initiated or funding source already verified'
         );
         testsPassed++; // Count as success since it's expected behavior
       } else if (error.name === 'InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError') {
         log(`Funding source not found: ${error.message}`, 'error');
+        logRawResponse('Microdeposits Initiation - Not Found', null, error);
       } else {
         log(`Microdeposits initiation failed: ${error.message}`, 'error');
+        logRawResponse('Microdeposits Initiation - Other Error', null, error);
         console.log('   → Error type:', error.name);
         console.log('   → Error details:', error.data$ || error);
       }
     }
 
     // Test 5b: Verify Microdeposits (using test amounts)
+    testStart = Date.now();
     log('Testing microdeposits verification...', 'info');
     testsRun++;
 
@@ -428,6 +565,7 @@ async function runCoreTests(): Promise<void> {
         const microDepositsDetails = await dwolla.fundingSources.getMicroDeposits({
           id: personalFSId,
         });
+        trackApiCall('GET /funding-sources/{id}/micro-deposits');
 
         if (microDepositsDetails && microDepositsDetails.status) {
           log(`Microdeposits status: ${microDepositsDetails.status}`, 'info');
@@ -453,47 +591,62 @@ async function runCoreTests(): Promise<void> {
         id: personalFSId,
         requestBody: verifyMicroDepositsData,
       });
+      trackApiCall('POST /funding-sources/{id}/micro-deposits');
 
       // Check if response is defined and has expected structure
       if (verifyResponse && verifyResponse.result) {
-        log(
+        logTimed(
           'Microdeposits verified successfully - funding source should now be verified',
+          testStart,
           'success'
         );
+        logRawResponse('Microdeposits Verification', verifyResponse);
+        trackResource('Personal Funding Source', personalFSId, 'verified');
         testsPassed++;
       } else if (verifyResponse === undefined) {
         // Some API responses may return undefined for successful operations
-        log('Microdeposits verified successfully (undefined response)', 'success');
+        logTimed('Microdeposits verified successfully (undefined response)', testStart, 'success');
+        logDebug('Microdeposits verification returned undefined - this may be normal for this endpoint');
+        trackResource('Personal Funding Source', personalFSId, 'verified');
         testsPassed++;
       } else {
         log('Microdeposits verification returned unexpected response format', 'error');
-        console.log('Response:', verifyResponse);
+        logRawResponse('Microdeposits Verification - Unexpected Format', verifyResponse);
       }
     } catch (error: any) {
       // Handle specific error types
       if (error.name === 'ResponseValidationError') {
         // The API call worked but SDK validation failed - check status code
         if (error.statusCode === 200) {
-          log('Microdeposits verified successfully (API worked, SDK validation issue)', 'success');
+          logTimed('Microdeposits verified successfully ⚠️ (SDK Schema Issue)', testStart, 'success');
+          trackKnownIssue('Microdeposits Verification', 'SDK schema mismatch - Dwolla returns JSON with _links, SDK expects different structure');
+          logRawResponse('Microdeposits Verification - Schema Mismatch', null, error);
+          console.log('   🔍 SDK schema issue: Dwolla returns valid JSON but SDK expects different structure');
+          console.log('   📋 Expected: JSON with _links object, check debug output for actual vs expected');
           testsPassed++;
         } else {
           log(`Microdeposits verification failed with status ${error.statusCode}`, 'error');
+          logRawResponse('Microdeposits Verification - Failed', null, error);
           console.log('   → Response validation error for status code:', error.statusCode);
         }
       } else if (error.name === 'InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONError') {
         const errorCode = error.data$?.code || error.code;
         if (errorCode === 'InvalidResourceState') {
           log(`Funding source already verified: ${error.message}`, 'info');
+          logRawResponse('Microdeposits Verification - Already Verified', null, error);
           console.log('   → This is expected behavior if funding source was already verified');
           testsPassed++; // Count as success since it's expected behavior
         } else {
           log(`Microdeposits verification forbidden: ${error.message}`, 'info');
+          logRawResponse('Microdeposits Verification - Forbidden', null, error);
           console.log('   → Error code:', errorCode);
         }
       } else if (error.name === 'InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError') {
         log(`Funding source not found: ${error.message}`, 'error');
+        logRawResponse('Microdeposits Verification - Not Found', null, error);
       } else {
         log(`Microdeposits verification failed: ${error.message}`, 'error');
+        logRawResponse('Microdeposits Verification - Other Error', null, error);
         console.log('   → Error type:', error.name);
         console.log('   → Error details:', error.data$ || error);
         console.log(
@@ -507,6 +660,7 @@ async function runCoreTests(): Promise<void> {
 
     let businessFSId = 'SKIP_BUSINESS_FS';
     if (businessCustomerId !== 'SKIP_BUSINESS') {
+      testStart = Date.now();
       const businessBankData = generateBankAccount();
       const businessFSResponse = await retry(() =>
         dwolla.customers.fundingSources.create({
@@ -515,13 +669,18 @@ async function runCoreTests(): Promise<void> {
         })
       );
       businessFSId = extractIdFromLocation(businessFSResponse, 'business funding source');
-      log(`Business funding source created: ${businessFSId}`, 'success');
+      trackApiCall('POST /customers/{id}/funding-sources');
+      trackResource('Business Funding Source', businessFSId, 'verified');
+      logRawResponse('Business Funding Source Creation', businessFSResponse);
+      logTimed(`Business funding source created: ${businessFSId}`, testStart, 'success');
       testsRun++;
       testsPassed++;
     }
 
     // Test 6: Transfer between funding sources
     if (businessFSId !== 'SKIP_BUSINESS_FS') {
+      logSection('Transfer Operations');
+      testStart = Date.now();
       log('Testing transfer from personal to business funding source...', 'info');
       testsRun++;
 
@@ -550,10 +709,14 @@ async function runCoreTests(): Promise<void> {
 
         const transferResponse = await retry(() => dwolla.transfers.create(transferRequest));
         const transferId = extractIdFromLocation(transferResponse, 'transfer');
-        log(`Transfer created successfully: ${transferId}`, 'success');
+        trackApiCall('POST /transfers');
+        trackResource('Transfer', transferId, 'pending');
+        logRawResponse('Transfer Creation', transferResponse);
+        logTimed(`Transfer created successfully: ${transferId}`, testStart, 'success');
         testsPassed++;
       } catch (error: any) {
         log(`Transfer creation failed: ${error.message}`, 'error');
+        logRawResponse('Transfer Creation - Failed', null, error);
         console.log('   → Error type:', error.name);
         console.log(
           '   → This may be due to insufficient balance, account status, or business rules'
@@ -564,24 +727,43 @@ async function runCoreTests(): Promise<void> {
     }
 
     // Test 7: List Operations (if supported)
+    logSection('List Operations');
     try {
+      testStart = Date.now();
       log('Testing list operations...', 'info');
       testsRun++;
 
       // Try listing customers (may not be available in all SDK versions)
       const customersList = await dwolla.customers.list({ limit: 5 });
-      log(`Listed ${customersList.embedded?.customers?.length || 0} customers`, 'success');
+      trackApiCall('GET /customers');
+      logRawResponse('Customer List', customersList);
+      logTimed(`Listed ${customersList.embedded?.customers?.length || 0} customers`, testStart, 'success');
       testsPassed++;
     } catch (error: any) {
       log(`List operations not supported or failed: ${error.message}`, 'error');
+      logRawResponse('Customer List - Failed', null, error);
     }
 
     // Test Summary
-    console.log('\n' + '='.repeat(50));
-    log(`🎯 Test Summary: ${testsPassed}/${testsRun} tests passed`, 'info');
+    const totalTime = Date.now() - metrics.startTime;
+    console.log('\n' + '='.repeat(60));
+    console.log('📊 TEST SUMMARY');
+    console.log('='.repeat(60));
+    log(`🎯 Test Results: ${testsPassed}/${testsRun} tests passed`, 'info');
+    log(`⏱️  Total Execution Time: ${totalTime}ms (${(totalTime/1000).toFixed(1)}s)`, 'info');
+    log(`🌐 API Calls Made: ${metrics.apiCalls.length}`, 'info');
+    log(`📦 Resources Created: ${metrics.resourcesCreated.length}`, 'info');
+    
+    if (metrics.knownIssues.length > 0) {
+      log(`⚠️  Known SDK Issues: ${metrics.knownIssues.length} (operations succeed, validation issues only)`, 'info');
+    }
 
     if (testsPassed === testsRun) {
-      log('🎉 All tests passed! SDK is working correctly.', 'success');
+      if (metrics.knownIssues.length > 0) {
+        log('🎉 All tests passed! SDK functional, with known validation issues.', 'success');
+      } else {
+        log('🎉 All tests passed! SDK is working perfectly.', 'success');
+      }
     } else {
       log(`⚠️  Some tests failed. This may be due to business rules or permissions.`, 'info');
       console.log('   → TypeScript compilation and basic SDK structure are working');
@@ -590,9 +772,45 @@ async function runCoreTests(): Promise<void> {
       );
     }
 
+    // API Endpoints Summary
+    if (metrics.apiCalls.length > 0) {
+      console.log('\n🔗 API Endpoints Called:');
+      const endpointCounts = metrics.apiCalls.reduce((acc, endpoint) => {
+        acc[endpoint] = (acc[endpoint] || 0) + 1;
+        return acc;
+      }, {} as Record<string, number>);
+      
+      Object.entries(endpointCounts)
+        .sort(([a], [b]) => a.localeCompare(b))
+        .forEach(([endpoint, count]) => {
+          const countStr = count > 1 ? ` (${count}x)` : '';
+          console.log(`   • ${endpoint}${countStr}`);
+        });
+    }
+
+    // Resource Summary
+    if (metrics.resourcesCreated.length > 0) {
+      console.log('\n📋 Resources Created:');
+      metrics.resourcesCreated.forEach(resource => 
+        console.log(`   • ${resource.type}: ${resource.id} (${resource.status})`)
+      );
+    }
+
+    // Known Issues Summary  
+    if (metrics.knownIssues.length > 0) {
+      console.log('\n⚠️ Known SDK Issues (Operations Successful):');
+      metrics.knownIssues.forEach(issue => 
+        console.log(`   • ${issue.operation}: ${issue.reason}`)
+      );
+      console.log('\n💡 Note: These are SDK validation/schema issues, not API failures.');
+      console.log('   The operations complete successfully on Dwolla\'s side.');
+      console.log('   These suggest the OpenAPI spec used to generate the SDK needs updates.');
+      console.log('   Microdeposits are only needed for testing bank account verification.');
+    }
+
     console.log('\n📊 Test Breakdown:');
     console.log('   • Personal Customer: Creation + Retrieval + Funding Source');
-    console.log('   • Microdeposits: Initiate + Verify (for unverified funding source)');
+    console.log('   • Microdeposits: Initiate + Verify (testing bank account verification flow)');
     console.log('   • Business Customer: Creation + Retrieval + Funding Source (if successful)');
     console.log(
       '   • Beneficial Owners: Create + List + Status + Certification (if business succeeds)'
@@ -602,6 +820,7 @@ async function runCoreTests(): Promise<void> {
     );
     console.log('   • List Operations: Customer listing (if supported)');
     console.log('   • All operations use proper TypeScript types and error handling');
+    console.log('   • Note: Microdeposits are only for testing - real apps verify bank accounts differently');
   } catch (error: any) {
     log(`❌ Critical test failure: ${error.message}`, 'error');
     console.error('Stack trace:', error.stack);
