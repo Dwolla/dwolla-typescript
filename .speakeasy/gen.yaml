@@ -28,10 +28,7 @@ typescript:
   version: 0.0.1-beta.1
   additionalDependencies:
     dependencies: {}
-    devDependencies:
-      '@faker-js/faker': '^9.3.0'
-      'dotenv': '^16.4.5'
-      'tsx': '^4.19.2'
+    devDependencies: {}
     peerDependencies: {}
   additionalPackageJSON: {}
   author: Speakeasy
