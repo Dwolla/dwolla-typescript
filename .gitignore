@@ -28,3 +28,4 @@
 **/.speakeasy/logs/
 .DS_Store
 /.speakeasy/reports
+/tests/sandbox/sandbox.env
