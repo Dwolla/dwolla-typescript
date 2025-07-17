@@ -19,6 +19,43 @@ import type {
   InitiateTransferRequest,
 } from '../../dist/esm/models/operations/index.js';
 
+// Enhanced test configuration
+interface TestConfig {
+  failFast: boolean;
+}
+
+/**
+ * Test Strategy Configuration:
+ *
+ * FAIL FAST (failFast: true):
+ * - Best for: Testing full integration capability
+ * - Behavior: Stop immediately if transfer test cannot be executed
+ * - Transfer requires: Personal FS + Business FS, so fail fast if either path breaks:
+ *   • Personal Customer fails → fail fast
+ *   • Personal Funding Source fails → fail fast
+ *   • Business Customer fails → fail fast
+ *   • Business Funding Source fails → fail fast
+ * 
+ * SKIP AND CONTINUE (failFast: false):
+ * - Best for: Development, debugging, testing individual components
+ * - Behavior: Test each component independently, skip transfer if prerequisites missing
+ * - Use when: You want to see which specific operations work/fail individually
+ */
+// Track test failures for decision making
+interface TestFailures {
+  personalCustomer: boolean;
+  businessCustomer: boolean;
+  personalFundingSource: boolean;
+  businessFundingSource: boolean;
+}
+
+const testFailures: TestFailures = {
+  personalCustomer: false,
+  businessCustomer: false,
+  personalFundingSource: false,
+  businessFundingSource: false,
+};
+
 // Load sandbox credentials  
 dotenv.config({ path: './sandbox/sandbox.env' });
 
@@ -29,6 +66,11 @@ const SANDBOX_CONFIG = {
 };
 
 const DEBUG_MODE = process.env.DEBUG === 'true' || process.env.DEBUG === '1';
+const FAIL_FAST_MODE = process.env.FAIL_FAST === 'true' || process.env.FAIL_FAST === '1';
+
+const TEST_CONFIG: TestConfig = {
+  failFast: FAIL_FAST_MODE, // Controlled by FAIL_FAST environment variable (default: false for development)
+};
 
 // Create SDK instance with proper typing
 function createSDK(): Dwolla {
@@ -291,6 +333,7 @@ async function runCoreTests(): Promise<void> {
   console.log(`Testing against: ${SANDBOX_CONFIG.BASE_URL}`);
   console.log(`Start time: ${new Date().toLocaleString()}`);
   console.log('✨ Using TypeScript for type safety');
+  console.log(`📋 Test Mode: ${TEST_CONFIG.failFast ? '⚡ INTEGRATION (fail fast)' : '🔧 COMPONENT (skip and continue)'}`);
   if (DEBUG_MODE) {
     console.log('🐛 DEBUG MODE: ON - Raw API responses will be shown');
   }
@@ -301,21 +344,64 @@ async function runCoreTests(): Promise<void> {
   let testsPassed = 0;
 
   try {
+    // Test 0: Authentication & Token Generation
+    logSection('Authentication Test');
+    let testStart = Date.now();
+    log('Testing token generation and basic connectivity...', 'info');
+    testsRun++;
+
+    try {
+      // Simple API call to test authentication - get root resource
+      const rootResponse = await dwolla.root.get();
+      trackApiCall('GET /');
+      logRawResponse('Root Resource (Token Test)', rootResponse);
+      logTimed('Authentication successful - tokens generated', testStart, 'success');
+      testsPassed++;
+    } catch (error: any) {
+      log(`❌ CRITICAL: Authentication failed: ${error.message}`, 'error');
+      logRawResponse('Authentication Test - Failed', null, error);
+      
+      // Always fail fast for authentication issues regardless of failFast setting
+      console.log('\n🛑 AUTHENTICATION FAILURE: Cannot proceed with any tests');
+      console.log('   → This indicates fundamental configuration or connectivity issues');
+      console.log('   → Check your DWOLLA_CLIENT_ID and DWOLLA_CLIENT_SECRET in tests/sandbox/sandbox.env');
+      console.log('   → Verify Dwolla sandbox API is accessible');
+      console.log('   → Ensure credentials are valid and not expired');
+      throw new Error(`Authentication failed - cannot proceed: ${error.message}`);
+    }
+
     // Test 1: Personal Customer Operations
     logSection('Personal Customer Operations');
-    let testStart = Date.now();
+    testStart = Date.now();
     log('Testing personal customer creation...', 'info');
     testsRun++;
 
-    const personalCustomerData = generatePersonalCustomer();
-    const personalResponse = await retry(() => dwolla.customers.create(personalCustomerData));
-    const personalCustomerId = extractIdFromLocation(personalResponse, 'personal customer');
-    trackApiCall('POST /customers');
-    trackResource('Personal Customer', personalCustomerId);
-    logRawResponse('Personal Customer Creation', personalResponse);
+    let personalCustomerId: string;
+    try {
+      const personalCustomerData = generatePersonalCustomer();
+      const personalResponse = await retry(() => dwolla.customers.create(personalCustomerData));
+      personalCustomerId = extractIdFromLocation(personalResponse, 'personal customer');
+      trackApiCall('POST /customers');
+      trackResource('Personal Customer', personalCustomerId);
+      logRawResponse('Personal Customer Creation', personalResponse);
 
-    logTimed(`Personal customer created: ${personalCustomerId}`, testStart, 'success');
-    testsPassed++;
+      logTimed(`Personal customer created: ${personalCustomerId}`, testStart, 'success');
+      testsPassed++;
+    } catch (error: any) {
+      testFailures.personalCustomer = true;
+      log(`❌ CRITICAL: Personal customer creation failed: ${error.message}`, 'error');
+      logRawResponse('Personal Customer Creation - Failed', null, error);
+      
+      if (TEST_CONFIG.failFast) {
+        console.log('\n🛑 FAILING FAST: Personal customer creation is required for integration test');
+        console.log('   → Transfer test requires both personal AND business funding sources');
+        console.log('   → Check your credentials, SSN format, and API connectivity');
+        throw new Error(`Integration dependency failed: Personal customer creation - ${error.message}`);
+      }
+      
+      console.log('   → Continuing with business customer tests (personal customer functionality unavailable)');
+      personalCustomerId = 'FAILED_PERSONAL';
+    }
 
     // Test 2: Business Customer Operations
     logSection('Business Customer Operations');
@@ -337,13 +423,20 @@ async function runCoreTests(): Promise<void> {
       logTimed(`Business customer created: ${businessCustomerId}`, testStart, 'success');
       testsPassed++;
     } catch (error: any) {
-      log(`Business customer creation failed (known issue): ${error.message}`, 'info');
+      testFailures.businessCustomer = true;
+      log(`Business customer creation failed: ${error.message}`, 'error');
       logRawResponse('Business Customer Creation - Failed', null, error);
-      console.log('   → This is a business validation issue, not a TypeScript structure issue');
-      console.log(
-        '   → TypeScript ensures the structure is correct, but Dwolla has business rules'
-      );
-      console.log('   → Continuing with personal customer tests...\n');
+      console.log('   → This could be due to business validation requirements or incomplete data');
+      console.log('   → Check EIN format, business classification, and controller information');
+      
+      if (TEST_CONFIG.failFast) {
+        console.log('\n🛑 FAILING FAST: Business customer creation is required for integration testing');
+        console.log('   → Transfer test requires both personal AND business funding sources');
+        throw new Error(`Integration dependency failed: Business customer creation - ${error.message}`);
+      }
+      
+      console.log('   → (Business) unavailable, transfer test will be skipped');
+      console.log('   → (Personal) can continue independently\n');
     }
 
     // Test 3: Beneficial Owner Operations (only if business customer was created)
@@ -442,15 +535,20 @@ async function runCoreTests(): Promise<void> {
 
     // Test 4: Retrieve Customers
     logSection('Customer Retrieval Operations');
-    testStart = Date.now();
-    log('Testing customer retrieval...', 'info');
+    
+    if (!testFailures.personalCustomer) {
+      testStart = Date.now();
+      log('Testing personal customer retrieval...', 'info');
+      testsRun++;
 
-    const retrievedPersonal = await dwolla.customers.get({ id: personalCustomerId });
-    trackApiCall('GET /customers/{id}');
-    logRawResponse('Personal Customer Retrieval', retrievedPersonal);
-    logTimed(`Retrieved personal customer: ${retrievedPersonal.id}`, testStart, 'success');
-    testsRun++;
-    testsPassed++;
+      const retrievedPersonal = await dwolla.customers.get({ id: personalCustomerId });
+      trackApiCall('GET /customers/{id}');
+      logRawResponse('Personal Customer Retrieval', retrievedPersonal);
+      logTimed(`Retrieved personal customer: ${retrievedPersonal.id}`, testStart, 'success');
+      testsPassed++;
+    } else {
+      log('⏭️  Skipping personal customer retrieval (creation failed)', 'info');
+    }
 
     if (businessCustomerId !== 'SKIP_BUSINESS') {
       testStart = Date.now();
@@ -466,35 +564,56 @@ async function runCoreTests(): Promise<void> {
 
     // Test 5: Create Funding Sources
     logSection('Funding Source Operations');
-    testStart = Date.now();
-    log('Testing funding source creation...', 'info');
+    
+    let personalFSId = 'FAILED_PERSONAL_FS';
+    if (!testFailures.personalCustomer) {
+      testStart = Date.now();
+      log('Testing personal customer funding source creation...', 'info');
+      testsRun++;
 
-    const personalBankData = generateUnverifiedBankAccount();
-    const personalFSResponse = await retry(() =>
-      dwolla.customers.fundingSources.create({
-        id: personalCustomerId,
-        createCustomerFundingSource: personalBankData,
-      })
-    );
-    const personalFSId = extractIdFromLocation(personalFSResponse, 'personal funding source');
-    trackApiCall('POST /customers/{id}/funding-sources');
-    trackResource('Personal Funding Source', personalFSId, 'unverified');
-    logRawResponse('Personal Funding Source Creation', personalFSResponse);
-    logTimed(`Personal funding source created (unverified): ${personalFSId}`, testStart, 'success');
-    log(
-      '   → This funding source requires microdeposits verification due to verified: false',
-      'info'
-    );
-    testsRun++;
-    testsPassed++;
+      try {
+        const personalBankData = generateUnverifiedBankAccount();
+        const personalFSResponse = await retry(() =>
+          dwolla.customers.fundingSources.create({
+            id: personalCustomerId,
+            createCustomerFundingSource: personalBankData,
+          })
+        );
+        personalFSId = extractIdFromLocation(personalFSResponse, 'personal funding source');
+        trackApiCall('POST /customers/{id}/funding-sources');
+        trackResource('Personal Funding Source', personalFSId, 'unverified');
+        logRawResponse('Personal Funding Source Creation', personalFSResponse);
+        logTimed(`Personal funding source created (unverified): ${personalFSId}`, testStart, 'success');
+        log(
+          '   → This funding source requires microdeposits verification due to verified: false',
+          'info'
+        );
+        testsPassed++;
+      } catch (error: any) {
+        testFailures.personalFundingSource = true;
+        log(`Personal funding source creation failed: ${error.message}`, 'error');
+        logRawResponse('Personal Funding Source Creation - Failed', null, error);
+        
+        if (TEST_CONFIG.failFast) {
+          console.log('\n🛑 FAILING FAST: Personal funding source creation is required for integration testing');
+          console.log('   → Transfer test requires both personal AND business funding sources');
+          console.log('   → Check bank account details and customer state');
+          throw new Error(`Integration dependency failed: Personal funding source creation - ${error.message}`);
+        }
+      }
+    } else {
+      log('⏭️  Skipping personal funding source creation (personal customer creation failed)', 'info');
+    }
 
-    // Check initial funding source status
-    const initialStatus = await checkFundingSourceStatus(dwolla, personalFSId);
+    // Microdeposits testing (only if personal funding source was created)
+    if (!testFailures.personalCustomer && !testFailures.personalFundingSource && personalFSId !== 'FAILED_PERSONAL_FS') {
+      // Check initial funding source status
+      const initialStatus = await checkFundingSourceStatus(dwolla, personalFSId);
 
-    // Test 5a: Initiate Microdeposits
-    testStart = Date.now();
-    log('Testing microdeposits initiation...', 'info');
-    testsRun++;
+      // Test 5a: Initiate Microdeposits
+      testStart = Date.now();
+      log('Testing microdeposits initiation...', 'info');
+      testsRun++;
 
     try {
       // Note: Not using retry() for microdeposits operations as they are stateful/non-idempotent
@@ -655,30 +774,51 @@ async function runCoreTests(): Promise<void> {
       }
     }
 
-    // Check final funding source status after microdeposits operations
-    await checkFundingSourceStatus(dwolla, personalFSId);
+      // Check final funding source status after microdeposits operations
+      await checkFundingSourceStatus(dwolla, personalFSId);
+    } else {
+      log('⏭️  Skipping microdeposits testing (personal customer or funding source creation failed)', 'info');
+    }
 
     let businessFSId = 'SKIP_BUSINESS_FS';
     if (businessCustomerId !== 'SKIP_BUSINESS') {
       testStart = Date.now();
-      const businessBankData = generateBankAccount();
-      const businessFSResponse = await retry(() =>
-        dwolla.customers.fundingSources.create({
-          id: businessCustomerId,
-          createCustomerFundingSource: businessBankData,
-        })
-      );
-      businessFSId = extractIdFromLocation(businessFSResponse, 'business funding source');
-      trackApiCall('POST /customers/{id}/funding-sources');
-      trackResource('Business Funding Source', businessFSId, 'verified');
-      logRawResponse('Business Funding Source Creation', businessFSResponse);
-      logTimed(`Business funding source created: ${businessFSId}`, testStart, 'success');
+      log('Testing business customer funding source creation...', 'info');
       testsRun++;
-      testsPassed++;
+      
+      try {
+        const businessBankData = generateBankAccount();
+        const businessFSResponse = await retry(() =>
+          dwolla.customers.fundingSources.create({
+            id: businessCustomerId,
+            createCustomerFundingSource: businessBankData,
+          })
+        );
+        businessFSId = extractIdFromLocation(businessFSResponse, 'business funding source');
+        trackApiCall('POST /customers/{id}/funding-sources');
+        trackResource('Business Funding Source', businessFSId, 'verified');
+        logRawResponse('Business Funding Source Creation', businessFSResponse);
+        logTimed(`Business funding source created: ${businessFSId}`, testStart, 'success');
+        testsPassed++;
+      } catch (error: any) {
+        testFailures.businessFundingSource = true; // Mark business funding source as failed
+        log(`Business funding source creation failed: ${error.message}`, 'error');
+        logRawResponse('Business Funding Source Creation - Failed', null, error);
+        
+        if (TEST_CONFIG.failFast) {
+          console.log('\n🛑 FAILING FAST: Business funding source creation is required for integration testing');
+          console.log('   → Transfer test requires both personal AND business funding sources');
+          throw new Error(`Integration dependency failed: Business funding source creation - ${error.message}`);
+        }
+        businessFSId = 'FAILED_BUSINESS_FS';
+      }
+    } else {
+      log('⏭️  Skipping business funding source creation (Business customer creation failed)', 'info');
     }
 
     // Test 6: Transfer between funding sources
-    if (businessFSId !== 'SKIP_BUSINESS_FS') {
+    if (businessFSId !== 'SKIP_BUSINESS_FS' && businessFSId !== 'FAILED_BUSINESS_FS' && 
+        personalFSId !== 'FAILED_PERSONAL_FS' && !testFailures.personalFundingSource) {
       logSection('Transfer Operations');
       testStart = Date.now();
       log('Testing transfer from personal to business funding source...', 'info');
@@ -723,7 +863,13 @@ async function runCoreTests(): Promise<void> {
         );
       }
     } else {
-      log('Skipping transfer test (business funding source not available)', 'info');
+      if (businessFSId === 'SKIP_BUSINESS_FS') {
+        log('⏭️  Skipping transfer test (Business customer creation failed)', 'info');
+      } else if (businessFSId === 'FAILED_BUSINESS_FS') {
+        log('⏭️  Skipping transfer test (Business funding source creation failed)', 'info');
+      } else if (personalFSId === 'FAILED_PERSONAL_FS' || testFailures.personalFundingSource) {
+        log('⏭️  Skipping transfer test (Personal funding source not available)', 'info');
+      }
     }
 
     // Test 7: List Operations (if supported)
@@ -746,6 +892,8 @@ async function runCoreTests(): Promise<void> {
 
     // Test Summary
     const totalTime = Date.now() - metrics.startTime;
+    const testsSkipped = Object.values(testFailures).filter(failed => failed).length;
+    
     console.log('\n' + '='.repeat(60));
     console.log('📊 TEST SUMMARY');
     console.log('='.repeat(60));
@@ -753,6 +901,25 @@ async function runCoreTests(): Promise<void> {
     log(`⏱️  Total Execution Time: ${totalTime}ms (${(totalTime/1000).toFixed(1)}s)`, 'info');
     log(`🌐 API Calls Made: ${metrics.apiCalls.length}`, 'info');
     log(`📦 Resources Created: ${metrics.resourcesCreated.length}`, 'info');
+    log(`📋 Test Strategy: ${TEST_CONFIG.failFast ? 'Fail Fast' : 'Skip and Continue'}`, 'info');
+    
+    if (testsSkipped > 0) {
+      log(`⏭️  Path Failures: ${testsSkipped} (dependent tests were skipped)`, 'info');
+      console.log('   Path Status:');
+      if (testFailures.personalCustomer) console.log('   • (Personal): Customer creation failed → entire path unavailable');
+      if (testFailures.businessCustomer) console.log('   • (Business): Customer creation failed → business flow unavailable');
+      if (testFailures.personalFundingSource) console.log('   • (Personal): Funding source creation failed → microdeposits unavailable');
+      if (testFailures.businessFundingSource) console.log('   • (Business): Funding source creation failed → business flow unavailable');
+      
+      const pathAWorking = !testFailures.personalCustomer && !testFailures.personalFundingSource;
+      const pathBWorking = !testFailures.businessCustomer && !testFailures.businessFundingSource;
+      const pathCWorking = pathAWorking && pathBWorking;
+      
+      console.log('   Integration Status:');
+      console.log(`   • Personal → Funding → Microdeposits: ${pathAWorking ? '✅ Available' : '❌ Unavailable'}`);
+      console.log(`   • Business → Funding: ${pathBWorking ? '✅ Available' : '❌ Unavailable'}`);
+      console.log(`   • Transfer: ${pathCWorking ? '✅ Available' : '❌ Unavailable'}`);
+    }
     
     if (metrics.knownIssues.length > 0) {
       log(`⚠️  Known SDK Issues: ${metrics.knownIssues.length} (operations succeed, validation issues only)`, 'info');
@@ -805,22 +972,25 @@ async function runCoreTests(): Promise<void> {
       console.log('\n💡 Note: These are SDK validation/schema issues, not API failures.');
       console.log('   The operations complete successfully on Dwolla\'s side.');
       console.log('   These suggest the OpenAPI spec used to generate the SDK needs updates.');
-      console.log('   Microdeposits are only needed for testing bank account verification.');
     }
 
-    console.log('\n📊 Test Breakdown:');
-    console.log('   • Personal Customer: Creation + Retrieval + Funding Source');
-    console.log('   • Microdeposits: Initiate + Verify (testing bank account verification flow)');
-    console.log('   • Business Customer: Creation + Retrieval + Funding Source (if successful)');
-    console.log(
-      '   • Beneficial Owners: Create + List + Status + Certification (if business succeeds)'
-    );
-    console.log(
-      '   • Transfer: Send funds from personal to business funding source (if both available)'
-    );
+    console.log('\n📊 Integration Test Breakdown:');
+    console.log('   Personal Customer Flow:');
+    console.log('   • Personal Customer: Creation + Retrieval');
+    console.log('   • Personal Funding Source: Creation');
+    console.log('   • Microdeposits: Initiate + Verify (bank account verification)');
+    console.log('');
+    console.log('   Business Customer Flow:');
+    console.log('   • Business Customer: Creation + Retrieval');
+    console.log('   • Business Funding Source: Creation');
+    console.log('   • Beneficial Owners: Create + List + Status + Certification');
+    console.log('');
+    console.log('   Transfer flow:');
+    console.log('   • Transfer: Send funds between personal and business funding sources');
+    console.log('');
+    console.log('   Additional Tests:');
     console.log('   • List Operations: Customer listing (if supported)');
     console.log('   • All operations use proper TypeScript types and error handling');
-    console.log('   • Note: Microdeposits are only for testing - real apps verify bank accounts differently');
   } catch (error: any) {
     log(`❌ Critical test failure: ${error.message}`, 'error');
     console.error('Stack trace:', error.stack);
