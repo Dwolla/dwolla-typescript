@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { UpdateOrRemoveFundingSourceRequest } from "dwolla-typescript/models/operations";
+import { UpdateOrRemoveFundingSourceRequest } from "dwolla/models/operations";
 
 let value: UpdateOrRemoveFundingSourceRequest = {
   id: "<id>",

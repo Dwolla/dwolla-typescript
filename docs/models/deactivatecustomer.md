@@ -5,7 +5,7 @@ Deactivate a Customer
 ## Example Usage
 
 ```typescript
-import { DeactivateCustomer } from "dwolla-typescript/models";
+import { DeactivateCustomer } from "dwolla/models";
 
 let value: DeactivateCustomer = {
   status: "deactivated",

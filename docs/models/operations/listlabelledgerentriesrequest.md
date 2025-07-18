@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ListLabelLedgerEntriesRequest } from "dwolla-typescript/models/operations";
+import { ListLabelLedgerEntriesRequest } from "dwolla/models/operations";
 
 let value: ListLabelLedgerEntriesRequest = {
   id: "<id>",

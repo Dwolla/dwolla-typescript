@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SourceNotFoundErrorEmbedded } from "dwolla-typescript/models";
+import { SourceNotFoundErrorEmbedded } from "dwolla/models";
 
 let value: SourceNotFoundErrorEmbedded = {
   errors: [

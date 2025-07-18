@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WithdrawInvalidWireOriginatorToBeneficiaryError } from "dwolla-typescript/models/errors";
+import { WithdrawInvalidWireOriginatorToBeneficiaryError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

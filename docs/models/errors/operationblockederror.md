@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { OperationBlockedError } from "dwolla-typescript/models/errors";
+import { OperationBlockedError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

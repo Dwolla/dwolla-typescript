@@ -5,7 +5,7 @@ Create re-auth exchange session for web (Plaid web sessions where request body i
 ## Example Usage
 
 ```typescript
-import { CreateReAuthExchangeSessionForWeb } from "dwolla-typescript/models";
+import { CreateReAuthExchangeSessionForWeb } from "dwolla/models";
 
 let value: CreateReAuthExchangeSessionForWeb = {};
 ```

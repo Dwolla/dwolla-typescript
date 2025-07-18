@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateCustomerDocumentRequest } from "dwolla-typescript/models/operations";
+import { CreateCustomerDocumentRequest } from "dwolla/models/operations";
 
 // No examples available for this model
 ```

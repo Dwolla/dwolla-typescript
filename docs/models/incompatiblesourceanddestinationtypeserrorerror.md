@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { IncompatibleSourceAndDestinationTypesErrorError } from "dwolla-typescript/models";
+import { IncompatibleSourceAndDestinationTypesErrorError } from "dwolla/models";
 
 let value: IncompatibleSourceAndDestinationTypesErrorError = {
   code: "Invalid",

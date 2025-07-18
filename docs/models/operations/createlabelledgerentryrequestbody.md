@@ -5,7 +5,7 @@ Parameters to create a label ledger entry
 ## Example Usage
 
 ```typescript
-import { CreateLabelLedgerEntryRequestBody } from "dwolla-typescript/models/operations";
+import { CreateLabelLedgerEntryRequestBody } from "dwolla/models/operations";
 
 let value: CreateLabelLedgerEntryRequestBody = {
   amount: {

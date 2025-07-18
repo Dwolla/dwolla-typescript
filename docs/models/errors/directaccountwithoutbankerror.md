@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DirectAccountWithoutBankError } from "dwolla-typescript/models/errors";
+import { DirectAccountWithoutBankError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

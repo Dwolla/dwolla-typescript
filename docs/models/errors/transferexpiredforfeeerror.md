@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { TransferExpiredForFeeError } from "dwolla-typescript/models/errors";
+import { TransferExpiredForFeeError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

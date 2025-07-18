@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DestinationAddendaMaxLengthErrorEmbedded } from "dwolla-typescript/models";
+import { DestinationAddendaMaxLengthErrorEmbedded } from "dwolla/models";
 
 let value: DestinationAddendaMaxLengthErrorEmbedded = {
   errors: [

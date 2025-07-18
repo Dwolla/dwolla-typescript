@@ -5,7 +5,7 @@ not found
 ## Example Usage
 
 ```typescript
-import { GetCustomerNotFoundDwollaV1HalJSONError } from "dwolla-typescript/models/errors";
+import { GetCustomerNotFoundDwollaV1HalJSONError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

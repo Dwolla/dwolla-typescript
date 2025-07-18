@@ -19,8 +19,8 @@ specific category of applications.
 ## Example
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { tokensCreateApplicationAccessToken } from "dwolla-typescript/funcs/tokensCreateApplicationAccessToken.js";
+import { DwollaCore } from "dwolla/core.js";
+import { tokensCreateApplicationAccessToken } from "dwolla/funcs/tokensCreateApplicationAccessToken.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

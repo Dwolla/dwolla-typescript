@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InitiateTransferAchDetailsDestination } from "dwolla-typescript/models/operations";
+import { InitiateTransferAchDetailsDestination } from "dwolla/models/operations";
 
 let value: InitiateTransferAchDetailsDestination = {};
 ```

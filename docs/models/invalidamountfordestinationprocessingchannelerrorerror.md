@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InvalidAmountForDestinationProcessingChannelErrorError } from "dwolla-typescript/models";
+import { InvalidAmountForDestinationProcessingChannelErrorError } from "dwolla/models";
 
 let value: InvalidAmountForDestinationProcessingChannelErrorError = {
   code: "Restricted",

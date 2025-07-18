@@ -5,7 +5,7 @@ Schema for creating a Virtual Account Number (VAN) . VANs are unique account num
 ## Example Usage
 
 ```typescript
-import { CreateCustomerVirtualAccountFundingSource } from "dwolla-typescript/models";
+import { CreateCustomerVirtualAccountFundingSource } from "dwolla/models";
 
 let value: CreateCustomerVirtualAccountFundingSource = {
   name: "My First VAN",

@@ -22,7 +22,7 @@ The redirect-url is conditionally required:
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -57,8 +57,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { exchangeSessionsCreate } from "dwolla-typescript/funcs/exchangeSessionsCreate.js";
+import { DwollaCore } from "dwolla/core.js";
+import { exchangeSessionsCreate } from "dwolla/funcs/exchangeSessionsCreate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -127,7 +127,7 @@ Retrieve details of an exchange session
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -152,8 +152,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { exchangeSessionsGet } from "dwolla-typescript/funcs/exchangeSessionsGet.js";
+import { DwollaCore } from "dwolla/core.js";
+import { exchangeSessionsGet } from "dwolla/funcs/exchangeSessionsGet.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

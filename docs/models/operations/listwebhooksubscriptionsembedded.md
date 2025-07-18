@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ListWebhookSubscriptionsEmbedded } from "dwolla-typescript/models/operations";
+import { ListWebhookSubscriptionsEmbedded } from "dwolla/models/operations";
 
 let value: ListWebhookSubscriptionsEmbedded = {
   webhookSubscriptions: [

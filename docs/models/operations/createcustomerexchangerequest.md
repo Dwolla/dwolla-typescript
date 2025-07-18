@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { CreateCustomerExchangeRequest } from "dwolla-typescript/models/operations";
-import { RFCDate } from "dwolla-typescript/types";
+import { CreateCustomerExchangeRequest } from "dwolla/models/operations";
+import { RFCDate } from "dwolla/types";
 
 let value: CreateCustomerExchangeRequest = {
   id: "<id>",

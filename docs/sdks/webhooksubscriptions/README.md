@@ -19,7 +19,7 @@ List webhook subscriptions
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -42,8 +42,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { webhookSubscriptionsList } from "dwolla-typescript/funcs/webhookSubscriptionsList.js";
+import { DwollaCore } from "dwolla/core.js";
+import { webhookSubscriptionsList } from "dwolla/funcs/webhookSubscriptionsList.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -94,7 +94,7 @@ Create a webhook subscription
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -120,8 +120,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { webhookSubscriptionsCreate } from "dwolla-typescript/funcs/webhookSubscriptionsCreate.js";
+import { DwollaCore } from "dwolla/core.js";
+import { webhookSubscriptionsCreate } from "dwolla/funcs/webhookSubscriptionsCreate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -179,7 +179,7 @@ Retrieve a webhook subscription
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -204,8 +204,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { webhookSubscriptionsGet } from "dwolla-typescript/funcs/webhookSubscriptionsGet.js";
+import { DwollaCore } from "dwolla/core.js";
+import { webhookSubscriptionsGet } from "dwolla/funcs/webhookSubscriptionsGet.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -258,7 +258,7 @@ Update a webhook subscription
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -286,8 +286,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { webhookSubscriptionsUpdate } from "dwolla-typescript/funcs/webhookSubscriptionsUpdate.js";
+import { DwollaCore } from "dwolla/core.js";
+import { webhookSubscriptionsUpdate } from "dwolla/funcs/webhookSubscriptionsUpdate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -344,7 +344,7 @@ Delete a webhook subscription
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -369,8 +369,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { webhookSubscriptionsDelete } from "dwolla-typescript/funcs/webhookSubscriptionsDelete.js";
+import { DwollaCore } from "dwolla/core.js";
+import { webhookSubscriptionsDelete } from "dwolla/funcs/webhookSubscriptionsDelete.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -423,7 +423,7 @@ List webhooks for a webhook subscription
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -448,8 +448,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { webhookSubscriptionsListWebhooks } from "dwolla-typescript/funcs/webhookSubscriptionsListWebhooks.js";
+import { DwollaCore } from "dwolla/core.js";
+import { webhookSubscriptionsListWebhooks } from "dwolla/funcs/webhookSubscriptionsListWebhooks.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

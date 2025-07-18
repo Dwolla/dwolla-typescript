@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InvalidAttemptToPayOutFundsError } from "dwolla-typescript/models/errors";
+import { InvalidAttemptToPayOutFundsError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

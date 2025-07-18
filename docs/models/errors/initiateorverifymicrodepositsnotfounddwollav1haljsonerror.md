@@ -5,7 +5,7 @@ not found
 ## Example Usage
 
 ```typescript
-import { InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError } from "dwolla-typescript/models/errors";
+import { InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

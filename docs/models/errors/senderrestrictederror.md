@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SenderRestrictedError } from "dwolla-typescript/models/errors";
+import { SenderRestrictedError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

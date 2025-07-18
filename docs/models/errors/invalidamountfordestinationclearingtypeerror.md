@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InvalidAmountForDestinationClearingTypeError } from "dwolla-typescript/models/errors";
+import { InvalidAmountForDestinationClearingTypeError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

@@ -15,7 +15,7 @@ List exchanges for an account
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -38,8 +38,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { accountsExchangesList } from "dwolla-typescript/funcs/accountsExchangesList.js";
+import { DwollaCore } from "dwolla/core.js";
+import { accountsExchangesList } from "dwolla/funcs/accountsExchangesList.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -95,7 +95,7 @@ For Plaid Secure Exchange, the request body will include a token.
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -125,8 +125,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { accountsExchangesCreate } from "dwolla-typescript/funcs/accountsExchangesCreate.js";
+import { DwollaCore } from "dwolla/core.js";
+import { accountsExchangesCreate } from "dwolla/funcs/accountsExchangesCreate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

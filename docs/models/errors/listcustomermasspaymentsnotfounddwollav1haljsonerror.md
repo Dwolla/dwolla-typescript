@@ -5,7 +5,7 @@ Customer not found
 ## Example Usage
 
 ```typescript
-import { ListCustomerMassPaymentsNotFoundDwollaV1HalJSONError } from "dwolla-typescript/models/errors";
+import { ListCustomerMassPaymentsNotFoundDwollaV1HalJSONError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

@@ -5,7 +5,7 @@ Create a US Beneficial Owner (identified by SSN)
 ## Example Usage
 
 ```typescript
-import { CreateUSBeneficialOwner } from "dwolla-typescript/models";
+import { CreateUSBeneficialOwner } from "dwolla/models";
 
 let value: CreateUSBeneficialOwner = {
   firstName: "Joe",

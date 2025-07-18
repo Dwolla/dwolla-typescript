@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetKbaQuestionsLinks } from "dwolla-typescript/models/operations";
+import { GetKbaQuestionsLinks } from "dwolla/models/operations";
 
 let value: GetKbaQuestionsLinks = {
   answer: {

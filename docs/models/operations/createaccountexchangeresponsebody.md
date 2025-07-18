@@ -5,7 +5,7 @@ Created
 ## Example Usage
 
 ```typescript
-import { CreateAccountExchangeResponseBody } from "dwolla-typescript/models/operations";
+import { CreateAccountExchangeResponseBody } from "dwolla/models/operations";
 
 let value: CreateAccountExchangeResponseBody = {};
 ```

@@ -5,7 +5,7 @@ Parameters to create a webhook subscriptions
 ## Example Usage
 
 ```typescript
-import { CreateWebhookSubscriptionRequest } from "dwolla-typescript/models/operations";
+import { CreateWebhookSubscriptionRequest } from "dwolla/models/operations";
 
 let value: CreateWebhookSubscriptionRequest = {
   url: "http://myapplication.com/webhooks",

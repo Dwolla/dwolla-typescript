@@ -5,7 +5,7 @@ Forbidden
 ## Example Usage
 
 ```typescript
-import { InitiateMassPaymentDwollaV1HalJSONError } from "dwolla-typescript/models/errors";
+import { InitiateMassPaymentDwollaV1HalJSONError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

@@ -5,7 +5,7 @@ successful operation
 ## Example Usage
 
 ```typescript
-import { GetKbaQuestionsResponse } from "dwolla-typescript/models/operations";
+import { GetKbaQuestionsResponse } from "dwolla/models/operations";
 
 let value: GetKbaQuestionsResponse = {
   links: {

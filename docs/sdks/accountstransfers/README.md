@@ -14,7 +14,7 @@ List and search transfers for an account
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -39,8 +39,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { accountsTransfersList } from "dwolla-typescript/funcs/accountsTransfersList.js";
+import { DwollaCore } from "dwolla/core.js";
+import { accountsTransfersList } from "dwolla/funcs/accountsTransfersList.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

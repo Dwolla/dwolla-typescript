@@ -15,7 +15,7 @@ Creates a client token with certain actions for Dwolla Drop-in components. The c
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -45,8 +45,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { clientTokensCreate } from "dwolla-typescript/funcs/clientTokensCreate.js";
+import { DwollaCore } from "dwolla/core.js";
+import { clientTokensCreate } from "dwolla/funcs/clientTokensCreate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

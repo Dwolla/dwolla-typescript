@@ -15,7 +15,7 @@ List customer funding sources
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -40,8 +40,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { customersFundingSourcesList } from "dwolla-typescript/funcs/customersFundingSourcesList.js";
+import { DwollaCore } from "dwolla/core.js";
+import { customersFundingSourcesList } from "dwolla/funcs/customersFundingSourcesList.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -99,7 +99,7 @@ There are multiple methods available:
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -136,8 +136,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { customersFundingSourcesCreate } from "dwolla-typescript/funcs/customersFundingSourcesCreate.js";
+import { DwollaCore } from "dwolla/core.js";
+import { customersFundingSourcesCreate } from "dwolla/funcs/customersFundingSourcesCreate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

@@ -15,7 +15,7 @@ List documents for customer
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -40,8 +40,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { customersDocumentsList } from "dwolla-typescript/funcs/customersDocumentsList.js";
+import { DwollaCore } from "dwolla/core.js";
+import { customersDocumentsList } from "dwolla/funcs/customersDocumentsList.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -95,7 +95,7 @@ Create a document for customer
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -121,8 +121,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { customersDocumentsCreate } from "dwolla-typescript/funcs/customersDocumentsCreate.js";
+import { DwollaCore } from "dwolla/core.js";
+import { customersDocumentsCreate } from "dwolla/funcs/customersDocumentsCreate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

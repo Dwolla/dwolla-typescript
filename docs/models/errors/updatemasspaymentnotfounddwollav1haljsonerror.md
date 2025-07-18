@@ -5,7 +5,7 @@ Not Found
 ## Example Usage
 
 ```typescript
-import { UpdateMassPaymentNotFoundDwollaV1HalJSONError } from "dwolla-typescript/models/errors";
+import { UpdateMassPaymentNotFoundDwollaV1HalJSONError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

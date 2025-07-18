@@ -5,7 +5,7 @@ Request body model for a Beneficial Owner
 ## Example Usage
 
 ```typescript
-import { BeneficialOwner } from "dwolla-typescript/models";
+import { BeneficialOwner } from "dwolla/models";
 
 let value: BeneficialOwner = {
   links: {

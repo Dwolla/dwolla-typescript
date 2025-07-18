@@ -5,7 +5,7 @@ Not authorized to list mass payments
 ## Example Usage
 
 ```typescript
-import { ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError } from "dwolla-typescript/models/errors";
+import { ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ResponseT } from "dwolla-typescript/models";
+import { ResponseT } from "dwolla/models";
 
 let value: ResponseT = {
   timestamp: new Date("2022-10-27T17:07:34.308Z"),

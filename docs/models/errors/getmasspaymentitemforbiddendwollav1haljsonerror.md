@@ -5,7 +5,7 @@ Forbidden
 ## Example Usage
 
 ```typescript
-import { GetMassPaymentItemForbiddenDwollaV1HalJSONError } from "dwolla-typescript/models/errors";
+import { GetMassPaymentItemForbiddenDwollaV1HalJSONError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

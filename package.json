@@ -1,11 +1,12 @@
 {
-  "name": "dwolla-typescript",
+  "name": "dwolla",
   "version": "0.0.1-beta.1",
   "author": "Speakeasy",
+  "description": "Dwolla TypeScript SDK (Beta). Breaking changes may occur between beta versions.",
   "type": "module",
   "tshy": {
     "sourceDialects": [
-      "dwolla-typescript/source"
+      "dwolla/source"
     ],
     "exports": {
       ".": "./src/index.ts",
@@ -44,7 +45,7 @@
   "exports": {
     ".": {
       "import": {
-        "dwolla-typescript/source": "./src/index.ts",
+        "dwolla/source": "./src/index.ts",
         "types": "./dist/esm/index.d.ts",
         "default": "./dist/esm/index.js"
       },
@@ -56,7 +57,7 @@
     "./package.json": "./package.json",
     "./types": {
       "import": {
-        "dwolla-typescript/source": "./src/types/index.ts",
+        "dwolla/source": "./src/types/index.ts",
         "types": "./dist/esm/types/index.d.ts",
         "default": "./dist/esm/types/index.js"
       },
@@ -67,7 +68,7 @@
     },
     "./models/errors": {
       "import": {
-        "dwolla-typescript/source": "./src/models/errors/index.ts",
+        "dwolla/source": "./src/models/errors/index.ts",
         "types": "./dist/esm/models/errors/index.d.ts",
         "default": "./dist/esm/models/errors/index.js"
       },
@@ -78,7 +79,7 @@
     },
     "./models": {
       "import": {
-        "dwolla-typescript/source": "./src/models/index.ts",
+        "dwolla/source": "./src/models/index.ts",
         "types": "./dist/esm/models/index.d.ts",
         "default": "./dist/esm/models/index.js"
       },
@@ -89,7 +90,7 @@
     },
     "./models/operations": {
       "import": {
-        "dwolla-typescript/source": "./src/models/operations/index.ts",
+        "dwolla/source": "./src/models/operations/index.ts",
         "types": "./dist/esm/models/operations/index.d.ts",
         "default": "./dist/esm/models/operations/index.js"
       },
@@ -100,7 +101,7 @@
     },
     "./*.js": {
       "import": {
-        "dwolla-typescript/source": "./src/*.ts",
+        "dwolla/source": "./src/*.ts",
         "types": "./dist/esm/*.d.ts",
         "default": "./dist/esm/*.js"
       },
@@ -111,7 +112,7 @@
     },
     "./*": {
       "import": {
-        "dwolla-typescript/source": "./src/*.ts",
+        "dwolla/source": "./src/*.ts",
         "types": "./dist/esm/*.d.ts",
         "default": "./dist/esm/*.js"
       },

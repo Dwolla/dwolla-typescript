@@ -18,7 +18,7 @@ Initiate a mass payment
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -117,8 +117,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { massPaymentsCreate } from "dwolla-typescript/funcs/massPaymentsCreate.js";
+import { DwollaCore } from "dwolla/core.js";
+import { massPaymentsCreate } from "dwolla/funcs/massPaymentsCreate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -246,7 +246,7 @@ Retrieve a mass payment
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -271,8 +271,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { massPaymentsGet } from "dwolla-typescript/funcs/massPaymentsGet.js";
+import { DwollaCore } from "dwolla/core.js";
+import { massPaymentsGet } from "dwolla/funcs/massPaymentsGet.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -326,7 +326,7 @@ This section covers how to update a mass payment's status to `pending` which tri
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -354,8 +354,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { massPaymentsUpdate } from "dwolla-typescript/funcs/massPaymentsUpdate.js";
+import { DwollaCore } from "dwolla/core.js";
+import { massPaymentsUpdate } from "dwolla/funcs/massPaymentsUpdate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -413,7 +413,7 @@ List items for a mass payment
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -438,8 +438,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { massPaymentsListItems } from "dwolla-typescript/funcs/massPaymentsListItems.js";
+import { DwollaCore } from "dwolla/core.js";
+import { massPaymentsListItems } from "dwolla/funcs/massPaymentsListItems.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -493,7 +493,7 @@ Retrieve mass payment item
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -518,8 +518,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { massPaymentsGetItem } from "dwolla-typescript/funcs/massPaymentsGetItem.js";
+import { DwollaCore } from "dwolla/core.js";
+import { massPaymentsGetItem } from "dwolla/funcs/massPaymentsGetItem.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

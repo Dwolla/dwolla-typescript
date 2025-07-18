@@ -5,7 +5,7 @@ successful operation
 ## Example Usage
 
 ```typescript
-import { GetTransferFailureReasonResponse } from "dwolla-typescript/models/operations";
+import { GetTransferFailureReasonResponse } from "dwolla/models/operations";
 
 let value: GetTransferFailureReasonResponse = {
   links: {

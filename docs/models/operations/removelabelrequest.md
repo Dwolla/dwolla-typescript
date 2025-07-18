@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { RemoveLabelRequest } from "dwolla-typescript/models/operations";
+import { RemoveLabelRequest } from "dwolla/models/operations";
 
 let value: RemoveLabelRequest = {
   id: "<id>",

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateCustomerExchangeSessionForWebLinks } from "dwolla-typescript/models";
+import { CreateCustomerExchangeSessionForWebLinks } from "dwolla/models";
 
 let value: CreateCustomerExchangeSessionForWebLinks = {
   exchangePartner: {

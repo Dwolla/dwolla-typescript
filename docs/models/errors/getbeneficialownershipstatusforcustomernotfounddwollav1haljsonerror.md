@@ -5,7 +5,7 @@ not found
 ## Example Usage
 
 ```typescript
-import { GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONError } from "dwolla-typescript/models/errors";
+import { GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

@@ -5,7 +5,7 @@ Error response schema for 404 NotFound
 ## Example Usage
 
 ```typescript
-import { NotFoundError } from "dwolla-typescript/models/errors";
+import { NotFoundError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { StatusInvalidErrorError } from "dwolla-typescript/models";
+import { StatusInvalidErrorError } from "dwolla/models";
 
 let value: StatusInvalidErrorError = {
   code: "Invalid",

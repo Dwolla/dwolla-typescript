@@ -5,7 +5,7 @@ bad request
 ## Example Usage
 
 ```typescript
-import { UpdateBadRequestDwollaV1HalJSONError } from "dwolla-typescript/models/errors";
+import { UpdateBadRequestDwollaV1HalJSONError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

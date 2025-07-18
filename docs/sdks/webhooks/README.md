@@ -18,7 +18,7 @@ Retrieve a webhook
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -43,8 +43,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { webhooksGet } from "dwolla-typescript/funcs/webhooksGet.js";
+import { DwollaCore } from "dwolla/core.js";
+import { webhooksGet } from "dwolla/funcs/webhooksGet.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -97,7 +97,7 @@ List retries for a webhook
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -122,8 +122,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { webhooksListRetries } from "dwolla-typescript/funcs/webhooksListRetries.js";
+import { DwollaCore } from "dwolla/core.js";
+import { webhooksListRetries } from "dwolla/funcs/webhooksListRetries.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -176,7 +176,7 @@ Retry a webhook
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -201,8 +201,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { webhooksRetry } from "dwolla-typescript/funcs/webhooksRetry.js";
+import { DwollaCore } from "dwolla/core.js";
+import { webhooksRetry } from "dwolla/funcs/webhooksRetry.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

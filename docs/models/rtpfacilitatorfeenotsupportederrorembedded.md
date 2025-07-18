@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { RtpFacilitatorFeeNotSupportedErrorEmbedded } from "dwolla-typescript/models";
+import { RtpFacilitatorFeeNotSupportedErrorEmbedded } from "dwolla/models";
 
 let value: RtpFacilitatorFeeNotSupportedErrorEmbedded = {
   errors: [

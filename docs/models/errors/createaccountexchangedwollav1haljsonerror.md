@@ -5,7 +5,7 @@ Invalid Scope
 ## Example Usage
 
 ```typescript
-import { CreateAccountExchangeDwollaV1HalJSONError } from "dwolla-typescript/models/errors";
+import { CreateAccountExchangeDwollaV1HalJSONError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

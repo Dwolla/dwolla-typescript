@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetFundingSourceBalanceLinks } from "dwolla-typescript/models/operations";
+import { GetFundingSourceBalanceLinks } from "dwolla/models/operations";
 
 let value: GetFundingSourceBalanceLinks = {
   self: {

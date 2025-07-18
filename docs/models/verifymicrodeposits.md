@@ -5,7 +5,7 @@ Request body for verifying micro-deposits
 ## Example Usage
 
 ```typescript
-import { VerifyMicroDeposits } from "dwolla-typescript/models";
+import { VerifyMicroDeposits } from "dwolla/models";
 
 let value: VerifyMicroDeposits = {
   amount1: {

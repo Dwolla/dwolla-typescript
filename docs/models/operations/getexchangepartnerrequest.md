@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetExchangePartnerRequest } from "dwolla-typescript/models/operations";
+import { GetExchangePartnerRequest } from "dwolla/models/operations";
 
 let value: GetExchangePartnerRequest = {
   id: "292317ec-e252-47d8-93c3-2d128e037aa4",

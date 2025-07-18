@@ -5,7 +5,7 @@ Create a Verified Business customer (Sole Proprietorship)
 ## Example Usage
 
 ```typescript
-import { CreateVerifiedSolePropCustomer } from "dwolla-typescript/models";
+import { CreateVerifiedSolePropCustomer } from "dwolla/models";
 
 let value: CreateVerifiedSolePropCustomer = {
   firstName: "John",

@@ -5,7 +5,7 @@ successful operation
 ## Example Usage
 
 ```typescript
-import { ListWebhooksResponse } from "dwolla-typescript/models/operations";
+import { ListWebhooksResponse } from "dwolla/models/operations";
 
 let value: ListWebhooksResponse = {
   links: {

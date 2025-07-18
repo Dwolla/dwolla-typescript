@@ -19,7 +19,7 @@ Retrieve a funding source
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -44,8 +44,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { fundingSourcesGet } from "dwolla-typescript/funcs/fundingSourcesGet.js";
+import { DwollaCore } from "dwolla/core.js";
+import { fundingSourcesGet } from "dwolla/funcs/fundingSourcesGet.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -98,7 +98,7 @@ Update or remove a funding source
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -126,8 +126,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { fundingSourcesUpdateOrRemove } from "dwolla-typescript/funcs/fundingSourcesUpdateOrRemove.js";
+import { DwollaCore } from "dwolla/core.js";
+import { fundingSourcesUpdateOrRemove } from "dwolla/funcs/fundingSourcesUpdateOrRemove.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -184,7 +184,7 @@ Retrieve micro-deposits details
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -209,8 +209,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { fundingSourcesGetMicroDeposits } from "dwolla-typescript/funcs/fundingSourcesGetMicroDeposits.js";
+import { DwollaCore } from "dwolla/core.js";
+import { fundingSourcesGetMicroDeposits } from "dwolla/funcs/fundingSourcesGetMicroDeposits.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -270,7 +270,7 @@ The action is determined by the presence of a request body:
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -296,8 +296,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { fundingSourcesInitiateOrVerifyMicroDeposits } from "dwolla-typescript/funcs/fundingSourcesInitiateOrVerifyMicroDeposits.js";
+import { DwollaCore } from "dwolla/core.js";
+import { fundingSourcesInitiateOrVerifyMicroDeposits } from "dwolla/funcs/fundingSourcesInitiateOrVerifyMicroDeposits.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -352,7 +352,7 @@ Retrieve funding source balance
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -377,8 +377,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { fundingSourcesGetBalance } from "dwolla-typescript/funcs/fundingSourcesGetBalance.js";
+import { DwollaCore } from "dwolla/core.js";
+import { fundingSourcesGetBalance } from "dwolla/funcs/fundingSourcesGetBalance.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -431,7 +431,7 @@ Retrieve account and routing numbers for a VAN (Virtual Account Number)
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -456,8 +456,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { fundingSourcesGetVanRouting } from "dwolla-typescript/funcs/fundingSourcesGetVanRouting.js";
+import { DwollaCore } from "dwolla/core.js";
+import { fundingSourcesGetVanRouting } from "dwolla/funcs/fundingSourcesGetVanRouting.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

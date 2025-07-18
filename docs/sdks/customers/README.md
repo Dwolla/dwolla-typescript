@@ -20,7 +20,7 @@ List and search customers allowing you to filter by email and status, as well as
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -43,8 +43,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { customersList } from "dwolla-typescript/funcs/customersList.js";
+import { DwollaCore } from "dwolla/core.js";
+import { customersList } from "dwolla/funcs/customersList.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -95,7 +95,7 @@ Create an unverified customer, verified customer, or receive-only user.
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -127,8 +127,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { customersCreate } from "dwolla-typescript/funcs/customersCreate.js";
+import { DwollaCore } from "dwolla/core.js";
+import { customersCreate } from "dwolla/funcs/customersCreate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -190,7 +190,7 @@ Retrieve details for a single customer
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -215,8 +215,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { customersGet } from "dwolla-typescript/funcs/customersGet.js";
+import { DwollaCore } from "dwolla/core.js";
+import { customersGet } from "dwolla/funcs/customersGet.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -270,8 +270,8 @@ Update Customer information, upgrade an unverified Customer to a verified Custom
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
-import { RFCDate } from "dwolla-typescript/types";
+import { Dwolla } from "dwolla";
+import { RFCDate } from "dwolla/types";
 
 const dwolla = new Dwolla({
   security: {
@@ -326,9 +326,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { customersUpdate } from "dwolla-typescript/funcs/customersUpdate.js";
-import { RFCDate } from "dwolla-typescript/types";
+import { DwollaCore } from "dwolla/core.js";
+import { customersUpdate } from "dwolla/funcs/customersUpdate.js";
+import { RFCDate } from "dwolla/types";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -415,7 +415,7 @@ This information is essential for creating an exchange and corresponding funding
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -440,8 +440,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { customersListAvailableConnections } from "dwolla-typescript/funcs/customersListAvailableConnections.js";
+import { DwollaCore } from "dwolla/core.js";
+import { customersListAvailableConnections } from "dwolla/funcs/customersListAvailableConnections.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

@@ -5,7 +5,7 @@ OAuth get token request. Client credentials are sent in the Authorization header
 ## Example Usage
 
 ```typescript
-import { CreateApplicationAccessTokenRequest } from "dwolla-typescript/models/operations";
+import { CreateApplicationAccessTokenRequest } from "dwolla/models/operations";
 
 let value: CreateApplicationAccessTokenRequest = {
   grantType: "client_credentials",

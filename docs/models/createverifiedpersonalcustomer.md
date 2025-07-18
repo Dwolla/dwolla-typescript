@@ -5,7 +5,7 @@ Create a Verified Personal customer
 ## Example Usage
 
 ```typescript
-import { CreateVerifiedPersonalCustomer } from "dwolla-typescript/models";
+import { CreateVerifiedPersonalCustomer } from "dwolla/models";
 
 let value: CreateVerifiedPersonalCustomer = {
   firstName: "Account",

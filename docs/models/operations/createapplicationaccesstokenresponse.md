@@ -5,7 +5,7 @@ successful operation
 ## Example Usage
 
 ```typescript
-import { CreateApplicationAccessTokenResponse } from "dwolla-typescript/models/operations";
+import { CreateApplicationAccessTokenResponse } from "dwolla/models/operations";
 
 let value: CreateApplicationAccessTokenResponse = {
   accessToken: "gTm0p62yYXFiB1rOdhV0TsNOinC2V2P1CMaAtojkO9JEGbv3i5",

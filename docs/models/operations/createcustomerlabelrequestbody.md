@@ -5,7 +5,7 @@ Parameters to create a customer label
 ## Example Usage
 
 ```typescript
-import { CreateCustomerLabelRequestBody } from "dwolla-typescript/models/operations";
+import { CreateCustomerLabelRequestBody } from "dwolla/models/operations";
 
 let value: CreateCustomerLabelRequestBody = {
   amount: {

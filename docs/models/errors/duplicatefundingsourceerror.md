@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DuplicateFundingSourceError } from "dwolla-typescript/models/errors";
+import { DuplicateFundingSourceError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

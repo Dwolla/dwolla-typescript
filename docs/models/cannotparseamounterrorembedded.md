@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CannotParseAmountErrorEmbedded } from "dwolla-typescript/models";
+import { CannotParseAmountErrorEmbedded } from "dwolla/models";
 
 let value: CannotParseAmountErrorEmbedded = {
   errors: [

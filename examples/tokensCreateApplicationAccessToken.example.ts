@@ -3,13 +3,13 @@
  */
 
 /**
- * Example usage of the dwolla-typescript SDK
+ * Example usage of the dwolla SDK
  *
  * To run this example from the examples directory:
  * npm run build && npx tsx tokensCreateApplicationAccessToken.ts
  */
 
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {

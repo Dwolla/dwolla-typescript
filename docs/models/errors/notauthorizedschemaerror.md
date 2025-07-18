@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { NotAuthorizedSchemaError } from "dwolla-typescript/models/errors";
+import { NotAuthorizedSchemaError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

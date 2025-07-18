@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateLabelLedgerEntryResponse } from "dwolla-typescript/models/operations";
+import { CreateLabelLedgerEntryResponse } from "dwolla/models/operations";
 
 let value: CreateLabelLedgerEntryResponse = {
   headers: {

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DestinationRemittanceDataMaxLengthError } from "dwolla-typescript/models/errors";
+import { DestinationRemittanceDataMaxLengthError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

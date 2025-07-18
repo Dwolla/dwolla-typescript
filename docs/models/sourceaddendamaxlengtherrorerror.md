@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SourceAddendaMaxLengthErrorError } from "dwolla-typescript/models";
+import { SourceAddendaMaxLengthErrorError } from "dwolla/models";
 
 let value: SourceAddendaMaxLengthErrorError = {
   code: "InvalidFormat",

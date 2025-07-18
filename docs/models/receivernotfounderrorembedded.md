@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ReceiverNotFoundErrorEmbedded } from "dwolla-typescript/models";
+import { ReceiverNotFoundErrorEmbedded } from "dwolla/models";
 
 let value: ReceiverNotFoundErrorEmbedded = {
   errors: [

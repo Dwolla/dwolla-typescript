@@ -10,6 +10,9 @@ targets:
     dwolla:
         target: typescript
         source: Dwolla API
+        publish:
+            npm:
+                token: $npm_token
         codeSamples:
             registry:
                 location: registry.speakeasyapi.dev/dwolla-vc3/dwolla/dwolla-api-typescript-code-samples

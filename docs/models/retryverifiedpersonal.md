@@ -5,7 +5,7 @@ Retry Verification for Verified Personal Customer
 ## Example Usage
 
 ```typescript
-import { RetryVerifiedPersonal } from "dwolla-typescript/models";
+import { RetryVerifiedPersonal } from "dwolla/models";
 
 let value: RetryVerifiedPersonal = {
   firstName: "John",

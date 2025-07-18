@@ -5,7 +5,7 @@ successful operation
 ## Example Usage
 
 ```typescript
-import { UpdateOrRemoveFundingSourceResponse } from "dwolla-typescript/models/operations";
+import { UpdateOrRemoveFundingSourceResponse } from "dwolla/models/operations";
 
 let value: UpdateOrRemoveFundingSourceResponse = {};
 ```

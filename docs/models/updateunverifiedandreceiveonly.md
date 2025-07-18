@@ -5,7 +5,7 @@ Update Unverified Customer or Receive Only User Information
 ## Example Usage
 
 ```typescript
-import { UpdateUnverifiedAndReceiveOnly } from "dwolla-typescript/models";
+import { UpdateUnverifiedAndReceiveOnly } from "dwolla/models";
 
 let value: UpdateUnverifiedAndReceiveOnly = {
   firstName: "John",

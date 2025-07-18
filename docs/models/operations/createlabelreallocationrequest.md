@@ -5,7 +5,7 @@ Parameters to create a label reallocation
 ## Example Usage
 
 ```typescript
-import { CreateLabelReallocationRequest } from "dwolla-typescript/models/operations";
+import { CreateLabelReallocationRequest } from "dwolla/models/operations";
 
 let value: CreateLabelReallocationRequest = {
   links: {

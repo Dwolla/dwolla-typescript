@@ -5,7 +5,7 @@ Response for retrieving balance of a bank account verified through Open Banking
 ## Example Usage
 
 ```typescript
-import { BankBalanceResponse } from "dwolla-typescript/models/operations";
+import { BankBalanceResponse } from "dwolla/models/operations";
 
 let value: BankBalanceResponse = {
   links: {

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DirectAccountWithoutBankErrorError } from "dwolla-typescript/models";
+import { DirectAccountWithoutBankErrorError } from "dwolla/models";
 
 let value: DirectAccountWithoutBankErrorError = {
   code: "RequiresFundingSource",

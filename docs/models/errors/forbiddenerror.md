@@ -5,7 +5,7 @@ Error response schema for 403 Forbidden
 ## Example Usage
 
 ```typescript
-import { ForbiddenError } from "dwolla-typescript/models/errors";
+import { ForbiddenError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

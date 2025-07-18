@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WithdrawAccountRestrictedError } from "dwolla-typescript/models/errors";
+import { WithdrawAccountRestrictedError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

@@ -5,7 +5,7 @@ created
 ## Example Usage
 
 ```typescript
-import { VerifyResponse } from "dwolla-typescript/models/operations";
+import { VerifyResponse } from "dwolla/models/operations";
 
 let value: VerifyResponse = {
   links: {

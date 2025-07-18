@@ -5,7 +5,7 @@ successful operation
 ## Example Usage
 
 ```typescript
-import { ListBusinessClassificationsResponse } from "dwolla-typescript/models/operations";
+import { ListBusinessClassificationsResponse } from "dwolla/models/operations";
 
 let value: ListBusinessClassificationsResponse = {
   embedded: {

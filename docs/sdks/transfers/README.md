@@ -21,7 +21,7 @@ Initiate a transfer
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -53,8 +53,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { transfersCreate } from "dwolla-typescript/funcs/transfersCreate.js";
+import { DwollaCore } from "dwolla/core.js";
+import { transfersCreate } from "dwolla/funcs/transfersCreate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -183,7 +183,7 @@ Retrieve a transfer
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -208,8 +208,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { transfersGet } from "dwolla-typescript/funcs/transfersGet.js";
+import { DwollaCore } from "dwolla/core.js";
+import { transfersGet } from "dwolla/funcs/transfersGet.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -262,7 +262,7 @@ Cancel a transfer
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -288,8 +288,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { transfersCancel } from "dwolla-typescript/funcs/transfersCancel.js";
+import { DwollaCore } from "dwolla/core.js";
+import { transfersCancel } from "dwolla/funcs/transfersCancel.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -346,7 +346,7 @@ List fees for a transfer
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -371,8 +371,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { transfersListFees } from "dwolla-typescript/funcs/transfersListFees.js";
+import { DwollaCore } from "dwolla/core.js";
+import { transfersListFees } from "dwolla/funcs/transfersListFees.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -425,7 +425,7 @@ Retrieve a transfer failure reason
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -450,8 +450,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { transfersGetFailureReason } from "dwolla-typescript/funcs/transfersGetFailureReason.js";
+import { DwollaCore } from "dwolla/core.js";
+import { transfersGetFailureReason } from "dwolla/funcs/transfersGetFailureReason.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -505,7 +505,7 @@ Create an on-demand transfer authorization
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -528,8 +528,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { transfersCreateOnDemandAuthorization } from "dwolla-typescript/funcs/transfersCreateOnDemandAuthorization.js";
+import { DwollaCore } from "dwolla/core.js";
+import { transfersCreateOnDemandAuthorization } from "dwolla/funcs/transfersCreateOnDemandAuthorization.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

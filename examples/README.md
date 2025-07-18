@@ -1,6 +1,6 @@
-# dwolla-typescript Examples
+# dwolla Examples
 
-This directory contains example scripts demonstrating how to use the dwolla-typescript SDK.
+This directory contains example scripts demonstrating how to use the dwolla SDK.
 
 ## Prerequisites
 

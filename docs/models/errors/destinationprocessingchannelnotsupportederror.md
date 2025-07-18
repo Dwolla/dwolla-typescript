@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DestinationProcessingChannelNotSupportedError } from "dwolla-typescript/models/errors";
+import { DestinationProcessingChannelNotSupportedError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

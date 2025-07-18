@@ -5,7 +5,7 @@ Update Verified Personal Customer Information
 ## Example Usage
 
 ```typescript
-import { UpdateVerifiedPersonal } from "dwolla-typescript/models";
+import { UpdateVerifiedPersonal } from "dwolla/models";
 
 let value: UpdateVerifiedPersonal = {
   email: "accountAdmin@email.com",

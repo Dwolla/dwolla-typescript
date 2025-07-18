@@ -5,7 +5,7 @@ Create re-auth exchange session with redirect URL (required for mobile sessions 
 ## Example Usage
 
 ```typescript
-import { CreateReAuthExchangeSessionWithRedirect } from "dwolla-typescript/models";
+import { CreateReAuthExchangeSessionWithRedirect } from "dwolla/models";
 
 let value: CreateReAuthExchangeSessionWithRedirect = {
   links: {

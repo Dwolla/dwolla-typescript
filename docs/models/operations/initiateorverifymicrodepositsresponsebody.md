@@ -5,7 +5,7 @@ Response for microdeposits operations (initiation and verification)
 ## Example Usage
 
 ```typescript
-import { InitiateOrVerifyMicroDepositsResponseBody } from "dwolla-typescript/models/operations";
+import { InitiateOrVerifyMicroDepositsResponseBody } from "dwolla/models/operations";
 
 let value: InitiateOrVerifyMicroDepositsResponseBody = {
   links: {

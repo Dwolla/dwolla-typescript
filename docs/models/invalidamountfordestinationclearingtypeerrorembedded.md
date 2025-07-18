@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InvalidAmountForDestinationClearingTypeErrorEmbedded } from "dwolla-typescript/models";
+import { InvalidAmountForDestinationClearingTypeErrorEmbedded } from "dwolla/models";
 
 let value: InvalidAmountForDestinationClearingTypeErrorEmbedded = {
   errors: [

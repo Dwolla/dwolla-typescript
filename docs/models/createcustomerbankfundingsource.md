@@ -5,7 +5,7 @@ Schema for creating a basic bank funding source using routing and account number
 ## Example Usage
 
 ```typescript
-import { CreateCustomerBankFundingSource } from "dwolla-typescript/models";
+import { CreateCustomerBankFundingSource } from "dwolla/models";
 
 let value: CreateCustomerBankFundingSource = {
   routingNumber: "222222226",

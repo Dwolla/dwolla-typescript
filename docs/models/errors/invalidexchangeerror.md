@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InvalidExchangeError } from "dwolla-typescript/models/errors";
+import { InvalidExchangeError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

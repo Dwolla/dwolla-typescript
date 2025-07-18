@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { CreateFinicitySecureExchange } from "dwolla-typescript/models";
-import { RFCDate } from "dwolla-typescript/types";
+import { CreateFinicitySecureExchange } from "dwolla/models";
+import { RFCDate } from "dwolla/types";
 
 let value: CreateFinicitySecureExchange = {
   links: {

@@ -5,7 +5,7 @@ Response for retrieving balance of a Dwolla Balance funding source
 ## Example Usage
 
 ```typescript
-import { DwollaBalanceResponse } from "dwolla-typescript/models/operations";
+import { DwollaBalanceResponse } from "dwolla/models/operations";
 
 let value: DwollaBalanceResponse = {
   links: {

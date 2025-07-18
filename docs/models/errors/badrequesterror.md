@@ -5,7 +5,7 @@ Error response schema for 400 Bad Request
 ## Example Usage
 
 ```typescript
-import { BadRequestError } from "dwolla-typescript/models/errors";
+import { BadRequestError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

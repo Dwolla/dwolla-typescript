@@ -5,7 +5,7 @@ Forbidden
 ## Example Usage
 
 ```typescript
-import { CreateLabelReallocationForbiddenDwollaV1HalJSONError } from "dwolla-typescript/models/errors";
+import { CreateLabelReallocationForbiddenDwollaV1HalJSONError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

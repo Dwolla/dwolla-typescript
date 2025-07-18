@@ -6,9 +6,10 @@ management:
   speakeasyVersion: 1.582.0
   generationVersion: 2.657.1
   releaseVersion: 0.0.1-beta.1
-  configChecksum: 812a87e44ec829ea4eada5acd68d2be5
+  configChecksum: dfe1b224ee0dcec69d91560294070385
   repoURL: https://github.com/Dwolla/dwolla-typescript.git
   installationURL: https://github.com/Dwolla/dwolla-typescript
+  published: true
 features:
   typescript:
     additionalDependencies: 0.1.0

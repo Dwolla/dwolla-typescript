@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateVerifiedBusinessCustomerWithInternationalControllerController } from "dwolla-typescript/models";
+import { CreateVerifiedBusinessCustomerWithInternationalControllerController } from "dwolla/models";
 
 let value: CreateVerifiedBusinessCustomerWithInternationalControllerController =
   {

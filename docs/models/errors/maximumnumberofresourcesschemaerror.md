@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { MaximumNumberOfResourcesSchemaError } from "dwolla-typescript/models/errors";
+import { MaximumNumberOfResourcesSchemaError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

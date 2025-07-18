@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateAccountExchangeResponse } from "dwolla-typescript/models/operations";
+import { CreateAccountExchangeResponse } from "dwolla/models/operations";
 
 let value: CreateAccountExchangeResponse = {
   headers: {

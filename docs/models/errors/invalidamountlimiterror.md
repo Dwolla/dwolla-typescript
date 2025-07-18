@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InvalidAmountLimitError } from "dwolla-typescript/models/errors";
+import { InvalidAmountLimitError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

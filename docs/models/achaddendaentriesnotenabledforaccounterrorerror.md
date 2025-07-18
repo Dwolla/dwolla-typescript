@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { AchAddendaEntriesNotEnabledForAccountErrorError } from "dwolla-typescript/models";
+import { AchAddendaEntriesNotEnabledForAccountErrorError } from "dwolla/models";
 
 let value: AchAddendaEntriesNotEnabledForAccountErrorError = {
   code: "NotAllowed",

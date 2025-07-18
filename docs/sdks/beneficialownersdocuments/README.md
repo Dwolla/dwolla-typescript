@@ -15,7 +15,7 @@ List documents for beneficial owner
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -40,8 +40,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { beneficialOwnersDocumentsList } from "dwolla-typescript/funcs/beneficialOwnersDocumentsList.js";
+import { DwollaCore } from "dwolla/core.js";
+import { beneficialOwnersDocumentsList } from "dwolla/funcs/beneficialOwnersDocumentsList.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -95,7 +95,7 @@ Create a document for beneficial owner
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -121,8 +121,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { beneficialOwnersDocumentsCreate } from "dwolla-typescript/funcs/beneficialOwnersDocumentsCreate.js";
+import { DwollaCore } from "dwolla/core.js";
+import { beneficialOwnersDocumentsCreate } from "dwolla/funcs/beneficialOwnersDocumentsCreate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

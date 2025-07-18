@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { BadRequestSchemaError } from "dwolla-typescript/models/errors";
+import { BadRequestSchemaError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

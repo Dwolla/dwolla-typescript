@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { RtpAccountSettingNotEnabledError } from "dwolla-typescript/models/errors";
+import { RtpAccountSettingNotEnabledError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

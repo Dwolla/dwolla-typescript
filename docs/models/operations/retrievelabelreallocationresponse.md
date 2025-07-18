@@ -5,7 +5,7 @@ successful operation
 ## Example Usage
 
 ```typescript
-import { RetrieveLabelReallocationResponse } from "dwolla-typescript/models/operations";
+import { RetrieveLabelReallocationResponse } from "dwolla/models/operations";
 
 let value: RetrieveLabelReallocationResponse = {
   links: {

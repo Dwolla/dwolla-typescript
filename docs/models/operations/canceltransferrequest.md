@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CancelTransferRequest } from "dwolla-typescript/models/operations";
+import { CancelTransferRequest } from "dwolla/models/operations";
 
 let value: CancelTransferRequest = {
   id: "<id>",

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateWebhookSubscriptionResponse } from "dwolla-typescript/models/operations";
+import { CreateWebhookSubscriptionResponse } from "dwolla/models/operations";
 
 let value: CreateWebhookSubscriptionResponse = {
   headers: {

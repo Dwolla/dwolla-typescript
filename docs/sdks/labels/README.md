@@ -24,7 +24,7 @@ Retrieve a label
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -49,8 +49,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { labelsGet } from "dwolla-typescript/funcs/labelsGet.js";
+import { DwollaCore } from "dwolla/core.js";
+import { labelsGet } from "dwolla/funcs/labelsGet.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -104,7 +104,7 @@ Remove a label
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -129,8 +129,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { labelsRemove } from "dwolla-typescript/funcs/labelsRemove.js";
+import { DwollaCore } from "dwolla/core.js";
+import { labelsRemove } from "dwolla/funcs/labelsRemove.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -184,7 +184,7 @@ List labels for a customer
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -209,8 +209,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { labelsListForCustomer } from "dwolla-typescript/funcs/labelsListForCustomer.js";
+import { DwollaCore } from "dwolla/core.js";
+import { labelsListForCustomer } from "dwolla/funcs/labelsListForCustomer.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -264,7 +264,7 @@ Create a label for a customer
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -295,8 +295,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { labelsCreateForCustomer } from "dwolla-typescript/funcs/labelsCreateForCustomer.js";
+import { DwollaCore } from "dwolla/core.js";
+import { labelsCreateForCustomer } from "dwolla/funcs/labelsCreateForCustomer.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -357,7 +357,7 @@ List label ledger entries
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -382,8 +382,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { labelsListLedgerEntries } from "dwolla-typescript/funcs/labelsListLedgerEntries.js";
+import { DwollaCore } from "dwolla/core.js";
+import { labelsListLedgerEntries } from "dwolla/funcs/labelsListLedgerEntries.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -438,7 +438,7 @@ Create a new entry on a Label Ledger. The amount tied to a Label cannot go negat
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -469,8 +469,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { labelsCreateLedgerEntry } from "dwolla-typescript/funcs/labelsCreateLedgerEntry.js";
+import { DwollaCore } from "dwolla/core.js";
+import { labelsCreateLedgerEntry } from "dwolla/funcs/labelsCreateLedgerEntry.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -531,7 +531,7 @@ Retrieve a label ledger entry
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -556,8 +556,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { labelsGetLedgerEntry } from "dwolla-typescript/funcs/labelsGetLedgerEntry.js";
+import { DwollaCore } from "dwolla/core.js";
+import { labelsGetLedgerEntry } from "dwolla/funcs/labelsGetLedgerEntry.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -611,7 +611,7 @@ Create a label reallocation
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -647,8 +647,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { labelsCreateReallocation } from "dwolla-typescript/funcs/labelsCreateReallocation.js";
+import { DwollaCore } from "dwolla/core.js";
+import { labelsCreateReallocation } from "dwolla/funcs/labelsCreateReallocation.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -714,7 +714,7 @@ Retrieve a label reallocation
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -739,8 +739,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { labelsGetReallocation } from "dwolla-typescript/funcs/labelsGetReallocation.js";
+import { DwollaCore } from "dwolla/core.js";
+import { labelsGetReallocation } from "dwolla/funcs/labelsGetReallocation.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

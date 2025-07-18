@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { BadRequestSchemaEmbedded } from "dwolla-typescript/models";
+import { BadRequestSchemaEmbedded } from "dwolla/models";
 
 let value: BadRequestSchemaEmbedded = {
   code: "ValidationError",

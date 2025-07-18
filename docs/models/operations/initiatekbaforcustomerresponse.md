@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InitiateKbaForCustomerResponse } from "dwolla-typescript/models/operations";
+import { InitiateKbaForCustomerResponse } from "dwolla/models/operations";
 
 let value: InitiateKbaForCustomerResponse = {
   headers: {

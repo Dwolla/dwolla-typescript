@@ -5,7 +5,7 @@ Parameters for certifying beneficial ownership for a Customer
 ## Example Usage
 
 ```typescript
-import { CertifyBeneficialOwnershipForCustomerRequestBody } from "dwolla-typescript/models/operations";
+import { CertifyBeneficialOwnershipForCustomerRequestBody } from "dwolla/models/operations";
 
 let value: CertifyBeneficialOwnershipForCustomerRequestBody = {
   status: "<value>",

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Closing } from "dwolla-typescript/models/operations";
+import { Closing } from "dwolla/models/operations";
 
 let value: Closing = {
   value: "542.00",

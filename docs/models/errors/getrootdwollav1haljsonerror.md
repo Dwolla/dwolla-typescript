@@ -5,7 +5,7 @@ unauthorized
 ## Example Usage
 
 ```typescript
-import { GetRootDwollaV1HalJSONError } from "dwolla-typescript/models/errors";
+import { GetRootDwollaV1HalJSONError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```
