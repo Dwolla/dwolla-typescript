@@ -14,7 +14,7 @@ targets:
         sourceRevisionDigest: sha256:f94e38cf7fed75de4ee9f32057a7c5e8d9bd9e1c4b27245fd28301a4e8ff9082
         sourceBlobDigest: sha256:e6459287eb2e2b11797e964c8d45e36b41f2cbb9c68b89cce3194274df15c9ff
         codeSamplesNamespace: dwolla-api-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:c42a95afb3162125e418771b7581ce808ba67768335099e95fed8ab604a32724
+        codeSamplesRevisionDigest: sha256:f62ab6a224fc681344a68bc84eb09b2ff6882186c798542083c87f407eb7b9f3
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -28,6 +28,9 @@ workflow:
         dwolla:
             target: typescript
             source: Dwolla API
+            publish:
+                npm:
+                    token: $npm_token
             codeSamples:
                 registry:
                     location: registry.speakeasyapi.dev/dwolla-vc3/dwolla/dwolla-api-typescript-code-samples

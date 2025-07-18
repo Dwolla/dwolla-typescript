@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InitiateMassPaymentClearing } from "dwolla-typescript/models/operations";
+import { InitiateMassPaymentClearing } from "dwolla/models/operations";
 
 let value: InitiateMassPaymentClearing = {
   source: "next-available",

@@ -15,7 +15,7 @@ Retrieve the list of exchanges associated with a Customer resource.
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -40,8 +40,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { customersExchangesList } from "dwolla-typescript/funcs/customersExchangesList.js";
+import { DwollaCore } from "dwolla/core.js";
+import { customersExchangesList } from "dwolla/funcs/customersExchangesList.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -101,7 +101,7 @@ For Plaid Open Banking, the request body will include a public token.
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -136,8 +136,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { customersExchangesCreate } from "dwolla-typescript/funcs/customersExchangesCreate.js";
+import { DwollaCore } from "dwolla/core.js";
+import { customersExchangesCreate } from "dwolla/funcs/customersExchangesCreate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

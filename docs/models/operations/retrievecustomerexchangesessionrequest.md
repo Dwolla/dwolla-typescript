@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { RetrieveCustomerExchangeSessionRequest } from "dwolla-typescript/models/operations";
+import { RetrieveCustomerExchangeSessionRequest } from "dwolla/models/operations";
 
 let value: RetrieveCustomerExchangeSessionRequest = {
   id: "<id>",

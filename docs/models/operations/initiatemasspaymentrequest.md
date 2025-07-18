@@ -5,7 +5,7 @@ Parameters for initiating a mass payment
 ## Example Usage
 
 ```typescript
-import { InitiateMassPaymentRequest } from "dwolla-typescript/models/operations";
+import { InitiateMassPaymentRequest } from "dwolla/models/operations";
 
 let value: InitiateMassPaymentRequest = {
   links: {

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InvalidFacilitatorFeeAmountError } from "dwolla-typescript/models/errors";
+import { InvalidFacilitatorFeeAmountError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

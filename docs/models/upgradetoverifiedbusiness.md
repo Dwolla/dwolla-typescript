@@ -5,8 +5,8 @@ Upgrade Unverified Customer to Verified Business Customer
 ## Example Usage
 
 ```typescript
-import { UpgradeToVerifiedBusiness } from "dwolla-typescript/models";
-import { RFCDate } from "dwolla-typescript/types";
+import { UpgradeToVerifiedBusiness } from "dwolla/models";
+import { RFCDate } from "dwolla/types";
 
 let value: UpgradeToVerifiedBusiness = {
   firstName: "Account",

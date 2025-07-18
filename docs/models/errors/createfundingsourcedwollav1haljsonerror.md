@@ -5,7 +5,7 @@ forbidden
 ## Example Usage
 
 ```typescript
-import { CreateFundingSourceDwollaV1HalJSONError } from "dwolla-typescript/models/errors";
+import { CreateFundingSourceDwollaV1HalJSONError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { BeneficialOwnership } from "dwolla-typescript/models";
+import { BeneficialOwnership } from "dwolla/models";
 
 let value: BeneficialOwnership = {
   links: {

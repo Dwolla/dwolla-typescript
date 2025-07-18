@@ -5,7 +5,7 @@ Client token created successfully
 ## Example Usage
 
 ```typescript
-import { CreateClientTokenResponse } from "dwolla-typescript/models/operations";
+import { CreateClientTokenResponse } from "dwolla/models/operations";
 
 let value: CreateClientTokenResponse = {
   token: "4adF858jPeQ9RnojMHdqSD2KwsvmhO7Ti7cI5woOiBGCpH5krY",

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InvalidMetadataError } from "dwolla-typescript/models/errors";
+import { InvalidMetadataError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

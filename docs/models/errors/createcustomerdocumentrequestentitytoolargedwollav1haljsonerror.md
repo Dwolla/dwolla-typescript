@@ -5,7 +5,7 @@ request entity too large
 ## Example Usage
 
 ```typescript
-import { CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError } from "dwolla-typescript/models/errors";
+import { CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

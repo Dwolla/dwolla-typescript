@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { TransferExpiredForFeeErrorEmbedded } from "dwolla-typescript/models";
+import { TransferExpiredForFeeErrorEmbedded } from "dwolla/models";
 
 let value: TransferExpiredForFeeErrorEmbedded = {
   errors: [

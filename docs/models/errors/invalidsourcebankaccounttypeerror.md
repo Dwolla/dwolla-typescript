@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InvalidSourceBankAccountTypeError } from "dwolla-typescript/models/errors";
+import { InvalidSourceBankAccountTypeError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

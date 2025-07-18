@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InitiateMassPaymentAchDetailsSource } from "dwolla-typescript/models/operations";
+import { InitiateMassPaymentAchDetailsSource } from "dwolla/models/operations";
 
 let value: InitiateMassPaymentAchDetailsSource = {
   addenda: {

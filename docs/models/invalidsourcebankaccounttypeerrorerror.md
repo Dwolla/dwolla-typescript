@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InvalidSourceBankAccountTypeErrorError } from "dwolla-typescript/models";
+import { InvalidSourceBankAccountTypeErrorError } from "dwolla/models";
 
 let value: InvalidSourceBankAccountTypeErrorError = {
   code: "Invalid",

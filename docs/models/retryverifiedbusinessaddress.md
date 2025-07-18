@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { RetryVerifiedBusinessAddress } from "dwolla-typescript/models";
+import { RetryVerifiedBusinessAddress } from "dwolla/models";
 
 let value: RetryVerifiedBusinessAddress = {
   address1: "1749 18th st",

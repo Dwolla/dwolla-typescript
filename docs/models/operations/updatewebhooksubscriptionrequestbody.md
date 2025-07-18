@@ -5,7 +5,7 @@ Parameters to update a webhook subscription
 ## Example Usage
 
 ```typescript
-import { UpdateWebhookSubscriptionRequestBody } from "dwolla-typescript/models/operations";
+import { UpdateWebhookSubscriptionRequestBody } from "dwolla/models/operations";
 
 let value: UpdateWebhookSubscriptionRequestBody = {
   paused: true,

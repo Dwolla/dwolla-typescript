@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateReAuthExchangeSessionRequest } from "dwolla-typescript/models/operations";
+import { CreateReAuthExchangeSessionRequest } from "dwolla/models/operations";
 
 let value: CreateReAuthExchangeSessionRequest = {
   id: "<id>",

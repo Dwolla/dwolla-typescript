@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DestinationAddendaMaxLengthErrorLinks } from "dwolla-typescript/models";
+import { DestinationAddendaMaxLengthErrorLinks } from "dwolla/models";
 
 let value: DestinationAddendaMaxLengthErrorLinks = {};
 ```

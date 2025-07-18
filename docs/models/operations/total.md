@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Total } from "dwolla-typescript/models/operations";
+import { Total } from "dwolla/models/operations";
 
 let value: Total = {
   value: "4616.87",

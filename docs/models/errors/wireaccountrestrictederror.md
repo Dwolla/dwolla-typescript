@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WireAccountRestrictedError } from "dwolla-typescript/models/errors";
+import { WireAccountRestrictedError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

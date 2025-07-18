@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ResponseBodyBadRequestError3 } from "dwolla-typescript/models/errors";
+import { ResponseBodyBadRequestError3 } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

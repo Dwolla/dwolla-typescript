@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InvalidPointOfSaleAddendaDateError } from "dwolla-typescript/models/errors";
+import { InvalidPointOfSaleAddendaDateError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

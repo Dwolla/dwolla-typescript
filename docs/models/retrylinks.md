@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { RetryLinks } from "dwolla-typescript/models";
+import { RetryLinks } from "dwolla/models";
 
 let value: RetryLinks = {
   self: {

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetLabelLedgerEntryRequest } from "dwolla-typescript/models/operations";
+import { GetLabelLedgerEntryRequest } from "dwolla/models/operations";
 
 let value: GetLabelLedgerEntryRequest = {
   id: "<id>",

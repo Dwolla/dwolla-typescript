@@ -5,7 +5,7 @@ not found
 ## Example Usage
 
 ```typescript
-import { GetFundingSourceDwollaV1HalJSONError } from "dwolla-typescript/models/errors";
+import { GetFundingSourceDwollaV1HalJSONError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

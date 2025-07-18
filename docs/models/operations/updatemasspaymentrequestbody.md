@@ -5,7 +5,7 @@ Parameters for updating a mass payment
 ## Example Usage
 
 ```typescript
-import { UpdateMassPaymentRequestBody } from "dwolla-typescript/models/operations";
+import { UpdateMassPaymentRequestBody } from "dwolla/models/operations";
 
 let value: UpdateMassPaymentRequestBody = {
   status: "pending",

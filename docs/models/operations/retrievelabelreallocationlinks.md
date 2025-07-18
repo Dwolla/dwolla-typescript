@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { RetrieveLabelReallocationLinks } from "dwolla-typescript/models/operations";
+import { RetrieveLabelReallocationLinks } from "dwolla/models/operations";
 
 let value: RetrieveLabelReallocationLinks = {
   self: {

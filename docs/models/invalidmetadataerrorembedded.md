@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InvalidMetadataErrorEmbedded } from "dwolla-typescript/models";
+import { InvalidMetadataErrorEmbedded } from "dwolla/models";
 
 let value: InvalidMetadataErrorEmbedded = {
   errors: [

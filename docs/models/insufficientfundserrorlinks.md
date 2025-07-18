@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InsufficientFundsErrorLinks } from "dwolla-typescript/models";
+import { InsufficientFundsErrorLinks } from "dwolla/models";
 
 let value: InsufficientFundsErrorLinks = {};
 ```

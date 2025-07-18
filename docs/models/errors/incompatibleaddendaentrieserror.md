@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { IncompatibleAddendaEntriesError } from "dwolla-typescript/models/errors";
+import { IncompatibleAddendaEntriesError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

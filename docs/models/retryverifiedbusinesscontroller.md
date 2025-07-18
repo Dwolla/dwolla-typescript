@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { RetryVerifiedBusinessController } from "dwolla-typescript/models";
-import { RFCDate } from "dwolla-typescript/types";
+import { RetryVerifiedBusinessController } from "dwolla/models";
+import { RFCDate } from "dwolla/types";
 
 let value: RetryVerifiedBusinessController = {
   firstName: "John",

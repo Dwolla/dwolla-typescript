@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ToLedgerEntry } from "dwolla-typescript/models/operations";
+import { ToLedgerEntry } from "dwolla/models/operations";
 
 let value: ToLedgerEntry = {
   href:

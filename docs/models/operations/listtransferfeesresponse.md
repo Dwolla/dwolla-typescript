@@ -5,7 +5,7 @@ successful operation
 ## Example Usage
 
 ```typescript
-import { ListTransferFeesResponse } from "dwolla-typescript/models/operations";
+import { ListTransferFeesResponse } from "dwolla/models/operations";
 
 let value: ListTransferFeesResponse = {
   transactions: [

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SecretTooLongError } from "dwolla-typescript/models/errors";
+import { SecretTooLongError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

@@ -5,7 +5,7 @@ successful operation
 ## Example Usage
 
 ```typescript
-import { CancelTransferResponse } from "dwolla-typescript/models/operations";
+import { CancelTransferResponse } from "dwolla/models/operations";
 
 let value: CancelTransferResponse = {};
 ```

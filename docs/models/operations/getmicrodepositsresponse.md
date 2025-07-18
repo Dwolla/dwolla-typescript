@@ -5,7 +5,7 @@ successful operation
 ## Example Usage
 
 ```typescript
-import { GetMicroDepositsResponse } from "dwolla-typescript/models/operations";
+import { GetMicroDepositsResponse } from "dwolla/models/operations";
 
 let value: GetMicroDepositsResponse = {
   links: {

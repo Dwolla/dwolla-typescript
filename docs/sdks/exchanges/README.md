@@ -17,7 +17,7 @@ Retrieve an exchange resource by its ID.
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -42,8 +42,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { exchangesGet } from "dwolla-typescript/funcs/exchangesGet.js";
+import { DwollaCore } from "dwolla/core.js";
+import { exchangesGet } from "dwolla/funcs/exchangesGet.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -106,7 +106,7 @@ After completing the re-authorization process, the user will be redirected back 
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -132,8 +132,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { exchangesCreateReAuth } from "dwolla-typescript/funcs/exchangesCreateReAuth.js";
+import { DwollaCore } from "dwolla/core.js";
+import { exchangesCreateReAuth } from "dwolla/funcs/exchangesCreateReAuth.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

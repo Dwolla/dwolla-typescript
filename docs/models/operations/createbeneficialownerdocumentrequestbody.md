@@ -5,7 +5,7 @@ Upload a document for a beneficial owner.
 ## Example Usage
 
 ```typescript
-import { CreateBeneficialOwnerDocumentRequestBody } from "dwolla-typescript/models/operations";
+import { CreateBeneficialOwnerDocumentRequestBody } from "dwolla/models/operations";
 
 // No examples available for this model
 ```

@@ -5,7 +5,7 @@ Parameters to cancel a transfer
 ## Example Usage
 
 ```typescript
-import { CancelTransferRequestBody } from "dwolla-typescript/models/operations";
+import { CancelTransferRequestBody } from "dwolla/models/operations";
 
 let value: CancelTransferRequestBody = {};
 ```

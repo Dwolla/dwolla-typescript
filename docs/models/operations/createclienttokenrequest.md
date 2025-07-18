@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateClientTokenRequest } from "dwolla-typescript/models/operations";
+import { CreateClientTokenRequest } from "dwolla/models/operations";
 
 let value: CreateClientTokenRequest = {
   action: "customer.update",

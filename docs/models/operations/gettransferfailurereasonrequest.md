@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetTransferFailureReasonRequest } from "dwolla-typescript/models/operations";
+import { GetTransferFailureReasonRequest } from "dwolla/models/operations";
 
 let value: GetTransferFailureReasonRequest = {
   id: "<id>",

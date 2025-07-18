@@ -5,7 +5,7 @@ Create a Verified Business customer with an international (non US) controller
 ## Example Usage
 
 ```typescript
-import { CreateVerifiedBusinessCustomerWithInternationalController } from "dwolla-typescript/models";
+import { CreateVerifiedBusinessCustomerWithInternationalController } from "dwolla/models";
 
 let value: CreateVerifiedBusinessCustomerWithInternationalController = {
   firstName: "Jane",

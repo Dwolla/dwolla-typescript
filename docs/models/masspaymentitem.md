@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { MassPaymentItem } from "dwolla-typescript/models";
+import { MassPaymentItem } from "dwolla/models";
 
 let value: MassPaymentItem = {
   links: {

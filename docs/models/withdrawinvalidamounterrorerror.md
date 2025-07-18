@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WithdrawInvalidAmountErrorError } from "dwolla-typescript/models";
+import { WithdrawInvalidAmountErrorError } from "dwolla/models";
 
 let value: WithdrawInvalidAmountErrorError = {
   code: "Invalid",

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateLabelReallocationResponse } from "dwolla-typescript/models/operations";
+import { CreateLabelReallocationResponse } from "dwolla/models/operations";
 
 let value: CreateLabelReallocationResponse = {
   headers: {},

@@ -5,7 +5,7 @@ successful operation
 ## Example Usage
 
 ```typescript
-import { GetVanRoutingResponse } from "dwolla-typescript/models/operations";
+import { GetVanRoutingResponse } from "dwolla/models/operations";
 
 let value: GetVanRoutingResponse = {
   links: {

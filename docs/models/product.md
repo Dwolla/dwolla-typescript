@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { Product } from "dwolla-typescript/models";
-import { RFCDate } from "dwolla-typescript/types";
+import { Product } from "dwolla/models";
+import { RFCDate } from "dwolla/types";
 
 let value: Product = {
   product: "moneyTransferDetails",

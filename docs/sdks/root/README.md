@@ -16,7 +16,7 @@ The entry point that clients can use to discover and explore the entire API.
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -39,8 +39,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { rootGet } from "dwolla-typescript/funcs/rootGet.js";
+import { DwollaCore } from "dwolla/core.js";
+import { rootGet } from "dwolla/funcs/rootGet.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

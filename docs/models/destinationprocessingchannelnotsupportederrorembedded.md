@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DestinationProcessingChannelNotSupportedErrorEmbedded } from "dwolla-typescript/models";
+import { DestinationProcessingChannelNotSupportedErrorEmbedded } from "dwolla/models";
 
 let value: DestinationProcessingChannelNotSupportedErrorEmbedded = {
   errors: [

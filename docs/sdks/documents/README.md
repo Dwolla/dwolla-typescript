@@ -16,7 +16,7 @@ Retrieve a document for a customer or beneficial owner
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -41,8 +41,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { documentsGet } from "dwolla-typescript/funcs/documentsGet.js";
+import { DwollaCore } from "dwolla/core.js";
+import { documentsGet } from "dwolla/funcs/documentsGet.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

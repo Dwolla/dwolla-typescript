@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { RtpPersonalToPersonalNotSupportedError } from "dwolla-typescript/models/errors";
+import { RtpPersonalToPersonalNotSupportedError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

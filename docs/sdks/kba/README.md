@@ -18,7 +18,7 @@ Initiate a KBA session
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -43,8 +43,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { kbaInitiate } from "dwolla-typescript/funcs/kbaInitiate.js";
+import { DwollaCore } from "dwolla/core.js";
+import { kbaInitiate } from "dwolla/funcs/kbaInitiate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -99,7 +99,7 @@ Retrieve KBA Questions
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -124,8 +124,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { kbaGetQuestions } from "dwolla-typescript/funcs/kbaGetQuestions.js";
+import { DwollaCore } from "dwolla/core.js";
+import { kbaGetQuestions } from "dwolla/funcs/kbaGetQuestions.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -179,7 +179,7 @@ Verify KBA Questions
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -207,8 +207,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { kbaVerify } from "dwolla-typescript/funcs/kbaVerify.js";
+import { DwollaCore } from "dwolla/core.js";
+import { kbaVerify } from "dwolla/funcs/kbaVerify.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

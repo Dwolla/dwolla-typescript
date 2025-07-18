@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SourceSameAsDestinationError } from "dwolla-typescript/models/errors";
+import { SourceSameAsDestinationError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

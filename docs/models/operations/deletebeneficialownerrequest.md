@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DeleteBeneficialOwnerRequest } from "dwolla-typescript/models/operations";
+import { DeleteBeneficialOwnerRequest } from "dwolla/models/operations";
 
 let value: DeleteBeneficialOwnerRequest = {
   id: "<id>",

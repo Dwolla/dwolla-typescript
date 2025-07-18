@@ -5,7 +5,7 @@ request entity too large
 ## Example Usage
 
 ```typescript
-import { CreateBeneficialOwnerDocumentDwollaV1HalJSONError } from "dwolla-typescript/models/errors";
+import { CreateBeneficialOwnerDocumentDwollaV1HalJSONError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

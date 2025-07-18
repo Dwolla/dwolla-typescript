@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { IncompatibleHoldingsErrorEmbedded } from "dwolla-typescript/models";
+import { IncompatibleHoldingsErrorEmbedded } from "dwolla/models";
 
 let value: IncompatibleHoldingsErrorEmbedded = {
   errors: [

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ExchangeSession } from "dwolla-typescript/models";
+import { ExchangeSession } from "dwolla/models";
 
 let value: ExchangeSession = {
   created: new Date("2024-03-25T17:13:38.430Z"),

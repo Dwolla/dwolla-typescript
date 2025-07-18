@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { FacilitatorFeeSumTooLargeError } from "dwolla-typescript/models/errors";
+import { FacilitatorFeeSumTooLargeError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

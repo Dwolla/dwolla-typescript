@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InitiateOrVerifyMicroDepositsSelf } from "dwolla-typescript/models/operations";
+import { InitiateOrVerifyMicroDepositsSelf } from "dwolla/models/operations";
 
 let value: InitiateOrVerifyMicroDepositsSelf = {
   href:

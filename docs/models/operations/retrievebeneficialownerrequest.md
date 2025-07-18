@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { RetrieveBeneficialOwnerRequest } from "dwolla-typescript/models/operations";
+import { RetrieveBeneficialOwnerRequest } from "dwolla/models/operations";
 
 let value: RetrieveBeneficialOwnerRequest = {
   id: "<id>",

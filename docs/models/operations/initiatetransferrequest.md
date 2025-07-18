@@ -5,7 +5,7 @@ Parameters to initiate a transfer
 ## Example Usage
 
 ```typescript
-import { InitiateTransferRequest } from "dwolla-typescript/models/operations";
+import { InitiateTransferRequest } from "dwolla/models/operations";
 
 let value: InitiateTransferRequest = {
   links: {},

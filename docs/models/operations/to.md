@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { To } from "dwolla-typescript/models/operations";
+import { To } from "dwolla/models/operations";
 
 let value: To = {
   href: "https://api.dwolla.com/labels/7e042ffe-e25e-40d2-b86e-748b98845ecc",

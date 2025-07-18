@@ -5,7 +5,7 @@ Create a Verified Business customer with a US controller
 ## Example Usage
 
 ```typescript
-import { CreateVerifiedBusinessCustomerWithController } from "dwolla-typescript/models";
+import { CreateVerifiedBusinessCustomerWithController } from "dwolla/models";
 
 let value: CreateVerifiedBusinessCustomerWithController = {
   firstName: "Jane",

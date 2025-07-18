@@ -30,7 +30,8 @@ typescript:
     dependencies: {}
     devDependencies: {}
     peerDependencies: {}
-  additionalPackageJSON: {}
+  additionalPackageJSON:
+    description: Dwolla TypeScript SDK (Beta). Breaking changes may occur between beta versions.
   author: Speakeasy
   baseErrorName: DwollaError
   clientServerStatusCodesAsErrors: true
@@ -58,7 +59,7 @@ typescript:
   methodArguments: require-security-and-request
   moduleFormat: dual
   outputModelSuffix: output
-  packageName: dwolla-typescript
+  packageName: dwolla
   responseFormat: flat
   templateVersion: v2
   useIndexModules: true

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateCustomerExchangeResponseBodyError2 } from "dwolla-typescript/models/errors";
+import { CreateCustomerExchangeResponseBodyError2 } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

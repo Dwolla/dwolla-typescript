@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { IncompatibleHoldingsError } from "dwolla-typescript/models/errors";
+import { IncompatibleHoldingsError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

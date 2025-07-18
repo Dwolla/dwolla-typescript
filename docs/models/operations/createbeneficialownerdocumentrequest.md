@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateBeneficialOwnerDocumentRequest } from "dwolla-typescript/models/operations";
+import { CreateBeneficialOwnerDocumentRequest } from "dwolla/models/operations";
 
 // No examples available for this model
 ```

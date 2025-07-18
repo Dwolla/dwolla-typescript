@@ -5,7 +5,7 @@
 ## Example Usage
 
 ```typescript
-import { GetKbaQuestionsDwollaV1HalJSONError } from "dwolla-typescript/models/errors";
+import { GetKbaQuestionsDwollaV1HalJSONError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

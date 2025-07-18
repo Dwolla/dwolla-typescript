@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { RtpFacilitatorFeeNotSupportedError } from "dwolla-typescript/models/errors";
+import { RtpFacilitatorFeeNotSupportedError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

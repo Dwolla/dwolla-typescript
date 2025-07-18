@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { AccessPeriod } from "dwolla-typescript/models";
-import { RFCDate } from "dwolla-typescript/types";
+import { AccessPeriod } from "dwolla/models";
+import { RFCDate } from "dwolla/types";
 
 let value: AccessPeriod = {
   type: "timeframe",

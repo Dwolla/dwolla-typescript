@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InvalidPointOfSaleAddendaStateErrorError } from "dwolla-typescript/models";
+import { InvalidPointOfSaleAddendaStateErrorError } from "dwolla/models";
 
 let value: InvalidPointOfSaleAddendaStateErrorError = {
   code: "InvalidFormat",

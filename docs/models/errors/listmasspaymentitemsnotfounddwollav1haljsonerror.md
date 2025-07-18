@@ -5,7 +5,7 @@ Mass payment not found
 ## Example Usage
 
 ```typescript
-import { ListMassPaymentItemsNotFoundDwollaV1HalJSONError } from "dwolla-typescript/models/errors";
+import { ListMassPaymentItemsNotFoundDwollaV1HalJSONError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

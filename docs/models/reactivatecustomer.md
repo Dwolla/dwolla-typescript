@@ -5,7 +5,7 @@ Reactivate a Customer
 ## Example Usage
 
 ```typescript
-import { ReactivateCustomer } from "dwolla-typescript/models";
+import { ReactivateCustomer } from "dwolla/models";
 
 let value: ReactivateCustomer = {
   status: "reactivated",

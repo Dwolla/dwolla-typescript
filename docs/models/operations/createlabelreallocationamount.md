@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateLabelReallocationAmount } from "dwolla-typescript/models/operations";
+import { CreateLabelReallocationAmount } from "dwolla/models/operations";
 
 let value: CreateLabelReallocationAmount = {
   currency: "15.00",

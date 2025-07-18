@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SecretTooLongErrorError } from "dwolla-typescript/models";
+import { SecretTooLongErrorError } from "dwolla/models";
 
 let value: SecretTooLongErrorError = {
   code: "InvalidFormat",

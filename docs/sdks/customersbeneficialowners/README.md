@@ -15,7 +15,7 @@ Retrieve a list of beneficial owners that belong to a Customer
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -40,8 +40,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { customersBeneficialOwnersList } from "dwolla-typescript/funcs/customersBeneficialOwnersList.js";
+import { DwollaCore } from "dwolla/core.js";
+import { customersBeneficialOwnersList } from "dwolla/funcs/customersBeneficialOwnersList.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -94,7 +94,7 @@ Create beneficial owner which is a natural person who, directly or indirectly, o
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -134,8 +134,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { customersBeneficialOwnersCreate } from "dwolla-typescript/funcs/customersBeneficialOwnersCreate.js";
+import { DwollaCore } from "dwolla/core.js";
+import { customersBeneficialOwnersCreate } from "dwolla/funcs/customersBeneficialOwnersCreate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

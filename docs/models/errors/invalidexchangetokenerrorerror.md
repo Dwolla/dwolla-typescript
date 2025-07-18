@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InvalidExchangeTokenErrorError } from "dwolla-typescript/models/errors";
+import { InvalidExchangeTokenErrorError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CustomersEmbedded } from "dwolla-typescript/models";
+import { CustomersEmbedded } from "dwolla/models";
 
 let value: CustomersEmbedded = {
   customers: [

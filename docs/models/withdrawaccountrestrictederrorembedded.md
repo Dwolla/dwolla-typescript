@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WithdrawAccountRestrictedErrorEmbedded } from "dwolla-typescript/models";
+import { WithdrawAccountRestrictedErrorEmbedded } from "dwolla/models";
 
 let value: WithdrawAccountRestrictedErrorEmbedded = {
   errors: [

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { RtpUnverifiedSenderNotSupportedErrorError } from "dwolla-typescript/models";
+import { RtpUnverifiedSenderNotSupportedErrorError } from "dwolla/models";
 
 let value: RtpUnverifiedSenderNotSupportedErrorError = {
   code: "NotAllowed",

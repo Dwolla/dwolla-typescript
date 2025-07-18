@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateBeneficialOwnerDocumentResponse } from "dwolla-typescript/models/operations";
+import { CreateBeneficialOwnerDocumentResponse } from "dwolla/models/operations";
 
 let value: CreateBeneficialOwnerDocumentResponse = {
   headers: {

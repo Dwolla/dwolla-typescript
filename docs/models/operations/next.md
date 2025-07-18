@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Next } from "dwolla-typescript/models/operations";
+import { Next } from "dwolla/models/operations";
 
 let value: Next = {
   href:

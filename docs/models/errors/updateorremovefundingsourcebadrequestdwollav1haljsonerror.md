@@ -5,7 +5,7 @@ validation error
 ## Example Usage
 
 ```typescript
-import { UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError } from "dwolla-typescript/models/errors";
+import { UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

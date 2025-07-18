@@ -5,7 +5,7 @@ not found
 ## Example Usage
 
 ```typescript
-import { ListBeneficialOwnersForCustomerDwollaV1HalJSONError } from "dwolla-typescript/models/errors";
+import { ListBeneficialOwnersForCustomerDwollaV1HalJSONError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

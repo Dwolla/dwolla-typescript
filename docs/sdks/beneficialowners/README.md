@@ -18,7 +18,7 @@ Retrieve details for a single beneficial owner
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -43,8 +43,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { beneficialOwnersGet } from "dwolla-typescript/funcs/beneficialOwnersGet.js";
+import { DwollaCore } from "dwolla/core.js";
+import { beneficialOwnersGet } from "dwolla/funcs/beneficialOwnersGet.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -97,7 +97,7 @@ Update beneficial owner
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -140,8 +140,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { beneficialOwnersUpdate } from "dwolla-typescript/funcs/beneficialOwnersUpdate.js";
+import { DwollaCore } from "dwolla/core.js";
+import { beneficialOwnersUpdate } from "dwolla/funcs/beneficialOwnersUpdate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -214,7 +214,7 @@ Delete beneficial owner
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -239,8 +239,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { beneficialOwnersDelete } from "dwolla-typescript/funcs/beneficialOwnersDelete.js";
+import { DwollaCore } from "dwolla/core.js";
+import { beneficialOwnersDelete } from "dwolla/funcs/beneficialOwnersDelete.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -293,7 +293,7 @@ Retrieve beneficial ownership status
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -318,8 +318,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { beneficialOwnersGetOwnershipStatus } from "dwolla-typescript/funcs/beneficialOwnersGetOwnershipStatus.js";
+import { DwollaCore } from "dwolla/core.js";
+import { beneficialOwnersGetOwnershipStatus } from "dwolla/funcs/beneficialOwnersGetOwnershipStatus.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -373,7 +373,7 @@ certify beneficial ownership status
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -401,8 +401,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { beneficialOwnersCertifyOwnership } from "dwolla-typescript/funcs/beneficialOwnersCertifyOwnership.js";
+import { DwollaCore } from "dwolla/core.js";
+import { beneficialOwnersCertifyOwnership } from "dwolla/funcs/beneficialOwnersCertifyOwnership.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

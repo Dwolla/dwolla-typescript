@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { IncompatibleSourceAndDestinationTypesError } from "dwolla-typescript/models/errors";
+import { IncompatibleSourceAndDestinationTypesError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

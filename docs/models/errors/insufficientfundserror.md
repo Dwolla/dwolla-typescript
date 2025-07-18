@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InsufficientFundsError } from "dwolla-typescript/models/errors";
+import { InsufficientFundsError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

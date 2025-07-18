@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DestinationRemittanceDataMaxLengthErrorError } from "dwolla-typescript/models";
+import { DestinationRemittanceDataMaxLengthErrorError } from "dwolla/models";
 
 let value: DestinationRemittanceDataMaxLengthErrorError = {
   code: "InvalidFormat",

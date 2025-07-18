@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WithdrawInvalidAmountError } from "dwolla-typescript/models/errors";
+import { WithdrawInvalidAmountError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

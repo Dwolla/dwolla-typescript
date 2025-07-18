@@ -15,7 +15,7 @@ Retrieve an _embedded list of business classifications that contains an _embedde
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -38,8 +38,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { businessClassificationsList } from "dwolla-typescript/funcs/businessClassificationsList.js";
+import { DwollaCore } from "dwolla/core.js";
+import { businessClassificationsList } from "dwolla/funcs/businessClassificationsList.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -90,7 +90,7 @@ Retrieve a business classification by id.
 ### Example Usage
 
 ```typescript
-import { Dwolla } from "dwolla-typescript";
+import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   security: {
@@ -115,8 +115,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { DwollaCore } from "dwolla-typescript/core.js";
-import { businessClassificationsGet } from "dwolla-typescript/funcs/businessClassificationsGet.js";
+import { DwollaCore } from "dwolla/core.js";
+import { businessClassificationsGet } from "dwolla/funcs/businessClassificationsGet.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

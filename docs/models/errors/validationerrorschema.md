@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ValidationErrorSchema } from "dwolla-typescript/models/errors";
+import { ValidationErrorSchema } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

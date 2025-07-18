@@ -5,7 +5,7 @@ Upload a document for a customer.
 ## Example Usage
 
 ```typescript
-import { CreateCustomerDocumentRequestBody } from "dwolla-typescript/models/operations";
+import { CreateCustomerDocumentRequestBody } from "dwolla/models/operations";
 
 // No examples available for this model
 ```

@@ -5,7 +5,7 @@ Parameters for verifying KBA questions
 ## Example Usage
 
 ```typescript
-import { VerifyRequestBody } from "dwolla-typescript/models/operations";
+import { VerifyRequestBody } from "dwolla/models/operations";
 
 let value: VerifyRequestBody = {
   answers: [],

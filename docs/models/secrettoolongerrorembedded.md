@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SecretTooLongErrorEmbedded } from "dwolla-typescript/models";
+import { SecretTooLongErrorEmbedded } from "dwolla/models";
 
 let value: SecretTooLongErrorEmbedded = {
   errors: [
