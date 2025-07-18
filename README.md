@@ -3,19 +3,6 @@
 Developer-friendly & type-safe Typescript SDK specifically catered to leverage _dwolla-typescript_
 API.
 
-> ⚠️ **SECURITY NOTICE** ⚠️
->
-> This repository is currently in active development and has not yet undergone a formal security
-> review. While we welcome testing and feedback, please be aware that:
->
-> - This code is not yet production-ready
-> - Security vulnerabilities may exist
-> - Breaking changes may occur
-> - Features may be incomplete or unstable
->
-> Use at your own risk and do not use in production environments until a security review has been
-> completed.
-
 <div align="left">
     <a href="https://www.speakeasy.com/?utm_source=dwolla-typescript&utm_campaign=typescript"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
     <a href="https://opensource.org/licenses/MIT">
@@ -25,9 +12,8 @@ API.
 
 <br /><br />
 
-> [!IMPORTANT] This SDK is not yet ready for production use. To complete setup please follow the
-> steps outlined in your [workspace](https://app.speakeasy.com/org/dwolla-vc3/dwolla). Delete this
-> section before > publishing to a package manager.
+> [!IMPORTANT]
+> **Beta Release** - This SDK is currently in beta. Core operations including customer creation, funding sources, transfers, and beneficial ownership have been tested and are functional. We are conducting thorough internal testing of all operations before general availability. Please note that breaking changes may occur as we continue to make improvements. While suitable for development and testing, please use with appropriate caution in production environments.
 
 <!-- Start Summary [summary] -->
 ## Summary
@@ -59,10 +45,6 @@ Dwolla API: Dwolla API Documentation
 
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
-
-> [!TIP]
-> To finish publishing your SDK to npm and others you must [run your first generation action](https://www.speakeasy.com/docs/github-setup#step-by-step-guide).
-
 
 The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https://pnpm.io/), [bun](https://bun.sh/) or [yarn](https://classic.yarnpkg.com/en/) package managers.
 
@@ -952,4 +934,3 @@ Any manual changes added to internal files will be overwritten on the next gener
 forward to hearing your feedback. Feel free to open a PR or an issue with a proof of concept and
 we'll do our best to include it in a future release.
 
-### SDK Created by [Speakeasy](https://www.speakeasy.com/?utm_source=dwolla-typescript&utm_campaign=typescript)
