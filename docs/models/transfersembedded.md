@@ -49,6 +49,15 @@ let value: TransfersEmbedded = {
       rtpDetails: {
         destination: {
           remittanceData: "ABC_123 Remittance Data",
+          networkId: "20210617021214273T1BG27487110796028",
+          endToEndReferenceId: "E2E-RTP-20210617-001",
+        },
+      },
+      fedNowDetails: {
+        destination: {
+          remittanceData: "ABC_123 Remittance Data",
+          networkId: "20240115123456789FEDNOW123456",
+          endToEndReferenceId: "E2E-FEDNOW-20240115-001",
         },
       },
       correlationId: "8a2cdc8d-629d-4a24-98ac-40b735229fe2",

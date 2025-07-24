@@ -37,8 +37,18 @@ async function run() {
       value: "5.00",
       currency: "USD",
     },
+    rtpDetails: {
+      destination: {
+        remittanceData: "ABC_123 Remittance Data",
+      },
+    },
+    instantDetails: {
+      destination: {
+        remittanceData: "ABC_123 Remittance Data",
+      },
+    },
     processingChannel: {
-      destination: "real-time-payments",
+      destination: "instant",
     },
   });
 
@@ -72,8 +82,18 @@ async function run() {
       value: "5.00",
       currency: "USD",
     },
+    rtpDetails: {
+      destination: {
+        remittanceData: "ABC_123 Remittance Data",
+      },
+    },
+    instantDetails: {
+      destination: {
+        remittanceData: "ABC_123 Remittance Data",
+      },
+    },
     processingChannel: {
-      destination: "real-time-payments",
+      destination: "instant",
     },
   });
   if (res.ok) {

@@ -50,12 +50,60 @@ export type AchDetails = {
   destination?: AchDetailsDestination | undefined;
 };
 
+/**
+ * RTP destination details with network identifiers
+ */
 export type RtpDetailsDestination = {
+  /**
+   * Remittance information included in the transfer request
+   */
   remittanceData?: string | undefined;
+  /**
+   * Unique identifier for the transfer within the RTP network
+   */
+  networkId?: string | undefined;
+  /**
+   * End-to-end reference identifier for the RTP transfer
+   */
+  endToEndReferenceId?: string | undefined;
 };
 
+/**
+ * Real-Time Payments (RTP) network specific details. Present when transfer was processed via RTP network.
+ */
 export type RtpDetails = {
+  /**
+   * RTP destination details with network identifiers
+   */
   destination?: RtpDetailsDestination | undefined;
+};
+
+/**
+ * FedNow destination details with network identifiers
+ */
+export type FedNowDetailsDestination = {
+  /**
+   * Remittance information included in the transfer request
+   */
+  remittanceData?: string | undefined;
+  /**
+   * Unique identifier for the transfer within the FedNow network
+   */
+  networkId?: string | undefined;
+  /**
+   * End-to-end reference identifier for the FedNow transfer
+   */
+  endToEndReferenceId?: string | undefined;
+};
+
+/**
+ * FedNow Service network specific details. Present when transfer was processed via FedNow network.
+ */
+export type FedNowDetails = {
+  /**
+   * FedNow destination details with network identifiers
+   */
+  destination?: FedNowDetailsDestination | undefined;
 };
 
 export type TransferProcessingChannel = {
@@ -71,7 +119,14 @@ export type Transfer = {
   clearing?: Clearing | undefined;
   metadata?: TransferMetadata | undefined;
   achDetails?: AchDetails | undefined;
+  /**
+   * Real-Time Payments (RTP) network specific details. Present when transfer was processed via RTP network.
+   */
   rtpDetails?: RtpDetails | undefined;
+  /**
+   * FedNow Service network specific details. Present when transfer was processed via FedNow network.
+   */
+  fedNowDetails?: FedNowDetails | undefined;
   correlationId?: string | undefined;
   processingChannel?: TransferProcessingChannel | undefined;
 };
@@ -506,11 +561,15 @@ export const RtpDetailsDestination$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   remittanceData: z.string().optional(),
+  networkId: z.string().optional(),
+  endToEndReferenceId: z.string().optional(),
 });
 
 /** @internal */
 export type RtpDetailsDestination$Outbound = {
   remittanceData?: string | undefined;
+  networkId?: string | undefined;
+  endToEndReferenceId?: string | undefined;
 };
 
 /** @internal */
@@ -520,6 +579,8 @@ export const RtpDetailsDestination$outboundSchema: z.ZodType<
   RtpDetailsDestination
 > = z.object({
   remittanceData: z.string().optional(),
+  networkId: z.string().optional(),
+  endToEndReferenceId: z.string().optional(),
 });
 
 /**
@@ -604,6 +665,116 @@ export function rtpDetailsFromJSON(
 }
 
 /** @internal */
+export const FedNowDetailsDestination$inboundSchema: z.ZodType<
+  FedNowDetailsDestination,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  remittanceData: z.string().optional(),
+  networkId: z.string().optional(),
+  endToEndReferenceId: z.string().optional(),
+});
+
+/** @internal */
+export type FedNowDetailsDestination$Outbound = {
+  remittanceData?: string | undefined;
+  networkId?: string | undefined;
+  endToEndReferenceId?: string | undefined;
+};
+
+/** @internal */
+export const FedNowDetailsDestination$outboundSchema: z.ZodType<
+  FedNowDetailsDestination$Outbound,
+  z.ZodTypeDef,
+  FedNowDetailsDestination
+> = z.object({
+  remittanceData: z.string().optional(),
+  networkId: z.string().optional(),
+  endToEndReferenceId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace FedNowDetailsDestination$ {
+  /** @deprecated use `FedNowDetailsDestination$inboundSchema` instead. */
+  export const inboundSchema = FedNowDetailsDestination$inboundSchema;
+  /** @deprecated use `FedNowDetailsDestination$outboundSchema` instead. */
+  export const outboundSchema = FedNowDetailsDestination$outboundSchema;
+  /** @deprecated use `FedNowDetailsDestination$Outbound` instead. */
+  export type Outbound = FedNowDetailsDestination$Outbound;
+}
+
+export function fedNowDetailsDestinationToJSON(
+  fedNowDetailsDestination: FedNowDetailsDestination,
+): string {
+  return JSON.stringify(
+    FedNowDetailsDestination$outboundSchema.parse(fedNowDetailsDestination),
+  );
+}
+
+export function fedNowDetailsDestinationFromJSON(
+  jsonString: string,
+): SafeParseResult<FedNowDetailsDestination, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FedNowDetailsDestination$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FedNowDetailsDestination' from JSON`,
+  );
+}
+
+/** @internal */
+export const FedNowDetails$inboundSchema: z.ZodType<
+  FedNowDetails,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  destination: z.lazy(() => FedNowDetailsDestination$inboundSchema).optional(),
+});
+
+/** @internal */
+export type FedNowDetails$Outbound = {
+  destination?: FedNowDetailsDestination$Outbound | undefined;
+};
+
+/** @internal */
+export const FedNowDetails$outboundSchema: z.ZodType<
+  FedNowDetails$Outbound,
+  z.ZodTypeDef,
+  FedNowDetails
+> = z.object({
+  destination: z.lazy(() => FedNowDetailsDestination$outboundSchema).optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace FedNowDetails$ {
+  /** @deprecated use `FedNowDetails$inboundSchema` instead. */
+  export const inboundSchema = FedNowDetails$inboundSchema;
+  /** @deprecated use `FedNowDetails$outboundSchema` instead. */
+  export const outboundSchema = FedNowDetails$outboundSchema;
+  /** @deprecated use `FedNowDetails$Outbound` instead. */
+  export type Outbound = FedNowDetails$Outbound;
+}
+
+export function fedNowDetailsToJSON(fedNowDetails: FedNowDetails): string {
+  return JSON.stringify(FedNowDetails$outboundSchema.parse(fedNowDetails));
+}
+
+export function fedNowDetailsFromJSON(
+  jsonString: string,
+): SafeParseResult<FedNowDetails, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FedNowDetails$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FedNowDetails' from JSON`,
+  );
+}
+
+/** @internal */
 export const TransferProcessingChannel$inboundSchema: z.ZodType<
   TransferProcessingChannel,
   z.ZodTypeDef,
@@ -673,6 +844,7 @@ export const Transfer$inboundSchema: z.ZodType<
   metadata: z.lazy(() => TransferMetadata$inboundSchema).optional(),
   achDetails: z.lazy(() => AchDetails$inboundSchema).optional(),
   rtpDetails: z.lazy(() => RtpDetails$inboundSchema).optional(),
+  fedNowDetails: z.lazy(() => FedNowDetails$inboundSchema).optional(),
   correlationId: z.string().optional(),
   processingChannel: z.lazy(() => TransferProcessingChannel$inboundSchema)
     .optional(),
@@ -693,6 +865,7 @@ export type Transfer$Outbound = {
   metadata?: TransferMetadata$Outbound | undefined;
   achDetails?: AchDetails$Outbound | undefined;
   rtpDetails?: RtpDetails$Outbound | undefined;
+  fedNowDetails?: FedNowDetails$Outbound | undefined;
   correlationId?: string | undefined;
   processingChannel?: TransferProcessingChannel$Outbound | undefined;
 };
@@ -712,6 +885,7 @@ export const Transfer$outboundSchema: z.ZodType<
   metadata: z.lazy(() => TransferMetadata$outboundSchema).optional(),
   achDetails: z.lazy(() => AchDetails$outboundSchema).optional(),
   rtpDetails: z.lazy(() => RtpDetails$outboundSchema).optional(),
+  fedNowDetails: z.lazy(() => FedNowDetails$outboundSchema).optional(),
   correlationId: z.string().optional(),
   processingChannel: z.lazy(() => TransferProcessingChannel$outboundSchema)
     .optional(),

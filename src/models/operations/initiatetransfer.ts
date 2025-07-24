@@ -5,6 +5,7 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
@@ -68,16 +69,54 @@ export type InitiateTransferAchDetails = {
   destination?: InitiateTransferAchDetailsDestination | undefined;
 };
 
+/**
+ * RTP details for the destination
+ */
 export type RtpDetailsDestination = {
+  /**
+   * Remittance information for Real-Time Payments, providing context about the payment purpose
+   */
   remittanceData?: string | undefined;
 };
 
+/**
+ * Real-Time Payments (RTP) specific transaction details.
+ */
 export type RtpDetails = {
+  /**
+   * RTP details for the destination
+   */
   destination?: RtpDetailsDestination | undefined;
 };
 
+/**
+ * Instant payment details for the destination
+ */
+export type InstantDetailsDestination = {
+  /**
+   * Remittance information for Instant Payments (RTP/FedNow), providing context about the payment purpose
+   */
+  remittanceData?: string | undefined;
+};
+
+/**
+ * Instant Payments specific transaction details for both RTP and FedNow networks.
+ */
+export type InstantDetails = {
+  /**
+   * Instant payment details for the destination
+   */
+  destination?: InstantDetailsDestination | undefined;
+};
+
+export const DestinationEnum = {
+  RealTimePayments: "real-time-payments",
+  Instant: "instant",
+} as const;
+export type DestinationEnum = ClosedEnum<typeof DestinationEnum>;
+
 export type InitiateTransferProcessingChannel = {
-  destination?: string | undefined;
+  destination?: DestinationEnum | undefined;
 };
 
 /**
@@ -90,7 +129,14 @@ export type InitiateTransferRequest = {
   fees?: Array<Fee> | undefined;
   clearing?: InitiateTransferClearing | undefined;
   achDetails?: InitiateTransferAchDetails | undefined;
+  /**
+   * Real-Time Payments (RTP) specific transaction details.
+   */
   rtpDetails?: RtpDetails | undefined;
+  /**
+   * Instant Payments specific transaction details for both RTP and FedNow networks.
+   */
+  instantDetails?: InstantDetails | undefined;
   correlationId?: string | undefined;
   processingChannel?: InitiateTransferProcessingChannel | undefined;
 };
@@ -994,12 +1040,138 @@ export function rtpDetailsFromJSON(
 }
 
 /** @internal */
+export const InstantDetailsDestination$inboundSchema: z.ZodType<
+  InstantDetailsDestination,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  remittanceData: z.string().optional(),
+});
+
+/** @internal */
+export type InstantDetailsDestination$Outbound = {
+  remittanceData?: string | undefined;
+};
+
+/** @internal */
+export const InstantDetailsDestination$outboundSchema: z.ZodType<
+  InstantDetailsDestination$Outbound,
+  z.ZodTypeDef,
+  InstantDetailsDestination
+> = z.object({
+  remittanceData: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace InstantDetailsDestination$ {
+  /** @deprecated use `InstantDetailsDestination$inboundSchema` instead. */
+  export const inboundSchema = InstantDetailsDestination$inboundSchema;
+  /** @deprecated use `InstantDetailsDestination$outboundSchema` instead. */
+  export const outboundSchema = InstantDetailsDestination$outboundSchema;
+  /** @deprecated use `InstantDetailsDestination$Outbound` instead. */
+  export type Outbound = InstantDetailsDestination$Outbound;
+}
+
+export function instantDetailsDestinationToJSON(
+  instantDetailsDestination: InstantDetailsDestination,
+): string {
+  return JSON.stringify(
+    InstantDetailsDestination$outboundSchema.parse(instantDetailsDestination),
+  );
+}
+
+export function instantDetailsDestinationFromJSON(
+  jsonString: string,
+): SafeParseResult<InstantDetailsDestination, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => InstantDetailsDestination$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'InstantDetailsDestination' from JSON`,
+  );
+}
+
+/** @internal */
+export const InstantDetails$inboundSchema: z.ZodType<
+  InstantDetails,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  destination: z.lazy(() => InstantDetailsDestination$inboundSchema).optional(),
+});
+
+/** @internal */
+export type InstantDetails$Outbound = {
+  destination?: InstantDetailsDestination$Outbound | undefined;
+};
+
+/** @internal */
+export const InstantDetails$outboundSchema: z.ZodType<
+  InstantDetails$Outbound,
+  z.ZodTypeDef,
+  InstantDetails
+> = z.object({
+  destination: z.lazy(() => InstantDetailsDestination$outboundSchema)
+    .optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace InstantDetails$ {
+  /** @deprecated use `InstantDetails$inboundSchema` instead. */
+  export const inboundSchema = InstantDetails$inboundSchema;
+  /** @deprecated use `InstantDetails$outboundSchema` instead. */
+  export const outboundSchema = InstantDetails$outboundSchema;
+  /** @deprecated use `InstantDetails$Outbound` instead. */
+  export type Outbound = InstantDetails$Outbound;
+}
+
+export function instantDetailsToJSON(instantDetails: InstantDetails): string {
+  return JSON.stringify(InstantDetails$outboundSchema.parse(instantDetails));
+}
+
+export function instantDetailsFromJSON(
+  jsonString: string,
+): SafeParseResult<InstantDetails, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => InstantDetails$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'InstantDetails' from JSON`,
+  );
+}
+
+/** @internal */
+export const DestinationEnum$inboundSchema: z.ZodNativeEnum<
+  typeof DestinationEnum
+> = z.nativeEnum(DestinationEnum);
+
+/** @internal */
+export const DestinationEnum$outboundSchema: z.ZodNativeEnum<
+  typeof DestinationEnum
+> = DestinationEnum$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace DestinationEnum$ {
+  /** @deprecated use `DestinationEnum$inboundSchema` instead. */
+  export const inboundSchema = DestinationEnum$inboundSchema;
+  /** @deprecated use `DestinationEnum$outboundSchema` instead. */
+  export const outboundSchema = DestinationEnum$outboundSchema;
+}
+
+/** @internal */
 export const InitiateTransferProcessingChannel$inboundSchema: z.ZodType<
   InitiateTransferProcessingChannel,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  destination: z.string().optional(),
+  destination: DestinationEnum$inboundSchema.optional(),
 });
 
 /** @internal */
@@ -1013,7 +1185,7 @@ export const InitiateTransferProcessingChannel$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   InitiateTransferProcessingChannel
 > = z.object({
-  destination: z.string().optional(),
+  destination: DestinationEnum$outboundSchema.optional(),
 });
 
 /**
@@ -1063,6 +1235,7 @@ export const InitiateTransferRequest$inboundSchema: z.ZodType<
   clearing: z.lazy(() => InitiateTransferClearing$inboundSchema).optional(),
   achDetails: z.lazy(() => InitiateTransferAchDetails$inboundSchema).optional(),
   rtpDetails: z.lazy(() => RtpDetails$inboundSchema).optional(),
+  instantDetails: z.lazy(() => InstantDetails$inboundSchema).optional(),
   correlationId: z.string().optional(),
   processingChannel: z.lazy(() =>
     InitiateTransferProcessingChannel$inboundSchema
@@ -1082,6 +1255,7 @@ export type InitiateTransferRequest$Outbound = {
   clearing?: InitiateTransferClearing$Outbound | undefined;
   achDetails?: InitiateTransferAchDetails$Outbound | undefined;
   rtpDetails?: RtpDetails$Outbound | undefined;
+  instantDetails?: InstantDetails$Outbound | undefined;
   correlationId?: string | undefined;
   processingChannel?: InitiateTransferProcessingChannel$Outbound | undefined;
 };
@@ -1100,6 +1274,7 @@ export const InitiateTransferRequest$outboundSchema: z.ZodType<
   achDetails: z.lazy(() => InitiateTransferAchDetails$outboundSchema)
     .optional(),
   rtpDetails: z.lazy(() => RtpDetails$outboundSchema).optional(),
+  instantDetails: z.lazy(() => InstantDetails$outboundSchema).optional(),
   correlationId: z.string().optional(),
   processingChannel: z.lazy(() =>
     InitiateTransferProcessingChannel$outboundSchema
