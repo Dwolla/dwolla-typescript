@@ -6,12 +6,12 @@
 import { InitiateTransferProcessingChannel } from "dwolla/models/operations";
 
 let value: InitiateTransferProcessingChannel = {
-  destination: "real-time-payments",
+  destination: "instant",
 };
 ```
 
 ## Fields
 
-| Field              | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `destination`      | *string*           | :heavy_minus_sign: | N/A                | real-time-payments |
+| Field                                                                    | Type                                                                     | Required                                                                 | Description                                                              | Example                                                                  |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `destination`                                                            | [operations.DestinationEnum](../../models/operations/destinationenum.md) | :heavy_minus_sign:                                                       | N/A                                                                      | instant                                                                  |

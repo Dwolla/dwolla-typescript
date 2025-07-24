@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 53ac026a-ff11-435d-914b-31df5268afb0
 management:
-  docChecksum: 63e113577b999fe5c28283ba83e2bd8e
+  docChecksum: ee731caa17e557996dc1952cbd32e569
   docVersion: "2.0"
-  speakeasyVersion: 1.582.0
-  generationVersion: 2.657.1
-  releaseVersion: 0.0.1-beta.1
-  configChecksum: dfe1b224ee0dcec69d91560294070385
+  speakeasyVersion: 1.589.0
+  generationVersion: 2.664.0
+  releaseVersion: 0.0.1-beta.2
+  configChecksum: b9e289a87c758acb2bd11399ba91b6e6
   repoURL: https://github.com/Dwolla/dwolla-typescript.git
   installationURL: https://github.com/Dwolla/dwolla-typescript
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.21.14
+    core: 3.21.15
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     enumUnions: 0.1.0
@@ -366,6 +366,8 @@ generatedFiles:
   - docs/models/facilitatorfeesumtoolargeerrorembedded.md
   - docs/models/facilitatorfeesumtoolargeerrorerror.md
   - docs/models/facilitatorfeesumtoolargeerrorlinks.md
+  - docs/models/fednowdetails.md
+  - docs/models/fednowdetailsdestination.md
   - docs/models/finicity.md
   - docs/models/fundingsource.md
   - docs/models/fundingsources.md
@@ -546,6 +548,7 @@ generatedFiles:
   - docs/models/operations/deletebeneficialownerrequest.md
   - docs/models/operations/deletebeneficialownerresponse.md
   - docs/models/operations/deleterequest.md
+  - docs/models/operations/destinationenum.md
   - docs/models/operations/dwollabalanceresponse.md
   - docs/models/operations/failure.md
   - docs/models/operations/fee.md
@@ -617,6 +620,8 @@ generatedFiles:
   - docs/models/operations/initiatetransferrequest.md
   - docs/models/operations/initiatetransferresponse.md
   - docs/models/operations/initiatetransfersourceaddenda.md
+  - docs/models/operations/instantdetails.md
+  - docs/models/operations/instantdetailsdestination.md
   - docs/models/operations/item.md
   - docs/models/operations/itemachdetails.md
   - docs/models/operations/itemaddenda.md
@@ -1876,7 +1881,7 @@ examples:
   initiateTransfer:
     speakeasy-default-initiate-transfer:
       requestBody:
-        application/json: {"_links": {}, "amount": {"value": "5.00", "currency": "USD"}, "processingChannel": {"destination": "real-time-payments"}}
+        application/json: {"_links": {}, "amount": {"value": "5.00", "currency": "USD"}, "rtpDetails": {"destination": {"remittanceData": "ABC_123 Remittance Data"}}, "instantDetails": {"destination": {"remittanceData": "ABC_123 Remittance Data"}}, "processingChannel": {"destination": "instant"}}
       responses:
         "400":
           application/vnd.dwolla.v1.hal+json: {"code": "ValidationError", "message": "Validation error(s) present. See embedded errors list for more details.", "_embedded": {"errors": [{"code": "Invalid", "message": "Facilitator fee account not found.", "path": "", "_links": {}}]}}
@@ -1891,7 +1896,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "15c6bcce-46f7-e811-8112-e8dd3bececa8", "status": "pending", "amount": {"value": "42.00", "currency": "USD"}, "created": "2018-12-03T22:00:22.970Z", "clearing": {"source": "standard", "destination": "same-day"}, "metadata": {"paymentId": "12345678", "note": "Payment for completed work Dec. 1"}, "achDetails": {"source": {"addenda": {"values": ["ABC123_AddendaValue"]}}, "destination": {"addenda": {"values": ["ZYX987_AddendaValue"]}}}, "rtpDetails": {"destination": {"remittanceData": "ABC_123 Remittance Data"}}, "correlationId": "8a2cdc8d-629d-4a24-98ac-40b735229fe2", "processingChannel": {"destination": "real-time-payments"}}
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "15c6bcce-46f7-e811-8112-e8dd3bececa8", "status": "pending", "amount": {"value": "42.00", "currency": "USD"}, "created": "2018-12-03T22:00:22.970Z", "clearing": {"source": "standard", "destination": "same-day"}, "metadata": {"paymentId": "12345678", "note": "Payment for completed work Dec. 1"}, "achDetails": {"source": {"addenda": {"values": ["ABC123_AddendaValue"]}}, "destination": {"addenda": {"values": ["ZYX987_AddendaValue"]}}}, "rtpDetails": {"destination": {"remittanceData": "ABC_123 Remittance Data", "networkId": "20210617021214273T1BG27487110796028", "endToEndReferenceId": "E2E-RTP-20210617-001"}}, "fedNowDetails": {"destination": {"remittanceData": "ABC_123 Remittance Data", "networkId": "20240115123456789FEDNOW123456", "endToEndReferenceId": "E2E-FEDNOW-20240115-001"}}, "correlationId": "8a2cdc8d-629d-4a24-98ac-40b735229fe2", "processingChannel": {"destination": "real-time-payments"}}
         "404":
           application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
   cancelTransfer:
