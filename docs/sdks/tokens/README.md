@@ -15,6 +15,7 @@ Generates an access token that contains permissions scoped to the application ow
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createApplicationAccessToken" method="post" path="/token" -->
 ```typescript
 import { Dwolla } from "dwolla";
 

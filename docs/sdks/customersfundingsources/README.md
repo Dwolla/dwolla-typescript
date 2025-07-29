@@ -14,6 +14,7 @@ List customer funding sources
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listCustomerFundingSources" method="get" path="/customers/{id}/funding-sources" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -98,6 +99,7 @@ There are multiple methods available:
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createCustomerFundingSource" method="post" path="/customers/{id}/funding-sources" -->
 ```typescript
 import { Dwolla } from "dwolla";
 

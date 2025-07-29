@@ -14,6 +14,7 @@ Creates a client token with certain actions for Dwolla Drop-in components. The c
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createClientToken" method="post" path="/client-tokens" -->
 ```typescript
 import { Dwolla } from "dwolla";
 

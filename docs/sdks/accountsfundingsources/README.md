@@ -14,6 +14,7 @@ Create a funding source for an account
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createFundingSource" method="post" path="/funding-sources" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -101,6 +102,7 @@ List funding sources for an account
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listFundingSources" method="get" path="/accounts/{id}/funding-sources" -->
 ```typescript
 import { Dwolla } from "dwolla";
 

@@ -14,6 +14,7 @@ Retrieve a list of beneficial owners that belong to a Customer
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listBeneficialOwnersForCustomer" method="get" path="/customers/{id}/beneficial-owners" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -93,6 +94,7 @@ Create beneficial owner which is a natural person who, directly or indirectly, o
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createBeneficialOwnerForCustomer" method="post" path="/customers/{id}/beneficial-owners" -->
 ```typescript
 import { Dwolla } from "dwolla";
 

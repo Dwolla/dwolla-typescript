@@ -14,6 +14,7 @@ Retrieve the list of exchanges associated with a Customer resource.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listCustomerExchanges" method="get" path="/customers/{id}/exchanges" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -100,6 +101,7 @@ For Plaid Open Banking, the request body will include a public token.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createCustomerExchange" method="post" path="/customers/{id}/exchanges" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
