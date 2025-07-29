@@ -14,6 +14,7 @@ List documents for customer
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listCustomerDocuments" method="get" path="/customers/{id}/documents" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -94,6 +95,7 @@ Create a document for customer
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createCustomerDocument" method="post" path="/customers/{id}/documents" -->
 ```typescript
 import { Dwolla } from "dwolla";
 

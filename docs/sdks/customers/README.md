@@ -19,6 +19,7 @@ List and search customers allowing you to filter by email and status, as well as
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listAndSearchCustomers" method="get" path="/customers" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -94,6 +95,7 @@ Create an unverified customer, verified customer, or receive-only user.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createCustomer" method="post" path="/customers" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -189,6 +191,7 @@ Retrieve details for a single customer
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getCustomer" method="get" path="/customers/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -269,6 +272,7 @@ Update Customer information, upgrade an unverified Customer to a verified Custom
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="update" method="post" path="/customers/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 import { RFCDate } from "dwolla/types";
@@ -414,6 +418,7 @@ This information is essential for creating an exchange and corresponding funding
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listAvailableExchangeConnections" method="get" path="/customers/{id}/available-exchange-connections" -->
 ```typescript
 import { Dwolla } from "dwolla";
 

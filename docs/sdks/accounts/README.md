@@ -15,6 +15,7 @@ Retrieve basic account details belonging to the authorized Dwolla account.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAccount" method="get" path="/accounts/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 

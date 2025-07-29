@@ -18,6 +18,7 @@ List webhook subscriptions
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listWebhookSubscriptions" method="get" path="/webhook-subscriptions" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -93,6 +94,7 @@ Create a webhook subscription
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createWebhookSubscription" method="post" path="/webhook-subscriptions" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -178,6 +180,7 @@ Retrieve a webhook subscription
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getWebhookSubscription" method="get" path="/webhook-subscriptions/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -257,6 +260,7 @@ Update a webhook subscription
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateWebhookSubscription" method="post" path="/webhook-subscriptions/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -343,6 +347,7 @@ Delete a webhook subscription
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="delete" method="delete" path="/webhook-subscriptions/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -422,6 +427,7 @@ List webhooks for a webhook subscription
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listWebhooks" method="get" path="/webhook-subscriptions/{id}/webhooks" -->
 ```typescript
 import { Dwolla } from "dwolla";
 

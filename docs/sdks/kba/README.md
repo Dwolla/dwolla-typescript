@@ -17,6 +17,7 @@ Initiate a KBA session
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="initiateKbaForCustomer" method="post" path="/customers/{id}/kba" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -98,6 +99,7 @@ Retrieve KBA Questions
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getKbaQuestions" method="get" path="/kba/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -178,6 +180,7 @@ Verify KBA Questions
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="verify" method="post" path="/kba/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 

@@ -13,6 +13,7 @@ List mass payments for customer
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listCustomerMassPayments" method="get" path="/customers/{id}/mass-payments" -->
 ```typescript
 import { Dwolla } from "dwolla";
 

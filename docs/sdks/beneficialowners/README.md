@@ -17,6 +17,7 @@ Retrieve details for a single beneficial owner
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="retrieveBeneficialOwner" method="get" path="/beneficial-owners/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -96,6 +97,7 @@ Update beneficial owner
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateBeneficialOwner" method="post" path="/beneficial-owners/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -213,6 +215,7 @@ Delete beneficial owner
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteBeneficialOwner" method="delete" path="/beneficial-owners/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -292,6 +295,7 @@ Retrieve beneficial ownership status
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getBeneficialOwnershipStatusForCustomer" method="get" path="/customers/{id}/beneficial-ownership" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -372,6 +376,7 @@ certify beneficial ownership status
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="certifyBeneficialOwnershipForCustomer" method="post" path="/customers/{id}/beneficial-ownership" -->
 ```typescript
 import { Dwolla } from "dwolla";
 

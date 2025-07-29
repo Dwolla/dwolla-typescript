@@ -16,6 +16,7 @@ Retrieve an exchange resource by its ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getExchange" method="get" path="/exchanges/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -105,6 +106,7 @@ After completing the re-authorization process, the user will be redirected back 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createReAuthExchangeSession" method="post" path="/exchanges/{id}/exchange-sessions" -->
 ```typescript
 import { Dwolla } from "dwolla";
 

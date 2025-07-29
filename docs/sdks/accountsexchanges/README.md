@@ -14,6 +14,7 @@ List exchanges for an account
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listAccountExchanges" method="get" path="/exchanges" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -94,6 +95,7 @@ For Plaid Secure Exchange, the request body will include a token.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createAccountExchange" method="post" path="/exchanges" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
