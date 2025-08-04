@@ -5,7 +5,7 @@ sources:
         inputs:
             - location: https://raw.githubusercontent.com/Dwolla/dwolla-openapi/refs/heads/main/openapi.yml
         registry:
-            location: registry.speakeasyapi.dev/dwolla-vc3/dwolla/dwolla-api
+            location: registry.speakeasyapi.dev/dwolla/dwolla/dwolla-api
 targets:
     dwolla:
         target: typescript
@@ -15,7 +15,7 @@ targets:
                 token: $npm_token
         codeSamples:
             registry:
-                location: registry.speakeasyapi.dev/dwolla-vc3/dwolla/dwolla-api-typescript-code-samples
+                location: registry.speakeasyapi.dev/dwolla/dwolla/dwolla-api-typescript-code-samples
             labelOverride:
                 fixedValue: Typescript (SDK)
             blocking: false
