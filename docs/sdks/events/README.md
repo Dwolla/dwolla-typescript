@@ -16,6 +16,7 @@ List events
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listEvents" method="get" path="/events" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -91,6 +92,7 @@ Retrieve event
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getEvent" method="get" path="/events/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 

@@ -13,6 +13,7 @@ List and search transfers for a customer
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listCustomerTransfers" method="get" path="/customers/{id}/transfers" -->
 ```typescript
 import { Dwolla } from "dwolla";
 

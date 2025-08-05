@@ -20,6 +20,7 @@ Initiate a transfer
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="initiateTransfer" method="post" path="/transfers" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -202,6 +203,7 @@ Retrieve a transfer
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getTransfer" method="get" path="/transfers/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -281,6 +283,7 @@ Cancel a transfer
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="cancelTransfer" method="post" path="/transfers/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -365,6 +368,7 @@ List fees for a transfer
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listTransferFees" method="get" path="/transfers/{id}/fees" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -444,6 +448,7 @@ Retrieve a transfer failure reason
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getTransferFailureReason" method="get" path="/transfers/{id}/failure" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -524,6 +529,7 @@ Create an on-demand transfer authorization
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createOnDemandTransferAuthorization" method="post" path="/on-demand-authorizations" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
