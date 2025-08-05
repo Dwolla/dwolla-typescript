@@ -9,11 +9,11 @@ Based on:
 - [NPM v0.0.1-beta.2] https://www.npmjs.com/package/dwolla/v/0.0.1-beta.2 - .
 
 
-## 2025-07-29 00:26:27
+## 2025-08-05 00:24:28
 ### Changes
 Based on:
 - OpenAPI Doc  
-- Speakeasy CLI 1.592.1 (2.667.0) https://github.com/speakeasy-api/speakeasy
+- Speakeasy CLI 1.596.1 (2.672.0) https://github.com/speakeasy-api/speakeasy
 ### Generated
 - [typescript v0.0.1-beta.3] .
 ### Releases
