@@ -23,6 +23,7 @@ Retrieve a label
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getLabel" method="get" path="/labels/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -103,6 +104,7 @@ Remove a label
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="removeLabel" method="delete" path="/labels/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -183,6 +185,7 @@ List labels for a customer
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listCustomerLabels" method="get" path="/customers/{id}/labels" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -263,6 +266,7 @@ Create a label for a customer
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createCustomerLabel" method="post" path="/customers/{id}/labels" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -356,6 +360,7 @@ List label ledger entries
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listLabelLedgerEntries" method="get" path="/labels/{id}/ledger-entries" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -437,6 +442,7 @@ Create a new entry on a Label Ledger. The amount tied to a Label cannot go negat
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createLabelLedgerEntry" method="post" path="/labels/{id}/ledger-entries" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -530,6 +536,7 @@ Retrieve a label ledger entry
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getLabelLedgerEntry" method="get" path="/ledger-entries/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -610,6 +617,7 @@ Create a label reallocation
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createLabelReallocation" method="post" path="/label-reallocations" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -713,6 +721,7 @@ Retrieve a label reallocation
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="retrieveLabelReallocation" method="get" path="/label-reallocations/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 

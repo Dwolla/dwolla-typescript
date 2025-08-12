@@ -14,6 +14,7 @@ List exchange partners
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listExchangePartners" method="get" path="/exchange-partners" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -88,6 +89,7 @@ Retrieve exchange partner
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getExchangePartner" method="get" path="/exchange-partners/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 

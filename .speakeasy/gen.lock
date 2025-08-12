@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 53ac026a-ff11-435d-914b-31df5268afb0
 management:
-  docChecksum: ee731caa17e557996dc1952cbd32e569
+  docChecksum: 71ab9844866cc1f9cc89319968f66c30
   docVersion: "2.0"
-  speakeasyVersion: 1.589.0
-  generationVersion: 2.664.0
-  releaseVersion: 0.0.1-beta.2
-  configChecksum: b9e289a87c758acb2bd11399ba91b6e6
+  speakeasyVersion: 1.601.0
+  generationVersion: 2.680.0
+  releaseVersion: 0.0.1-beta.3
+  configChecksum: 2c32eaaf2ec444d66b0e1d26091d6c8f
   repoURL: https://github.com/Dwolla/dwolla-typescript.git
   installationURL: https://github.com/Dwolla/dwolla-typescript
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.21.15
+    core: 3.21.20
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     enumUnions: 0.1.0
@@ -75,7 +75,6 @@ generatedFiles:
   - docs/models/cannotparseamounterrorembedded.md
   - docs/models/cannotparseamounterrorerror.md
   - docs/models/cannotparseamounterrorlinks.md
-  - docs/models/channel.md
   - docs/models/clearing.md
   - docs/models/createaccountfundingsource.md
   - docs/models/createaccountfundingsourcebankaccounttype.md
@@ -83,6 +82,7 @@ generatedFiles:
   - docs/models/createaccountfundingsourcelinks.md
   - docs/models/createcustomerbankfundingsource.md
   - docs/models/createcustomerbankfundingsourcebankaccounttype.md
+  - docs/models/createcustomerbankfundingsourcechannel.md
   - docs/models/createcustomerbankfundingsourcelinks.md
   - docs/models/createcustomerbankfundingsourceondemandauthorization.md
   - docs/models/createcustomerexchangefundingsource.md
@@ -145,6 +145,7 @@ generatedFiles:
   - docs/models/destinationaddendamaxlengtherrorembedded.md
   - docs/models/destinationaddendamaxlengtherrorerror.md
   - docs/models/destinationaddendamaxlengtherrorlinks.md
+  - docs/models/destinationenum.md
   - docs/models/destinationprocessingchannelnotsupportederrorembedded.md
   - docs/models/destinationprocessingchannelnotsupportederrorerror.md
   - docs/models/destinationprocessingchannelnotsupportederrorlinks.md
@@ -370,6 +371,7 @@ generatedFiles:
   - docs/models/fednowdetailsdestination.md
   - docs/models/finicity.md
   - docs/models/fundingsource.md
+  - docs/models/fundingsourcechannel.md
   - docs/models/fundingsources.md
   - docs/models/fundingsourcesembedded.md
   - docs/models/hallink.md

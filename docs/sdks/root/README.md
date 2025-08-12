@@ -15,6 +15,7 @@ The entry point that clients can use to discover and explore the entire API.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getRoot" method="get" path="/" -->
 ```typescript
 import { Dwolla } from "dwolla";
 

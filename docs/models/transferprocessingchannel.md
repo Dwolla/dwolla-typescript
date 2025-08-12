@@ -12,6 +12,6 @@ let value: TransferProcessingChannel = {
 
 ## Fields
 
-| Field              | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `destination`      | *string*           | :heavy_minus_sign: | N/A                | real-time-payments |
+| Field                                                  | Type                                                   | Required                                               | Description                                            | Example                                                |
+| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
+| `destination`                                          | [models.DestinationEnum](../models/destinationenum.md) | :heavy_minus_sign:                                     | The payment network used to process the transfer       | real-time-payments                                     |

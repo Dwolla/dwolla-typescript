@@ -25,10 +25,12 @@ export type CreateCustomerBankFundingSourceBankAccountType = ClosedEnum<
   typeof CreateCustomerBankFundingSourceBankAccountType
 >;
 
-export const Channel = {
+export const CreateCustomerBankFundingSourceChannel = {
   Wire: "wire",
 } as const;
-export type Channel = ClosedEnum<typeof Channel>;
+export type CreateCustomerBankFundingSourceChannel = ClosedEnum<
+  typeof CreateCustomerBankFundingSourceChannel
+>;
 
 export type CreateCustomerBankFundingSourceOnDemandAuthorization = {
   href: string;
@@ -71,7 +73,7 @@ export type CreateCustomerBankFundingSource = {
   /**
    * An array containing a list of processing channels. ACH is the default processing channel for bank transfers.
    */
-  channels?: Array<Channel> | undefined;
+  channels?: Array<CreateCustomerBankFundingSourceChannel> | undefined;
   links?: CreateCustomerBankFundingSourceLinks | undefined;
 };
 
@@ -99,22 +101,27 @@ export namespace CreateCustomerBankFundingSourceBankAccountType$ {
 }
 
 /** @internal */
-export const Channel$inboundSchema: z.ZodNativeEnum<typeof Channel> = z
-  .nativeEnum(Channel);
+export const CreateCustomerBankFundingSourceChannel$inboundSchema:
+  z.ZodNativeEnum<typeof CreateCustomerBankFundingSourceChannel> = z.nativeEnum(
+    CreateCustomerBankFundingSourceChannel,
+  );
 
 /** @internal */
-export const Channel$outboundSchema: z.ZodNativeEnum<typeof Channel> =
-  Channel$inboundSchema;
+export const CreateCustomerBankFundingSourceChannel$outboundSchema:
+  z.ZodNativeEnum<typeof CreateCustomerBankFundingSourceChannel> =
+    CreateCustomerBankFundingSourceChannel$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Channel$ {
-  /** @deprecated use `Channel$inboundSchema` instead. */
-  export const inboundSchema = Channel$inboundSchema;
-  /** @deprecated use `Channel$outboundSchema` instead. */
-  export const outboundSchema = Channel$outboundSchema;
+export namespace CreateCustomerBankFundingSourceChannel$ {
+  /** @deprecated use `CreateCustomerBankFundingSourceChannel$inboundSchema` instead. */
+  export const inboundSchema =
+    CreateCustomerBankFundingSourceChannel$inboundSchema;
+  /** @deprecated use `CreateCustomerBankFundingSourceChannel$outboundSchema` instead. */
+  export const outboundSchema =
+    CreateCustomerBankFundingSourceChannel$outboundSchema;
 }
 
 /** @internal */
@@ -270,7 +277,8 @@ export const CreateCustomerBankFundingSource$inboundSchema: z.ZodType<
   name: z.string(),
   verified: z.literal(false).default(false).optional(),
   plaidToken: z.string().optional(),
-  channels: z.array(Channel$inboundSchema).optional(),
+  channels: z.array(CreateCustomerBankFundingSourceChannel$inboundSchema)
+    .optional(),
   _links: z.lazy(() => CreateCustomerBankFundingSourceLinks$inboundSchema)
     .optional(),
 }).transform((v) => {
@@ -304,7 +312,8 @@ export const CreateCustomerBankFundingSource$outboundSchema: z.ZodType<
   name: z.string(),
   verified: z.literal(false).default(false as const),
   plaidToken: z.string().optional(),
-  channels: z.array(Channel$outboundSchema).optional(),
+  channels: z.array(CreateCustomerBankFundingSourceChannel$outboundSchema)
+    .optional(),
   links: z.lazy(() => CreateCustomerBankFundingSourceLinks$outboundSchema)
     .optional(),
 }).transform((v) => {

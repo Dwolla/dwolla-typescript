@@ -18,6 +18,7 @@ Retrieve a funding source
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getFundingSource" method="get" path="/funding-sources/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -97,6 +98,7 @@ Update or remove a funding source
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateOrRemoveFundingSource" method="post" path="/funding-sources/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -183,6 +185,7 @@ Retrieve micro-deposits details
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getMicroDeposits" method="get" path="/funding-sources/{id}/micro-deposits" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -269,6 +272,7 @@ The action is determined by the presence of a request body:
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="initiateOrVerifyMicroDeposits" method="post" path="/funding-sources/{id}/micro-deposits" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -351,6 +355,7 @@ Retrieve funding source balance
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getFundingSourceBalance" method="get" path="/funding-sources/{id}/balance" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -430,6 +435,7 @@ Retrieve account and routing numbers for a VAN (Virtual Account Number)
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getVanRouting" method="get" path="/funding-sources/{id}/ach-routing" -->
 ```typescript
 import { Dwolla } from "dwolla";
 

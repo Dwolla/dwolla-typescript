@@ -21,6 +21,7 @@ The redirect-url is conditionally required:
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createCustomerExchangeSession" method="post" path="/customers/{id}/exchange-sessions" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -126,6 +127,7 @@ Retrieve details of an exchange session
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="retrieveCustomerExchangeSession" method="get" path="/exchange-sessions/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 

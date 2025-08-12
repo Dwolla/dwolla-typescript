@@ -14,6 +14,7 @@ List documents for beneficial owner
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listBeneficialOwnerDocuments" method="get" path="/beneficial-owners/{id}/documents" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -94,6 +95,7 @@ Create a document for beneficial owner
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createBeneficialOwnerDocument" method="post" path="/beneficial-owners/{id}/documents" -->
 ```typescript
 import { Dwolla } from "dwolla";
 

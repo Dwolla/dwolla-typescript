@@ -5,6 +5,7 @@
 import * as z from "zod";
 import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
+import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import {
@@ -106,8 +107,23 @@ export type FedNowDetails = {
   destination?: FedNowDetailsDestination | undefined;
 };
 
+/**
+ * The payment network used to process the transfer
+ */
+export const DestinationEnum = {
+  RealTimePayments: "real-time-payments",
+  FedNow: "fed-now",
+} as const;
+/**
+ * The payment network used to process the transfer
+ */
+export type DestinationEnum = ClosedEnum<typeof DestinationEnum>;
+
 export type TransferProcessingChannel = {
-  destination?: string | undefined;
+  /**
+   * The payment network used to process the transfer
+   */
+  destination?: DestinationEnum | undefined;
 };
 
 export type Transfer = {
@@ -775,12 +791,33 @@ export function fedNowDetailsFromJSON(
 }
 
 /** @internal */
+export const DestinationEnum$inboundSchema: z.ZodNativeEnum<
+  typeof DestinationEnum
+> = z.nativeEnum(DestinationEnum);
+
+/** @internal */
+export const DestinationEnum$outboundSchema: z.ZodNativeEnum<
+  typeof DestinationEnum
+> = DestinationEnum$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace DestinationEnum$ {
+  /** @deprecated use `DestinationEnum$inboundSchema` instead. */
+  export const inboundSchema = DestinationEnum$inboundSchema;
+  /** @deprecated use `DestinationEnum$outboundSchema` instead. */
+  export const outboundSchema = DestinationEnum$outboundSchema;
+}
+
+/** @internal */
 export const TransferProcessingChannel$inboundSchema: z.ZodType<
   TransferProcessingChannel,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  destination: z.string().optional(),
+  destination: DestinationEnum$inboundSchema.optional(),
 });
 
 /** @internal */
@@ -794,7 +831,7 @@ export const TransferProcessingChannel$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   TransferProcessingChannel
 > = z.object({
-  destination: z.string().optional(),
+  destination: DestinationEnum$outboundSchema.optional(),
 });
 
 /**
