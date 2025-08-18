@@ -5,6 +5,7 @@
 import * as z from "zod";
 import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
+import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import {
@@ -13,6 +14,13 @@ import {
   HalLink$Outbound,
   HalLink$outboundSchema,
 } from "./hallink.js";
+
+export const FundingSourceChannel = {
+  Ach: "ach",
+  RealTimePayments: "real-time-payments",
+  Wire: "wire",
+} as const;
+export type FundingSourceChannel = ClosedEnum<typeof FundingSourceChannel>;
 
 export type FundingSource = {
   links?: { [k: string]: HalLink } | undefined;
@@ -23,10 +31,34 @@ export type FundingSource = {
   name?: string | undefined;
   created?: Date | undefined;
   removed?: boolean | undefined;
-  channels?: Array<string> | undefined;
+  /**
+   * Payment processing channels supported by this funding source
+   */
+  channels?: Array<FundingSourceChannel> | undefined;
   bankName?: string | undefined;
   fingerprint?: string | undefined;
 };
+
+/** @internal */
+export const FundingSourceChannel$inboundSchema: z.ZodNativeEnum<
+  typeof FundingSourceChannel
+> = z.nativeEnum(FundingSourceChannel);
+
+/** @internal */
+export const FundingSourceChannel$outboundSchema: z.ZodNativeEnum<
+  typeof FundingSourceChannel
+> = FundingSourceChannel$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace FundingSourceChannel$ {
+  /** @deprecated use `FundingSourceChannel$inboundSchema` instead. */
+  export const inboundSchema = FundingSourceChannel$inboundSchema;
+  /** @deprecated use `FundingSourceChannel$outboundSchema` instead. */
+  export const outboundSchema = FundingSourceChannel$outboundSchema;
+}
 
 /** @internal */
 export const FundingSource$inboundSchema: z.ZodType<
@@ -43,7 +75,7 @@ export const FundingSource$inboundSchema: z.ZodType<
   created: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   removed: z.boolean().optional(),
-  channels: z.array(z.string()).optional(),
+  channels: z.array(FundingSourceChannel$inboundSchema).optional(),
   bankName: z.string().optional(),
   fingerprint: z.string().optional(),
 }).transform((v) => {
@@ -81,7 +113,7 @@ export const FundingSource$outboundSchema: z.ZodType<
   name: z.string().optional(),
   created: z.date().transform(v => v.toISOString()).optional(),
   removed: z.boolean().optional(),
-  channels: z.array(z.string()).optional(),
+  channels: z.array(FundingSourceChannel$outboundSchema).optional(),
   bankName: z.string().optional(),
   fingerprint: z.string().optional(),
 }).transform((v) => {

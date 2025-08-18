@@ -13,6 +13,7 @@ List and search transfers for an account
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listAndSearchTransfers" method="get" path="/accounts/{id}/transfers" -->
 ```typescript
 import { Dwolla } from "dwolla";
 

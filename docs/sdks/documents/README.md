@@ -15,6 +15,7 @@ Retrieve a document for a customer or beneficial owner
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="retrieveDocument" method="get" path="/documents/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 

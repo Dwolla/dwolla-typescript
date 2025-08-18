@@ -14,6 +14,7 @@ Retrieve an _embedded list of business classifications that contains an _embedde
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listBusinessClassifications" method="get" path="/business-classifications" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -89,6 +90,7 @@ Retrieve a business classification by id.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="retrieveBusinessClassification" method="get" path="/business-classifications/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 

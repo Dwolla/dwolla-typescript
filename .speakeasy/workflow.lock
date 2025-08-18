@@ -1,4 +1,4 @@
-speakeasyVersion: 1.589.0
+speakeasyVersion: 1.601.0
 sources:
     Dwolla API:
         sourceNamespace: dwolla-api

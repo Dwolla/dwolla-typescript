@@ -17,6 +17,7 @@ Retrieve a webhook
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getWebhook" method="get" path="/webhooks/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -96,6 +97,7 @@ List retries for a webhook
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listWebhookRetries" method="get" path="/webhooks/{id}/retries" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -175,6 +177,7 @@ Retry a webhook
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="retryWebhook" method="post" path="/webhooks/{id}/retries" -->
 ```typescript
 import { Dwolla } from "dwolla";
 

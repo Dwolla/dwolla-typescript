@@ -17,6 +17,7 @@ Initiate a mass payment
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="initiateMassPayment" method="post" path="/mass-payments" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -245,6 +246,7 @@ Retrieve a mass payment
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getMassPayment" method="get" path="/mass-payments/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -325,6 +327,7 @@ This section covers how to update a mass payment's status to `pending` which tri
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateMassPayment" method="post" path="/mass-payments/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -412,6 +415,7 @@ List items for a mass payment
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listMassPaymentItems" method="get" path="/mass-payments/{id}/items" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
@@ -492,6 +496,7 @@ Retrieve mass payment item
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getMassPaymentItem" method="get" path="/mass-payment-items/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
 
