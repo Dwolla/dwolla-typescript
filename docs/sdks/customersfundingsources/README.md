@@ -10,7 +10,7 @@
 
 ## list
 
-List customer funding sources
+Returns all funding sources for a customer, including bank accounts and Dwolla balance (verified customers only). Shows verification status, limited account details, and creation dates. Supports filtering to exclude removed funding sources using the removed parameter.
 
 ### Example Usage
 
@@ -91,11 +91,7 @@ run();
 
 ## create
 
-Create a new funding source for a customer.
-There are multiple methods available:
-- Basic bank funding source (with routing/account numbers)
-- Using an exchange
-
+Creates a bank account funding source for a customer. Supports manual entry with routing/account numbers or instant verification using existing open banking connections. Created funding sources require verification before transfers can be initiated.
 
 ### Example Usage
 

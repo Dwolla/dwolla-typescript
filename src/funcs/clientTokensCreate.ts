@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Create a client token
  *
  * @remarks
- * Creates a client token with certain actions for Dwolla Drop-in components. The client token API request requires an `action` as well as a `link` which points to the Customer that identifies the end user performing the action within the drop-in component. The `action` is a string that contains a granular permission for the Customer performing the action within a drop-in component.
+ * Create a client token for secure authentication within Dwolla Drop-in components. Requires a granular permission action and a Customer link to define what operations the end user can perform within the component. Returns a short-lived token for configuring client-side Drop-in components including customer creation, verification, funding source management, and payment processing. Essential for implementing secure, embeddable UI components without exposing application credentials to the frontend.
  */
 export function clientTokensCreate(
   client: DwollaCore,

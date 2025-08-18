@@ -29,10 +29,7 @@ import { Result } from "../types/fp.js";
  * Create customer funding source
  *
  * @remarks
- * Create a new funding source for a customer.
- * There are multiple methods available:
- * - Basic bank funding source (with routing/account numbers)
- * - Using an exchange
+ * Creates a bank account funding source for a customer. Supports manual entry with routing/account numbers or instant verification using existing open banking connections. Created funding sources require verification before transfers can be initiated.
  */
 export function customersFundingSourcesCreate(
   client: DwollaCore,

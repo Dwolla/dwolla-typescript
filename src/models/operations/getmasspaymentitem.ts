@@ -11,7 +11,7 @@ export type GetMassPaymentItemRequest = {
   /**
    * ID of item to be retrieved in mass payment
    */
-  id: string;
+  itemId: string;
 };
 
 /** @internal */
@@ -20,12 +20,12 @@ export const GetMassPaymentItemRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string(),
+  itemId: z.string(),
 });
 
 /** @internal */
 export type GetMassPaymentItemRequest$Outbound = {
-  id: string;
+  itemId: string;
 };
 
 /** @internal */
@@ -34,7 +34,7 @@ export const GetMassPaymentItemRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetMassPaymentItemRequest
 > = z.object({
-  id: z.string(),
+  itemId: z.string(),
 });
 
 /**

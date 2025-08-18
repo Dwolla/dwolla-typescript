@@ -7,14 +7,11 @@
 
 * [get](#get) - Retrieve a funding source
 * [updateOrRemove](#updateorremove) - Update or remove a funding source
-* [getMicroDeposits](#getmicrodeposits) - Retrieve micro-deposits details
-* [initiateOrVerifyMicroDeposits](#initiateorverifymicrodeposits) - Initiate or Verify micro-deposits
-* [getBalance](#getbalance) - Retrieve funding source balance
 * [getVanRouting](#getvanrouting) - Retrieve VAN account and routing numbers
 
 ## get
 
-Retrieve a funding source
+Returns detailed information for a specific funding source, including its type, status, and verification details. Supports bank accounts (via Open Banking) and Dwolla balance (verified customers only).
 
 ### Example Usage
 
@@ -94,7 +91,7 @@ run();
 
 ## updateOrRemove
 
-Update or remove a funding source
+Updates a bank funding source's details or soft deletes it. When updating, you can change the name (any status) or modify routing/account numbers and account type (unverified status only). When removing, the funding source is soft deleted and can still be accessed but marked as removed.
 
 ### Example Usage
 
@@ -179,259 +176,9 @@ run();
 | errors.UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError  | 403                                                              | application/vnd.dwolla.v1.hal+json                               |
 | errors.APIError                                                  | 4XX, 5XX                                                         | \*/\*                                                            |
 
-## getMicroDeposits
-
-Retrieve micro-deposits details
-
-### Example Usage
-
-<!-- UsageSnippet language="typescript" operationID="getMicroDeposits" method="get" path="/funding-sources/{id}/micro-deposits" -->
-```typescript
-import { Dwolla } from "dwolla";
-
-const dwolla = new Dwolla({
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
-});
-
-async function run() {
-  const result = await dwolla.fundingSources.getMicroDeposits({
-    id: "<id>",
-  });
-
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { DwollaCore } from "dwolla/core.js";
-import { fundingSourcesGetMicroDeposits } from "dwolla/funcs/fundingSourcesGetMicroDeposits.js";
-
-// Use `DwollaCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const dwolla = new DwollaCore({
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
-});
-
-async function run() {
-  const res = await fundingSourcesGetMicroDeposits(dwolla, {
-    id: "<id>",
-  });
-  if (res.ok) {
-    const { value: result } = res;
-    console.log(result);
-  } else {
-    console.log("fundingSourcesGetMicroDeposits failed:", res.error);
-  }
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.GetMicroDepositsRequest](../../models/operations/getmicrodepositsrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[operations.GetMicroDepositsResponse](../../models/operations/getmicrodepositsresponse.md)\>**
-
-### Errors
-
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| errors.NotFoundError               | 404                                | application/vnd.dwolla.v1.hal+json |
-| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
-
-## initiateOrVerifyMicroDeposits
-
-This endpoint handles two different actions:
-1. Initiating micro-deposits: No request body is required
-2. Verifying micro-deposits: Request body with micro-deposit amounts is required
-
-The action is determined by the presence of a request body:
-- If no request body is provided, the endpoint will initiate micro-deposits
-- If a request body with micro-deposit amounts is provided, the endpoint will verify the micro-deposits
-
-
-### Example Usage
-
-<!-- UsageSnippet language="typescript" operationID="initiateOrVerifyMicroDeposits" method="post" path="/funding-sources/{id}/micro-deposits" -->
-```typescript
-import { Dwolla } from "dwolla";
-
-const dwolla = new Dwolla({
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
-});
-
-async function run() {
-  const result = await dwolla.fundingSources.initiateOrVerifyMicroDeposits({
-    id: "<id>",
-    requestBody: {},
-  });
-
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { DwollaCore } from "dwolla/core.js";
-import { fundingSourcesInitiateOrVerifyMicroDeposits } from "dwolla/funcs/fundingSourcesInitiateOrVerifyMicroDeposits.js";
-
-// Use `DwollaCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const dwolla = new DwollaCore({
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
-});
-
-async function run() {
-  const res = await fundingSourcesInitiateOrVerifyMicroDeposits(dwolla, {
-    id: "<id>",
-    requestBody: {},
-  });
-  if (res.ok) {
-    const { value: result } = res;
-    console.log(result);
-  } else {
-    console.log("fundingSourcesInitiateOrVerifyMicroDeposits failed:", res.error);
-  }
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.InitiateOrVerifyMicroDepositsRequest](../../models/operations/initiateorverifymicrodepositsrequest.md)                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[operations.InitiateOrVerifyMicroDepositsResponse](../../models/operations/initiateorverifymicrodepositsresponse.md)\>**
-
-### Errors
-
-| Error Type                                                        | Status Code                                                       | Content Type                                                      |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| errors.InitiateOrVerifyMicroDepositsForbiddenDwollaV1HalJSONError | 403                                                               | application/vnd.dwolla.v1.hal+json                                |
-| errors.InitiateOrVerifyMicroDepositsNotFoundDwollaV1HalJSONError  | 404                                                               | application/vnd.dwolla.v1.hal+json                                |
-| errors.APIError                                                   | 4XX, 5XX                                                          | \*/\*                                                             |
-
-## getBalance
-
-Retrieve funding source balance
-
-### Example Usage
-
-<!-- UsageSnippet language="typescript" operationID="getFundingSourceBalance" method="get" path="/funding-sources/{id}/balance" -->
-```typescript
-import { Dwolla } from "dwolla";
-
-const dwolla = new Dwolla({
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
-});
-
-async function run() {
-  const result = await dwolla.fundingSources.getBalance({
-    id: "<id>",
-  });
-
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { DwollaCore } from "dwolla/core.js";
-import { fundingSourcesGetBalance } from "dwolla/funcs/fundingSourcesGetBalance.js";
-
-// Use `DwollaCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const dwolla = new DwollaCore({
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
-});
-
-async function run() {
-  const res = await fundingSourcesGetBalance(dwolla, {
-    id: "<id>",
-  });
-  if (res.ok) {
-    const { value: result } = res;
-    console.log(result);
-  } else {
-    console.log("fundingSourcesGetBalance failed:", res.error);
-  }
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.GetFundingSourceBalanceRequest](../../models/operations/getfundingsourcebalancerequest.md)                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[operations.GetFundingSourceBalanceResponse](../../models/operations/getfundingsourcebalanceresponse.md)\>**
-
-### Errors
-
-| Error Type                                         | Status Code                                        | Content Type                                       |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| errors.GetFundingSourceBalanceDwollaV1HalJSONError | 404                                                | application/vnd.dwolla.v1.hal+json                 |
-| errors.APIError                                    | 4XX, 5XX                                           | \*/\*                                              |
-
 ## getVanRouting
 
-Retrieve account and routing numbers for a VAN (Virtual Account Number)
+Returns the unique account and routing numbers for a Virtual Account Number (VAN) funding source. These numbers can be used by external systems to initiate ACH transactions that pull funds from or push funds to the associated Dwolla balance.
 
 ### Example Usage
 

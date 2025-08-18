@@ -8,11 +8,21 @@ import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import {
+  ExchangePartner,
+  ExchangePartner$inboundSchema,
+  ExchangePartner$Outbound,
+  ExchangePartner$outboundSchema,
+} from "./exchangepartner.js";
+import {
   HalLink,
   HalLink$inboundSchema,
   HalLink$Outbound,
   HalLink$outboundSchema,
 } from "./hallink.js";
+
+export type ExchangePartnersEmbedded = {
+  exchangePartners?: Array<ExchangePartner> | undefined;
+};
 
 export type ExchangePartners = {
   links?: { [k: string]: HalLink } | undefined;
@@ -20,9 +30,67 @@ export type ExchangePartners = {
   total?: number | undefined;
 };
 
-export type ExchangePartnersEmbedded = {
-  exchangePartners?: Array<ExchangePartners> | undefined;
+/** @internal */
+export const ExchangePartnersEmbedded$inboundSchema: z.ZodType<
+  ExchangePartnersEmbedded,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "exchange-partners": z.array(ExchangePartner$inboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "exchange-partners": "exchangePartners",
+  });
+});
+
+/** @internal */
+export type ExchangePartnersEmbedded$Outbound = {
+  "exchange-partners"?: Array<ExchangePartner$Outbound> | undefined;
 };
+
+/** @internal */
+export const ExchangePartnersEmbedded$outboundSchema: z.ZodType<
+  ExchangePartnersEmbedded$Outbound,
+  z.ZodTypeDef,
+  ExchangePartnersEmbedded
+> = z.object({
+  exchangePartners: z.array(ExchangePartner$outboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    exchangePartners: "exchange-partners",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ExchangePartnersEmbedded$ {
+  /** @deprecated use `ExchangePartnersEmbedded$inboundSchema` instead. */
+  export const inboundSchema = ExchangePartnersEmbedded$inboundSchema;
+  /** @deprecated use `ExchangePartnersEmbedded$outboundSchema` instead. */
+  export const outboundSchema = ExchangePartnersEmbedded$outboundSchema;
+  /** @deprecated use `ExchangePartnersEmbedded$Outbound` instead. */
+  export type Outbound = ExchangePartnersEmbedded$Outbound;
+}
+
+export function exchangePartnersEmbeddedToJSON(
+  exchangePartnersEmbedded: ExchangePartnersEmbedded,
+): string {
+  return JSON.stringify(
+    ExchangePartnersEmbedded$outboundSchema.parse(exchangePartnersEmbedded),
+  );
+}
+
+export function exchangePartnersEmbeddedFromJSON(
+  jsonString: string,
+): SafeParseResult<ExchangePartnersEmbedded, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ExchangePartnersEmbedded$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ExchangePartnersEmbedded' from JSON`,
+  );
+}
 
 /** @internal */
 export const ExchangePartners$inboundSchema: z.ZodType<
@@ -91,69 +159,5 @@ export function exchangePartnersFromJSON(
     jsonString,
     (x) => ExchangePartners$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'ExchangePartners' from JSON`,
-  );
-}
-
-/** @internal */
-export const ExchangePartnersEmbedded$inboundSchema: z.ZodType<
-  ExchangePartnersEmbedded,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  "exchange-partners": z.array(z.lazy(() => ExchangePartners$inboundSchema))
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "exchange-partners": "exchangePartners",
-  });
-});
-
-/** @internal */
-export type ExchangePartnersEmbedded$Outbound = {
-  "exchange-partners"?: Array<ExchangePartners$Outbound> | undefined;
-};
-
-/** @internal */
-export const ExchangePartnersEmbedded$outboundSchema: z.ZodType<
-  ExchangePartnersEmbedded$Outbound,
-  z.ZodTypeDef,
-  ExchangePartnersEmbedded
-> = z.object({
-  exchangePartners: z.array(z.lazy(() => ExchangePartners$outboundSchema))
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    exchangePartners: "exchange-partners",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ExchangePartnersEmbedded$ {
-  /** @deprecated use `ExchangePartnersEmbedded$inboundSchema` instead. */
-  export const inboundSchema = ExchangePartnersEmbedded$inboundSchema;
-  /** @deprecated use `ExchangePartnersEmbedded$outboundSchema` instead. */
-  export const outboundSchema = ExchangePartnersEmbedded$outboundSchema;
-  /** @deprecated use `ExchangePartnersEmbedded$Outbound` instead. */
-  export type Outbound = ExchangePartnersEmbedded$Outbound;
-}
-
-export function exchangePartnersEmbeddedToJSON(
-  exchangePartnersEmbedded: ExchangePartnersEmbedded,
-): string {
-  return JSON.stringify(
-    ExchangePartnersEmbedded$outboundSchema.parse(exchangePartnersEmbedded),
-  );
-}
-
-export function exchangePartnersEmbeddedFromJSON(
-  jsonString: string,
-): SafeParseResult<ExchangePartnersEmbedded, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ExchangePartnersEmbedded$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ExchangePartnersEmbedded' from JSON`,
   );
 }

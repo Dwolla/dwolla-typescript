@@ -15,8 +15,10 @@ let value: ExchangePartnersEmbedded = {
           resourceType: "resource-type",
         },
       },
-      embedded: {},
-      total: 3,
+      id: "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e",
+      name: "MX",
+      status: "unverified",
+      created: new Date("2022-07-23T00:18:21.419Z"),
     },
   ],
 };
@@ -24,6 +26,6 @@ let value: ExchangePartnersEmbedded = {
 
 ## Fields
 
-| Field                                                      | Type                                                       | Required                                                   | Description                                                |
-| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| `exchangePartners`                                         | [models.ExchangePartners](../models/exchangepartners.md)[] | :heavy_minus_sign:                                         | N/A                                                        |
+| Field                                                    | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `exchangePartners`                                       | [models.ExchangePartner](../models/exchangepartner.md)[] | :heavy_minus_sign:                                       | N/A                                                      |

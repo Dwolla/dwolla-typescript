@@ -29,17 +29,17 @@ import { Result } from "../types/fp.js";
  * Verify KBA Questions
  *
  * @remarks
- * Verify KBA Questions
+ * Submits customer answers to KBA questions for identity verification. Requires four question-answer pairs with questionId and answerId values. Returns verification status indicating whether the customer passed or failed the KBA authentication.
  */
 export function kbaVerify(
   client: DwollaCore,
-  request: operations.VerifyRequest,
+  request: operations.VerifyKbaQuestionsRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.VerifyResponse,
-    | errors.VerifyDwollaV1HalJSON
-    | errors.VerifyDwollaV1HalJSONError
+    operations.VerifyKbaQuestionsResponse,
+    | errors.VerifyKbaQuestionsDwollaV1HalJSON
+    | errors.VerifyKbaQuestionsDwollaV1HalJSONError
     | DwollaError
     | ResponseValidationError
     | ConnectionError
@@ -59,14 +59,14 @@ export function kbaVerify(
 
 async function $do(
   client: DwollaCore,
-  request: operations.VerifyRequest,
+  request: operations.VerifyKbaQuestionsRequest,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      operations.VerifyResponse,
-      | errors.VerifyDwollaV1HalJSON
-      | errors.VerifyDwollaV1HalJSONError
+      operations.VerifyKbaQuestionsResponse,
+      | errors.VerifyKbaQuestionsDwollaV1HalJSON
+      | errors.VerifyKbaQuestionsDwollaV1HalJSONError
       | DwollaError
       | ResponseValidationError
       | ConnectionError
@@ -81,7 +81,7 @@ async function $do(
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.VerifyRequest$outboundSchema.parse(value),
+    (value) => operations.VerifyKbaQuestionsRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -110,7 +110,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "verify",
+    operationID: "verifyKbaQuestions",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
@@ -153,9 +153,9 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.VerifyResponse,
-    | errors.VerifyDwollaV1HalJSON
-    | errors.VerifyDwollaV1HalJSONError
+    operations.VerifyKbaQuestionsResponse,
+    | errors.VerifyKbaQuestionsDwollaV1HalJSON
+    | errors.VerifyKbaQuestionsDwollaV1HalJSONError
     | DwollaError
     | ResponseValidationError
     | ConnectionError
@@ -165,15 +165,17 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, operations.VerifyResponse$inboundSchema, {
+    M.json(200, operations.VerifyKbaQuestionsResponse$inboundSchema, {
       ctype: "application/vnd.dwolla.v1.hal+json",
     }),
-    M.jsonErr(403, errors.VerifyDwollaV1HalJSON$inboundSchema, {
+    M.jsonErr(403, errors.VerifyKbaQuestionsDwollaV1HalJSON$inboundSchema, {
       ctype: "application/vnd.dwolla.v1.hal+json",
     }),
-    M.jsonErr(404, errors.VerifyDwollaV1HalJSONError$inboundSchema, {
-      ctype: "application/vnd.dwolla.v1.hal+json",
-    }),
+    M.jsonErr(
+      404,
+      errors.VerifyKbaQuestionsDwollaV1HalJSONError$inboundSchema,
+      { ctype: "application/vnd.dwolla.v1.hal+json" },
+    ),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, req, { extraFields: responseFields });

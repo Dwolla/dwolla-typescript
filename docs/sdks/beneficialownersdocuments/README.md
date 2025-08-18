@@ -10,7 +10,7 @@
 
 ## list
 
-List documents for beneficial owner
+Returns all identity verification documents submitted for a beneficial owner. Includes document status, verification results, document type (passport, driver's license, etc.), and failure reasons if verification was rejected. Used to track document submission and verification progress during the business verification process.
 
 ### Example Usage
 
@@ -91,7 +91,7 @@ run();
 
 ## create
 
-Create a document for beneficial owner
+Uploads an identity verification document for a beneficial owner using multipart form-data. Required when a beneficial owner has "document" status during the business verification process.
 
 ### Example Usage
 

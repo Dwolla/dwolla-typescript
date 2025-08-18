@@ -8,12 +8,11 @@ Operations related to Webhooks
 ### Available Operations
 
 * [get](#get) - Retrieve a webhook
-* [listRetries](#listretries) - List retries for a webhook
 * [retry](#retry) - Retry a webhook
 
 ## get
 
-Retrieve a webhook
+Retrieve detailed information for a specific webhook by its unique identifier including delivery attempts and response data. Returns webhook details with topic, account information, delivery attempts containing request/response history, and links to subscription and retry resources. Essential for debugging webhook delivery issues, analyzing response data, and monitoring notification processing status.
 
 ### Example Usage
 
@@ -91,89 +90,9 @@ run();
 | errors.NotFoundError               | 404                                | application/vnd.dwolla.v1.hal+json |
 | errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
 
-## listRetries
-
-List retries for a webhook
-
-### Example Usage
-
-<!-- UsageSnippet language="typescript" operationID="listWebhookRetries" method="get" path="/webhooks/{id}/retries" -->
-```typescript
-import { Dwolla } from "dwolla";
-
-const dwolla = new Dwolla({
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
-});
-
-async function run() {
-  const result = await dwolla.webhooks.listRetries({
-    id: "<id>",
-  });
-
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { DwollaCore } from "dwolla/core.js";
-import { webhooksListRetries } from "dwolla/funcs/webhooksListRetries.js";
-
-// Use `DwollaCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const dwolla = new DwollaCore({
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
-});
-
-async function run() {
-  const res = await webhooksListRetries(dwolla, {
-    id: "<id>",
-  });
-  if (res.ok) {
-    const { value: result } = res;
-    console.log(result);
-  } else {
-    console.log("webhooksListRetries failed:", res.error);
-  }
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.ListWebhookRetriesRequest](../../models/operations/listwebhookretriesrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[models.WebhookRetries](../../models/webhookretries.md)\>**
-
-### Errors
-
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| errors.NotFoundError               | 404                                | application/vnd.dwolla.v1.hal+json |
-| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
-
 ## retry
 
-Retry a webhook
+Retry a webhook by its unique identifier to redeliver the notification to your endpoint. Creates a new retry attempt and returns the location of the new webhook resource. Essential for recovering from webhook delivery failures and ensuring reliable event notification processing in your application.
 
 ### Example Usage
 

@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Retry a webhook
  *
  * @remarks
- * Retry a webhook
+ * Retry a webhook by its unique identifier to redeliver the notification to your endpoint. Creates a new retry attempt and returns the location of the new webhook resource. Essential for recovering from webhook delivery failures and ensuring reliable event notification processing in your application.
  */
 export function webhooksRetry(
   client: DwollaCore,

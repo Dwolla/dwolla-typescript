@@ -10,13 +10,10 @@ Operations related to Transfers
 * [create](#create) - Initiate a transfer
 * [get](#get) - Retrieve a transfer
 * [cancel](#cancel) - Cancel a transfer
-* [listFees](#listfees) - List fees for a transfer
-* [getFailureReason](#getfailurereason) - Retrieve a transfer failure reason
-* [createOnDemandAuthorization](#createondemandauthorization) - Create an on-demand transfer authorization
 
 ## create
 
-Initiate a transfer
+Initiate a transfer between funding sources from a Dwolla Account or API Customer resource. Supports ACH, Instant Payments (RTP/FedNow), and wire transfers with optional expedited clearing, facilitator fees, metadata, and correlation IDs for enhanced traceability. Includes idempotency key support to prevent duplicate transfers and extensive customization options for addenda records and processing channels. Returns the location of the created transfer resource for tracking and management.
 
 ### Example Usage
 
@@ -199,7 +196,7 @@ run();
 
 ## get
 
-Retrieve a transfer
+Retrieve detailed information for a specific transfer by its unique identifier belonging to an Account or Customer. Returns transfer status, amount, creation date, clearing details, and links to source and destination funding sources for complete transaction tracking. Includes cancellation links when applicable and references to related funding transfers. Essential for monitoring transfer lifecycle and transaction reconciliation.
 
 ### Example Usage
 
@@ -279,7 +276,7 @@ run();
 
 ## cancel
 
-Cancel a transfer
+Cancel a pending transfer by setting its status to cancelled. Only transfers in pending status can be cancelled before processing begins. Returns the updated transfer resource with cancelled status. Use this endpoint to stop a bank transfer from further processing.
 
 ### Example Usage
 
@@ -360,240 +357,4 @@ run();
 | errors.StatusInvalidError          | 400                                | application/vnd.dwolla.v1.hal+json |
 | errors.StatusNotAllowedError       | 400                                | application/vnd.dwolla.v1.hal+json |
 | errors.NotFoundError               | 404                                | application/vnd.dwolla.v1.hal+json |
-| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
-
-## listFees
-
-List fees for a transfer
-
-### Example Usage
-
-<!-- UsageSnippet language="typescript" operationID="listTransferFees" method="get" path="/transfers/{id}/fees" -->
-```typescript
-import { Dwolla } from "dwolla";
-
-const dwolla = new Dwolla({
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
-});
-
-async function run() {
-  const result = await dwolla.transfers.listFees({
-    id: "<id>",
-  });
-
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { DwollaCore } from "dwolla/core.js";
-import { transfersListFees } from "dwolla/funcs/transfersListFees.js";
-
-// Use `DwollaCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const dwolla = new DwollaCore({
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
-});
-
-async function run() {
-  const res = await transfersListFees(dwolla, {
-    id: "<id>",
-  });
-  if (res.ok) {
-    const { value: result } = res;
-    console.log(result);
-  } else {
-    console.log("transfersListFees failed:", res.error);
-  }
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.ListTransferFeesRequest](../../models/operations/listtransferfeesrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[operations.ListTransferFeesResponse](../../models/operations/listtransferfeesresponse.md)\>**
-
-### Errors
-
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| errors.NotFoundError               | 404                                | application/vnd.dwolla.v1.hal+json |
-| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
-
-## getFailureReason
-
-Retrieve a transfer failure reason
-
-### Example Usage
-
-<!-- UsageSnippet language="typescript" operationID="getTransferFailureReason" method="get" path="/transfers/{id}/failure" -->
-```typescript
-import { Dwolla } from "dwolla";
-
-const dwolla = new Dwolla({
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
-});
-
-async function run() {
-  const result = await dwolla.transfers.getFailureReason({
-    id: "<id>",
-  });
-
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { DwollaCore } from "dwolla/core.js";
-import { transfersGetFailureReason } from "dwolla/funcs/transfersGetFailureReason.js";
-
-// Use `DwollaCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const dwolla = new DwollaCore({
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
-});
-
-async function run() {
-  const res = await transfersGetFailureReason(dwolla, {
-    id: "<id>",
-  });
-  if (res.ok) {
-    const { value: result } = res;
-    console.log(result);
-  } else {
-    console.log("transfersGetFailureReason failed:", res.error);
-  }
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.GetTransferFailureReasonRequest](../../models/operations/gettransferfailurereasonrequest.md)                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[operations.GetTransferFailureReasonResponse](../../models/operations/gettransferfailurereasonresponse.md)\>**
-
-### Errors
-
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| errors.ForbiddenError              | 403                                | application/vnd.dwolla.v1.hal+json |
-| errors.NotFoundError               | 404                                | application/vnd.dwolla.v1.hal+json |
-| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
-
-## createOnDemandAuthorization
-
-Create an on-demand transfer authorization
-
-### Example Usage
-
-<!-- UsageSnippet language="typescript" operationID="createOnDemandTransferAuthorization" method="post" path="/on-demand-authorizations" -->
-```typescript
-import { Dwolla } from "dwolla";
-
-const dwolla = new Dwolla({
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
-});
-
-async function run() {
-  const result = await dwolla.transfers.createOnDemandAuthorization();
-
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { DwollaCore } from "dwolla/core.js";
-import { transfersCreateOnDemandAuthorization } from "dwolla/funcs/transfersCreateOnDemandAuthorization.js";
-
-// Use `DwollaCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const dwolla = new DwollaCore({
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
-});
-
-async function run() {
-  const res = await transfersCreateOnDemandAuthorization(dwolla);
-  if (res.ok) {
-    const { value: result } = res;
-    console.log(result);
-  } else {
-    console.log("transfersCreateOnDemandAuthorization failed:", res.error);
-  }
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[models.OnDemandAuthorization](../../models/ondemandauthorization.md)\>**
-
-### Errors
-
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| errors.ForbiddenError              | 403                                | application/vnd.dwolla.v1.hal+json |
 | errors.APIError                    | 4XX, 5XX                           | \*/\*                              |

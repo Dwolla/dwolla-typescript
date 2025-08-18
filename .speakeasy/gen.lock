@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 53ac026a-ff11-435d-914b-31df5268afb0
 management:
-  docChecksum: 71ab9844866cc1f9cc89319968f66c30
+  docChecksum: ebc33747efd1cabc71c2aba0f52b4557
   docVersion: "2.0"
-  speakeasyVersion: 1.601.0
-  generationVersion: 2.680.0
-  releaseVersion: 0.0.1-beta.3
-  configChecksum: 2c32eaaf2ec444d66b0e1d26091d6c8f
+  speakeasyVersion: 1.605.5
+  generationVersion: 2.684.0
+  releaseVersion: 0.0.1-beta.4
+  configChecksum: c7fa24297655df72651a22d54e68805a
   repoURL: https://github.com/Dwolla/dwolla-typescript.git
   installationURL: https://github.com/Dwolla/dwolla-typescript
   published: true
@@ -26,7 +26,7 @@ features:
     groups: 2.81.2
     nameOverrides: 2.81.2
     nullables: 0.1.1
-    oauth2ClientCredentials: 0.4.1
+    oauth2ClientCredentials: 0.5.0
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.3.0
@@ -325,8 +325,8 @@ generatedFiles:
   - docs/models/errors/updateorremovefundingsourcebadrequestdwollav1haljsonerror.md
   - docs/models/errors/updateorremovefundingsourceforbiddendwollav1haljsonerror.md
   - docs/models/errors/validationerrorschema.md
-  - docs/models/errors/verifydwollav1haljson.md
-  - docs/models/errors/verifydwollav1haljsonerror.md
+  - docs/models/errors/verifykbaquestionsdwollav1haljson.md
+  - docs/models/errors/verifykbaquestionsdwollav1haljsonerror.md
   - docs/models/errors/weeklyreceivelimitreachederror.md
   - docs/models/errors/wireaccountnotfounderror.md
   - docs/models/errors/wireaccountrestrictederror.md
@@ -704,12 +704,12 @@ generatedFiles:
   - docs/models/operations/updateresponse.md
   - docs/models/operations/updatewebhooksubscriptionrequest.md
   - docs/models/operations/updatewebhooksubscriptionrequestbody.md
-  - docs/models/operations/verifyanswer.md
-  - docs/models/operations/verifycustomer.md
-  - docs/models/operations/verifylinks.md
-  - docs/models/operations/verifyrequest.md
-  - docs/models/operations/verifyrequestbody.md
-  - docs/models/operations/verifyresponse.md
+  - docs/models/operations/verifykbaquestionsanswer.md
+  - docs/models/operations/verifykbaquestionscustomer.md
+  - docs/models/operations/verifykbaquestionslinks.md
+  - docs/models/operations/verifykbaquestionsrequest.md
+  - docs/models/operations/verifykbaquestionsrequestbody.md
+  - docs/models/operations/verifykbaquestionsresponse.md
   - docs/models/passport.md
   - docs/models/plaid.md
   - docs/models/pointofsaleaddendaentriesnotenabledforaccounterrorembedded.md
@@ -871,15 +871,20 @@ generatedFiles:
   - docs/sdks/accountsfundingsources/README.md
   - docs/sdks/accountsmasspayments/README.md
   - docs/sdks/accountstransfers/README.md
+  - docs/sdks/balance/README.md
   - docs/sdks/beneficialowners/README.md
   - docs/sdks/beneficialownersdocuments/README.md
+  - docs/sdks/beneficialownership/README.md
   - docs/sdks/businessclassifications/README.md
   - docs/sdks/clienttokens/README.md
   - docs/sdks/customers/README.md
   - docs/sdks/customersbeneficialowners/README.md
   - docs/sdks/customersdocuments/README.md
   - docs/sdks/customersexchanges/README.md
+  - docs/sdks/customersexchangesessions/README.md
   - docs/sdks/customersfundingsources/README.md
+  - docs/sdks/customerskba/README.md
+  - docs/sdks/customerslabels/README.md
   - docs/sdks/customersmasspayments/README.md
   - docs/sdks/customerstransfers/README.md
   - docs/sdks/documents/README.md
@@ -888,21 +893,31 @@ generatedFiles:
   - docs/sdks/exchangepartners/README.md
   - docs/sdks/exchanges/README.md
   - docs/sdks/exchangesessions/README.md
+  - docs/sdks/exchangesexchangesessions/README.md
+  - docs/sdks/failure/README.md
+  - docs/sdks/fees/README.md
   - docs/sdks/fundingsources/README.md
+  - docs/sdks/items/README.md
   - docs/sdks/kba/README.md
   - docs/sdks/labels/README.md
+  - docs/sdks/ledgerentries/README.md
   - docs/sdks/masspayments/README.md
+  - docs/sdks/microdeposits/README.md
+  - docs/sdks/ondemandtransferauthorizations/README.md
+  - docs/sdks/reallocations/README.md
+  - docs/sdks/retries/README.md
   - docs/sdks/root/README.md
   - docs/sdks/tokens/README.md
   - docs/sdks/transfers/README.md
   - docs/sdks/webhooks/README.md
   - docs/sdks/webhooksubscriptions/README.md
+  - docs/sdks/webhooksubscriptionswebhooks/README.md
   - docs/types/rfcdate.md
   - eslint.config.mjs
   - examples/.env.template
   - examples/README.md
   - examples/package.json
-  - examples/tokensCreateApplicationAccessToken.example.ts
+  - examples/tokensCreate.example.ts
   - jsr.json
   - package.json
   - src/core.ts
@@ -913,26 +928,30 @@ generatedFiles:
   - src/funcs/accountsGet.ts
   - src/funcs/accountsMassPaymentsList.ts
   - src/funcs/accountsTransfersList.ts
-  - src/funcs/beneficialOwnersCertifyOwnership.ts
   - src/funcs/beneficialOwnersDelete.ts
   - src/funcs/beneficialOwnersDocumentsCreate.ts
   - src/funcs/beneficialOwnersDocumentsList.ts
   - src/funcs/beneficialOwnersGet.ts
-  - src/funcs/beneficialOwnersGetOwnershipStatus.ts
   - src/funcs/beneficialOwnersUpdate.ts
   - src/funcs/businessClassificationsGet.ts
   - src/funcs/businessClassificationsList.ts
   - src/funcs/clientTokensCreate.ts
   - src/funcs/customersBeneficialOwnersCreate.ts
   - src/funcs/customersBeneficialOwnersList.ts
+  - src/funcs/customersBeneficialOwnershipCertify.ts
+  - src/funcs/customersBeneficialOwnershipGet.ts
   - src/funcs/customersCreate.ts
   - src/funcs/customersDocumentsCreate.ts
   - src/funcs/customersDocumentsList.ts
+  - src/funcs/customersExchangeSessionsCreate.ts
   - src/funcs/customersExchangesCreate.ts
   - src/funcs/customersExchangesList.ts
   - src/funcs/customersFundingSourcesCreate.ts
   - src/funcs/customersFundingSourcesList.ts
   - src/funcs/customersGet.ts
+  - src/funcs/customersKbaInitiate.ts
+  - src/funcs/customersLabelsCreate.ts
+  - src/funcs/customersLabelsList.ts
   - src/funcs/customersList.ts
   - src/funcs/customersListAvailableConnections.ts
   - src/funcs/customersMassPaymentsList.ts
@@ -943,49 +962,45 @@ generatedFiles:
   - src/funcs/eventsList.ts
   - src/funcs/exchangePartnersGet.ts
   - src/funcs/exchangePartnersList.ts
-  - src/funcs/exchangeSessionsCreate.ts
   - src/funcs/exchangeSessionsGet.ts
-  - src/funcs/exchangesCreateReAuth.ts
+  - src/funcs/exchangesExchangeSessionsCreateReAuth.ts
   - src/funcs/exchangesGet.ts
+  - src/funcs/fundingSourcesBalanceGet.ts
   - src/funcs/fundingSourcesGet.ts
-  - src/funcs/fundingSourcesGetBalance.ts
-  - src/funcs/fundingSourcesGetMicroDeposits.ts
   - src/funcs/fundingSourcesGetVanRouting.ts
-  - src/funcs/fundingSourcesInitiateOrVerifyMicroDeposits.ts
+  - src/funcs/fundingSourcesMicroDepositsGetMicroDeposits.ts
+  - src/funcs/fundingSourcesMicroDepositsInitiateOrVerify.ts
+  - src/funcs/fundingSourcesOnDemandTransferAuthorizationsCreate.ts
   - src/funcs/fundingSourcesUpdateOrRemove.ts
   - src/funcs/kbaGetQuestions.ts
-  - src/funcs/kbaInitiate.ts
   - src/funcs/kbaVerify.ts
-  - src/funcs/labelsCreateForCustomer.ts
-  - src/funcs/labelsCreateLedgerEntry.ts
-  - src/funcs/labelsCreateReallocation.ts
   - src/funcs/labelsGet.ts
-  - src/funcs/labelsGetLedgerEntry.ts
-  - src/funcs/labelsGetReallocation.ts
-  - src/funcs/labelsListForCustomer.ts
-  - src/funcs/labelsListLedgerEntries.ts
+  - src/funcs/labelsLedgerEntriesCreate.ts
+  - src/funcs/labelsLedgerEntriesGet.ts
+  - src/funcs/labelsLedgerEntriesList.ts
+  - src/funcs/labelsReallocationsCreate.ts
+  - src/funcs/labelsReallocationsGet.ts
   - src/funcs/labelsRemove.ts
   - src/funcs/massPaymentsCreate.ts
   - src/funcs/massPaymentsGet.ts
-  - src/funcs/massPaymentsGetItem.ts
-  - src/funcs/massPaymentsListItems.ts
+  - src/funcs/massPaymentsItemsGet.ts
+  - src/funcs/massPaymentsItemsList.ts
   - src/funcs/massPaymentsUpdate.ts
   - src/funcs/rootGet.ts
-  - src/funcs/tokensCreateApplicationAccessToken.ts
+  - src/funcs/tokensCreate.ts
   - src/funcs/transfersCancel.ts
   - src/funcs/transfersCreate.ts
-  - src/funcs/transfersCreateOnDemandAuthorization.ts
+  - src/funcs/transfersFailureGet.ts
+  - src/funcs/transfersFeesList.ts
   - src/funcs/transfersGet.ts
-  - src/funcs/transfersGetFailureReason.ts
-  - src/funcs/transfersListFees.ts
   - src/funcs/webhookSubscriptionsCreate.ts
   - src/funcs/webhookSubscriptionsDelete.ts
   - src/funcs/webhookSubscriptionsGet.ts
   - src/funcs/webhookSubscriptionsList.ts
-  - src/funcs/webhookSubscriptionsListWebhooks.ts
   - src/funcs/webhookSubscriptionsUpdate.ts
+  - src/funcs/webhookSubscriptionsWebhooksList.ts
   - src/funcs/webhooksGet.ts
-  - src/funcs/webhooksListRetries.ts
+  - src/funcs/webhooksRetriesList.ts
   - src/funcs/webhooksRetry.ts
   - src/hooks/clientcredentials.ts
   - src/hooks/hooks.ts
@@ -1183,7 +1198,7 @@ generatedFiles:
   - src/models/errors/updatemasspayment.ts
   - src/models/errors/updateorremovefundingsource.ts
   - src/models/errors/validationerrorschema.ts
-  - src/models/errors/verify.ts
+  - src/models/errors/verifykbaquestions.ts
   - src/models/errors/weeklyreceivelimitreachederror.ts
   - src/models/errors/wireaccountnotfounderror.ts
   - src/models/errors/wireaccountrestrictederror.ts
@@ -1329,7 +1344,7 @@ generatedFiles:
   - src/models/operations/updatemasspayment.ts
   - src/models/operations/updateorremovefundingsource.ts
   - src/models/operations/updatewebhooksubscription.ts
-  - src/models/operations/verify.ts
+  - src/models/operations/verifykbaquestions.ts
   - src/models/passport.ts
   - src/models/pointofsaleaddendaentriesnotenabledforaccounterror.ts
   - src/models/reactivatecustomer.ts
@@ -1395,15 +1410,20 @@ generatedFiles:
   - src/sdk/accountsfundingsources.ts
   - src/sdk/accountsmasspayments.ts
   - src/sdk/accountstransfers.ts
+  - src/sdk/balance.ts
   - src/sdk/beneficialowners.ts
   - src/sdk/beneficialownersdocuments.ts
+  - src/sdk/beneficialownership.ts
   - src/sdk/businessclassifications.ts
   - src/sdk/clienttokens.ts
   - src/sdk/customers.ts
   - src/sdk/customersbeneficialowners.ts
   - src/sdk/customersdocuments.ts
   - src/sdk/customersexchanges.ts
+  - src/sdk/customersexchangesessions.ts
   - src/sdk/customersfundingsources.ts
+  - src/sdk/customerskba.ts
+  - src/sdk/customerslabels.ts
   - src/sdk/customersmasspayments.ts
   - src/sdk/customerstransfers.ts
   - src/sdk/documents.ts
@@ -1411,17 +1431,27 @@ generatedFiles:
   - src/sdk/exchangepartners.ts
   - src/sdk/exchanges.ts
   - src/sdk/exchangesessions.ts
+  - src/sdk/exchangesexchangesessions.ts
+  - src/sdk/failure.ts
+  - src/sdk/fees.ts
   - src/sdk/fundingsources.ts
   - src/sdk/index.ts
+  - src/sdk/items.ts
   - src/sdk/kba.ts
   - src/sdk/labels.ts
+  - src/sdk/ledgerentries.ts
   - src/sdk/masspayments.ts
+  - src/sdk/microdeposits.ts
+  - src/sdk/ondemandtransferauthorizations.ts
+  - src/sdk/reallocations.ts
+  - src/sdk/retries.ts
   - src/sdk/root.ts
   - src/sdk/sdk.ts
   - src/sdk/tokens.ts
   - src/sdk/transfers.ts
   - src/sdk/webhooks.ts
   - src/sdk/webhooksubscriptions.ts
+  - src/sdk/webhooksubscriptionswebhooks.ts
   - src/types/async.ts
   - src/types/blobs.ts
   - src/types/constdatetime.ts
@@ -2012,6 +2042,7 @@ examples:
       parameters:
         path:
           id: "<id>"
+          itemId: "<id>"
       responses:
         "200":
           application/vnd.dwolla.v1.hal+json: {"_links": {"self": {"href": "https://api.dwolla.com/mass-payment-items/c1c7d293-63ec-e511-80df-0aa34a9b2388"}, "mass-payment": {"href": "https://api.dwolla.com/mass-payments/eb467252-808c-4bc0-b86f-a5cd01454563"}, "destination": {"href": "https://api.dwolla.com/funding-sources/b442c936-1f87-465d-a4e2-a982164b26bd"}, "transfer": {"href": "https://api.dwolla.com/transfers/fa3999db-41ed-e511-80df-0aa34a9b2388"}}, "id": "2f845bc9-41ed-e511-80df-0aa34a9b2388", "status": "success", "amount": {"value": "1", "currency": "USD"}, "metadata": {"item1": "item1"}, "processingChannel": {"destination": "real-time-payments"}}
@@ -2117,6 +2148,7 @@ examples:
       parameters:
         path:
           id: "<id>"
+          ledgerEntryId: "<id>"
       responses:
         "200":
           application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "32d68709-62dd-43d6-a6df-562f4baec526", "amount": {"value": "-5", "currency": "USD"}, "created": "2019-05-16T01:54:58.062Z"}
@@ -2252,7 +2284,7 @@ examples:
     speakeasy-default-list-exchange-partners:
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"exchange-partners": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "total": 3}, {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "total": 3}, {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "total": 3}]}, "total": 3}
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"exchange-partners": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}}, {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}}, {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}}]}, "total": 3}
         "403":
           application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
   getExchangePartner:
@@ -2458,6 +2490,7 @@ examples:
       parameters:
         path:
           id: "<id>"
+          reallocationId: "<id>"
       responses:
         "200":
           application/vnd.dwolla.v1.hal+json: {"_links": {"self": {"href": "https://api.dwolla.com/label-reallocations/fd36b78c-42f3-4e21-8efb-09196fccbd21", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "label-reallocation"}, "to-ledger-entry": {"href": "https://api.dwolla.com/ledger-entries/d8a4bf7a-3fa0-48b9-873c-765d7375c59f", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "ledger-entry"}, "from-ledger-entry": {"href": "https://api.dwolla.com/ledger-entries/f6a44994-b4da-48e3-bd10-d3a168e6a77d", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "ledger-entry"}}, "created": "2022-05-16T13:41:31.036Z"}

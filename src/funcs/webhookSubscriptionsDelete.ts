@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Delete a webhook subscription
  *
  * @remarks
- * Delete a webhook subscription
+ * Delete a webhook subscription to permanently remove webhook notifications for your application. This action stops all future webhook deliveries and cannot be undone. Returns the deleted subscription resource for confirmation. Use this endpoint when webhook notifications are no longer needed or when cleaning up unused subscriptions.
  */
 export function webhookSubscriptionsDelete(
   client: DwollaCore,

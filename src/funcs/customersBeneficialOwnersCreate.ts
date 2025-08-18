@@ -26,10 +26,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Create beneficial owner
+ * Create customer beneficial owner
  *
  * @remarks
- * Create beneficial owner which is a natural person who, directly or indirectly, owns 25% or more of the equity interests of the company.
+ * Creates a new beneficial owner for a business verified customer. Beneficial owners are individuals who own 25% or more of the company's equity. Requires personal information, address, and SSN or passport for identity verification.
  */
 export function customersBeneficialOwnersCreate(
   client: DwollaCore,

@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Remove a label
  *
  * @remarks
- * Remove a label
+ * Delete a Label to stop tracking funds and remove it from your account. Returns success status if the Label is successfully removed. Use this to streamline your account management and remove unused Labels from your system.
  */
 export function labelsRemove(
   client: DwollaCore,

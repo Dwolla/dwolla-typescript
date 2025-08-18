@@ -26,10 +26,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Delete beneficial owner
+ * Remove beneficial owner
  *
  * @remarks
- * Delete beneficial owner
+ * Permanently removes a beneficial owner from a business customer. This action is irreversible and the beneficial owner cannot be retrieved after removal. Removing a beneficial owner will change the customer's certification status to "recertify".
  */
 export function beneficialOwnersDelete(
   client: DwollaCore,

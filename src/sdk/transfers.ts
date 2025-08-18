@@ -4,21 +4,30 @@
 
 import { transfersCancel } from "../funcs/transfersCancel.js";
 import { transfersCreate } from "../funcs/transfersCreate.js";
-import { transfersCreateOnDemandAuthorization } from "../funcs/transfersCreateOnDemandAuthorization.js";
 import { transfersGet } from "../funcs/transfersGet.js";
-import { transfersGetFailureReason } from "../funcs/transfersGetFailureReason.js";
-import { transfersListFees } from "../funcs/transfersListFees.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as models from "../models/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { Failure } from "./failure.js";
+import { Fees } from "./fees.js";
 
 export class Transfers extends ClientSDK {
+  private _fees?: Fees;
+  get fees(): Fees {
+    return (this._fees ??= new Fees(this._options));
+  }
+
+  private _failure?: Failure;
+  get failure(): Failure {
+    return (this._failure ??= new Failure(this._options));
+  }
+
   /**
    * Initiate a transfer
    *
    * @remarks
-   * Initiate a transfer
+   * Initiate a transfer between funding sources from a Dwolla Account or API Customer resource. Supports ACH, Instant Payments (RTP/FedNow), and wire transfers with optional expedited clearing, facilitator fees, metadata, and correlation IDs for enhanced traceability. Includes idempotency key support to prevent duplicate transfers and extensive customization options for addenda records and processing channels. Returns the location of the created transfer resource for tracking and management.
    */
   async create(
     request: operations.InitiateTransferRequest,
@@ -35,7 +44,7 @@ export class Transfers extends ClientSDK {
    * Retrieve a transfer
    *
    * @remarks
-   * Retrieve a transfer
+   * Retrieve detailed information for a specific transfer by its unique identifier belonging to an Account or Customer. Returns transfer status, amount, creation date, clearing details, and links to source and destination funding sources for complete transaction tracking. Includes cancellation links when applicable and references to related funding transfers. Essential for monitoring transfer lifecycle and transaction reconciliation.
    */
   async get(
     request: operations.GetTransferRequest,
@@ -52,7 +61,7 @@ export class Transfers extends ClientSDK {
    * Cancel a transfer
    *
    * @remarks
-   * Cancel a transfer
+   * Cancel a pending transfer by setting its status to cancelled. Only transfers in pending status can be cancelled before processing begins. Returns the updated transfer resource with cancelled status. Use this endpoint to stop a bank transfer from further processing.
    */
   async cancel(
     request: operations.CancelTransferRequest,
@@ -61,55 +70,6 @@ export class Transfers extends ClientSDK {
     return unwrapAsync(transfersCancel(
       this,
       request,
-      options,
-    ));
-  }
-
-  /**
-   * List fees for a transfer
-   *
-   * @remarks
-   * List fees for a transfer
-   */
-  async listFees(
-    request: operations.ListTransferFeesRequest,
-    options?: RequestOptions,
-  ): Promise<operations.ListTransferFeesResponse> {
-    return unwrapAsync(transfersListFees(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * Retrieve a transfer failure reason
-   *
-   * @remarks
-   * Retrieve a transfer failure reason
-   */
-  async getFailureReason(
-    request: operations.GetTransferFailureReasonRequest,
-    options?: RequestOptions,
-  ): Promise<operations.GetTransferFailureReasonResponse> {
-    return unwrapAsync(transfersGetFailureReason(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * Create an on-demand transfer authorization
-   *
-   * @remarks
-   * Create an on-demand transfer authorization
-   */
-  async createOnDemandAuthorization(
-    options?: RequestOptions,
-  ): Promise<models.OnDemandAuthorization> {
-    return unwrapAsync(transfersCreateOnDemandAuthorization(
-      this,
       options,
     ));
   }

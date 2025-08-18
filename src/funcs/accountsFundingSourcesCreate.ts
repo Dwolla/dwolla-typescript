@@ -30,7 +30,9 @@ import { Result } from "../types/fp.js";
  * Create a funding source for an account
  *
  * @remarks
- * Create a funding source for an account
+ * Create a funding source by adding a bank account to a Main Dwolla Account. This endpoint allows you to connect a checking or savings account using either manual bank account details or an exchange resource.
+ *
+ * For more information about funding sources, see the [Funding Sources API Reference](https://developers.dwolla.com/docs/api-reference/funding-sources).
  */
 export function accountsFundingSourcesCreate(
   client: DwollaCore,

@@ -3,22 +3,38 @@
  */
 
 import { fundingSourcesGet } from "../funcs/fundingSourcesGet.js";
-import { fundingSourcesGetBalance } from "../funcs/fundingSourcesGetBalance.js";
-import { fundingSourcesGetMicroDeposits } from "../funcs/fundingSourcesGetMicroDeposits.js";
 import { fundingSourcesGetVanRouting } from "../funcs/fundingSourcesGetVanRouting.js";
-import { fundingSourcesInitiateOrVerifyMicroDeposits } from "../funcs/fundingSourcesInitiateOrVerifyMicroDeposits.js";
 import { fundingSourcesUpdateOrRemove } from "../funcs/fundingSourcesUpdateOrRemove.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as models from "../models/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { Balance } from "./balance.js";
+import { MicroDeposits } from "./microdeposits.js";
+import { OnDemandTransferAuthorizations } from "./ondemandtransferauthorizations.js";
 
 export class FundingSources extends ClientSDK {
+  private _microDeposits?: MicroDeposits;
+  get microDeposits(): MicroDeposits {
+    return (this._microDeposits ??= new MicroDeposits(this._options));
+  }
+
+  private _balance?: Balance;
+  get balance(): Balance {
+    return (this._balance ??= new Balance(this._options));
+  }
+
+  private _onDemandTransferAuthorizations?: OnDemandTransferAuthorizations;
+  get onDemandTransferAuthorizations(): OnDemandTransferAuthorizations {
+    return (this._onDemandTransferAuthorizations ??=
+      new OnDemandTransferAuthorizations(this._options));
+  }
+
   /**
    * Retrieve a funding source
    *
    * @remarks
-   * Retrieve a funding source
+   * Returns detailed information for a specific funding source, including its type, status, and verification details. Supports bank accounts (via Open Banking) and Dwolla balance (verified customers only).
    */
   async get(
     request: operations.GetFundingSourceRequest,
@@ -35,7 +51,7 @@ export class FundingSources extends ClientSDK {
    * Update or remove a funding source
    *
    * @remarks
-   * Update or remove a funding source
+   * Updates a bank funding source's details or soft deletes it. When updating, you can change the name (any status) or modify routing/account numbers and account type (unverified status only). When removing, the funding source is soft deleted and can still be accessed but marked as removed.
    */
   async updateOrRemove(
     request: operations.UpdateOrRemoveFundingSourceRequest,
@@ -49,67 +65,10 @@ export class FundingSources extends ClientSDK {
   }
 
   /**
-   * Retrieve micro-deposits details
-   *
-   * @remarks
-   * Retrieve micro-deposits details
-   */
-  async getMicroDeposits(
-    request: operations.GetMicroDepositsRequest,
-    options?: RequestOptions,
-  ): Promise<operations.GetMicroDepositsResponse> {
-    return unwrapAsync(fundingSourcesGetMicroDeposits(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * Initiate or Verify micro-deposits
-   *
-   * @remarks
-   * This endpoint handles two different actions:
-   * 1. Initiating micro-deposits: No request body is required
-   * 2. Verifying micro-deposits: Request body with micro-deposit amounts is required
-   *
-   * The action is determined by the presence of a request body:
-   * - If no request body is provided, the endpoint will initiate micro-deposits
-   * - If a request body with micro-deposit amounts is provided, the endpoint will verify the micro-deposits
-   */
-  async initiateOrVerifyMicroDeposits(
-    request: operations.InitiateOrVerifyMicroDepositsRequest,
-    options?: RequestOptions,
-  ): Promise<operations.InitiateOrVerifyMicroDepositsResponse | undefined> {
-    return unwrapAsync(fundingSourcesInitiateOrVerifyMicroDeposits(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * Retrieve funding source balance
-   *
-   * @remarks
-   * Retrieve funding source balance
-   */
-  async getBalance(
-    request: operations.GetFundingSourceBalanceRequest,
-    options?: RequestOptions,
-  ): Promise<operations.GetFundingSourceBalanceResponse> {
-    return unwrapAsync(fundingSourcesGetBalance(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
    * Retrieve VAN account and routing numbers
    *
    * @remarks
-   * Retrieve account and routing numbers for a VAN (Virtual Account Number)
+   * Returns the unique account and routing numbers for a Virtual Account Number (VAN) funding source. These numbers can be used by external systems to initiate ACH transactions that pull funds from or push funds to the associated Dwolla balance.
    */
   async getVanRouting(
     request: operations.GetVanRoutingRequest,

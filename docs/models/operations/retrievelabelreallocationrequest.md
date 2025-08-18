@@ -6,7 +6,7 @@
 import { RetrieveLabelReallocationRequest } from "dwolla/models/operations";
 
 let value: RetrieveLabelReallocationRequest = {
-  id: "<id>",
+  reallocationId: "<id>",
 };
 ```
 
@@ -14,4 +14,4 @@ let value: RetrieveLabelReallocationRequest = {
 
 | Field                                | Type                                 | Required                             | Description                          |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| `id`                                 | *string*                             | :heavy_check_mark:                   | Label reallocation unique identifier |
+| `reallocationId`                     | *string*                             | :heavy_check_mark:                   | Label reallocation unique identifier |

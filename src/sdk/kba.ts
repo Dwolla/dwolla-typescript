@@ -3,7 +3,6 @@
  */
 
 import { kbaGetQuestions } from "../funcs/kbaGetQuestions.js";
-import { kbaInitiate } from "../funcs/kbaInitiate.js";
 import { kbaVerify } from "../funcs/kbaVerify.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
@@ -11,27 +10,10 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class Kba extends ClientSDK {
   /**
-   * Initiate a KBA session
-   *
-   * @remarks
-   * Initiate a KBA session
-   */
-  async initiate(
-    request: operations.InitiateKbaForCustomerRequest,
-    options?: RequestOptions,
-  ): Promise<operations.InitiateKbaForCustomerResponse | undefined> {
-    return unwrapAsync(kbaInitiate(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
    * Retrieve KBA Questions
    *
    * @remarks
-   * Retrieve KBA Questions
+   * Returns the KBA questions for a specific KBA session. The questions are used to verify the customer's identity during the KBA process.
    */
   async getQuestions(
     request: operations.GetKbaQuestionsRequest,
@@ -48,12 +30,12 @@ export class Kba extends ClientSDK {
    * Verify KBA Questions
    *
    * @remarks
-   * Verify KBA Questions
+   * Submits customer answers to KBA questions for identity verification. Requires four question-answer pairs with questionId and answerId values. Returns verification status indicating whether the customer passed or failed the KBA authentication.
    */
   async verify(
-    request: operations.VerifyRequest,
+    request: operations.VerifyKbaQuestionsRequest,
     options?: RequestOptions,
-  ): Promise<operations.VerifyResponse> {
+  ): Promise<operations.VerifyKbaQuestionsResponse> {
     return unwrapAsync(kbaVerify(
       this,
       request,

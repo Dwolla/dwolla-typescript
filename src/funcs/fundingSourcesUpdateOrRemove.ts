@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Update or remove a funding source
  *
  * @remarks
- * Update or remove a funding source
+ * Updates a bank funding source's details or soft deletes it. When updating, you can change the name (any status) or modify routing/account numbers and account type (unverified status only). When removing, the funding source is soft deleted and can still be accessed but marked as removed.
  */
 export function fundingSourcesUpdateOrRemove(
   client: DwollaCore,

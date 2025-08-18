@@ -10,10 +10,10 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class AccountsMassPayments extends ClientSDK {
   /**
-   * List mass payments for an account
+   * List account mass payments
    *
    * @remarks
-   * List mass payments for an account
+   * Returns a paginated list of mass payments created by your Main Dwolla account. Results are sorted by creation date in descending order (newest first) and can be filtered by correlation ID.
    */
   async list(
     request: operations.ListMassPaymentsRequest,

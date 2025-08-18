@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Create a webhook subscription
  *
  * @remarks
- * Create a webhook subscription
+ * Create a webhook subscription to deliver webhook notifications to a specified URL endpoint for your application. Requires a destination URL where Dwolla will send notifications and a secret key for webhook validation and security. Returns the location of the created subscription resource. Essential for establishing real-time event notifications and automated integrations with Dwolla's payment processing events.
  */
 export function webhookSubscriptionsCreate(
   client: DwollaCore,

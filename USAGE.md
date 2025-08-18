@@ -10,7 +10,7 @@ const dwolla = new Dwolla({
 });
 
 async function run() {
-  const result = await dwolla.tokens.createApplicationAccessToken({
+  const result = await dwolla.tokens.create({
     grantType: "client_credentials",
   });
 

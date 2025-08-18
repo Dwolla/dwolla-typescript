@@ -6,7 +6,7 @@
 import { GetLabelLedgerEntryRequest } from "dwolla/models/operations";
 
 let value: GetLabelLedgerEntryRequest = {
-  id: "<id>",
+  ledgerEntryId: "<id>",
 };
 ```
 
@@ -14,4 +14,4 @@ let value: GetLabelLedgerEntryRequest = {
 
 | Field                                  | Type                                   | Required                               | Description                            |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| `id`                                   | *string*                               | :heavy_check_mark:                     | A label ledger entry unique identifier |
+| `ledgerEntryId`                        | *string*                               | :heavy_check_mark:                     | A label ledger entry unique identifier |

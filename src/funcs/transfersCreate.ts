@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Initiate a transfer
  *
  * @remarks
- * Initiate a transfer
+ * Initiate a transfer between funding sources from a Dwolla Account or API Customer resource. Supports ACH, Instant Payments (RTP/FedNow), and wire transfers with optional expedited clearing, facilitator fees, metadata, and correlation IDs for enhanced traceability. Includes idempotency key support to prevent duplicate transfers and extensive customization options for addenda records and processing channels. Returns the location of the created transfer resource for tracking and management.
  */
 export function transfersCreate(
   client: DwollaCore,

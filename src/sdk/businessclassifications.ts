@@ -14,7 +14,7 @@ export class BusinessClassifications extends ClientSDK {
    * List business classifications
    *
    * @remarks
-   * Retrieve an _embedded list of business classifications that contains an _embedded list of industry classifications.
+   * Returns a directory of business and industry classifications required for creating business verified customers. Each business classification contains multiple industry classifications. The industry classification ID must be provided in the businessClassification parameter during business customer creation for verification.
    */
   async list(
     options?: RequestOptions,
@@ -29,7 +29,7 @@ export class BusinessClassifications extends ClientSDK {
    * Retrieve a business classification
    *
    * @remarks
-   * Retrieve a business classification by id.
+   * Returns a specific business classification with its embedded industry classifications. Use this endpoint to browse available industry options within a business category and obtain the industry classification ID required for the businessClassification parameter when creating business verified customers.
    */
   async get(
     request: operations.RetrieveBusinessClassificationRequest,

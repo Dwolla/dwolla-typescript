@@ -7,11 +7,11 @@ Operations related to Accounts
 
 ### Available Operations
 
-* [get](#get) - Retrieve Account Details
+* [get](#get) - Retrieve account details
 
 ## get
 
-Retrieve basic account details belonging to the authorized Dwolla account.
+Returns basic account information for your authorized Main Dwolla Account, including account ID, name, and links to related resources such as funding sources, transfers, and customers.
 
 ### Example Usage
 

@@ -3,19 +3,24 @@
  */
 
 import { webhooksGet } from "../funcs/webhooksGet.js";
-import { webhooksListRetries } from "../funcs/webhooksListRetries.js";
 import { webhooksRetry } from "../funcs/webhooksRetry.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as models from "../models/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { Retries } from "./retries.js";
 
 export class Webhooks extends ClientSDK {
+  private _retries?: Retries;
+  get retries(): Retries {
+    return (this._retries ??= new Retries(this._options));
+  }
+
   /**
    * Retrieve a webhook
    *
    * @remarks
-   * Retrieve a webhook
+   * Retrieve detailed information for a specific webhook by its unique identifier including delivery attempts and response data. Returns webhook details with topic, account information, delivery attempts containing request/response history, and links to subscription and retry resources. Essential for debugging webhook delivery issues, analyzing response data, and monitoring notification processing status.
    */
   async get(
     request: operations.GetWebhookRequest,
@@ -29,27 +34,10 @@ export class Webhooks extends ClientSDK {
   }
 
   /**
-   * List retries for a webhook
-   *
-   * @remarks
-   * List retries for a webhook
-   */
-  async listRetries(
-    request: operations.ListWebhookRetriesRequest,
-    options?: RequestOptions,
-  ): Promise<models.WebhookRetries> {
-    return unwrapAsync(webhooksListRetries(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
    * Retry a webhook
    *
    * @remarks
-   * Retry a webhook
+   * Retry a webhook by its unique identifier to redeliver the notification to your endpoint. Creates a new retry attempt and returns the location of the new webhook resource. Essential for recovering from webhook delivery failures and ensuring reliable event notification processing in your application.
    */
   async retry(
     request: operations.RetryWebhookRequest,

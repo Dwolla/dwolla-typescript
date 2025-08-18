@@ -6,19 +6,24 @@ import { webhookSubscriptionsCreate } from "../funcs/webhookSubscriptionsCreate.
 import { webhookSubscriptionsDelete } from "../funcs/webhookSubscriptionsDelete.js";
 import { webhookSubscriptionsGet } from "../funcs/webhookSubscriptionsGet.js";
 import { webhookSubscriptionsList } from "../funcs/webhookSubscriptionsList.js";
-import { webhookSubscriptionsListWebhooks } from "../funcs/webhookSubscriptionsListWebhooks.js";
 import { webhookSubscriptionsUpdate } from "../funcs/webhookSubscriptionsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as models from "../models/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { WebhookSubscriptionsWebhooks } from "./webhooksubscriptionswebhooks.js";
 
 export class WebhookSubscriptions extends ClientSDK {
+  private _webhooks?: WebhookSubscriptionsWebhooks;
+  get webhooks(): WebhookSubscriptionsWebhooks {
+    return (this._webhooks ??= new WebhookSubscriptionsWebhooks(this._options));
+  }
+
   /**
    * List webhook subscriptions
    *
    * @remarks
-   * List webhook subscriptions
+   * Retrieve all webhook subscriptions that belong to an application including their configuration details and status. Returns subscription details including webhook endpoints, status, creation dates, and links to associated webhooks with total count. Essential for webhook management and monitoring subscription health.
    */
   async list(
     options?: RequestOptions,
@@ -33,7 +38,7 @@ export class WebhookSubscriptions extends ClientSDK {
    * Create a webhook subscription
    *
    * @remarks
-   * Create a webhook subscription
+   * Create a webhook subscription to deliver webhook notifications to a specified URL endpoint for your application. Requires a destination URL where Dwolla will send notifications and a secret key for webhook validation and security. Returns the location of the created subscription resource. Essential for establishing real-time event notifications and automated integrations with Dwolla's payment processing events.
    */
   async create(
     request: operations.CreateWebhookSubscriptionRequest,
@@ -50,7 +55,7 @@ export class WebhookSubscriptions extends ClientSDK {
    * Retrieve a webhook subscription
    *
    * @remarks
-   * Retrieve a webhook subscription
+   * Retrieve detailed information for a specific webhook subscription by its unique identifier. Returns subscription configuration including URL endpoint, creation date, and links to associated webhooks for comprehensive subscription management. Essential for monitoring webhook subscription status and accessing webhook delivery history.
    */
   async get(
     request: operations.GetWebhookSubscriptionRequest,
@@ -67,7 +72,7 @@ export class WebhookSubscriptions extends ClientSDK {
    * Update a webhook subscription
    *
    * @remarks
-   * Update a webhook subscription
+   * Update a webhook subscription to pause or resume webhook delivery notifications. Allows toggling the paused status to temporarily stop webhook notifications without deleting the subscription. Returns the updated subscription resource with the new paused status. Use this endpoint to manage webhook delivery during maintenance or troubleshooting periods.
    */
   async update(
     request: operations.UpdateWebhookSubscriptionRequest,
@@ -84,30 +89,13 @@ export class WebhookSubscriptions extends ClientSDK {
    * Delete a webhook subscription
    *
    * @remarks
-   * Delete a webhook subscription
+   * Delete a webhook subscription to permanently remove webhook notifications for your application. This action stops all future webhook deliveries and cannot be undone. Returns the deleted subscription resource for confirmation. Use this endpoint when webhook notifications are no longer needed or when cleaning up unused subscriptions.
    */
   async delete(
     request: operations.DeleteRequest,
     options?: RequestOptions,
   ): Promise<models.WebhookSubscription> {
     return unwrapAsync(webhookSubscriptionsDelete(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * List webhooks for a webhook subscription
-   *
-   * @remarks
-   * List webhooks for a webhook subscription
-   */
-  async listWebhooks(
-    request: operations.ListWebhooksRequest,
-    options?: RequestOptions,
-  ): Promise<operations.ListWebhooksResponse> {
-    return unwrapAsync(webhookSubscriptionsListWebhooks(
       this,
       request,
       options,

@@ -11,7 +11,7 @@ export type GetLabelLedgerEntryRequest = {
   /**
    * A label ledger entry unique identifier
    */
-  id: string;
+  ledgerEntryId: string;
 };
 
 /** @internal */
@@ -20,12 +20,12 @@ export const GetLabelLedgerEntryRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string(),
+  ledgerEntryId: z.string(),
 });
 
 /** @internal */
 export type GetLabelLedgerEntryRequest$Outbound = {
-  id: string;
+  ledgerEntryId: string;
 };
 
 /** @internal */
@@ -34,7 +34,7 @@ export const GetLabelLedgerEntryRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetLabelLedgerEntryRequest
 > = z.object({
-  id: z.string(),
+  ledgerEntryId: z.string(),
 });
 
 /**

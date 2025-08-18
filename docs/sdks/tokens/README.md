@@ -7,11 +7,11 @@ Operations related to Application Access Tokens
 
 ### Available Operations
 
-* [createApplicationAccessToken](#createapplicationaccesstoken) - Create an application access token
+* [create](#create) - Create an application access token
 
-## createApplicationAccessToken
+## create
 
-Generates an access token that contains permissions scoped to the application owner's Dwolla Client Account.
+Generate an application access token using OAuth 2.0 client credentials flow for server-to-server authentication. Requires client ID and secret sent via Basic authentication header with grant_type=client_credentials in the request body. Returns a bearer access token with expiration time for authenticating API requests scoped to your application. Essential for secure API access.
 
 ### Example Usage
 
@@ -27,7 +27,7 @@ const dwolla = new Dwolla({
 });
 
 async function run() {
-  const result = await dwolla.tokens.createApplicationAccessToken({
+  const result = await dwolla.tokens.create({
     grantType: "client_credentials",
   });
 
@@ -43,7 +43,7 @@ The standalone function version of this method:
 
 ```typescript
 import { DwollaCore } from "dwolla/core.js";
-import { tokensCreateApplicationAccessToken } from "dwolla/funcs/tokensCreateApplicationAccessToken.js";
+import { tokensCreate } from "dwolla/funcs/tokensCreate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -55,14 +55,14 @@ const dwolla = new DwollaCore({
 });
 
 async function run() {
-  const res = await tokensCreateApplicationAccessToken(dwolla, {
+  const res = await tokensCreate(dwolla, {
     grantType: "client_credentials",
   });
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
   } else {
-    console.log("tokensCreateApplicationAccessToken failed:", res.error);
+    console.log("tokensCreate failed:", res.error);
   }
 }
 

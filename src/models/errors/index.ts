@@ -131,7 +131,7 @@ export * from "./updatebeneficialowner.js";
 export * from "./updatemasspayment.js";
 export * from "./updateorremovefundingsource.js";
 export * from "./validationerrorschema.js";
-export * from "./verify.js";
+export * from "./verifykbaquestions.js";
 export * from "./weeklyreceivelimitreachederror.js";
 export * from "./wireaccountnotfounderror.js";
 export * from "./wireaccountrestrictederror.js";

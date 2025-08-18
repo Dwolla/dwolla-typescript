@@ -5,11 +5,11 @@
 
 ### Available Operations
 
-* [list](#list) - List mass payments for an account
+* [list](#list) - List account mass payments
 
 ## list
 
-List mass payments for an account
+Returns a paginated list of mass payments created by your Main Dwolla account. Results are sorted by creation date in descending order (newest first) and can be filtered by correlation ID.
 
 ### Example Usage
 

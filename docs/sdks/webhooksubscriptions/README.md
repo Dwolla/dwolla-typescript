@@ -10,11 +10,10 @@
 * [get](#get) - Retrieve a webhook subscription
 * [update](#update) - Update a webhook subscription
 * [delete](#delete) - Delete a webhook subscription
-* [listWebhooks](#listwebhooks) - List webhooks for a webhook subscription
 
 ## list
 
-List webhook subscriptions
+Retrieve all webhook subscriptions that belong to an application including their configuration details and status. Returns subscription details including webhook endpoints, status, creation dates, and links to associated webhooks with total count. Essential for webhook management and monitoring subscription health.
 
 ### Example Usage
 
@@ -90,7 +89,7 @@ run();
 
 ## create
 
-Create a webhook subscription
+Create a webhook subscription to deliver webhook notifications to a specified URL endpoint for your application. Requires a destination URL where Dwolla will send notifications and a secret key for webhook validation and security. Returns the location of the created subscription resource. Essential for establishing real-time event notifications and automated integrations with Dwolla's payment processing events.
 
 ### Example Usage
 
@@ -176,7 +175,7 @@ run();
 
 ## get
 
-Retrieve a webhook subscription
+Retrieve detailed information for a specific webhook subscription by its unique identifier. Returns subscription configuration including URL endpoint, creation date, and links to associated webhooks for comprehensive subscription management. Essential for monitoring webhook subscription status and accessing webhook delivery history.
 
 ### Example Usage
 
@@ -256,7 +255,7 @@ run();
 
 ## update
 
-Update a webhook subscription
+Update a webhook subscription to pause or resume webhook delivery notifications. Allows toggling the paused status to temporarily stop webhook notifications without deleting the subscription. Returns the updated subscription resource with the new paused status. Use this endpoint to manage webhook delivery during maintenance or troubleshooting periods.
 
 ### Example Usage
 
@@ -343,7 +342,7 @@ run();
 
 ## delete
 
-Delete a webhook subscription
+Delete a webhook subscription to permanently remove webhook notifications for your application. This action stops all future webhook deliveries and cannot be undone. Returns the deleted subscription resource for confirmation. Use this endpoint when webhook notifications are no longer needed or when cleaning up unused subscriptions.
 
 ### Example Usage
 
@@ -418,86 +417,5 @@ run();
 
 | Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| errors.NotFoundError               | 404                                | application/vnd.dwolla.v1.hal+json |
-| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
-
-## listWebhooks
-
-List webhooks for a webhook subscription
-
-### Example Usage
-
-<!-- UsageSnippet language="typescript" operationID="listWebhooks" method="get" path="/webhook-subscriptions/{id}/webhooks" -->
-```typescript
-import { Dwolla } from "dwolla";
-
-const dwolla = new Dwolla({
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
-});
-
-async function run() {
-  const result = await dwolla.webhookSubscriptions.listWebhooks({
-    id: "<id>",
-  });
-
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { DwollaCore } from "dwolla/core.js";
-import { webhookSubscriptionsListWebhooks } from "dwolla/funcs/webhookSubscriptionsListWebhooks.js";
-
-// Use `DwollaCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const dwolla = new DwollaCore({
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
-});
-
-async function run() {
-  const res = await webhookSubscriptionsListWebhooks(dwolla, {
-    id: "<id>",
-  });
-  if (res.ok) {
-    const { value: result } = res;
-    console.log(result);
-  } else {
-    console.log("webhookSubscriptionsListWebhooks failed:", res.error);
-  }
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.ListWebhooksRequest](../../models/operations/listwebhooksrequest.md)                                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[operations.ListWebhooksResponse](../../models/operations/listwebhooksresponse.md)\>**
-
-### Errors
-
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| errors.ForbiddenError              | 403                                | application/vnd.dwolla.v1.hal+json |
 | errors.NotFoundError               | 404                                | application/vnd.dwolla.v1.hal+json |
 | errors.APIError                    | 4XX, 5XX                           | \*/\*                              |

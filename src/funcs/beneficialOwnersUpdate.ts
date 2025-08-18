@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Update beneficial owner
  *
  * @remarks
- * Update beneficial owner
+ * Updates a beneficial owner's information to retry verification when their status is "incomplete". Only beneficial owners with incomplete verification status can be updated. Used to correct information that caused initial verification to fail.
  */
 export function beneficialOwnersUpdate(
   client: DwollaCore,

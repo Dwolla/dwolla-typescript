@@ -35,7 +35,7 @@ import { isReadableStream } from "../types/streams.js";
  * Create a document for beneficial owner
  *
  * @remarks
- * Create a document for beneficial owner
+ * Uploads an identity verification document for a beneficial owner using multipart form-data. Required when a beneficial owner has "document" status during the business verification process.
  */
 export function beneficialOwnersDocumentsCreate(
   client: DwollaCore,
