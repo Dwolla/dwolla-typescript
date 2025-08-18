@@ -12,7 +12,7 @@ Operations related to Events
 
 ## list
 
-List events
+Returns a paginated list of events representing state changes to resources in your Dwolla application. Events track actions on customers, transfers, funding sources, and other resources, sorted by creation date (newest first). Events are retained for 30 days and are essential for webhook notifications and system activity monitoring.
 
 ### Example Usage
 
@@ -88,7 +88,7 @@ run();
 
 ## get
 
-Retrieve event
+Returns detailed information for a specific event representing a state change that occurred on a resource in your Dwolla application. Includes the event topic, timestamp, resource links, and correlation ID if applicable.
 
 ### Example Usage
 

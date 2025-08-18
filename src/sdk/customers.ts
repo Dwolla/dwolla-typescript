@@ -11,10 +11,14 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as models from "../models/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { BeneficialOwnership } from "./beneficialownership.js";
 import { CustomersBeneficialOwners } from "./customersbeneficialowners.js";
 import { CustomersDocuments } from "./customersdocuments.js";
 import { CustomersExchanges } from "./customersexchanges.js";
+import { CustomersExchangeSessions } from "./customersexchangesessions.js";
 import { CustomersFundingSources } from "./customersfundingsources.js";
+import { CustomersKba } from "./customerskba.js";
+import { CustomersLabels } from "./customerslabels.js";
 import { CustomersMassPayments } from "./customersmasspayments.js";
 import { CustomersTransfers } from "./customerstransfers.js";
 
@@ -26,9 +30,21 @@ export class Customers extends ClientSDK {
     ));
   }
 
+  private _beneficialOwnership?: BeneficialOwnership;
+  get beneficialOwnership(): BeneficialOwnership {
+    return (this._beneficialOwnership ??= new BeneficialOwnership(
+      this._options,
+    ));
+  }
+
   private _documents?: CustomersDocuments;
   get documents(): CustomersDocuments {
     return (this._documents ??= new CustomersDocuments(this._options));
+  }
+
+  private _kba?: CustomersKba;
+  get kba(): CustomersKba {
+    return (this._kba ??= new CustomersKba(this._options));
   }
 
   private _fundingSources?: CustomersFundingSources;
@@ -48,16 +64,28 @@ export class Customers extends ClientSDK {
     return (this._massPayments ??= new CustomersMassPayments(this._options));
   }
 
+  private _labels?: CustomersLabels;
+  get labels(): CustomersLabels {
+    return (this._labels ??= new CustomersLabels(this._options));
+  }
+
   private _exchanges?: CustomersExchanges;
   get exchanges(): CustomersExchanges {
     return (this._exchanges ??= new CustomersExchanges(this._options));
+  }
+
+  private _exchangeSessions?: CustomersExchangeSessions;
+  get exchangeSessions(): CustomersExchangeSessions {
+    return (this._exchangeSessions ??= new CustomersExchangeSessions(
+      this._options,
+    ));
   }
 
   /**
    * List and search customers
    *
    * @remarks
-   * List and search customers allowing you to filter by email and status, as well as search on key fields such as firstName, lastName, and businessName.
+   * Returns a paginated list of customers sorted by creation date. Supports fuzzy search across customer names, business names, and email addresses, plus exact filtering by email and verification status. Default limit is 25 customers per page, maximum 200.
    */
   async list(
     request: operations.ListAndSearchCustomersRequest,
@@ -74,7 +102,7 @@ export class Customers extends ClientSDK {
    * Create a customer
    *
    * @remarks
-   * Create an unverified customer, verified customer, or receive-only user.
+   * Creates a new customer with different verification levels and capabilities. Supports personal verified customers (individuals), business verified customers (businesses), unverified customers, and receive-only users. Customer type determines transaction limits, verification requirements, and available features.
    */
   async create(
     request: operations.CreateCustomerRequest,
@@ -91,7 +119,7 @@ export class Customers extends ClientSDK {
    * Retrieve a customer
    *
    * @remarks
-   * Retrieve details for a single customer
+   * Retrieve identifying information for a specific customer. The returned data varies by customer type - verified customers include contact details, address information, and verification status, while unverified customers and receive-only users contain basic contact information only.
    */
   async get(
     request: operations.GetCustomerRequest,
@@ -125,9 +153,7 @@ export class Customers extends ClientSDK {
    * List available exchange connections
    *
    * @remarks
-   * Retrieve a list of a customer's external bank accounts that have been authorized through MX Connect.
-   * Each account is represented as an "available exchange connection" with details like the account name and associated availableConnectionToken.
-   * This information is essential for creating an exchange and corresponding funding source within Dwolla.
+   * Returns available exchange connections for a customer's bank accounts authorized through MX Connect. Each connection includes an account name and availableConnectionToken required to create exchanges and funding sources for transfers.
    */
   async listAvailableConnections(
     request: operations.ListAvailableExchangeConnectionsRequest,

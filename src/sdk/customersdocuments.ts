@@ -14,7 +14,7 @@ export class CustomersDocuments extends ClientSDK {
    * List documents for customer
    *
    * @remarks
-   * List documents for customer
+   * Returns all identity verification documents submitted for a customer. Includes document status, verification results, document type (passport, driver's license, etc.), and failure reasons if verification was rejected. Used to track document submission and verification progress during the business verification process.
    */
   async list(
     request: operations.ListCustomerDocumentsRequest,
@@ -31,7 +31,7 @@ export class CustomersDocuments extends ClientSDK {
    * Create a document for customer
    *
    * @remarks
-   * Create a document for customer
+   * Uploads an identity verification document for a customer using multipart form-data. Required when a customer has "document" status during the verification process.
    */
   async create(
     request: operations.CreateCustomerDocumentRequest,

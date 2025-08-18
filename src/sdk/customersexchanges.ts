@@ -14,7 +14,7 @@ export class CustomersExchanges extends ClientSDK {
    * List exchanges for a customer
    *
    * @remarks
-   * Retrieve the list of exchanges associated with a Customer resource.
+   * Returns all exchanges for a specific customer. Exchanges represent connections between the customer's external bank accounts and open banking partners. Includes exchange status, creation date, and links to associated funding sources and partners.
    */
   async list(
     request: operations.ListCustomerExchangesRequest,
@@ -31,13 +31,7 @@ export class CustomersExchanges extends ClientSDK {
    * Create an exchange for a customer
    *
    * @remarks
-   * Create an exchange for a customer. The request body will vary based on the exchange partner.
-   * For Finicity, the request body will include finicity-specific fields.
-   * For MX Secure Exchange, the request body will include an MX token.
-   * For MX Open Banking, the request body will include an available connection token.
-   * For Flinks Secure Exchange, the request body will include a token.
-   * For Plaid Secure Exchange, the request body will include a processor token.
-   * For Plaid Open Banking, the request body will include a public token.
+   * Creates an exchange connection between a customer's external bank account and Dwolla through open banking partners. Acts as the handshake that establishes secure access to the customer's bank account data. Request body varies by partner (Plaid, MX, Flinks, Finicity).
    */
   async create(
     request: operations.CreateCustomerExchangeRequest,

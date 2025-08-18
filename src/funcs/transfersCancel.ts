@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Cancel a transfer
  *
  * @remarks
- * Cancel a transfer
+ * Cancel a pending transfer by setting its status to cancelled. Only transfers in pending status can be cancelled before processing begins. Returns the updated transfer resource with cancelled status. Use this endpoint to stop a bank transfer from further processing.
  */
 export function transfersCancel(
   client: DwollaCore,

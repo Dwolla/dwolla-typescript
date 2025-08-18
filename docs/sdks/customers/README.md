@@ -15,7 +15,7 @@ Operations related to Customers
 
 ## list
 
-List and search customers allowing you to filter by email and status, as well as search on key fields such as firstName, lastName, and businessName.
+Returns a paginated list of customers sorted by creation date. Supports fuzzy search across customer names, business names, and email addresses, plus exact filtering by email and verification status. Default limit is 25 customers per page, maximum 200.
 
 ### Example Usage
 
@@ -91,7 +91,7 @@ run();
 
 ## create
 
-Create an unverified customer, verified customer, or receive-only user.
+Creates a new customer with different verification levels and capabilities. Supports personal verified customers (individuals), business verified customers (businesses), unverified customers, and receive-only users. Customer type determines transaction limits, verification requirements, and available features.
 
 ### Example Usage
 
@@ -187,7 +187,7 @@ run();
 
 ## get
 
-Retrieve details for a single customer
+Retrieve identifying information for a specific customer. The returned data varies by customer type - verified customers include contact details, address information, and verification status, while unverified customers and receive-only users contain basic contact information only.
 
 ### Example Usage
 
@@ -411,10 +411,7 @@ run();
 
 ## listAvailableConnections
 
-Retrieve a list of a customer's external bank accounts that have been authorized through MX Connect.
-Each account is represented as an "available exchange connection" with details like the account name and associated availableConnectionToken.
-This information is essential for creating an exchange and corresponding funding source within Dwolla.
-
+Returns available exchange connections for a customer's bank accounts authorized through MX Connect. Each connection includes an account name and availableConnectionToken required to create exchanges and funding sources for transfers.
 
 ### Example Usage
 

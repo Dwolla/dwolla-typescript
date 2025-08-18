@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Create a customer
  *
  * @remarks
- * Create an unverified customer, verified customer, or receive-only user.
+ * Creates a new customer with different verification levels and capabilities. Supports personal verified customers (individuals), business verified customers (businesses), unverified customers, and receive-only users. Customer type determines transaction limits, verification requirements, and available features.
  */
 export function customersCreate(
   client: DwollaCore,

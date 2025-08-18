@@ -78,4 +78,4 @@ export * from "./updatebeneficialowner.js";
 export * from "./updatemasspayment.js";
 export * from "./updateorremovefundingsource.js";
 export * from "./updatewebhooksubscription.js";
-export * from "./verify.js";
+export * from "./verifykbaquestions.js";

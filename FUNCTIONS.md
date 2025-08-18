@@ -20,7 +20,7 @@ specific category of applications.
 
 ```typescript
 import { DwollaCore } from "dwolla/core.js";
-import { tokensCreateApplicationAccessToken } from "dwolla/funcs/tokensCreateApplicationAccessToken.js";
+import { tokensCreate } from "dwolla/funcs/tokensCreate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -32,14 +32,14 @@ const dwolla = new DwollaCore({
 });
 
 async function run() {
-  const res = await tokensCreateApplicationAccessToken(dwolla, {
+  const res = await tokensCreate(dwolla, {
     grantType: "client_credentials",
   });
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
   } else {
-    console.log("tokensCreateApplicationAccessToken failed:", res.error);
+    console.log("tokensCreate failed:", res.error);
   }
 }
 

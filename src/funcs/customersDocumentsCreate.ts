@@ -35,7 +35,7 @@ import { isReadableStream } from "../types/streams.js";
  * Create a document for customer
  *
  * @remarks
- * Create a document for customer
+ * Uploads an identity verification document for a customer using multipart form-data. Required when a customer has "document" status during the verification process.
  */
 export function customersDocumentsCreate(
   client: DwollaCore,

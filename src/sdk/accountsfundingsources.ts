@@ -14,7 +14,9 @@ export class AccountsFundingSources extends ClientSDK {
    * Create a funding source for an account
    *
    * @remarks
-   * Create a funding source for an account
+   * Create a funding source by adding a bank account to a Main Dwolla Account. This endpoint allows you to connect a checking or savings account using either manual bank account details or an exchange resource.
+   *
+   * For more information about funding sources, see the [Funding Sources API Reference](https://developers.dwolla.com/docs/api-reference/funding-sources).
    */
   async create(
     request: models.CreateAccountFundingSource,
@@ -31,7 +33,7 @@ export class AccountsFundingSources extends ClientSDK {
    * List funding sources for an account
    *
    * @remarks
-   * List funding sources for an account
+   * Get a list of all funding sources associated with a specific Main Dwolla Account. This endpoint returns both bank accounts and balance funding sources, with detailed information about each funding source's status, type, and available processing channels.
    */
   async list(
     request: operations.ListFundingSourcesRequest,

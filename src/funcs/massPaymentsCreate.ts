@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Initiate a mass payment
  *
  * @remarks
- * Initiate a mass payment
+ * Create a mass payment containing up to 5,000 individual payment items from a Dwolla Main Account or Verified Customer funding source. Supports optional metadata, correlation IDs for traceability, deferred processing, and expedited transfer options including same-day ACH clearing. Returns the location of the created mass payment resource with a unique identifier for tracking and management.
  */
 export function massPaymentsCreate(
   client: DwollaCore,

@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Update a mass payment
  *
  * @remarks
- * This section covers how to update a mass payment's status to `pending` which triggers processing on a created and deferred mass payment, or `cancelled` which cancels a created and deferred mass payment.
+ * Update the status of a deferred mass payment to control its processing lifecycle. Set status to `pending` to trigger processing and begin fund transfers, or `cancelled` to permanently cancel the mass payment before processing begins. Only applies to mass payments created with deferred status. Returns the updated mass payment resource with the new status.
  */
 export function massPaymentsUpdate(
   client: DwollaCore,

@@ -5,11 +5,11 @@
 
 ### Available Operations
 
-* [list](#list) - List and search transfers for an account
+* [list](#list) - List and search account transfers
 
 ## list
 
-List and search transfers for an account
+Returns a paginated, searchable list of transfers associated with the specified Main Dwolla account. Supports advanced filtering by amount range, date range, transfer status, and correlation ID. Results are limited to 10,000 transfers per query; use date range filters for historical data beyond this limit.
 
 ### Example Usage
 

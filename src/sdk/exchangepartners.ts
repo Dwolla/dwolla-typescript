@@ -14,7 +14,7 @@ export class ExchangePartners extends ClientSDK {
    * List exchange partners
    *
    * @remarks
-   * List exchange partners
+   * Returns a list of all supported exchange partners. Each partner includes a unique ID, name, and status indicating whether they are active or inactive.
    */
   async list(
     options?: RequestOptions,
@@ -29,7 +29,7 @@ export class ExchangePartners extends ClientSDK {
    * Retrieve exchange partner
    *
    * @remarks
-   * Retrieve exchange partner
+   * Returns details for a specific open banking provider that integrates with Dwolla. Includes partner name, status, and creation date. Use this to verify partner availability before creating exchanges and funding sources.
    */
   async get(
     request: operations.GetExchangePartnerRequest,

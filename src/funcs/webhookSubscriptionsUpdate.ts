@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Update a webhook subscription
  *
  * @remarks
- * Update a webhook subscription
+ * Update a webhook subscription to pause or resume webhook delivery notifications. Allows toggling the paused status to temporarily stop webhook notifications without deleting the subscription. Returns the updated subscription resource with the new paused status. Use this endpoint to manage webhook delivery during maintenance or troubleshooting periods.
  */
 export function webhookSubscriptionsUpdate(
   client: DwollaCore,

@@ -4,20 +4,24 @@
 
 import { massPaymentsCreate } from "../funcs/massPaymentsCreate.js";
 import { massPaymentsGet } from "../funcs/massPaymentsGet.js";
-import { massPaymentsGetItem } from "../funcs/massPaymentsGetItem.js";
-import { massPaymentsListItems } from "../funcs/massPaymentsListItems.js";
 import { massPaymentsUpdate } from "../funcs/massPaymentsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as models from "../models/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { Items } from "./items.js";
 
 export class MassPayments extends ClientSDK {
+  private _items?: Items;
+  get items(): Items {
+    return (this._items ??= new Items(this._options));
+  }
+
   /**
    * Initiate a mass payment
    *
    * @remarks
-   * Initiate a mass payment
+   * Create a mass payment containing up to 5,000 individual payment items from a Dwolla Main Account or Verified Customer funding source. Supports optional metadata, correlation IDs for traceability, deferred processing, and expedited transfer options including same-day ACH clearing. Returns the location of the created mass payment resource with a unique identifier for tracking and management.
    */
   async create(
     request: operations.InitiateMassPaymentRequest,
@@ -34,7 +38,7 @@ export class MassPayments extends ClientSDK {
    * Retrieve a mass payment
    *
    * @remarks
-   * Retrieve a mass payment
+   * Retrieve detailed information for a mass payment by its unique identifier. Returns the current processing status (pending, processing, or complete), creation date, metadata, and links to the source funding source and payment items. Use this endpoint to monitor mass payment processing progress and determine when to check individual item results.
    */
   async get(
     request: operations.GetMassPaymentRequest,
@@ -51,47 +55,13 @@ export class MassPayments extends ClientSDK {
    * Update a mass payment
    *
    * @remarks
-   * This section covers how to update a mass payment's status to `pending` which triggers processing on a created and deferred mass payment, or `cancelled` which cancels a created and deferred mass payment.
+   * Update the status of a deferred mass payment to control its processing lifecycle. Set status to `pending` to trigger processing and begin fund transfers, or `cancelled` to permanently cancel the mass payment before processing begins. Only applies to mass payments created with deferred status. Returns the updated mass payment resource with the new status.
    */
   async update(
     request: operations.UpdateMassPaymentRequest,
     options?: RequestOptions,
   ): Promise<models.MassPayment> {
     return unwrapAsync(massPaymentsUpdate(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * List items for a mass payment
-   *
-   * @remarks
-   * List items for a mass payment
-   */
-  async listItems(
-    request: operations.ListMassPaymentItemsRequest,
-    options?: RequestOptions,
-  ): Promise<operations.ListMassPaymentItemsResponse> {
-    return unwrapAsync(massPaymentsListItems(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * Retrieve mass payment item
-   *
-   * @remarks
-   * Retrieve mass payment item
-   */
-  async getItem(
-    request: operations.GetMassPaymentItemRequest,
-    options?: RequestOptions,
-  ): Promise<models.MassPaymentItem> {
-    return unwrapAsync(massPaymentsGetItem(
       this,
       request,
       options,

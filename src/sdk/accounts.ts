@@ -34,10 +34,10 @@ export class Accounts extends ClientSDK {
   }
 
   /**
-   * Retrieve Account Details
+   * Retrieve account details
    *
    * @remarks
-   * Retrieve basic account details belonging to the authorized Dwolla account.
+   * Returns basic account information for your authorized Main Dwolla Account, including account ID, name, and links to related resources such as funding sources, transfers, and customers.
    */
   async get(
     request: operations.GetAccountRequest,

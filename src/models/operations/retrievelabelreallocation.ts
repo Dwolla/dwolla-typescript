@@ -12,7 +12,7 @@ export type RetrieveLabelReallocationRequest = {
   /**
    * Label reallocation unique identifier
    */
-  id: string;
+  reallocationId: string;
 };
 
 export type RetrieveLabelReallocationSelf = {
@@ -53,12 +53,12 @@ export const RetrieveLabelReallocationRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string(),
+  reallocationId: z.string(),
 });
 
 /** @internal */
 export type RetrieveLabelReallocationRequest$Outbound = {
-  id: string;
+  reallocationId: string;
 };
 
 /** @internal */
@@ -67,7 +67,7 @@ export const RetrieveLabelReallocationRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   RetrieveLabelReallocationRequest
 > = z.object({
-  id: z.string(),
+  reallocationId: z.string(),
 });
 
 /**
