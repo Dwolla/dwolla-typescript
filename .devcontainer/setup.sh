@@ -7,8 +7,8 @@ curl -fsSL https://raw.githubusercontent.com/speakeasy-api/speakeasy/main/instal
 rmdir samples || true
 mkdir samples
 
-npm install
-npm install -g ts-node
+npm install --ignore-scripts
+npm install -g ts-node --ignore-scripts
 npm link
 npm link dwolla
 TS_CONFIG_CONTENT=$(cat <<EOL
@@ -27,4 +27,4 @@ EOL
 echo "$TS_CONFIG_CONTENT" > samples/tsconfig.json
 
 # Generate starter usage sample with speakeasy
-speakeasy generate usage -s https://raw.githubusercontent.com/Dwolla/dwolla-openapi/refs/heads/main/openapi.yml -l typescript -o samples/root.ts
+speakeasy generate usage -s ./generated/openapi.yaml -l typescript -o samples/root.ts

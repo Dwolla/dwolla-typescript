@@ -12,7 +12,7 @@ let value: CreateCustomerExchangeSessionWithRedirectLinks = {
   },
   redirectUrl: {
     href:
-      "{\"description\":\"Visa example\",\"value\":\"https://www.yourdomain.com/iav-callback\"}",
+      "{\"description\":\"Plaid Android example\",\"value\":\"com.example.app123\"}",
   },
 };
 ```

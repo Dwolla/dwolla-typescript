@@ -7,12 +7,12 @@ import { CreateReAuthExchangeSessionWithRedirectRedirectUrl } from "dwolla/model
 
 let value: CreateReAuthExchangeSessionWithRedirectRedirectUrl = {
   href:
-    "{\"description\":\"Visa example\",\"value\":\"https://www.yourdomain.com/iav-callback\"}",
+    "{\"description\":\"Plaid Android example\",\"value\":\"com.example.app123\"}",
 };
 ```
 
 ## Fields
 
-| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           | Example                                                                               |
-| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `href`                                                                                | *string*                                                                              | :heavy_check_mark:                                                                    | Required for Visa and Plaid mobile sessions                                           | {<br/>"description": "Visa example",<br/>"value": "https://www.yourdomain.com/iav-callback"<br/>} |
+| Field                                                                     | Type                                                                      | Required                                                                  | Description                                                               | Example                                                                   |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `href`                                                                    | *string*                                                                  | :heavy_check_mark:                                                        | Required for Plaid mobile sessions                                        | {<br/>"description": "Plaid Android example",<br/>"value": "com.example.app123"<br/>} |

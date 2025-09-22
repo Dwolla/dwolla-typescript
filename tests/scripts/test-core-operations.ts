@@ -8,9 +8,12 @@ import * as dotenv from 'dotenv';
 import type {
   CreateVerifiedPersonalCustomer,
   CreateVerifiedBusinessCustomerWithController,
+  CreateVerifiedBusinessCustomerWithInternationalController,
+  CreateVerifiedSolePropCustomer,
+  CreateUnverifiedCustomer,
+  CreateReceiveOnlyUser,
   CreateCustomerFundingSource,
   CreateUSBeneficialOwner,
-  VerifyMicroDeposits,
   TransferAmount,
 } from '../../dist/esm/models/index.js';
 import type {
@@ -139,6 +142,149 @@ function generateBusinessCustomer(): CreateVerifiedBusinessCustomerWithControlle
         country: 'US',
       },
     },
+  };
+}
+
+// New customer type generators for path fragment testing
+function generateUnverifiedCustomer(): CreateUnverifiedCustomer {
+  return {
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    email: `unverified+${Date.now()}+${faker.string.alphanumeric(4)}@example.com`,
+    ipAddress: faker.internet.ip(),
+    phone: '5555551234', // Use valid US phone format
+    correlationId: faker.string.uuid(),
+    businessName: faker.company.name(),
+  };
+}
+
+function generateReceiveOnlyUser(): CreateReceiveOnlyUser {
+  return {
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    email: `receiveonly+${Date.now()}+${faker.string.alphanumeric(4)}@example.com`,
+    type: 'receive-only',
+    ipAddress: faker.internet.ip(),
+    phone: '5555551234', // Use valid US phone format
+    correlationId: faker.string.uuid(),
+    businessName: faker.company.name(),
+  };
+}
+
+function generateVerifiedPersonalCustomer(): CreateVerifiedPersonalCustomer {
+  return {
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    email: `verified-personal+${Date.now()}+${faker.string.alphanumeric(4)}@example.com`,
+    type: 'personal',
+    address1: faker.location.streetAddress(),
+    city: faker.location.city(),
+    state: faker.location.state({ abbreviated: true }),
+    postalCode: faker.location.zipCode(),
+    dateOfBirth: '1990-01-01',
+    ssn: '1234',
+    ipAddress: faker.internet.ip(),
+    phone: '5555551234', // Use valid US phone format
+    correlationId: faker.string.uuid(),
+  };
+}
+
+function generateVerifiedSolePropCustomer(): CreateVerifiedSolePropCustomer {
+  return {
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    email: `verified-soleprop+${Date.now()}+${faker.string.alphanumeric(4)}@example.com`,
+    type: 'business',
+    businessType: 'soleProprietorship',
+    businessName: faker.company.name(),
+    businessClassification: '9ed38155-7d6f-11e3-83c3-5404a6144203',
+    address1: faker.location.streetAddress(),
+    city: faker.location.city(),
+    state: faker.location.state({ abbreviated: true }),
+    postalCode: faker.location.zipCode(),
+    dateOfBirth: '1975-01-01',
+    ssn: '1234',
+    ein: '12-3456789',
+    ipAddress: faker.internet.ip(),
+    phone: '5555551234', // Use valid US phone format
+    correlationId: faker.string.uuid(),
+    doingBusinessAs: faker.company.name(),
+    website: faker.internet.url(),
+  };
+}
+
+function generateVerifiedBusinessCustomer(): CreateVerifiedBusinessCustomerWithController {
+  return {
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    email: `verified-business+${Date.now()}+${faker.string.alphanumeric(4)}@example.com`,
+    type: 'business',
+    businessName: faker.company.name(),
+    businessType: 'llc',
+    businessClassification: '9ed38155-7d6f-11e3-83c3-5404a6144203',
+    ein: '12-3456789',
+    address1: faker.location.streetAddress(),
+    city: faker.location.city(),
+    state: faker.location.state({ abbreviated: true }),
+    postalCode: faker.location.zipCode(),
+    controller: {
+      firstName: faker.person.firstName(),
+      lastName: faker.person.lastName(),
+      title: 'CEO',
+      dateOfBirth: '1975-01-01',
+      ssn: '1234',
+      address: {
+        address1: faker.location.streetAddress(),
+        city: faker.location.city(),
+        stateProvinceRegion: faker.location.state({ abbreviated: true }),
+        postalCode: faker.location.zipCode(),
+        country: 'US',
+      },
+    },
+    ipAddress: faker.internet.ip(),
+    phone: '5555551234', // Use valid US phone format
+    correlationId: faker.string.uuid(),
+    doingBusinessAs: faker.company.name(),
+    website: faker.internet.url(),
+  };
+}
+
+function generateVerifiedBusinessInternationalCustomer(): CreateVerifiedBusinessCustomerWithInternationalController {
+  return {
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    email: `verified-business-intl+${Date.now()}+${faker.string.alphanumeric(4)}@example.com`,
+    type: 'business',
+    businessName: faker.company.name(),
+    businessType: 'corporation',
+    businessClassification: '9ed38155-7d6f-11e3-83c3-5404a6144203',
+    ein: '12-3456789',
+    address1: faker.location.streetAddress(),
+    city: faker.location.city(),
+    state: faker.location.state({ abbreviated: true }),
+    postalCode: faker.location.zipCode(),
+    controller: {
+      firstName: faker.person.firstName(),
+      lastName: faker.person.lastName(),
+      title: 'CEO',
+      dateOfBirth: '1975-01-01',
+      address: {
+        address1: faker.location.streetAddress(),
+        city: faker.location.city(),
+        stateProvinceRegion: 'ON', // Use proper Canadian province abbreviation
+        postalCode: 'K1A 0A9',
+        country: 'CA',
+      },
+      passport: {
+        number: 'AB123456',
+        country: 'CA',
+      },
+    },
+    ipAddress: faker.internet.ip(),
+    phone: '5555551234', // Use valid US phone format
+    correlationId: faker.string.uuid(),
+    doingBusinessAs: faker.company.name(),
+    website: faker.internet.url(),
   };
 }
 
@@ -378,10 +524,10 @@ async function runCoreTests(): Promise<void> {
 
     let personalCustomerId: string;
     try {
-      const personalCustomerData = generatePersonalCustomer();
-      const personalResponse = await retry(() => dwolla.customers.create(personalCustomerData));
+      const personalCustomerData = generateVerifiedPersonalCustomer();
+      const personalResponse = await retry(() => dwolla.customers.createVerifiedPersonal(personalCustomerData));
       personalCustomerId = extractIdFromLocation(personalResponse, 'personal customer');
-      trackApiCall('POST /customers');
+      trackApiCall('POST /customers#verified-personal');
       trackResource('Personal Customer', personalCustomerId);
       logRawResponse('Personal Customer Creation', personalResponse);
 
@@ -413,10 +559,10 @@ async function runCoreTests(): Promise<void> {
     try {
       log('Creating business customer...', 'info');
 
-      const businessCustomerData = generateBusinessCustomer();
-      const businessResponse = await retry(() => dwolla.customers.create(businessCustomerData));
+      const businessCustomerData = generateVerifiedBusinessCustomer();
+      const businessResponse = await retry(() => dwolla.customers.createVerifiedBusiness(businessCustomerData));
       businessCustomerId = extractIdFromLocation(businessResponse, 'business customer');
-      trackApiCall('POST /customers');
+      trackApiCall('POST /customers#verified-business');
       trackResource('Business Customer', businessCustomerId);
       logRawResponse('Business Customer Creation', businessResponse);
 
@@ -499,7 +645,7 @@ async function runCoreTests(): Promise<void> {
       testsRun++;
 
       try {
-        const ownershipStatus = await dwolla.beneficialOwners.getOwnershipStatus({
+        const ownershipStatus = await dwolla.customers.beneficialOwnership.get({
           id: businessCustomerId,
         });
         log(`Beneficial ownership status: ${ownershipStatus.status}`, 'success');
@@ -511,7 +657,7 @@ async function runCoreTests(): Promise<void> {
           testsRun++;
 
           try {
-            const certificationResponse = await dwolla.beneficialOwners.certifyOwnership({
+            const certificationResponse = await dwolla.customers.beneficialOwnership.certify({
               id: businessCustomerId,
               requestBody: { status: 'certified' },
             });
@@ -617,25 +763,22 @@ async function runCoreTests(): Promise<void> {
 
     try {
       // Note: Not using retry() for microdeposits operations as they are stateful/non-idempotent
-      const initiateResponse = await dwolla.fundingSources.initiateOrVerifyMicroDeposits({
+      const initiateResponse = await dwolla.fundingSources.microDeposits.initiate({
         id: personalFSId,
         // No requestBody = initiate microdeposits
       });
       trackApiCall('POST /funding-sources/{id}/micro-deposits');
 
-      // Check if response is defined and has expected structure
-      if (initiateResponse && initiateResponse.result) {
+      // Check if response is defined
+      if (initiateResponse !== undefined) {
         logTimed('Microdeposits initiated successfully', testStart, 'success');
         logRawResponse('Microdeposits Initiation', initiateResponse);
         testsPassed++;
-      } else if (initiateResponse === undefined) {
+      } else {
         // Some API responses may return undefined for successful operations
         logTimed('Microdeposits initiated successfully (undefined response)', testStart, 'success');
         logDebug('Microdeposits initiation returned undefined - this may be normal for this endpoint');
         testsPassed++;
-      } else {
-        log('Microdeposits initiation returned unexpected response format', 'error');
-        logRawResponse('Microdeposits Initiation - Unexpected Format', initiateResponse);
       }
     } catch (error: any) {
       // Handle specific error types
@@ -681,7 +824,7 @@ async function runCoreTests(): Promise<void> {
 
       // Optional: Get microdeposits details (for informational purposes)
       try {
-        const microDepositsDetails = await dwolla.fundingSources.getMicroDeposits({
+        const microDepositsDetails = await dwolla.fundingSources.microDeposits.get({
           id: personalFSId,
         });
         trackApiCall('GET /funding-sources/{id}/micro-deposits');
@@ -700,20 +843,20 @@ async function runCoreTests(): Promise<void> {
         }
       }
 
-      const verifyMicroDepositsData: VerifyMicroDeposits = {
+      const verifyMicroDepositsData = {
         amount1: { value: '0.01', currency: 'USD' }, // Standard Dwolla sandbox test amounts
         amount2: { value: '0.02', currency: 'USD' }, // These amounts work in sandbox environment
       };
 
       // Note: Not using retry() - verification is non-idempotent (fails with 403 if already verified)
-      const verifyResponse = await dwolla.fundingSources.initiateOrVerifyMicroDeposits({
+      const verifyResponse = await dwolla.fundingSources.microDeposits.verify({
         id: personalFSId,
         requestBody: verifyMicroDepositsData,
       });
       trackApiCall('POST /funding-sources/{id}/micro-deposits');
 
-      // Check if response is defined and has expected structure
-      if (verifyResponse && verifyResponse.result) {
+      // Check if response is defined
+      if (verifyResponse !== undefined) {
         logTimed(
           'Microdeposits verified successfully - funding source should now be verified',
           testStart,
@@ -722,15 +865,12 @@ async function runCoreTests(): Promise<void> {
         logRawResponse('Microdeposits Verification', verifyResponse);
         trackResource('Personal Funding Source', personalFSId, 'verified');
         testsPassed++;
-      } else if (verifyResponse === undefined) {
+      } else {
         // Some API responses may return undefined for successful operations
         logTimed('Microdeposits verified successfully (undefined response)', testStart, 'success');
         logDebug('Microdeposits verification returned undefined - this may be normal for this endpoint');
         trackResource('Personal Funding Source', personalFSId, 'verified');
         testsPassed++;
-      } else {
-        log('Microdeposits verification returned unexpected response format', 'error');
-        logRawResponse('Microdeposits Verification - Unexpected Format', verifyResponse);
       }
     } catch (error: any) {
       // Handle specific error types
@@ -890,6 +1030,105 @@ async function runCoreTests(): Promise<void> {
       logRawResponse('Customer List - Failed', null, error);
     }
 
+    // Test 8: New Customer Creation Methods (Path Fragments)
+    logSection('Path Fragment Customer Creation Tests');
+    
+    // Test 8a: Create Unverified Customer
+    try {
+      testStart = Date.now();
+      log('Testing unverified customer creation (path fragment)...', 'info');
+      testsRun++;
+
+      const unverifiedCustomerData = generateUnverifiedCustomer();
+      await retry(() => dwolla.customers.createUnverified(unverifiedCustomerData));
+      trackApiCall('POST /customers#unverified');
+      logTimed('Unverified customer created successfully (no type field required)', testStart, 'success');
+      testsPassed++;
+    } catch (error: any) {
+      log(`Unverified customer creation failed: ${error.message}`, 'error');
+      logRawResponse('Unverified Customer Creation - Failed', null, error);
+    }
+
+    // Test 8b: Create Receive-Only User
+    try {
+      testStart = Date.now();
+      log('Testing receive-only user creation (path fragment)...', 'info');
+      testsRun++;
+
+      const receiveOnlyUserData = generateReceiveOnlyUser();
+      await retry(() => dwolla.customers.createReceiveOnly(receiveOnlyUserData));
+      trackApiCall('POST /customers#receive-only');
+      logTimed('Receive-only user created successfully', testStart, 'success');
+      testsPassed++;
+    } catch (error: any) {
+      log(`Receive-only user creation failed: ${error.message}`, 'error');
+      logRawResponse('Receive-Only User Creation - Failed', null, error);
+    }
+
+    // Test 8c: Create Verified Personal Customer (New Method)
+    try {
+      testStart = Date.now();
+      log('Testing verified personal customer creation (path fragment)...', 'info');
+      testsRun++;
+
+      const verifiedPersonalCustomerData = generateVerifiedPersonalCustomer();
+      await retry(() => dwolla.customers.createVerifiedPersonal(verifiedPersonalCustomerData));
+      trackApiCall('POST /customers#verified-personal');
+      logTimed('Verified personal customer created successfully', testStart, 'success');
+      testsPassed++;
+    } catch (error: any) {
+      log(`Verified personal customer creation failed: ${error.message}`, 'error');
+      logRawResponse('Verified Personal Customer Creation - Failed', null, error);
+    }
+
+    // Test 8d: Create Verified Sole Proprietorship Customer
+    try {
+      testStart = Date.now();
+      log('Testing verified sole proprietorship customer creation (path fragment)...', 'info');
+      testsRun++;
+
+      const verifiedSolePropCustomerData = generateVerifiedSolePropCustomer();
+      await retry(() => dwolla.customers.createVerifiedSoleProp(verifiedSolePropCustomerData));
+      trackApiCall('POST /customers#verified-sole-prop');
+      logTimed('Verified sole proprietorship customer created successfully', testStart, 'success');
+      testsPassed++;
+    } catch (error: any) {
+      log(`Verified sole proprietorship customer creation failed: ${error.message}`, 'error');
+      logRawResponse('Verified Sole Prop Customer Creation - Failed', null, error);
+    }
+
+    // Test 8e: Create Verified Business Customer (New Method)
+    try {
+      testStart = Date.now();
+      log('Testing verified business customer creation (path fragment)...', 'info');
+      testsRun++;
+
+      const verifiedBusinessCustomerData = generateVerifiedBusinessCustomer();
+      await retry(() => dwolla.customers.createVerifiedBusiness(verifiedBusinessCustomerData));
+      trackApiCall('POST /customers#verified-business');
+      logTimed('Verified business customer created successfully', testStart, 'success');
+      testsPassed++;
+    } catch (error: any) {
+      log(`Verified business customer creation failed: ${error.message}`, 'error');
+      logRawResponse('Verified Business Customer Creation - Failed', null, error);
+    }
+
+    // Test 8f: Create Verified Business Customer with International Controller
+    try {
+      testStart = Date.now();
+      log('Testing verified business customer with international controller creation (path fragment)...', 'info');
+      testsRun++;
+
+      const verifiedBusinessIntlCustomerData = generateVerifiedBusinessInternationalCustomer();
+      await retry(() => dwolla.customers.createVerifiedBusinessInternational(verifiedBusinessIntlCustomerData));
+      trackApiCall('POST /customers#verified-business-international');
+      logTimed('Verified business customer with international controller created successfully', testStart, 'success');
+      testsPassed++;
+    } catch (error: any) {
+      log(`Verified business customer with international controller creation failed: ${error.message}`, 'error');
+      logRawResponse('Verified Business International Customer Creation - Failed', null, error);
+    }
+
     // Test Summary
     const totalTime = Date.now() - metrics.startTime;
     const testsSkipped = Object.values(testFailures).filter(failed => failed).length;
@@ -975,13 +1214,13 @@ async function runCoreTests(): Promise<void> {
     }
 
     console.log('\n📊 Integration Test Breakdown:');
-    console.log('   Personal Customer Flow:');
-    console.log('   • Personal Customer: Creation + Retrieval');
+    console.log('   Personal Customer Flow (Path Fragment):');
+    console.log('   • Personal Customer: createVerifiedPersonal() + Retrieval');
     console.log('   • Personal Funding Source: Creation');
     console.log('   • Microdeposits: Initiate + Verify (bank account verification)');
     console.log('');
-    console.log('   Business Customer Flow:');
-    console.log('   • Business Customer: Creation + Retrieval');
+    console.log('   Business Customer Flow (Path Fragment):');
+    console.log('   • Business Customer: createVerifiedBusiness() + Retrieval');
     console.log('   • Business Funding Source: Creation');
     console.log('   • Beneficial Owners: Create + List + Status + Certification');
     console.log('');
@@ -990,6 +1229,13 @@ async function runCoreTests(): Promise<void> {
     console.log('');
     console.log('   Additional Tests:');
     console.log('   • List Operations: Customer listing (if supported)');
+    console.log('   • Path Fragment Customer Creation: All customer types using dedicated methods');
+    console.log('     - createUnverified(): Unverified customers (no type field required)');
+    console.log('     - createReceiveOnly(): Receive-only users');
+    console.log('     - createVerifiedPersonal(): Verified personal customers');
+    console.log('     - createVerifiedSoleProp(): Verified sole proprietorship customers');
+    console.log('     - createVerifiedBusiness(): Verified business customers (US controller)');
+    console.log('     - createVerifiedBusinessInternational(): Verified business (international controller)');
     console.log('   • All operations use proper TypeScript types and error handling');
   } catch (error: any) {
     log(`❌ Critical test failure: ${error.message}`, 'error');

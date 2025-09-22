@@ -1,6 +1,6 @@
 # CreateCustomerExchangeSessionWithRedirect
 
-Create exchange session with redirect URL (required for Visa and for mobile sessions with Plaid)
+Create exchange session with redirect URL (required for mobile sessions with Plaid)
 
 ## Example Usage
 
@@ -15,7 +15,7 @@ let value: CreateCustomerExchangeSessionWithRedirect = {
     },
     redirectUrl: {
       href:
-        "{\"description\":\"Visa example\",\"value\":\"https://www.yourdomain.com/iav-callback\"}",
+        "{\"description\":\"Plaid Android example\",\"value\":\"com.example.app123\"}",
     },
   },
 };

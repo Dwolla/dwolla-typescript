@@ -13,7 +13,7 @@ export class ExchangeSessions extends ClientSDK {
    * Retrieve exchange session
    *
    * @remarks
-   * Returns details of a previously created exchange session, including URLs and tokens needed to continue the instant account verification flow. Response varies by partner - Visa/MX provide redirect URLs while Plaid provides session tokens for Link initialization.
+   * Returns details of a previously created exchange session, including URLs and tokens needed to continue the instant account verification flow. Response varies by partner - MX provides redirect URLs while Plaid provides session tokens for Link initialization.
    */
   async get(
     request: operations.RetrieveCustomerExchangeSessionRequest,

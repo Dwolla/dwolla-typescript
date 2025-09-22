@@ -22,7 +22,7 @@ let value: CreateVerifiedBusinessCustomerWithInternationalControllerController =
     },
     passport: {
       number: "<value>",
-      country: "South Sudan",
+      country: "Tonga",
     },
   };
 ```

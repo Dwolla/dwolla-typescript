@@ -29,3 +29,5 @@
 .DS_Store
 /.speakeasy/reports
 /tests/sandbox/sandbox.env
+# Code workspace files
+*.code-workspace
