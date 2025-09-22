@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 53ac026a-ff11-435d-914b-31df5268afb0
 management:
-  docChecksum: ebc33747efd1cabc71c2aba0f52b4557
+  docChecksum: 07e80c33a90e396f838074c24a24d678
   docVersion: "2.0"
-  speakeasyVersion: 1.605.5
-  generationVersion: 2.684.0
-  releaseVersion: 0.0.1-beta.4
-  configChecksum: c7fa24297655df72651a22d54e68805a
+  speakeasyVersion: 1.622.1
+  generationVersion: 2.709.0
+  releaseVersion: 0.0.1-beta.5
+  configChecksum: 0e2fa9755144767efc972135bd6fef95
   repoURL: https://github.com/Dwolla/dwolla-typescript.git
   installationURL: https://github.com/Dwolla/dwolla-typescript
   published: true
@@ -14,18 +14,17 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.21.20
+    core: 3.21.23
     defaultEnabledRetries: 0.1.0
-    devContainers: 2.90.0
+    devContainers: 2.90.1
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
     errorUnions: 0.1.1
-    globalSecurity: 2.82.13
+    globalSecurity: 2.82.14
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.5
     groups: 2.81.2
     nameOverrides: 2.81.2
-    nullables: 0.1.1
     oauth2ClientCredentials: 0.5.0
     responseFormat: 0.2.3
     retries: 2.83.0
@@ -52,8 +51,6 @@ generatedFiles:
   - docs/models/achdetailsdestination.md
   - docs/models/address.md
   - docs/models/allfailurereason.md
-  - docs/models/amount1.md
-  - docs/models/amount2.md
   - docs/models/attempt.md
   - docs/models/availableexchangeconnection.md
   - docs/models/availableexchangeconnections.md
@@ -180,19 +177,29 @@ generatedFiles:
   - docs/models/errors/createcustomerexchangesessionbadrequestdwollav1haljson.md
   - docs/models/errors/createcustomerexchangesessiondwollav1haljsonerror.md
   - docs/models/errors/createcustomerexchangesessionforbiddendwollav1haljson.md
-  - docs/models/errors/createcustomerforbiddendwollav1haljsonerror.md
   - docs/models/errors/createcustomerfundingsourcedwollav1haljson.md
   - docs/models/errors/createcustomerfundingsourceforbiddendwollav1haljsonerror.md
   - docs/models/errors/createcustomerfundingsourcenotfounddwollav1haljsonerror.md
   - docs/models/errors/createcustomerlabelforbiddendwollav1haljsonerror.md
   - docs/models/errors/createcustomerlabelnotfounddwollav1haljsonerror.md
-  - docs/models/errors/createcustomernotfounddwollav1haljsonerror.md
   - docs/models/errors/createfundingsourcedwollav1haljson.md
   - docs/models/errors/createfundingsourcedwollav1haljsonerror.md
   - docs/models/errors/createlabelreallocationforbiddendwollav1haljsonerror.md
   - docs/models/errors/createlabelreallocationnotfounddwollav1haljsonerror.md
   - docs/models/errors/createreauthexchangesessionbadrequestdwollav1haljsonerror.md
   - docs/models/errors/createreauthexchangesessionforbiddendwollav1haljsonerror.md
+  - docs/models/errors/createreceiveonlycustomerbadrequestdwollav1haljsonerror.md
+  - docs/models/errors/createreceiveonlycustomerforbiddendwollav1haljsonerror.md
+  - docs/models/errors/createunverifiedcustomerbadrequestdwollav1haljsonerror.md
+  - docs/models/errors/createunverifiedcustomerforbiddendwollav1haljsonerror.md
+  - docs/models/errors/createverifiedbusinesscustomerbadrequestdwollav1haljsonerror.md
+  - docs/models/errors/createverifiedbusinesscustomerforbiddendwollav1haljsonerror.md
+  - docs/models/errors/createverifiedbusinessinternationalcustomerbadrequestdwollav1haljsonerror.md
+  - docs/models/errors/createverifiedbusinessinternationalcustomerforbiddendwollav1haljsonerror.md
+  - docs/models/errors/createverifiedpersonalcustomerbadrequestdwollav1haljsonerror.md
+  - docs/models/errors/createverifiedpersonalcustomerforbiddendwollav1haljsonerror.md
+  - docs/models/errors/createverifiedsolepropcustomerbadrequestdwollav1haljsonerror.md
+  - docs/models/errors/createverifiedsolepropcustomerforbiddendwollav1haljsonerror.md
   - docs/models/errors/createwebhooksubscriptiondwollav1haljson.md
   - docs/models/errors/deletebeneficialownerdwollav1haljsonerror.md
   - docs/models/errors/depositaccountrestrictederror.md
@@ -231,8 +238,8 @@ generatedFiles:
   - docs/models/errors/incompatiblesourceforrtpdestinationerror.md
   - docs/models/errors/initiatekbaforcustomerdwollav1haljson.md
   - docs/models/errors/initiatemasspaymentdwollav1haljsonerror.md
-  - docs/models/errors/initiateorverifymicrodepositsforbiddendwollav1haljsonerror.md
-  - docs/models/errors/initiateorverifymicrodepositsnotfounddwollav1haljsonerror.md
+  - docs/models/errors/initiatemicrodepositsforbiddendwollav1haljsonerror.md
+  - docs/models/errors/initiatemicrodepositsnotfounddwollav1haljsonerror.md
   - docs/models/errors/initiatetransferbadrequestdwollav1haljson.md
   - docs/models/errors/initiatetransferforbiddendwollav1haljson.md
   - docs/models/errors/insufficientfundserror.md
@@ -327,6 +334,9 @@ generatedFiles:
   - docs/models/errors/validationerrorschema.md
   - docs/models/errors/verifykbaquestionsdwollav1haljson.md
   - docs/models/errors/verifykbaquestionsdwollav1haljsonerror.md
+  - docs/models/errors/verifymicrodepositsbadrequestdwollav1haljsonerror.md
+  - docs/models/errors/verifymicrodepositsforbiddendwollav1haljsonerror.md
+  - docs/models/errors/verifymicrodepositsnotfounddwollav1haljsonerror.md
   - docs/models/errors/weeklyreceivelimitreachederror.md
   - docs/models/errors/wireaccountnotfounderror.md
   - docs/models/errors/wireaccountrestrictederror.md
@@ -489,7 +499,10 @@ generatedFiles:
   - docs/models/operationblockederrorembedded.md
   - docs/models/operationblockederrorerror.md
   - docs/models/operationblockederrorlinks.md
+  - docs/models/operations/amount1.md
+  - docs/models/operations/amount2.md
   - docs/models/operations/available.md
+  - docs/models/operations/badrequestlinks.md
   - docs/models/operations/balance.md
   - docs/models/operations/bankbalanceresponse.md
   - docs/models/operations/canceltransferrequest.md
@@ -531,8 +544,6 @@ generatedFiles:
   - docs/models/operations/createcustomerlabelrequest.md
   - docs/models/operations/createcustomerlabelrequestbody.md
   - docs/models/operations/createcustomerlabelresponse.md
-  - docs/models/operations/createcustomerrequest.md
-  - docs/models/operations/createcustomerresponse.md
   - docs/models/operations/createfundingsourceresponse.md
   - docs/models/operations/createlabelledgerentryamount.md
   - docs/models/operations/createlabelledgerentryrequest.md
@@ -545,6 +556,12 @@ generatedFiles:
   - docs/models/operations/createreauthexchangesessionrequest.md
   - docs/models/operations/createreauthexchangesessionrequestbody.md
   - docs/models/operations/createreauthexchangesessionresponse.md
+  - docs/models/operations/createreceiveonlycustomerresponse.md
+  - docs/models/operations/createunverifiedcustomerresponse.md
+  - docs/models/operations/createverifiedbusinesscustomerresponse.md
+  - docs/models/operations/createverifiedbusinessinternationalcustomerresponse.md
+  - docs/models/operations/createverifiedpersonalcustomerresponse.md
+  - docs/models/operations/createverifiedsolepropcustomerresponse.md
   - docs/models/operations/createwebhooksubscriptionrequest.md
   - docs/models/operations/createwebhooksubscriptionresponse.md
   - docs/models/operations/deletebeneficialownerrequest.md
@@ -552,6 +569,7 @@ generatedFiles:
   - docs/models/operations/deleterequest.md
   - docs/models/operations/destinationenum.md
   - docs/models/operations/dwollabalanceresponse.md
+  - docs/models/operations/errort.md
   - docs/models/operations/failure.md
   - docs/models/operations/fee.md
   - docs/models/operations/feelinks.md
@@ -601,13 +619,8 @@ generatedFiles:
   - docs/models/operations/initiatemasspaymentrequest.md
   - docs/models/operations/initiatemasspaymentresponse.md
   - docs/models/operations/initiatemasspaymentsourceaddenda.md
-  - docs/models/operations/initiatemicrodeposits.md
-  - docs/models/operations/initiateorverifymicrodepositslinks.md
-  - docs/models/operations/initiateorverifymicrodepositsrequest.md
-  - docs/models/operations/initiateorverifymicrodepositsrequestbody.md
-  - docs/models/operations/initiateorverifymicrodepositsresponse.md
-  - docs/models/operations/initiateorverifymicrodepositsresponsebody.md
-  - docs/models/operations/initiateorverifymicrodepositsself.md
+  - docs/models/operations/initiatemicrodepositsrequest.md
+  - docs/models/operations/initiatemicrodepositsresponse.md
   - docs/models/operations/initiatetransferachdetails.md
   - docs/models/operations/initiatetransferachdetailsdestination.md
   - docs/models/operations/initiatetransferachdetailssource.md
@@ -710,6 +723,12 @@ generatedFiles:
   - docs/models/operations/verifykbaquestionsrequest.md
   - docs/models/operations/verifykbaquestionsrequestbody.md
   - docs/models/operations/verifykbaquestionsresponse.md
+  - docs/models/operations/verifymicrodepositsembedded.md
+  - docs/models/operations/verifymicrodepositslinks.md
+  - docs/models/operations/verifymicrodepositsrequest.md
+  - docs/models/operations/verifymicrodepositsrequestbody.md
+  - docs/models/operations/verifymicrodepositsresponse.md
+  - docs/models/operations/verifymicrodepositsself.md
   - docs/models/passport.md
   - docs/models/plaid.md
   - docs/models/pointofsaleaddendaentriesnotenabledforaccounterrorembedded.md
@@ -802,7 +821,6 @@ generatedFiles:
   - docs/models/verifiedbusinesscustomercontroller.md
   - docs/models/verifiedpersonalcustomer.md
   - docs/models/verifiedsolepropcustomer.md
-  - docs/models/verifymicrodeposits.md
   - docs/models/webhook.md
   - docs/models/webhookevent.md
   - docs/models/webhooklinks.md
@@ -940,7 +958,12 @@ generatedFiles:
   - src/funcs/customersBeneficialOwnersList.ts
   - src/funcs/customersBeneficialOwnershipCertify.ts
   - src/funcs/customersBeneficialOwnershipGet.ts
-  - src/funcs/customersCreate.ts
+  - src/funcs/customersCreateReceiveOnly.ts
+  - src/funcs/customersCreateUnverified.ts
+  - src/funcs/customersCreateVerifiedBusiness.ts
+  - src/funcs/customersCreateVerifiedBusinessInternational.ts
+  - src/funcs/customersCreateVerifiedPersonal.ts
+  - src/funcs/customersCreateVerifiedSoleProp.ts
   - src/funcs/customersDocumentsCreate.ts
   - src/funcs/customersDocumentsList.ts
   - src/funcs/customersExchangeSessionsCreate.ts
@@ -968,8 +991,9 @@ generatedFiles:
   - src/funcs/fundingSourcesBalanceGet.ts
   - src/funcs/fundingSourcesGet.ts
   - src/funcs/fundingSourcesGetVanRouting.ts
-  - src/funcs/fundingSourcesMicroDepositsGetMicroDeposits.ts
-  - src/funcs/fundingSourcesMicroDepositsInitiateOrVerify.ts
+  - src/funcs/fundingSourcesMicroDepositsGet.ts
+  - src/funcs/fundingSourcesMicroDepositsInitiate.ts
+  - src/funcs/fundingSourcesMicroDepositsVerify.ts
   - src/funcs/fundingSourcesOnDemandTransferAuthorizationsCreate.ts
   - src/funcs/fundingSourcesUpdateOrRemove.ts
   - src/funcs/kbaGetQuestions.ts
@@ -1077,7 +1101,6 @@ generatedFiles:
   - src/models/errors/createaccountexchange.ts
   - src/models/errors/createapplicationaccesstoken.ts
   - src/models/errors/createbeneficialownerdocument.ts
-  - src/models/errors/createcustomer.ts
   - src/models/errors/createcustomerdocument.ts
   - src/models/errors/createcustomerexchange.ts
   - src/models/errors/createcustomerexchangesession.ts
@@ -1086,6 +1109,12 @@ generatedFiles:
   - src/models/errors/createfundingsource.ts
   - src/models/errors/createlabelreallocation.ts
   - src/models/errors/createreauthexchangesession.ts
+  - src/models/errors/createreceiveonlycustomer.ts
+  - src/models/errors/createunverifiedcustomer.ts
+  - src/models/errors/createverifiedbusinesscustomer.ts
+  - src/models/errors/createverifiedbusinessinternationalcustomer.ts
+  - src/models/errors/createverifiedpersonalcustomer.ts
+  - src/models/errors/createverifiedsolepropcustomer.ts
   - src/models/errors/createwebhooksubscription.ts
   - src/models/errors/deletebeneficialowner.ts
   - src/models/errors/depositaccountrestrictederror.ts
@@ -1122,7 +1151,7 @@ generatedFiles:
   - src/models/errors/index.ts
   - src/models/errors/initiatekbaforcustomer.ts
   - src/models/errors/initiatemasspayment.ts
-  - src/models/errors/initiateorverifymicrodeposits.ts
+  - src/models/errors/initiatemicrodeposits.ts
   - src/models/errors/initiatetransfer.ts
   - src/models/errors/insufficientfundserror.ts
   - src/models/errors/invalidamountfordestinationclearingtypeerror.ts
@@ -1199,6 +1228,7 @@ generatedFiles:
   - src/models/errors/updateorremovefundingsource.ts
   - src/models/errors/validationerrorschema.ts
   - src/models/errors/verifykbaquestions.ts
+  - src/models/errors/verifymicrodeposits.ts
   - src/models/errors/weeklyreceivelimitreachederror.ts
   - src/models/errors/wireaccountnotfounderror.ts
   - src/models/errors/wireaccountrestrictederror.ts
@@ -1274,7 +1304,6 @@ generatedFiles:
   - src/models/operations/createbeneficialownerdocument.ts
   - src/models/operations/createbeneficialownerforcustomer.ts
   - src/models/operations/createclienttoken.ts
-  - src/models/operations/createcustomer.ts
   - src/models/operations/createcustomerdocument.ts
   - src/models/operations/createcustomerexchange.ts
   - src/models/operations/createcustomerexchangesession.ts
@@ -1284,6 +1313,12 @@ generatedFiles:
   - src/models/operations/createlabelledgerentry.ts
   - src/models/operations/createlabelreallocation.ts
   - src/models/operations/createreauthexchangesession.ts
+  - src/models/operations/createreceiveonlycustomer.ts
+  - src/models/operations/createunverifiedcustomer.ts
+  - src/models/operations/createverifiedbusinesscustomer.ts
+  - src/models/operations/createverifiedbusinessinternationalcustomer.ts
+  - src/models/operations/createverifiedpersonalcustomer.ts
+  - src/models/operations/createverifiedsolepropcustomer.ts
   - src/models/operations/createwebhooksubscription.ts
   - src/models/operations/delete.ts
   - src/models/operations/deletebeneficialowner.ts
@@ -1309,7 +1344,7 @@ generatedFiles:
   - src/models/operations/index.ts
   - src/models/operations/initiatekbaforcustomer.ts
   - src/models/operations/initiatemasspayment.ts
-  - src/models/operations/initiateorverifymicrodeposits.ts
+  - src/models/operations/initiatemicrodeposits.ts
   - src/models/operations/initiatetransfer.ts
   - src/models/operations/listandsearchcustomers.ts
   - src/models/operations/listandsearchtransfers.ts
@@ -1345,6 +1380,7 @@ generatedFiles:
   - src/models/operations/updateorremovefundingsource.ts
   - src/models/operations/updatewebhooksubscription.ts
   - src/models/operations/verifykbaquestions.ts
+  - src/models/operations/verifymicrodeposits.ts
   - src/models/passport.ts
   - src/models/pointofsaleaddendaentriesnotenabledforaccounterror.ts
   - src/models/reactivatecustomer.ts
@@ -1385,7 +1421,6 @@ generatedFiles:
   - src/models/verifiedbusinesscustomer.ts
   - src/models/verifiedpersonalcustomer.ts
   - src/models/verifiedsolepropcustomer.ts
-  - src/models/verifymicrodeposits.ts
   - src/models/webhook.ts
   - src/models/webhookretries.ts
   - src/models/webhooksubscription.ts
@@ -2381,7 +2416,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: {"created": "2024-03-25T17:13:38.430Z", "_links": {"self": {"href": "https://api.dwolla.com/exchange-sessions/9b7fb629-0fad-44f4-8c5e-44c25a0bfa8e", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "exchange-sessions"}, "exchange-partner": {"href": "https://api.dwolla.com/exchange-partners/bca8d065-49a5-475b-a6b4-509bc8504d22", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "exchange-partner"}, "external-provider-session": {"href": "{\"description\":\"Visa example\",\"value\":\"https://link.visa.com/1.0/account-check/connect?client_id=f16f7c7407f4434dbcaf269b230c12ed&redirect_uri=https://api-uat.dwolla.com/redirect/tink&authorization_code=47e23deab3924351a0c6193d90e5add5&market=US&locale=en_US&state=a2V5Ojk6dWRiRkRYWGlIVGdZZUNycUdCa0s3Zz09OmI1ZVE0YWRUYkFrSWNiKzFxTXdmQlVkcVNWWW5nMjtQNjBaWERxUDh5aTBpWEQzTHROdUZRd2xLMTUzYnZ4RU8=&session_id=628d927030ee43a38054da5166dcbee14e06dc02c00e45f2b4a5d986bab5d08f\"}", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "text/html"}}, "externalProviderSessionToken": "link-production-b41e8ed3-0874-4c64-b07d-a77088979d5f"}
+          application/vnd.dwolla.v1.hal+json: {"created": "2024-03-25T17:13:38.430Z", "_links": {"self": {"href": "https://api.dwolla.com/exchange-sessions/9b7fb629-0fad-44f4-8c5e-44c25a0bfa8e", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "exchange-sessions"}, "exchange-partner": {"href": "https://api.dwolla.com/exchange-partners/bca8d065-49a5-475b-a6b4-509bc8504d22", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "exchange-partner"}, "external-provider-session": {"href": "{\"description\":\"MX example\",\"value\":\"https://www.mx.com/connect/lAfkc7m897s3t1ks9mmwyj4ry7Zq0xql4grzAg1kz77x7c9jrwls1t22w6xt8d2lsxx9zpqv30js3wswfdwcrpAsqgbAfkqwpksp7c2chsx167xy90Asfc67dkj9y48y8p142xw3yp4x5l9t9gkk6m3yk5vwsvyq2qq7w9trszxwdl14lmkg7l6949bn5n41chdkbnxycy40n9b6fkbdwl6qt5wl107k1x8srvlkpz325p412x9tkyA5clf39109lsfrgz2lkgsvntqf7l0zzwb5hl658gdjbxwhb52krwybnbdAqfq69cdy54l05jkvfwyf01q89x48jtgtx290lzjdfcty1lwb8d648wns/eyJ1aV9tZXNzYWdlX3ZlcnNpb24iOjQsInVpX21lc3NhZ2Vfd2Vidmlld191cmxfc2NoZW1lIjoibXgiLCJtb2RlIjoidmVyaWZpY2F0aW9uIn0%3D\"}", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "text/html"}}, "externalProviderSessionToken": "link-production-b41e8ed3-0874-4c64-b07d-a77088979d5f"}
         "403":
           application/vnd.dwolla.v1.hal+json: {"code": "forbidden", "message": "Not authorized to retrieve exchange session."}
         "404":
@@ -2526,6 +2561,86 @@ examples:
           application/vnd.dwolla.v1.hal+json: {"_links": {"self": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc", "status": "reviewed", "type": "passport", "created": "2015-09-29T21:42:16.000Z", "documentVerificationStatus": "rejected", "failureReason": "ScanDobMismatch", "allFailureReasons": [{"reason": "ScanDobMismatch", "description": "Scan DOB does not match DOB on account"}]}
         "403":
           application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
+  createUnverifiedCustomer:
+    speakeasy-default-create-unverified-customer:
+      requestBody:
+        application/vnd.dwolla.v1.hal+json: {"firstName": "Account", "lastName": "Admin", "email": "accountAdmin@email.com", "ipAddress": "143.156.7.8", "phone": "5555555555", "correlationId": "fc451a7a-ae30-4404-aB95-e3553fcd733", "businessName": "Jane Corp llc"}
+      responses:
+        "400":
+          application/vnd.dwolla.v1.hal+json: {"code": "BadRequest", "message": "The request body contains bad syntax or is incomplete."}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "forbidden", "message": "Not authorized to create customers."}
+  createReceiveOnlyCustomer:
+    speakeasy-default-create-receive-only-customer:
+      requestBody:
+        application/vnd.dwolla.v1.hal+json: {"firstName": "Account", "lastName": "Admin", "email": "accountAdmin@email.com", "type": "receive-only", "ipAddress": "143.156.7.8", "phone": "5555555555", "correlationId": "fc451a7a-ae30-4404-aB95-e3553fcd733", "businessName": "Jane Corp llc"}
+      responses:
+        "400":
+          application/vnd.dwolla.v1.hal+json: {"code": "BadRequest", "message": "The request body contains bad syntax or is incomplete."}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "forbidden", "message": "Not authorized to create customers."}
+  createVerifiedPersonalCustomer:
+    speakeasy-default-create-verified-personal-customer:
+      requestBody:
+        application/vnd.dwolla.v1.hal+json: {"firstName": "Account", "lastName": "Admin", "email": "accountAdmin@email.com", "ipAddress": "143.156.7.8", "phone": "5555555555", "correlationId": "fc451a7a-ae30-4404-aB95-e3553fcd733", "type": "personal", "address1": "99-99 33rd St", "address2": "99-99 33rd St", "city": "Some City", "state": "NY", "postalCode": "11101", "ssn": "1234", "dateOfBirth": "1980-09-12"}
+      responses:
+        "400":
+          application/vnd.dwolla.v1.hal+json: {"code": "BadRequest", "message": "The request body contains bad syntax or is incomplete."}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "forbidden", "message": "Not authorized to create customers."}
+  createVerifiedSolePropCustomer:
+    speakeasy-default-create-verified-sole-prop-customer:
+      requestBody:
+        application/vnd.dwolla.v1.hal+json: {"firstName": "John", "lastName": "Doe", "email": "johndoe@email.com", "ipAddress": "143.156.7.8", "phone": "5555555555", "correlationId": "fc451a7a-ae30-4404-aB95-e3553fcd733", "type": "business", "address1": "99-99 33rd St", "address2": "99-99 33rd St", "city": "Some City", "state": "NY", "postalCode": "11101", "ssn": "1234", "dateOfBirth": "1980-09-12", "businessClassification": "9ed3f670-7d6f-11e3-b1ce-5404a6144203", "businessName": "Jane Corp", "doingBusinessAs": "Jane's Electronics", "ein": "00-0000000", "website": "https://www.domain.com", "businessType": "soleProprietorship"}
+      responses:
+        "400":
+          application/vnd.dwolla.v1.hal+json: {"code": "BadRequest", "message": "The request body contains bad syntax or is incomplete."}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "forbidden", "message": "Not authorized to create customers."}
+  createVerifiedBusinessCustomer:
+    speakeasy-default-create-verified-business-customer:
+      requestBody:
+        application/vnd.dwolla.v1.hal+json: {"firstName": "Jane", "lastName": "Business", "email": "jane.business@email.com", "ipAddress": "143.156.7.8", "phone": "5555555555", "correlationId": "fc451a7a-ae30-4404-aB95-e3553fcd733", "type": "business", "address1": "99-99 33rd St", "address2": "99-99 33rd St", "city": "Some City", "state": "NY", "postalCode": "11101", "businessClassification": "9ed3f670-7d6f-11e3-b1ce-5404a6144203", "businessName": "Jane Corp", "doingBusinessAs": "Jane's Electronics", "ein": "00-0000000", "website": "https://www.domain.com", "controller": {"firstName": "John", "lastName": "Controller", "title": "CEO", "dateOfBirth": "1980-01-31", "address": {"address1": "462 Main Street", "address2": "Suite 123", "address3": "Unit 123", "city": "Des Moines", "postalCode": "50309", "country": "USA", "stateProvinceRegion": "IA"}, "ssn": "1234"}, "businessType": "llc"}
+      responses:
+        "400":
+          application/vnd.dwolla.v1.hal+json: {"code": "BadRequest", "message": "The request body contains bad syntax or is incomplete."}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "forbidden", "message": "Not authorized to create customers."}
+  createVerifiedBusinessInternationalCustomer:
+    speakeasy-default-create-verified-business-international-customer:
+      requestBody:
+        application/vnd.dwolla.v1.hal+json: {"firstName": "Jane", "lastName": "Business", "email": "jane.business@email.com", "ipAddress": "143.156.7.8", "phone": "5555555555", "correlationId": "fc451a7a-ae30-4404-aB95-e3553fcd733", "type": "business", "address1": "99-99 33rd St", "address2": "99-99 33rd St", "city": "Some City", "state": "NY", "postalCode": "11101", "businessClassification": "9ed3f670-7d6f-11e3-b1ce-5404a6144203", "businessName": "Jane Corp", "doingBusinessAs": "Jane's Electronics", "ein": "00-0000000", "website": "https://www.domain.com", "controller": {"firstName": "John", "lastName": "Controller", "title": "CEO", "dateOfBirth": "1980-01-31", "address": {"address1": "462 Main Street", "address2": "Suite 123", "address3": "Unit 123", "city": "Des Moines", "postalCode": "50309", "country": "USA", "stateProvinceRegion": "IA"}, "passport": {"number": "<value>", "country": "Zimbabwe"}}, "businessType": "llc"}
+      responses:
+        "400":
+          application/vnd.dwolla.v1.hal+json: {"code": "BadRequest", "message": "The request body contains bad syntax or is incomplete."}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "forbidden", "message": "Not authorized to create customers."}
+  initiateMicroDeposits:
+    speakeasy-default-initiate-micro-deposits:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "InvalidResourceState", "message": "Bank already verified."}
+        "404":
+          application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
+  verifyMicroDeposits:
+    speakeasy-default-verify-micro-deposits:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/vnd.dwolla.v1.hal+json: {"amount1": {"value": "0.02", "currency": "USD"}, "amount2": {"value": "0.03", "currency": "USD"}}
+      responses:
+        "200":
+          application/vnd.dwolla.v1.hal+json: {"_links": {"self": {"href": "https://api-sandbox.dwolla.com/funding-sources/2e446d1b-fb3c-42a0-9691-5d1d6a4dbbf0/micro-deposits", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "micro-deposits"}}}
+        "400":
+          application/vnd.dwolla.v1.hal+json: {"code": "ValidationError", "message": "Validation error(s) present. See embedded errors list for more details.", "_embedded": {"errors": [{"code": "Invalid", "message": "Wrong amount(s).", "path": ""}]}}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "InvalidResourceState", "message": "Too many attempts."}
         "404":
           application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
 examplesVersion: 1.0.2
