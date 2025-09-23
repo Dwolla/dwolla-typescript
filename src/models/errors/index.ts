@@ -30,6 +30,7 @@ export * from "./destinationremittancedatamaxlengtherror.js";
 export * from "./directaccountwithoutbankerror.js";
 export * from "./duplicatefundingsourceerror.js";
 export * from "./duplicateresourceschemaerror.js";
+export * from "./dwollaerror.js";
 export * from "./expiredkbasessionerror.js";
 export * from "./facilitatorfeeaccountnotfounderror.js";
 export * from "./facilitatorfeebelowminimumerror.js";

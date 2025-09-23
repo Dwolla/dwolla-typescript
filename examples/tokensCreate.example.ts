@@ -21,7 +21,7 @@ const dwolla = new Dwolla({
 });
 
 async function main() {
-  const result = await dwolla.create({
+  const result = await dwolla.tokens.create({
     grantType: "client_credentials",
   });
 

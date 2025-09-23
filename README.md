@@ -938,7 +938,7 @@ httpClient.addHook("requestError", (error, request) => {
   console.groupEnd();
 });
 
-const sdk = new Dwolla({ httpClient });
+const sdk = new Dwolla({ httpClient: httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 

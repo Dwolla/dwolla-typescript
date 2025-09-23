@@ -1,6 +1,6 @@
 # CreateCustomerExchangeFundingSource
 
-Schema for creating a funding source using an exchange resource. This method is used when the bank account information is obtained via Instant Account Verification (IAV) through an exchange partner (like Plaid, Visa, MX, or Finicity).
+Schema for creating a funding source using an exchange resource. This method is used when the bank account information is obtained via Instant Account Verification (IAV) through an exchange partner (like Plaid, MX, or Finicity).
 
 ## Example Usage
 

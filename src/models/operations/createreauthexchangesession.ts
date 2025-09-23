@@ -14,7 +14,6 @@ import * as models from "../index.js";
  *
  * @remarks
  * Required for:
- * - Visa exchange sessions
  * - Plaid mobile sessions
  * Not required for:
  * - Plaid web sessions
@@ -33,7 +32,6 @@ export type CreateReAuthExchangeSessionRequest = {
    *
    * @remarks
    * Required for:
-   * - Visa exchange sessions
    * - Plaid mobile sessions
    * Not required for:
    * - Plaid web sessions

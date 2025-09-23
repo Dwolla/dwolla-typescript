@@ -14,7 +14,7 @@ export type CreateCustomerExchangeSessionWithRedirectExchangePartner = {
 
 export type CreateCustomerExchangeSessionWithRedirectRedirectUrl = {
   /**
-   * Required for Visa and Plaid mobile sessions
+   * Required for Plaid mobile sessions
    */
   href: string;
 };
@@ -25,7 +25,7 @@ export type CreateCustomerExchangeSessionWithRedirectLinks = {
 };
 
 /**
- * Create exchange session with redirect URL (required for Visa and for mobile sessions with Plaid)
+ * Create exchange session with redirect URL (required for mobile sessions with Plaid)
  */
 export type CreateCustomerExchangeSessionWithRedirect = {
   links: CreateCustomerExchangeSessionWithRedirectLinks;
