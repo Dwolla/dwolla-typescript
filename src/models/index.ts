@@ -137,7 +137,6 @@ export * from "./validationerrorschema.js";
 export * from "./verifiedbusinesscustomer.js";
 export * from "./verifiedpersonalcustomer.js";
 export * from "./verifiedsolepropcustomer.js";
-export * from "./verifymicrodeposits.js";
 export * from "./webhook.js";
 export * from "./webhookretries.js";
 export * from "./webhooksubscription.js";

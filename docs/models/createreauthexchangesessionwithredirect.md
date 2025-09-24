@@ -1,6 +1,6 @@
 # CreateReAuthExchangeSessionWithRedirect
 
-Create re-auth exchange session with redirect URL (required for mobile sessions with Visa and Plaid)
+Create re-auth exchange session with redirect URL (required for mobile sessions with Plaid)
 
 ## Example Usage
 
@@ -11,7 +11,7 @@ let value: CreateReAuthExchangeSessionWithRedirect = {
   links: {
     redirectUrl: {
       href:
-        "{\"description\":\"Visa example\",\"value\":\"https://www.yourdomain.com/iav-callback\"}",
+        "{\"description\":\"Plaid Android example\",\"value\":\"com.example.app123\"}",
     },
   },
 };

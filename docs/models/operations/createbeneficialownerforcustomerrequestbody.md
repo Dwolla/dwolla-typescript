@@ -43,7 +43,7 @@ const value: models.CreateInternationalBeneficialOwner = {
   },
   passport: {
     number: "<value>",
-    country: "South Sudan",
+    country: "Tonga",
   },
 };
 ```

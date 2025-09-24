@@ -2,7 +2,7 @@ configVersion: 2.0.0
 generation:
   devContainers:
     enabled: true
-    schemaPath: https://raw.githubusercontent.com/Dwolla/dwolla-openapi/refs/heads/main/openapi.yml
+    schemaPath: ./generated/openapi.yaml
   sdkClassName: Dwolla
   maintainOpenAPIOrder: true
   usageSnippets:
@@ -19,13 +19,14 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
+    hoistGlobalSecurity: true
   sdkHooksConfigAccess: true
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.0.1-beta.4
+  version: 0.0.1-beta.5
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -57,10 +58,12 @@ typescript:
   jsonpath: rfc9535
   maxMethodParams: 0
   methodArguments: require-security-and-request
+  modelPropertyCasing: camel
   moduleFormat: dual
   outputModelSuffix: output
   packageName: dwolla
   responseFormat: flat
+  sseFlatResponse: false
   templateVersion: v2
   usageSDKInitImports: []
   useIndexModules: true

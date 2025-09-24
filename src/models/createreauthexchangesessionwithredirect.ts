@@ -10,7 +10,7 @@ import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 export type CreateReAuthExchangeSessionWithRedirectRedirectUrl = {
   /**
-   * Required for Visa and Plaid mobile sessions
+   * Required for Plaid mobile sessions
    */
   href: string;
 };
@@ -20,7 +20,7 @@ export type CreateReAuthExchangeSessionWithRedirectLinks = {
 };
 
 /**
- * Create re-auth exchange session with redirect URL (required for mobile sessions with Visa and Plaid)
+ * Create re-auth exchange session with redirect URL (required for mobile sessions with Plaid)
  */
 export type CreateReAuthExchangeSessionWithRedirect = {
   links: CreateReAuthExchangeSessionWithRedirectLinks;

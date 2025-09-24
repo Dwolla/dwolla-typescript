@@ -22,7 +22,7 @@ export type ExchangeSessionExchangePartner = {
 
 export type ExternalProviderSession = {
   /**
-   * Present for Visa and MX exchange sessions.
+   * Present for MX exchange sessions.
    *
    * @remarks
    * Contains the URL to redirect the user to complete the authorization process.
