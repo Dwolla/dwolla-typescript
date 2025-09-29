@@ -4,6 +4,14 @@ info:
   title: Typescript SDK Overlay
   version: 0.0.0
 actions:
+  # Override Speakeasy server-id for each server
+  - target: $.servers[0]
+    update:
+      x-speakeasy-server-id: prod
+  - target: $.servers[1]
+    update:
+      x-speakeasy-server-id: sandbox
+
   # Remove the original customer creation POST endpoint. Customer creation has been moved to path fragments.
   - target: $["paths"]["/customers"]["post"]
     remove: true

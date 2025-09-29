@@ -69,10 +69,7 @@ bun add dwolla
 ### Yarn
 
 ```bash
-yarn add dwolla zod
-
-# Note that Yarn does not install peer dependencies automatically. You will need
-# to install zod as shown above.
+yarn add dwolla
 ```
 
 > [!NOTE]
@@ -857,14 +854,14 @@ run();
 <!-- Start Server Selection [server] -->
 ## Server Selection
 
-### Select Server by Index
+### Select Server by Name
 
-You can override the default server globally by passing a server index to the `serverIdx: number` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
+You can override the default server globally by passing a server name to the `server: keyof typeof ServerList` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the names associated with the available servers:
 
-| #   | Server                           | Description       |
-| --- | -------------------------------- | ----------------- |
-| 0   | `https://api.dwolla.com`         | Production server |
-| 1   | `https://api-sandbox.dwolla.com` | Sandbox server    |
+| Name      | Server                           | Description       |
+| --------- | -------------------------------- | ----------------- |
+| `prod`    | `https://api.dwolla.com`         | Production server |
+| `sandbox` | `https://api-sandbox.dwolla.com` | Sandbox server    |
 
 #### Example
 
@@ -872,7 +869,7 @@ You can override the default server globally by passing a server index to the `s
 import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
-  serverIdx: 1,
+  server: "sandbox",
   security: {
     clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
     clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
@@ -898,7 +895,7 @@ The default server can also be overridden globally by passing a URL to the `serv
 import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
-  serverURL: "https://api-sandbox.dwolla.com",
+  serverURL: "https://api.dwolla.com",
   security: {
     clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
     clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
