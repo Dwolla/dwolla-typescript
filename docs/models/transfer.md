@@ -4,6 +4,7 @@
 
 ```typescript
 import { Transfer } from "dwolla/models";
+import { RFCDate } from "dwolla/types";
 
 let value: Transfer = {
   links: {
@@ -35,6 +36,14 @@ let value: Transfer = {
           "ABC123_AddendaValue",
         ],
       },
+      beneficiaryName: "John Doe",
+      companyEntryDescription: "PAYMENT",
+      companyId: "1234567890",
+      companyName: "Acme Corporation",
+      effectiveDate: new RFCDate("2021-12-01"),
+      postingData: "Acme Corporation:Payment Reference:John Doe",
+      routingNumber: "222222226",
+      traceId: "222222225926346",
     },
     destination: {
       addenda: {
@@ -42,6 +51,14 @@ let value: Transfer = {
           "ZYX987_AddendaValue",
         ],
       },
+      beneficiaryName: "Jane Smith",
+      companyEntryDescription: "PAYMENT",
+      companyId: "1234567890",
+      companyName: "Acme Corporation",
+      effectiveDate: new RFCDate("2021-12-01"),
+      postingData: "Acme Corporation:Payment Reference:Jane Smith",
+      routingNumber: "222222226",
+      traceId: "222222225926346",
     },
   },
   rtpDetails: {
@@ -76,7 +93,7 @@ let value: Transfer = {
 | `created`                                                                                               | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)           | :heavy_minus_sign:                                                                                      | N/A                                                                                                     | 2018-12-03T22:00:22.970Z                                                                                |
 | `clearing`                                                                                              | [models.Clearing](../models/clearing.md)                                                                | :heavy_minus_sign:                                                                                      | N/A                                                                                                     |                                                                                                         |
 | `metadata`                                                                                              | [models.TransferMetadata](../models/transfermetadata.md)                                                | :heavy_minus_sign:                                                                                      | N/A                                                                                                     |                                                                                                         |
-| `achDetails`                                                                                            | [models.AchDetails](../models/achdetails.md)                                                            | :heavy_minus_sign:                                                                                      | N/A                                                                                                     |                                                                                                         |
+| `achDetails`                                                                                            | [models.AchDetails](../models/achdetails.md)                                                            | :heavy_minus_sign:                                                                                      | ACH-specific details for the transfer. Present when transfer was processed via ACH network.             |                                                                                                         |
 | `rtpDetails`                                                                                            | [models.RtpDetails](../models/rtpdetails.md)                                                            | :heavy_minus_sign:                                                                                      | Real-Time Payments (RTP) network specific details. Present when transfer was processed via RTP network. |                                                                                                         |
 | `fedNowDetails`                                                                                         | [models.FedNowDetails](../models/fednowdetails.md)                                                      | :heavy_minus_sign:                                                                                      | FedNow Service network specific details. Present when transfer was processed via FedNow network.        |                                                                                                         |
 | `correlationId`                                                                                         | *string*                                                                                                | :heavy_minus_sign:                                                                                      | N/A                                                                                                     | 8a2cdc8d-629d-4a24-98ac-40b735229fe2                                                                    |

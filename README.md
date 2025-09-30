@@ -69,10 +69,7 @@ bun add dwolla
 ### Yarn
 
 ```bash
-yarn add dwolla zod
-
-# Note that Yarn does not install peer dependencies automatically. You will need
-# to install zod as shown above.
+yarn add dwolla
 ```
 
 > [!NOTE]
