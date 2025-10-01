@@ -1,6 +1,6 @@
 {
   "name": "dwolla",
-  "version": "0.0.1-beta.6",
+  "version": "0.0.1-beta.7",
   "author": "Speakeasy",
   "description": "Dwolla TypeScript SDK (Beta). Breaking changes may occur between beta versions.",
   "type": "module",

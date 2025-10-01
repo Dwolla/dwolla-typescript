@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 53ac026a-ff11-435d-914b-31df5268afb0
 management:
-  docChecksum: 04ad9b907032a1ecc54c5e0bf1312394
+  docChecksum: 67585827410652e1e5f03d8b8a95f20a
   docVersion: "2.0"
   speakeasyVersion: 1.632.0
   generationVersion: 2.719.3
-  releaseVersion: 0.0.1-beta.6
-  configChecksum: b401a162b5577b59e7eefcf14ce5af6a
+  releaseVersion: 0.0.1-beta.7
+  configChecksum: 5c85c22ddfd9630e89b906563d051edd
   repoURL: https://github.com/Dwolla/dwolla-typescript.git
   installationURL: https://github.com/Dwolla/dwolla-typescript
   published: true
@@ -18,6 +18,7 @@ features:
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.1
     enumUnions: 0.1.0
+    enums: 2.83.0
     envVarSecurityUsage: 0.1.2
     errorUnions: 0.1.1
     globalSecurity: 2.82.14
@@ -29,6 +30,7 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.3.0
+    serverIDs: 2.81.2
     unions: 2.85.12
     uploadStreams: 0.1.0
 generatedFiles:
@@ -134,7 +136,6 @@ generatedFiles:
   - docs/models/customer.md
   - docs/models/customers.md
   - docs/models/customersembedded.md
-  - docs/models/deactivatecustomer.md
   - docs/models/depositaccountrestrictederrorembedded.md
   - docs/models/depositaccountrestrictederrorerror.md
   - docs/models/depositaccountrestrictederrorlinks.md
@@ -189,19 +190,9 @@ generatedFiles:
   - docs/models/errors/createlabelreallocationnotfounddwollav1haljsonerror.md
   - docs/models/errors/createreauthexchangesessionbadrequestdwollav1haljsonerror.md
   - docs/models/errors/createreauthexchangesessionforbiddendwollav1haljsonerror.md
-  - docs/models/errors/createreceiveonlycustomerbadrequestdwollav1haljsonerror.md
-  - docs/models/errors/createreceiveonlycustomerforbiddendwollav1haljsonerror.md
-  - docs/models/errors/createunverifiedcustomerbadrequestdwollav1haljsonerror.md
-  - docs/models/errors/createunverifiedcustomerforbiddendwollav1haljsonerror.md
-  - docs/models/errors/createverifiedbusinesscustomerbadrequestdwollav1haljsonerror.md
-  - docs/models/errors/createverifiedbusinesscustomerforbiddendwollav1haljsonerror.md
-  - docs/models/errors/createverifiedbusinessinternationalcustomerbadrequestdwollav1haljsonerror.md
-  - docs/models/errors/createverifiedbusinessinternationalcustomerforbiddendwollav1haljsonerror.md
-  - docs/models/errors/createverifiedpersonalcustomerbadrequestdwollav1haljsonerror.md
-  - docs/models/errors/createverifiedpersonalcustomerforbiddendwollav1haljsonerror.md
-  - docs/models/errors/createverifiedsolepropcustomerbadrequestdwollav1haljsonerror.md
-  - docs/models/errors/createverifiedsolepropcustomerforbiddendwollav1haljsonerror.md
   - docs/models/errors/createwebhooksubscriptiondwollav1haljson.md
+  - docs/models/errors/customercreationbadrequestresponseerror.md
+  - docs/models/errors/customercreationforbiddenresponseerror.md
   - docs/models/errors/deletebeneficialownerdwollav1haljsonerror.md
   - docs/models/errors/depositaccountrestrictederror.md
   - docs/models/errors/destinationaddendamaxlengtherror.md
@@ -711,7 +702,6 @@ generatedFiles:
   - docs/models/operations/updateorremovefundingsourcerequestbody.md
   - docs/models/operations/updateorremovefundingsourceresponse.md
   - docs/models/operations/updaterequest.md
-  - docs/models/operations/updaterequestbody.md
   - docs/models/operations/updateresponse.md
   - docs/models/operations/updatewebhooksubscriptionrequest.md
   - docs/models/operations/updatewebhooksubscriptionrequestbody.md
@@ -733,7 +723,6 @@ generatedFiles:
   - docs/models/pointofsaleaddendaentriesnotenabledforaccounterrorerror.md
   - docs/models/pointofsaleaddendaentriesnotenabledforaccounterrorlinks.md
   - docs/models/product.md
-  - docs/models/reactivatecustomer.md
   - docs/models/receivernotfounderrorembedded.md
   - docs/models/receivernotfounderrorerror.md
   - docs/models/receivernotfounderrorlinks.md
@@ -747,16 +736,6 @@ generatedFiles:
   - docs/models/responset.md
   - docs/models/retrylinks.md
   - docs/models/retryself.md
-  - docs/models/retryverifiedbusinessnocontroller.md
-  - docs/models/retryverifiedbusinesswithcontroller.md
-  - docs/models/retryverifiedbusinesswithcontrolleraddress.md
-  - docs/models/retryverifiedbusinesswithcontrollercontroller.md
-  - docs/models/retryverifiedbusinesswithinternationalcontroller.md
-  - docs/models/retryverifiedbusinesswithinternationalcontrolleraddress.md
-  - docs/models/retryverifiedbusinesswithinternationalcontrollercontroller.md
-  - docs/models/retryverifiedbusinesswithinternationalcontrollerpassport.md
-  - docs/models/retryverifiedpersonal.md
-  - docs/models/retryverifiedsoleprop.md
   - docs/models/root.md
   - docs/models/rtpdetails.md
   - docs/models/rtpdetailsdestination.md
@@ -795,7 +774,6 @@ generatedFiles:
   - docs/models/statusnotallowederrorerror.md
   - docs/models/statusnotallowederrorlinks.md
   - docs/models/subscription.md
-  - docs/models/suspendcustomer.md
   - docs/models/transfer.md
   - docs/models/transferamount.md
   - docs/models/transferamount1.md
@@ -809,16 +787,8 @@ generatedFiles:
   - docs/models/type.md
   - docs/models/unverifiedbusinesscustomer.md
   - docs/models/unverifiedcustomer.md
-  - docs/models/updateunverifiedandreceiveonly.md
   - docs/models/updateunverifiedbank.md
   - docs/models/updateverifiedbank.md
-  - docs/models/updateverifiedbusiness.md
-  - docs/models/updateverifiedpersonal.md
-  - docs/models/upgradetoverifiedbusiness.md
-  - docs/models/upgradetoverifiedbusinessaddress.md
-  - docs/models/upgradetoverifiedbusinesscontroller.md
-  - docs/models/upgradetoverifiedpersonal.md
-  - docs/models/upgradetoverifiedsoleprop.md
   - docs/models/validationerrorschemaembedded.md
   - docs/models/verifiedbusinesscustomer.md
   - docs/models/verifiedbusinesscustomeraddress.md
@@ -1086,7 +1056,6 @@ generatedFiles:
   - src/models/createverifiedpersonalcustomer.ts
   - src/models/createverifiedsolepropcustomer.ts
   - src/models/customers.ts
-  - src/models/deactivatecustomer.ts
   - src/models/depositaccountrestrictederror.ts
   - src/models/destinationaddendamaxlengtherror.ts
   - src/models/destinationprocessingchannelnotsupportederror.ts
@@ -1113,13 +1082,9 @@ generatedFiles:
   - src/models/errors/createfundingsource.ts
   - src/models/errors/createlabelreallocation.ts
   - src/models/errors/createreauthexchangesession.ts
-  - src/models/errors/createreceiveonlycustomer.ts
-  - src/models/errors/createunverifiedcustomer.ts
-  - src/models/errors/createverifiedbusinesscustomer.ts
-  - src/models/errors/createverifiedbusinessinternationalcustomer.ts
-  - src/models/errors/createverifiedpersonalcustomer.ts
-  - src/models/errors/createverifiedsolepropcustomer.ts
   - src/models/errors/createwebhooksubscription.ts
+  - src/models/errors/customercreationbadrequestresponseerror.ts
+  - src/models/errors/customercreationforbiddenresponseerror.ts
   - src/models/errors/deletebeneficialowner.ts
   - src/models/errors/depositaccountrestrictederror.ts
   - src/models/errors/destinationaddendamaxlengtherror.ts
@@ -1386,15 +1351,9 @@ generatedFiles:
   - src/models/operations/verifymicrodeposits.ts
   - src/models/passport.ts
   - src/models/pointofsaleaddendaentriesnotenabledforaccounterror.ts
-  - src/models/reactivatecustomer.ts
   - src/models/receivernotfounderror.ts
   - src/models/receiverrestrictederror.ts
   - src/models/removebank.ts
-  - src/models/retryverifiedbusinessnocontroller.ts
-  - src/models/retryverifiedbusinesswithcontroller.ts
-  - src/models/retryverifiedbusinesswithinternationalcontroller.ts
-  - src/models/retryverifiedpersonal.ts
-  - src/models/retryverifiedsoleprop.ts
   - src/models/root.ts
   - src/models/rtpfacilitatorfeenotsupportederror.ts
   - src/models/rtppersonaltopersonalnotsupportederror.ts
@@ -1407,21 +1366,14 @@ generatedFiles:
   - src/models/sourcesameasdestinationerror.ts
   - src/models/statusinvaliderror.ts
   - src/models/statusnotallowederror.ts
-  - src/models/suspendcustomer.ts
   - src/models/transfer.ts
   - src/models/transferamount.ts
   - src/models/transferexpiredforfeeerror.ts
   - src/models/transfers.ts
   - src/models/unverifiedbusinesscustomer.ts
   - src/models/unverifiedcustomer.ts
-  - src/models/updateunverifiedandreceiveonly.ts
   - src/models/updateunverifiedbank.ts
   - src/models/updateverifiedbank.ts
-  - src/models/updateverifiedbusiness.ts
-  - src/models/updateverifiedpersonal.ts
-  - src/models/upgradetoverifiedbusiness.ts
-  - src/models/upgradetoverifiedpersonal.ts
-  - src/models/upgradetoverifiedsoleprop.ts
   - src/models/validationerrorschema.ts
   - src/models/verifiedbusinesscustomer.ts
   - src/models/verifiedpersonalcustomer.ts
@@ -1615,7 +1567,7 @@ examples:
         path:
           id: "<id>"
       requestBody:
-        application/json: {"firstName": "Account", "lastName": "Admin", "email": "accountAdmin@email.com", "ipAddress": "143.156.7.8", "type": "business", "address1": "99-99 33rd St", "city": "Some City", "state": "NY", "postalCode": "11101", "controller": {"firstName": "John", "lastName": "Controller", "title": "CEO", "ssn": "6789", "dateOfBirth": "1980-01-31", "address": {"address1": "1749 18th st", "address2": "apt 12", "city": "Des Moines", "stateProvinceRegion": "IA", "postalCode": "50266", "country": "US"}}, "businessClassification": "9ed3f670-7d6f-11e3-b1ce-5404a6144203", "businessType": "llc", "businessName": "Jane Corp", "ein": "00-0000000"}
+        application/json: {"firstName": "Business", "lastName": "Owner", "email": "solePropBusiness@email.com", "type": "business", "dateOfBirth": "1980-01-31", "ssn": "6789", "address1": "99-99 33rd St", "city": "Some City", "state": "NY", "postalCode": "11101", "businessClassification": "9ed3f670-7d6f-11e3-b1ce-5404a6144203", "businessType": "soleProprietorship", "businessName": "Jane Corp", "ein": "00-0000000", "operationType": "upgradeToVerifiedSoleProp"}
       responses:
         "200":
           application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "c41125c5-99c4-4303-a9f6-d066d28a61e3", "firstName": "Jane", "lastName": "Doe", "email": "janedoe@mail.com", "type": "receive-only", "status": "unverified", "correlationId": "CID-abe2bb3d-d2ff-433b-95a3-0debd960ed25", "created": "2022-10-07T16:46:13.023Z", "businessName": "Jane Corp llc"}

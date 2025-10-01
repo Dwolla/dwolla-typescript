@@ -1,11 +1,11 @@
-# CreateUnverifiedCustomerBadRequestDwollaV1HalJSONError
+# CustomerCreationBadRequestResponseError
 
 Bad Request
 
 ## Example Usage
 
 ```typescript
-import { CreateUnverifiedCustomerBadRequestDwollaV1HalJSONError } from "dwolla/models/errors";
+import { CustomerCreationBadRequestResponseError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

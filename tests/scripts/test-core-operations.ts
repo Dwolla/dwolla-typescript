@@ -17,8 +17,6 @@ import type {
   TransferAmount,
 } from '../../dist/esm/models/index.js';
 import type {
-  CreateCustomerResponse,
-  CreateCustomerFundingSourceResponse,
   InitiateTransferRequest,
 } from '../../dist/esm/models/operations/index.js';
 
@@ -66,6 +64,7 @@ const SANDBOX_CONFIG = {
   CLIENT_ID: process.env.DWOLLA_CLIENT_ID,
   CLIENT_SECRET: process.env.DWOLLA_CLIENT_SECRET,
   BASE_URL: process.env.DWOLLA_BASE_URL || 'https://api-sandbox.dwolla.com',
+  SERVER: (process.env.DWOLLA_ENVIRONMENT as 'sandbox' | 'prod') || 'sandbox',
 };
 
 const DEBUG_MODE = process.env.DEBUG === 'true' || process.env.DEBUG === '1';
@@ -87,7 +86,7 @@ function createSDK(): Dwolla {
       clientID: SANDBOX_CONFIG.CLIENT_ID,
       clientSecret: SANDBOX_CONFIG.CLIENT_SECRET,
     },
-    serverURL: SANDBOX_CONFIG.BASE_URL,
+    server: SANDBOX_CONFIG.SERVER,
   });
 }
 
