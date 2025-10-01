@@ -14,7 +14,7 @@ targets:
         sourceRevisionDigest: sha256:4d6da1c55d6dc3893defac2a0c9beb49d13097c64bcfdd54d0fba44d0d5341f7
         sourceBlobDigest: sha256:ae0909d68e6a2fec64532d5d419763cb009f8d0498bd574e1c6aa8aca644733e
         codeSamplesNamespace: dwolla-api-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:93efb828d61b4fa146f6a90a71f91fe174583fa29bccfe6945b512af30b9858e
+        codeSamplesRevisionDigest: sha256:7abba26066e8c357104800b0568139c5553a35459c220480c41c882e28fea724
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
