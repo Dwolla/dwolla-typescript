@@ -9,25 +9,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
 
-/**
- * Parameters for updating a Customer
- */
-export type UpdateRequestBody =
-  | models.UpgradeToVerifiedSoleProp
-  | models.RetryVerifiedSoleProp
-  | models.UpgradeToVerifiedBusiness
-  | models.RetryVerifiedBusinessWithController
-  | models.RetryVerifiedBusinessWithInternationalController
-  | models.RetryVerifiedBusinessNoController
-  | models.UpgradeToVerifiedPersonal
-  | models.RetryVerifiedPersonal
-  | models.DeactivateCustomer
-  | models.ReactivateCustomer
-  | models.SuspendCustomer
-  | models.UpdateUnverifiedAndReceiveOnly
-  | models.UpdateVerifiedPersonal
-  | models.UpdateVerifiedBusiness;
-
 export type UpdateRequest = {
   /**
    * Customer unique identifier
@@ -36,21 +17,7 @@ export type UpdateRequest = {
   /**
    * Parameters for updating a Customer
    */
-  requestBody:
-    | models.UpgradeToVerifiedSoleProp
-    | models.RetryVerifiedSoleProp
-    | models.UpgradeToVerifiedBusiness
-    | models.RetryVerifiedBusinessWithController
-    | models.RetryVerifiedBusinessWithInternationalController
-    | models.RetryVerifiedBusinessNoController
-    | models.UpgradeToVerifiedPersonal
-    | models.RetryVerifiedPersonal
-    | models.DeactivateCustomer
-    | models.ReactivateCustomer
-    | models.SuspendCustomer
-    | models.UpdateUnverifiedAndReceiveOnly
-    | models.UpdateVerifiedPersonal
-    | models.UpdateVerifiedBusiness;
+  requestBody?: any | undefined;
 };
 
 /**
@@ -64,120 +31,13 @@ export type UpdateResponse =
   | models.VerifiedBusinessCustomer;
 
 /** @internal */
-export const UpdateRequestBody$inboundSchema: z.ZodType<
-  UpdateRequestBody,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  models.UpgradeToVerifiedSoleProp$inboundSchema,
-  models.RetryVerifiedSoleProp$inboundSchema,
-  models.UpgradeToVerifiedBusiness$inboundSchema,
-  models.RetryVerifiedBusinessWithController$inboundSchema,
-  models.RetryVerifiedBusinessWithInternationalController$inboundSchema,
-  models.RetryVerifiedBusinessNoController$inboundSchema,
-  models.UpgradeToVerifiedPersonal$inboundSchema,
-  models.RetryVerifiedPersonal$inboundSchema,
-  models.DeactivateCustomer$inboundSchema,
-  models.ReactivateCustomer$inboundSchema,
-  models.SuspendCustomer$inboundSchema,
-  models.UpdateUnverifiedAndReceiveOnly$inboundSchema,
-  models.UpdateVerifiedPersonal$inboundSchema,
-  models.UpdateVerifiedBusiness$inboundSchema,
-]);
-
-/** @internal */
-export type UpdateRequestBody$Outbound =
-  | models.UpgradeToVerifiedSoleProp$Outbound
-  | models.RetryVerifiedSoleProp$Outbound
-  | models.UpgradeToVerifiedBusiness$Outbound
-  | models.RetryVerifiedBusinessWithController$Outbound
-  | models.RetryVerifiedBusinessWithInternationalController$Outbound
-  | models.RetryVerifiedBusinessNoController$Outbound
-  | models.UpgradeToVerifiedPersonal$Outbound
-  | models.RetryVerifiedPersonal$Outbound
-  | models.DeactivateCustomer$Outbound
-  | models.ReactivateCustomer$Outbound
-  | models.SuspendCustomer$Outbound
-  | models.UpdateUnverifiedAndReceiveOnly$Outbound
-  | models.UpdateVerifiedPersonal$Outbound
-  | models.UpdateVerifiedBusiness$Outbound;
-
-/** @internal */
-export const UpdateRequestBody$outboundSchema: z.ZodType<
-  UpdateRequestBody$Outbound,
-  z.ZodTypeDef,
-  UpdateRequestBody
-> = z.union([
-  models.UpgradeToVerifiedSoleProp$outboundSchema,
-  models.RetryVerifiedSoleProp$outboundSchema,
-  models.UpgradeToVerifiedBusiness$outboundSchema,
-  models.RetryVerifiedBusinessWithController$outboundSchema,
-  models.RetryVerifiedBusinessWithInternationalController$outboundSchema,
-  models.RetryVerifiedBusinessNoController$outboundSchema,
-  models.UpgradeToVerifiedPersonal$outboundSchema,
-  models.RetryVerifiedPersonal$outboundSchema,
-  models.DeactivateCustomer$outboundSchema,
-  models.ReactivateCustomer$outboundSchema,
-  models.SuspendCustomer$outboundSchema,
-  models.UpdateUnverifiedAndReceiveOnly$outboundSchema,
-  models.UpdateVerifiedPersonal$outboundSchema,
-  models.UpdateVerifiedBusiness$outboundSchema,
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateRequestBody$ {
-  /** @deprecated use `UpdateRequestBody$inboundSchema` instead. */
-  export const inboundSchema = UpdateRequestBody$inboundSchema;
-  /** @deprecated use `UpdateRequestBody$outboundSchema` instead. */
-  export const outboundSchema = UpdateRequestBody$outboundSchema;
-  /** @deprecated use `UpdateRequestBody$Outbound` instead. */
-  export type Outbound = UpdateRequestBody$Outbound;
-}
-
-export function updateRequestBodyToJSON(
-  updateRequestBody: UpdateRequestBody,
-): string {
-  return JSON.stringify(
-    UpdateRequestBody$outboundSchema.parse(updateRequestBody),
-  );
-}
-
-export function updateRequestBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateRequestBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateRequestBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateRequestBody' from JSON`,
-  );
-}
-
-/** @internal */
 export const UpdateRequest$inboundSchema: z.ZodType<
   UpdateRequest,
   z.ZodTypeDef,
   unknown
 > = z.object({
   id: z.string(),
-  RequestBody: z.union([
-    models.UpgradeToVerifiedSoleProp$inboundSchema,
-    models.RetryVerifiedSoleProp$inboundSchema,
-    models.UpgradeToVerifiedBusiness$inboundSchema,
-    models.RetryVerifiedBusinessWithController$inboundSchema,
-    models.RetryVerifiedBusinessWithInternationalController$inboundSchema,
-    models.RetryVerifiedBusinessNoController$inboundSchema,
-    models.UpgradeToVerifiedPersonal$inboundSchema,
-    models.RetryVerifiedPersonal$inboundSchema,
-    models.DeactivateCustomer$inboundSchema,
-    models.ReactivateCustomer$inboundSchema,
-    models.SuspendCustomer$inboundSchema,
-    models.UpdateUnverifiedAndReceiveOnly$inboundSchema,
-    models.UpdateVerifiedPersonal$inboundSchema,
-    models.UpdateVerifiedBusiness$inboundSchema,
-  ]),
+  RequestBody: z.any().optional(),
 }).transform((v) => {
   return remap$(v, {
     "RequestBody": "requestBody",
@@ -187,21 +47,7 @@ export const UpdateRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type UpdateRequest$Outbound = {
   id: string;
-  RequestBody:
-    | models.UpgradeToVerifiedSoleProp$Outbound
-    | models.RetryVerifiedSoleProp$Outbound
-    | models.UpgradeToVerifiedBusiness$Outbound
-    | models.RetryVerifiedBusinessWithController$Outbound
-    | models.RetryVerifiedBusinessWithInternationalController$Outbound
-    | models.RetryVerifiedBusinessNoController$Outbound
-    | models.UpgradeToVerifiedPersonal$Outbound
-    | models.RetryVerifiedPersonal$Outbound
-    | models.DeactivateCustomer$Outbound
-    | models.ReactivateCustomer$Outbound
-    | models.SuspendCustomer$Outbound
-    | models.UpdateUnverifiedAndReceiveOnly$Outbound
-    | models.UpdateVerifiedPersonal$Outbound
-    | models.UpdateVerifiedBusiness$Outbound;
+  RequestBody?: any | undefined;
 };
 
 /** @internal */
@@ -211,22 +57,7 @@ export const UpdateRequest$outboundSchema: z.ZodType<
   UpdateRequest
 > = z.object({
   id: z.string(),
-  requestBody: z.union([
-    models.UpgradeToVerifiedSoleProp$outboundSchema,
-    models.RetryVerifiedSoleProp$outboundSchema,
-    models.UpgradeToVerifiedBusiness$outboundSchema,
-    models.RetryVerifiedBusinessWithController$outboundSchema,
-    models.RetryVerifiedBusinessWithInternationalController$outboundSchema,
-    models.RetryVerifiedBusinessNoController$outboundSchema,
-    models.UpgradeToVerifiedPersonal$outboundSchema,
-    models.RetryVerifiedPersonal$outboundSchema,
-    models.DeactivateCustomer$outboundSchema,
-    models.ReactivateCustomer$outboundSchema,
-    models.SuspendCustomer$outboundSchema,
-    models.UpdateUnverifiedAndReceiveOnly$outboundSchema,
-    models.UpdateVerifiedPersonal$outboundSchema,
-    models.UpdateVerifiedBusiness$outboundSchema,
-  ]),
+  requestBody: z.any().optional(),
 }).transform((v) => {
   return remap$(v, {
     requestBody: "RequestBody",

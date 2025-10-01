@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 53ac026a-ff11-435d-914b-31df5268afb0
 management:
-  docChecksum: 04ad9b907032a1ecc54c5e0bf1312394
+  docChecksum: 67585827410652e1e5f03d8b8a95f20a
   docVersion: "2.0"
   speakeasyVersion: 1.631.5
   generationVersion: 2.716.16
-  releaseVersion: 0.0.1-beta.6
-  configChecksum: 2f44749a069f8f1ba278dcb5fec250f3
+  releaseVersion: 0.0.1-beta.7
+  configChecksum: 5c85c22ddfd9630e89b906563d051edd
   repoURL: https://github.com/Dwolla/dwolla-typescript.git
   installationURL: https://github.com/Dwolla/dwolla-typescript
   published: true
@@ -736,16 +736,6 @@ generatedFiles:
   - docs/models/responset.md
   - docs/models/retrylinks.md
   - docs/models/retryself.md
-  - docs/models/retryverifiedbusinessnocontroller.md
-  - docs/models/retryverifiedbusinesswithcontroller.md
-  - docs/models/retryverifiedbusinesswithcontrolleraddress.md
-  - docs/models/retryverifiedbusinesswithcontrollercontroller.md
-  - docs/models/retryverifiedbusinesswithinternationalcontroller.md
-  - docs/models/retryverifiedbusinesswithinternationalcontrolleraddress.md
-  - docs/models/retryverifiedbusinesswithinternationalcontrollercontroller.md
-  - docs/models/retryverifiedbusinesswithinternationalcontrollerpassport.md
-  - docs/models/retryverifiedpersonal.md
-  - docs/models/retryverifiedsoleprop.md
   - docs/models/root.md
   - docs/models/rtpdetails.md
   - docs/models/rtpdetailsdestination.md
@@ -1364,11 +1354,6 @@ generatedFiles:
   - src/models/receivernotfounderror.ts
   - src/models/receiverrestrictederror.ts
   - src/models/removebank.ts
-  - src/models/retryverifiedbusinessnocontroller.ts
-  - src/models/retryverifiedbusinesswithcontroller.ts
-  - src/models/retryverifiedbusinesswithinternationalcontroller.ts
-  - src/models/retryverifiedpersonal.ts
-  - src/models/retryverifiedsoleprop.ts
   - src/models/root.ts
   - src/models/rtpfacilitatorfeenotsupportederror.ts
   - src/models/rtppersonaltopersonalnotsupportederror.ts
@@ -2617,4 +2602,3 @@ examples:
           application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes Detected:\n* `dwolla.customers.update()`: \n  *  `request.requestBody` **Changed** **Breaking** :warning:\n* `dwolla.customers.fundingSources.list()`:  `response` **Changed** **Breaking** :warning:\n* `dwolla.businessClassifications.list()`:  `response` **Changed** **Breaking** :warning:\n* `dwolla.accounts.get()`:  `response.address.country` **Added**\n* `dwolla.accounts.transfers.list()`:  `response._embedded.transfers.[].achDetails` **Changed**\n* `dwolla.customers.transfers.list()`:  `response._embedded.transfers.[].achDetails` **Changed**\n* `dwolla.transfers.get()`:  `response.achdetails` **Changed**\n"
