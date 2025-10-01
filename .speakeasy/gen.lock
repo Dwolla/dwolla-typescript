@@ -3,10 +3,10 @@ id: 53ac026a-ff11-435d-914b-31df5268afb0
 management:
   docChecksum: 04ad9b907032a1ecc54c5e0bf1312394
   docVersion: "2.0"
-  speakeasyVersion: 1.631.5
-  generationVersion: 2.716.16
+  speakeasyVersion: 1.632.0
+  generationVersion: 2.719.3
   releaseVersion: 0.0.1-beta.6
-  configChecksum: 2f44749a069f8f1ba278dcb5fec250f3
+  configChecksum: b401a162b5577b59e7eefcf14ce5af6a
   repoURL: https://github.com/Dwolla/dwolla-typescript.git
   installationURL: https://github.com/Dwolla/dwolla-typescript
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.21.25
+    core: 3.21.26
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.1
     enumUnions: 0.1.0
@@ -2650,4 +2650,3 @@ examples:
           application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes Detected:\n* `dwolla.customers.update()`: \n  *  `request.requestBody` **Changed** **Breaking** :warning:\n* `dwolla.customers.fundingSources.list()`:  `response` **Changed** **Breaking** :warning:\n* `dwolla.businessClassifications.list()`:  `response` **Changed** **Breaking** :warning:\n* `dwolla.accounts.get()`:  `response.address.country` **Added**\n* `dwolla.accounts.transfers.list()`:  `response._embedded.transfers.[].achDetails` **Changed**\n* `dwolla.customers.transfers.list()`:  `response._embedded.transfers.[].achDetails` **Changed**\n* `dwolla.transfers.get()`:  `response.achdetails` **Changed**\n"

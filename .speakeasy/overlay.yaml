@@ -3,6 +3,18 @@ x-speakeasy-jsonpath: rfc9535
 info:
   title: Typescript SDK Overlay
   version: 0.0.0
+x-speakeasy-timeout: 60000
+x-speakeasy-retries:
+  strategy: backoff
+  backoff:
+    initialInterval: 2000 # 2 seconds
+    maxInterval: 300000 # 300 seconds
+    maxElapsedTime: 1800000 # 1800 seconds
+    exponent: 2
+  statusCodes:
+    - 429 # Rate limit errors (both concurrency and volume-based)
+    - 5XX # Server errors
+  retryConnectionErrors: true
 actions:
   # Remove the original customer creation POST endpoint. Customer creation has been moved to path fragments.
   - target: $["paths"]["/customers"]["post"]
