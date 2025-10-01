@@ -3,8 +3,8 @@ id: 53ac026a-ff11-435d-914b-31df5268afb0
 management:
   docChecksum: 67585827410652e1e5f03d8b8a95f20a
   docVersion: "2.0"
-  speakeasyVersion: 1.631.5
-  generationVersion: 2.716.16
+  speakeasyVersion: 1.632.0
+  generationVersion: 2.719.3
   releaseVersion: 0.0.1-beta.7
   configChecksum: 5c85c22ddfd9630e89b906563d051edd
   repoURL: https://github.com/Dwolla/dwolla-typescript.git
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.21.25
+    core: 3.21.26
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.1
     enumUnions: 0.1.0
