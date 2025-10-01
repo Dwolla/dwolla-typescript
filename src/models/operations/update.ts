@@ -16,7 +16,9 @@ export type UpdateRequestBody =
   | models.UpgradeToVerifiedSoleProp
   | models.RetryVerifiedSoleProp
   | models.UpgradeToVerifiedBusiness
-  | models.RetryVerifiedBusiness
+  | models.RetryVerifiedBusinessWithController
+  | models.RetryVerifiedBusinessWithInternationalController
+  | models.RetryVerifiedBusinessNoController
   | models.UpgradeToVerifiedPersonal
   | models.RetryVerifiedPersonal
   | models.DeactivateCustomer
@@ -38,7 +40,9 @@ export type UpdateRequest = {
     | models.UpgradeToVerifiedSoleProp
     | models.RetryVerifiedSoleProp
     | models.UpgradeToVerifiedBusiness
-    | models.RetryVerifiedBusiness
+    | models.RetryVerifiedBusinessWithController
+    | models.RetryVerifiedBusinessWithInternationalController
+    | models.RetryVerifiedBusinessNoController
     | models.UpgradeToVerifiedPersonal
     | models.RetryVerifiedPersonal
     | models.DeactivateCustomer
@@ -68,7 +72,9 @@ export const UpdateRequestBody$inboundSchema: z.ZodType<
   models.UpgradeToVerifiedSoleProp$inboundSchema,
   models.RetryVerifiedSoleProp$inboundSchema,
   models.UpgradeToVerifiedBusiness$inboundSchema,
-  models.RetryVerifiedBusiness$inboundSchema,
+  models.RetryVerifiedBusinessWithController$inboundSchema,
+  models.RetryVerifiedBusinessWithInternationalController$inboundSchema,
+  models.RetryVerifiedBusinessNoController$inboundSchema,
   models.UpgradeToVerifiedPersonal$inboundSchema,
   models.RetryVerifiedPersonal$inboundSchema,
   models.DeactivateCustomer$inboundSchema,
@@ -84,7 +90,9 @@ export type UpdateRequestBody$Outbound =
   | models.UpgradeToVerifiedSoleProp$Outbound
   | models.RetryVerifiedSoleProp$Outbound
   | models.UpgradeToVerifiedBusiness$Outbound
-  | models.RetryVerifiedBusiness$Outbound
+  | models.RetryVerifiedBusinessWithController$Outbound
+  | models.RetryVerifiedBusinessWithInternationalController$Outbound
+  | models.RetryVerifiedBusinessNoController$Outbound
   | models.UpgradeToVerifiedPersonal$Outbound
   | models.RetryVerifiedPersonal$Outbound
   | models.DeactivateCustomer$Outbound
@@ -103,7 +111,9 @@ export const UpdateRequestBody$outboundSchema: z.ZodType<
   models.UpgradeToVerifiedSoleProp$outboundSchema,
   models.RetryVerifiedSoleProp$outboundSchema,
   models.UpgradeToVerifiedBusiness$outboundSchema,
-  models.RetryVerifiedBusiness$outboundSchema,
+  models.RetryVerifiedBusinessWithController$outboundSchema,
+  models.RetryVerifiedBusinessWithInternationalController$outboundSchema,
+  models.RetryVerifiedBusinessNoController$outboundSchema,
   models.UpgradeToVerifiedPersonal$outboundSchema,
   models.RetryVerifiedPersonal$outboundSchema,
   models.DeactivateCustomer$outboundSchema,
@@ -156,7 +166,9 @@ export const UpdateRequest$inboundSchema: z.ZodType<
     models.UpgradeToVerifiedSoleProp$inboundSchema,
     models.RetryVerifiedSoleProp$inboundSchema,
     models.UpgradeToVerifiedBusiness$inboundSchema,
-    models.RetryVerifiedBusiness$inboundSchema,
+    models.RetryVerifiedBusinessWithController$inboundSchema,
+    models.RetryVerifiedBusinessWithInternationalController$inboundSchema,
+    models.RetryVerifiedBusinessNoController$inboundSchema,
     models.UpgradeToVerifiedPersonal$inboundSchema,
     models.RetryVerifiedPersonal$inboundSchema,
     models.DeactivateCustomer$inboundSchema,
@@ -179,7 +191,9 @@ export type UpdateRequest$Outbound = {
     | models.UpgradeToVerifiedSoleProp$Outbound
     | models.RetryVerifiedSoleProp$Outbound
     | models.UpgradeToVerifiedBusiness$Outbound
-    | models.RetryVerifiedBusiness$Outbound
+    | models.RetryVerifiedBusinessWithController$Outbound
+    | models.RetryVerifiedBusinessWithInternationalController$Outbound
+    | models.RetryVerifiedBusinessNoController$Outbound
     | models.UpgradeToVerifiedPersonal$Outbound
     | models.RetryVerifiedPersonal$Outbound
     | models.DeactivateCustomer$Outbound
@@ -201,7 +215,9 @@ export const UpdateRequest$outboundSchema: z.ZodType<
     models.UpgradeToVerifiedSoleProp$outboundSchema,
     models.RetryVerifiedSoleProp$outboundSchema,
     models.UpgradeToVerifiedBusiness$outboundSchema,
-    models.RetryVerifiedBusiness$outboundSchema,
+    models.RetryVerifiedBusinessWithController$outboundSchema,
+    models.RetryVerifiedBusinessWithInternationalController$outboundSchema,
+    models.RetryVerifiedBusinessNoController$outboundSchema,
     models.UpgradeToVerifiedPersonal$outboundSchema,
     models.RetryVerifiedPersonal$outboundSchema,
     models.DeactivateCustomer$outboundSchema,

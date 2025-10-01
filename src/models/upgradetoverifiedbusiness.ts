@@ -5,7 +5,6 @@
 import * as z from "zod";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
-import { RFCDate } from "../types/rfcdate.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 export type UpgradeToVerifiedBusinessAddress = {
@@ -22,7 +21,7 @@ export type UpgradeToVerifiedBusinessController = {
   lastName: string;
   title: string;
   ssn?: string | undefined;
-  dateOfBirth: RFCDate;
+  dateOfBirth: string;
   address: UpgradeToVerifiedBusinessAddress;
 };
 
@@ -127,7 +126,7 @@ export const UpgradeToVerifiedBusinessController$inboundSchema: z.ZodType<
   lastName: z.string(),
   title: z.string(),
   ssn: z.string().optional(),
-  dateOfBirth: z.string().transform(v => new RFCDate(v)),
+  dateOfBirth: z.string(),
   address: z.lazy(() => UpgradeToVerifiedBusinessAddress$inboundSchema),
 });
 
@@ -151,7 +150,7 @@ export const UpgradeToVerifiedBusinessController$outboundSchema: z.ZodType<
   lastName: z.string(),
   title: z.string(),
   ssn: z.string().optional(),
-  dateOfBirth: z.instanceof(RFCDate).transform(v => v.toString()),
+  dateOfBirth: z.string(),
   address: z.lazy(() => UpgradeToVerifiedBusinessAddress$outboundSchema),
 });
 

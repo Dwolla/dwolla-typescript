@@ -74,7 +74,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.ListBusinessClassificationsResponse](../../models/operations/listbusinessclassificationsresponse.md)\>**
+**Promise\<[models.BusinessClassifications](../../models/businessclassifications.md)\>**
 
 ### Errors
 

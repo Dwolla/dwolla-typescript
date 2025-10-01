@@ -55,7 +55,6 @@ export * from "./listandsearchtransfers.js";
 export * from "./listavailableexchangeconnections.js";
 export * from "./listbeneficialownerdocuments.js";
 export * from "./listbeneficialownersforcustomer.js";
-export * from "./listbusinessclassifications.js";
 export * from "./listcustomerdocuments.js";
 export * from "./listcustomerexchanges.js";
 export * from "./listcustomerfundingsources.js";

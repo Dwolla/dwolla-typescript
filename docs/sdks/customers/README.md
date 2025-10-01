@@ -184,7 +184,6 @@ Update Customer information, upgrade an unverified Customer to a verified Custom
 <!-- UsageSnippet language="typescript" operationID="update" method="post" path="/customers/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
-import { RFCDate } from "dwolla/types";
 
 const dwolla = new Dwolla({
   security: {
@@ -211,7 +210,7 @@ async function run() {
         lastName: "Controller",
         title: "CEO",
         ssn: "6789",
-        dateOfBirth: new RFCDate("1980-01-31"),
+        dateOfBirth: "1980-01-31",
         address: {
           address1: "1749 18th st",
           address2: "apt 12",
@@ -241,7 +240,6 @@ The standalone function version of this method:
 ```typescript
 import { DwollaCore } from "dwolla/core.js";
 import { customersUpdate } from "dwolla/funcs/customersUpdate.js";
-import { RFCDate } from "dwolla/types";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -270,7 +268,7 @@ async function run() {
         lastName: "Controller",
         title: "CEO",
         ssn: "6789",
-        dateOfBirth: new RFCDate("1980-01-31"),
+        dateOfBirth: "1980-01-31",
         address: {
           address1: "1749 18th st",
           address2: "apt 12",

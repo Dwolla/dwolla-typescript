@@ -6,7 +6,7 @@
 import { BusinessClassificationsEmbedded } from "dwolla/models";
 
 let value: BusinessClassificationsEmbedded = {
-  massPayments: [
+  businessClassifications: [
     {
       links: {
         self: {
@@ -34,4 +34,4 @@ let value: BusinessClassificationsEmbedded = {
 
 | Field                                                                  | Type                                                                   | Required                                                               | Description                                                            |
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `massPayments`                                                         | [models.BusinessClassification](../models/businessclassification.md)[] | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `businessClassifications`                                              | [models.BusinessClassification](../models/businessclassification.md)[] | :heavy_minus_sign:                                                     | N/A                                                                    |

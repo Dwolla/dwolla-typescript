@@ -21,12 +21,13 @@ import {
 } from "./hallink.js";
 
 export type BusinessClassificationsEmbedded = {
-  massPayments?: Array<BusinessClassification> | undefined;
+  businessClassifications?: Array<BusinessClassification> | undefined;
 };
 
 export type BusinessClassifications = {
   links?: { [k: string]: HalLink } | undefined;
   embedded?: BusinessClassificationsEmbedded | undefined;
+  total?: number | undefined;
 };
 
 /** @internal */
@@ -35,16 +36,19 @@ export const BusinessClassificationsEmbedded$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  "mass-payments": z.array(BusinessClassification$inboundSchema).optional(),
+  "business-classifications": z.array(BusinessClassification$inboundSchema)
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
-    "mass-payments": "massPayments",
+    "business-classifications": "businessClassifications",
   });
 });
 
 /** @internal */
 export type BusinessClassificationsEmbedded$Outbound = {
-  "mass-payments"?: Array<BusinessClassification$Outbound> | undefined;
+  "business-classifications"?:
+    | Array<BusinessClassification$Outbound>
+    | undefined;
 };
 
 /** @internal */
@@ -53,10 +57,11 @@ export const BusinessClassificationsEmbedded$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   BusinessClassificationsEmbedded
 > = z.object({
-  massPayments: z.array(BusinessClassification$outboundSchema).optional(),
+  businessClassifications: z.array(BusinessClassification$outboundSchema)
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
-    massPayments: "mass-payments",
+    businessClassifications: "business-classifications",
   });
 });
 
@@ -102,6 +107,7 @@ export const BusinessClassifications$inboundSchema: z.ZodType<
   _links: z.record(HalLink$inboundSchema).optional(),
   _embedded: z.lazy(() => BusinessClassificationsEmbedded$inboundSchema)
     .optional(),
+  total: z.number().int().optional(),
 }).transform((v) => {
   return remap$(v, {
     "_links": "links",
@@ -113,6 +119,7 @@ export const BusinessClassifications$inboundSchema: z.ZodType<
 export type BusinessClassifications$Outbound = {
   _links?: { [k: string]: HalLink$Outbound } | undefined;
   _embedded?: BusinessClassificationsEmbedded$Outbound | undefined;
+  total?: number | undefined;
 };
 
 /** @internal */
@@ -124,6 +131,7 @@ export const BusinessClassifications$outboundSchema: z.ZodType<
   links: z.record(HalLink$outboundSchema).optional(),
   embedded: z.lazy(() => BusinessClassificationsEmbedded$outboundSchema)
     .optional(),
+  total: z.number().int().optional(),
 }).transform((v) => {
   return remap$(v, {
     links: "_links",

@@ -960,7 +960,9 @@ paths:
                 - $ref: '#/components/schemas/UpgradeToVerifiedBusiness'
                 - $ref: '#/components/schemas/UpgradeToVerifiedSoleProp'
                 - $ref: '#/components/schemas/RetryVerifiedPersonal'
-                - $ref: '#/components/schemas/RetryVerifiedBusiness'
+                - $ref: '#/components/schemas/RetryVerifiedBusinessNoController'
+                - $ref: '#/components/schemas/RetryVerifiedBusinessWithController'
+                - $ref: '#/components/schemas/RetryVerifiedBusinessWithInternationalController'
                 - $ref: '#/components/schemas/RetryVerifiedSoleProp'
       responses:
         '200':
@@ -1051,17 +1053,7 @@ paths:
           content:
             application/vnd.dwolla.v1.hal+json:
               schema:
-                type: object
-                properties:
-                  _links:
-                    type: object
-                  _embedded:
-                    type: object
-                    properties:
-                      business-classifications:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/BusinessClassifications'
+                $ref: '#/components/schemas/BusinessClassifications'
         '403':
           description: Forbidden
           headers: {}
@@ -2947,9 +2939,7 @@ paths:
           content:
             application/vnd.dwolla.v1.hal+json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/FundingSources'
+                $ref: '#/components/schemas/FundingSources'
         '403':
           description: forbidden
           headers: {}
@@ -9885,6 +9875,9 @@ components:
         state:
           type: string
           example: IA
+        country:
+          type: string
+          example: US
     Account:
       title: Account
       type: object
@@ -10135,29 +10128,122 @@ components:
               example: Payment for completed work Dec. 1
         achDetails:
           type: object
+          description: ACH-specific details for the transfer. Present when transfer was processed via ACH network.
           properties:
             source:
               type: object
+              description: Information sent to the source/originating bank account along with the transfer
               properties:
                 addenda:
                   type: object
+                  description: Contains addenda information for the transfer
                   properties:
                     values:
                       type: array
                       items:
                         type: string
                         example: ABC123_AddendaValue
+                      description: An array containing a single string addenda value
+                beneficiaryName:
+                  type: string
+                  description: Beneficiary of the transaction's name. In general, should match the user onboarded to the Platform's name
+                  example: John Doe
+                companyEntryDescription:
+                  type: string
+                  description: Describes the purpose of the transaction
+                  example: PAYMENT
+                  enum:
+                    - REVERSAL
+                    - RECLAIM
+                    - NO CHECK
+                    - AUTOENROLL
+                    - REDEPCHECK
+                    - RETURN FEE
+                    - RETRY PMNT
+                    - HEALTHCARE
+                    - PAYMENT
+                companyId:
+                  type: string
+                  description: Numeric identifier of originator
+                  example: '1234567890'
+                companyName:
+                  type: string
+                  description: Name of the originator
+                  example: Acme Corporation
+                effectiveDate:
+                  type: string
+                  format: date
+                  description: The date when the ACH transaction becomes effective, formatted as YYYY-MM-DD. This is typically the settlement date for the transaction
+                  example: '2021-12-01'
+                postingData:
+                  type: string
+                  description: Suggested memo line format for bank statements, structured as companyName:companyDiscretionaryData:beneficiaryName
+                  example: Acme Corporation:Payment Reference:John Doe
+                routingNumber:
+                  type: string
+                  description: Routing number of Originating Depository Financial Institution (ODFI). Identifies the financial institution that originated the ACH transaction
+                  example: '222222226'
+                traceId:
+                  type: string
+                  description: A unique identifier for tracing the ACH transaction through the banking network. Used for transaction tracking and reconciliation purposes
+                  example: '222222225926346'
             destination:
               type: object
+              description: Information sent to the destination/receiving bank account along with the transfer
               properties:
                 addenda:
                   type: object
+                  description: Contains addenda information for the transfer
                   properties:
                     values:
                       type: array
                       items:
                         type: string
                         example: ZYX987_AddendaValue
+                      description: An array containing a single string addenda value
+                beneficiaryName:
+                  type: string
+                  description: Beneficiary of the transaction's name. In general, should match the user onboarded to the Platform's name
+                  example: Jane Smith
+                companyEntryDescription:
+                  type: string
+                  description: Describes the purpose of the transaction
+                  example: PAYMENT
+                  enum:
+                    - REVERSAL
+                    - RECLAIM
+                    - NO CHECK
+                    - AUTOENROLL
+                    - REDEPCHECK
+                    - RETURN FEE
+                    - RETRY PMNT
+                    - HEALTHCARE
+                    - PAYMENT
+                companyId:
+                  type: string
+                  description: Numeric identifier of originator
+                  example: '1234567890'
+                companyName:
+                  type: string
+                  description: Name of the originator
+                  example: Acme Corporation
+                effectiveDate:
+                  type: string
+                  format: date
+                  description: The date when the ACH transaction becomes effective, formatted as YYYY-MM-DD. This is typically the settlement date for the transaction
+                  example: '2021-12-01'
+                postingData:
+                  type: string
+                  description: Suggested memo line format for bank statements, structured as companyName:companyDiscretionaryData:beneficiaryName
+                  example: Acme Corporation:Payment Reference:Jane Smith
+                routingNumber:
+                  type: string
+                  description: Routing number of Originating Depository Financial Institution (ODFI). Identifies the financial institution that originated the ACH transaction
+                  example: '222222226'
+                traceId:
+                  type: string
+                  description: A unique identifier for tracing the ACH transaction through the banking network. Used for transaction tracking and reconciliation purposes
+                  example: '222222225926346'
         rtpDetails:
           type: object
           description: Real-Time Payments (RTP) network specific details. Present when transfer was processed via RTP network.
@@ -11132,6 +11218,7 @@ components:
     UpdateVerifiedPersonal:
       title: UpdateVerifiedPersonal
       description: Update Verified Personal Customer Information
+      type: object
       properties:
         email:
           type: string
@@ -11288,7 +11375,6 @@ components:
               example: 6789
             dateOfBirth:
               type: string
-              format: date
               example: '1980-01-31'
             address:
               type: object
@@ -11366,7 +11452,6 @@ components:
           example: business
         dateOfBirth:
           type: string
-          format: date
           example: '1980-01-31'
         ssn:
           type: string
@@ -11444,9 +11529,176 @@ components:
         ssn:
           type: string
           example: 1234
-    RetryVerifiedBusiness:
-      title: RetryVerifiedBusiness
-      description: Retry Verification for Verified Business Customer
+    RetryVerifiedBusinessNoController:
+      title: RetryVerifiedBusinessNoController
+      description: Retry Verification for Verified Business Customer where only Business Details need to be retried
+      type: object
+      required:
+        - firstName
+        - lastName
+        - email
+        - type
+        - address1
+        - city
+        - state
+        - postalCode
+        - businessClassification
+        - businessType
+        - businessName
+        - ein
+      properties:
+        firstName:
+          type: string
+          example: Account
+        lastName:
+          type: string
+          example: Admin
+        email:
+          type: string
+          example: accountAdmin@email.com
+        ipAddress:
+          type: string
+          example: 143.156.7.8
+        type:
+          type: string
+          example: business
+        address1:
+          type: string
+          example: 99-99 33rd St
+        city:
+          type: string
+          example: Some City
+        state:
+          type: string
+          example: NY
+        postalCode:
+          type: string
+          example: 11101
+        businessClassification:
+          type: string
+          example: 9ed3f670-7d6f-11e3-b1ce-5404a6144203
+        businessType:
+          type: string
+          example: llc
+        businessName:
+          type: string
+          example: Jane Corp
+        ein:
+          type: string
+          example: 00-0000000
+    RetryVerifiedBusinessWithController:
+      title: RetryVerifiedBusinessWithController
+      description: Retry Verification for Verified Business Customer where Business Details as well as Controller Details need to be retried
+      type: object
+      required:
+        - firstName
+        - lastName
+        - email
+        - type
+        - address1
+        - city
+        - state
+        - postalCode
+        - controller
+        - businessClassification
+        - businessType
+        - businessName
+        - ein
+      properties:
+        firstName:
+          type: string
+          example: Account
+        lastName:
+          type: string
+          example: Admin
+        email:
+          type: string
+          example: accountAdmin@email.com
+        ipAddress:
+          type: string
+          example: 143.156.7.8
+        type:
+          type: string
+          example: business
+        address1:
+          type: string
+          example: 99-99 33rd St
+        city:
+          type: string
+          example: Some City
+        state:
+          type: string
+          example: NY
+        postalCode:
+          type: string
+          example: 11101
+        controller:
+          type: object
+          required:
+            - firstName
+            - lastName
+            - title
+            - ssn
+            - dateOfBirth
+            - address
+          properties:
+            firstName:
+              type: string
+              example: John
+            lastName:
+              type: string
+              example: Controller
+            title:
+              type: string
+              example: CEO
+            ssn:
+              type: string
+              example: 123456789
+            dateOfBirth:
+              type: string
+              example: '1980-01-31'
+            address:
+              type: object
+              required:
+                - address1
+                - city
+                - stateProvinceRegion
+                - postalCode
+                - country
+              properties:
+                address1:
+                  type: string
+                  example: 1749 18th st
+                address2:
+                  type: string
+                  example: apt 12
+                city:
+                  type: string
+                  example: Des Moines
+                stateProvinceRegion:
+                  type: string
+                  example: IA
+                postalCode:
+                  type: string
+                  example: 50266
+                country:
+                  type: string
+                  example: US
+        businessClassification:
+          type: string
+          example: 9ed3f670-7d6f-11e3-b1ce-5404a6144203
+        businessType:
+          type: string
+          example: llc
+        businessName:
+          type: string
+          example: Jane Corp
+        ein:
+          type: string
+          example: 00-0000000
+    RetryVerifiedBusinessWithInternationalController:
+      title: RetryVerifiedBusinessWithInternationalController
+      description: Retry Verification for Verified Business Customer where Business Details as well as International Controller Details need to be retried
       type: object
       required:
         - firstName
@@ -11498,6 +11750,7 @@ components:
             - title
             - dateOfBirth
             - address
+            - passport
           properties:
             firstName:
               type: string
@@ -11508,40 +11761,48 @@ components:
             title:
               type: string
               example: CEO
-            ssn:
-              type: string
-              example: 6789
             dateOfBirth:
               type: string
-              format: date
               example: '1980-01-31'
             address:
               type: object
               required:
                 - address1
                 - city
-                - stateProvinceRegion
-                - postalCode
                 - country
+                - stateProvinceRegion
               properties:
                 address1:
                   type: string
-                  example: 1749 18th st
+                  example: 462 Main Street
                 address2:
                   type: string
-                  example: apt 12
+                  example: Suite 123
+                address3:
+                  type: string
+                  example: Unit 123
                 city:
                   type: string
                   example: Des Moines
+                postalCode:
+                  type: string
+                  example: '50309'
+                country:
+                  type: string
+                  example: USA
                 stateProvinceRegion:
                   type: string
                   example: IA
-                postalCode:
+            passport:
+              type: object
+              required:
+                - number
+                - country
+              properties:
+                number:
                   type: string
-                  example: 50266
                 country:
                   type: string
-                  example: US
         businessClassification:
           type: string
           example: 9ed3f670-7d6f-11e3-b1ce-5404a6144203
@@ -11591,7 +11852,6 @@ components:
           example: business
         dateOfBirth:
           type: string
-          format: date
           example: '1980-01-31'
         ssn:
           type: string
@@ -11654,16 +11914,19 @@ components:
       type: object
       properties:
         _links:
-          type: object
           additionalProperties:
             $ref: '#/components/schemas/HalLink'
         _embedded:
           type: object
           properties:
-            mass-payments:
+            business-classifications:
               type: array
               items:
                 $ref: '#/components/schemas/BusinessClassification'
+        total:
+          type: integer
+          format: int32
+          example: 3
     BeneficialOwner:
       title: BeneficialOwner
       description: Request body model for a Beneficial Owner

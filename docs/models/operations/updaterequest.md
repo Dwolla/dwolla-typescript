@@ -8,10 +8,14 @@ import { UpdateRequest } from "dwolla/models/operations";
 let value: UpdateRequest = {
   id: "<id>",
   requestBody: {
-    firstName: "John",
-    lastName: "Doe",
     email: "accountAdmin@email.com",
-    businessName: "Jane Corp",
+    ipAddress: "143.156.7.8",
+    address1: "123 Main Street",
+    address2: "XYZ Suite",
+    city: "Des Moines",
+    state: "IA",
+    postalCode: "50309",
+    phone: "5555555555",
   },
 };
 ```

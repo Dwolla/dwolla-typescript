@@ -1,5 +1,7 @@
 # DestinationAddenda
 
+Contains addenda information for the transfer
+
 ## Example Usage
 
 ```typescript
@@ -14,6 +16,6 @@ let value: DestinationAddenda = {
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `values`           | *string*[]         | :heavy_minus_sign: | N/A                |
+| Field                                             | Type                                              | Required                                          | Description                                       |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| `values`                                          | *string*[]                                        | :heavy_minus_sign:                                | An array containing a single string addenda value |
