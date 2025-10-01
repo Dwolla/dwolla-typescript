@@ -11,6 +11,7 @@ let value: Address = {
   city: "Des Moines",
   postalCode: "50309",
   state: "IA",
+  country: "US",
 };
 ```
 
@@ -23,3 +24,4 @@ let value: Address = {
 | `city`             | *string*           | :heavy_check_mark: | N/A                | Des Moines         |
 | `postalCode`       | *string*           | :heavy_check_mark: | N/A                | 50309              |
 | `state`            | *string*           | :heavy_check_mark: | N/A                | IA                 |
+| `country`          | *string*           | :heavy_check_mark: | N/A                | US                 |

@@ -6,7 +6,6 @@ Upgrade Unverified Customer to Verified Business Customer
 
 ```typescript
 import { UpgradeToVerifiedBusiness } from "dwolla/models";
-import { RFCDate } from "dwolla/types";
 
 let value: UpgradeToVerifiedBusiness = {
   firstName: "Account",
@@ -23,7 +22,7 @@ let value: UpgradeToVerifiedBusiness = {
     lastName: "Controller",
     title: "CEO",
     ssn: "6789",
-    dateOfBirth: new RFCDate("1980-01-31"),
+    dateOfBirth: "1980-01-31",
     address: {
       address1: "1749 18th st",
       address2: "apt 12",

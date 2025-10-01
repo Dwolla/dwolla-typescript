@@ -5,7 +5,6 @@
 import * as z from "zod";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
-import { RFCDate } from "../types/rfcdate.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 /**
@@ -17,7 +16,7 @@ export type RetryVerifiedSoleProp = {
   email: string;
   ipAddress?: string | undefined;
   type: string;
-  dateOfBirth: RFCDate;
+  dateOfBirth: string;
   ssn: string;
   address1: string;
   city: string;
@@ -40,7 +39,7 @@ export const RetryVerifiedSoleProp$inboundSchema: z.ZodType<
   email: z.string(),
   ipAddress: z.string().optional(),
   type: z.string(),
-  dateOfBirth: z.string().transform(v => new RFCDate(v)),
+  dateOfBirth: z.string(),
   ssn: z.string(),
   address1: z.string(),
   city: z.string(),
@@ -82,7 +81,7 @@ export const RetryVerifiedSoleProp$outboundSchema: z.ZodType<
   email: z.string(),
   ipAddress: z.string().optional(),
   type: z.string(),
-  dateOfBirth: z.instanceof(RFCDate).transform(v => v.toString()),
+  dateOfBirth: z.string(),
   ssn: z.string(),
   address1: z.string(),
   city: z.string(),

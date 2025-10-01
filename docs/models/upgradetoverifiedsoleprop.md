@@ -6,7 +6,6 @@ Upgrade Unverified Customer to Verified Business Customer (Sole Proprietorship)
 
 ```typescript
 import { UpgradeToVerifiedSoleProp } from "dwolla/models";
-import { RFCDate } from "dwolla/types";
 
 let value: UpgradeToVerifiedSoleProp = {
   firstName: "Business",
@@ -14,7 +13,7 @@ let value: UpgradeToVerifiedSoleProp = {
   email: "solePropBusiness@email.com",
   ipAddress: "143.156.7.8",
   type: "business",
-  dateOfBirth: new RFCDate("1980-01-31"),
+  dateOfBirth: "1980-01-31",
   ssn: "6789",
   address1: "99-99 33rd St",
   city: "Some City",
@@ -36,7 +35,7 @@ let value: UpgradeToVerifiedSoleProp = {
 | `email`                              | *string*                             | :heavy_check_mark:                   | N/A                                  | solePropBusiness@email.com           |
 | `ipAddress`                          | *string*                             | :heavy_minus_sign:                   | N/A                                  | 143.156.7.8                          |
 | `type`                               | *string*                             | :heavy_check_mark:                   | N/A                                  | business                             |
-| `dateOfBirth`                        | [RFCDate](../types/rfcdate.md)       | :heavy_check_mark:                   | N/A                                  | 1980-01-31                           |
+| `dateOfBirth`                        | *string*                             | :heavy_check_mark:                   | N/A                                  | 1980-01-31                           |
 | `ssn`                                | *string*                             | :heavy_check_mark:                   | N/A                                  | 6789                                 |
 | `address1`                           | *string*                             | :heavy_check_mark:                   | N/A                                  | 99-99 33rd St                        |
 | `city`                               | *string*                             | :heavy_check_mark:                   | N/A                                  | Some City                            |

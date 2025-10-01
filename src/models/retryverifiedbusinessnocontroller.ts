@@ -8,16 +8,14 @@ import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 /**
- * Upgrade Unverified Customer to Verified Business Customer (Sole Proprietorship)
+ * Retry Verification for Verified Business Customer where only Business Details need to be retried
  */
-export type UpgradeToVerifiedSoleProp = {
+export type RetryVerifiedBusinessNoController = {
   firstName: string;
   lastName: string;
   email: string;
   ipAddress?: string | undefined;
   type: string;
-  dateOfBirth: string;
-  ssn: string;
   address1: string;
   city: string;
   state: string;
@@ -29,8 +27,8 @@ export type UpgradeToVerifiedSoleProp = {
 };
 
 /** @internal */
-export const UpgradeToVerifiedSoleProp$inboundSchema: z.ZodType<
-  UpgradeToVerifiedSoleProp,
+export const RetryVerifiedBusinessNoController$inboundSchema: z.ZodType<
+  RetryVerifiedBusinessNoController,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -39,8 +37,6 @@ export const UpgradeToVerifiedSoleProp$inboundSchema: z.ZodType<
   email: z.string(),
   ipAddress: z.string().optional(),
   type: z.string(),
-  dateOfBirth: z.string(),
-  ssn: z.string(),
   address1: z.string(),
   city: z.string(),
   state: z.string(),
@@ -52,14 +48,12 @@ export const UpgradeToVerifiedSoleProp$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type UpgradeToVerifiedSoleProp$Outbound = {
+export type RetryVerifiedBusinessNoController$Outbound = {
   firstName: string;
   lastName: string;
   email: string;
   ipAddress?: string | undefined;
   type: string;
-  dateOfBirth: string;
-  ssn: string;
   address1: string;
   city: string;
   state: string;
@@ -71,18 +65,16 @@ export type UpgradeToVerifiedSoleProp$Outbound = {
 };
 
 /** @internal */
-export const UpgradeToVerifiedSoleProp$outboundSchema: z.ZodType<
-  UpgradeToVerifiedSoleProp$Outbound,
+export const RetryVerifiedBusinessNoController$outboundSchema: z.ZodType<
+  RetryVerifiedBusinessNoController$Outbound,
   z.ZodTypeDef,
-  UpgradeToVerifiedSoleProp
+  RetryVerifiedBusinessNoController
 > = z.object({
   firstName: z.string(),
   lastName: z.string(),
   email: z.string(),
   ipAddress: z.string().optional(),
   type: z.string(),
-  dateOfBirth: z.string(),
-  ssn: z.string(),
   address1: z.string(),
   city: z.string(),
   state: z.string(),
@@ -97,29 +89,32 @@ export const UpgradeToVerifiedSoleProp$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpgradeToVerifiedSoleProp$ {
-  /** @deprecated use `UpgradeToVerifiedSoleProp$inboundSchema` instead. */
-  export const inboundSchema = UpgradeToVerifiedSoleProp$inboundSchema;
-  /** @deprecated use `UpgradeToVerifiedSoleProp$outboundSchema` instead. */
-  export const outboundSchema = UpgradeToVerifiedSoleProp$outboundSchema;
-  /** @deprecated use `UpgradeToVerifiedSoleProp$Outbound` instead. */
-  export type Outbound = UpgradeToVerifiedSoleProp$Outbound;
+export namespace RetryVerifiedBusinessNoController$ {
+  /** @deprecated use `RetryVerifiedBusinessNoController$inboundSchema` instead. */
+  export const inboundSchema = RetryVerifiedBusinessNoController$inboundSchema;
+  /** @deprecated use `RetryVerifiedBusinessNoController$outboundSchema` instead. */
+  export const outboundSchema =
+    RetryVerifiedBusinessNoController$outboundSchema;
+  /** @deprecated use `RetryVerifiedBusinessNoController$Outbound` instead. */
+  export type Outbound = RetryVerifiedBusinessNoController$Outbound;
 }
 
-export function upgradeToVerifiedSolePropToJSON(
-  upgradeToVerifiedSoleProp: UpgradeToVerifiedSoleProp,
+export function retryVerifiedBusinessNoControllerToJSON(
+  retryVerifiedBusinessNoController: RetryVerifiedBusinessNoController,
 ): string {
   return JSON.stringify(
-    UpgradeToVerifiedSoleProp$outboundSchema.parse(upgradeToVerifiedSoleProp),
+    RetryVerifiedBusinessNoController$outboundSchema.parse(
+      retryVerifiedBusinessNoController,
+    ),
   );
 }
 
-export function upgradeToVerifiedSolePropFromJSON(
+export function retryVerifiedBusinessNoControllerFromJSON(
   jsonString: string,
-): SafeParseResult<UpgradeToVerifiedSoleProp, SDKValidationError> {
+): SafeParseResult<RetryVerifiedBusinessNoController, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => UpgradeToVerifiedSoleProp$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpgradeToVerifiedSoleProp' from JSON`,
+    (x) => RetryVerifiedBusinessNoController$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RetryVerifiedBusinessNoController' from JSON`,
   );
 }

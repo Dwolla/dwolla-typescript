@@ -4,6 +4,7 @@
 
 ```typescript
 import { Transfers } from "dwolla/models";
+import { RFCDate } from "dwolla/types";
 
 let value: Transfers = {
   links: {
@@ -45,6 +46,14 @@ let value: Transfers = {
                 "ABC123_AddendaValue",
               ],
             },
+            beneficiaryName: "John Doe",
+            companyEntryDescription: "PAYMENT",
+            companyId: "1234567890",
+            companyName: "Acme Corporation",
+            effectiveDate: new RFCDate("2021-12-01"),
+            postingData: "Acme Corporation:Payment Reference:John Doe",
+            routingNumber: "222222226",
+            traceId: "222222225926346",
           },
           destination: {
             addenda: {
@@ -52,6 +61,14 @@ let value: Transfers = {
                 "ZYX987_AddendaValue",
               ],
             },
+            beneficiaryName: "Jane Smith",
+            companyEntryDescription: "PAYMENT",
+            companyId: "1234567890",
+            companyName: "Acme Corporation",
+            effectiveDate: new RFCDate("2021-12-01"),
+            postingData: "Acme Corporation:Payment Reference:Jane Smith",
+            routingNumber: "222222226",
+            traceId: "222222225926346",
           },
         },
         rtpDetails: {

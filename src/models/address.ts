@@ -13,6 +13,7 @@ export type Address = {
   city: string;
   postalCode: string;
   state: string;
+  country: string;
 };
 
 /** @internal */
@@ -23,6 +24,7 @@ export const Address$inboundSchema: z.ZodType<Address, z.ZodTypeDef, unknown> =
     city: z.string(),
     postalCode: z.string(),
     state: z.string(),
+    country: z.string(),
   });
 
 /** @internal */
@@ -32,6 +34,7 @@ export type Address$Outbound = {
   city: string;
   postalCode: string;
   state: string;
+  country: string;
 };
 
 /** @internal */
@@ -45,6 +48,7 @@ export const Address$outboundSchema: z.ZodType<
   city: z.string(),
   postalCode: z.string(),
   state: z.string(),
+  country: z.string(),
 });
 
 /**

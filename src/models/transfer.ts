@@ -7,6 +7,7 @@ import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
+import { RFCDate } from "../types/rfcdate.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import {
   HalLink,
@@ -30,24 +31,163 @@ export type TransferMetadata = {
   note?: string | undefined;
 };
 
+/**
+ * Contains addenda information for the transfer
+ */
 export type SourceAddenda = {
+  /**
+   * An array containing a single string addenda value
+   */
   values?: Array<string> | undefined;
 };
 
+/**
+ * Describes the purpose of the transaction
+ */
+export const SourceCompanyEntryDescription = {
+  Reversal: "REVERSAL",
+  Reclaim: "RECLAIM",
+  NoCheck: "NO CHECK",
+  Autoenroll: "AUTOENROLL",
+  Redepcheck: "REDEPCHECK",
+  ReturnFee: "RETURN FEE",
+  RetryPmnt: "RETRY PMNT",
+  Healthcare: "HEALTHCARE",
+  Payment: "PAYMENT",
+} as const;
+/**
+ * Describes the purpose of the transaction
+ */
+export type SourceCompanyEntryDescription = ClosedEnum<
+  typeof SourceCompanyEntryDescription
+>;
+
+/**
+ * Information sent to the source/originating bank account along with the transfer
+ */
 export type Source = {
+  /**
+   * Contains addenda information for the transfer
+   */
   addenda?: SourceAddenda | undefined;
+  /**
+   * Beneficiary of the transaction's name. In general, should match the user onboarded to the Platform's name
+   */
+  beneficiaryName?: string | undefined;
+  /**
+   * Describes the purpose of the transaction
+   */
+  companyEntryDescription?: SourceCompanyEntryDescription | undefined;
+  /**
+   * Numeric identifier of originator
+   */
+  companyId?: string | undefined;
+  /**
+   * Name of the originator
+   */
+  companyName?: string | undefined;
+  /**
+   * The date when the ACH transaction becomes effective, formatted as YYYY-MM-DD. This is typically the settlement date for the transaction
+   */
+  effectiveDate?: RFCDate | undefined;
+  /**
+   * Suggested memo line format for bank statements, structured as companyName:companyDiscretionaryData:beneficiaryName
+   */
+  postingData?: string | undefined;
+  /**
+   * Routing number of Originating Depository Financial Institution (ODFI). Identifies the financial institution that originated the ACH transaction
+   */
+  routingNumber?: string | undefined;
+  /**
+   * A unique identifier for tracing the ACH transaction through the banking network. Used for transaction tracking and reconciliation purposes
+   */
+  traceId?: string | undefined;
 };
 
+/**
+ * Contains addenda information for the transfer
+ */
 export type DestinationAddenda = {
+  /**
+   * An array containing a single string addenda value
+   */
   values?: Array<string> | undefined;
 };
 
+/**
+ * Describes the purpose of the transaction
+ */
+export const DestinationCompanyEntryDescription = {
+  Reversal: "REVERSAL",
+  Reclaim: "RECLAIM",
+  NoCheck: "NO CHECK",
+  Autoenroll: "AUTOENROLL",
+  Redepcheck: "REDEPCHECK",
+  ReturnFee: "RETURN FEE",
+  RetryPmnt: "RETRY PMNT",
+  Healthcare: "HEALTHCARE",
+  Payment: "PAYMENT",
+} as const;
+/**
+ * Describes the purpose of the transaction
+ */
+export type DestinationCompanyEntryDescription = ClosedEnum<
+  typeof DestinationCompanyEntryDescription
+>;
+
+/**
+ * Information sent to the destination/receiving bank account along with the transfer
+ */
 export type AchDetailsDestination = {
+  /**
+   * Contains addenda information for the transfer
+   */
   addenda?: DestinationAddenda | undefined;
+  /**
+   * Beneficiary of the transaction's name. In general, should match the user onboarded to the Platform's name
+   */
+  beneficiaryName?: string | undefined;
+  /**
+   * Describes the purpose of the transaction
+   */
+  companyEntryDescription?: DestinationCompanyEntryDescription | undefined;
+  /**
+   * Numeric identifier of originator
+   */
+  companyId?: string | undefined;
+  /**
+   * Name of the originator
+   */
+  companyName?: string | undefined;
+  /**
+   * The date when the ACH transaction becomes effective, formatted as YYYY-MM-DD. This is typically the settlement date for the transaction
+   */
+  effectiveDate?: RFCDate | undefined;
+  /**
+   * Suggested memo line format for bank statements, structured as companyName:companyDiscretionaryData:beneficiaryName
+   */
+  postingData?: string | undefined;
+  /**
+   * Routing number of Originating Depository Financial Institution (ODFI). Identifies the financial institution that originated the ACH transaction
+   */
+  routingNumber?: string | undefined;
+  /**
+   * A unique identifier for tracing the ACH transaction through the banking network. Used for transaction tracking and reconciliation purposes
+   */
+  traceId?: string | undefined;
 };
 
+/**
+ * ACH-specific details for the transfer. Present when transfer was processed via ACH network.
+ */
 export type AchDetails = {
+  /**
+   * Information sent to the source/originating bank account along with the transfer
+   */
   source?: Source | undefined;
+  /**
+   * Information sent to the destination/receiving bank account along with the transfer
+   */
   destination?: AchDetailsDestination | undefined;
 };
 
@@ -134,6 +274,9 @@ export type Transfer = {
   created?: Date | undefined;
   clearing?: Clearing | undefined;
   metadata?: TransferMetadata | undefined;
+  /**
+   * ACH-specific details for the transfer. Present when transfer was processed via ACH network.
+   */
   achDetails?: AchDetails | undefined;
   /**
    * Real-Time Payments (RTP) network specific details. Present when transfer was processed via RTP network.
@@ -363,14 +506,52 @@ export function sourceAddendaFromJSON(
 }
 
 /** @internal */
+export const SourceCompanyEntryDescription$inboundSchema: z.ZodNativeEnum<
+  typeof SourceCompanyEntryDescription
+> = z.nativeEnum(SourceCompanyEntryDescription);
+
+/** @internal */
+export const SourceCompanyEntryDescription$outboundSchema: z.ZodNativeEnum<
+  typeof SourceCompanyEntryDescription
+> = SourceCompanyEntryDescription$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SourceCompanyEntryDescription$ {
+  /** @deprecated use `SourceCompanyEntryDescription$inboundSchema` instead. */
+  export const inboundSchema = SourceCompanyEntryDescription$inboundSchema;
+  /** @deprecated use `SourceCompanyEntryDescription$outboundSchema` instead. */
+  export const outboundSchema = SourceCompanyEntryDescription$outboundSchema;
+}
+
+/** @internal */
 export const Source$inboundSchema: z.ZodType<Source, z.ZodTypeDef, unknown> = z
   .object({
     addenda: z.lazy(() => SourceAddenda$inboundSchema).optional(),
+    beneficiaryName: z.string().optional(),
+    companyEntryDescription: SourceCompanyEntryDescription$inboundSchema
+      .optional(),
+    companyId: z.string().optional(),
+    companyName: z.string().optional(),
+    effectiveDate: z.string().transform(v => new RFCDate(v)).optional(),
+    postingData: z.string().optional(),
+    routingNumber: z.string().optional(),
+    traceId: z.string().optional(),
   });
 
 /** @internal */
 export type Source$Outbound = {
   addenda?: SourceAddenda$Outbound | undefined;
+  beneficiaryName?: string | undefined;
+  companyEntryDescription?: string | undefined;
+  companyId?: string | undefined;
+  companyName?: string | undefined;
+  effectiveDate?: string | undefined;
+  postingData?: string | undefined;
+  routingNumber?: string | undefined;
+  traceId?: string | undefined;
 };
 
 /** @internal */
@@ -380,6 +561,15 @@ export const Source$outboundSchema: z.ZodType<
   Source
 > = z.object({
   addenda: z.lazy(() => SourceAddenda$outboundSchema).optional(),
+  beneficiaryName: z.string().optional(),
+  companyEntryDescription: SourceCompanyEntryDescription$outboundSchema
+    .optional(),
+  companyId: z.string().optional(),
+  companyName: z.string().optional(),
+  effectiveDate: z.instanceof(RFCDate).transform(v => v.toString()).optional(),
+  postingData: z.string().optional(),
+  routingNumber: z.string().optional(),
+  traceId: z.string().optional(),
 });
 
 /**
@@ -464,17 +654,56 @@ export function destinationAddendaFromJSON(
 }
 
 /** @internal */
+export const DestinationCompanyEntryDescription$inboundSchema: z.ZodNativeEnum<
+  typeof DestinationCompanyEntryDescription
+> = z.nativeEnum(DestinationCompanyEntryDescription);
+
+/** @internal */
+export const DestinationCompanyEntryDescription$outboundSchema: z.ZodNativeEnum<
+  typeof DestinationCompanyEntryDescription
+> = DestinationCompanyEntryDescription$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace DestinationCompanyEntryDescription$ {
+  /** @deprecated use `DestinationCompanyEntryDescription$inboundSchema` instead. */
+  export const inboundSchema = DestinationCompanyEntryDescription$inboundSchema;
+  /** @deprecated use `DestinationCompanyEntryDescription$outboundSchema` instead. */
+  export const outboundSchema =
+    DestinationCompanyEntryDescription$outboundSchema;
+}
+
+/** @internal */
 export const AchDetailsDestination$inboundSchema: z.ZodType<
   AchDetailsDestination,
   z.ZodTypeDef,
   unknown
 > = z.object({
   addenda: z.lazy(() => DestinationAddenda$inboundSchema).optional(),
+  beneficiaryName: z.string().optional(),
+  companyEntryDescription: DestinationCompanyEntryDescription$inboundSchema
+    .optional(),
+  companyId: z.string().optional(),
+  companyName: z.string().optional(),
+  effectiveDate: z.string().transform(v => new RFCDate(v)).optional(),
+  postingData: z.string().optional(),
+  routingNumber: z.string().optional(),
+  traceId: z.string().optional(),
 });
 
 /** @internal */
 export type AchDetailsDestination$Outbound = {
   addenda?: DestinationAddenda$Outbound | undefined;
+  beneficiaryName?: string | undefined;
+  companyEntryDescription?: string | undefined;
+  companyId?: string | undefined;
+  companyName?: string | undefined;
+  effectiveDate?: string | undefined;
+  postingData?: string | undefined;
+  routingNumber?: string | undefined;
+  traceId?: string | undefined;
 };
 
 /** @internal */
@@ -484,6 +713,15 @@ export const AchDetailsDestination$outboundSchema: z.ZodType<
   AchDetailsDestination
 > = z.object({
   addenda: z.lazy(() => DestinationAddenda$outboundSchema).optional(),
+  beneficiaryName: z.string().optional(),
+  companyEntryDescription: DestinationCompanyEntryDescription$outboundSchema
+    .optional(),
+  companyId: z.string().optional(),
+  companyName: z.string().optional(),
+  effectiveDate: z.instanceof(RFCDate).transform(v => v.toString()).optional(),
+  postingData: z.string().optional(),
+  routingNumber: z.string().optional(),
+  traceId: z.string().optional(),
 });
 
 /**

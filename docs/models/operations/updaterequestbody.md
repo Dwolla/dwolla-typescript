@@ -108,7 +108,7 @@ const value: models.UpgradeToVerifiedBusiness = {
     lastName: "Controller",
     title: "CEO",
     ssn: "6789",
-    dateOfBirth: new RFCDate("1980-01-31"),
+    dateOfBirth: "1980-01-31",
     address: {
       address1: "1749 18th st",
       address2: "apt 12",
@@ -134,7 +134,7 @@ const value: models.UpgradeToVerifiedSoleProp = {
   email: "solePropBusiness@email.com",
   ipAddress: "143.156.7.8",
   type: "business",
-  dateOfBirth: new RFCDate("1980-01-31"),
+  dateOfBirth: "1980-01-31",
   ssn: "6789",
   address1: "99-99 33rd St",
   city: "Some City",
@@ -165,10 +165,30 @@ const value: models.RetryVerifiedPersonal = {
 };
 ```
 
-### `models.RetryVerifiedBusiness`
+### `models.RetryVerifiedBusinessNoController`
 
 ```typescript
-const value: models.RetryVerifiedBusiness = {
+const value: models.RetryVerifiedBusinessNoController = {
+  firstName: "Account",
+  lastName: "Admin",
+  email: "accountAdmin@email.com",
+  ipAddress: "143.156.7.8",
+  type: "business",
+  address1: "99-99 33rd St",
+  city: "Some City",
+  state: "NY",
+  postalCode: "11101",
+  businessClassification: "9ed3f670-7d6f-11e3-b1ce-5404a6144203",
+  businessType: "llc",
+  businessName: "Jane Corp",
+  ein: "00-0000000",
+};
+```
+
+### `models.RetryVerifiedBusinessWithController`
+
+```typescript
+const value: models.RetryVerifiedBusinessWithController = {
   firstName: "Account",
   lastName: "Admin",
   email: "accountAdmin@email.com",
@@ -182,8 +202,8 @@ const value: models.RetryVerifiedBusiness = {
     firstName: "John",
     lastName: "Controller",
     title: "CEO",
-    ssn: "6789",
-    dateOfBirth: new RFCDate("1980-01-31"),
+    ssn: "123456789",
+    dateOfBirth: "1980-01-31",
     address: {
       address1: "1749 18th st",
       address2: "apt 12",
@@ -191,6 +211,45 @@ const value: models.RetryVerifiedBusiness = {
       stateProvinceRegion: "IA",
       postalCode: "50266",
       country: "US",
+    },
+  },
+  businessClassification: "9ed3f670-7d6f-11e3-b1ce-5404a6144203",
+  businessType: "llc",
+  businessName: "Jane Corp",
+  ein: "00-0000000",
+};
+```
+
+### `models.RetryVerifiedBusinessWithInternationalController`
+
+```typescript
+const value: models.RetryVerifiedBusinessWithInternationalController = {
+  firstName: "Account",
+  lastName: "Admin",
+  email: "accountAdmin@email.com",
+  ipAddress: "143.156.7.8",
+  type: "business",
+  address1: "99-99 33rd St",
+  city: "Some City",
+  state: "NY",
+  postalCode: "11101",
+  controller: {
+    firstName: "John",
+    lastName: "Controller",
+    title: "CEO",
+    dateOfBirth: "1980-01-31",
+    address: {
+      address1: "462 Main Street",
+      address2: "Suite 123",
+      address3: "Unit 123",
+      city: "Des Moines",
+      postalCode: "50309",
+      country: "USA",
+      stateProvinceRegion: "IA",
+    },
+    passport: {
+      number: "<value>",
+      country: "Seychelles",
     },
   },
   businessClassification: "9ed3f670-7d6f-11e3-b1ce-5404a6144203",
@@ -209,7 +268,7 @@ const value: models.RetryVerifiedSoleProp = {
   email: "solePropBusiness@email.com",
   ipAddress: "143.156.7.8",
   type: "business",
-  dateOfBirth: new RFCDate("1980-01-31"),
+  dateOfBirth: "1980-01-31",
   ssn: "6789",
   address1: "99-99 33rd St",
   city: "Some City",

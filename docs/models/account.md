@@ -25,6 +25,7 @@ let value: Account = {
     city: "Des Moines",
     postalCode: "50309",
     state: "IA",
+    country: "US",
   },
   verificationStatus: "Verified",
   ownershipStatus: "Exempt",
