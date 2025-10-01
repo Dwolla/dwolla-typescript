@@ -18,7 +18,7 @@ export class BusinessClassifications extends ClientSDK {
    */
   async list(
     options?: RequestOptions,
-  ): Promise<operations.ListBusinessClassificationsResponse> {
+  ): Promise<models.BusinessClassifications> {
     return unwrapAsync(businessClassificationsList(
       this,
       options,

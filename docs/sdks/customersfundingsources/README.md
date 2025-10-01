@@ -79,7 +79,7 @@ run();
 
 ### Response
 
-**Promise\<[models.FundingSources[]](../../models/.md)\>**
+**Promise\<[models.FundingSources](../../models/fundingsources.md)\>**
 
 ### Errors
 

@@ -1040,17 +1040,7 @@ paths:
           content:
             application/vnd.dwolla.v1.hal+json:
               schema:
-                type: object
-                properties:
-                  _links:
-                    type: object
-                  _embedded:
-                    type: object
-                    properties:
-                      business-classifications:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/BusinessClassifications'
+                $ref: '#/components/schemas/BusinessClassifications'
         '403':
           description: Forbidden
           headers: {}
@@ -2936,9 +2926,7 @@ paths:
           content:
             application/vnd.dwolla.v1.hal+json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/FundingSources'
+                $ref: '#/components/schemas/FundingSources'
         '403':
           description: forbidden
           headers: {}
@@ -9694,6 +9682,9 @@ components:
         state:
           type: string
           example: IA
+        country:
+          type: string
+          example: US
     Account:
       title: Account
       type: object
@@ -11051,6 +11042,7 @@ components:
     UpdateVerifiedPersonal:
       title: UpdateVerifiedPersonal
       description: Update Verified Personal Customer Information
+      type: object
       properties:
         email:
           type: string
@@ -11079,7 +11071,6 @@ components:
         operationType:
           type: string
           const: updateVerifiedPersonal
-      type: object
       required:
         - operationType
     UpdateVerifiedBusiness:
@@ -11282,7 +11273,6 @@ components:
               example: 6789
             dateOfBirth:
               type: string
-              format: date
               example: '1980-01-31'
             address:
               type: object
@@ -11383,7 +11373,6 @@ components:
           example: business
         dateOfBirth:
           type: string
-          format: date
           example: '1980-01-31'
         ssn:
           type: string
@@ -11478,11 +11467,236 @@ components:
         operationType:
           type: string
           const: retryVerifiedPersonal
-    RetryVerifiedBusiness:
-      title: RetryVerifiedBusiness
-      description: Retry Verification for Verified Business Customer
+    RetryVerifiedBusinessNoController:
+      title: RetryVerifiedBusinessNoController
+      description: Retry Verification for Verified Business Customer where only Business Details need to be retried
       type: object
       required:
+        - firstName
+        - lastName
+        - email
+        - type
+        - address1
+        - city
+        - state
+        - postalCode
+        - businessClassification
+        - businessType
+        - businessName
+        - ein
+        - operationType
+        - firstName
+        - lastName
+        - email
+        - type
+        - address1
+        - city
+        - state
+        - postalCode
+        - businessClassification
+        - businessType
+        - businessName
+        - ein
+      properties:
+        firstName:
+          type: string
+          example: Account
+        lastName:
+          type: string
+          example: Admin
+        email:
+          type: string
+          example: accountAdmin@email.com
+        ipAddress:
+          type: string
+          example: 143.156.7.8
+        type:
+          type: string
+          example: business
+        address1:
+          type: string
+          example: 99-99 33rd St
+        city:
+          type: string
+          example: Some City
+        state:
+          type: string
+          example: NY
+        postalCode:
+          type: string
+          example: 11101
+        businessClassification:
+          type: string
+          example: 9ed3f670-7d6f-11e3-b1ce-5404a6144203
+        businessType:
+          type: string
+          example: llc
+        businessName:
+          type: string
+          example: Jane Corp
+        ein:
+          type: string
+          example: 00-0000000
+        operationType:
+          type: string
+          const: retryVerifiedBusinessNoController
+    RetryVerifiedBusinessWithController:
+      title: RetryVerifiedBusinessWithController
+      description: Retry Verification for Verified Business Customer where Business Details as well as Controller Details need to be retried
+      type: object
+      required:
+        - firstName
+        - lastName
+        - email
+        - type
+        - address1
+        - city
+        - state
+        - postalCode
+        - controller
+        - businessClassification
+        - businessType
+        - businessName
+        - ein
+        - operationType
+        - firstName
+        - lastName
+        - email
+        - type
+        - address1
+        - city
+        - state
+        - postalCode
+        - controller
+        - businessClassification
+        - businessType
+        - businessName
+        - ein
+      properties:
+        firstName:
+          type: string
+          example: Account
+        lastName:
+          type: string
+          example: Admin
+        email:
+          type: string
+          example: accountAdmin@email.com
+        ipAddress:
+          type: string
+          example: 143.156.7.8
+        type:
+          type: string
+          example: business
+        address1:
+          type: string
+          example: 99-99 33rd St
+        city:
+          type: string
+          example: Some City
+        state:
+          type: string
+          example: NY
+        postalCode:
+          type: string
+          example: 11101
+        controller:
+          type: object
+          required:
+            - firstName
+            - lastName
+            - title
+            - ssn
+            - dateOfBirth
+            - address
+            - firstName
+            - lastName
+            - title
+            - ssn
+            - dateOfBirth
+            - address
+          properties:
+            firstName:
+              type: string
+              example: John
+            lastName:
+              type: string
+              example: Controller
+            title:
+              type: string
+              example: CEO
+            ssn:
+              type: string
+              example: 123456789
+            dateOfBirth:
+              type: string
+              example: '1980-01-31'
+            address:
+              type: object
+              required:
+                - address1
+                - city
+                - stateProvinceRegion
+                - postalCode
+                - country
+                - address1
+                - city
+                - stateProvinceRegion
+                - postalCode
+                - country
+              properties:
+                address1:
+                  type: string
+                  example: 1749 18th st
+                address2:
+                  type: string
+                  example: apt 12
+                city:
+                  type: string
+                  example: Des Moines
+                stateProvinceRegion:
+                  type: string
+                  example: IA
+                postalCode:
+                  type: string
+                  example: 50266
+                country:
+                  type: string
+                  example: US
+        businessClassification:
+          type: string
+          example: 9ed3f670-7d6f-11e3-b1ce-5404a6144203
+        businessType:
+          type: string
+          example: llc
+        businessName:
+          type: string
+          example: Jane Corp
+        ein:
+          type: string
+          example: 00-0000000
+        operationType:
+          type: string
+          const: retryVerifiedBusinessWithController
+    RetryVerifiedBusinessWithInternationalController:
+      title: RetryVerifiedBusinessWithInternationalController
+      description: Retry Verification for Verified Business Customer where Business Details as well as International Controller Details need to be retried
+      type: object
+      required:
+        - firstName
+        - lastName
+        - email
+        - type
+        - address1
+        - city
+        - state
+        - postalCode
+        - controller
+        - businessClassification
+        - businessType
+        - businessName
+        - ein
+        - operationType
         - firstName
         - lastName
         - email
@@ -11532,6 +11746,13 @@ components:
             - title
             - dateOfBirth
             - address
+            - passport
+            - firstName
+            - lastName
+            - title
+            - dateOfBirth
+            - address
+            - passport
           properties:
             firstName:
               type: string
@@ -11542,40 +11763,54 @@ components:
             title:
               type: string
               example: CEO
-            ssn:
-              type: string
-              example: 6789
             dateOfBirth:
               type: string
-              format: date
               example: '1980-01-31'
             address:
               type: object
               required:
                 - address1
                 - city
-                - stateProvinceRegion
-                - postalCode
                 - country
+                - stateProvinceRegion
+                - address1
+                - city
+                - country
+                - stateProvinceRegion
               properties:
                 address1:
                   type: string
-                  example: 1749 18th st
+                  example: 462 Main Street
                 address2:
                   type: string
-                  example: apt 12
+                  example: Suite 123
+                address3:
+                  type: string
+                  example: Unit 123
                 city:
                   type: string
                   example: Des Moines
+                postalCode:
+                  type: string
+                  example: '50309'
+                country:
+                  type: string
+                  example: USA
                 stateProvinceRegion:
                   type: string
                   example: IA
-                postalCode:
+            passport:
+              type: object
+              required:
+                - number
+                - country
+                - number
+                - country
+              properties:
+                number:
                   type: string
-                  example: 50266
                 country:
                   type: string
-                  example: US
         businessClassification:
           type: string
           example: 9ed3f670-7d6f-11e3-b1ce-5404a6144203
@@ -11588,6 +11823,9 @@ components:
         ein:
           type: string
           example: 00-0000000
+        operationType:
+          type: string
+          const: retryVerifiedBusinessWithInternationalController
     RetryVerifiedSoleProp:
       title: RetryVerifiedSoleProp
       description: Retry Verification for Verified Business Customer (Sole Proprietorship)
@@ -11640,7 +11878,6 @@ components:
           example: business
         dateOfBirth:
           type: string
-          format: date
           example: '1980-01-31'
         ssn:
           type: string
@@ -11706,16 +11943,19 @@ components:
       type: object
       properties:
         _links:
-          type: object
           additionalProperties:
             $ref: '#/components/schemas/HalLink'
         _embedded:
           type: object
           properties:
-            mass-payments:
+            business-classifications:
               type: array
               items:
                 $ref: '#/components/schemas/BusinessClassification'
+        total:
+          type: integer
+          format: int32
+          example: 3
     BeneficialOwner:
       title: BeneficialOwner
       description: Request body model for a Beneficial Owner
@@ -15522,304 +15762,6 @@ components:
         businessName:
           type: string
           example: Jane Corp
-    RetryVerifiedBusinessNoController:
-      title: RetryVerifiedBusinessNoController
-      description: Retry Verification for Verified Business Customer where only Business Details need to be retried
-      type: object
-      required:
-        - operationType
-        - firstName
-        - lastName
-        - email
-        - type
-        - address1
-        - city
-        - state
-        - postalCode
-        - businessClassification
-        - businessType
-        - businessName
-        - ein
-      properties:
-        operationType:
-          type: string
-          const: retryVerifiedBusinessNoController
-        firstName:
-          type: string
-          example: Account
-        lastName:
-          type: string
-          example: Admin
-        email:
-          type: string
-          example: accountAdmin@email.com
-        ipAddress:
-          type: string
-          example: 143.156.7.8
-        type:
-          type: string
-          example: business
-        address1:
-          type: string
-          example: 99-99 33rd St
-        city:
-          type: string
-          example: Some City
-        state:
-          type: string
-          example: NY
-        postalCode:
-          type: string
-          example: 11101
-        businessClassification:
-          type: string
-          example: 9ed3f670-7d6f-11e3-b1ce-5404a6144203
-        businessType:
-          type: string
-          example: llc
-        businessName:
-          type: string
-          example: Jane Corp
-        ein:
-          type: string
-          example: 00-0000000
-    RetryVerifiedBusinessWithController:
-      title: RetryVerifiedBusinessWithController
-      description: Retry Verification for Verified Business Customer where Business Details as well as Controller Details need to be retried
-      type: object
-      required:
-        - operationType
-        - firstName
-        - lastName
-        - email
-        - type
-        - address1
-        - city
-        - state
-        - postalCode
-        - controller
-        - businessClassification
-        - businessType
-        - businessName
-        - ein
-      properties:
-        operationType:
-          type: string
-          const: retryVerifiedBusinessWithController
-        firstName:
-          type: string
-          example: Account
-        lastName:
-          type: string
-          example: Admin
-        email:
-          type: string
-          example: accountAdmin@email.com
-        ipAddress:
-          type: string
-          example: 143.156.7.8
-        type:
-          type: string
-          example: business
-        address1:
-          type: string
-          example: 99-99 33rd St
-        city:
-          type: string
-          example: Some City
-        state:
-          type: string
-          example: NY
-        postalCode:
-          type: string
-          example: 11101
-        controller:
-          type: object
-          required:
-            - firstName
-            - lastName
-            - title
-            - ssn
-            - dateOfBirth
-            - address
-          properties:
-            firstName:
-              type: string
-              example: John
-            lastName:
-              type: string
-              example: Controller
-            title:
-              type: string
-              example: CEO
-            ssn:
-              type: string
-              example: 123456789
-            dateOfBirth:
-              type: string
-              example: 1980-01-31
-            address:
-              type: object
-              required:
-                - address1
-                - city
-                - stateProvinceRegion
-                - postalCode
-                - country
-              properties:
-                address1:
-                  type: string
-                  example: 1749 18th st
-                address2:
-                  type: string
-                  example: apt 12
-                city:
-                  type: string
-                  example: Des Moines
-                stateProvinceRegion:
-                  type: string
-                  example: IA
-                postalCode:
-                  type: string
-                  example: 50266
-                country:
-                  type: string
-                  example: US
-        businessClassification:
-          type: string
-          example: 9ed3f670-7d6f-11e3-b1ce-5404a6144203
-        businessType:
-          type: string
-          example: llc
-        businessName:
-          type: string
-          example: Jane Corp
-        ein:
-          type: string
-          example: 00-0000000
-    RetryVerifiedBusinessWithInternationalController:
-      title: RetryVerifiedBusinessWithInternationalController
-      description: Retry Verification for Verified Business Customer where Business Details as well as International Controller Details need to be retried
-      type: object
-      required:
-        - operationType
-        - firstName
-        - lastName
-        - email
-        - type
-        - address1
-        - city
-        - state
-        - postalCode
-        - controller
-        - businessClassification
-        - businessType
-        - businessName
-        - ein
-      properties:
-        operationType:
-          type: string
-          const: retryVerifiedBusinessWithInternationalController
-        firstName:
-          type: string
-          example: Account
-        lastName:
-          type: string
-          example: Admin
-        email:
-          type: string
-          example: accountAdmin@email.com
-        ipAddress:
-          type: string
-          example: 143.156.7.8
-        type:
-          type: string
-          example: business
-        address1:
-          type: string
-          example: 99-99 33rd St
-        city:
-          type: string
-          example: Some City
-        state:
-          type: string
-          example: NY
-        postalCode:
-          type: string
-          example: 11101
-        controller:
-          type: object
-          required:
-            - firstName
-            - lastName
-            - title
-            - dateOfBirth
-            - address
-            - passport
-          properties:
-            firstName:
-              type: string
-              example: John
-            lastName:
-              type: string
-              example: Controller
-            title:
-              type: string
-              example: CEO
-            dateOfBirth:
-              type: string
-              example: 1980-01-31
-            address:
-              type: object
-              required:
-                - address1
-                - city
-                - country
-                - stateProvinceRegion
-              properties:
-                address1:
-                  type: string
-                  example: 462 Main Street
-                address2:
-                  type: string
-                  example: Suite 123
-                address3:
-                  type: string
-                  example: Unit 123
-                city:
-                  type: string
-                  example: Des Moines
-                postalCode:
-                  type: string
-                  example: '50309'
-                country:
-                  type: string
-                  example: USA
-                stateProvinceRegion:
-                  type: string
-                  example: 'IA'
-            passport:
-              type: object
-              required:
-                - number
-                - country
-              properties:
-                number:
-                  type: string
-                country:
-                  type: string
-        businessClassification:
-          type: string
-          example: 9ed3f670-7d6f-11e3-b1ce-5404a6144203
-        businessType:
-          type: string
-          example: llc
-        businessName:
-          type: string
-          example: Jane Corp
-        ein:
-          type: string
-          example: 00-0000000
   headers:
     Location:
       description: The location of the created resource

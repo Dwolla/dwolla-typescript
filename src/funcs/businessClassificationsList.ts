@@ -19,7 +19,7 @@ import {
 import * as errors from "../models/errors/index.js";
 import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
-import * as operations from "../models/operations/index.js";
+import * as models from "../models/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
@@ -34,7 +34,7 @@ export function businessClassificationsList(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.ListBusinessClassificationsResponse,
+    models.BusinessClassifications,
     | errors.ForbiddenError
     | errors.NotFoundError
     | DwollaError
@@ -59,7 +59,7 @@ async function $do(
 ): Promise<
   [
     Result<
-      operations.ListBusinessClassificationsResponse,
+      models.BusinessClassifications,
       | errors.ForbiddenError
       | errors.NotFoundError
       | DwollaError
@@ -128,7 +128,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.ListBusinessClassificationsResponse,
+    models.BusinessClassifications,
     | errors.ForbiddenError
     | errors.NotFoundError
     | DwollaError
@@ -140,7 +140,7 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, operations.ListBusinessClassificationsResponse$inboundSchema, {
+    M.json(200, models.BusinessClassifications$inboundSchema, {
       ctype: "application/vnd.dwolla.v1.hal+json",
     }),
     M.jsonErr(403, errors.ForbiddenError$inboundSchema, {

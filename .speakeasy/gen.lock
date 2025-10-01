@@ -1,7 +1,7 @@
 lockVersion: 2.0.0
 id: 53ac026a-ff11-435d-914b-31df5268afb0
 management:
-  docChecksum: 48cf921780e74e8c576cc35425aa5127
+  docChecksum: 04ad9b907032a1ecc54c5e0bf1312394
   docVersion: "2.0"
   speakeasyVersion: 1.631.5
   generationVersion: 2.716.16
@@ -641,9 +641,6 @@ generatedFiles:
   - docs/models/operations/listavailableexchangeconnectionsrequest.md
   - docs/models/operations/listbeneficialownerdocumentsrequest.md
   - docs/models/operations/listbeneficialownersforcustomerrequest.md
-  - docs/models/operations/listbusinessclassificationsembedded.md
-  - docs/models/operations/listbusinessclassificationslinks.md
-  - docs/models/operations/listbusinessclassificationsresponse.md
   - docs/models/operations/listcustomerdocumentsrequest.md
   - docs/models/operations/listcustomerexchangesrequest.md
   - docs/models/operations/listcustomerfundingsourcesrequest.md
@@ -739,6 +736,16 @@ generatedFiles:
   - docs/models/responset.md
   - docs/models/retrylinks.md
   - docs/models/retryself.md
+  - docs/models/retryverifiedbusinessnocontroller.md
+  - docs/models/retryverifiedbusinesswithcontroller.md
+  - docs/models/retryverifiedbusinesswithcontrolleraddress.md
+  - docs/models/retryverifiedbusinesswithcontrollercontroller.md
+  - docs/models/retryverifiedbusinesswithinternationalcontroller.md
+  - docs/models/retryverifiedbusinesswithinternationalcontrolleraddress.md
+  - docs/models/retryverifiedbusinesswithinternationalcontrollercontroller.md
+  - docs/models/retryverifiedbusinesswithinternationalcontrollerpassport.md
+  - docs/models/retryverifiedpersonal.md
+  - docs/models/retryverifiedsoleprop.md
   - docs/models/root.md
   - docs/models/rtpdetails.md
   - docs/models/rtpdetailsdestination.md
@@ -1323,7 +1330,6 @@ generatedFiles:
   - src/models/operations/listavailableexchangeconnections.ts
   - src/models/operations/listbeneficialownerdocuments.ts
   - src/models/operations/listbeneficialownersforcustomer.ts
-  - src/models/operations/listbusinessclassifications.ts
   - src/models/operations/listcustomerdocuments.ts
   - src/models/operations/listcustomerexchanges.ts
   - src/models/operations/listcustomerfundingsources.ts
@@ -1358,6 +1364,11 @@ generatedFiles:
   - src/models/receivernotfounderror.ts
   - src/models/receiverrestrictederror.ts
   - src/models/removebank.ts
+  - src/models/retryverifiedbusinessnocontroller.ts
+  - src/models/retryverifiedbusinesswithcontroller.ts
+  - src/models/retryverifiedbusinesswithinternationalcontroller.ts
+  - src/models/retryverifiedpersonal.ts
+  - src/models/retryverifiedsoleprop.ts
   - src/models/root.ts
   - src/models/rtpfacilitatorfeenotsupportederror.ts
   - src/models/rtppersonaltopersonalnotsupportederror.ts
@@ -1482,7 +1493,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "2e21f010-3023-4891-aced-ed726d7cd5e1", "name": "Self Employed", "authorizedRep": "Jane Doe", "timezoneOffset": -6, "email": "janedoe@mail.com", "phone": "5555552368", "address": {"address1": "462 Main Street", "address2": "Suite 124", "city": "Des Moines", "postalCode": "50309", "state": "IA"}, "verificationStatus": "Verified", "ownershipStatus": "Exempt", "ownershipCertificationStatus": "Exempt", "type": "Commercial", "created": "2021-10-25T00:39:38.283Z"}
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "2e21f010-3023-4891-aced-ed726d7cd5e1", "name": "Self Employed", "authorizedRep": "Jane Doe", "timezoneOffset": -6, "email": "janedoe@mail.com", "phone": "5555552368", "address": {"address1": "462 Main Street", "address2": "Suite 124", "city": "Des Moines", "postalCode": "50309", "state": "IA", "country": "US"}, "verificationStatus": "Verified", "ownershipStatus": "Exempt", "ownershipCertificationStatus": "Exempt", "type": "Commercial", "created": "2021-10-25T00:39:38.283Z"}
         "403":
           application/vnd.dwolla.v1.hal+json: {"code": "forbidden", "message": "Not authorized to retrieve an Account by id."}
         "404":
@@ -1583,7 +1594,7 @@ examples:
     speakeasy-default-list-business-classifications:
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: {"_embedded": {"business-classifications": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"mass-payments": [{"_links": {"self": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"industry-classifications": [{"id": "9ed3f66b-7d6f-11e3-95ac-5404a6144203", "name": "Wineries"}, {"id": "9ed3f66b-7d6f-11e3-95ac-5404a6144203", "name": "Wineries"}, {"id": "9ed3f66b-7d6f-11e3-95ac-5404a6144203", "name": "Wineries"}]}, "id": "9ed3f669-7d6f-11e3-b545-5404a6144203", "name": "Food retail and service"}, {"_links": {"self": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"industry-classifications": [{"id": "9ed3f66b-7d6f-11e3-95ac-5404a6144203", "name": "Wineries"}, {"id": "9ed3f66b-7d6f-11e3-95ac-5404a6144203", "name": "Wineries"}, {"id": "9ed3f66b-7d6f-11e3-95ac-5404a6144203", "name": "Wineries"}]}, "id": "9ed3f669-7d6f-11e3-b545-5404a6144203", "name": "Food retail and service"}]}}, {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"mass-payments": [{"_links": {"self": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"industry-classifications": [{"id": "9ed3f66b-7d6f-11e3-95ac-5404a6144203", "name": "Wineries"}, {"id": "9ed3f66b-7d6f-11e3-95ac-5404a6144203", "name": "Wineries"}, {"id": "9ed3f66b-7d6f-11e3-95ac-5404a6144203", "name": "Wineries"}]}, "id": "9ed3f669-7d6f-11e3-b545-5404a6144203", "name": "Food retail and service"}, {"_links": {"self": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"industry-classifications": [{"id": "9ed3f66b-7d6f-11e3-95ac-5404a6144203", "name": "Wineries"}, {"id": "9ed3f66b-7d6f-11e3-95ac-5404a6144203", "name": "Wineries"}, {"id": "9ed3f66b-7d6f-11e3-95ac-5404a6144203", "name": "Wineries"}]}, "id": "9ed3f669-7d6f-11e3-b545-5404a6144203", "name": "Food retail and service"}]}}]}}
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"business-classifications": [{"_links": {}, "_embedded": {}}, {"_links": {}, "_embedded": {}}]}, "total": 3}
         "403":
           application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
         "404":
@@ -1799,7 +1810,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"funding-sources": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "status": "unverified", "type": "bank", "bankAccountType": "checking", "name": "My bank", "created": "2022-07-23T00:18:21.419Z", "removed": true, "channels": ["ach"], "bankName": "SANDBOX TEST BANK", "fingerprint": "5012989b55af15400e8102f95d2ec5e7ce3aef45c01613280d80a236dd8d6c"}, {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "status": "unverified", "type": "bank", "bankAccountType": "checking", "name": "My bank", "created": "2022-07-23T00:18:21.419Z", "removed": true, "channels": ["ach"], "bankName": "SANDBOX TEST BANK", "fingerprint": "5012989b55af15400e8102f95d2ec5e7ce3aef45c01613280d80a236dd8d6c"}]}, "total": 3}, {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"funding-sources": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "status": "unverified", "type": "bank", "bankAccountType": "checking", "name": "My bank", "created": "2022-07-23T00:18:21.419Z", "removed": true, "channels": ["ach"], "bankName": "SANDBOX TEST BANK", "fingerprint": "5012989b55af15400e8102f95d2ec5e7ce3aef45c01613280d80a236dd8d6c"}, {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "status": "unverified", "type": "bank", "bankAccountType": "checking", "name": "My bank", "created": "2022-07-23T00:18:21.419Z", "removed": true, "channels": ["ach"], "bankName": "SANDBOX TEST BANK", "fingerprint": "5012989b55af15400e8102f95d2ec5e7ce3aef45c01613280d80a236dd8d6c"}]}, "total": 3}, {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"funding-sources": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "status": "unverified", "type": "bank", "bankAccountType": "checking", "name": "My bank", "created": "2022-07-23T00:18:21.419Z", "removed": true, "channels": ["ach"], "bankName": "SANDBOX TEST BANK", "fingerprint": "5012989b55af15400e8102f95d2ec5e7ce3aef45c01613280d80a236dd8d6c"}, {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "status": "unverified", "type": "bank", "bankAccountType": "checking", "name": "My bank", "created": "2022-07-23T00:18:21.419Z", "removed": true, "channels": ["ach"], "bankName": "SANDBOX TEST BANK", "fingerprint": "5012989b55af15400e8102f95d2ec5e7ce3aef45c01613280d80a236dd8d6c"}]}, "total": 3}]
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"funding-sources": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "status": "unverified", "type": "bank", "bankAccountType": "checking", "name": "My bank", "created": "2022-07-23T00:18:21.419Z", "removed": true, "channels": ["ach"], "bankName": "SANDBOX TEST BANK", "fingerprint": "5012989b55af15400e8102f95d2ec5e7ce3aef45c01613280d80a236dd8d6c"}]}, "total": 3}
         "403":
           application/vnd.dwolla.v1.hal+json: {"code": "forbidden", "message": "Not authorized to list funding sources."}
         "404":
@@ -2606,3 +2617,4 @@ examples:
           application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Typescript SDK Changes Detected:\n* `dwolla.customers.update()`: \n  *  `request.requestBody` **Changed** **Breaking** :warning:\n* `dwolla.customers.fundingSources.list()`:  `response` **Changed** **Breaking** :warning:\n* `dwolla.businessClassifications.list()`:  `response` **Changed** **Breaking** :warning:\n* `dwolla.accounts.get()`:  `response.address.country` **Added**\n* `dwolla.accounts.transfers.list()`:  `response._embedded.transfers.[].achDetails` **Changed**\n* `dwolla.customers.transfers.list()`:  `response._embedded.transfers.[].achDetails` **Changed**\n* `dwolla.transfers.get()`:  `response.achdetails` **Changed**\n"

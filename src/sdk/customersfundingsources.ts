@@ -19,7 +19,7 @@ export class CustomersFundingSources extends ClientSDK {
   async list(
     request: operations.ListCustomerFundingSourcesRequest,
     options?: RequestOptions,
-  ): Promise<Array<models.FundingSources>> {
+  ): Promise<models.FundingSources> {
     return unwrapAsync(customersFundingSourcesList(
       this,
       request,
