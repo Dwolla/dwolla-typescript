@@ -651,7 +651,7 @@ run();
 **Primary error:**
 * [`DwollaError`](./src/models/errors/dwollaerror.ts): The base class for HTTP error responses.
 
-<details><summary>Less common errors (186)</summary>
+<details><summary>Less common errors (176)</summary>
 
 <br />
 
@@ -667,6 +667,8 @@ run();
 * [`NotFoundError`](./src/models/errors/notfounderror.ts): Error response schema for 404 NotFound. Status code `404`. Applicable to 36 of 87 methods.*
 * [`ForbiddenError`](./src/models/errors/forbiddenerror.ts): Error response schema for 403 Forbidden. Status code `403`. Applicable to 24 of 87 methods.*
 * [`BadRequestError`](./src/models/errors/badrequesterror.ts): Error response schema for 400 Bad Request. Status code `400`. Applicable to 10 of 87 methods.*
+* [`CustomerCreationBadRequestResponseError`](./src/models/errors/customercreationbadrequestresponseerror.ts): Bad Request. Status code `400`. Applicable to 6 of 87 methods.*
+* [`CustomerCreationForbiddenResponseError`](./src/models/errors/customercreationforbiddenresponseerror.ts): forbidden. Status code `403`. Applicable to 6 of 87 methods.*
 * [`DuplicateResourceSchemaError`](./src/models/errors/duplicateresourceschemaerror.ts): Status code `400`. Applicable to 3 of 87 methods.*
 * [`ValidationErrorSchema`](./src/models/errors/validationerrorschema.ts): ValidationError. Status code `400`. Applicable to 2 of 87 methods.*
 * [`InvalidExchangeTokenError`](./src/models/errors/invalidexchangetokenerror.ts): Bad Request. Status code `400`. Applicable to 2 of 87 methods.*
@@ -675,12 +677,6 @@ run();
 * [`InvalidFileTypeSchemaError`](./src/models/errors/invalidfiletypeschemaerror.ts): Bad Request. Status code `400`. Applicable to 2 of 87 methods.*
 * [`InvalidResourceStateSchemaError`](./src/models/errors/invalidresourcestateschemaerror.ts): Status code `403`. Applicable to 2 of 87 methods.*
 * [`UpdateBadRequestDwollaV1HalJSONError`](./src/models/errors/updatebadrequestdwollav1haljsonerror.ts): bad request. Status code `400`. Applicable to 1 of 87 methods.*
-* [`CreateUnverifiedCustomerBadRequestDwollaV1HalJSONError`](./src/models/errors/createunverifiedcustomerbadrequestdwollav1haljsonerror.ts): Bad Request. Status code `400`. Applicable to 1 of 87 methods.*
-* [`CreateReceiveOnlyCustomerBadRequestDwollaV1HalJSONError`](./src/models/errors/createreceiveonlycustomerbadrequestdwollav1haljsonerror.ts): Bad Request. Status code `400`. Applicable to 1 of 87 methods.*
-* [`CreateVerifiedPersonalCustomerBadRequestDwollaV1HalJSONError`](./src/models/errors/createverifiedpersonalcustomerbadrequestdwollav1haljsonerror.ts): Bad Request. Status code `400`. Applicable to 1 of 87 methods.*
-* [`CreateVerifiedSolePropCustomerBadRequestDwollaV1HalJSONError`](./src/models/errors/createverifiedsolepropcustomerbadrequestdwollav1haljsonerror.ts): Bad Request. Status code `400`. Applicable to 1 of 87 methods.*
-* [`CreateVerifiedBusinessCustomerBadRequestDwollaV1HalJSONError`](./src/models/errors/createverifiedbusinesscustomerbadrequestdwollav1haljsonerror.ts): Bad Request. Status code `400`. Applicable to 1 of 87 methods.*
-* [`CreateVerifiedBusinessInternationalCustomerBadRequestDwollaV1HalJSONError`](./src/models/errors/createverifiedbusinessinternationalcustomerbadrequestdwollav1haljsonerror.ts): Bad Request. Status code `400`. Applicable to 1 of 87 methods.*
 * [`UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError`](./src/models/errors/updateorremovefundingsourcebadrequestdwollav1haljsonerror.ts): validation error. Status code `400`. Applicable to 1 of 87 methods.*
 * [`SourceNotFoundError`](./src/models/errors/sourcenotfounderror.ts): Bad Request. Status code `400`. Applicable to 1 of 87 methods.*
 * [`ReceiverNotFoundError`](./src/models/errors/receivernotfounderror.ts): Bad Request. Status code `400`. Applicable to 1 of 87 methods.*
@@ -771,12 +767,6 @@ run();
 * [`GetAccountDwollaV1HalJSONError`](./src/models/errors/getaccountdwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 87 methods.*
 * [`GetCustomerForbiddenDwollaV1HalJSONError`](./src/models/errors/getcustomerforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 87 methods.*
 * [`UpdateForbiddenDwollaV1HalJSONError`](./src/models/errors/updateforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 87 methods.*
-* [`CreateUnverifiedCustomerForbiddenDwollaV1HalJSONError`](./src/models/errors/createunverifiedcustomerforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 87 methods.*
-* [`CreateReceiveOnlyCustomerForbiddenDwollaV1HalJSONError`](./src/models/errors/createreceiveonlycustomerforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 87 methods.*
-* [`CreateVerifiedPersonalCustomerForbiddenDwollaV1HalJSONError`](./src/models/errors/createverifiedpersonalcustomerforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 87 methods.*
-* [`CreateVerifiedSolePropCustomerForbiddenDwollaV1HalJSONError`](./src/models/errors/createverifiedsolepropcustomerforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 87 methods.*
-* [`CreateVerifiedBusinessCustomerForbiddenDwollaV1HalJSONError`](./src/models/errors/createverifiedbusinesscustomerforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 87 methods.*
-* [`CreateVerifiedBusinessInternationalCustomerForbiddenDwollaV1HalJSONError`](./src/models/errors/createverifiedbusinessinternationalcustomerforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 87 methods.*
 * [`UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError`](./src/models/errors/updatebeneficialownerforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 87 methods.*
 * [`InvalidKbaSessionError`](./src/models/errors/invalidkbasessionerror.ts): 403 Error. Status code `403`. Applicable to 1 of 87 methods.*
 * [`ExpiredKbaSessionError`](./src/models/errors/expiredkbasessionerror.ts): 403 Error. Status code `403`. Applicable to 1 of 87 methods.*

@@ -39,8 +39,8 @@ export function customersCreateVerifiedBusiness(
 ): APIPromise<
   Result<
     operations.CreateVerifiedBusinessCustomerResponse | undefined,
-    | errors.CreateVerifiedBusinessCustomerBadRequestDwollaV1HalJSONError
-    | errors.CreateVerifiedBusinessCustomerForbiddenDwollaV1HalJSONError
+    | errors.CustomerCreationBadRequestResponseError
+    | errors.CustomerCreationForbiddenResponseError
     | DwollaError
     | ResponseValidationError
     | ConnectionError
@@ -66,8 +66,8 @@ async function $do(
   [
     Result<
       operations.CreateVerifiedBusinessCustomerResponse | undefined,
-      | errors.CreateVerifiedBusinessCustomerBadRequestDwollaV1HalJSONError
-      | errors.CreateVerifiedBusinessCustomerForbiddenDwollaV1HalJSONError
+      | errors.CustomerCreationBadRequestResponseError
+      | errors.CustomerCreationForbiddenResponseError
       | DwollaError
       | ResponseValidationError
       | ConnectionError
@@ -151,8 +151,8 @@ async function $do(
 
   const [result] = await M.match<
     operations.CreateVerifiedBusinessCustomerResponse | undefined,
-    | errors.CreateVerifiedBusinessCustomerBadRequestDwollaV1HalJSONError
-    | errors.CreateVerifiedBusinessCustomerForbiddenDwollaV1HalJSONError
+    | errors.CustomerCreationBadRequestResponseError
+    | errors.CustomerCreationForbiddenResponseError
     | DwollaError
     | ResponseValidationError
     | ConnectionError
@@ -170,14 +170,12 @@ async function $do(
     ),
     M.jsonErr(
       400,
-      errors
-        .CreateVerifiedBusinessCustomerBadRequestDwollaV1HalJSONError$inboundSchema,
+      errors.CustomerCreationBadRequestResponseError$inboundSchema,
       { ctype: "application/vnd.dwolla.v1.hal+json" },
     ),
     M.jsonErr(
       403,
-      errors
-        .CreateVerifiedBusinessCustomerForbiddenDwollaV1HalJSONError$inboundSchema,
+      errors.CustomerCreationForbiddenResponseError$inboundSchema,
       { ctype: "application/vnd.dwolla.v1.hal+json" },
     ),
     M.fail("4XX"),

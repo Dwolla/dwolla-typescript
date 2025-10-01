@@ -184,7 +184,6 @@ Update Customer information, upgrade an unverified Customer to a verified Custom
 <!-- UsageSnippet language="typescript" operationID="update" method="post" path="/customers/{id}" -->
 ```typescript
 import { Dwolla } from "dwolla";
-import { RFCDate } from "dwolla/types";
 
 const dwolla = new Dwolla({
   security: {
@@ -197,34 +196,21 @@ async function run() {
   const result = await dwolla.customers.update({
     id: "<id>",
     requestBody: {
-      firstName: "Account",
-      lastName: "Admin",
-      email: "accountAdmin@email.com",
-      ipAddress: "143.156.7.8",
-      type: "business",
-      address1: "99-99 33rd St",
-      city: "Some City",
-      state: "NY",
-      postalCode: "11101",
-      controller: {
-        firstName: "John",
-        lastName: "Controller",
-        title: "CEO",
-        ssn: "6789",
-        dateOfBirth: new RFCDate("1980-01-31"),
-        address: {
-          address1: "1749 18th st",
-          address2: "apt 12",
-          city: "Des Moines",
-          stateProvinceRegion: "IA",
-          postalCode: "50266",
-          country: "US",
-        },
-      },
-      businessClassification: "9ed3f670-7d6f-11e3-b1ce-5404a6144203",
-      businessType: "llc",
-      businessName: "Jane Corp",
-      ein: "00-0000000",
+      "firstName": "Business",
+      "lastName": "Owner",
+      "email": "solePropBusiness@email.com",
+      "type": "business",
+      "dateOfBirth": "1980-01-31",
+      "ssn": "6789",
+      "address1": "99-99 33rd St",
+      "city": "Some City",
+      "state": "NY",
+      "postalCode": "11101",
+      "businessClassification": "9ed3f670-7d6f-11e3-b1ce-5404a6144203",
+      "businessType": "soleProprietorship",
+      "businessName": "Jane Corp",
+      "ein": "00-0000000",
+      "operationType": "upgradeToVerifiedSoleProp",
     },
   });
 
@@ -241,7 +227,6 @@ The standalone function version of this method:
 ```typescript
 import { DwollaCore } from "dwolla/core.js";
 import { customersUpdate } from "dwolla/funcs/customersUpdate.js";
-import { RFCDate } from "dwolla/types";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -256,34 +241,21 @@ async function run() {
   const res = await customersUpdate(dwolla, {
     id: "<id>",
     requestBody: {
-      firstName: "Account",
-      lastName: "Admin",
-      email: "accountAdmin@email.com",
-      ipAddress: "143.156.7.8",
-      type: "business",
-      address1: "99-99 33rd St",
-      city: "Some City",
-      state: "NY",
-      postalCode: "11101",
-      controller: {
-        firstName: "John",
-        lastName: "Controller",
-        title: "CEO",
-        ssn: "6789",
-        dateOfBirth: new RFCDate("1980-01-31"),
-        address: {
-          address1: "1749 18th st",
-          address2: "apt 12",
-          city: "Des Moines",
-          stateProvinceRegion: "IA",
-          postalCode: "50266",
-          country: "US",
-        },
-      },
-      businessClassification: "9ed3f670-7d6f-11e3-b1ce-5404a6144203",
-      businessType: "llc",
-      businessName: "Jane Corp",
-      ein: "00-0000000",
+      "firstName": "Business",
+      "lastName": "Owner",
+      "email": "solePropBusiness@email.com",
+      "type": "business",
+      "dateOfBirth": "1980-01-31",
+      "ssn": "6789",
+      "address1": "99-99 33rd St",
+      "city": "Some City",
+      "state": "NY",
+      "postalCode": "11101",
+      "businessClassification": "9ed3f670-7d6f-11e3-b1ce-5404a6144203",
+      "businessType": "soleProprietorship",
+      "businessName": "Jane Corp",
+      "ein": "00-0000000",
+      "operationType": "upgradeToVerifiedSoleProp",
     },
   });
   if (res.ok) {
@@ -485,11 +457,11 @@ run();
 
 ### Errors
 
-| Error Type                                                    | Status Code                                                   | Content Type                                                  |
-| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| errors.CreateUnverifiedCustomerBadRequestDwollaV1HalJSONError | 400                                                           | application/vnd.dwolla.v1.hal+json                            |
-| errors.CreateUnverifiedCustomerForbiddenDwollaV1HalJSONError  | 403                                                           | application/vnd.dwolla.v1.hal+json                            |
-| errors.APIError                                               | 4XX, 5XX                                                      | \*/\*                                                         |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| errors.CustomerCreationBadRequestResponseError | 400                                            | application/vnd.dwolla.v1.hal+json             |
+| errors.CustomerCreationForbiddenResponseError  | 403                                            | application/vnd.dwolla.v1.hal+json             |
+| errors.APIError                                | 4XX, 5XX                                       | \*/\*                                          |
 
 ## createReceiveOnly
 
@@ -578,11 +550,11 @@ run();
 
 ### Errors
 
-| Error Type                                                     | Status Code                                                    | Content Type                                                   |
-| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
-| errors.CreateReceiveOnlyCustomerBadRequestDwollaV1HalJSONError | 400                                                            | application/vnd.dwolla.v1.hal+json                             |
-| errors.CreateReceiveOnlyCustomerForbiddenDwollaV1HalJSONError  | 403                                                            | application/vnd.dwolla.v1.hal+json                             |
-| errors.APIError                                                | 4XX, 5XX                                                       | \*/\*                                                          |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| errors.CustomerCreationBadRequestResponseError | 400                                            | application/vnd.dwolla.v1.hal+json             |
+| errors.CustomerCreationForbiddenResponseError  | 403                                            | application/vnd.dwolla.v1.hal+json             |
+| errors.APIError                                | 4XX, 5XX                                       | \*/\*                                          |
 
 ## createVerifiedPersonal
 
@@ -683,11 +655,11 @@ run();
 
 ### Errors
 
-| Error Type                                                          | Status Code                                                         | Content Type                                                        |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| errors.CreateVerifiedPersonalCustomerBadRequestDwollaV1HalJSONError | 400                                                                 | application/vnd.dwolla.v1.hal+json                                  |
-| errors.CreateVerifiedPersonalCustomerForbiddenDwollaV1HalJSONError  | 403                                                                 | application/vnd.dwolla.v1.hal+json                                  |
-| errors.APIError                                                     | 4XX, 5XX                                                            | \*/\*                                                               |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| errors.CustomerCreationBadRequestResponseError | 400                                            | application/vnd.dwolla.v1.hal+json             |
+| errors.CustomerCreationForbiddenResponseError  | 403                                            | application/vnd.dwolla.v1.hal+json             |
+| errors.APIError                                | 4XX, 5XX                                       | \*/\*                                          |
 
 ## createVerifiedSoleProp
 
@@ -798,11 +770,11 @@ run();
 
 ### Errors
 
-| Error Type                                                          | Status Code                                                         | Content Type                                                        |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| errors.CreateVerifiedSolePropCustomerBadRequestDwollaV1HalJSONError | 400                                                                 | application/vnd.dwolla.v1.hal+json                                  |
-| errors.CreateVerifiedSolePropCustomerForbiddenDwollaV1HalJSONError  | 403                                                                 | application/vnd.dwolla.v1.hal+json                                  |
-| errors.APIError                                                     | 4XX, 5XX                                                            | \*/\*                                                               |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| errors.CustomerCreationBadRequestResponseError | 400                                            | application/vnd.dwolla.v1.hal+json             |
+| errors.CustomerCreationForbiddenResponseError  | 403                                            | application/vnd.dwolla.v1.hal+json             |
+| errors.APIError                                | 4XX, 5XX                                       | \*/\*                                          |
 
 ## createVerifiedBusiness
 
@@ -943,11 +915,11 @@ run();
 
 ### Errors
 
-| Error Type                                                          | Status Code                                                         | Content Type                                                        |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| errors.CreateVerifiedBusinessCustomerBadRequestDwollaV1HalJSONError | 400                                                                 | application/vnd.dwolla.v1.hal+json                                  |
-| errors.CreateVerifiedBusinessCustomerForbiddenDwollaV1HalJSONError  | 403                                                                 | application/vnd.dwolla.v1.hal+json                                  |
-| errors.APIError                                                     | 4XX, 5XX                                                            | \*/\*                                                               |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| errors.CustomerCreationBadRequestResponseError | 400                                            | application/vnd.dwolla.v1.hal+json             |
+| errors.CustomerCreationForbiddenResponseError  | 403                                            | application/vnd.dwolla.v1.hal+json             |
+| errors.APIError                                | 4XX, 5XX                                       | \*/\*                                          |
 
 ## createVerifiedBusinessInternational
 
@@ -1094,8 +1066,8 @@ run();
 
 ### Errors
 
-| Error Type                                                                       | Status Code                                                                      | Content Type                                                                     |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| errors.CreateVerifiedBusinessInternationalCustomerBadRequestDwollaV1HalJSONError | 400                                                                              | application/vnd.dwolla.v1.hal+json                                               |
-| errors.CreateVerifiedBusinessInternationalCustomerForbiddenDwollaV1HalJSONError  | 403                                                                              | application/vnd.dwolla.v1.hal+json                                               |
-| errors.APIError                                                                  | 4XX, 5XX                                                                         | \*/\*                                                                            |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| errors.CustomerCreationBadRequestResponseError | 400                                            | application/vnd.dwolla.v1.hal+json             |
+| errors.CustomerCreationForbiddenResponseError  | 403                                            | application/vnd.dwolla.v1.hal+json             |
+| errors.APIError                                | 4XX, 5XX                                       | \*/\*                                          |
