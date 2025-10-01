@@ -1,11 +1,11 @@
-# CreateVerifiedPersonalCustomerForbiddenDwollaV1HalJSONError
+# CustomerCreationForbiddenResponseError
 
 forbidden
 
 ## Example Usage
 
 ```typescript
-import { CreateVerifiedPersonalCustomerForbiddenDwollaV1HalJSONError } from "dwolla/models/errors";
+import { CustomerCreationForbiddenResponseError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

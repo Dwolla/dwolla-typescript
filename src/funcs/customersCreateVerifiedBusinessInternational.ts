@@ -39,8 +39,8 @@ export function customersCreateVerifiedBusinessInternational(
 ): APIPromise<
   Result<
     operations.CreateVerifiedBusinessInternationalCustomerResponse | undefined,
-    | errors.CreateVerifiedBusinessInternationalCustomerBadRequestDwollaV1HalJSONError
-    | errors.CreateVerifiedBusinessInternationalCustomerForbiddenDwollaV1HalJSONError
+    | errors.CustomerCreationBadRequestResponseError
+    | errors.CustomerCreationForbiddenResponseError
     | DwollaError
     | ResponseValidationError
     | ConnectionError
@@ -67,8 +67,8 @@ async function $do(
     Result<
       | operations.CreateVerifiedBusinessInternationalCustomerResponse
       | undefined,
-      | errors.CreateVerifiedBusinessInternationalCustomerBadRequestDwollaV1HalJSONError
-      | errors.CreateVerifiedBusinessInternationalCustomerForbiddenDwollaV1HalJSONError
+      | errors.CustomerCreationBadRequestResponseError
+      | errors.CustomerCreationForbiddenResponseError
       | DwollaError
       | ResponseValidationError
       | ConnectionError
@@ -152,8 +152,8 @@ async function $do(
 
   const [result] = await M.match<
     operations.CreateVerifiedBusinessInternationalCustomerResponse | undefined,
-    | errors.CreateVerifiedBusinessInternationalCustomerBadRequestDwollaV1HalJSONError
-    | errors.CreateVerifiedBusinessInternationalCustomerForbiddenDwollaV1HalJSONError
+    | errors.CustomerCreationBadRequestResponseError
+    | errors.CustomerCreationForbiddenResponseError
     | DwollaError
     | ResponseValidationError
     | ConnectionError
@@ -172,14 +172,12 @@ async function $do(
     ),
     M.jsonErr(
       400,
-      errors
-        .CreateVerifiedBusinessInternationalCustomerBadRequestDwollaV1HalJSONError$inboundSchema,
+      errors.CustomerCreationBadRequestResponseError$inboundSchema,
       { ctype: "application/vnd.dwolla.v1.hal+json" },
     ),
     M.jsonErr(
       403,
-      errors
-        .CreateVerifiedBusinessInternationalCustomerForbiddenDwollaV1HalJSONError$inboundSchema,
+      errors.CustomerCreationForbiddenResponseError$inboundSchema,
       { ctype: "application/vnd.dwolla.v1.hal+json" },
     ),
     M.fail("4XX"),
