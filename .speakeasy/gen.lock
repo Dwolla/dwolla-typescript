@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 53ac026a-ff11-435d-914b-31df5268afb0
 management:
-  docChecksum: 67585827410652e1e5f03d8b8a95f20a
+  docChecksum: 0f1af918a83cb76230e3ad3233c19f68
   docVersion: "2.0"
-  speakeasyVersion: 1.632.0
-  generationVersion: 2.719.3
-  releaseVersion: 0.0.1-beta.7
-  configChecksum: 5c85c22ddfd9630e89b906563d051edd
+  speakeasyVersion: 1.635.1
+  generationVersion: 2.722.2
+  releaseVersion: 0.0.1-beta.8
+  configChecksum: fd61509801c57050adf358e381594d4c
   repoURL: https://github.com/Dwolla/dwolla-typescript.git
   installationURL: https://github.com/Dwolla/dwolla-typescript
   published: true
@@ -31,7 +31,7 @@ features:
     retries: 2.83.0
     sdkHooks: 0.3.0
     serverIDs: 2.81.2
-    unions: 2.85.12
+    unions: 2.86.0
     uploadStreams: 0.1.0
 generatedFiles:
   - .devcontainer/README.md
@@ -609,6 +609,7 @@ generatedFiles:
   - docs/models/operations/initiatemasspaymentmetadata.md
   - docs/models/operations/initiatemasspaymentprocessingchannel.md
   - docs/models/operations/initiatemasspaymentrequest.md
+  - docs/models/operations/initiatemasspaymentrequestbody.md
   - docs/models/operations/initiatemasspaymentresponse.md
   - docs/models/operations/initiatemasspaymentsourceaddenda.md
   - docs/models/operations/initiatemicrodepositsrequest.md
@@ -625,6 +626,7 @@ generatedFiles:
   - docs/models/operations/initiatetransfermetadata.md
   - docs/models/operations/initiatetransferprocessingchannel.md
   - docs/models/operations/initiatetransferrequest.md
+  - docs/models/operations/initiatetransferrequestbody.md
   - docs/models/operations/initiatetransferresponse.md
   - docs/models/operations/initiatetransfersourceaddenda.md
   - docs/models/operations/instantdetails.md
@@ -2602,3 +2604,7 @@ examples:
           application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: |
+  ## Typescript SDK Changes Detected:
+  * `dwolla.transfers.create()`:  `request` **Changed** **Breaking** :warning:
+  * `dwolla.massPayments.create()`:  `request` **Changed** **Breaking** :warning:
