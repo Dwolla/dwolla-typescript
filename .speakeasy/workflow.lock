@@ -1,4 +1,4 @@
-speakeasyVersion: 1.635.1
+speakeasyVersion: 1.636.3
 sources:
     Dwolla API:
         sourceNamespace: dwolla-api
@@ -15,7 +15,7 @@ targets:
         sourceRevisionDigest: sha256:f0796120d8ee20f8935d64841526e8d2fe9a2e391ec18ac753381462b4b376ab
         sourceBlobDigest: sha256:65bd1cd6129fc844641460f7413e3b55db84c2d13450d732c70d832332aa9fb2
         codeSamplesNamespace: dwolla-api-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:7039953dc4c66b04d85e2eb0fec13973aa31b951ce932afa1060f66c79560091
+        codeSamplesRevisionDigest: sha256:bd8c4c327368aa7340b2bd6b4dd12d7105b5703bfdafa5864d9d47dde8945830
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

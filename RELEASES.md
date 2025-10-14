@@ -48,3 +48,13 @@ Based on:
 - [typescript v0.0.1-beta.8] .
 ### Releases
 - [NPM v0.0.1-beta.8] https://www.npmjs.com/package/dwolla/v/0.0.1-beta.8 - .
+
+## 2025-10-14 00:20:33
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.636.3 (2.723.11) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v0.0.1-beta.9] .
+### Releases
+- [NPM v0.0.1-beta.9] https://www.npmjs.com/package/dwolla/v/0.0.1-beta.9 - .
