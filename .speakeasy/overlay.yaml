@@ -49,11 +49,24 @@ actions:
                   $ref: '#/components/schemas/CreateUnverifiedCustomer'
           responses:
             '201':
-              $ref: '#/components/schemas/CustomerCreationSuccessResponse'
+              description: successful operation
+              headers:
+                Location:
+                  $ref: '#/components/headers/Location'
             '400':
-              $ref: '#/components/schemas/CustomerCreationBadRequestResponse'
+              description: Bad Request
+              headers: {}
+              content:
+                application/vnd.dwolla.v1.hal+json:
+                  schema:
+                    $ref: '#/components/schemas/BadRequestSchema'
             '403':
-              $ref: '#/components/schemas/CustomerCreationForbiddenResponse'
+              description: forbidden
+              headers: {}
+              content:
+                application/vnd.dwolla.v1.hal+json:
+                  schema:
+                    $ref: '#/components/schemas/ForbiddenError'
       "/customers#receive-only":
         post:
           x-speakeasy-name-override: createReceiveOnly
@@ -72,11 +85,24 @@ actions:
                   $ref: '#/components/schemas/CreateReceiveOnlyUser'
           responses:
             '201':
-              $ref: '#/components/schemas/CustomerCreationSuccessResponse'
+              description: successful operation
+              headers:
+                Location:
+                  $ref: '#/components/headers/Location'
             '400':
-              $ref: '#/components/schemas/CustomerCreationBadRequestResponse'
+              description: Bad Request
+              headers: {}
+              content:
+                application/vnd.dwolla.v1.hal+json:
+                  schema:
+                    $ref: '#/components/schemas/BadRequestSchema'
             '403':
-              $ref: '#/components/schemas/CustomerCreationForbiddenResponse'
+              description: forbidden
+              headers: {}
+              content:
+                application/vnd.dwolla.v1.hal+json:
+                  schema:
+                    $ref: '#/components/schemas/ForbiddenError'
       "/customers#verified-personal":
         post:
           x-speakeasy-name-override: createVerifiedPersonal
@@ -95,11 +121,24 @@ actions:
                   $ref: '#/components/schemas/CreateVerifiedPersonalCustomer'
           responses:
             '201':
-              $ref: '#/components/schemas/CustomerCreationSuccessResponse'
+              description: successful operation
+              headers:
+                Location:
+                  $ref: '#/components/headers/Location'
             '400':
-              $ref: '#/components/schemas/CustomerCreationBadRequestResponse'
+              description: Bad Request
+              headers: {}
+              content:
+                application/vnd.dwolla.v1.hal+json:
+                  schema:
+                    $ref: '#/components/schemas/BadRequestSchema'
             '403':
-              $ref: '#/components/schemas/CustomerCreationForbiddenResponse'
+              description: forbidden
+              headers: {}
+              content:
+                application/vnd.dwolla.v1.hal+json:
+                  schema:
+                    $ref: '#/components/schemas/ForbiddenError'
       "/customers#verified-sole-prop":
         post:
           x-speakeasy-name-override: createVerifiedSoleProp
@@ -118,11 +157,24 @@ actions:
                   $ref: '#/components/schemas/CreateVerifiedSolePropCustomer'
           responses:
             '201':
-              $ref: '#/components/schemas/CustomerCreationSuccessResponse'
+              description: successful operation
+              headers:
+                Location:
+                  $ref: '#/components/headers/Location'
             '400':
-              $ref: '#/components/schemas/CustomerCreationBadRequestResponse'
+              description: Bad Request
+              headers: {}
+              content:
+                application/vnd.dwolla.v1.hal+json:
+                  schema:
+                    $ref: '#/components/schemas/BadRequestSchema'
             '403':
-              $ref: '#/components/schemas/CustomerCreationForbiddenResponse'
+              description: forbidden
+              headers: {}
+              content:
+                application/vnd.dwolla.v1.hal+json:
+                  schema:
+                    $ref: '#/components/schemas/ForbiddenError'
       "/customers#verified-business":
         post:
           x-speakeasy-name-override: createVerifiedBusiness
@@ -141,11 +193,24 @@ actions:
                   $ref: '#/components/schemas/CreateVerifiedBusinessCustomerWithController'
           responses:
             '201':
-              $ref: '#/components/schemas/CustomerCreationSuccessResponse'
+              description: successful operation
+              headers:
+                Location:
+                  $ref: '#/components/headers/Location'
             '400':
-              $ref: '#/components/schemas/CustomerCreationBadRequestResponse'
+              description: Bad Request
+              headers: {}
+              content:
+                application/vnd.dwolla.v1.hal+json:
+                  schema:
+                    $ref: '#/components/schemas/BadRequestSchema'
             '403':
-              $ref: '#/components/schemas/CustomerCreationForbiddenResponse'
+              description: forbidden
+              headers: {}
+              content:
+                application/vnd.dwolla.v1.hal+json:
+                  schema:
+                    $ref: '#/components/schemas/ForbiddenError'
       "/customers#verified-business-international":
         post:
           x-speakeasy-name-override: createVerifiedBusinessInternational
@@ -164,493 +229,58 @@ actions:
                   $ref: '#/components/schemas/CreateVerifiedBusinessCustomerWithInternationalController'
           responses:
             '201':
-              $ref: '#/components/schemas/CustomerCreationSuccessResponse'
+              description: successful operation
+              headers:
+                Location:
+                  $ref: '#/components/headers/Location'
             '400':
-              $ref: '#/components/schemas/CustomerCreationBadRequestResponse'
+              description: Bad Request
+              headers: {}
+              content:
+                application/vnd.dwolla.v1.hal+json:
+                  schema:
+                    $ref: '#/components/schemas/BadRequestSchema'
             '403':
-              $ref: '#/components/schemas/CustomerCreationForbiddenResponse'
+              description: forbidden
+              headers: {}
+              content:
+                application/vnd.dwolla.v1.hal+json:
+                  schema:
+                    $ref: '#/components/schemas/ForbiddenError'
 
-  # Define separate schemas for each customer type
-  # Add common response components
+  # Remove existing customer update schemas from base spec to avoid duplicates
+  - target: $["components"]["schemas"]["DeactivateCustomer"]
+    remove: true
+  - target: $["components"]["schemas"]["ReactivateCustomer"]
+    remove: true
+  - target: $["components"]["schemas"]["SuspendCustomer"]
+    remove: true
+  - target: $["components"]["schemas"]["UpdateUnverifiedAndReceiveOnly"]
+    remove: true
+  - target: $["components"]["schemas"]["UpdateVerifiedPersonal"]
+    remove: true
+  - target: $["components"]["schemas"]["UpdateVerifiedBusiness"]
+    remove: true
+  - target: $["components"]["schemas"]["UpgradeToVerifiedPersonal"]
+    remove: true
+  - target: $["components"]["schemas"]["UpgradeToVerifiedBusiness"]
+    remove: true
+  - target: $["components"]["schemas"]["UpgradeToVerifiedSoleProp"]
+    remove: true
+  - target: $["components"]["schemas"]["RetryVerifiedPersonal"]
+    remove: true
+  - target: $["components"]["schemas"]["RetryVerifiedBusinessNoController"]
+    remove: true
+  - target: $["components"]["schemas"]["RetryVerifiedBusinessWithController"]
+    remove: true
+  - target: $["components"]["schemas"]["RetryVerifiedBusinessWithInternationalController"]
+    remove: true
+  - target: $["components"]["schemas"]["RetryVerifiedSoleProp"]
+    remove: true
+
+  # Add discriminated union schemas for customer updates (completely redefined)
   - target: $["components"]["schemas"]
     update:
-      CustomerCreationSuccessResponse:
-        description: successful operation
-        headers:
-          Location:
-            description: URL of the created customer resource
-            schema:
-              type: string
-              example: "https://api-sandbox.dwolla.com/customers/12345678-1234-1234-1234-123456789012" 
-      CustomerCreationBadRequestResponse:
-        description: Bad Request
-        headers: {}
-        content:
-          application/vnd.dwolla.v1.hal+json:
-            schema:
-              type: object
-              properties:
-                code:
-                  type: string
-                  example: BadRequest
-                message:
-                  type: string
-                  example: The request body contains bad syntax or is incomplete.
-      CustomerCreationForbiddenResponse:
-        description: forbidden
-        headers: {}
-        content:
-          application/vnd.dwolla.v1.hal+json:
-            schema:
-              type: object
-              properties:
-                code:
-                  type: string
-                  example: forbidden
-                message:
-                  type: string
-                  example: Not authorized to create customers.
-      CreateUnverifiedCustomer:
-        title: CreateUnverifiedCustomer
-        description: Create an Unverified Customer
-        type: object
-        required:
-          - firstName
-          - lastName
-          - email
-        properties:
-          firstName:
-            type: string
-            example: Account
-          lastName:
-            type: string
-            example: Admin
-          email:
-            type: string
-            example: accountAdmin@email.com
-          ipAddress:
-            type: string
-            example: 143.156.7.8
-          phone:
-            type: string
-            example: 5555555555
-          correlationId:
-            type: string
-            example: fc451a7a-ae30-4404-aB95-e3553fcd733
-          businessName:
-            type: string
-            example: Jane Corp llc
-      CreateReceiveOnlyUser:
-        title: CreateReceiveOnlyUser
-        description: Create a Receive Only User
-        type: object
-        required:
-          - firstName
-          - lastName
-          - email
-          - type
-        properties:
-          firstName:
-            type: string
-            example: Account
-          lastName:
-            type: string
-            example: Admin
-          email:
-            type: string
-            example: accountAdmin@email.com
-          type:
-            type: string
-            const: receive-only
-          ipAddress:
-            type: string
-            example: 143.156.7.8
-          phone:
-            type: string
-            example: 5555555555
-          correlationId:
-            type: string
-            example: fc451a7a-ae30-4404-aB95-e3553fcd733
-          businessName:
-            type: string
-            example: Jane Corp llc
-      CreateVerifiedPersonalCustomer:
-        title: CreateVerifiedPersonalCustomer
-        description: Create a Verified Personal customer
-        type: object
-        required:
-          - firstName
-          - lastName
-          - email
-          - address1
-          - city
-          - state
-          - postalCode
-          - dateOfBirth
-          - type
-          - ssn
-        properties:
-          firstName:
-            type: string
-            example: Account
-          lastName:
-            type: string
-            example: Admin
-          email:
-            type: string
-            example: accountAdmin@email.com
-          type:
-            type: string
-            const: personal
-          ipAddress:
-            type: string
-            example: 143.156.7.8
-          phone:
-            type: string
-            example: 5555555555
-          correlationId:
-            type: string
-            example: fc451a7a-ae30-4404-aB95-e3553fcd733
-          address1:
-            type: string
-            example: 99-99 33rd St
-          address2:
-            type: string
-            example: 99-99 33rd St
-          city:
-            type: string
-            example: Some City
-          state:
-            type: string
-            example: NY
-          postalCode:
-            type: string
-            example: 11101
-          ssn:
-            type: string
-            example: 1234
-          dateOfBirth:
-            type: string
-            example: 1980-09-12
-      CreateVerifiedSolePropCustomer:
-        title: CreateVerifiedSolePropCustomer
-        description: Create a Verified Business customer (Sole Proprietorship)
-        type: object
-        required:
-          - firstName
-          - lastName
-          - email
-          - address1
-          - city
-          - state
-          - postalCode
-          - dateOfBirth
-          - type
-          - ssn
-          - businessType
-          - businessName
-          - businessClassification
-        properties:
-          firstName:
-            type: string
-            example: John
-          lastName:
-            type: string
-            example: Doe
-          email:
-            type: string
-            example: johndoe@email.com
-          type:
-            type: string
-            const: business
-          businessType:
-            type: string
-            const: soleProprietorship
-          ipAddress:
-            type: string
-            example: 143.156.7.8
-          phone:
-            type: string
-            example: 5555555555
-          correlationId:
-            type: string
-            example: fc451a7a-ae30-4404-aB95-e3553fcd733
-          address1:
-            type: string
-            example: 99-99 33rd St
-          address2:
-            type: string
-            example: 99-99 33rd St
-          city:
-            type: string
-            example: Some City
-          state:
-            type: string
-            example: NY
-          postalCode:
-            type: string
-            example: 11101
-          ssn:
-            type: string
-            example: 1234
-          dateOfBirth:
-            type: string
-            example: 1980-09-12
-          businessClassification:
-            type: string
-            example: 9ed3f670-7d6f-11e3-b1ce-5404a6144203
-          businessName:
-            type: string
-            example: Jane Corp
-          doingBusinessAs:
-            type: string
-            example: Jane's Electronics
-          ein:
-            type: string
-            example: 00-0000000
-          website:
-            type: string
-            example: https://www.domain.com
-      CreateVerifiedBusinessCustomerWithController:
-        title: CreateVerifiedBusinessCustomerWithController
-        description: Create a Verified Business customer with a US controller
-        type: object
-        required:
-          - firstName
-          - lastName
-          - email
-          - address1
-          - city
-          - state
-          - postalCode
-          - type
-          - businessType
-          - controller
-          - businessName
-          - businessClassification
-          - ein
-        properties:
-          firstName:
-            type: string
-            example: Jane
-          lastName:
-            type: string
-            example: Business
-          email:
-            type: string
-            example: jane.business@email.com
-          type:
-            type: string
-            const: business
-          ipAddress:
-            type: string
-            example: 143.156.7.8
-          phone:
-            type: string
-            example: 5555555555
-          correlationId:
-            type: string
-            example: fc451a7a-ae30-4404-aB95-e3553fcd733
-          address1:
-            type: string
-            example: 99-99 33rd St
-          address2:
-            type: string
-            example: 99-99 33rd St
-          city:
-            type: string
-            example: Some City
-          state:
-            type: string
-            example: NY
-          postalCode:
-            type: string
-            example: 11101
-          businessClassification:
-            type: string
-            example: 9ed3f670-7d6f-11e3-b1ce-5404a6144203
-          businessName:
-            type: string
-            example: Jane Corp
-          doingBusinessAs:
-            type: string
-            example: Jane's Electronics
-          ein:
-            type: string
-            example: 00-0000000
-          website:
-            type: string
-            example: https://www.domain.com
-          controller:
-            type: object
-            required:
-              - firstName
-              - lastName
-              - title
-              - dateOfBirth
-              - address
-              - ssn
-            properties:
-              firstName:
-                type: string
-                example: John
-              lastName:
-                type: string
-                example: Controller
-              title:
-                type: string
-                example: CEO
-              dateOfBirth:
-                type: string
-                example: 1980-01-31
-              address:
-                type: object
-                properties:
-                  address1:
-                    type: string
-                  address2:
-                    type: string
-                  city:
-                    type: string
-                  stateProvinceRegion:
-                    type: string
-                  country:
-                    type: string
-                  postalCode:
-                    type: string
-              ssn:
-                type: string
-                example: '1234'
-          businessType:
-            type: string
-            example: llc
-            x-speakeasy-enums:
-              - llc
-              - corporation
-              - partnership
-      CreateVerifiedBusinessCustomerWithInternationalController:
-        title: CreateVerifiedBusinessCustomerWithInternationalController
-        description: Create a Verified Business customer with an international (non US) controller 
-        type: object
-        required:
-          - firstName
-          - lastName
-          - email
-          - address1
-          - city
-          - state
-          - postalCode
-          - type
-          - businessType
-          - controller
-          - businessName
-          - businessClassification
-          - ein
-        properties:
-          firstName:
-            type: string
-            example: Jane
-          lastName:
-            type: string
-            example: Business
-          email:
-            type: string
-            example: jane.business@email.com
-          type:
-            type: string
-            const: business
-          ipAddress:
-            type: string
-            example: 143.156.7.8
-          phone:
-            type: string
-            example: 5555555555
-          correlationId:
-            type: string
-            example: fc451a7a-ae30-4404-aB95-e3553fcd733
-          address1:
-            type: string
-            example: 99-99 33rd St
-          address2:
-            type: string
-            example: 99-99 33rd St
-          city:
-            type: string
-            example: Some City
-          state:
-            type: string
-            example: NY
-          postalCode:
-            type: string
-            example: 11101
-          businessClassification:
-            type: string
-            example: 9ed3f670-7d6f-11e3-b1ce-5404a6144203
-          businessName:
-            type: string
-            example: Jane Corp
-          doingBusinessAs:
-            type: string
-            example: Jane's Electronics
-          ein:
-            type: string
-            example: 00-0000000
-          website:
-            type: string
-            example: https://www.domain.com
-          controller:
-            type: object
-            required:
-              - firstName
-              - lastName
-              - title
-              - dateOfBirth
-              - address
-              - passport
-            properties:
-              firstName:
-                type: string
-                example: John
-              lastName:
-                type: string
-                example: Controller
-              title:
-                type: string
-                example: CEO
-              dateOfBirth:
-                type: string
-                example: 1980-01-31
-              address:
-                type: object
-                properties:
-                  address1:
-                    type: string
-                  address2:
-                    type: string
-                  city:
-                    type: string
-                  stateProvinceRegion:
-                    type: string
-                  country:
-                    type: string
-                  postalCode:
-                    type: string
-              passport:
-                type: object
-                properties:
-                  number:
-                    type: string
-                  country:
-                    type: string
-          businessType:
-            type: string
-            example: llc
-            x-speakeasy-enums:
-              - llc
-              - corporation
-              - partnership
-
-      # Add discriminated union schemas for customer updates
       DeactivateCustomer:
         title: DeactivateCustomer
         description: Deactivate a Customer
@@ -693,8 +323,8 @@ actions:
           status:
             type: string
             example: suspended
-      UpdateUnverifiedOrReceiveOnly:
-        title: UpdateUnverifiedOrReceiveOnly
+      UpdateUnverifiedAndReceiveOnly:
+        title: UpdateUnverifiedAndReceiveOnly
         description: Update Unverified Customer or Receive Only User Information
         type: object
         required:
@@ -1668,7 +1298,7 @@ actions:
         - $ref: '#/components/schemas/DeactivateCustomer'
         - $ref: '#/components/schemas/ReactivateCustomer'
         - $ref: '#/components/schemas/SuspendCustomer'
-        - $ref: '#/components/schemas/UpdateUnverifiedOrReceiveOnly'
+        - $ref: '#/components/schemas/UpdateUnverifiedAndReceiveOnly'
         - $ref: '#/components/schemas/UpdateVerifiedPersonal'
         - $ref: '#/components/schemas/UpdateVerifiedBusiness'
         - $ref: '#/components/schemas/UpgradeToVerifiedPersonal'
@@ -1685,7 +1315,7 @@ actions:
           deactivate: '#/components/schemas/DeactivateCustomer'
           reactivate: '#/components/schemas/ReactivateCustomer'
           suspend: '#/components/schemas/SuspendCustomer'
-          updateUnverifiedOrReceiveOnly: '#/components/schemas/UpdateUnverifiedOrReceiveOnly'
+          updateUnverifiedOrReceiveOnly: '#/components/schemas/UpdateUnverifiedAndReceiveOnly'
           updateVerifiedPersonal: '#/components/schemas/UpdateVerifiedPersonal'
           updateVerifiedBusiness: '#/components/schemas/UpdateVerifiedBusiness'
           upgradeToVerifiedPersonal: '#/components/schemas/UpgradeToVerifiedPersonal'

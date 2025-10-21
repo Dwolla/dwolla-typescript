@@ -969,23 +969,33 @@ async function runCoreTests(): Promise<void> {
           currency: 'USD',
         };
 
+        // Generate idempotency key for transfer (enables safe retries)
+        // Note: Transfers now support idempotency keys, making them safe to retry.
+        // Using the same key will return the original transfer instead of creating a duplicate.
+        const idempotencyKey = `transfer-${Date.now()}-${faker.string.uuid()}`;
+
         const transferRequest: InitiateTransferRequest = {
-          links: {
-            source: {
-              href: `${SANDBOX_CONFIG.BASE_URL}/funding-sources/${personalFSId}`,
+          idempotencyKey: idempotencyKey, // Prevents duplicate transfers on retry
+          requestBody: {
+            links: {
+              source: {
+                href: `${SANDBOX_CONFIG.BASE_URL}/funding-sources/${personalFSId}`,
+              },
+              destination: {
+                href: `${SANDBOX_CONFIG.BASE_URL}/funding-sources/${businessFSId}`,
+              },
             },
-            destination: {
-              href: `${SANDBOX_CONFIG.BASE_URL}/funding-sources/${businessFSId}`,
+            clearing: {
+              source: 'next-available',
+              destination: 'next-available',
             },
+            amount: transferAmount,
+            correlationId: `transfer-test-${Date.now()}`,
           },
-          clearing: {
-            source: 'next-available',
-            destination: 'next-available',
-          },
-          amount: transferAmount,
-          correlationId: `transfer-test-${Date.now()}`,
         };
 
+        logDebug(`Using idempotency key for transfer: ${idempotencyKey}`);
+        // Safe to use retry() now that we have idempotency key
         const transferResponse = await retry(() => dwolla.transfers.create(transferRequest));
         const transferId = extractIdFromLocation(transferResponse, 'transfer');
         trackApiCall('POST /transfers');
