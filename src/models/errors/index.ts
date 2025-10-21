@@ -21,8 +21,6 @@ export * from "./createfundingsource.js";
 export * from "./createlabelreallocation.js";
 export * from "./createreauthexchangesession.js";
 export * from "./createwebhooksubscription.js";
-export * from "./customercreationbadrequestresponseerror.js";
-export * from "./customercreationforbiddenresponseerror.js";
 export * from "./deletebeneficialowner.js";
 export * from "./depositaccountrestrictederror.js";
 export * from "./destinationaddendamaxlengtherror.js";

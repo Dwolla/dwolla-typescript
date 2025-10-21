@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 53ac026a-ff11-435d-914b-31df5268afb0
 management:
-  docChecksum: 67585827410652e1e5f03d8b8a95f20a
+  docChecksum: b4407d2e88300cc806c499a165e62149
   docVersion: "2.0"
-  speakeasyVersion: 1.632.0
-  generationVersion: 2.719.3
-  releaseVersion: 0.0.1-beta.7
-  configChecksum: 5c85c22ddfd9630e89b906563d051edd
+  speakeasyVersion: 1.637.3
+  generationVersion: 2.727.9
+  releaseVersion: 0.0.1-beta.8
+  configChecksum: 1e900c42a49d01c34a8a423e4159f8cc
   repoURL: https://github.com/Dwolla/dwolla-typescript.git
   installationURL: https://github.com/Dwolla/dwolla-typescript
   published: true
@@ -14,24 +14,23 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.21.26
+    core: 3.22.0
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.1
     enumUnions: 0.1.0
-    enums: 2.83.0
     envVarSecurityUsage: 0.1.2
     errorUnions: 0.1.1
     globalSecurity: 2.82.14
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.5
-    groups: 2.81.2
+    groups: 2.81.3
     nameOverrides: 2.81.2
-    oauth2ClientCredentials: 0.5.0
+    oauth2ClientCredentials: 1.1.0
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.3.0
     serverIDs: 2.81.2
-    unions: 2.85.12
+    unions: 2.86.0
     uploadStreams: 0.1.0
 generatedFiles:
   - .devcontainer/README.md
@@ -191,8 +190,6 @@ generatedFiles:
   - docs/models/errors/createreauthexchangesessionbadrequestdwollav1haljsonerror.md
   - docs/models/errors/createreauthexchangesessionforbiddendwollav1haljsonerror.md
   - docs/models/errors/createwebhooksubscriptiondwollav1haljson.md
-  - docs/models/errors/customercreationbadrequestresponseerror.md
-  - docs/models/errors/customercreationforbiddenresponseerror.md
   - docs/models/errors/deletebeneficialownerdwollav1haljsonerror.md
   - docs/models/errors/depositaccountrestrictederror.md
   - docs/models/errors/destinationaddendamaxlengtherror.md
@@ -609,6 +606,7 @@ generatedFiles:
   - docs/models/operations/initiatemasspaymentmetadata.md
   - docs/models/operations/initiatemasspaymentprocessingchannel.md
   - docs/models/operations/initiatemasspaymentrequest.md
+  - docs/models/operations/initiatemasspaymentrequestbody.md
   - docs/models/operations/initiatemasspaymentresponse.md
   - docs/models/operations/initiatemasspaymentsourceaddenda.md
   - docs/models/operations/initiatemicrodepositsrequest.md
@@ -625,6 +623,7 @@ generatedFiles:
   - docs/models/operations/initiatetransfermetadata.md
   - docs/models/operations/initiatetransferprocessingchannel.md
   - docs/models/operations/initiatetransferrequest.md
+  - docs/models/operations/initiatetransferrequestbody.md
   - docs/models/operations/initiatetransferresponse.md
   - docs/models/operations/initiatetransfersourceaddenda.md
   - docs/models/operations/instantdetails.md
@@ -880,7 +879,6 @@ generatedFiles:
   - docs/sdks/customersmasspayments/README.md
   - docs/sdks/customerstransfers/README.md
   - docs/sdks/documents/README.md
-  - docs/sdks/dwolla/README.md
   - docs/sdks/events/README.md
   - docs/sdks/exchangepartners/README.md
   - docs/sdks/exchanges/README.md
@@ -1015,6 +1013,7 @@ generatedFiles:
   - src/lib/is-plain-object.ts
   - src/lib/logger.ts
   - src/lib/matchers.ts
+  - src/lib/oauth2-sessions.ts
   - src/lib/primitives.ts
   - src/lib/retries.ts
   - src/lib/schemas.ts
@@ -1083,8 +1082,6 @@ generatedFiles:
   - src/models/errors/createlabelreallocation.ts
   - src/models/errors/createreauthexchangesession.ts
   - src/models/errors/createwebhooksubscription.ts
-  - src/models/errors/customercreationbadrequestresponseerror.ts
-  - src/models/errors/customercreationforbiddenresponseerror.ts
   - src/models/errors/deletebeneficialowner.ts
   - src/models/errors/depositaccountrestrictederror.ts
   - src/models/errors/destinationaddendamaxlengtherror.ts
@@ -2526,54 +2523,54 @@ examples:
         application/vnd.dwolla.v1.hal+json: {"firstName": "Account", "lastName": "Admin", "email": "accountAdmin@email.com", "ipAddress": "143.156.7.8", "phone": "5555555555", "correlationId": "fc451a7a-ae30-4404-aB95-e3553fcd733", "businessName": "Jane Corp llc"}
       responses:
         "400":
-          application/vnd.dwolla.v1.hal+json: {"code": "BadRequest", "message": "The request body contains bad syntax or is incomplete."}
+          application/vnd.dwolla.v1.hal+json: {"code": "ValidationError", "message": "Validation error(s) present. See embedded errors list for more details.", "_embedded": {"code": "ValidationError", "message": "Validation error(s) present. See embedded errors list for more details."}}
         "403":
-          application/vnd.dwolla.v1.hal+json: {"code": "forbidden", "message": "Not authorized to create customers."}
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
   createReceiveOnlyCustomer:
     speakeasy-default-create-receive-only-customer:
       requestBody:
         application/vnd.dwolla.v1.hal+json: {"firstName": "Account", "lastName": "Admin", "email": "accountAdmin@email.com", "type": "receive-only", "ipAddress": "143.156.7.8", "phone": "5555555555", "correlationId": "fc451a7a-ae30-4404-aB95-e3553fcd733", "businessName": "Jane Corp llc"}
       responses:
         "400":
-          application/vnd.dwolla.v1.hal+json: {"code": "BadRequest", "message": "The request body contains bad syntax or is incomplete."}
+          application/vnd.dwolla.v1.hal+json: {"code": "ValidationError", "message": "Validation error(s) present. See embedded errors list for more details.", "_embedded": {"code": "ValidationError", "message": "Validation error(s) present. See embedded errors list for more details."}}
         "403":
-          application/vnd.dwolla.v1.hal+json: {"code": "forbidden", "message": "Not authorized to create customers."}
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
   createVerifiedPersonalCustomer:
     speakeasy-default-create-verified-personal-customer:
       requestBody:
         application/vnd.dwolla.v1.hal+json: {"firstName": "Account", "lastName": "Admin", "email": "accountAdmin@email.com", "ipAddress": "143.156.7.8", "phone": "5555555555", "correlationId": "fc451a7a-ae30-4404-aB95-e3553fcd733", "type": "personal", "address1": "99-99 33rd St", "address2": "99-99 33rd St", "city": "Some City", "state": "NY", "postalCode": "11101", "ssn": "1234", "dateOfBirth": "1980-09-12"}
       responses:
         "400":
-          application/vnd.dwolla.v1.hal+json: {"code": "BadRequest", "message": "The request body contains bad syntax or is incomplete."}
+          application/vnd.dwolla.v1.hal+json: {"code": "ValidationError", "message": "Validation error(s) present. See embedded errors list for more details.", "_embedded": {"code": "ValidationError", "message": "Validation error(s) present. See embedded errors list for more details."}}
         "403":
-          application/vnd.dwolla.v1.hal+json: {"code": "forbidden", "message": "Not authorized to create customers."}
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
   createVerifiedSolePropCustomer:
     speakeasy-default-create-verified-sole-prop-customer:
       requestBody:
         application/vnd.dwolla.v1.hal+json: {"firstName": "John", "lastName": "Doe", "email": "johndoe@email.com", "ipAddress": "143.156.7.8", "phone": "5555555555", "correlationId": "fc451a7a-ae30-4404-aB95-e3553fcd733", "type": "business", "address1": "99-99 33rd St", "address2": "99-99 33rd St", "city": "Some City", "state": "NY", "postalCode": "11101", "ssn": "1234", "dateOfBirth": "1980-09-12", "businessClassification": "9ed3f670-7d6f-11e3-b1ce-5404a6144203", "businessName": "Jane Corp", "doingBusinessAs": "Jane's Electronics", "ein": "00-0000000", "website": "https://www.domain.com", "businessType": "soleProprietorship"}
       responses:
         "400":
-          application/vnd.dwolla.v1.hal+json: {"code": "BadRequest", "message": "The request body contains bad syntax or is incomplete."}
+          application/vnd.dwolla.v1.hal+json: {"code": "ValidationError", "message": "Validation error(s) present. See embedded errors list for more details.", "_embedded": {"code": "ValidationError", "message": "Validation error(s) present. See embedded errors list for more details."}}
         "403":
-          application/vnd.dwolla.v1.hal+json: {"code": "forbidden", "message": "Not authorized to create customers."}
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
   createVerifiedBusinessCustomer:
     speakeasy-default-create-verified-business-customer:
       requestBody:
         application/vnd.dwolla.v1.hal+json: {"firstName": "Jane", "lastName": "Business", "email": "jane.business@email.com", "ipAddress": "143.156.7.8", "phone": "5555555555", "correlationId": "fc451a7a-ae30-4404-aB95-e3553fcd733", "type": "business", "address1": "99-99 33rd St", "address2": "99-99 33rd St", "city": "Some City", "state": "NY", "postalCode": "11101", "businessClassification": "9ed3f670-7d6f-11e3-b1ce-5404a6144203", "businessName": "Jane Corp", "doingBusinessAs": "Jane's Electronics", "ein": "00-0000000", "website": "https://www.domain.com", "controller": {"firstName": "John", "lastName": "Controller", "title": "CEO", "dateOfBirth": "1980-01-31", "address": {"address1": "462 Main Street", "address2": "Suite 123", "address3": "Unit 123", "city": "Des Moines", "postalCode": "50309", "country": "USA", "stateProvinceRegion": "IA"}, "ssn": "1234"}, "businessType": "llc"}
       responses:
         "400":
-          application/vnd.dwolla.v1.hal+json: {"code": "BadRequest", "message": "The request body contains bad syntax or is incomplete."}
+          application/vnd.dwolla.v1.hal+json: {"code": "ValidationError", "message": "Validation error(s) present. See embedded errors list for more details.", "_embedded": {"code": "ValidationError", "message": "Validation error(s) present. See embedded errors list for more details."}}
         "403":
-          application/vnd.dwolla.v1.hal+json: {"code": "forbidden", "message": "Not authorized to create customers."}
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
   createVerifiedBusinessInternationalCustomer:
     speakeasy-default-create-verified-business-international-customer:
       requestBody:
         application/vnd.dwolla.v1.hal+json: {"firstName": "Jane", "lastName": "Business", "email": "jane.business@email.com", "ipAddress": "143.156.7.8", "phone": "5555555555", "correlationId": "fc451a7a-ae30-4404-aB95-e3553fcd733", "type": "business", "address1": "99-99 33rd St", "address2": "99-99 33rd St", "city": "Some City", "state": "NY", "postalCode": "11101", "businessClassification": "9ed3f670-7d6f-11e3-b1ce-5404a6144203", "businessName": "Jane Corp", "doingBusinessAs": "Jane's Electronics", "ein": "00-0000000", "website": "https://www.domain.com", "controller": {"firstName": "John", "lastName": "Controller", "title": "CEO", "dateOfBirth": "1980-01-31", "address": {"address1": "462 Main Street", "address2": "Suite 123", "address3": "Unit 123", "city": "Des Moines", "postalCode": "50309", "country": "USA", "stateProvinceRegion": "IA"}, "passport": {"number": "<value>", "country": "Zimbabwe"}}, "businessType": "llc"}
       responses:
         "400":
-          application/vnd.dwolla.v1.hal+json: {"code": "BadRequest", "message": "The request body contains bad syntax or is incomplete."}
+          application/vnd.dwolla.v1.hal+json: {"code": "ValidationError", "message": "Validation error(s) present. See embedded errors list for more details.", "_embedded": {"code": "ValidationError", "message": "Validation error(s) present. See embedded errors list for more details."}}
         "403":
-          application/vnd.dwolla.v1.hal+json: {"code": "forbidden", "message": "Not authorized to create customers."}
+          application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
   initiateMicroDeposits:
     speakeasy-default-initiate-micro-deposits:
       parameters:

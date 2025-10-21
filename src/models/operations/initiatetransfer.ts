@@ -122,7 +122,7 @@ export type InitiateTransferProcessingChannel = {
 /**
  * Parameters to initiate a transfer
  */
-export type InitiateTransferRequest = {
+export type InitiateTransferRequestBody = {
   links: InitiateTransferLinks;
   amount: models.TransferAmount;
   metadata?: InitiateTransferMetadata | undefined;
@@ -139,6 +139,14 @@ export type InitiateTransferRequest = {
   instantDetails?: InstantDetails | undefined;
   correlationId?: string | undefined;
   processingChannel?: InitiateTransferProcessingChannel | undefined;
+};
+
+export type InitiateTransferRequest = {
+  idempotencyKey?: string | undefined;
+  /**
+   * Parameters to initiate a transfer
+   */
+  requestBody: InitiateTransferRequestBody;
 };
 
 export type InitiateTransferResponse = {
@@ -1223,8 +1231,8 @@ export function initiateTransferProcessingChannelFromJSON(
 }
 
 /** @internal */
-export const InitiateTransferRequest$inboundSchema: z.ZodType<
-  InitiateTransferRequest,
+export const InitiateTransferRequestBody$inboundSchema: z.ZodType<
+  InitiateTransferRequestBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1247,7 +1255,7 @@ export const InitiateTransferRequest$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type InitiateTransferRequest$Outbound = {
+export type InitiateTransferRequestBody$Outbound = {
   _links: InitiateTransferLinks$Outbound;
   amount: models.TransferAmount$Outbound;
   metadata?: InitiateTransferMetadata$Outbound | undefined;
@@ -1261,10 +1269,10 @@ export type InitiateTransferRequest$Outbound = {
 };
 
 /** @internal */
-export const InitiateTransferRequest$outboundSchema: z.ZodType<
-  InitiateTransferRequest$Outbound,
+export const InitiateTransferRequestBody$outboundSchema: z.ZodType<
+  InitiateTransferRequestBody$Outbound,
   z.ZodTypeDef,
-  InitiateTransferRequest
+  InitiateTransferRequestBody
 > = z.object({
   links: z.lazy(() => InitiateTransferLinks$outboundSchema),
   amount: models.TransferAmount$outboundSchema,
@@ -1282,6 +1290,75 @@ export const InitiateTransferRequest$outboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     links: "_links",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace InitiateTransferRequestBody$ {
+  /** @deprecated use `InitiateTransferRequestBody$inboundSchema` instead. */
+  export const inboundSchema = InitiateTransferRequestBody$inboundSchema;
+  /** @deprecated use `InitiateTransferRequestBody$outboundSchema` instead. */
+  export const outboundSchema = InitiateTransferRequestBody$outboundSchema;
+  /** @deprecated use `InitiateTransferRequestBody$Outbound` instead. */
+  export type Outbound = InitiateTransferRequestBody$Outbound;
+}
+
+export function initiateTransferRequestBodyToJSON(
+  initiateTransferRequestBody: InitiateTransferRequestBody,
+): string {
+  return JSON.stringify(
+    InitiateTransferRequestBody$outboundSchema.parse(
+      initiateTransferRequestBody,
+    ),
+  );
+}
+
+export function initiateTransferRequestBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<InitiateTransferRequestBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => InitiateTransferRequestBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'InitiateTransferRequestBody' from JSON`,
+  );
+}
+
+/** @internal */
+export const InitiateTransferRequest$inboundSchema: z.ZodType<
+  InitiateTransferRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "Idempotency-Key": z.string().optional(),
+  RequestBody: z.lazy(() => InitiateTransferRequestBody$inboundSchema),
+}).transform((v) => {
+  return remap$(v, {
+    "Idempotency-Key": "idempotencyKey",
+    "RequestBody": "requestBody",
+  });
+});
+
+/** @internal */
+export type InitiateTransferRequest$Outbound = {
+  "Idempotency-Key"?: string | undefined;
+  RequestBody: InitiateTransferRequestBody$Outbound;
+};
+
+/** @internal */
+export const InitiateTransferRequest$outboundSchema: z.ZodType<
+  InitiateTransferRequest$Outbound,
+  z.ZodTypeDef,
+  InitiateTransferRequest
+> = z.object({
+  idempotencyKey: z.string().optional(),
+  requestBody: z.lazy(() => InitiateTransferRequestBody$outboundSchema),
+}).transform((v) => {
+  return remap$(v, {
+    idempotencyKey: "Idempotency-Key",
+    requestBody: "RequestBody",
   });
 });
 
