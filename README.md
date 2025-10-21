@@ -117,9 +117,9 @@ run();
 
 This SDK supports the following security scheme globally:
 
-| Name                          | Type   | Scheme                         | Environment Variable                                                 |
-| ----------------------------- | ------ | ------------------------------ | -------------------------------------------------------------------- |
-| `clientID`<br/>`clientSecret` | oauth2 | OAuth2 Client Credentials Flow | `DWOLLA_CLIENT_ID`<br/>`DWOLLA_CLIENT_SECRET`<br/>`DWOLLA_TOKEN_URL` |
+| Name                                         | Type   | Scheme                         | Environment Variable                                                 |
+| -------------------------------------------- | ------ | ------------------------------ | -------------------------------------------------------------------- |
+| `clientID`<br/>`clientSecret`<br/>`tokenURL` | oauth2 | OAuth2 Client Credentials Flow | `DWOLLA_CLIENT_ID`<br/>`DWOLLA_CLIENT_SECRET`<br/>`DWOLLA_TOKEN_URL` |
 
 You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. For example:
 ```typescript
@@ -255,7 +255,6 @@ run();
 ### [documents](docs/sdks/documents/README.md)
 
 * [get](docs/sdks/documents/README.md#get) - Retrieve a document
-
 
 ### [events](docs/sdks/events/README.md)
 

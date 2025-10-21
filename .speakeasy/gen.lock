@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 53ac026a-ff11-435d-914b-31df5268afb0
 management:
-  docChecksum: 67585827410652e1e5f03d8b8a95f20a
+  docChecksum: 0f1af918a83cb76230e3ad3233c19f68
   docVersion: "2.0"
-  speakeasyVersion: 1.632.0
-  generationVersion: 2.719.3
-  releaseVersion: 0.0.1-beta.7
-  configChecksum: 5c85c22ddfd9630e89b906563d051edd
+  speakeasyVersion: 1.637.3
+  generationVersion: 2.727.9
+  releaseVersion: 0.0.1-beta.8
+  configChecksum: 1e900c42a49d01c34a8a423e4159f8cc
   repoURL: https://github.com/Dwolla/dwolla-typescript.git
   installationURL: https://github.com/Dwolla/dwolla-typescript
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.21.26
+    core: 3.22.0
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.1
     enumUnions: 0.1.0
@@ -24,14 +24,14 @@ features:
     globalSecurity: 2.82.14
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.5
-    groups: 2.81.2
+    groups: 2.81.3
     nameOverrides: 2.81.2
-    oauth2ClientCredentials: 0.5.0
+    oauth2ClientCredentials: 1.1.0
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.3.0
     serverIDs: 2.81.2
-    unions: 2.85.12
+    unions: 2.86.0
     uploadStreams: 0.1.0
 generatedFiles:
   - .devcontainer/README.md
@@ -609,6 +609,7 @@ generatedFiles:
   - docs/models/operations/initiatemasspaymentmetadata.md
   - docs/models/operations/initiatemasspaymentprocessingchannel.md
   - docs/models/operations/initiatemasspaymentrequest.md
+  - docs/models/operations/initiatemasspaymentrequestbody.md
   - docs/models/operations/initiatemasspaymentresponse.md
   - docs/models/operations/initiatemasspaymentsourceaddenda.md
   - docs/models/operations/initiatemicrodepositsrequest.md
@@ -625,6 +626,7 @@ generatedFiles:
   - docs/models/operations/initiatetransfermetadata.md
   - docs/models/operations/initiatetransferprocessingchannel.md
   - docs/models/operations/initiatetransferrequest.md
+  - docs/models/operations/initiatetransferrequestbody.md
   - docs/models/operations/initiatetransferresponse.md
   - docs/models/operations/initiatetransfersourceaddenda.md
   - docs/models/operations/instantdetails.md
@@ -880,7 +882,6 @@ generatedFiles:
   - docs/sdks/customersmasspayments/README.md
   - docs/sdks/customerstransfers/README.md
   - docs/sdks/documents/README.md
-  - docs/sdks/dwolla/README.md
   - docs/sdks/events/README.md
   - docs/sdks/exchangepartners/README.md
   - docs/sdks/exchanges/README.md
@@ -1015,6 +1016,7 @@ generatedFiles:
   - src/lib/is-plain-object.ts
   - src/lib/logger.ts
   - src/lib/matchers.ts
+  - src/lib/oauth2-sessions.ts
   - src/lib/primitives.ts
   - src/lib/retries.ts
   - src/lib/schemas.ts
@@ -2602,3 +2604,7 @@ examples:
           application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: |
+  ## Typescript SDK Changes Detected:
+  * `dwolla.transfers.create()`:  `request` **Changed** **Breaking** :warning:
+  * `dwolla.massPayments.create()`:  `request` **Changed** **Breaking** :warning:

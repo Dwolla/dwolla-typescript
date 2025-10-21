@@ -30,23 +30,25 @@ const dwolla = new Dwolla({
 
 async function run() {
   const result = await dwolla.transfers.create({
-    links: {},
-    amount: {
-      value: "5.00",
-      currency: "USD",
-    },
-    rtpDetails: {
-      destination: {
-        remittanceData: "ABC_123 Remittance Data",
+    requestBody: {
+      links: {},
+      amount: {
+        value: "5.00",
+        currency: "USD",
       },
-    },
-    instantDetails: {
-      destination: {
-        remittanceData: "ABC_123 Remittance Data",
+      rtpDetails: {
+        destination: {
+          remittanceData: "ABC_123 Remittance Data",
+        },
       },
-    },
-    processingChannel: {
-      destination: "instant",
+      instantDetails: {
+        destination: {
+          remittanceData: "ABC_123 Remittance Data",
+        },
+      },
+      processingChannel: {
+        destination: "instant",
+      },
     },
   });
 
@@ -75,23 +77,25 @@ const dwolla = new DwollaCore({
 
 async function run() {
   const res = await transfersCreate(dwolla, {
-    links: {},
-    amount: {
-      value: "5.00",
-      currency: "USD",
-    },
-    rtpDetails: {
-      destination: {
-        remittanceData: "ABC_123 Remittance Data",
+    requestBody: {
+      links: {},
+      amount: {
+        value: "5.00",
+        currency: "USD",
       },
-    },
-    instantDetails: {
-      destination: {
-        remittanceData: "ABC_123 Remittance Data",
+      rtpDetails: {
+        destination: {
+          remittanceData: "ABC_123 Remittance Data",
+        },
       },
-    },
-    processingChannel: {
-      destination: "instant",
+      instantDetails: {
+        destination: {
+          remittanceData: "ABC_123 Remittance Data",
+        },
+      },
+      processingChannel: {
+        destination: "instant",
+      },
     },
   });
   if (res.ok) {

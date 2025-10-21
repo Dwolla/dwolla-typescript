@@ -78,7 +78,7 @@ export type InitiateMassPaymentMetadata = {};
 /**
  * Parameters for initiating a mass payment
  */
-export type InitiateMassPaymentRequest = {
+export type InitiateMassPaymentRequestBody = {
   links: InitiateMassPaymentLinks;
   items: Array<Item>;
   status?: string | undefined;
@@ -86,6 +86,14 @@ export type InitiateMassPaymentRequest = {
   clearing?: InitiateMassPaymentClearing | undefined;
   metadata?: InitiateMassPaymentMetadata | undefined;
   correlationId?: string | undefined;
+};
+
+export type InitiateMassPaymentRequest = {
+  idempotencyKey?: string | undefined;
+  /**
+   * Parameters for initiating a mass payment
+   */
+  requestBody: InitiateMassPaymentRequestBody;
 };
 
 export type InitiateMassPaymentResponse = {
@@ -992,8 +1000,8 @@ export function initiateMassPaymentMetadataFromJSON(
 }
 
 /** @internal */
-export const InitiateMassPaymentRequest$inboundSchema: z.ZodType<
-  InitiateMassPaymentRequest,
+export const InitiateMassPaymentRequestBody$inboundSchema: z.ZodType<
+  InitiateMassPaymentRequestBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -1012,7 +1020,7 @@ export const InitiateMassPaymentRequest$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type InitiateMassPaymentRequest$Outbound = {
+export type InitiateMassPaymentRequestBody$Outbound = {
   _links: InitiateMassPaymentLinks$Outbound;
   items: Array<Item$Outbound>;
   status?: string | undefined;
@@ -1023,10 +1031,10 @@ export type InitiateMassPaymentRequest$Outbound = {
 };
 
 /** @internal */
-export const InitiateMassPaymentRequest$outboundSchema: z.ZodType<
-  InitiateMassPaymentRequest$Outbound,
+export const InitiateMassPaymentRequestBody$outboundSchema: z.ZodType<
+  InitiateMassPaymentRequestBody$Outbound,
   z.ZodTypeDef,
-  InitiateMassPaymentRequest
+  InitiateMassPaymentRequestBody
 > = z.object({
   links: z.lazy(() => InitiateMassPaymentLinks$outboundSchema),
   items: z.array(z.lazy(() => Item$outboundSchema)),
@@ -1039,6 +1047,75 @@ export const InitiateMassPaymentRequest$outboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     links: "_links",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace InitiateMassPaymentRequestBody$ {
+  /** @deprecated use `InitiateMassPaymentRequestBody$inboundSchema` instead. */
+  export const inboundSchema = InitiateMassPaymentRequestBody$inboundSchema;
+  /** @deprecated use `InitiateMassPaymentRequestBody$outboundSchema` instead. */
+  export const outboundSchema = InitiateMassPaymentRequestBody$outboundSchema;
+  /** @deprecated use `InitiateMassPaymentRequestBody$Outbound` instead. */
+  export type Outbound = InitiateMassPaymentRequestBody$Outbound;
+}
+
+export function initiateMassPaymentRequestBodyToJSON(
+  initiateMassPaymentRequestBody: InitiateMassPaymentRequestBody,
+): string {
+  return JSON.stringify(
+    InitiateMassPaymentRequestBody$outboundSchema.parse(
+      initiateMassPaymentRequestBody,
+    ),
+  );
+}
+
+export function initiateMassPaymentRequestBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<InitiateMassPaymentRequestBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => InitiateMassPaymentRequestBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'InitiateMassPaymentRequestBody' from JSON`,
+  );
+}
+
+/** @internal */
+export const InitiateMassPaymentRequest$inboundSchema: z.ZodType<
+  InitiateMassPaymentRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "Idempotency-Key": z.string().optional(),
+  RequestBody: z.lazy(() => InitiateMassPaymentRequestBody$inboundSchema),
+}).transform((v) => {
+  return remap$(v, {
+    "Idempotency-Key": "idempotencyKey",
+    "RequestBody": "requestBody",
+  });
+});
+
+/** @internal */
+export type InitiateMassPaymentRequest$Outbound = {
+  "Idempotency-Key"?: string | undefined;
+  RequestBody: InitiateMassPaymentRequestBody$Outbound;
+};
+
+/** @internal */
+export const InitiateMassPaymentRequest$outboundSchema: z.ZodType<
+  InitiateMassPaymentRequest$Outbound,
+  z.ZodTypeDef,
+  InitiateMassPaymentRequest
+> = z.object({
+  idempotencyKey: z.string().optional(),
+  requestBody: z.lazy(() => InitiateMassPaymentRequestBody$outboundSchema),
+}).transform((v) => {
+  return remap$(v, {
+    idempotencyKey: "Idempotency-Key",
+    requestBody: "RequestBody",
   });
 });
 
