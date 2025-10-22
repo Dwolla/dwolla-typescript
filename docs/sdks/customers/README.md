@@ -457,11 +457,11 @@ run();
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| errors.CustomerCreationBadRequestResponseError | 400                                            | application/vnd.dwolla.v1.hal+json             |
-| errors.CustomerCreationForbiddenResponseError  | 403                                            | application/vnd.dwolla.v1.hal+json             |
-| errors.APIError                                | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.BadRequestSchemaError       | 400                                | application/vnd.dwolla.v1.hal+json |
+| errors.ForbiddenError              | 403                                | application/vnd.dwolla.v1.hal+json |
+| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
 
 ## createReceiveOnly
 
@@ -550,11 +550,11 @@ run();
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| errors.CustomerCreationBadRequestResponseError | 400                                            | application/vnd.dwolla.v1.hal+json             |
-| errors.CustomerCreationForbiddenResponseError  | 403                                            | application/vnd.dwolla.v1.hal+json             |
-| errors.APIError                                | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.BadRequestSchemaError       | 400                                | application/vnd.dwolla.v1.hal+json |
+| errors.ForbiddenError              | 403                                | application/vnd.dwolla.v1.hal+json |
+| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
 
 ## createVerifiedPersonal
 
@@ -655,11 +655,11 @@ run();
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| errors.CustomerCreationBadRequestResponseError | 400                                            | application/vnd.dwolla.v1.hal+json             |
-| errors.CustomerCreationForbiddenResponseError  | 403                                            | application/vnd.dwolla.v1.hal+json             |
-| errors.APIError                                | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.BadRequestSchemaError       | 400                                | application/vnd.dwolla.v1.hal+json |
+| errors.ForbiddenError              | 403                                | application/vnd.dwolla.v1.hal+json |
+| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
 
 ## createVerifiedSoleProp
 
@@ -770,11 +770,11 @@ run();
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| errors.CustomerCreationBadRequestResponseError | 400                                            | application/vnd.dwolla.v1.hal+json             |
-| errors.CustomerCreationForbiddenResponseError  | 403                                            | application/vnd.dwolla.v1.hal+json             |
-| errors.APIError                                | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.BadRequestSchemaError       | 400                                | application/vnd.dwolla.v1.hal+json |
+| errors.ForbiddenError              | 403                                | application/vnd.dwolla.v1.hal+json |
+| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
 
 ## createVerifiedBusiness
 
@@ -915,11 +915,11 @@ run();
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| errors.CustomerCreationBadRequestResponseError | 400                                            | application/vnd.dwolla.v1.hal+json             |
-| errors.CustomerCreationForbiddenResponseError  | 403                                            | application/vnd.dwolla.v1.hal+json             |
-| errors.APIError                                | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.BadRequestSchemaError       | 400                                | application/vnd.dwolla.v1.hal+json |
+| errors.ForbiddenError              | 403                                | application/vnd.dwolla.v1.hal+json |
+| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |
 
 ## createVerifiedBusinessInternational
 
@@ -1066,8 +1066,8 @@ run();
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| errors.CustomerCreationBadRequestResponseError | 400                                            | application/vnd.dwolla.v1.hal+json             |
-| errors.CustomerCreationForbiddenResponseError  | 403                                            | application/vnd.dwolla.v1.hal+json             |
-| errors.APIError                                | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.BadRequestSchemaError       | 400                                | application/vnd.dwolla.v1.hal+json |
+| errors.ForbiddenError              | 403                                | application/vnd.dwolla.v1.hal+json |
+| errors.APIError                    | 4XX, 5XX                           | \*/\*                              |

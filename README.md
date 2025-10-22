@@ -117,9 +117,9 @@ run();
 
 This SDK supports the following security scheme globally:
 
-| Name                          | Type   | Scheme                         | Environment Variable                                                 |
-| ----------------------------- | ------ | ------------------------------ | -------------------------------------------------------------------- |
-| `clientID`<br/>`clientSecret` | oauth2 | OAuth2 Client Credentials Flow | `DWOLLA_CLIENT_ID`<br/>`DWOLLA_CLIENT_SECRET`<br/>`DWOLLA_TOKEN_URL` |
+| Name                                         | Type   | Scheme                         | Environment Variable                                                 |
+| -------------------------------------------- | ------ | ------------------------------ | -------------------------------------------------------------------- |
+| `clientID`<br/>`clientSecret`<br/>`tokenURL` | oauth2 | OAuth2 Client Credentials Flow | `DWOLLA_CLIENT_ID`<br/>`DWOLLA_CLIENT_SECRET`<br/>`DWOLLA_TOKEN_URL` |
 
 You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. For example:
 ```typescript
@@ -255,7 +255,6 @@ run();
 ### [documents](docs/sdks/documents/README.md)
 
 * [get](docs/sdks/documents/README.md#get) - Retrieve a document
-
 
 ### [events](docs/sdks/events/README.md)
 
@@ -651,7 +650,7 @@ run();
 **Primary error:**
 * [`DwollaError`](./src/models/errors/dwollaerror.ts): The base class for HTTP error responses.
 
-<details><summary>Less common errors (176)</summary>
+<details><summary>Less common errors (174)</summary>
 
 <br />
 
@@ -665,10 +664,9 @@ run();
 
 **Inherit from [`DwollaError`](./src/models/errors/dwollaerror.ts)**:
 * [`NotFoundError`](./src/models/errors/notfounderror.ts): Error response schema for 404 NotFound. Status code `404`. Applicable to 36 of 87 methods.*
-* [`ForbiddenError`](./src/models/errors/forbiddenerror.ts): Error response schema for 403 Forbidden. Status code `403`. Applicable to 24 of 87 methods.*
+* [`ForbiddenError`](./src/models/errors/forbiddenerror.ts): Error response schema for 403 Forbidden. Status code `403`. Applicable to 30 of 87 methods.*
 * [`BadRequestError`](./src/models/errors/badrequesterror.ts): Error response schema for 400 Bad Request. Status code `400`. Applicable to 10 of 87 methods.*
-* [`CustomerCreationBadRequestResponseError`](./src/models/errors/customercreationbadrequestresponseerror.ts): Bad Request. Status code `400`. Applicable to 6 of 87 methods.*
-* [`CustomerCreationForbiddenResponseError`](./src/models/errors/customercreationforbiddenresponseerror.ts): forbidden. Status code `403`. Applicable to 6 of 87 methods.*
+* [`BadRequestSchemaError`](./src/models/errors/badrequestschemaerror.ts): Status code `400`. Applicable to 7 of 87 methods.*
 * [`DuplicateResourceSchemaError`](./src/models/errors/duplicateresourceschemaerror.ts): Status code `400`. Applicable to 3 of 87 methods.*
 * [`ValidationErrorSchema`](./src/models/errors/validationerrorschema.ts): ValidationError. Status code `400`. Applicable to 2 of 87 methods.*
 * [`InvalidExchangeTokenError`](./src/models/errors/invalidexchangetokenerror.ts): Bad Request. Status code `400`. Applicable to 2 of 87 methods.*
@@ -748,7 +746,6 @@ run();
 * [`InvalidUrlFormatError`](./src/models/errors/invalidurlformaterror.ts): Bad request. Status code `400`. Applicable to 1 of 87 methods.*
 * [`SecretTooLongError`](./src/models/errors/secrettoolongerror.ts): Bad request. Status code `400`. Applicable to 1 of 87 methods.*
 * [`MaxSubscriptionsReachedError`](./src/models/errors/maxsubscriptionsreachederror.ts): Bad request. Status code `400`. Applicable to 1 of 87 methods.*
-* [`BadRequestSchemaError`](./src/models/errors/badrequestschemaerror.ts): Bad request or duplicate resource. Status code `400`. Applicable to 1 of 87 methods.*
 * [`InactiveExchangeError`](./src/models/errors/inactiveexchangeerror.ts): validation error. Status code `400`. Applicable to 1 of 87 methods.*
 * [`InvalidExchangeTokenErrorError`](./src/models/errors/invalidexchangetokenerrorerror.ts): validation error. Status code `400`. Applicable to 1 of 87 methods.*
 * [`DuplicateFundingSourceError`](./src/models/errors/duplicatefundingsourceerror.ts): validation error. Status code `400`. Applicable to 1 of 87 methods.*
