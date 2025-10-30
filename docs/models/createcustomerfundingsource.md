@@ -9,12 +9,28 @@ Parameters for creating customer funding sources using different methods:
 
 ## Supported Types
 
-### `models.CreateCustomerBankFundingSource`
+### `models.CreateCustomerBankFundingSourceWithAccountNumbers`
 
 ```typescript
-const value: models.CreateCustomerBankFundingSource = {
+const value: models.CreateCustomerBankFundingSourceWithAccountNumbers = {
   routingNumber: "222222226",
   accountNumber: "123456789",
+  bankAccountType: "checking",
+  name: "Jane Doe's Checking",
+  links: {
+    onDemandAuthorization: {
+      href:
+        "https://api-sandbox.dwolla.com/on-demand-authorizations/30e7c028-0bdf-e511-80de-0aa34a9b2388",
+    },
+  },
+};
+```
+
+### `models.CreateCustomerBankFundingSourceWithPlaid`
+
+```typescript
+const value: models.CreateCustomerBankFundingSourceWithPlaid = {
+  plaidToken: "processor-sandbox-plaidauth-123456",
   bankAccountType: "checking",
   name: "Jane Doe's Checking",
   links: {

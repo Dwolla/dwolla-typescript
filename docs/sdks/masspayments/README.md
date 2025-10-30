@@ -28,6 +28,7 @@ const dwolla = new Dwolla({
 
 async function run() {
   const result = await dwolla.massPayments.create({
+    idempotencyKey: "19051a62-3403-11e6-ac61-9e71128cae77",
     requestBody: {
       links: {
         source: {
@@ -132,6 +133,7 @@ const dwolla = new DwollaCore({
 
 async function run() {
   const res = await massPaymentsCreate(dwolla, {
+    idempotencyKey: "19051a62-3403-11e6-ac61-9e71128cae77",
     requestBody: {
       links: {
         source: {

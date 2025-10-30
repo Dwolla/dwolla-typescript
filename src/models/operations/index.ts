@@ -77,6 +77,7 @@ export * from "./retrievecustomerexchangesession.js";
 export * from "./retrievedocument.js";
 export * from "./retrievelabelreallocation.js";
 export * from "./retrywebhook.js";
+export * from "./simulatebanktransferprocessing.js";
 export * from "./update.js";
 export * from "./updatebeneficialowner.js";
 export * from "./updatemasspayment.js";

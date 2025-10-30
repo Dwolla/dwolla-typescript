@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 53ac026a-ff11-435d-914b-31df5268afb0
 management:
-  docChecksum: b4407d2e88300cc806c499a165e62149
+  docChecksum: e5f4533bb86227c89f4b6b710cdc5b34
   docVersion: "2.0"
-  speakeasyVersion: 1.637.3
-  generationVersion: 2.727.9
-  releaseVersion: 0.0.1-beta.8
-  configChecksum: 1e900c42a49d01c34a8a423e4159f8cc
+  speakeasyVersion: 1.643.0
+  generationVersion: 2.731.6
+  releaseVersion: 0.0.1-beta.9
+  configChecksum: ec30365d4888fef411c44acbdfbe4d3b
   repoURL: https://github.com/Dwolla/dwolla-typescript.git
   installationURL: https://github.com/Dwolla/dwolla-typescript
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.22.0
+    core: 3.24.1
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.1
     enumUnions: 0.1.0
@@ -78,11 +78,16 @@ generatedFiles:
   - docs/models/createaccountfundingsourcebankaccounttype.md
   - docs/models/createaccountfundingsourceexchange.md
   - docs/models/createaccountfundingsourcelinks.md
-  - docs/models/createcustomerbankfundingsource.md
-  - docs/models/createcustomerbankfundingsourcebankaccounttype.md
-  - docs/models/createcustomerbankfundingsourcechannel.md
-  - docs/models/createcustomerbankfundingsourcelinks.md
-  - docs/models/createcustomerbankfundingsourceondemandauthorization.md
+  - docs/models/createcustomerbankfundingsourcewithaccountnumbers.md
+  - docs/models/createcustomerbankfundingsourcewithaccountnumbersbankaccounttype.md
+  - docs/models/createcustomerbankfundingsourcewithaccountnumberschannel.md
+  - docs/models/createcustomerbankfundingsourcewithaccountnumberslinks.md
+  - docs/models/createcustomerbankfundingsourcewithaccountnumbersondemandauthorization.md
+  - docs/models/createcustomerbankfundingsourcewithplaid.md
+  - docs/models/createcustomerbankfundingsourcewithplaidbankaccounttype.md
+  - docs/models/createcustomerbankfundingsourcewithplaidchannel.md
+  - docs/models/createcustomerbankfundingsourcewithplaidlinks.md
+  - docs/models/createcustomerbankfundingsourcewithplaidondemandauthorization.md
   - docs/models/createcustomerexchangefundingsource.md
   - docs/models/createcustomerexchangefundingsourcebankaccounttype.md
   - docs/models/createcustomerexchangefundingsourceexchange.md
@@ -303,6 +308,8 @@ generatedFiles:
   - docs/models/errors/rtpunverifiedsendernotsupportederror.md
   - docs/models/errors/secrettoolongerror.md
   - docs/models/errors/senderrestrictederror.md
+  - docs/models/errors/simulatebanktransferprocessingforbiddendwollav1haljsonerror.md
+  - docs/models/errors/simulatebanktransferprocessingunauthorizeddwollav1haljsonerror.md
   - docs/models/errors/sourceaddendamaxlengtherror.md
   - docs/models/errors/sourcenotfounderror.md
   - docs/models/errors/sourcesameasdestinationerror.md
@@ -688,6 +695,8 @@ generatedFiles:
   - docs/models/operations/retrywebhookresponse.md
   - docs/models/operations/rtpdetails.md
   - docs/models/operations/rtpdetailsdestination.md
+  - docs/models/operations/simulatebanktransferprocessingrequest.md
+  - docs/models/operations/simulatebanktransferprocessingresponse.md
   - docs/models/operations/to.md
   - docs/models/operations/tokentype.md
   - docs/models/operations/toledgerentry.md
@@ -897,6 +906,7 @@ generatedFiles:
   - docs/sdks/reallocations/README.md
   - docs/sdks/retries/README.md
   - docs/sdks/root/README.md
+  - docs/sdks/sandboxsimulations/README.md
   - docs/sdks/tokens/README.md
   - docs/sdks/transfers/README.md
   - docs/sdks/webhooks/README.md
@@ -983,6 +993,7 @@ generatedFiles:
   - src/funcs/massPaymentsItemsList.ts
   - src/funcs/massPaymentsUpdate.ts
   - src/funcs/rootGet.ts
+  - src/funcs/sandboxSimulationsSimulate.ts
   - src/funcs/tokensCreate.ts
   - src/funcs/transfersCancel.ts
   - src/funcs/transfersCreate.ts
@@ -1032,7 +1043,8 @@ generatedFiles:
   - src/models/businessclassifications.ts
   - src/models/cannotparseamounterror.ts
   - src/models/createaccountfundingsource.ts
-  - src/models/createcustomerbankfundingsource.ts
+  - src/models/createcustomerbankfundingsourcewithaccountnumbers.ts
+  - src/models/createcustomerbankfundingsourcewithplaid.ts
   - src/models/createcustomerexchangefundingsource.ts
   - src/models/createcustomerexchangesessionforweb.ts
   - src/models/createcustomerexchangesessionwithredirect.ts
@@ -1181,6 +1193,7 @@ generatedFiles:
   - src/models/errors/sdkvalidationerror.ts
   - src/models/errors/secrettoolongerror.ts
   - src/models/errors/senderrestrictederror.ts
+  - src/models/errors/simulatebanktransferprocessing.ts
   - src/models/errors/sourceaddendamaxlengtherror.ts
   - src/models/errors/sourcenotfounderror.ts
   - src/models/errors/sourcesameasdestinationerror.ts
@@ -1339,6 +1352,7 @@ generatedFiles:
   - src/models/operations/retrievedocument.ts
   - src/models/operations/retrievelabelreallocation.ts
   - src/models/operations/retrywebhook.ts
+  - src/models/operations/simulatebanktransferprocessing.ts
   - src/models/operations/update.ts
   - src/models/operations/updatebeneficialowner.ts
   - src/models/operations/updatemasspayment.ts
@@ -1435,6 +1449,7 @@ generatedFiles:
   - src/sdk/reallocations.ts
   - src/sdk/retries.ts
   - src/sdk/root.ts
+  - src/sdk/sandboxsimulations.ts
   - src/sdk/sdk.ts
   - src/sdk/tokens.ts
   - src/sdk/transfers.ts
@@ -1901,6 +1916,9 @@ examples:
           application/vnd.dwolla.v1.hal+json: {"code": "notFound", "message": "Funding source not found."}
   initiateTransfer:
     speakeasy-default-initiate-transfer:
+      parameters:
+        header:
+          Idempotency-Key: "19051a62-3403-11e6-ac61-9e71128cae77"
       requestBody:
         application/json: {"_links": {}, "amount": {"value": "5.00", "currency": "USD"}, "rtpDetails": {"destination": {"remittanceData": "ABC_123 Remittance Data"}}, "instantDetails": {"destination": {"remittanceData": "ABC_123 Remittance Data"}}, "processingChannel": {"destination": "instant"}}
       responses:
@@ -1978,6 +1996,9 @@ examples:
           application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
   initiateMassPayment:
     speakeasy-default-initiate-mass-payment:
+      parameters:
+        header:
+          Idempotency-Key: "19051a62-3403-11e6-ac61-9e71128cae77"
       requestBody:
         application/json: {"_links": {"source": {"href": "https://api.dwolla.com/funding-sources/707177c3-bf15-4e7e-b37c-55c3898d9bf4"}}, "items": [{"_links": {"destination": {"href": "https://api.dwolla.com/funding-sources/9c7f8d57-cd45-4e7a-bf7a-914dbd6131db"}}, "amount": {"value": "5.00", "currency": "USD"}, "processingChannel": {"destination": "real-time-payments"}, "clearing": {"destination": "next-available"}, "achDetails": {"destination": {"addenda": {"values": ["XYZ987_AddendaValue"]}}}, "correlationId": "ad6ca82d-59f7-45f0-a8d2-94c2cd4e8841"}, {"_links": {"destination": {"href": "https://api.dwolla.com/funding-sources/9c7f8d57-cd45-4e7a-bf7a-914dbd6131db"}}, "amount": {"value": "5.00", "currency": "USD"}, "processingChannel": {"destination": "real-time-payments"}, "clearing": {"destination": "next-available"}, "achDetails": {"destination": {"addenda": {"values": ["XYZ987_AddendaValue"]}}}, "correlationId": "ad6ca82d-59f7-45f0-a8d2-94c2cd4e8841"}], "status": "deferred", "achDetails": {"source": {"addenda": {"values": ["ZYX987_AddendaValue"]}}}, "clearing": {"source": "next-available"}, "correlationId": "ad6ca82d-59f7-45f0-a8d2-94c2cd4e8841"}
       responses:
@@ -2597,5 +2618,15 @@ examples:
           application/vnd.dwolla.v1.hal+json: {"code": "InvalidResourceState", "message": "Too many attempts."}
         "404":
           application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
+  simulateBankTransferProcessing:
+    speakeasy-default-simulate-bank-transfer-processing:
+      responses:
+        "200":
+          application/vnd.dwolla.v1.hal+json: {}
+        "401":
+          application/vnd.dwolla.v1.hal+json: {"code": "InvalidAccessToken", "message": "Invalid access token."}
+        "403":
+          application/vnd.dwolla.v1.hal+json: {"code": "forbidden", "message": "Not authorized to simulate transfer processing."}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Typescript SDK Changes Detected:\n* `dwolla.customers.fundingSources.create()`: \n  *  `request.createCustomerFundingSource` **Changed** **Breaking** :warning:\n* `dwolla.sandboxSimulations.simulate()`: **Added**\n"

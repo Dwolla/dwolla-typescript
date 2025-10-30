@@ -13,5 +13,5 @@ let value: CreateCustomerExchangeFundingSourceBankAccountType = "checking";
 ## Values
 
 ```typescript
-"checking" | "savings" | "general-ledger" | "loan"
+"checking" | "savings"
 ```
