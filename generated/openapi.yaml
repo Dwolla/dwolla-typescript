@@ -7869,6 +7869,8 @@ paths:
             Accept: application/vnd.dwolla.v1.hal+json
             Content-Type: application/vnd.dwolla.v1.hal+json
             Authorization: Bearer {Your access token}
+      parameters:
+        - $ref: '#/components/parameters/Accept'
       requestBody:
         required: false
         description: Optional JSON body. Typically empty; presence of body is not required.
@@ -9353,7 +9355,8 @@ paths:
       summary: Create an unverified customer
       description: Creates a new unverified customer with basic information. Unverified customers have limited transaction capabilities.
       operationId: createUnverifiedCustomer
-      parameters: []
+      parameters:
+        - $ref: '#/components/parameters/Accept'
       requestBody:
         required: true
         description: Parameters for unverified customer to be created
@@ -9389,7 +9392,8 @@ paths:
       summary: Create a receive-only user
       description: Creates a new receive-only user who can only receive funds, not send them.
       operationId: createReceiveOnlyCustomer
-      parameters: []
+      parameters:
+        - $ref: '#/components/parameters/Accept'
       requestBody:
         required: true
         description: Parameters for receive-only user to be created
@@ -9425,7 +9429,8 @@ paths:
       summary: Create a verified personal customer
       description: Creates a new verified personal customer with full transaction capabilities.
       operationId: createVerifiedPersonalCustomer
-      parameters: []
+      parameters:
+        - $ref: '#/components/parameters/Accept'
       requestBody:
         required: true
         description: Parameters for verified personal customer to be created
@@ -9461,7 +9466,8 @@ paths:
       summary: Create a verified sole proprietorship customer
       description: Creates a new verified sole proprietorship business customer.
       operationId: createVerifiedSolePropCustomer
-      parameters: []
+      parameters:
+        - $ref: '#/components/parameters/Accept'
       requestBody:
         required: true
         description: Parameters for verified sole proprietorship customer to be created
@@ -9497,7 +9503,8 @@ paths:
       summary: Create a verified business customer
       description: Creates a new verified business customer with a US controller.
       operationId: createVerifiedBusinessCustomer
-      parameters: []
+      parameters:
+        - $ref: '#/components/parameters/Accept'
       requestBody:
         required: true
         description: Parameters for verified business customer to be created
@@ -9533,7 +9540,8 @@ paths:
       summary: Create a verified business customer with international controller
       description: Creates a new verified business customer with an international (non-US) controller.
       operationId: createVerifiedBusinessInternationalCustomer
-      parameters: []
+      parameters:
+        - $ref: '#/components/parameters/Accept'
       requestBody:
         required: true
         description: Parameters for verified business customer with international controller to be created
