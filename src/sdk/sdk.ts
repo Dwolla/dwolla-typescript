@@ -18,6 +18,7 @@ import { Kba } from "./kba.js";
 import { Labels } from "./labels.js";
 import { MassPayments } from "./masspayments.js";
 import { Root } from "./root.js";
+import { SandboxSimulations } from "./sandboxsimulations.js";
 import { Tokens } from "./tokens.js";
 import { Transfers } from "./transfers.js";
 import { Webhooks } from "./webhooks.js";
@@ -101,6 +102,11 @@ export class Dwolla extends ClientSDK {
   private _webhooks?: Webhooks;
   get webhooks(): Webhooks {
     return (this._webhooks ??= new Webhooks(this._options));
+  }
+
+  private _sandboxSimulations?: SandboxSimulations;
+  get sandboxSimulations(): SandboxSimulations {
+    return (this._sandboxSimulations ??= new SandboxSimulations(this._options));
   }
 
   private _exchangePartners?: ExchangePartners;

@@ -119,6 +119,7 @@ export * from "./rtpunverifiedsendernotsupportederror.js";
 export * from "./sdkvalidationerror.js";
 export * from "./secrettoolongerror.js";
 export * from "./senderrestrictederror.js";
+export * from "./simulatebanktransferprocessing.js";
 export * from "./sourceaddendamaxlengtherror.js";
 export * from "./sourcenotfounderror.js";
 export * from "./sourcesameasdestinationerror.js";

@@ -30,6 +30,7 @@ const dwolla = new Dwolla({
 
 async function run() {
   const result = await dwolla.transfers.create({
+    idempotencyKey: "19051a62-3403-11e6-ac61-9e71128cae77",
     requestBody: {
       links: {},
       amount: {
@@ -77,6 +78,7 @@ const dwolla = new DwollaCore({
 
 async function run() {
   const res = await transfersCreate(dwolla, {
+    idempotencyKey: "19051a62-3403-11e6-ac61-9e71128cae77",
     requestBody: {
       links: {},
       amount: {
