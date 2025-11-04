@@ -863,7 +863,7 @@ You can override the default server globally by passing a server name to the `se
 import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
-  server: "sandbox",
+  server: "prod",
   security: {
     clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
     clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
