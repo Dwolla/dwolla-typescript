@@ -38,15 +38,6 @@ export type CreateClientTokenResponse = {
 };
 
 /** @internal */
-export const CreateClientTokenCustomer$inboundSchema: z.ZodType<
-  CreateClientTokenCustomer,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  href: z.string(),
-});
-
-/** @internal */
 export type CreateClientTokenCustomer$Outbound = {
   href: string;
 };
@@ -60,19 +51,6 @@ export const CreateClientTokenCustomer$outboundSchema: z.ZodType<
   href: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateClientTokenCustomer$ {
-  /** @deprecated use `CreateClientTokenCustomer$inboundSchema` instead. */
-  export const inboundSchema = CreateClientTokenCustomer$inboundSchema;
-  /** @deprecated use `CreateClientTokenCustomer$outboundSchema` instead. */
-  export const outboundSchema = CreateClientTokenCustomer$outboundSchema;
-  /** @deprecated use `CreateClientTokenCustomer$Outbound` instead. */
-  export type Outbound = CreateClientTokenCustomer$Outbound;
-}
-
 export function createClientTokenCustomerToJSON(
   createClientTokenCustomer: CreateClientTokenCustomer,
 ): string {
@@ -80,25 +58,6 @@ export function createClientTokenCustomerToJSON(
     CreateClientTokenCustomer$outboundSchema.parse(createClientTokenCustomer),
   );
 }
-
-export function createClientTokenCustomerFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateClientTokenCustomer, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateClientTokenCustomer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateClientTokenCustomer' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateClientTokenLinks$inboundSchema: z.ZodType<
-  CreateClientTokenLinks,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  customer: z.lazy(() => CreateClientTokenCustomer$inboundSchema),
-});
 
 /** @internal */
 export type CreateClientTokenLinks$Outbound = {
@@ -114,19 +73,6 @@ export const CreateClientTokenLinks$outboundSchema: z.ZodType<
   customer: z.lazy(() => CreateClientTokenCustomer$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateClientTokenLinks$ {
-  /** @deprecated use `CreateClientTokenLinks$inboundSchema` instead. */
-  export const inboundSchema = CreateClientTokenLinks$inboundSchema;
-  /** @deprecated use `CreateClientTokenLinks$outboundSchema` instead. */
-  export const outboundSchema = CreateClientTokenLinks$outboundSchema;
-  /** @deprecated use `CreateClientTokenLinks$Outbound` instead. */
-  export type Outbound = CreateClientTokenLinks$Outbound;
-}
-
 export function createClientTokenLinksToJSON(
   createClientTokenLinks: CreateClientTokenLinks,
 ): string {
@@ -134,30 +80,6 @@ export function createClientTokenLinksToJSON(
     CreateClientTokenLinks$outboundSchema.parse(createClientTokenLinks),
   );
 }
-
-export function createClientTokenLinksFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateClientTokenLinks, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateClientTokenLinks$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateClientTokenLinks' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateClientTokenRequest$inboundSchema: z.ZodType<
-  CreateClientTokenRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  action: z.string(),
-  _links: z.lazy(() => CreateClientTokenLinks$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
 
 /** @internal */
 export type CreateClientTokenRequest$Outbound = {
@@ -179,34 +101,11 @@ export const CreateClientTokenRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateClientTokenRequest$ {
-  /** @deprecated use `CreateClientTokenRequest$inboundSchema` instead. */
-  export const inboundSchema = CreateClientTokenRequest$inboundSchema;
-  /** @deprecated use `CreateClientTokenRequest$outboundSchema` instead. */
-  export const outboundSchema = CreateClientTokenRequest$outboundSchema;
-  /** @deprecated use `CreateClientTokenRequest$Outbound` instead. */
-  export type Outbound = CreateClientTokenRequest$Outbound;
-}
-
 export function createClientTokenRequestToJSON(
   createClientTokenRequest: CreateClientTokenRequest,
 ): string {
   return JSON.stringify(
     CreateClientTokenRequest$outboundSchema.parse(createClientTokenRequest),
-  );
-}
-
-export function createClientTokenRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateClientTokenRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateClientTokenRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateClientTokenRequest' from JSON`,
   );
 }
 
@@ -218,41 +117,6 @@ export const CreateClientTokenResponse$inboundSchema: z.ZodType<
 > = z.object({
   token: z.string(),
 });
-
-/** @internal */
-export type CreateClientTokenResponse$Outbound = {
-  token: string;
-};
-
-/** @internal */
-export const CreateClientTokenResponse$outboundSchema: z.ZodType<
-  CreateClientTokenResponse$Outbound,
-  z.ZodTypeDef,
-  CreateClientTokenResponse
-> = z.object({
-  token: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateClientTokenResponse$ {
-  /** @deprecated use `CreateClientTokenResponse$inboundSchema` instead. */
-  export const inboundSchema = CreateClientTokenResponse$inboundSchema;
-  /** @deprecated use `CreateClientTokenResponse$outboundSchema` instead. */
-  export const outboundSchema = CreateClientTokenResponse$outboundSchema;
-  /** @deprecated use `CreateClientTokenResponse$Outbound` instead. */
-  export type Outbound = CreateClientTokenResponse$Outbound;
-}
-
-export function createClientTokenResponseToJSON(
-  createClientTokenResponse: CreateClientTokenResponse,
-): string {
-  return JSON.stringify(
-    CreateClientTokenResponse$outboundSchema.parse(createClientTokenResponse),
-  );
-}
 
 export function createClientTokenResponseFromJSON(
   jsonString: string,

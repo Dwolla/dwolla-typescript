@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListAvailableExchangeConnectionsRequest = {
   /**
@@ -13,15 +10,6 @@ export type ListAvailableExchangeConnectionsRequest = {
    */
   id: string;
 };
-
-/** @internal */
-export const ListAvailableExchangeConnectionsRequest$inboundSchema: z.ZodType<
-  ListAvailableExchangeConnectionsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
 
 /** @internal */
 export type ListAvailableExchangeConnectionsRequest$Outbound = {
@@ -37,21 +25,6 @@ export const ListAvailableExchangeConnectionsRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListAvailableExchangeConnectionsRequest$ {
-  /** @deprecated use `ListAvailableExchangeConnectionsRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    ListAvailableExchangeConnectionsRequest$inboundSchema;
-  /** @deprecated use `ListAvailableExchangeConnectionsRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    ListAvailableExchangeConnectionsRequest$outboundSchema;
-  /** @deprecated use `ListAvailableExchangeConnectionsRequest$Outbound` instead. */
-  export type Outbound = ListAvailableExchangeConnectionsRequest$Outbound;
-}
-
 export function listAvailableExchangeConnectionsRequestToJSON(
   listAvailableExchangeConnectionsRequest:
     ListAvailableExchangeConnectionsRequest,
@@ -60,21 +33,5 @@ export function listAvailableExchangeConnectionsRequestToJSON(
     ListAvailableExchangeConnectionsRequest$outboundSchema.parse(
       listAvailableExchangeConnectionsRequest,
     ),
-  );
-}
-
-export function listAvailableExchangeConnectionsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  ListAvailableExchangeConnectionsRequest,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      ListAvailableExchangeConnectionsRequest$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'ListAvailableExchangeConnectionsRequest' from JSON`,
   );
 }

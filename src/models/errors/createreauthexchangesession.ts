@@ -91,42 +91,6 @@ export const CreateReAuthExchangeSessionForbiddenDwollaV1HalJSONError$inboundSch
     });
 
 /** @internal */
-export type CreateReAuthExchangeSessionForbiddenDwollaV1HalJSONError$Outbound =
-  {
-    code?: string | undefined;
-    message?: string | undefined;
-  };
-
-/** @internal */
-export const CreateReAuthExchangeSessionForbiddenDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    CreateReAuthExchangeSessionForbiddenDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    CreateReAuthExchangeSessionForbiddenDwollaV1HalJSONError
-  > = z.instanceof(CreateReAuthExchangeSessionForbiddenDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateReAuthExchangeSessionForbiddenDwollaV1HalJSONError$ {
-  /** @deprecated use `CreateReAuthExchangeSessionForbiddenDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateReAuthExchangeSessionForbiddenDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `CreateReAuthExchangeSessionForbiddenDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateReAuthExchangeSessionForbiddenDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `CreateReAuthExchangeSessionForbiddenDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    CreateReAuthExchangeSessionForbiddenDwollaV1HalJSONError$Outbound;
-}
-
-/** @internal */
 export const CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONError$inboundSchema:
   z.ZodType<
     CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONError,
@@ -146,39 +110,3 @@ export const CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONError$inboundSc
         body: v.body$,
       });
     });
-
-/** @internal */
-export type CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONError$Outbound =
-  {
-    code?: string | undefined;
-    message?: string | undefined;
-  };
-
-/** @internal */
-export const CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONError
-  > = z.instanceof(CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONError$ {
-  /** @deprecated use `CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONError$Outbound;
-}

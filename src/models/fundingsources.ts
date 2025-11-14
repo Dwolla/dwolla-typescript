@@ -7,18 +7,8 @@ import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  FundingSource,
-  FundingSource$inboundSchema,
-  FundingSource$Outbound,
-  FundingSource$outboundSchema,
-} from "./fundingsource.js";
-import {
-  HalLink,
-  HalLink$inboundSchema,
-  HalLink$Outbound,
-  HalLink$outboundSchema,
-} from "./hallink.js";
+import { FundingSource, FundingSource$inboundSchema } from "./fundingsource.js";
+import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 
 export type FundingSourcesEmbedded = {
   fundingSources?: Array<FundingSource> | undefined;
@@ -42,45 +32,6 @@ export const FundingSourcesEmbedded$inboundSchema: z.ZodType<
     "funding-sources": "fundingSources",
   });
 });
-
-/** @internal */
-export type FundingSourcesEmbedded$Outbound = {
-  "funding-sources"?: Array<FundingSource$Outbound> | undefined;
-};
-
-/** @internal */
-export const FundingSourcesEmbedded$outboundSchema: z.ZodType<
-  FundingSourcesEmbedded$Outbound,
-  z.ZodTypeDef,
-  FundingSourcesEmbedded
-> = z.object({
-  fundingSources: z.array(FundingSource$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    fundingSources: "funding-sources",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FundingSourcesEmbedded$ {
-  /** @deprecated use `FundingSourcesEmbedded$inboundSchema` instead. */
-  export const inboundSchema = FundingSourcesEmbedded$inboundSchema;
-  /** @deprecated use `FundingSourcesEmbedded$outboundSchema` instead. */
-  export const outboundSchema = FundingSourcesEmbedded$outboundSchema;
-  /** @deprecated use `FundingSourcesEmbedded$Outbound` instead. */
-  export type Outbound = FundingSourcesEmbedded$Outbound;
-}
-
-export function fundingSourcesEmbeddedToJSON(
-  fundingSourcesEmbedded: FundingSourcesEmbedded,
-): string {
-  return JSON.stringify(
-    FundingSourcesEmbedded$outboundSchema.parse(fundingSourcesEmbedded),
-  );
-}
 
 export function fundingSourcesEmbeddedFromJSON(
   jsonString: string,
@@ -107,46 +58,6 @@ export const FundingSources$inboundSchema: z.ZodType<
     "_embedded": "embedded",
   });
 });
-
-/** @internal */
-export type FundingSources$Outbound = {
-  _links?: { [k: string]: HalLink$Outbound } | undefined;
-  _embedded?: FundingSourcesEmbedded$Outbound | undefined;
-  total?: number | undefined;
-};
-
-/** @internal */
-export const FundingSources$outboundSchema: z.ZodType<
-  FundingSources$Outbound,
-  z.ZodTypeDef,
-  FundingSources
-> = z.object({
-  links: z.record(HalLink$outboundSchema).optional(),
-  embedded: z.lazy(() => FundingSourcesEmbedded$outboundSchema).optional(),
-  total: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FundingSources$ {
-  /** @deprecated use `FundingSources$inboundSchema` instead. */
-  export const inboundSchema = FundingSources$inboundSchema;
-  /** @deprecated use `FundingSources$outboundSchema` instead. */
-  export const outboundSchema = FundingSources$outboundSchema;
-  /** @deprecated use `FundingSources$Outbound` instead. */
-  export type Outbound = FundingSources$Outbound;
-}
-
-export function fundingSourcesToJSON(fundingSources: FundingSources): string {
-  return JSON.stringify(FundingSources$outboundSchema.parse(fundingSources));
-}
 
 export function fundingSourcesFromJSON(
   jsonString: string,

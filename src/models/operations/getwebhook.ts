@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetWebhookRequest = {
   /**
@@ -13,15 +10,6 @@ export type GetWebhookRequest = {
    */
   id: string;
 };
-
-/** @internal */
-export const GetWebhookRequest$inboundSchema: z.ZodType<
-  GetWebhookRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
 
 /** @internal */
 export type GetWebhookRequest$Outbound = {
@@ -37,33 +25,10 @@ export const GetWebhookRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetWebhookRequest$ {
-  /** @deprecated use `GetWebhookRequest$inboundSchema` instead. */
-  export const inboundSchema = GetWebhookRequest$inboundSchema;
-  /** @deprecated use `GetWebhookRequest$outboundSchema` instead. */
-  export const outboundSchema = GetWebhookRequest$outboundSchema;
-  /** @deprecated use `GetWebhookRequest$Outbound` instead. */
-  export type Outbound = GetWebhookRequest$Outbound;
-}
-
 export function getWebhookRequestToJSON(
   getWebhookRequest: GetWebhookRequest,
 ): string {
   return JSON.stringify(
     GetWebhookRequest$outboundSchema.parse(getWebhookRequest),
-  );
-}
-
-export function getWebhookRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetWebhookRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetWebhookRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetWebhookRequest' from JSON`,
   );
 }

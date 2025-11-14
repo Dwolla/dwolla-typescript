@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../lib/schemas.js";
-import { Result as SafeParseResult } from "../types/fp.js";
-import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 /**
  * Request body for updating information of a Verified bank funding source
@@ -13,15 +10,6 @@ import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 export type UpdateVerifiedBank = {
   name: string;
 };
-
-/** @internal */
-export const UpdateVerifiedBank$inboundSchema: z.ZodType<
-  UpdateVerifiedBank,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.string(),
-});
 
 /** @internal */
 export type UpdateVerifiedBank$Outbound = {
@@ -37,33 +25,10 @@ export const UpdateVerifiedBank$outboundSchema: z.ZodType<
   name: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateVerifiedBank$ {
-  /** @deprecated use `UpdateVerifiedBank$inboundSchema` instead. */
-  export const inboundSchema = UpdateVerifiedBank$inboundSchema;
-  /** @deprecated use `UpdateVerifiedBank$outboundSchema` instead. */
-  export const outboundSchema = UpdateVerifiedBank$outboundSchema;
-  /** @deprecated use `UpdateVerifiedBank$Outbound` instead. */
-  export type Outbound = UpdateVerifiedBank$Outbound;
-}
-
 export function updateVerifiedBankToJSON(
   updateVerifiedBank: UpdateVerifiedBank,
 ): string {
   return JSON.stringify(
     UpdateVerifiedBank$outboundSchema.parse(updateVerifiedBank),
-  );
-}
-
-export function updateVerifiedBankFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateVerifiedBank, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateVerifiedBank$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateVerifiedBank' from JSON`,
   );
 }

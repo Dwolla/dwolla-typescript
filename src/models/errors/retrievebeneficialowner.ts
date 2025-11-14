@@ -55,37 +55,3 @@ export const RetrieveBeneficialOwnerDwollaV1HalJSONError$inboundSchema:
         body: v.body$,
       });
     });
-
-/** @internal */
-export type RetrieveBeneficialOwnerDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const RetrieveBeneficialOwnerDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    RetrieveBeneficialOwnerDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    RetrieveBeneficialOwnerDwollaV1HalJSONError
-  > = z.instanceof(RetrieveBeneficialOwnerDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RetrieveBeneficialOwnerDwollaV1HalJSONError$ {
-  /** @deprecated use `RetrieveBeneficialOwnerDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    RetrieveBeneficialOwnerDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `RetrieveBeneficialOwnerDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    RetrieveBeneficialOwnerDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `RetrieveBeneficialOwnerDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound = RetrieveBeneficialOwnerDwollaV1HalJSONError$Outbound;
-}

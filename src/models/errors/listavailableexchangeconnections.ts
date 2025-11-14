@@ -57,38 +57,3 @@ export const ListAvailableExchangeConnectionsDwollaV1HalJSONError$inboundSchema:
         body: v.body$,
       });
     });
-
-/** @internal */
-export type ListAvailableExchangeConnectionsDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const ListAvailableExchangeConnectionsDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    ListAvailableExchangeConnectionsDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    ListAvailableExchangeConnectionsDwollaV1HalJSONError
-  > = z.instanceof(ListAvailableExchangeConnectionsDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListAvailableExchangeConnectionsDwollaV1HalJSONError$ {
-  /** @deprecated use `ListAvailableExchangeConnectionsDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    ListAvailableExchangeConnectionsDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `ListAvailableExchangeConnectionsDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    ListAvailableExchangeConnectionsDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `ListAvailableExchangeConnectionsDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    ListAvailableExchangeConnectionsDwollaV1HalJSONError$Outbound;
-}

@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListAndSearchTransfersRequest = {
   /**
@@ -51,24 +48,6 @@ export type ListAndSearchTransfersRequest = {
 };
 
 /** @internal */
-export const ListAndSearchTransfersRequest$inboundSchema: z.ZodType<
-  ListAndSearchTransfersRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  search: z.string().optional(),
-  startAmount: z.string().optional(),
-  endAmount: z.string().optional(),
-  startDate: z.string().optional(),
-  endDate: z.string().optional(),
-  status: z.string().optional(),
-  correlationId: z.string().optional(),
-  limit: z.string().optional(),
-  offset: z.string().optional(),
-});
-
-/** @internal */
 export type ListAndSearchTransfersRequest$Outbound = {
   id: string;
   search?: string | undefined;
@@ -100,19 +79,6 @@ export const ListAndSearchTransfersRequest$outboundSchema: z.ZodType<
   offset: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListAndSearchTransfersRequest$ {
-  /** @deprecated use `ListAndSearchTransfersRequest$inboundSchema` instead. */
-  export const inboundSchema = ListAndSearchTransfersRequest$inboundSchema;
-  /** @deprecated use `ListAndSearchTransfersRequest$outboundSchema` instead. */
-  export const outboundSchema = ListAndSearchTransfersRequest$outboundSchema;
-  /** @deprecated use `ListAndSearchTransfersRequest$Outbound` instead. */
-  export type Outbound = ListAndSearchTransfersRequest$Outbound;
-}
-
 export function listAndSearchTransfersRequestToJSON(
   listAndSearchTransfersRequest: ListAndSearchTransfersRequest,
 ): string {
@@ -120,15 +86,5 @@ export function listAndSearchTransfersRequestToJSON(
     ListAndSearchTransfersRequest$outboundSchema.parse(
       listAndSearchTransfersRequest,
     ),
-  );
-}
-
-export function listAndSearchTransfersRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListAndSearchTransfersRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListAndSearchTransfersRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListAndSearchTransfersRequest' from JSON`,
   );
 }

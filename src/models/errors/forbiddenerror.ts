@@ -54,34 +54,3 @@ export const ForbiddenError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type ForbiddenError$Outbound = {
-  code: string;
-  message: string;
-};
-
-/** @internal */
-export const ForbiddenError$outboundSchema: z.ZodType<
-  ForbiddenError$Outbound,
-  z.ZodTypeDef,
-  ForbiddenError
-> = z.instanceof(ForbiddenError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string(),
-    message: z.string(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ForbiddenError$ {
-  /** @deprecated use `ForbiddenError$inboundSchema` instead. */
-  export const inboundSchema = ForbiddenError$inboundSchema;
-  /** @deprecated use `ForbiddenError$outboundSchema` instead. */
-  export const outboundSchema = ForbiddenError$outboundSchema;
-  /** @deprecated use `ForbiddenError$Outbound` instead. */
-  export type Outbound = ForbiddenError$Outbound;
-}

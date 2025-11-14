@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Parameters to update a webhook subscription
@@ -27,15 +24,6 @@ export type UpdateWebhookSubscriptionRequest = {
 };
 
 /** @internal */
-export const UpdateWebhookSubscriptionRequestBody$inboundSchema: z.ZodType<
-  UpdateWebhookSubscriptionRequestBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  paused: z.boolean(),
-});
-
-/** @internal */
 export type UpdateWebhookSubscriptionRequestBody$Outbound = {
   paused: boolean;
 };
@@ -49,21 +37,6 @@ export const UpdateWebhookSubscriptionRequestBody$outboundSchema: z.ZodType<
   paused: z.boolean(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateWebhookSubscriptionRequestBody$ {
-  /** @deprecated use `UpdateWebhookSubscriptionRequestBody$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateWebhookSubscriptionRequestBody$inboundSchema;
-  /** @deprecated use `UpdateWebhookSubscriptionRequestBody$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateWebhookSubscriptionRequestBody$outboundSchema;
-  /** @deprecated use `UpdateWebhookSubscriptionRequestBody$Outbound` instead. */
-  export type Outbound = UpdateWebhookSubscriptionRequestBody$Outbound;
-}
-
 export function updateWebhookSubscriptionRequestBodyToJSON(
   updateWebhookSubscriptionRequestBody: UpdateWebhookSubscriptionRequestBody,
 ): string {
@@ -73,31 +46,6 @@ export function updateWebhookSubscriptionRequestBodyToJSON(
     ),
   );
 }
-
-export function updateWebhookSubscriptionRequestBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateWebhookSubscriptionRequestBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      UpdateWebhookSubscriptionRequestBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateWebhookSubscriptionRequestBody' from JSON`,
-  );
-}
-
-/** @internal */
-export const UpdateWebhookSubscriptionRequest$inboundSchema: z.ZodType<
-  UpdateWebhookSubscriptionRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  RequestBody: z.lazy(() => UpdateWebhookSubscriptionRequestBody$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "RequestBody": "requestBody",
-  });
-});
 
 /** @internal */
 export type UpdateWebhookSubscriptionRequest$Outbound = {
@@ -121,19 +69,6 @@ export const UpdateWebhookSubscriptionRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateWebhookSubscriptionRequest$ {
-  /** @deprecated use `UpdateWebhookSubscriptionRequest$inboundSchema` instead. */
-  export const inboundSchema = UpdateWebhookSubscriptionRequest$inboundSchema;
-  /** @deprecated use `UpdateWebhookSubscriptionRequest$outboundSchema` instead. */
-  export const outboundSchema = UpdateWebhookSubscriptionRequest$outboundSchema;
-  /** @deprecated use `UpdateWebhookSubscriptionRequest$Outbound` instead. */
-  export type Outbound = UpdateWebhookSubscriptionRequest$Outbound;
-}
-
 export function updateWebhookSubscriptionRequestToJSON(
   updateWebhookSubscriptionRequest: UpdateWebhookSubscriptionRequest,
 ): string {
@@ -141,15 +76,5 @@ export function updateWebhookSubscriptionRequestToJSON(
     UpdateWebhookSubscriptionRequest$outboundSchema.parse(
       updateWebhookSubscriptionRequest,
     ),
-  );
-}
-
-export function updateWebhookSubscriptionRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateWebhookSubscriptionRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateWebhookSubscriptionRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateWebhookSubscriptionRequest' from JSON`,
   );
 }

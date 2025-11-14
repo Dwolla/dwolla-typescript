@@ -28,39 +28,6 @@ export const SourceAddendaMaxLengthErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type SourceAddendaMaxLengthErrorLinks$Outbound = {};
-
-/** @internal */
-export const SourceAddendaMaxLengthErrorLinks$outboundSchema: z.ZodType<
-  SourceAddendaMaxLengthErrorLinks$Outbound,
-  z.ZodTypeDef,
-  SourceAddendaMaxLengthErrorLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SourceAddendaMaxLengthErrorLinks$ {
-  /** @deprecated use `SourceAddendaMaxLengthErrorLinks$inboundSchema` instead. */
-  export const inboundSchema = SourceAddendaMaxLengthErrorLinks$inboundSchema;
-  /** @deprecated use `SourceAddendaMaxLengthErrorLinks$outboundSchema` instead. */
-  export const outboundSchema = SourceAddendaMaxLengthErrorLinks$outboundSchema;
-  /** @deprecated use `SourceAddendaMaxLengthErrorLinks$Outbound` instead. */
-  export type Outbound = SourceAddendaMaxLengthErrorLinks$Outbound;
-}
-
-export function sourceAddendaMaxLengthErrorLinksToJSON(
-  sourceAddendaMaxLengthErrorLinks: SourceAddendaMaxLengthErrorLinks,
-): string {
-  return JSON.stringify(
-    SourceAddendaMaxLengthErrorLinks$outboundSchema.parse(
-      sourceAddendaMaxLengthErrorLinks,
-    ),
-  );
-}
-
 export function sourceAddendaMaxLengthErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<SourceAddendaMaxLengthErrorLinks, SDKValidationError> {
@@ -88,54 +55,6 @@ export const SourceAddendaMaxLengthErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type SourceAddendaMaxLengthErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: SourceAddendaMaxLengthErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const SourceAddendaMaxLengthErrorError$outboundSchema: z.ZodType<
-  SourceAddendaMaxLengthErrorError$Outbound,
-  z.ZodTypeDef,
-  SourceAddendaMaxLengthErrorError
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  links: z.lazy(() => SourceAddendaMaxLengthErrorLinks$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SourceAddendaMaxLengthErrorError$ {
-  /** @deprecated use `SourceAddendaMaxLengthErrorError$inboundSchema` instead. */
-  export const inboundSchema = SourceAddendaMaxLengthErrorError$inboundSchema;
-  /** @deprecated use `SourceAddendaMaxLengthErrorError$outboundSchema` instead. */
-  export const outboundSchema = SourceAddendaMaxLengthErrorError$outboundSchema;
-  /** @deprecated use `SourceAddendaMaxLengthErrorError$Outbound` instead. */
-  export type Outbound = SourceAddendaMaxLengthErrorError$Outbound;
-}
-
-export function sourceAddendaMaxLengthErrorErrorToJSON(
-  sourceAddendaMaxLengthErrorError: SourceAddendaMaxLengthErrorError,
-): string {
-  return JSON.stringify(
-    SourceAddendaMaxLengthErrorError$outboundSchema.parse(
-      sourceAddendaMaxLengthErrorError,
-    ),
-  );
-}
-
 export function sourceAddendaMaxLengthErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<SourceAddendaMaxLengthErrorError, SDKValidationError> {
@@ -155,46 +74,6 @@ export const SourceAddendaMaxLengthErrorEmbedded$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => SourceAddendaMaxLengthErrorError$inboundSchema))
     .optional(),
 });
-
-/** @internal */
-export type SourceAddendaMaxLengthErrorEmbedded$Outbound = {
-  errors?: Array<SourceAddendaMaxLengthErrorError$Outbound> | undefined;
-};
-
-/** @internal */
-export const SourceAddendaMaxLengthErrorEmbedded$outboundSchema: z.ZodType<
-  SourceAddendaMaxLengthErrorEmbedded$Outbound,
-  z.ZodTypeDef,
-  SourceAddendaMaxLengthErrorEmbedded
-> = z.object({
-  errors: z.array(z.lazy(() => SourceAddendaMaxLengthErrorError$outboundSchema))
-    .optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SourceAddendaMaxLengthErrorEmbedded$ {
-  /** @deprecated use `SourceAddendaMaxLengthErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    SourceAddendaMaxLengthErrorEmbedded$inboundSchema;
-  /** @deprecated use `SourceAddendaMaxLengthErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    SourceAddendaMaxLengthErrorEmbedded$outboundSchema;
-  /** @deprecated use `SourceAddendaMaxLengthErrorEmbedded$Outbound` instead. */
-  export type Outbound = SourceAddendaMaxLengthErrorEmbedded$Outbound;
-}
-
-export function sourceAddendaMaxLengthErrorEmbeddedToJSON(
-  sourceAddendaMaxLengthErrorEmbedded: SourceAddendaMaxLengthErrorEmbedded,
-): string {
-  return JSON.stringify(
-    SourceAddendaMaxLengthErrorEmbedded$outboundSchema.parse(
-      sourceAddendaMaxLengthErrorEmbedded,
-    ),
-  );
-}
 
 export function sourceAddendaMaxLengthErrorEmbeddedFromJSON(
   jsonString: string,

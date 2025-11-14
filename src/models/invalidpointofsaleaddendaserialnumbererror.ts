@@ -29,44 +29,6 @@ export const InvalidPointOfSaleAddendaSerialNumberErrorLinks$inboundSchema:
     unknown
   > = z.object({});
 
-/** @internal */
-export type InvalidPointOfSaleAddendaSerialNumberErrorLinks$Outbound = {};
-
-/** @internal */
-export const InvalidPointOfSaleAddendaSerialNumberErrorLinks$outboundSchema:
-  z.ZodType<
-    InvalidPointOfSaleAddendaSerialNumberErrorLinks$Outbound,
-    z.ZodTypeDef,
-    InvalidPointOfSaleAddendaSerialNumberErrorLinks
-  > = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidPointOfSaleAddendaSerialNumberErrorLinks$ {
-  /** @deprecated use `InvalidPointOfSaleAddendaSerialNumberErrorLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidPointOfSaleAddendaSerialNumberErrorLinks$inboundSchema;
-  /** @deprecated use `InvalidPointOfSaleAddendaSerialNumberErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidPointOfSaleAddendaSerialNumberErrorLinks$outboundSchema;
-  /** @deprecated use `InvalidPointOfSaleAddendaSerialNumberErrorLinks$Outbound` instead. */
-  export type Outbound =
-    InvalidPointOfSaleAddendaSerialNumberErrorLinks$Outbound;
-}
-
-export function invalidPointOfSaleAddendaSerialNumberErrorLinksToJSON(
-  invalidPointOfSaleAddendaSerialNumberErrorLinks:
-    InvalidPointOfSaleAddendaSerialNumberErrorLinks,
-): string {
-  return JSON.stringify(
-    InvalidPointOfSaleAddendaSerialNumberErrorLinks$outboundSchema.parse(
-      invalidPointOfSaleAddendaSerialNumberErrorLinks,
-    ),
-  );
-}
-
 export function invalidPointOfSaleAddendaSerialNumberErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -102,60 +64,6 @@ export const InvalidPointOfSaleAddendaSerialNumberErrorError$inboundSchema:
     });
   });
 
-/** @internal */
-export type InvalidPointOfSaleAddendaSerialNumberErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: InvalidPointOfSaleAddendaSerialNumberErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const InvalidPointOfSaleAddendaSerialNumberErrorError$outboundSchema:
-  z.ZodType<
-    InvalidPointOfSaleAddendaSerialNumberErrorError$Outbound,
-    z.ZodTypeDef,
-    InvalidPointOfSaleAddendaSerialNumberErrorError
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    path: z.string().optional(),
-    links: z.lazy(() =>
-      InvalidPointOfSaleAddendaSerialNumberErrorLinks$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      links: "_links",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidPointOfSaleAddendaSerialNumberErrorError$ {
-  /** @deprecated use `InvalidPointOfSaleAddendaSerialNumberErrorError$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidPointOfSaleAddendaSerialNumberErrorError$inboundSchema;
-  /** @deprecated use `InvalidPointOfSaleAddendaSerialNumberErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidPointOfSaleAddendaSerialNumberErrorError$outboundSchema;
-  /** @deprecated use `InvalidPointOfSaleAddendaSerialNumberErrorError$Outbound` instead. */
-  export type Outbound =
-    InvalidPointOfSaleAddendaSerialNumberErrorError$Outbound;
-}
-
-export function invalidPointOfSaleAddendaSerialNumberErrorErrorToJSON(
-  invalidPointOfSaleAddendaSerialNumberErrorError:
-    InvalidPointOfSaleAddendaSerialNumberErrorError,
-): string {
-  return JSON.stringify(
-    InvalidPointOfSaleAddendaSerialNumberErrorError$outboundSchema.parse(
-      invalidPointOfSaleAddendaSerialNumberErrorError,
-    ),
-  );
-}
-
 export function invalidPointOfSaleAddendaSerialNumberErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -185,54 +93,6 @@ export const InvalidPointOfSaleAddendaSerialNumberErrorEmbedded$inboundSchema:
       ),
     ).optional(),
   });
-
-/** @internal */
-export type InvalidPointOfSaleAddendaSerialNumberErrorEmbedded$Outbound = {
-  errors?:
-    | Array<InvalidPointOfSaleAddendaSerialNumberErrorError$Outbound>
-    | undefined;
-};
-
-/** @internal */
-export const InvalidPointOfSaleAddendaSerialNumberErrorEmbedded$outboundSchema:
-  z.ZodType<
-    InvalidPointOfSaleAddendaSerialNumberErrorEmbedded$Outbound,
-    z.ZodTypeDef,
-    InvalidPointOfSaleAddendaSerialNumberErrorEmbedded
-  > = z.object({
-    errors: z.array(
-      z.lazy(() =>
-        InvalidPointOfSaleAddendaSerialNumberErrorError$outboundSchema
-      ),
-    ).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidPointOfSaleAddendaSerialNumberErrorEmbedded$ {
-  /** @deprecated use `InvalidPointOfSaleAddendaSerialNumberErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidPointOfSaleAddendaSerialNumberErrorEmbedded$inboundSchema;
-  /** @deprecated use `InvalidPointOfSaleAddendaSerialNumberErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidPointOfSaleAddendaSerialNumberErrorEmbedded$outboundSchema;
-  /** @deprecated use `InvalidPointOfSaleAddendaSerialNumberErrorEmbedded$Outbound` instead. */
-  export type Outbound =
-    InvalidPointOfSaleAddendaSerialNumberErrorEmbedded$Outbound;
-}
-
-export function invalidPointOfSaleAddendaSerialNumberErrorEmbeddedToJSON(
-  invalidPointOfSaleAddendaSerialNumberErrorEmbedded:
-    InvalidPointOfSaleAddendaSerialNumberErrorEmbedded,
-): string {
-  return JSON.stringify(
-    InvalidPointOfSaleAddendaSerialNumberErrorEmbedded$outboundSchema.parse(
-      invalidPointOfSaleAddendaSerialNumberErrorEmbedded,
-    ),
-  );
-}
 
 export function invalidPointOfSaleAddendaSerialNumberErrorEmbeddedFromJSON(
   jsonString: string,

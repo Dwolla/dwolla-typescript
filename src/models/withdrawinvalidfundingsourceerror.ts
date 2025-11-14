@@ -28,42 +28,6 @@ export const WithdrawInvalidFundingSourceErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type WithdrawInvalidFundingSourceErrorLinks$Outbound = {};
-
-/** @internal */
-export const WithdrawInvalidFundingSourceErrorLinks$outboundSchema: z.ZodType<
-  WithdrawInvalidFundingSourceErrorLinks$Outbound,
-  z.ZodTypeDef,
-  WithdrawInvalidFundingSourceErrorLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawInvalidFundingSourceErrorLinks$ {
-  /** @deprecated use `WithdrawInvalidFundingSourceErrorLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawInvalidFundingSourceErrorLinks$inboundSchema;
-  /** @deprecated use `WithdrawInvalidFundingSourceErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawInvalidFundingSourceErrorLinks$outboundSchema;
-  /** @deprecated use `WithdrawInvalidFundingSourceErrorLinks$Outbound` instead. */
-  export type Outbound = WithdrawInvalidFundingSourceErrorLinks$Outbound;
-}
-
-export function withdrawInvalidFundingSourceErrorLinksToJSON(
-  withdrawInvalidFundingSourceErrorLinks:
-    WithdrawInvalidFundingSourceErrorLinks,
-): string {
-  return JSON.stringify(
-    WithdrawInvalidFundingSourceErrorLinks$outboundSchema.parse(
-      withdrawInvalidFundingSourceErrorLinks,
-    ),
-  );
-}
-
 export function withdrawInvalidFundingSourceErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<WithdrawInvalidFundingSourceErrorLinks, SDKValidationError> {
@@ -92,57 +56,6 @@ export const WithdrawInvalidFundingSourceErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type WithdrawInvalidFundingSourceErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: WithdrawInvalidFundingSourceErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const WithdrawInvalidFundingSourceErrorError$outboundSchema: z.ZodType<
-  WithdrawInvalidFundingSourceErrorError$Outbound,
-  z.ZodTypeDef,
-  WithdrawInvalidFundingSourceErrorError
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  links: z.lazy(() => WithdrawInvalidFundingSourceErrorLinks$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawInvalidFundingSourceErrorError$ {
-  /** @deprecated use `WithdrawInvalidFundingSourceErrorError$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawInvalidFundingSourceErrorError$inboundSchema;
-  /** @deprecated use `WithdrawInvalidFundingSourceErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawInvalidFundingSourceErrorError$outboundSchema;
-  /** @deprecated use `WithdrawInvalidFundingSourceErrorError$Outbound` instead. */
-  export type Outbound = WithdrawInvalidFundingSourceErrorError$Outbound;
-}
-
-export function withdrawInvalidFundingSourceErrorErrorToJSON(
-  withdrawInvalidFundingSourceErrorError:
-    WithdrawInvalidFundingSourceErrorError,
-): string {
-  return JSON.stringify(
-    WithdrawInvalidFundingSourceErrorError$outboundSchema.parse(
-      withdrawInvalidFundingSourceErrorError,
-    ),
-  );
-}
-
 export function withdrawInvalidFundingSourceErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<WithdrawInvalidFundingSourceErrorError, SDKValidationError> {
@@ -164,49 +77,6 @@ export const WithdrawInvalidFundingSourceErrorEmbedded$inboundSchema: z.ZodType<
     z.lazy(() => WithdrawInvalidFundingSourceErrorError$inboundSchema),
   ).optional(),
 });
-
-/** @internal */
-export type WithdrawInvalidFundingSourceErrorEmbedded$Outbound = {
-  errors?: Array<WithdrawInvalidFundingSourceErrorError$Outbound> | undefined;
-};
-
-/** @internal */
-export const WithdrawInvalidFundingSourceErrorEmbedded$outboundSchema:
-  z.ZodType<
-    WithdrawInvalidFundingSourceErrorEmbedded$Outbound,
-    z.ZodTypeDef,
-    WithdrawInvalidFundingSourceErrorEmbedded
-  > = z.object({
-    errors: z.array(
-      z.lazy(() => WithdrawInvalidFundingSourceErrorError$outboundSchema),
-    ).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawInvalidFundingSourceErrorEmbedded$ {
-  /** @deprecated use `WithdrawInvalidFundingSourceErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawInvalidFundingSourceErrorEmbedded$inboundSchema;
-  /** @deprecated use `WithdrawInvalidFundingSourceErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawInvalidFundingSourceErrorEmbedded$outboundSchema;
-  /** @deprecated use `WithdrawInvalidFundingSourceErrorEmbedded$Outbound` instead. */
-  export type Outbound = WithdrawInvalidFundingSourceErrorEmbedded$Outbound;
-}
-
-export function withdrawInvalidFundingSourceErrorEmbeddedToJSON(
-  withdrawInvalidFundingSourceErrorEmbedded:
-    WithdrawInvalidFundingSourceErrorEmbedded,
-): string {
-  return JSON.stringify(
-    WithdrawInvalidFundingSourceErrorEmbedded$outboundSchema.parse(
-      withdrawInvalidFundingSourceErrorEmbedded,
-    ),
-  );
-}
 
 export function withdrawInvalidFundingSourceErrorEmbeddedFromJSON(
   jsonString: string,

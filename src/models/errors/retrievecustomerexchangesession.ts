@@ -90,42 +90,6 @@ export const RetrieveCustomerExchangeSessionNotFoundDwollaV1HalJSONError$inbound
     });
 
 /** @internal */
-export type RetrieveCustomerExchangeSessionNotFoundDwollaV1HalJSONError$Outbound =
-  {
-    code?: string | undefined;
-    message?: string | undefined;
-  };
-
-/** @internal */
-export const RetrieveCustomerExchangeSessionNotFoundDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    RetrieveCustomerExchangeSessionNotFoundDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    RetrieveCustomerExchangeSessionNotFoundDwollaV1HalJSONError
-  > = z.instanceof(RetrieveCustomerExchangeSessionNotFoundDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RetrieveCustomerExchangeSessionNotFoundDwollaV1HalJSONError$ {
-  /** @deprecated use `RetrieveCustomerExchangeSessionNotFoundDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    RetrieveCustomerExchangeSessionNotFoundDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `RetrieveCustomerExchangeSessionNotFoundDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    RetrieveCustomerExchangeSessionNotFoundDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `RetrieveCustomerExchangeSessionNotFoundDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    RetrieveCustomerExchangeSessionNotFoundDwollaV1HalJSONError$Outbound;
-}
-
-/** @internal */
 export const RetrieveCustomerExchangeSessionForbiddenDwollaV1HalJSONError$inboundSchema:
   z.ZodType<
     RetrieveCustomerExchangeSessionForbiddenDwollaV1HalJSONError,
@@ -144,39 +108,3 @@ export const RetrieveCustomerExchangeSessionForbiddenDwollaV1HalJSONError$inboun
         { request: v.request$, response: v.response$, body: v.body$ },
       );
     });
-
-/** @internal */
-export type RetrieveCustomerExchangeSessionForbiddenDwollaV1HalJSONError$Outbound =
-  {
-    code?: string | undefined;
-    message?: string | undefined;
-  };
-
-/** @internal */
-export const RetrieveCustomerExchangeSessionForbiddenDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    RetrieveCustomerExchangeSessionForbiddenDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    RetrieveCustomerExchangeSessionForbiddenDwollaV1HalJSONError
-  > = z.instanceof(RetrieveCustomerExchangeSessionForbiddenDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RetrieveCustomerExchangeSessionForbiddenDwollaV1HalJSONError$ {
-  /** @deprecated use `RetrieveCustomerExchangeSessionForbiddenDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    RetrieveCustomerExchangeSessionForbiddenDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `RetrieveCustomerExchangeSessionForbiddenDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    RetrieveCustomerExchangeSessionForbiddenDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `RetrieveCustomerExchangeSessionForbiddenDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    RetrieveCustomerExchangeSessionForbiddenDwollaV1HalJSONError$Outbound;
-}

@@ -7,17 +7,10 @@ import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  HalLink,
-  HalLink$inboundSchema,
-  HalLink$Outbound,
-  HalLink$outboundSchema,
-} from "./hallink.js";
+import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 import {
   LabelLedgerEntry,
   LabelLedgerEntry$inboundSchema,
-  LabelLedgerEntry$Outbound,
-  LabelLedgerEntry$outboundSchema,
 } from "./labelledgerentry.js";
 
 export type LabelLedgerEntriesEmbedded = {
@@ -42,45 +35,6 @@ export const LabelLedgerEntriesEmbedded$inboundSchema: z.ZodType<
     "ledger-entries": "ledgerEntries",
   });
 });
-
-/** @internal */
-export type LabelLedgerEntriesEmbedded$Outbound = {
-  "ledger-entries"?: Array<LabelLedgerEntry$Outbound> | undefined;
-};
-
-/** @internal */
-export const LabelLedgerEntriesEmbedded$outboundSchema: z.ZodType<
-  LabelLedgerEntriesEmbedded$Outbound,
-  z.ZodTypeDef,
-  LabelLedgerEntriesEmbedded
-> = z.object({
-  ledgerEntries: z.array(LabelLedgerEntry$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    ledgerEntries: "ledger-entries",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LabelLedgerEntriesEmbedded$ {
-  /** @deprecated use `LabelLedgerEntriesEmbedded$inboundSchema` instead. */
-  export const inboundSchema = LabelLedgerEntriesEmbedded$inboundSchema;
-  /** @deprecated use `LabelLedgerEntriesEmbedded$outboundSchema` instead. */
-  export const outboundSchema = LabelLedgerEntriesEmbedded$outboundSchema;
-  /** @deprecated use `LabelLedgerEntriesEmbedded$Outbound` instead. */
-  export type Outbound = LabelLedgerEntriesEmbedded$Outbound;
-}
-
-export function labelLedgerEntriesEmbeddedToJSON(
-  labelLedgerEntriesEmbedded: LabelLedgerEntriesEmbedded,
-): string {
-  return JSON.stringify(
-    LabelLedgerEntriesEmbedded$outboundSchema.parse(labelLedgerEntriesEmbedded),
-  );
-}
 
 export function labelLedgerEntriesEmbeddedFromJSON(
   jsonString: string,
@@ -107,50 +61,6 @@ export const LabelLedgerEntries$inboundSchema: z.ZodType<
     "_embedded": "embedded",
   });
 });
-
-/** @internal */
-export type LabelLedgerEntries$Outbound = {
-  _links?: { [k: string]: HalLink$Outbound } | undefined;
-  _embedded?: LabelLedgerEntriesEmbedded$Outbound | undefined;
-  total?: number | undefined;
-};
-
-/** @internal */
-export const LabelLedgerEntries$outboundSchema: z.ZodType<
-  LabelLedgerEntries$Outbound,
-  z.ZodTypeDef,
-  LabelLedgerEntries
-> = z.object({
-  links: z.record(HalLink$outboundSchema).optional(),
-  embedded: z.lazy(() => LabelLedgerEntriesEmbedded$outboundSchema).optional(),
-  total: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LabelLedgerEntries$ {
-  /** @deprecated use `LabelLedgerEntries$inboundSchema` instead. */
-  export const inboundSchema = LabelLedgerEntries$inboundSchema;
-  /** @deprecated use `LabelLedgerEntries$outboundSchema` instead. */
-  export const outboundSchema = LabelLedgerEntries$outboundSchema;
-  /** @deprecated use `LabelLedgerEntries$Outbound` instead. */
-  export type Outbound = LabelLedgerEntries$Outbound;
-}
-
-export function labelLedgerEntriesToJSON(
-  labelLedgerEntries: LabelLedgerEntries,
-): string {
-  return JSON.stringify(
-    LabelLedgerEntries$outboundSchema.parse(labelLedgerEntries),
-  );
-}
 
 export function labelLedgerEntriesFromJSON(
   jsonString: string,

@@ -91,41 +91,6 @@ export const ListCustomerMassPaymentsNotFoundDwollaV1HalJSONError$inboundSchema:
     });
 
 /** @internal */
-export type ListCustomerMassPaymentsNotFoundDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const ListCustomerMassPaymentsNotFoundDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    ListCustomerMassPaymentsNotFoundDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    ListCustomerMassPaymentsNotFoundDwollaV1HalJSONError
-  > = z.instanceof(ListCustomerMassPaymentsNotFoundDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListCustomerMassPaymentsNotFoundDwollaV1HalJSONError$ {
-  /** @deprecated use `ListCustomerMassPaymentsNotFoundDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    ListCustomerMassPaymentsNotFoundDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `ListCustomerMassPaymentsNotFoundDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    ListCustomerMassPaymentsNotFoundDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `ListCustomerMassPaymentsNotFoundDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    ListCustomerMassPaymentsNotFoundDwollaV1HalJSONError$Outbound;
-}
-
-/** @internal */
 export const ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError$inboundSchema:
   z.ZodType<
     ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError,
@@ -145,38 +110,3 @@ export const ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError$inboundSchema
         body: v.body$,
       });
     });
-
-/** @internal */
-export type ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError
-  > = z.instanceof(ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError$ {
-  /** @deprecated use `ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError$Outbound;
-}

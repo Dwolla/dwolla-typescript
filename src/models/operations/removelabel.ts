@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RemoveLabelRequest = {
   /**
@@ -13,15 +10,6 @@ export type RemoveLabelRequest = {
    */
   id: string;
 };
-
-/** @internal */
-export const RemoveLabelRequest$inboundSchema: z.ZodType<
-  RemoveLabelRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
 
 /** @internal */
 export type RemoveLabelRequest$Outbound = {
@@ -37,33 +25,10 @@ export const RemoveLabelRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RemoveLabelRequest$ {
-  /** @deprecated use `RemoveLabelRequest$inboundSchema` instead. */
-  export const inboundSchema = RemoveLabelRequest$inboundSchema;
-  /** @deprecated use `RemoveLabelRequest$outboundSchema` instead. */
-  export const outboundSchema = RemoveLabelRequest$outboundSchema;
-  /** @deprecated use `RemoveLabelRequest$Outbound` instead. */
-  export type Outbound = RemoveLabelRequest$Outbound;
-}
-
 export function removeLabelRequestToJSON(
   removeLabelRequest: RemoveLabelRequest,
 ): string {
   return JSON.stringify(
     RemoveLabelRequest$outboundSchema.parse(removeLabelRequest),
-  );
-}
-
-export function removeLabelRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<RemoveLabelRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => RemoveLabelRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'RemoveLabelRequest' from JSON`,
   );
 }

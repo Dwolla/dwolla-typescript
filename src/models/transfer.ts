@@ -9,12 +9,7 @@ import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { RFCDate } from "../types/rfcdate.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  HalLink,
-  HalLink$inboundSchema,
-  HalLink$Outbound,
-  HalLink$outboundSchema,
-} from "./hallink.js";
+import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 
 export type TransferAmount1 = {
   value?: string | undefined;
@@ -300,41 +295,6 @@ export const TransferAmount1$inboundSchema: z.ZodType<
   currency: z.string().optional(),
 });
 
-/** @internal */
-export type TransferAmount1$Outbound = {
-  value?: string | undefined;
-  currency?: string | undefined;
-};
-
-/** @internal */
-export const TransferAmount1$outboundSchema: z.ZodType<
-  TransferAmount1$Outbound,
-  z.ZodTypeDef,
-  TransferAmount1
-> = z.object({
-  value: z.string().optional(),
-  currency: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransferAmount1$ {
-  /** @deprecated use `TransferAmount1$inboundSchema` instead. */
-  export const inboundSchema = TransferAmount1$inboundSchema;
-  /** @deprecated use `TransferAmount1$outboundSchema` instead. */
-  export const outboundSchema = TransferAmount1$outboundSchema;
-  /** @deprecated use `TransferAmount1$Outbound` instead. */
-  export type Outbound = TransferAmount1$Outbound;
-}
-
-export function transferAmount1ToJSON(
-  transferAmount1: TransferAmount1,
-): string {
-  return JSON.stringify(TransferAmount1$outboundSchema.parse(transferAmount1));
-}
-
 export function transferAmount1FromJSON(
   jsonString: string,
 ): SafeParseResult<TransferAmount1, SDKValidationError> {
@@ -354,39 +314,6 @@ export const Clearing$inboundSchema: z.ZodType<
   source: z.string().optional(),
   destination: z.string().optional(),
 });
-
-/** @internal */
-export type Clearing$Outbound = {
-  source?: string | undefined;
-  destination?: string | undefined;
-};
-
-/** @internal */
-export const Clearing$outboundSchema: z.ZodType<
-  Clearing$Outbound,
-  z.ZodTypeDef,
-  Clearing
-> = z.object({
-  source: z.string().optional(),
-  destination: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Clearing$ {
-  /** @deprecated use `Clearing$inboundSchema` instead. */
-  export const inboundSchema = Clearing$inboundSchema;
-  /** @deprecated use `Clearing$outboundSchema` instead. */
-  export const outboundSchema = Clearing$outboundSchema;
-  /** @deprecated use `Clearing$Outbound` instead. */
-  export type Outbound = Clearing$Outbound;
-}
-
-export function clearingToJSON(clearing: Clearing): string {
-  return JSON.stringify(Clearing$outboundSchema.parse(clearing));
-}
 
 export function clearingFromJSON(
   jsonString: string,
@@ -408,43 +335,6 @@ export const TransferMetadata$inboundSchema: z.ZodType<
   note: z.string().optional(),
 });
 
-/** @internal */
-export type TransferMetadata$Outbound = {
-  paymentId?: string | undefined;
-  note?: string | undefined;
-};
-
-/** @internal */
-export const TransferMetadata$outboundSchema: z.ZodType<
-  TransferMetadata$Outbound,
-  z.ZodTypeDef,
-  TransferMetadata
-> = z.object({
-  paymentId: z.string().optional(),
-  note: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransferMetadata$ {
-  /** @deprecated use `TransferMetadata$inboundSchema` instead. */
-  export const inboundSchema = TransferMetadata$inboundSchema;
-  /** @deprecated use `TransferMetadata$outboundSchema` instead. */
-  export const outboundSchema = TransferMetadata$outboundSchema;
-  /** @deprecated use `TransferMetadata$Outbound` instead. */
-  export type Outbound = TransferMetadata$Outbound;
-}
-
-export function transferMetadataToJSON(
-  transferMetadata: TransferMetadata,
-): string {
-  return JSON.stringify(
-    TransferMetadata$outboundSchema.parse(transferMetadata),
-  );
-}
-
 export function transferMetadataFromJSON(
   jsonString: string,
 ): SafeParseResult<TransferMetadata, SDKValidationError> {
@@ -464,37 +354,6 @@ export const SourceAddenda$inboundSchema: z.ZodType<
   values: z.array(z.string()).optional(),
 });
 
-/** @internal */
-export type SourceAddenda$Outbound = {
-  values?: Array<string> | undefined;
-};
-
-/** @internal */
-export const SourceAddenda$outboundSchema: z.ZodType<
-  SourceAddenda$Outbound,
-  z.ZodTypeDef,
-  SourceAddenda
-> = z.object({
-  values: z.array(z.string()).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SourceAddenda$ {
-  /** @deprecated use `SourceAddenda$inboundSchema` instead. */
-  export const inboundSchema = SourceAddenda$inboundSchema;
-  /** @deprecated use `SourceAddenda$outboundSchema` instead. */
-  export const outboundSchema = SourceAddenda$outboundSchema;
-  /** @deprecated use `SourceAddenda$Outbound` instead. */
-  export type Outbound = SourceAddenda$Outbound;
-}
-
-export function sourceAddendaToJSON(sourceAddenda: SourceAddenda): string {
-  return JSON.stringify(SourceAddenda$outboundSchema.parse(sourceAddenda));
-}
-
 export function sourceAddendaFromJSON(
   jsonString: string,
 ): SafeParseResult<SourceAddenda, SDKValidationError> {
@@ -511,22 +370,6 @@ export const SourceCompanyEntryDescription$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(SourceCompanyEntryDescription);
 
 /** @internal */
-export const SourceCompanyEntryDescription$outboundSchema: z.ZodNativeEnum<
-  typeof SourceCompanyEntryDescription
-> = SourceCompanyEntryDescription$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SourceCompanyEntryDescription$ {
-  /** @deprecated use `SourceCompanyEntryDescription$inboundSchema` instead. */
-  export const inboundSchema = SourceCompanyEntryDescription$inboundSchema;
-  /** @deprecated use `SourceCompanyEntryDescription$outboundSchema` instead. */
-  export const outboundSchema = SourceCompanyEntryDescription$outboundSchema;
-}
-
-/** @internal */
 export const Source$inboundSchema: z.ZodType<Source, z.ZodTypeDef, unknown> = z
   .object({
     addenda: z.lazy(() => SourceAddenda$inboundSchema).optional(),
@@ -540,54 +383,6 @@ export const Source$inboundSchema: z.ZodType<Source, z.ZodTypeDef, unknown> = z
     routingNumber: z.string().optional(),
     traceId: z.string().optional(),
   });
-
-/** @internal */
-export type Source$Outbound = {
-  addenda?: SourceAddenda$Outbound | undefined;
-  beneficiaryName?: string | undefined;
-  companyEntryDescription?: string | undefined;
-  companyId?: string | undefined;
-  companyName?: string | undefined;
-  effectiveDate?: string | undefined;
-  postingData?: string | undefined;
-  routingNumber?: string | undefined;
-  traceId?: string | undefined;
-};
-
-/** @internal */
-export const Source$outboundSchema: z.ZodType<
-  Source$Outbound,
-  z.ZodTypeDef,
-  Source
-> = z.object({
-  addenda: z.lazy(() => SourceAddenda$outboundSchema).optional(),
-  beneficiaryName: z.string().optional(),
-  companyEntryDescription: SourceCompanyEntryDescription$outboundSchema
-    .optional(),
-  companyId: z.string().optional(),
-  companyName: z.string().optional(),
-  effectiveDate: z.instanceof(RFCDate).transform(v => v.toString()).optional(),
-  postingData: z.string().optional(),
-  routingNumber: z.string().optional(),
-  traceId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Source$ {
-  /** @deprecated use `Source$inboundSchema` instead. */
-  export const inboundSchema = Source$inboundSchema;
-  /** @deprecated use `Source$outboundSchema` instead. */
-  export const outboundSchema = Source$outboundSchema;
-  /** @deprecated use `Source$Outbound` instead. */
-  export type Outbound = Source$Outbound;
-}
-
-export function sourceToJSON(source: Source): string {
-  return JSON.stringify(Source$outboundSchema.parse(source));
-}
 
 export function sourceFromJSON(
   jsonString: string,
@@ -608,41 +403,6 @@ export const DestinationAddenda$inboundSchema: z.ZodType<
   values: z.array(z.string()).optional(),
 });
 
-/** @internal */
-export type DestinationAddenda$Outbound = {
-  values?: Array<string> | undefined;
-};
-
-/** @internal */
-export const DestinationAddenda$outboundSchema: z.ZodType<
-  DestinationAddenda$Outbound,
-  z.ZodTypeDef,
-  DestinationAddenda
-> = z.object({
-  values: z.array(z.string()).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DestinationAddenda$ {
-  /** @deprecated use `DestinationAddenda$inboundSchema` instead. */
-  export const inboundSchema = DestinationAddenda$inboundSchema;
-  /** @deprecated use `DestinationAddenda$outboundSchema` instead. */
-  export const outboundSchema = DestinationAddenda$outboundSchema;
-  /** @deprecated use `DestinationAddenda$Outbound` instead. */
-  export type Outbound = DestinationAddenda$Outbound;
-}
-
-export function destinationAddendaToJSON(
-  destinationAddenda: DestinationAddenda,
-): string {
-  return JSON.stringify(
-    DestinationAddenda$outboundSchema.parse(destinationAddenda),
-  );
-}
-
 export function destinationAddendaFromJSON(
   jsonString: string,
 ): SafeParseResult<DestinationAddenda, SDKValidationError> {
@@ -657,23 +417,6 @@ export function destinationAddendaFromJSON(
 export const DestinationCompanyEntryDescription$inboundSchema: z.ZodNativeEnum<
   typeof DestinationCompanyEntryDescription
 > = z.nativeEnum(DestinationCompanyEntryDescription);
-
-/** @internal */
-export const DestinationCompanyEntryDescription$outboundSchema: z.ZodNativeEnum<
-  typeof DestinationCompanyEntryDescription
-> = DestinationCompanyEntryDescription$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DestinationCompanyEntryDescription$ {
-  /** @deprecated use `DestinationCompanyEntryDescription$inboundSchema` instead. */
-  export const inboundSchema = DestinationCompanyEntryDescription$inboundSchema;
-  /** @deprecated use `DestinationCompanyEntryDescription$outboundSchema` instead. */
-  export const outboundSchema =
-    DestinationCompanyEntryDescription$outboundSchema;
-}
 
 /** @internal */
 export const AchDetailsDestination$inboundSchema: z.ZodType<
@@ -692,58 +435,6 @@ export const AchDetailsDestination$inboundSchema: z.ZodType<
   routingNumber: z.string().optional(),
   traceId: z.string().optional(),
 });
-
-/** @internal */
-export type AchDetailsDestination$Outbound = {
-  addenda?: DestinationAddenda$Outbound | undefined;
-  beneficiaryName?: string | undefined;
-  companyEntryDescription?: string | undefined;
-  companyId?: string | undefined;
-  companyName?: string | undefined;
-  effectiveDate?: string | undefined;
-  postingData?: string | undefined;
-  routingNumber?: string | undefined;
-  traceId?: string | undefined;
-};
-
-/** @internal */
-export const AchDetailsDestination$outboundSchema: z.ZodType<
-  AchDetailsDestination$Outbound,
-  z.ZodTypeDef,
-  AchDetailsDestination
-> = z.object({
-  addenda: z.lazy(() => DestinationAddenda$outboundSchema).optional(),
-  beneficiaryName: z.string().optional(),
-  companyEntryDescription: DestinationCompanyEntryDescription$outboundSchema
-    .optional(),
-  companyId: z.string().optional(),
-  companyName: z.string().optional(),
-  effectiveDate: z.instanceof(RFCDate).transform(v => v.toString()).optional(),
-  postingData: z.string().optional(),
-  routingNumber: z.string().optional(),
-  traceId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AchDetailsDestination$ {
-  /** @deprecated use `AchDetailsDestination$inboundSchema` instead. */
-  export const inboundSchema = AchDetailsDestination$inboundSchema;
-  /** @deprecated use `AchDetailsDestination$outboundSchema` instead. */
-  export const outboundSchema = AchDetailsDestination$outboundSchema;
-  /** @deprecated use `AchDetailsDestination$Outbound` instead. */
-  export type Outbound = AchDetailsDestination$Outbound;
-}
-
-export function achDetailsDestinationToJSON(
-  achDetailsDestination: AchDetailsDestination,
-): string {
-  return JSON.stringify(
-    AchDetailsDestination$outboundSchema.parse(achDetailsDestination),
-  );
-}
 
 export function achDetailsDestinationFromJSON(
   jsonString: string,
@@ -764,39 +455,6 @@ export const AchDetails$inboundSchema: z.ZodType<
   source: z.lazy(() => Source$inboundSchema).optional(),
   destination: z.lazy(() => AchDetailsDestination$inboundSchema).optional(),
 });
-
-/** @internal */
-export type AchDetails$Outbound = {
-  source?: Source$Outbound | undefined;
-  destination?: AchDetailsDestination$Outbound | undefined;
-};
-
-/** @internal */
-export const AchDetails$outboundSchema: z.ZodType<
-  AchDetails$Outbound,
-  z.ZodTypeDef,
-  AchDetails
-> = z.object({
-  source: z.lazy(() => Source$outboundSchema).optional(),
-  destination: z.lazy(() => AchDetailsDestination$outboundSchema).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AchDetails$ {
-  /** @deprecated use `AchDetails$inboundSchema` instead. */
-  export const inboundSchema = AchDetails$inboundSchema;
-  /** @deprecated use `AchDetails$outboundSchema` instead. */
-  export const outboundSchema = AchDetails$outboundSchema;
-  /** @deprecated use `AchDetails$Outbound` instead. */
-  export type Outbound = AchDetails$Outbound;
-}
-
-export function achDetailsToJSON(achDetails: AchDetails): string {
-  return JSON.stringify(AchDetails$outboundSchema.parse(achDetails));
-}
 
 export function achDetailsFromJSON(
   jsonString: string,
@@ -819,45 +477,6 @@ export const RtpDetailsDestination$inboundSchema: z.ZodType<
   endToEndReferenceId: z.string().optional(),
 });
 
-/** @internal */
-export type RtpDetailsDestination$Outbound = {
-  remittanceData?: string | undefined;
-  networkId?: string | undefined;
-  endToEndReferenceId?: string | undefined;
-};
-
-/** @internal */
-export const RtpDetailsDestination$outboundSchema: z.ZodType<
-  RtpDetailsDestination$Outbound,
-  z.ZodTypeDef,
-  RtpDetailsDestination
-> = z.object({
-  remittanceData: z.string().optional(),
-  networkId: z.string().optional(),
-  endToEndReferenceId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RtpDetailsDestination$ {
-  /** @deprecated use `RtpDetailsDestination$inboundSchema` instead. */
-  export const inboundSchema = RtpDetailsDestination$inboundSchema;
-  /** @deprecated use `RtpDetailsDestination$outboundSchema` instead. */
-  export const outboundSchema = RtpDetailsDestination$outboundSchema;
-  /** @deprecated use `RtpDetailsDestination$Outbound` instead. */
-  export type Outbound = RtpDetailsDestination$Outbound;
-}
-
-export function rtpDetailsDestinationToJSON(
-  rtpDetailsDestination: RtpDetailsDestination,
-): string {
-  return JSON.stringify(
-    RtpDetailsDestination$outboundSchema.parse(rtpDetailsDestination),
-  );
-}
-
 export function rtpDetailsDestinationFromJSON(
   jsonString: string,
 ): SafeParseResult<RtpDetailsDestination, SDKValidationError> {
@@ -876,37 +495,6 @@ export const RtpDetails$inboundSchema: z.ZodType<
 > = z.object({
   destination: z.lazy(() => RtpDetailsDestination$inboundSchema).optional(),
 });
-
-/** @internal */
-export type RtpDetails$Outbound = {
-  destination?: RtpDetailsDestination$Outbound | undefined;
-};
-
-/** @internal */
-export const RtpDetails$outboundSchema: z.ZodType<
-  RtpDetails$Outbound,
-  z.ZodTypeDef,
-  RtpDetails
-> = z.object({
-  destination: z.lazy(() => RtpDetailsDestination$outboundSchema).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RtpDetails$ {
-  /** @deprecated use `RtpDetails$inboundSchema` instead. */
-  export const inboundSchema = RtpDetails$inboundSchema;
-  /** @deprecated use `RtpDetails$outboundSchema` instead. */
-  export const outboundSchema = RtpDetails$outboundSchema;
-  /** @deprecated use `RtpDetails$Outbound` instead. */
-  export type Outbound = RtpDetails$Outbound;
-}
-
-export function rtpDetailsToJSON(rtpDetails: RtpDetails): string {
-  return JSON.stringify(RtpDetails$outboundSchema.parse(rtpDetails));
-}
 
 export function rtpDetailsFromJSON(
   jsonString: string,
@@ -929,45 +517,6 @@ export const FedNowDetailsDestination$inboundSchema: z.ZodType<
   endToEndReferenceId: z.string().optional(),
 });
 
-/** @internal */
-export type FedNowDetailsDestination$Outbound = {
-  remittanceData?: string | undefined;
-  networkId?: string | undefined;
-  endToEndReferenceId?: string | undefined;
-};
-
-/** @internal */
-export const FedNowDetailsDestination$outboundSchema: z.ZodType<
-  FedNowDetailsDestination$Outbound,
-  z.ZodTypeDef,
-  FedNowDetailsDestination
-> = z.object({
-  remittanceData: z.string().optional(),
-  networkId: z.string().optional(),
-  endToEndReferenceId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FedNowDetailsDestination$ {
-  /** @deprecated use `FedNowDetailsDestination$inboundSchema` instead. */
-  export const inboundSchema = FedNowDetailsDestination$inboundSchema;
-  /** @deprecated use `FedNowDetailsDestination$outboundSchema` instead. */
-  export const outboundSchema = FedNowDetailsDestination$outboundSchema;
-  /** @deprecated use `FedNowDetailsDestination$Outbound` instead. */
-  export type Outbound = FedNowDetailsDestination$Outbound;
-}
-
-export function fedNowDetailsDestinationToJSON(
-  fedNowDetailsDestination: FedNowDetailsDestination,
-): string {
-  return JSON.stringify(
-    FedNowDetailsDestination$outboundSchema.parse(fedNowDetailsDestination),
-  );
-}
-
 export function fedNowDetailsDestinationFromJSON(
   jsonString: string,
 ): SafeParseResult<FedNowDetailsDestination, SDKValidationError> {
@@ -987,37 +536,6 @@ export const FedNowDetails$inboundSchema: z.ZodType<
   destination: z.lazy(() => FedNowDetailsDestination$inboundSchema).optional(),
 });
 
-/** @internal */
-export type FedNowDetails$Outbound = {
-  destination?: FedNowDetailsDestination$Outbound | undefined;
-};
-
-/** @internal */
-export const FedNowDetails$outboundSchema: z.ZodType<
-  FedNowDetails$Outbound,
-  z.ZodTypeDef,
-  FedNowDetails
-> = z.object({
-  destination: z.lazy(() => FedNowDetailsDestination$outboundSchema).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FedNowDetails$ {
-  /** @deprecated use `FedNowDetails$inboundSchema` instead. */
-  export const inboundSchema = FedNowDetails$inboundSchema;
-  /** @deprecated use `FedNowDetails$outboundSchema` instead. */
-  export const outboundSchema = FedNowDetails$outboundSchema;
-  /** @deprecated use `FedNowDetails$Outbound` instead. */
-  export type Outbound = FedNowDetails$Outbound;
-}
-
-export function fedNowDetailsToJSON(fedNowDetails: FedNowDetails): string {
-  return JSON.stringify(FedNowDetails$outboundSchema.parse(fedNowDetails));
-}
-
 export function fedNowDetailsFromJSON(
   jsonString: string,
 ): SafeParseResult<FedNowDetails, SDKValidationError> {
@@ -1034,22 +552,6 @@ export const DestinationEnum$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(DestinationEnum);
 
 /** @internal */
-export const DestinationEnum$outboundSchema: z.ZodNativeEnum<
-  typeof DestinationEnum
-> = DestinationEnum$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DestinationEnum$ {
-  /** @deprecated use `DestinationEnum$inboundSchema` instead. */
-  export const inboundSchema = DestinationEnum$inboundSchema;
-  /** @deprecated use `DestinationEnum$outboundSchema` instead. */
-  export const outboundSchema = DestinationEnum$outboundSchema;
-}
-
-/** @internal */
 export const TransferProcessingChannel$inboundSchema: z.ZodType<
   TransferProcessingChannel,
   z.ZodTypeDef,
@@ -1057,41 +559,6 @@ export const TransferProcessingChannel$inboundSchema: z.ZodType<
 > = z.object({
   destination: DestinationEnum$inboundSchema.optional(),
 });
-
-/** @internal */
-export type TransferProcessingChannel$Outbound = {
-  destination?: string | undefined;
-};
-
-/** @internal */
-export const TransferProcessingChannel$outboundSchema: z.ZodType<
-  TransferProcessingChannel$Outbound,
-  z.ZodTypeDef,
-  TransferProcessingChannel
-> = z.object({
-  destination: DestinationEnum$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransferProcessingChannel$ {
-  /** @deprecated use `TransferProcessingChannel$inboundSchema` instead. */
-  export const inboundSchema = TransferProcessingChannel$inboundSchema;
-  /** @deprecated use `TransferProcessingChannel$outboundSchema` instead. */
-  export const outboundSchema = TransferProcessingChannel$outboundSchema;
-  /** @deprecated use `TransferProcessingChannel$Outbound` instead. */
-  export type Outbound = TransferProcessingChannel$Outbound;
-}
-
-export function transferProcessingChannelToJSON(
-  transferProcessingChannel: TransferProcessingChannel,
-): string {
-  return JSON.stringify(
-    TransferProcessingChannel$outboundSchema.parse(transferProcessingChannel),
-  );
-}
 
 export function transferProcessingChannelFromJSON(
   jsonString: string,
@@ -1128,64 +595,6 @@ export const Transfer$inboundSchema: z.ZodType<
     "_links": "links",
   });
 });
-
-/** @internal */
-export type Transfer$Outbound = {
-  _links?: { [k: string]: HalLink$Outbound } | undefined;
-  id?: string | undefined;
-  status?: string | undefined;
-  amount?: TransferAmount1$Outbound | undefined;
-  created?: string | undefined;
-  clearing?: Clearing$Outbound | undefined;
-  metadata?: TransferMetadata$Outbound | undefined;
-  achDetails?: AchDetails$Outbound | undefined;
-  rtpDetails?: RtpDetails$Outbound | undefined;
-  fedNowDetails?: FedNowDetails$Outbound | undefined;
-  correlationId?: string | undefined;
-  processingChannel?: TransferProcessingChannel$Outbound | undefined;
-};
-
-/** @internal */
-export const Transfer$outboundSchema: z.ZodType<
-  Transfer$Outbound,
-  z.ZodTypeDef,
-  Transfer
-> = z.object({
-  links: z.record(HalLink$outboundSchema).optional(),
-  id: z.string().optional(),
-  status: z.string().optional(),
-  amount: z.lazy(() => TransferAmount1$outboundSchema).optional(),
-  created: z.date().transform(v => v.toISOString()).optional(),
-  clearing: z.lazy(() => Clearing$outboundSchema).optional(),
-  metadata: z.lazy(() => TransferMetadata$outboundSchema).optional(),
-  achDetails: z.lazy(() => AchDetails$outboundSchema).optional(),
-  rtpDetails: z.lazy(() => RtpDetails$outboundSchema).optional(),
-  fedNowDetails: z.lazy(() => FedNowDetails$outboundSchema).optional(),
-  correlationId: z.string().optional(),
-  processingChannel: z.lazy(() => TransferProcessingChannel$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Transfer$ {
-  /** @deprecated use `Transfer$inboundSchema` instead. */
-  export const inboundSchema = Transfer$inboundSchema;
-  /** @deprecated use `Transfer$outboundSchema` instead. */
-  export const outboundSchema = Transfer$outboundSchema;
-  /** @deprecated use `Transfer$Outbound` instead. */
-  export type Outbound = Transfer$Outbound;
-}
-
-export function transferToJSON(transfer: Transfer): string {
-  return JSON.stringify(Transfer$outboundSchema.parse(transfer));
-}
 
 export function transferFromJSON(
   jsonString: string,

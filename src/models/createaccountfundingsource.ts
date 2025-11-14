@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
-import { Result as SafeParseResult } from "../types/fp.js";
-import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 export type CreateAccountFundingSourceExchange = {
   href?: string | undefined;
@@ -35,15 +32,6 @@ export type CreateAccountFundingSource = {
 };
 
 /** @internal */
-export const CreateAccountFundingSourceExchange$inboundSchema: z.ZodType<
-  CreateAccountFundingSourceExchange,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  href: z.string().optional(),
-});
-
-/** @internal */
 export type CreateAccountFundingSourceExchange$Outbound = {
   href?: string | undefined;
 };
@@ -57,20 +45,6 @@ export const CreateAccountFundingSourceExchange$outboundSchema: z.ZodType<
   href: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateAccountFundingSourceExchange$ {
-  /** @deprecated use `CreateAccountFundingSourceExchange$inboundSchema` instead. */
-  export const inboundSchema = CreateAccountFundingSourceExchange$inboundSchema;
-  /** @deprecated use `CreateAccountFundingSourceExchange$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateAccountFundingSourceExchange$outboundSchema;
-  /** @deprecated use `CreateAccountFundingSourceExchange$Outbound` instead. */
-  export type Outbound = CreateAccountFundingSourceExchange$Outbound;
-}
-
 export function createAccountFundingSourceExchangeToJSON(
   createAccountFundingSourceExchange: CreateAccountFundingSourceExchange,
 ): string {
@@ -80,27 +54,6 @@ export function createAccountFundingSourceExchangeToJSON(
     ),
   );
 }
-
-export function createAccountFundingSourceExchangeFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateAccountFundingSourceExchange, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateAccountFundingSourceExchange$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateAccountFundingSourceExchange' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateAccountFundingSourceLinks$inboundSchema: z.ZodType<
-  CreateAccountFundingSourceLinks,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  exchange: z.lazy(() => CreateAccountFundingSourceExchange$inboundSchema)
-    .optional(),
-});
 
 /** @internal */
 export type CreateAccountFundingSourceLinks$Outbound = {
@@ -117,19 +70,6 @@ export const CreateAccountFundingSourceLinks$outboundSchema: z.ZodType<
     .optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateAccountFundingSourceLinks$ {
-  /** @deprecated use `CreateAccountFundingSourceLinks$inboundSchema` instead. */
-  export const inboundSchema = CreateAccountFundingSourceLinks$inboundSchema;
-  /** @deprecated use `CreateAccountFundingSourceLinks$outboundSchema` instead. */
-  export const outboundSchema = CreateAccountFundingSourceLinks$outboundSchema;
-  /** @deprecated use `CreateAccountFundingSourceLinks$Outbound` instead. */
-  export type Outbound = CreateAccountFundingSourceLinks$Outbound;
-}
-
 export function createAccountFundingSourceLinksToJSON(
   createAccountFundingSourceLinks: CreateAccountFundingSourceLinks,
 ): string {
@@ -140,57 +80,10 @@ export function createAccountFundingSourceLinksToJSON(
   );
 }
 
-export function createAccountFundingSourceLinksFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateAccountFundingSourceLinks, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateAccountFundingSourceLinks$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateAccountFundingSourceLinks' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateAccountFundingSourceBankAccountType$inboundSchema:
-  z.ZodNativeEnum<typeof CreateAccountFundingSourceBankAccountType> = z
-    .nativeEnum(CreateAccountFundingSourceBankAccountType);
-
 /** @internal */
 export const CreateAccountFundingSourceBankAccountType$outboundSchema:
-  z.ZodNativeEnum<typeof CreateAccountFundingSourceBankAccountType> =
-    CreateAccountFundingSourceBankAccountType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateAccountFundingSourceBankAccountType$ {
-  /** @deprecated use `CreateAccountFundingSourceBankAccountType$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateAccountFundingSourceBankAccountType$inboundSchema;
-  /** @deprecated use `CreateAccountFundingSourceBankAccountType$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateAccountFundingSourceBankAccountType$outboundSchema;
-}
-
-/** @internal */
-export const CreateAccountFundingSource$inboundSchema: z.ZodType<
-  CreateAccountFundingSource,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  _links: z.lazy(() => CreateAccountFundingSourceLinks$inboundSchema)
-    .optional(),
-  name: z.string(),
-  bankAccountType: CreateAccountFundingSourceBankAccountType$inboundSchema,
-  accountNumber: z.string(),
-  routingNumber: z.string(),
-  channels: z.array(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+  z.ZodNativeEnum<typeof CreateAccountFundingSourceBankAccountType> = z
+    .nativeEnum(CreateAccountFundingSourceBankAccountType);
 
 /** @internal */
 export type CreateAccountFundingSource$Outbound = {
@@ -221,33 +114,10 @@ export const CreateAccountFundingSource$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateAccountFundingSource$ {
-  /** @deprecated use `CreateAccountFundingSource$inboundSchema` instead. */
-  export const inboundSchema = CreateAccountFundingSource$inboundSchema;
-  /** @deprecated use `CreateAccountFundingSource$outboundSchema` instead. */
-  export const outboundSchema = CreateAccountFundingSource$outboundSchema;
-  /** @deprecated use `CreateAccountFundingSource$Outbound` instead. */
-  export type Outbound = CreateAccountFundingSource$Outbound;
-}
-
 export function createAccountFundingSourceToJSON(
   createAccountFundingSource: CreateAccountFundingSource,
 ): string {
   return JSON.stringify(
     CreateAccountFundingSource$outboundSchema.parse(createAccountFundingSource),
-  );
-}
-
-export function createAccountFundingSourceFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateAccountFundingSource, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateAccountFundingSource$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateAccountFundingSource' from JSON`,
   );
 }

@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
-import { Result as SafeParseResult } from "../types/fp.js";
-import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 export type CreateFlinksSecureExchangeExchangePartner = {
   href: string;
@@ -25,15 +22,6 @@ export type CreateFlinksSecureExchange = {
 };
 
 /** @internal */
-export const CreateFlinksSecureExchangeExchangePartner$inboundSchema: z.ZodType<
-  CreateFlinksSecureExchangeExchangePartner,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  href: z.string(),
-});
-
-/** @internal */
 export type CreateFlinksSecureExchangeExchangePartner$Outbound = {
   href: string;
 };
@@ -48,21 +36,6 @@ export const CreateFlinksSecureExchangeExchangePartner$outboundSchema:
     href: z.string(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateFlinksSecureExchangeExchangePartner$ {
-  /** @deprecated use `CreateFlinksSecureExchangeExchangePartner$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateFlinksSecureExchangeExchangePartner$inboundSchema;
-  /** @deprecated use `CreateFlinksSecureExchangeExchangePartner$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateFlinksSecureExchangeExchangePartner$outboundSchema;
-  /** @deprecated use `CreateFlinksSecureExchangeExchangePartner$Outbound` instead. */
-  export type Outbound = CreateFlinksSecureExchangeExchangePartner$Outbound;
-}
-
 export function createFlinksSecureExchangeExchangePartnerToJSON(
   createFlinksSecureExchangeExchangePartner:
     CreateFlinksSecureExchangeExchangePartner,
@@ -73,37 +46,6 @@ export function createFlinksSecureExchangeExchangePartnerToJSON(
     ),
   );
 }
-
-export function createFlinksSecureExchangeExchangePartnerFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateFlinksSecureExchangeExchangePartner,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateFlinksSecureExchangeExchangePartner$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreateFlinksSecureExchangeExchangePartner' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateFlinksSecureExchangeLinks$inboundSchema: z.ZodType<
-  CreateFlinksSecureExchangeLinks,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  "exchange-partner": z.lazy(() =>
-    CreateFlinksSecureExchangeExchangePartner$inboundSchema
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "exchange-partner": "exchangePartner",
-  });
-});
 
 /** @internal */
 export type CreateFlinksSecureExchangeLinks$Outbound = {
@@ -125,19 +67,6 @@ export const CreateFlinksSecureExchangeLinks$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateFlinksSecureExchangeLinks$ {
-  /** @deprecated use `CreateFlinksSecureExchangeLinks$inboundSchema` instead. */
-  export const inboundSchema = CreateFlinksSecureExchangeLinks$inboundSchema;
-  /** @deprecated use `CreateFlinksSecureExchangeLinks$outboundSchema` instead. */
-  export const outboundSchema = CreateFlinksSecureExchangeLinks$outboundSchema;
-  /** @deprecated use `CreateFlinksSecureExchangeLinks$Outbound` instead. */
-  export type Outbound = CreateFlinksSecureExchangeLinks$Outbound;
-}
-
 export function createFlinksSecureExchangeLinksToJSON(
   createFlinksSecureExchangeLinks: CreateFlinksSecureExchangeLinks,
 ): string {
@@ -147,30 +76,6 @@ export function createFlinksSecureExchangeLinksToJSON(
     ),
   );
 }
-
-export function createFlinksSecureExchangeLinksFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateFlinksSecureExchangeLinks, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateFlinksSecureExchangeLinks$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateFlinksSecureExchangeLinks' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateFlinksSecureExchange$inboundSchema: z.ZodType<
-  CreateFlinksSecureExchange,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  _links: z.lazy(() => CreateFlinksSecureExchangeLinks$inboundSchema),
-  token: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
 
 /** @internal */
 export type CreateFlinksSecureExchange$Outbound = {
@@ -192,33 +97,10 @@ export const CreateFlinksSecureExchange$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateFlinksSecureExchange$ {
-  /** @deprecated use `CreateFlinksSecureExchange$inboundSchema` instead. */
-  export const inboundSchema = CreateFlinksSecureExchange$inboundSchema;
-  /** @deprecated use `CreateFlinksSecureExchange$outboundSchema` instead. */
-  export const outboundSchema = CreateFlinksSecureExchange$outboundSchema;
-  /** @deprecated use `CreateFlinksSecureExchange$Outbound` instead. */
-  export type Outbound = CreateFlinksSecureExchange$Outbound;
-}
-
 export function createFlinksSecureExchangeToJSON(
   createFlinksSecureExchange: CreateFlinksSecureExchange,
 ): string {
   return JSON.stringify(
     CreateFlinksSecureExchange$outboundSchema.parse(createFlinksSecureExchange),
-  );
-}
-
-export function createFlinksSecureExchangeFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateFlinksSecureExchange, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateFlinksSecureExchange$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateFlinksSecureExchange' from JSON`,
   );
 }

@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../lib/schemas.js";
-import { Result as SafeParseResult } from "../types/fp.js";
-import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 /**
  * Create a Verified Business customer (Sole Proprietorship)
@@ -32,35 +29,6 @@ export type CreateVerifiedSolePropCustomer = {
   website?: string | undefined;
   businessType?: "soleProprietorship" | undefined;
 };
-
-/** @internal */
-export const CreateVerifiedSolePropCustomer$inboundSchema: z.ZodType<
-  CreateVerifiedSolePropCustomer,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
-  email: z.string(),
-  ipAddress: z.string().optional(),
-  phone: z.string().optional(),
-  correlationId: z.string().optional(),
-  type: z.literal("business").default("business").optional(),
-  address1: z.string(),
-  address2: z.string().optional(),
-  city: z.string(),
-  state: z.string(),
-  postalCode: z.string(),
-  ssn: z.string(),
-  dateOfBirth: z.string(),
-  businessClassification: z.string(),
-  businessName: z.string(),
-  doingBusinessAs: z.string().optional(),
-  ein: z.string().optional(),
-  website: z.string().optional(),
-  businessType: z.literal("soleProprietorship").default("soleProprietorship")
-    .optional(),
-});
 
 /** @internal */
 export type CreateVerifiedSolePropCustomer$Outbound = {
@@ -114,19 +82,6 @@ export const CreateVerifiedSolePropCustomer$outboundSchema: z.ZodType<
   businessType: z.literal("soleProprietorship"),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateVerifiedSolePropCustomer$ {
-  /** @deprecated use `CreateVerifiedSolePropCustomer$inboundSchema` instead. */
-  export const inboundSchema = CreateVerifiedSolePropCustomer$inboundSchema;
-  /** @deprecated use `CreateVerifiedSolePropCustomer$outboundSchema` instead. */
-  export const outboundSchema = CreateVerifiedSolePropCustomer$outboundSchema;
-  /** @deprecated use `CreateVerifiedSolePropCustomer$Outbound` instead. */
-  export type Outbound = CreateVerifiedSolePropCustomer$Outbound;
-}
-
 export function createVerifiedSolePropCustomerToJSON(
   createVerifiedSolePropCustomer: CreateVerifiedSolePropCustomer,
 ): string {
@@ -134,15 +89,5 @@ export function createVerifiedSolePropCustomerToJSON(
     CreateVerifiedSolePropCustomer$outboundSchema.parse(
       createVerifiedSolePropCustomer,
     ),
-  );
-}
-
-export function createVerifiedSolePropCustomerFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateVerifiedSolePropCustomer, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateVerifiedSolePropCustomer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateVerifiedSolePropCustomer' from JSON`,
   );
 }

@@ -28,39 +28,6 @@ export const WireAccountRestrictedErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type WireAccountRestrictedErrorLinks$Outbound = {};
-
-/** @internal */
-export const WireAccountRestrictedErrorLinks$outboundSchema: z.ZodType<
-  WireAccountRestrictedErrorLinks$Outbound,
-  z.ZodTypeDef,
-  WireAccountRestrictedErrorLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WireAccountRestrictedErrorLinks$ {
-  /** @deprecated use `WireAccountRestrictedErrorLinks$inboundSchema` instead. */
-  export const inboundSchema = WireAccountRestrictedErrorLinks$inboundSchema;
-  /** @deprecated use `WireAccountRestrictedErrorLinks$outboundSchema` instead. */
-  export const outboundSchema = WireAccountRestrictedErrorLinks$outboundSchema;
-  /** @deprecated use `WireAccountRestrictedErrorLinks$Outbound` instead. */
-  export type Outbound = WireAccountRestrictedErrorLinks$Outbound;
-}
-
-export function wireAccountRestrictedErrorLinksToJSON(
-  wireAccountRestrictedErrorLinks: WireAccountRestrictedErrorLinks,
-): string {
-  return JSON.stringify(
-    WireAccountRestrictedErrorLinks$outboundSchema.parse(
-      wireAccountRestrictedErrorLinks,
-    ),
-  );
-}
-
 export function wireAccountRestrictedErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<WireAccountRestrictedErrorLinks, SDKValidationError> {
@@ -88,54 +55,6 @@ export const WireAccountRestrictedErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type WireAccountRestrictedErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: WireAccountRestrictedErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const WireAccountRestrictedErrorError$outboundSchema: z.ZodType<
-  WireAccountRestrictedErrorError$Outbound,
-  z.ZodTypeDef,
-  WireAccountRestrictedErrorError
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  links: z.lazy(() => WireAccountRestrictedErrorLinks$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WireAccountRestrictedErrorError$ {
-  /** @deprecated use `WireAccountRestrictedErrorError$inboundSchema` instead. */
-  export const inboundSchema = WireAccountRestrictedErrorError$inboundSchema;
-  /** @deprecated use `WireAccountRestrictedErrorError$outboundSchema` instead. */
-  export const outboundSchema = WireAccountRestrictedErrorError$outboundSchema;
-  /** @deprecated use `WireAccountRestrictedErrorError$Outbound` instead. */
-  export type Outbound = WireAccountRestrictedErrorError$Outbound;
-}
-
-export function wireAccountRestrictedErrorErrorToJSON(
-  wireAccountRestrictedErrorError: WireAccountRestrictedErrorError,
-): string {
-  return JSON.stringify(
-    WireAccountRestrictedErrorError$outboundSchema.parse(
-      wireAccountRestrictedErrorError,
-    ),
-  );
-}
-
 export function wireAccountRestrictedErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<WireAccountRestrictedErrorError, SDKValidationError> {
@@ -155,45 +74,6 @@ export const WireAccountRestrictedErrorEmbedded$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => WireAccountRestrictedErrorError$inboundSchema))
     .optional(),
 });
-
-/** @internal */
-export type WireAccountRestrictedErrorEmbedded$Outbound = {
-  errors?: Array<WireAccountRestrictedErrorError$Outbound> | undefined;
-};
-
-/** @internal */
-export const WireAccountRestrictedErrorEmbedded$outboundSchema: z.ZodType<
-  WireAccountRestrictedErrorEmbedded$Outbound,
-  z.ZodTypeDef,
-  WireAccountRestrictedErrorEmbedded
-> = z.object({
-  errors: z.array(z.lazy(() => WireAccountRestrictedErrorError$outboundSchema))
-    .optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WireAccountRestrictedErrorEmbedded$ {
-  /** @deprecated use `WireAccountRestrictedErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema = WireAccountRestrictedErrorEmbedded$inboundSchema;
-  /** @deprecated use `WireAccountRestrictedErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    WireAccountRestrictedErrorEmbedded$outboundSchema;
-  /** @deprecated use `WireAccountRestrictedErrorEmbedded$Outbound` instead. */
-  export type Outbound = WireAccountRestrictedErrorEmbedded$Outbound;
-}
-
-export function wireAccountRestrictedErrorEmbeddedToJSON(
-  wireAccountRestrictedErrorEmbedded: WireAccountRestrictedErrorEmbedded,
-): string {
-  return JSON.stringify(
-    WireAccountRestrictedErrorEmbedded$outboundSchema.parse(
-      wireAccountRestrictedErrorEmbedded,
-    ),
-  );
-}
 
 export function wireAccountRestrictedErrorEmbeddedFromJSON(
   jsonString: string,

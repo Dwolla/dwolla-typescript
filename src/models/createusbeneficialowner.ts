@@ -3,12 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../lib/schemas.js";
-import { Result as SafeParseResult } from "../types/fp.js";
-import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import {
   InternationalAddress,
-  InternationalAddress$inboundSchema,
   InternationalAddress$Outbound,
   InternationalAddress$outboundSchema,
 } from "./internationaladdress.js";
@@ -23,19 +19,6 @@ export type CreateUSBeneficialOwner = {
   address: InternationalAddress;
   ssn: string;
 };
-
-/** @internal */
-export const CreateUSBeneficialOwner$inboundSchema: z.ZodType<
-  CreateUSBeneficialOwner,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
-  dateOfBirth: z.string(),
-  address: InternationalAddress$inboundSchema,
-  ssn: z.string(),
-});
 
 /** @internal */
 export type CreateUSBeneficialOwner$Outbound = {
@@ -59,33 +42,10 @@ export const CreateUSBeneficialOwner$outboundSchema: z.ZodType<
   ssn: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateUSBeneficialOwner$ {
-  /** @deprecated use `CreateUSBeneficialOwner$inboundSchema` instead. */
-  export const inboundSchema = CreateUSBeneficialOwner$inboundSchema;
-  /** @deprecated use `CreateUSBeneficialOwner$outboundSchema` instead. */
-  export const outboundSchema = CreateUSBeneficialOwner$outboundSchema;
-  /** @deprecated use `CreateUSBeneficialOwner$Outbound` instead. */
-  export type Outbound = CreateUSBeneficialOwner$Outbound;
-}
-
 export function createUSBeneficialOwnerToJSON(
   createUSBeneficialOwner: CreateUSBeneficialOwner,
 ): string {
   return JSON.stringify(
     CreateUSBeneficialOwner$outboundSchema.parse(createUSBeneficialOwner),
-  );
-}
-
-export function createUSBeneficialOwnerFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateUSBeneficialOwner, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateUSBeneficialOwner$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateUSBeneficialOwner' from JSON`,
   );
 }

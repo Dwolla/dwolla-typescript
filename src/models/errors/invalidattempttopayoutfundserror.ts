@@ -48,34 +48,3 @@ export const InvalidAttemptToPayOutFundsError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type InvalidAttemptToPayOutFundsError$Outbound = {
-  code: string;
-  message: string;
-};
-
-/** @internal */
-export const InvalidAttemptToPayOutFundsError$outboundSchema: z.ZodType<
-  InvalidAttemptToPayOutFundsError$Outbound,
-  z.ZodTypeDef,
-  InvalidAttemptToPayOutFundsError
-> = z.instanceof(InvalidAttemptToPayOutFundsError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string(),
-    message: z.string(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidAttemptToPayOutFundsError$ {
-  /** @deprecated use `InvalidAttemptToPayOutFundsError$inboundSchema` instead. */
-  export const inboundSchema = InvalidAttemptToPayOutFundsError$inboundSchema;
-  /** @deprecated use `InvalidAttemptToPayOutFundsError$outboundSchema` instead. */
-  export const outboundSchema = InvalidAttemptToPayOutFundsError$outboundSchema;
-  /** @deprecated use `InvalidAttemptToPayOutFundsError$Outbound` instead. */
-  export type Outbound = InvalidAttemptToPayOutFundsError$Outbound;
-}

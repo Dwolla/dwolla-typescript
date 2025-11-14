@@ -7,18 +7,8 @@ import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  HalLink,
-  HalLink$inboundSchema,
-  HalLink$Outbound,
-  HalLink$outboundSchema,
-} from "./hallink.js";
-import {
-  Label,
-  Label$inboundSchema,
-  Label$Outbound,
-  Label$outboundSchema,
-} from "./label.js";
+import { HalLink, HalLink$inboundSchema } from "./hallink.js";
+import { Label, Label$inboundSchema } from "./label.js";
 
 export type LabelsEmbedded = {
   labels?: Array<Label> | undefined;
@@ -38,37 +28,6 @@ export const LabelsEmbedded$inboundSchema: z.ZodType<
 > = z.object({
   labels: z.array(Label$inboundSchema).optional(),
 });
-
-/** @internal */
-export type LabelsEmbedded$Outbound = {
-  labels?: Array<Label$Outbound> | undefined;
-};
-
-/** @internal */
-export const LabelsEmbedded$outboundSchema: z.ZodType<
-  LabelsEmbedded$Outbound,
-  z.ZodTypeDef,
-  LabelsEmbedded
-> = z.object({
-  labels: z.array(Label$outboundSchema).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LabelsEmbedded$ {
-  /** @deprecated use `LabelsEmbedded$inboundSchema` instead. */
-  export const inboundSchema = LabelsEmbedded$inboundSchema;
-  /** @deprecated use `LabelsEmbedded$outboundSchema` instead. */
-  export const outboundSchema = LabelsEmbedded$outboundSchema;
-  /** @deprecated use `LabelsEmbedded$Outbound` instead. */
-  export type Outbound = LabelsEmbedded$Outbound;
-}
-
-export function labelsEmbeddedToJSON(labelsEmbedded: LabelsEmbedded): string {
-  return JSON.stringify(LabelsEmbedded$outboundSchema.parse(labelsEmbedded));
-}
 
 export function labelsEmbeddedFromJSON(
   jsonString: string,
@@ -92,46 +51,6 @@ export const Labels$inboundSchema: z.ZodType<Labels, z.ZodTypeDef, unknown> = z
       "_embedded": "embedded",
     });
   });
-
-/** @internal */
-export type Labels$Outbound = {
-  _links?: { [k: string]: HalLink$Outbound } | undefined;
-  _embedded?: LabelsEmbedded$Outbound | undefined;
-  total?: number | undefined;
-};
-
-/** @internal */
-export const Labels$outboundSchema: z.ZodType<
-  Labels$Outbound,
-  z.ZodTypeDef,
-  Labels
-> = z.object({
-  links: z.record(HalLink$outboundSchema).optional(),
-  embedded: z.lazy(() => LabelsEmbedded$outboundSchema).optional(),
-  total: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Labels$ {
-  /** @deprecated use `Labels$inboundSchema` instead. */
-  export const inboundSchema = Labels$inboundSchema;
-  /** @deprecated use `Labels$outboundSchema` instead. */
-  export const outboundSchema = Labels$outboundSchema;
-  /** @deprecated use `Labels$Outbound` instead. */
-  export type Outbound = Labels$Outbound;
-}
-
-export function labelsToJSON(labels: Labels): string {
-  return JSON.stringify(Labels$outboundSchema.parse(labels));
-}
 
 export function labelsFromJSON(
   jsonString: string,

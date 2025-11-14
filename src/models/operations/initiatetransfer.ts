@@ -154,15 +154,6 @@ export type InitiateTransferResponse = {
 };
 
 /** @internal */
-export const InitiateTransferLinksSource$inboundSchema: z.ZodType<
-  InitiateTransferLinksSource,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  href: z.string().optional(),
-});
-
-/** @internal */
 export type InitiateTransferLinksSource$Outbound = {
   href?: string | undefined;
 };
@@ -176,19 +167,6 @@ export const InitiateTransferLinksSource$outboundSchema: z.ZodType<
   href: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InitiateTransferLinksSource$ {
-  /** @deprecated use `InitiateTransferLinksSource$inboundSchema` instead. */
-  export const inboundSchema = InitiateTransferLinksSource$inboundSchema;
-  /** @deprecated use `InitiateTransferLinksSource$outboundSchema` instead. */
-  export const outboundSchema = InitiateTransferLinksSource$outboundSchema;
-  /** @deprecated use `InitiateTransferLinksSource$Outbound` instead. */
-  export type Outbound = InitiateTransferLinksSource$Outbound;
-}
-
 export function initiateTransferLinksSourceToJSON(
   initiateTransferLinksSource: InitiateTransferLinksSource,
 ): string {
@@ -198,25 +176,6 @@ export function initiateTransferLinksSourceToJSON(
     ),
   );
 }
-
-export function initiateTransferLinksSourceFromJSON(
-  jsonString: string,
-): SafeParseResult<InitiateTransferLinksSource, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InitiateTransferLinksSource$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InitiateTransferLinksSource' from JSON`,
-  );
-}
-
-/** @internal */
-export const InitiateTransferLinksDestination$inboundSchema: z.ZodType<
-  InitiateTransferLinksDestination,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  href: z.string().optional(),
-});
 
 /** @internal */
 export type InitiateTransferLinksDestination$Outbound = {
@@ -232,19 +191,6 @@ export const InitiateTransferLinksDestination$outboundSchema: z.ZodType<
   href: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InitiateTransferLinksDestination$ {
-  /** @deprecated use `InitiateTransferLinksDestination$inboundSchema` instead. */
-  export const inboundSchema = InitiateTransferLinksDestination$inboundSchema;
-  /** @deprecated use `InitiateTransferLinksDestination$outboundSchema` instead. */
-  export const outboundSchema = InitiateTransferLinksDestination$outboundSchema;
-  /** @deprecated use `InitiateTransferLinksDestination$Outbound` instead. */
-  export type Outbound = InitiateTransferLinksDestination$Outbound;
-}
-
 export function initiateTransferLinksDestinationToJSON(
   initiateTransferLinksDestination: InitiateTransferLinksDestination,
 ): string {
@@ -254,27 +200,6 @@ export function initiateTransferLinksDestinationToJSON(
     ),
   );
 }
-
-export function initiateTransferLinksDestinationFromJSON(
-  jsonString: string,
-): SafeParseResult<InitiateTransferLinksDestination, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InitiateTransferLinksDestination$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InitiateTransferLinksDestination' from JSON`,
-  );
-}
-
-/** @internal */
-export const InitiateTransferLinks$inboundSchema: z.ZodType<
-  InitiateTransferLinks,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  source: z.lazy(() => InitiateTransferLinksSource$inboundSchema).optional(),
-  destination: z.lazy(() => InitiateTransferLinksDestination$inboundSchema)
-    .optional(),
-});
 
 /** @internal */
 export type InitiateTransferLinks$Outbound = {
@@ -293,19 +218,6 @@ export const InitiateTransferLinks$outboundSchema: z.ZodType<
     .optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InitiateTransferLinks$ {
-  /** @deprecated use `InitiateTransferLinks$inboundSchema` instead. */
-  export const inboundSchema = InitiateTransferLinks$inboundSchema;
-  /** @deprecated use `InitiateTransferLinks$outboundSchema` instead. */
-  export const outboundSchema = InitiateTransferLinks$outboundSchema;
-  /** @deprecated use `InitiateTransferLinks$Outbound` instead. */
-  export type Outbound = InitiateTransferLinks$Outbound;
-}
-
 export function initiateTransferLinksToJSON(
   initiateTransferLinks: InitiateTransferLinks,
 ): string {
@@ -313,23 +225,6 @@ export function initiateTransferLinksToJSON(
     InitiateTransferLinks$outboundSchema.parse(initiateTransferLinks),
   );
 }
-
-export function initiateTransferLinksFromJSON(
-  jsonString: string,
-): SafeParseResult<InitiateTransferLinks, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InitiateTransferLinks$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InitiateTransferLinks' from JSON`,
-  );
-}
-
-/** @internal */
-export const InitiateTransferMetadata$inboundSchema: z.ZodType<
-  InitiateTransferMetadata,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
 
 /** @internal */
 export type InitiateTransferMetadata$Outbound = {};
@@ -341,19 +236,6 @@ export const InitiateTransferMetadata$outboundSchema: z.ZodType<
   InitiateTransferMetadata
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InitiateTransferMetadata$ {
-  /** @deprecated use `InitiateTransferMetadata$inboundSchema` instead. */
-  export const inboundSchema = InitiateTransferMetadata$inboundSchema;
-  /** @deprecated use `InitiateTransferMetadata$outboundSchema` instead. */
-  export const outboundSchema = InitiateTransferMetadata$outboundSchema;
-  /** @deprecated use `InitiateTransferMetadata$Outbound` instead. */
-  export type Outbound = InitiateTransferMetadata$Outbound;
-}
-
 export function initiateTransferMetadataToJSON(
   initiateTransferMetadata: InitiateTransferMetadata,
 ): string {
@@ -361,25 +243,6 @@ export function initiateTransferMetadataToJSON(
     InitiateTransferMetadata$outboundSchema.parse(initiateTransferMetadata),
   );
 }
-
-export function initiateTransferMetadataFromJSON(
-  jsonString: string,
-): SafeParseResult<InitiateTransferMetadata, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InitiateTransferMetadata$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InitiateTransferMetadata' from JSON`,
-  );
-}
-
-/** @internal */
-export const ChargeTo$inboundSchema: z.ZodType<
-  ChargeTo,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  href: z.string().optional(),
-});
 
 /** @internal */
 export type ChargeTo$Outbound = {
@@ -395,45 +258,9 @@ export const ChargeTo$outboundSchema: z.ZodType<
   href: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ChargeTo$ {
-  /** @deprecated use `ChargeTo$inboundSchema` instead. */
-  export const inboundSchema = ChargeTo$inboundSchema;
-  /** @deprecated use `ChargeTo$outboundSchema` instead. */
-  export const outboundSchema = ChargeTo$outboundSchema;
-  /** @deprecated use `ChargeTo$Outbound` instead. */
-  export type Outbound = ChargeTo$Outbound;
-}
-
 export function chargeToToJSON(chargeTo: ChargeTo): string {
   return JSON.stringify(ChargeTo$outboundSchema.parse(chargeTo));
 }
-
-export function chargeToFromJSON(
-  jsonString: string,
-): SafeParseResult<ChargeTo, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ChargeTo$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ChargeTo' from JSON`,
-  );
-}
-
-/** @internal */
-export const FeeLinks$inboundSchema: z.ZodType<
-  FeeLinks,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  "charge-to": z.lazy(() => ChargeTo$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "charge-to": "chargeTo",
-  });
-});
 
 /** @internal */
 export type FeeLinks$Outbound = {
@@ -453,42 +280,9 @@ export const FeeLinks$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FeeLinks$ {
-  /** @deprecated use `FeeLinks$inboundSchema` instead. */
-  export const inboundSchema = FeeLinks$inboundSchema;
-  /** @deprecated use `FeeLinks$outboundSchema` instead. */
-  export const outboundSchema = FeeLinks$outboundSchema;
-  /** @deprecated use `FeeLinks$Outbound` instead. */
-  export type Outbound = FeeLinks$Outbound;
-}
-
 export function feeLinksToJSON(feeLinks: FeeLinks): string {
   return JSON.stringify(FeeLinks$outboundSchema.parse(feeLinks));
 }
-
-export function feeLinksFromJSON(
-  jsonString: string,
-): SafeParseResult<FeeLinks, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FeeLinks$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FeeLinks' from JSON`,
-  );
-}
-
-/** @internal */
-export const InitiateTransferAmount$inboundSchema: z.ZodType<
-  InitiateTransferAmount,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  amount: z.string().optional(),
-  currency: z.string().optional(),
-});
 
 /** @internal */
 export type InitiateTransferAmount$Outbound = {
@@ -506,19 +300,6 @@ export const InitiateTransferAmount$outboundSchema: z.ZodType<
   currency: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InitiateTransferAmount$ {
-  /** @deprecated use `InitiateTransferAmount$inboundSchema` instead. */
-  export const inboundSchema = InitiateTransferAmount$inboundSchema;
-  /** @deprecated use `InitiateTransferAmount$outboundSchema` instead. */
-  export const outboundSchema = InitiateTransferAmount$outboundSchema;
-  /** @deprecated use `InitiateTransferAmount$Outbound` instead. */
-  export type Outbound = InitiateTransferAmount$Outbound;
-}
-
 export function initiateTransferAmountToJSON(
   initiateTransferAmount: InitiateTransferAmount,
 ): string {
@@ -526,27 +307,6 @@ export function initiateTransferAmountToJSON(
     InitiateTransferAmount$outboundSchema.parse(initiateTransferAmount),
   );
 }
-
-export function initiateTransferAmountFromJSON(
-  jsonString: string,
-): SafeParseResult<InitiateTransferAmount, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InitiateTransferAmount$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InitiateTransferAmount' from JSON`,
-  );
-}
-
-/** @internal */
-export const Fee$inboundSchema: z.ZodType<Fee, z.ZodTypeDef, unknown> = z
-  .object({
-    _links: z.lazy(() => FeeLinks$inboundSchema).optional(),
-    amount: z.lazy(() => InitiateTransferAmount$inboundSchema).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "_links": "links",
-    });
-  });
 
 /** @internal */
 export type Fee$Outbound = {
@@ -565,42 +325,9 @@ export const Fee$outboundSchema: z.ZodType<Fee$Outbound, z.ZodTypeDef, Fee> = z
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Fee$ {
-  /** @deprecated use `Fee$inboundSchema` instead. */
-  export const inboundSchema = Fee$inboundSchema;
-  /** @deprecated use `Fee$outboundSchema` instead. */
-  export const outboundSchema = Fee$outboundSchema;
-  /** @deprecated use `Fee$Outbound` instead. */
-  export type Outbound = Fee$Outbound;
-}
-
 export function feeToJSON(fee: Fee): string {
   return JSON.stringify(Fee$outboundSchema.parse(fee));
 }
-
-export function feeFromJSON(
-  jsonString: string,
-): SafeParseResult<Fee, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Fee$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Fee' from JSON`,
-  );
-}
-
-/** @internal */
-export const InitiateTransferClearing$inboundSchema: z.ZodType<
-  InitiateTransferClearing,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  source: z.string().optional(),
-  destination: z.string().optional(),
-});
 
 /** @internal */
 export type InitiateTransferClearing$Outbound = {
@@ -618,19 +345,6 @@ export const InitiateTransferClearing$outboundSchema: z.ZodType<
   destination: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InitiateTransferClearing$ {
-  /** @deprecated use `InitiateTransferClearing$inboundSchema` instead. */
-  export const inboundSchema = InitiateTransferClearing$inboundSchema;
-  /** @deprecated use `InitiateTransferClearing$outboundSchema` instead. */
-  export const outboundSchema = InitiateTransferClearing$outboundSchema;
-  /** @deprecated use `InitiateTransferClearing$Outbound` instead. */
-  export type Outbound = InitiateTransferClearing$Outbound;
-}
-
 export function initiateTransferClearingToJSON(
   initiateTransferClearing: InitiateTransferClearing,
 ): string {
@@ -638,25 +352,6 @@ export function initiateTransferClearingToJSON(
     InitiateTransferClearing$outboundSchema.parse(initiateTransferClearing),
   );
 }
-
-export function initiateTransferClearingFromJSON(
-  jsonString: string,
-): SafeParseResult<InitiateTransferClearing, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InitiateTransferClearing$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InitiateTransferClearing' from JSON`,
-  );
-}
-
-/** @internal */
-export const InitiateTransferSourceAddenda$inboundSchema: z.ZodType<
-  InitiateTransferSourceAddenda,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  values: z.array(z.string()).optional(),
-});
 
 /** @internal */
 export type InitiateTransferSourceAddenda$Outbound = {
@@ -672,19 +367,6 @@ export const InitiateTransferSourceAddenda$outboundSchema: z.ZodType<
   values: z.array(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InitiateTransferSourceAddenda$ {
-  /** @deprecated use `InitiateTransferSourceAddenda$inboundSchema` instead. */
-  export const inboundSchema = InitiateTransferSourceAddenda$inboundSchema;
-  /** @deprecated use `InitiateTransferSourceAddenda$outboundSchema` instead. */
-  export const outboundSchema = InitiateTransferSourceAddenda$outboundSchema;
-  /** @deprecated use `InitiateTransferSourceAddenda$Outbound` instead. */
-  export type Outbound = InitiateTransferSourceAddenda$Outbound;
-}
-
 export function initiateTransferSourceAddendaToJSON(
   initiateTransferSourceAddenda: InitiateTransferSourceAddenda,
 ): string {
@@ -694,25 +376,6 @@ export function initiateTransferSourceAddendaToJSON(
     ),
   );
 }
-
-export function initiateTransferSourceAddendaFromJSON(
-  jsonString: string,
-): SafeParseResult<InitiateTransferSourceAddenda, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InitiateTransferSourceAddenda$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InitiateTransferSourceAddenda' from JSON`,
-  );
-}
-
-/** @internal */
-export const InitiateTransferAchDetailsSource$inboundSchema: z.ZodType<
-  InitiateTransferAchDetailsSource,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  addenda: z.lazy(() => InitiateTransferSourceAddenda$inboundSchema).optional(),
-});
 
 /** @internal */
 export type InitiateTransferAchDetailsSource$Outbound = {
@@ -729,19 +392,6 @@ export const InitiateTransferAchDetailsSource$outboundSchema: z.ZodType<
     .optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InitiateTransferAchDetailsSource$ {
-  /** @deprecated use `InitiateTransferAchDetailsSource$inboundSchema` instead. */
-  export const inboundSchema = InitiateTransferAchDetailsSource$inboundSchema;
-  /** @deprecated use `InitiateTransferAchDetailsSource$outboundSchema` instead. */
-  export const outboundSchema = InitiateTransferAchDetailsSource$outboundSchema;
-  /** @deprecated use `InitiateTransferAchDetailsSource$Outbound` instead. */
-  export type Outbound = InitiateTransferAchDetailsSource$Outbound;
-}
-
 export function initiateTransferAchDetailsSourceToJSON(
   initiateTransferAchDetailsSource: InitiateTransferAchDetailsSource,
 ): string {
@@ -751,25 +401,6 @@ export function initiateTransferAchDetailsSourceToJSON(
     ),
   );
 }
-
-export function initiateTransferAchDetailsSourceFromJSON(
-  jsonString: string,
-): SafeParseResult<InitiateTransferAchDetailsSource, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InitiateTransferAchDetailsSource$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InitiateTransferAchDetailsSource' from JSON`,
-  );
-}
-
-/** @internal */
-export const InitiateTransferDestinationAddenda$inboundSchema: z.ZodType<
-  InitiateTransferDestinationAddenda,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  values: z.array(z.string()).optional(),
-});
 
 /** @internal */
 export type InitiateTransferDestinationAddenda$Outbound = {
@@ -785,20 +416,6 @@ export const InitiateTransferDestinationAddenda$outboundSchema: z.ZodType<
   values: z.array(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InitiateTransferDestinationAddenda$ {
-  /** @deprecated use `InitiateTransferDestinationAddenda$inboundSchema` instead. */
-  export const inboundSchema = InitiateTransferDestinationAddenda$inboundSchema;
-  /** @deprecated use `InitiateTransferDestinationAddenda$outboundSchema` instead. */
-  export const outboundSchema =
-    InitiateTransferDestinationAddenda$outboundSchema;
-  /** @deprecated use `InitiateTransferDestinationAddenda$Outbound` instead. */
-  export type Outbound = InitiateTransferDestinationAddenda$Outbound;
-}
-
 export function initiateTransferDestinationAddendaToJSON(
   initiateTransferDestinationAddenda: InitiateTransferDestinationAddenda,
 ): string {
@@ -808,27 +425,6 @@ export function initiateTransferDestinationAddendaToJSON(
     ),
   );
 }
-
-export function initiateTransferDestinationAddendaFromJSON(
-  jsonString: string,
-): SafeParseResult<InitiateTransferDestinationAddenda, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      InitiateTransferDestinationAddenda$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InitiateTransferDestinationAddenda' from JSON`,
-  );
-}
-
-/** @internal */
-export const InitiateTransferAchDetailsDestination$inboundSchema: z.ZodType<
-  InitiateTransferAchDetailsDestination,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  addenda: z.lazy(() => InitiateTransferDestinationAddenda$inboundSchema)
-    .optional(),
-});
 
 /** @internal */
 export type InitiateTransferAchDetailsDestination$Outbound = {
@@ -845,21 +441,6 @@ export const InitiateTransferAchDetailsDestination$outboundSchema: z.ZodType<
     .optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InitiateTransferAchDetailsDestination$ {
-  /** @deprecated use `InitiateTransferAchDetailsDestination$inboundSchema` instead. */
-  export const inboundSchema =
-    InitiateTransferAchDetailsDestination$inboundSchema;
-  /** @deprecated use `InitiateTransferAchDetailsDestination$outboundSchema` instead. */
-  export const outboundSchema =
-    InitiateTransferAchDetailsDestination$outboundSchema;
-  /** @deprecated use `InitiateTransferAchDetailsDestination$Outbound` instead. */
-  export type Outbound = InitiateTransferAchDetailsDestination$Outbound;
-}
-
 export function initiateTransferAchDetailsDestinationToJSON(
   initiateTransferAchDetailsDestination: InitiateTransferAchDetailsDestination,
 ): string {
@@ -869,29 +450,6 @@ export function initiateTransferAchDetailsDestinationToJSON(
     ),
   );
 }
-
-export function initiateTransferAchDetailsDestinationFromJSON(
-  jsonString: string,
-): SafeParseResult<InitiateTransferAchDetailsDestination, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      InitiateTransferAchDetailsDestination$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InitiateTransferAchDetailsDestination' from JSON`,
-  );
-}
-
-/** @internal */
-export const InitiateTransferAchDetails$inboundSchema: z.ZodType<
-  InitiateTransferAchDetails,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  source: z.lazy(() => InitiateTransferAchDetailsSource$inboundSchema)
-    .optional(),
-  destination: z.lazy(() => InitiateTransferAchDetailsDestination$inboundSchema)
-    .optional(),
-});
 
 /** @internal */
 export type InitiateTransferAchDetails$Outbound = {
@@ -912,19 +470,6 @@ export const InitiateTransferAchDetails$outboundSchema: z.ZodType<
   ).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InitiateTransferAchDetails$ {
-  /** @deprecated use `InitiateTransferAchDetails$inboundSchema` instead. */
-  export const inboundSchema = InitiateTransferAchDetails$inboundSchema;
-  /** @deprecated use `InitiateTransferAchDetails$outboundSchema` instead. */
-  export const outboundSchema = InitiateTransferAchDetails$outboundSchema;
-  /** @deprecated use `InitiateTransferAchDetails$Outbound` instead. */
-  export type Outbound = InitiateTransferAchDetails$Outbound;
-}
-
 export function initiateTransferAchDetailsToJSON(
   initiateTransferAchDetails: InitiateTransferAchDetails,
 ): string {
@@ -932,25 +477,6 @@ export function initiateTransferAchDetailsToJSON(
     InitiateTransferAchDetails$outboundSchema.parse(initiateTransferAchDetails),
   );
 }
-
-export function initiateTransferAchDetailsFromJSON(
-  jsonString: string,
-): SafeParseResult<InitiateTransferAchDetails, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InitiateTransferAchDetails$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InitiateTransferAchDetails' from JSON`,
-  );
-}
-
-/** @internal */
-export const RtpDetailsDestination$inboundSchema: z.ZodType<
-  RtpDetailsDestination,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  remittanceData: z.string().optional(),
-});
 
 /** @internal */
 export type RtpDetailsDestination$Outbound = {
@@ -966,19 +492,6 @@ export const RtpDetailsDestination$outboundSchema: z.ZodType<
   remittanceData: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RtpDetailsDestination$ {
-  /** @deprecated use `RtpDetailsDestination$inboundSchema` instead. */
-  export const inboundSchema = RtpDetailsDestination$inboundSchema;
-  /** @deprecated use `RtpDetailsDestination$outboundSchema` instead. */
-  export const outboundSchema = RtpDetailsDestination$outboundSchema;
-  /** @deprecated use `RtpDetailsDestination$Outbound` instead. */
-  export type Outbound = RtpDetailsDestination$Outbound;
-}
-
 export function rtpDetailsDestinationToJSON(
   rtpDetailsDestination: RtpDetailsDestination,
 ): string {
@@ -986,25 +499,6 @@ export function rtpDetailsDestinationToJSON(
     RtpDetailsDestination$outboundSchema.parse(rtpDetailsDestination),
   );
 }
-
-export function rtpDetailsDestinationFromJSON(
-  jsonString: string,
-): SafeParseResult<RtpDetailsDestination, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => RtpDetailsDestination$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'RtpDetailsDestination' from JSON`,
-  );
-}
-
-/** @internal */
-export const RtpDetails$inboundSchema: z.ZodType<
-  RtpDetails,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  destination: z.lazy(() => RtpDetailsDestination$inboundSchema).optional(),
-});
 
 /** @internal */
 export type RtpDetails$Outbound = {
@@ -1020,41 +514,9 @@ export const RtpDetails$outboundSchema: z.ZodType<
   destination: z.lazy(() => RtpDetailsDestination$outboundSchema).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RtpDetails$ {
-  /** @deprecated use `RtpDetails$inboundSchema` instead. */
-  export const inboundSchema = RtpDetails$inboundSchema;
-  /** @deprecated use `RtpDetails$outboundSchema` instead. */
-  export const outboundSchema = RtpDetails$outboundSchema;
-  /** @deprecated use `RtpDetails$Outbound` instead. */
-  export type Outbound = RtpDetails$Outbound;
-}
-
 export function rtpDetailsToJSON(rtpDetails: RtpDetails): string {
   return JSON.stringify(RtpDetails$outboundSchema.parse(rtpDetails));
 }
-
-export function rtpDetailsFromJSON(
-  jsonString: string,
-): SafeParseResult<RtpDetails, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => RtpDetails$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'RtpDetails' from JSON`,
-  );
-}
-
-/** @internal */
-export const InstantDetailsDestination$inboundSchema: z.ZodType<
-  InstantDetailsDestination,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  remittanceData: z.string().optional(),
-});
 
 /** @internal */
 export type InstantDetailsDestination$Outbound = {
@@ -1070,19 +532,6 @@ export const InstantDetailsDestination$outboundSchema: z.ZodType<
   remittanceData: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InstantDetailsDestination$ {
-  /** @deprecated use `InstantDetailsDestination$inboundSchema` instead. */
-  export const inboundSchema = InstantDetailsDestination$inboundSchema;
-  /** @deprecated use `InstantDetailsDestination$outboundSchema` instead. */
-  export const outboundSchema = InstantDetailsDestination$outboundSchema;
-  /** @deprecated use `InstantDetailsDestination$Outbound` instead. */
-  export type Outbound = InstantDetailsDestination$Outbound;
-}
-
 export function instantDetailsDestinationToJSON(
   instantDetailsDestination: InstantDetailsDestination,
 ): string {
@@ -1090,25 +539,6 @@ export function instantDetailsDestinationToJSON(
     InstantDetailsDestination$outboundSchema.parse(instantDetailsDestination),
   );
 }
-
-export function instantDetailsDestinationFromJSON(
-  jsonString: string,
-): SafeParseResult<InstantDetailsDestination, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InstantDetailsDestination$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InstantDetailsDestination' from JSON`,
-  );
-}
-
-/** @internal */
-export const InstantDetails$inboundSchema: z.ZodType<
-  InstantDetails,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  destination: z.lazy(() => InstantDetailsDestination$inboundSchema).optional(),
-});
 
 /** @internal */
 export type InstantDetails$Outbound = {
@@ -1125,62 +555,14 @@ export const InstantDetails$outboundSchema: z.ZodType<
     .optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InstantDetails$ {
-  /** @deprecated use `InstantDetails$inboundSchema` instead. */
-  export const inboundSchema = InstantDetails$inboundSchema;
-  /** @deprecated use `InstantDetails$outboundSchema` instead. */
-  export const outboundSchema = InstantDetails$outboundSchema;
-  /** @deprecated use `InstantDetails$Outbound` instead. */
-  export type Outbound = InstantDetails$Outbound;
-}
-
 export function instantDetailsToJSON(instantDetails: InstantDetails): string {
   return JSON.stringify(InstantDetails$outboundSchema.parse(instantDetails));
 }
 
-export function instantDetailsFromJSON(
-  jsonString: string,
-): SafeParseResult<InstantDetails, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InstantDetails$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InstantDetails' from JSON`,
-  );
-}
-
-/** @internal */
-export const DestinationEnum$inboundSchema: z.ZodNativeEnum<
-  typeof DestinationEnum
-> = z.nativeEnum(DestinationEnum);
-
 /** @internal */
 export const DestinationEnum$outboundSchema: z.ZodNativeEnum<
   typeof DestinationEnum
-> = DestinationEnum$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DestinationEnum$ {
-  /** @deprecated use `DestinationEnum$inboundSchema` instead. */
-  export const inboundSchema = DestinationEnum$inboundSchema;
-  /** @deprecated use `DestinationEnum$outboundSchema` instead. */
-  export const outboundSchema = DestinationEnum$outboundSchema;
-}
-
-/** @internal */
-export const InitiateTransferProcessingChannel$inboundSchema: z.ZodType<
-  InitiateTransferProcessingChannel,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  destination: DestinationEnum$inboundSchema.optional(),
-});
+> = z.nativeEnum(DestinationEnum);
 
 /** @internal */
 export type InitiateTransferProcessingChannel$Outbound = {
@@ -1196,20 +578,6 @@ export const InitiateTransferProcessingChannel$outboundSchema: z.ZodType<
   destination: DestinationEnum$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InitiateTransferProcessingChannel$ {
-  /** @deprecated use `InitiateTransferProcessingChannel$inboundSchema` instead. */
-  export const inboundSchema = InitiateTransferProcessingChannel$inboundSchema;
-  /** @deprecated use `InitiateTransferProcessingChannel$outboundSchema` instead. */
-  export const outboundSchema =
-    InitiateTransferProcessingChannel$outboundSchema;
-  /** @deprecated use `InitiateTransferProcessingChannel$Outbound` instead. */
-  export type Outbound = InitiateTransferProcessingChannel$Outbound;
-}
-
 export function initiateTransferProcessingChannelToJSON(
   initiateTransferProcessingChannel: InitiateTransferProcessingChannel,
 ): string {
@@ -1219,40 +587,6 @@ export function initiateTransferProcessingChannelToJSON(
     ),
   );
 }
-
-export function initiateTransferProcessingChannelFromJSON(
-  jsonString: string,
-): SafeParseResult<InitiateTransferProcessingChannel, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InitiateTransferProcessingChannel$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InitiateTransferProcessingChannel' from JSON`,
-  );
-}
-
-/** @internal */
-export const InitiateTransferRequestBody$inboundSchema: z.ZodType<
-  InitiateTransferRequestBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  _links: z.lazy(() => InitiateTransferLinks$inboundSchema),
-  amount: models.TransferAmount$inboundSchema,
-  metadata: z.lazy(() => InitiateTransferMetadata$inboundSchema).optional(),
-  fees: z.array(z.lazy(() => Fee$inboundSchema)).optional(),
-  clearing: z.lazy(() => InitiateTransferClearing$inboundSchema).optional(),
-  achDetails: z.lazy(() => InitiateTransferAchDetails$inboundSchema).optional(),
-  rtpDetails: z.lazy(() => RtpDetails$inboundSchema).optional(),
-  instantDetails: z.lazy(() => InstantDetails$inboundSchema).optional(),
-  correlationId: z.string().optional(),
-  processingChannel: z.lazy(() =>
-    InitiateTransferProcessingChannel$inboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
 
 /** @internal */
 export type InitiateTransferRequestBody$Outbound = {
@@ -1293,19 +627,6 @@ export const InitiateTransferRequestBody$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InitiateTransferRequestBody$ {
-  /** @deprecated use `InitiateTransferRequestBody$inboundSchema` instead. */
-  export const inboundSchema = InitiateTransferRequestBody$inboundSchema;
-  /** @deprecated use `InitiateTransferRequestBody$outboundSchema` instead. */
-  export const outboundSchema = InitiateTransferRequestBody$outboundSchema;
-  /** @deprecated use `InitiateTransferRequestBody$Outbound` instead. */
-  export type Outbound = InitiateTransferRequestBody$Outbound;
-}
-
 export function initiateTransferRequestBodyToJSON(
   initiateTransferRequestBody: InitiateTransferRequestBody,
 ): string {
@@ -1315,31 +636,6 @@ export function initiateTransferRequestBodyToJSON(
     ),
   );
 }
-
-export function initiateTransferRequestBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<InitiateTransferRequestBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InitiateTransferRequestBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InitiateTransferRequestBody' from JSON`,
-  );
-}
-
-/** @internal */
-export const InitiateTransferRequest$inboundSchema: z.ZodType<
-  InitiateTransferRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  "Idempotency-Key": z.string().optional(),
-  RequestBody: z.lazy(() => InitiateTransferRequestBody$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "Idempotency-Key": "idempotencyKey",
-    "RequestBody": "requestBody",
-  });
-});
 
 /** @internal */
 export type InitiateTransferRequest$Outbound = {
@@ -1362,34 +658,11 @@ export const InitiateTransferRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InitiateTransferRequest$ {
-  /** @deprecated use `InitiateTransferRequest$inboundSchema` instead. */
-  export const inboundSchema = InitiateTransferRequest$inboundSchema;
-  /** @deprecated use `InitiateTransferRequest$outboundSchema` instead. */
-  export const outboundSchema = InitiateTransferRequest$outboundSchema;
-  /** @deprecated use `InitiateTransferRequest$Outbound` instead. */
-  export type Outbound = InitiateTransferRequest$Outbound;
-}
-
 export function initiateTransferRequestToJSON(
   initiateTransferRequest: InitiateTransferRequest,
 ): string {
   return JSON.stringify(
     InitiateTransferRequest$outboundSchema.parse(initiateTransferRequest),
-  );
-}
-
-export function initiateTransferRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<InitiateTransferRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InitiateTransferRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InitiateTransferRequest' from JSON`,
   );
 }
 
@@ -1405,45 +678,6 @@ export const InitiateTransferResponse$inboundSchema: z.ZodType<
     "Headers": "headers",
   });
 });
-
-/** @internal */
-export type InitiateTransferResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-};
-
-/** @internal */
-export const InitiateTransferResponse$outboundSchema: z.ZodType<
-  InitiateTransferResponse$Outbound,
-  z.ZodTypeDef,
-  InitiateTransferResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InitiateTransferResponse$ {
-  /** @deprecated use `InitiateTransferResponse$inboundSchema` instead. */
-  export const inboundSchema = InitiateTransferResponse$inboundSchema;
-  /** @deprecated use `InitiateTransferResponse$outboundSchema` instead. */
-  export const outboundSchema = InitiateTransferResponse$outboundSchema;
-  /** @deprecated use `InitiateTransferResponse$Outbound` instead. */
-  export type Outbound = InitiateTransferResponse$Outbound;
-}
-
-export function initiateTransferResponseToJSON(
-  initiateTransferResponse: InitiateTransferResponse,
-): string {
-  return JSON.stringify(
-    InitiateTransferResponse$outboundSchema.parse(initiateTransferResponse),
-  );
-}
 
 export function initiateTransferResponseFromJSON(
   jsonString: string,

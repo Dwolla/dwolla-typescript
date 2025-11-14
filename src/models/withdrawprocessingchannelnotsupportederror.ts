@@ -29,44 +29,6 @@ export const WithdrawProcessingChannelNotSupportedErrorLinks$inboundSchema:
     unknown
   > = z.object({});
 
-/** @internal */
-export type WithdrawProcessingChannelNotSupportedErrorLinks$Outbound = {};
-
-/** @internal */
-export const WithdrawProcessingChannelNotSupportedErrorLinks$outboundSchema:
-  z.ZodType<
-    WithdrawProcessingChannelNotSupportedErrorLinks$Outbound,
-    z.ZodTypeDef,
-    WithdrawProcessingChannelNotSupportedErrorLinks
-  > = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawProcessingChannelNotSupportedErrorLinks$ {
-  /** @deprecated use `WithdrawProcessingChannelNotSupportedErrorLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawProcessingChannelNotSupportedErrorLinks$inboundSchema;
-  /** @deprecated use `WithdrawProcessingChannelNotSupportedErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawProcessingChannelNotSupportedErrorLinks$outboundSchema;
-  /** @deprecated use `WithdrawProcessingChannelNotSupportedErrorLinks$Outbound` instead. */
-  export type Outbound =
-    WithdrawProcessingChannelNotSupportedErrorLinks$Outbound;
-}
-
-export function withdrawProcessingChannelNotSupportedErrorLinksToJSON(
-  withdrawProcessingChannelNotSupportedErrorLinks:
-    WithdrawProcessingChannelNotSupportedErrorLinks,
-): string {
-  return JSON.stringify(
-    WithdrawProcessingChannelNotSupportedErrorLinks$outboundSchema.parse(
-      withdrawProcessingChannelNotSupportedErrorLinks,
-    ),
-  );
-}
-
 export function withdrawProcessingChannelNotSupportedErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -102,60 +64,6 @@ export const WithdrawProcessingChannelNotSupportedErrorError$inboundSchema:
     });
   });
 
-/** @internal */
-export type WithdrawProcessingChannelNotSupportedErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: WithdrawProcessingChannelNotSupportedErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const WithdrawProcessingChannelNotSupportedErrorError$outboundSchema:
-  z.ZodType<
-    WithdrawProcessingChannelNotSupportedErrorError$Outbound,
-    z.ZodTypeDef,
-    WithdrawProcessingChannelNotSupportedErrorError
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    path: z.string().optional(),
-    links: z.lazy(() =>
-      WithdrawProcessingChannelNotSupportedErrorLinks$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      links: "_links",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawProcessingChannelNotSupportedErrorError$ {
-  /** @deprecated use `WithdrawProcessingChannelNotSupportedErrorError$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawProcessingChannelNotSupportedErrorError$inboundSchema;
-  /** @deprecated use `WithdrawProcessingChannelNotSupportedErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawProcessingChannelNotSupportedErrorError$outboundSchema;
-  /** @deprecated use `WithdrawProcessingChannelNotSupportedErrorError$Outbound` instead. */
-  export type Outbound =
-    WithdrawProcessingChannelNotSupportedErrorError$Outbound;
-}
-
-export function withdrawProcessingChannelNotSupportedErrorErrorToJSON(
-  withdrawProcessingChannelNotSupportedErrorError:
-    WithdrawProcessingChannelNotSupportedErrorError,
-): string {
-  return JSON.stringify(
-    WithdrawProcessingChannelNotSupportedErrorError$outboundSchema.parse(
-      withdrawProcessingChannelNotSupportedErrorError,
-    ),
-  );
-}
-
 export function withdrawProcessingChannelNotSupportedErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -185,54 +93,6 @@ export const WithdrawProcessingChannelNotSupportedErrorEmbedded$inboundSchema:
       ),
     ).optional(),
   });
-
-/** @internal */
-export type WithdrawProcessingChannelNotSupportedErrorEmbedded$Outbound = {
-  errors?:
-    | Array<WithdrawProcessingChannelNotSupportedErrorError$Outbound>
-    | undefined;
-};
-
-/** @internal */
-export const WithdrawProcessingChannelNotSupportedErrorEmbedded$outboundSchema:
-  z.ZodType<
-    WithdrawProcessingChannelNotSupportedErrorEmbedded$Outbound,
-    z.ZodTypeDef,
-    WithdrawProcessingChannelNotSupportedErrorEmbedded
-  > = z.object({
-    errors: z.array(
-      z.lazy(() =>
-        WithdrawProcessingChannelNotSupportedErrorError$outboundSchema
-      ),
-    ).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawProcessingChannelNotSupportedErrorEmbedded$ {
-  /** @deprecated use `WithdrawProcessingChannelNotSupportedErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawProcessingChannelNotSupportedErrorEmbedded$inboundSchema;
-  /** @deprecated use `WithdrawProcessingChannelNotSupportedErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawProcessingChannelNotSupportedErrorEmbedded$outboundSchema;
-  /** @deprecated use `WithdrawProcessingChannelNotSupportedErrorEmbedded$Outbound` instead. */
-  export type Outbound =
-    WithdrawProcessingChannelNotSupportedErrorEmbedded$Outbound;
-}
-
-export function withdrawProcessingChannelNotSupportedErrorEmbeddedToJSON(
-  withdrawProcessingChannelNotSupportedErrorEmbedded:
-    WithdrawProcessingChannelNotSupportedErrorEmbedded,
-): string {
-  return JSON.stringify(
-    WithdrawProcessingChannelNotSupportedErrorEmbedded$outboundSchema.parse(
-      withdrawProcessingChannelNotSupportedErrorEmbedded,
-    ),
-  );
-}
 
 export function withdrawProcessingChannelNotSupportedErrorEmbeddedFromJSON(
   jsonString: string,

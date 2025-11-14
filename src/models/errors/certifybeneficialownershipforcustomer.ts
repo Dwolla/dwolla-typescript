@@ -57,39 +57,3 @@ export const CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError$inboundSc
         body: v.body$,
       });
     });
-
-/** @internal */
-export type CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError$Outbound =
-  {
-    code?: string | undefined;
-    message?: string | undefined;
-  };
-
-/** @internal */
-export const CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError
-  > = z.instanceof(CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError$ {
-  /** @deprecated use `CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError$Outbound;
-}

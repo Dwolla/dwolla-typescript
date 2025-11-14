@@ -9,16 +9,9 @@ import { Result as SafeParseResult } from "../types/fp.js";
 import {
   BeneficialOwner,
   BeneficialOwner$inboundSchema,
-  BeneficialOwner$Outbound,
-  BeneficialOwner$outboundSchema,
 } from "./beneficialowner.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  HalLink,
-  HalLink$inboundSchema,
-  HalLink$Outbound,
-  HalLink$outboundSchema,
-} from "./hallink.js";
+import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 
 export type BeneficialOwnersEmbedded = {
   beneficialOwners?: Array<BeneficialOwner> | undefined;
@@ -45,45 +38,6 @@ export const BeneficialOwnersEmbedded$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type BeneficialOwnersEmbedded$Outbound = {
-  "beneficial-owners"?: Array<BeneficialOwner$Outbound> | undefined;
-};
-
-/** @internal */
-export const BeneficialOwnersEmbedded$outboundSchema: z.ZodType<
-  BeneficialOwnersEmbedded$Outbound,
-  z.ZodTypeDef,
-  BeneficialOwnersEmbedded
-> = z.object({
-  beneficialOwners: z.array(BeneficialOwner$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    beneficialOwners: "beneficial-owners",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BeneficialOwnersEmbedded$ {
-  /** @deprecated use `BeneficialOwnersEmbedded$inboundSchema` instead. */
-  export const inboundSchema = BeneficialOwnersEmbedded$inboundSchema;
-  /** @deprecated use `BeneficialOwnersEmbedded$outboundSchema` instead. */
-  export const outboundSchema = BeneficialOwnersEmbedded$outboundSchema;
-  /** @deprecated use `BeneficialOwnersEmbedded$Outbound` instead. */
-  export type Outbound = BeneficialOwnersEmbedded$Outbound;
-}
-
-export function beneficialOwnersEmbeddedToJSON(
-  beneficialOwnersEmbedded: BeneficialOwnersEmbedded,
-): string {
-  return JSON.stringify(
-    BeneficialOwnersEmbedded$outboundSchema.parse(beneficialOwnersEmbedded),
-  );
-}
-
 export function beneficialOwnersEmbeddedFromJSON(
   jsonString: string,
 ): SafeParseResult<BeneficialOwnersEmbedded, SDKValidationError> {
@@ -108,48 +62,6 @@ export const BeneficialOwners$inboundSchema: z.ZodType<
     "_embedded": "embedded",
   });
 });
-
-/** @internal */
-export type BeneficialOwners$Outbound = {
-  _links?: { [k: string]: HalLink$Outbound } | undefined;
-  _embedded?: BeneficialOwnersEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const BeneficialOwners$outboundSchema: z.ZodType<
-  BeneficialOwners$Outbound,
-  z.ZodTypeDef,
-  BeneficialOwners
-> = z.object({
-  links: z.record(HalLink$outboundSchema).optional(),
-  embedded: z.lazy(() => BeneficialOwnersEmbedded$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BeneficialOwners$ {
-  /** @deprecated use `BeneficialOwners$inboundSchema` instead. */
-  export const inboundSchema = BeneficialOwners$inboundSchema;
-  /** @deprecated use `BeneficialOwners$outboundSchema` instead. */
-  export const outboundSchema = BeneficialOwners$outboundSchema;
-  /** @deprecated use `BeneficialOwners$Outbound` instead. */
-  export type Outbound = BeneficialOwners$Outbound;
-}
-
-export function beneficialOwnersToJSON(
-  beneficialOwners: BeneficialOwners,
-): string {
-  return JSON.stringify(
-    BeneficialOwners$outboundSchema.parse(beneficialOwners),
-  );
-}
 
 export function beneficialOwnersFromJSON(
   jsonString: string,

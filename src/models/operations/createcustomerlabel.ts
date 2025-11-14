@@ -36,16 +36,6 @@ export type CreateCustomerLabelResponse = {
 };
 
 /** @internal */
-export const CreateCustomerLabelAmount$inboundSchema: z.ZodType<
-  CreateCustomerLabelAmount,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  currency: z.string().optional(),
-  value: z.string().optional(),
-});
-
-/** @internal */
 export type CreateCustomerLabelAmount$Outbound = {
   currency?: string | undefined;
   value?: string | undefined;
@@ -61,19 +51,6 @@ export const CreateCustomerLabelAmount$outboundSchema: z.ZodType<
   value: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerLabelAmount$ {
-  /** @deprecated use `CreateCustomerLabelAmount$inboundSchema` instead. */
-  export const inboundSchema = CreateCustomerLabelAmount$inboundSchema;
-  /** @deprecated use `CreateCustomerLabelAmount$outboundSchema` instead. */
-  export const outboundSchema = CreateCustomerLabelAmount$outboundSchema;
-  /** @deprecated use `CreateCustomerLabelAmount$Outbound` instead. */
-  export type Outbound = CreateCustomerLabelAmount$Outbound;
-}
-
 export function createCustomerLabelAmountToJSON(
   createCustomerLabelAmount: CreateCustomerLabelAmount,
 ): string {
@@ -81,25 +58,6 @@ export function createCustomerLabelAmountToJSON(
     CreateCustomerLabelAmount$outboundSchema.parse(createCustomerLabelAmount),
   );
 }
-
-export function createCustomerLabelAmountFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateCustomerLabelAmount, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateCustomerLabelAmount$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateCustomerLabelAmount' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateCustomerLabelRequestBody$inboundSchema: z.ZodType<
-  CreateCustomerLabelRequestBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  amount: z.lazy(() => CreateCustomerLabelAmount$inboundSchema),
-});
 
 /** @internal */
 export type CreateCustomerLabelRequestBody$Outbound = {
@@ -115,19 +73,6 @@ export const CreateCustomerLabelRequestBody$outboundSchema: z.ZodType<
   amount: z.lazy(() => CreateCustomerLabelAmount$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerLabelRequestBody$ {
-  /** @deprecated use `CreateCustomerLabelRequestBody$inboundSchema` instead. */
-  export const inboundSchema = CreateCustomerLabelRequestBody$inboundSchema;
-  /** @deprecated use `CreateCustomerLabelRequestBody$outboundSchema` instead. */
-  export const outboundSchema = CreateCustomerLabelRequestBody$outboundSchema;
-  /** @deprecated use `CreateCustomerLabelRequestBody$Outbound` instead. */
-  export type Outbound = CreateCustomerLabelRequestBody$Outbound;
-}
-
 export function createCustomerLabelRequestBodyToJSON(
   createCustomerLabelRequestBody: CreateCustomerLabelRequestBody,
 ): string {
@@ -137,30 +82,6 @@ export function createCustomerLabelRequestBodyToJSON(
     ),
   );
 }
-
-export function createCustomerLabelRequestBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateCustomerLabelRequestBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateCustomerLabelRequestBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateCustomerLabelRequestBody' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateCustomerLabelRequest$inboundSchema: z.ZodType<
-  CreateCustomerLabelRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  RequestBody: z.lazy(() => CreateCustomerLabelRequestBody$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "RequestBody": "requestBody",
-  });
-});
 
 /** @internal */
 export type CreateCustomerLabelRequest$Outbound = {
@@ -182,34 +103,11 @@ export const CreateCustomerLabelRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerLabelRequest$ {
-  /** @deprecated use `CreateCustomerLabelRequest$inboundSchema` instead. */
-  export const inboundSchema = CreateCustomerLabelRequest$inboundSchema;
-  /** @deprecated use `CreateCustomerLabelRequest$outboundSchema` instead. */
-  export const outboundSchema = CreateCustomerLabelRequest$outboundSchema;
-  /** @deprecated use `CreateCustomerLabelRequest$Outbound` instead. */
-  export type Outbound = CreateCustomerLabelRequest$Outbound;
-}
-
 export function createCustomerLabelRequestToJSON(
   createCustomerLabelRequest: CreateCustomerLabelRequest,
 ): string {
   return JSON.stringify(
     CreateCustomerLabelRequest$outboundSchema.parse(createCustomerLabelRequest),
-  );
-}
-
-export function createCustomerLabelRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateCustomerLabelRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateCustomerLabelRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateCustomerLabelRequest' from JSON`,
   );
 }
 
@@ -225,47 +123,6 @@ export const CreateCustomerLabelResponse$inboundSchema: z.ZodType<
     "Headers": "headers",
   });
 });
-
-/** @internal */
-export type CreateCustomerLabelResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-};
-
-/** @internal */
-export const CreateCustomerLabelResponse$outboundSchema: z.ZodType<
-  CreateCustomerLabelResponse$Outbound,
-  z.ZodTypeDef,
-  CreateCustomerLabelResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerLabelResponse$ {
-  /** @deprecated use `CreateCustomerLabelResponse$inboundSchema` instead. */
-  export const inboundSchema = CreateCustomerLabelResponse$inboundSchema;
-  /** @deprecated use `CreateCustomerLabelResponse$outboundSchema` instead. */
-  export const outboundSchema = CreateCustomerLabelResponse$outboundSchema;
-  /** @deprecated use `CreateCustomerLabelResponse$Outbound` instead. */
-  export type Outbound = CreateCustomerLabelResponse$Outbound;
-}
-
-export function createCustomerLabelResponseToJSON(
-  createCustomerLabelResponse: CreateCustomerLabelResponse,
-): string {
-  return JSON.stringify(
-    CreateCustomerLabelResponse$outboundSchema.parse(
-      createCustomerLabelResponse,
-    ),
-  );
-}
 
 export function createCustomerLabelResponseFromJSON(
   jsonString: string,

@@ -3,33 +3,26 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../lib/schemas.js";
-import { Result as SafeParseResult } from "../types/fp.js";
 import {
   CreateCustomerBankFundingSourceWithAccountNumbers,
-  CreateCustomerBankFundingSourceWithAccountNumbers$inboundSchema,
   CreateCustomerBankFundingSourceWithAccountNumbers$Outbound,
   CreateCustomerBankFundingSourceWithAccountNumbers$outboundSchema,
 } from "./createcustomerbankfundingsourcewithaccountnumbers.js";
 import {
   CreateCustomerBankFundingSourceWithPlaid,
-  CreateCustomerBankFundingSourceWithPlaid$inboundSchema,
   CreateCustomerBankFundingSourceWithPlaid$Outbound,
   CreateCustomerBankFundingSourceWithPlaid$outboundSchema,
 } from "./createcustomerbankfundingsourcewithplaid.js";
 import {
   CreateCustomerExchangeFundingSource,
-  CreateCustomerExchangeFundingSource$inboundSchema,
   CreateCustomerExchangeFundingSource$Outbound,
   CreateCustomerExchangeFundingSource$outboundSchema,
 } from "./createcustomerexchangefundingsource.js";
 import {
   CreateCustomerVirtualAccountFundingSource,
-  CreateCustomerVirtualAccountFundingSource$inboundSchema,
   CreateCustomerVirtualAccountFundingSource$Outbound,
   CreateCustomerVirtualAccountFundingSource$outboundSchema,
 } from "./createcustomervirtualaccountfundingsource.js";
-import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 /**
  * Parameters for creating customer funding sources using different methods:
@@ -44,18 +37,6 @@ export type CreateCustomerFundingSource =
   | CreateCustomerBankFundingSourceWithPlaid
   | CreateCustomerExchangeFundingSource
   | CreateCustomerVirtualAccountFundingSource;
-
-/** @internal */
-export const CreateCustomerFundingSource$inboundSchema: z.ZodType<
-  CreateCustomerFundingSource,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  CreateCustomerBankFundingSourceWithAccountNumbers$inboundSchema,
-  CreateCustomerBankFundingSourceWithPlaid$inboundSchema,
-  CreateCustomerExchangeFundingSource$inboundSchema,
-  CreateCustomerVirtualAccountFundingSource$inboundSchema,
-]);
 
 /** @internal */
 export type CreateCustomerFundingSource$Outbound =
@@ -76,19 +57,6 @@ export const CreateCustomerFundingSource$outboundSchema: z.ZodType<
   CreateCustomerVirtualAccountFundingSource$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerFundingSource$ {
-  /** @deprecated use `CreateCustomerFundingSource$inboundSchema` instead. */
-  export const inboundSchema = CreateCustomerFundingSource$inboundSchema;
-  /** @deprecated use `CreateCustomerFundingSource$outboundSchema` instead. */
-  export const outboundSchema = CreateCustomerFundingSource$outboundSchema;
-  /** @deprecated use `CreateCustomerFundingSource$Outbound` instead. */
-  export type Outbound = CreateCustomerFundingSource$Outbound;
-}
-
 export function createCustomerFundingSourceToJSON(
   createCustomerFundingSource: CreateCustomerFundingSource,
 ): string {
@@ -96,15 +64,5 @@ export function createCustomerFundingSourceToJSON(
     CreateCustomerFundingSource$outboundSchema.parse(
       createCustomerFundingSource,
     ),
-  );
-}
-
-export function createCustomerFundingSourceFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateCustomerFundingSource, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateCustomerFundingSource$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateCustomerFundingSource' from JSON`,
   );
 }

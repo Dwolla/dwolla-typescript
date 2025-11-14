@@ -31,41 +31,6 @@ export const OnDemandAuthorizationSelf$inboundSchema: z.ZodType<
   href: z.string().optional(),
 });
 
-/** @internal */
-export type OnDemandAuthorizationSelf$Outbound = {
-  href?: string | undefined;
-};
-
-/** @internal */
-export const OnDemandAuthorizationSelf$outboundSchema: z.ZodType<
-  OnDemandAuthorizationSelf$Outbound,
-  z.ZodTypeDef,
-  OnDemandAuthorizationSelf
-> = z.object({
-  href: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OnDemandAuthorizationSelf$ {
-  /** @deprecated use `OnDemandAuthorizationSelf$inboundSchema` instead. */
-  export const inboundSchema = OnDemandAuthorizationSelf$inboundSchema;
-  /** @deprecated use `OnDemandAuthorizationSelf$outboundSchema` instead. */
-  export const outboundSchema = OnDemandAuthorizationSelf$outboundSchema;
-  /** @deprecated use `OnDemandAuthorizationSelf$Outbound` instead. */
-  export type Outbound = OnDemandAuthorizationSelf$Outbound;
-}
-
-export function onDemandAuthorizationSelfToJSON(
-  onDemandAuthorizationSelf: OnDemandAuthorizationSelf,
-): string {
-  return JSON.stringify(
-    OnDemandAuthorizationSelf$outboundSchema.parse(onDemandAuthorizationSelf),
-  );
-}
-
 export function onDemandAuthorizationSelfFromJSON(
   jsonString: string,
 ): SafeParseResult<OnDemandAuthorizationSelf, SDKValidationError> {
@@ -84,41 +49,6 @@ export const OnDemandAuthorizationLinks$inboundSchema: z.ZodType<
 > = z.object({
   self: z.lazy(() => OnDemandAuthorizationSelf$inboundSchema).optional(),
 });
-
-/** @internal */
-export type OnDemandAuthorizationLinks$Outbound = {
-  self?: OnDemandAuthorizationSelf$Outbound | undefined;
-};
-
-/** @internal */
-export const OnDemandAuthorizationLinks$outboundSchema: z.ZodType<
-  OnDemandAuthorizationLinks$Outbound,
-  z.ZodTypeDef,
-  OnDemandAuthorizationLinks
-> = z.object({
-  self: z.lazy(() => OnDemandAuthorizationSelf$outboundSchema).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OnDemandAuthorizationLinks$ {
-  /** @deprecated use `OnDemandAuthorizationLinks$inboundSchema` instead. */
-  export const inboundSchema = OnDemandAuthorizationLinks$inboundSchema;
-  /** @deprecated use `OnDemandAuthorizationLinks$outboundSchema` instead. */
-  export const outboundSchema = OnDemandAuthorizationLinks$outboundSchema;
-  /** @deprecated use `OnDemandAuthorizationLinks$Outbound` instead. */
-  export type Outbound = OnDemandAuthorizationLinks$Outbound;
-}
-
-export function onDemandAuthorizationLinksToJSON(
-  onDemandAuthorizationLinks: OnDemandAuthorizationLinks,
-): string {
-  return JSON.stringify(
-    OnDemandAuthorizationLinks$outboundSchema.parse(onDemandAuthorizationLinks),
-  );
-}
 
 export function onDemandAuthorizationLinksFromJSON(
   jsonString: string,
@@ -144,49 +74,6 @@ export const OnDemandAuthorization$inboundSchema: z.ZodType<
     "_links": "links",
   });
 });
-
-/** @internal */
-export type OnDemandAuthorization$Outbound = {
-  _links?: OnDemandAuthorizationLinks$Outbound | undefined;
-  bodyText?: string | undefined;
-  buttonText?: string | undefined;
-};
-
-/** @internal */
-export const OnDemandAuthorization$outboundSchema: z.ZodType<
-  OnDemandAuthorization$Outbound,
-  z.ZodTypeDef,
-  OnDemandAuthorization
-> = z.object({
-  links: z.lazy(() => OnDemandAuthorizationLinks$outboundSchema).optional(),
-  bodyText: z.string().optional(),
-  buttonText: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OnDemandAuthorization$ {
-  /** @deprecated use `OnDemandAuthorization$inboundSchema` instead. */
-  export const inboundSchema = OnDemandAuthorization$inboundSchema;
-  /** @deprecated use `OnDemandAuthorization$outboundSchema` instead. */
-  export const outboundSchema = OnDemandAuthorization$outboundSchema;
-  /** @deprecated use `OnDemandAuthorization$Outbound` instead. */
-  export type Outbound = OnDemandAuthorization$Outbound;
-}
-
-export function onDemandAuthorizationToJSON(
-  onDemandAuthorization: OnDemandAuthorization,
-): string {
-  return JSON.stringify(
-    OnDemandAuthorization$outboundSchema.parse(onDemandAuthorization),
-  );
-}
 
 export function onDemandAuthorizationFromJSON(
   jsonString: string,

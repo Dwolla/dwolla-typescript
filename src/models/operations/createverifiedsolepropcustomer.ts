@@ -25,50 +25,6 @@ export const CreateVerifiedSolePropCustomerResponse$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type CreateVerifiedSolePropCustomerResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-};
-
-/** @internal */
-export const CreateVerifiedSolePropCustomerResponse$outboundSchema: z.ZodType<
-  CreateVerifiedSolePropCustomerResponse$Outbound,
-  z.ZodTypeDef,
-  CreateVerifiedSolePropCustomerResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateVerifiedSolePropCustomerResponse$ {
-  /** @deprecated use `CreateVerifiedSolePropCustomerResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateVerifiedSolePropCustomerResponse$inboundSchema;
-  /** @deprecated use `CreateVerifiedSolePropCustomerResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateVerifiedSolePropCustomerResponse$outboundSchema;
-  /** @deprecated use `CreateVerifiedSolePropCustomerResponse$Outbound` instead. */
-  export type Outbound = CreateVerifiedSolePropCustomerResponse$Outbound;
-}
-
-export function createVerifiedSolePropCustomerResponseToJSON(
-  createVerifiedSolePropCustomerResponse:
-    CreateVerifiedSolePropCustomerResponse,
-): string {
-  return JSON.stringify(
-    CreateVerifiedSolePropCustomerResponse$outboundSchema.parse(
-      createVerifiedSolePropCustomerResponse,
-    ),
-  );
-}
-
 export function createVerifiedSolePropCustomerResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateVerifiedSolePropCustomerResponse, SDKValidationError> {

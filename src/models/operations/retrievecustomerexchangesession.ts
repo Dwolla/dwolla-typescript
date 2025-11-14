@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RetrieveCustomerExchangeSessionRequest = {
   /**
@@ -13,15 +10,6 @@ export type RetrieveCustomerExchangeSessionRequest = {
    */
   id: string;
 };
-
-/** @internal */
-export const RetrieveCustomerExchangeSessionRequest$inboundSchema: z.ZodType<
-  RetrieveCustomerExchangeSessionRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
 
 /** @internal */
 export type RetrieveCustomerExchangeSessionRequest$Outbound = {
@@ -37,21 +25,6 @@ export const RetrieveCustomerExchangeSessionRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RetrieveCustomerExchangeSessionRequest$ {
-  /** @deprecated use `RetrieveCustomerExchangeSessionRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    RetrieveCustomerExchangeSessionRequest$inboundSchema;
-  /** @deprecated use `RetrieveCustomerExchangeSessionRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    RetrieveCustomerExchangeSessionRequest$outboundSchema;
-  /** @deprecated use `RetrieveCustomerExchangeSessionRequest$Outbound` instead. */
-  export type Outbound = RetrieveCustomerExchangeSessionRequest$Outbound;
-}
-
 export function retrieveCustomerExchangeSessionRequestToJSON(
   retrieveCustomerExchangeSessionRequest:
     RetrieveCustomerExchangeSessionRequest,
@@ -60,16 +33,5 @@ export function retrieveCustomerExchangeSessionRequestToJSON(
     RetrieveCustomerExchangeSessionRequest$outboundSchema.parse(
       retrieveCustomerExchangeSessionRequest,
     ),
-  );
-}
-
-export function retrieveCustomerExchangeSessionRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<RetrieveCustomerExchangeSessionRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      RetrieveCustomerExchangeSessionRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'RetrieveCustomerExchangeSessionRequest' from JSON`,
   );
 }

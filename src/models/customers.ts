@@ -7,41 +7,26 @@ import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  HalLink,
-  HalLink$inboundSchema,
-  HalLink$Outbound,
-  HalLink$outboundSchema,
-} from "./hallink.js";
+import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 import {
   UnverifiedBusinessCustomer,
   UnverifiedBusinessCustomer$inboundSchema,
-  UnverifiedBusinessCustomer$Outbound,
-  UnverifiedBusinessCustomer$outboundSchema,
 } from "./unverifiedbusinesscustomer.js";
 import {
   UnverifiedCustomer,
   UnverifiedCustomer$inboundSchema,
-  UnverifiedCustomer$Outbound,
-  UnverifiedCustomer$outboundSchema,
 } from "./unverifiedcustomer.js";
 import {
   VerifiedBusinessCustomer,
   VerifiedBusinessCustomer$inboundSchema,
-  VerifiedBusinessCustomer$Outbound,
-  VerifiedBusinessCustomer$outboundSchema,
 } from "./verifiedbusinesscustomer.js";
 import {
   VerifiedPersonalCustomer,
   VerifiedPersonalCustomer$inboundSchema,
-  VerifiedPersonalCustomer$Outbound,
-  VerifiedPersonalCustomer$outboundSchema,
 } from "./verifiedpersonalcustomer.js";
 import {
   VerifiedSolePropCustomer,
   VerifiedSolePropCustomer$inboundSchema,
-  VerifiedSolePropCustomer$Outbound,
-  VerifiedSolePropCustomer$outboundSchema,
 } from "./verifiedsolepropcustomer.js";
 
 export type Customer =
@@ -81,44 +66,6 @@ export const Customer$inboundSchema: z.ZodType<
   VerifiedBusinessCustomer$inboundSchema,
 ]);
 
-/** @internal */
-export type Customer$Outbound =
-  | UnverifiedCustomer$Outbound
-  | UnverifiedBusinessCustomer$Outbound
-  | VerifiedPersonalCustomer$Outbound
-  | VerifiedSolePropCustomer$Outbound
-  | VerifiedBusinessCustomer$Outbound;
-
-/** @internal */
-export const Customer$outboundSchema: z.ZodType<
-  Customer$Outbound,
-  z.ZodTypeDef,
-  Customer
-> = z.union([
-  UnverifiedCustomer$outboundSchema,
-  UnverifiedBusinessCustomer$outboundSchema,
-  VerifiedPersonalCustomer$outboundSchema,
-  VerifiedSolePropCustomer$outboundSchema,
-  VerifiedBusinessCustomer$outboundSchema,
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Customer$ {
-  /** @deprecated use `Customer$inboundSchema` instead. */
-  export const inboundSchema = Customer$inboundSchema;
-  /** @deprecated use `Customer$outboundSchema` instead. */
-  export const outboundSchema = Customer$outboundSchema;
-  /** @deprecated use `Customer$Outbound` instead. */
-  export type Outbound = Customer$Outbound;
-}
-
-export function customerToJSON(customer: Customer): string {
-  return JSON.stringify(Customer$outboundSchema.parse(customer));
-}
-
 export function customerFromJSON(
   jsonString: string,
 ): SafeParseResult<Customer, SDKValidationError> {
@@ -146,57 +93,6 @@ export const CustomersEmbedded$inboundSchema: z.ZodType<
   ).optional(),
 });
 
-/** @internal */
-export type CustomersEmbedded$Outbound = {
-  customers?:
-    | Array<
-      | UnverifiedCustomer$Outbound
-      | UnverifiedBusinessCustomer$Outbound
-      | VerifiedPersonalCustomer$Outbound
-      | VerifiedSolePropCustomer$Outbound
-      | VerifiedBusinessCustomer$Outbound
-    >
-    | undefined;
-};
-
-/** @internal */
-export const CustomersEmbedded$outboundSchema: z.ZodType<
-  CustomersEmbedded$Outbound,
-  z.ZodTypeDef,
-  CustomersEmbedded
-> = z.object({
-  customers: z.array(
-    z.union([
-      UnverifiedCustomer$outboundSchema,
-      UnverifiedBusinessCustomer$outboundSchema,
-      VerifiedPersonalCustomer$outboundSchema,
-      VerifiedSolePropCustomer$outboundSchema,
-      VerifiedBusinessCustomer$outboundSchema,
-    ]),
-  ).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CustomersEmbedded$ {
-  /** @deprecated use `CustomersEmbedded$inboundSchema` instead. */
-  export const inboundSchema = CustomersEmbedded$inboundSchema;
-  /** @deprecated use `CustomersEmbedded$outboundSchema` instead. */
-  export const outboundSchema = CustomersEmbedded$outboundSchema;
-  /** @deprecated use `CustomersEmbedded$Outbound` instead. */
-  export type Outbound = CustomersEmbedded$Outbound;
-}
-
-export function customersEmbeddedToJSON(
-  customersEmbedded: CustomersEmbedded,
-): string {
-  return JSON.stringify(
-    CustomersEmbedded$outboundSchema.parse(customersEmbedded),
-  );
-}
-
 export function customersEmbeddedFromJSON(
   jsonString: string,
 ): SafeParseResult<CustomersEmbedded, SDKValidationError> {
@@ -221,44 +117,6 @@ export const Customers$inboundSchema: z.ZodType<
     "_embedded": "embedded",
   });
 });
-
-/** @internal */
-export type Customers$Outbound = {
-  _links?: { [k: string]: HalLink$Outbound } | undefined;
-  _embedded?: CustomersEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const Customers$outboundSchema: z.ZodType<
-  Customers$Outbound,
-  z.ZodTypeDef,
-  Customers
-> = z.object({
-  links: z.record(HalLink$outboundSchema).optional(),
-  embedded: z.lazy(() => CustomersEmbedded$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Customers$ {
-  /** @deprecated use `Customers$inboundSchema` instead. */
-  export const inboundSchema = Customers$inboundSchema;
-  /** @deprecated use `Customers$outboundSchema` instead. */
-  export const outboundSchema = Customers$outboundSchema;
-  /** @deprecated use `Customers$Outbound` instead. */
-  export type Outbound = Customers$Outbound;
-}
-
-export function customersToJSON(customers: Customers): string {
-  return JSON.stringify(Customers$outboundSchema.parse(customers));
-}
 
 export function customersFromJSON(
   jsonString: string,

@@ -7,18 +7,8 @@ import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  HalLink,
-  HalLink$inboundSchema,
-  HalLink$Outbound,
-  HalLink$outboundSchema,
-} from "./hallink.js";
-import {
-  MassPayment,
-  MassPayment$inboundSchema,
-  MassPayment$Outbound,
-  MassPayment$outboundSchema,
-} from "./masspayment.js";
+import { HalLink, HalLink$inboundSchema } from "./hallink.js";
+import { MassPayment, MassPayment$inboundSchema } from "./masspayment.js";
 
 export type MassPaymentsEmbedded = {
   massPayments?: Array<MassPayment> | undefined;
@@ -42,45 +32,6 @@ export const MassPaymentsEmbedded$inboundSchema: z.ZodType<
     "mass-payments": "massPayments",
   });
 });
-
-/** @internal */
-export type MassPaymentsEmbedded$Outbound = {
-  "mass-payments"?: Array<MassPayment$Outbound> | undefined;
-};
-
-/** @internal */
-export const MassPaymentsEmbedded$outboundSchema: z.ZodType<
-  MassPaymentsEmbedded$Outbound,
-  z.ZodTypeDef,
-  MassPaymentsEmbedded
-> = z.object({
-  massPayments: z.array(MassPayment$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    massPayments: "mass-payments",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MassPaymentsEmbedded$ {
-  /** @deprecated use `MassPaymentsEmbedded$inboundSchema` instead. */
-  export const inboundSchema = MassPaymentsEmbedded$inboundSchema;
-  /** @deprecated use `MassPaymentsEmbedded$outboundSchema` instead. */
-  export const outboundSchema = MassPaymentsEmbedded$outboundSchema;
-  /** @deprecated use `MassPaymentsEmbedded$Outbound` instead. */
-  export type Outbound = MassPaymentsEmbedded$Outbound;
-}
-
-export function massPaymentsEmbeddedToJSON(
-  massPaymentsEmbedded: MassPaymentsEmbedded,
-): string {
-  return JSON.stringify(
-    MassPaymentsEmbedded$outboundSchema.parse(massPaymentsEmbedded),
-  );
-}
 
 export function massPaymentsEmbeddedFromJSON(
   jsonString: string,
@@ -107,46 +58,6 @@ export const MassPayments$inboundSchema: z.ZodType<
     "_embedded": "embedded",
   });
 });
-
-/** @internal */
-export type MassPayments$Outbound = {
-  _links?: { [k: string]: HalLink$Outbound } | undefined;
-  _embedded?: MassPaymentsEmbedded$Outbound | undefined;
-  total?: number | undefined;
-};
-
-/** @internal */
-export const MassPayments$outboundSchema: z.ZodType<
-  MassPayments$Outbound,
-  z.ZodTypeDef,
-  MassPayments
-> = z.object({
-  links: z.record(HalLink$outboundSchema).optional(),
-  embedded: z.lazy(() => MassPaymentsEmbedded$outboundSchema).optional(),
-  total: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MassPayments$ {
-  /** @deprecated use `MassPayments$inboundSchema` instead. */
-  export const inboundSchema = MassPayments$inboundSchema;
-  /** @deprecated use `MassPayments$outboundSchema` instead. */
-  export const outboundSchema = MassPayments$outboundSchema;
-  /** @deprecated use `MassPayments$Outbound` instead. */
-  export type Outbound = MassPayments$Outbound;
-}
-
-export function massPaymentsToJSON(massPayments: MassPayments): string {
-  return JSON.stringify(MassPayments$outboundSchema.parse(massPayments));
-}
 
 export function massPaymentsFromJSON(
   jsonString: string,

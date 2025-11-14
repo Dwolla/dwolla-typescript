@@ -39,12 +39,6 @@ export type CreateLabelReallocationResponse = {
 };
 
 /** @internal */
-export const From$inboundSchema: z.ZodType<From, z.ZodTypeDef, unknown> = z
-  .object({
-    href: z.string().optional(),
-  });
-
-/** @internal */
 export type From$Outbound = {
   href?: string | undefined;
 };
@@ -55,37 +49,9 @@ export const From$outboundSchema: z.ZodType<From$Outbound, z.ZodTypeDef, From> =
     href: z.string().optional(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace From$ {
-  /** @deprecated use `From$inboundSchema` instead. */
-  export const inboundSchema = From$inboundSchema;
-  /** @deprecated use `From$outboundSchema` instead. */
-  export const outboundSchema = From$outboundSchema;
-  /** @deprecated use `From$Outbound` instead. */
-  export type Outbound = From$Outbound;
-}
-
 export function fromToJSON(from: From): string {
   return JSON.stringify(From$outboundSchema.parse(from));
 }
-
-export function fromFromJSON(
-  jsonString: string,
-): SafeParseResult<From, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => From$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'From' from JSON`,
-  );
-}
-
-/** @internal */
-export const To$inboundSchema: z.ZodType<To, z.ZodTypeDef, unknown> = z.object({
-  href: z.string().optional(),
-});
 
 /** @internal */
 export type To$Outbound = {
@@ -98,42 +64,9 @@ export const To$outboundSchema: z.ZodType<To$Outbound, z.ZodTypeDef, To> = z
     href: z.string().optional(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace To$ {
-  /** @deprecated use `To$inboundSchema` instead. */
-  export const inboundSchema = To$inboundSchema;
-  /** @deprecated use `To$outboundSchema` instead. */
-  export const outboundSchema = To$outboundSchema;
-  /** @deprecated use `To$Outbound` instead. */
-  export type Outbound = To$Outbound;
-}
-
 export function toToJSON(to: To): string {
   return JSON.stringify(To$outboundSchema.parse(to));
 }
-
-export function toFromJSON(
-  jsonString: string,
-): SafeParseResult<To, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => To$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'To' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateLabelReallocationLinks$inboundSchema: z.ZodType<
-  CreateLabelReallocationLinks,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  from: z.lazy(() => From$inboundSchema).optional(),
-  to: z.lazy(() => To$inboundSchema).optional(),
-});
 
 /** @internal */
 export type CreateLabelReallocationLinks$Outbound = {
@@ -151,19 +84,6 @@ export const CreateLabelReallocationLinks$outboundSchema: z.ZodType<
   to: z.lazy(() => To$outboundSchema).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateLabelReallocationLinks$ {
-  /** @deprecated use `CreateLabelReallocationLinks$inboundSchema` instead. */
-  export const inboundSchema = CreateLabelReallocationLinks$inboundSchema;
-  /** @deprecated use `CreateLabelReallocationLinks$outboundSchema` instead. */
-  export const outboundSchema = CreateLabelReallocationLinks$outboundSchema;
-  /** @deprecated use `CreateLabelReallocationLinks$Outbound` instead. */
-  export type Outbound = CreateLabelReallocationLinks$Outbound;
-}
-
 export function createLabelReallocationLinksToJSON(
   createLabelReallocationLinks: CreateLabelReallocationLinks,
 ): string {
@@ -173,26 +93,6 @@ export function createLabelReallocationLinksToJSON(
     ),
   );
 }
-
-export function createLabelReallocationLinksFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateLabelReallocationLinks, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateLabelReallocationLinks$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateLabelReallocationLinks' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateLabelReallocationAmount$inboundSchema: z.ZodType<
-  CreateLabelReallocationAmount,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  currency: z.string().optional(),
-  value: z.string().optional(),
-});
 
 /** @internal */
 export type CreateLabelReallocationAmount$Outbound = {
@@ -210,19 +110,6 @@ export const CreateLabelReallocationAmount$outboundSchema: z.ZodType<
   value: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateLabelReallocationAmount$ {
-  /** @deprecated use `CreateLabelReallocationAmount$inboundSchema` instead. */
-  export const inboundSchema = CreateLabelReallocationAmount$inboundSchema;
-  /** @deprecated use `CreateLabelReallocationAmount$outboundSchema` instead. */
-  export const outboundSchema = CreateLabelReallocationAmount$outboundSchema;
-  /** @deprecated use `CreateLabelReallocationAmount$Outbound` instead. */
-  export type Outbound = CreateLabelReallocationAmount$Outbound;
-}
-
 export function createLabelReallocationAmountToJSON(
   createLabelReallocationAmount: CreateLabelReallocationAmount,
 ): string {
@@ -232,30 +119,6 @@ export function createLabelReallocationAmountToJSON(
     ),
   );
 }
-
-export function createLabelReallocationAmountFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateLabelReallocationAmount, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateLabelReallocationAmount$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateLabelReallocationAmount' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateLabelReallocationRequest$inboundSchema: z.ZodType<
-  CreateLabelReallocationRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  _links: z.lazy(() => CreateLabelReallocationLinks$inboundSchema),
-  amount: z.lazy(() => CreateLabelReallocationAmount$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
 
 /** @internal */
 export type CreateLabelReallocationRequest$Outbound = {
@@ -277,19 +140,6 @@ export const CreateLabelReallocationRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateLabelReallocationRequest$ {
-  /** @deprecated use `CreateLabelReallocationRequest$inboundSchema` instead. */
-  export const inboundSchema = CreateLabelReallocationRequest$inboundSchema;
-  /** @deprecated use `CreateLabelReallocationRequest$outboundSchema` instead. */
-  export const outboundSchema = CreateLabelReallocationRequest$outboundSchema;
-  /** @deprecated use `CreateLabelReallocationRequest$Outbound` instead. */
-  export type Outbound = CreateLabelReallocationRequest$Outbound;
-}
-
 export function createLabelReallocationRequestToJSON(
   createLabelReallocationRequest: CreateLabelReallocationRequest,
 ): string {
@@ -297,16 +147,6 @@ export function createLabelReallocationRequestToJSON(
     CreateLabelReallocationRequest$outboundSchema.parse(
       createLabelReallocationRequest,
     ),
-  );
-}
-
-export function createLabelReallocationRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateLabelReallocationRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateLabelReallocationRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateLabelReallocationRequest' from JSON`,
   );
 }
 
@@ -322,47 +162,6 @@ export const CreateLabelReallocationResponse$inboundSchema: z.ZodType<
     "Headers": "headers",
   });
 });
-
-/** @internal */
-export type CreateLabelReallocationResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-};
-
-/** @internal */
-export const CreateLabelReallocationResponse$outboundSchema: z.ZodType<
-  CreateLabelReallocationResponse$Outbound,
-  z.ZodTypeDef,
-  CreateLabelReallocationResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateLabelReallocationResponse$ {
-  /** @deprecated use `CreateLabelReallocationResponse$inboundSchema` instead. */
-  export const inboundSchema = CreateLabelReallocationResponse$inboundSchema;
-  /** @deprecated use `CreateLabelReallocationResponse$outboundSchema` instead. */
-  export const outboundSchema = CreateLabelReallocationResponse$outboundSchema;
-  /** @deprecated use `CreateLabelReallocationResponse$Outbound` instead. */
-  export type Outbound = CreateLabelReallocationResponse$Outbound;
-}
-
-export function createLabelReallocationResponseToJSON(
-  createLabelReallocationResponse: CreateLabelReallocationResponse,
-): string {
-  return JSON.stringify(
-    CreateLabelReallocationResponse$outboundSchema.parse(
-      createLabelReallocationResponse,
-    ),
-  );
-}
 
 export function createLabelReallocationResponseFromJSON(
   jsonString: string,

@@ -9,14 +9,10 @@ import { DwollaError } from "./dwollaerror.js";
 import {
   InvalidExchangeError,
   InvalidExchangeError$inboundSchema,
-  InvalidExchangeError$Outbound,
-  InvalidExchangeError$outboundSchema,
 } from "./invalidexchangeerror.js";
 import {
   InvalidExchangeTokenError,
   InvalidExchangeTokenError$inboundSchema,
-  InvalidExchangeTokenError$Outbound,
-  InvalidExchangeTokenError$outboundSchema,
 } from "./invalidexchangetokenerror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
@@ -78,40 +74,6 @@ export const CreateAccountExchangeDwollaV1HalJSONError$inboundSchema: z.ZodType<
   });
 
 /** @internal */
-export type CreateAccountExchangeDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const CreateAccountExchangeDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    CreateAccountExchangeDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    CreateAccountExchangeDwollaV1HalJSONError
-  > = z.instanceof(CreateAccountExchangeDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateAccountExchangeDwollaV1HalJSONError$ {
-  /** @deprecated use `CreateAccountExchangeDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateAccountExchangeDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `CreateAccountExchangeDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateAccountExchangeDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `CreateAccountExchangeDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound = CreateAccountExchangeDwollaV1HalJSONError$Outbound;
-}
-
-/** @internal */
 export const CreateAccountExchangeDwollaV1HalJSON$inboundSchema: z.ZodType<
   CreateAccountExchangeDwollaV1HalJSON,
   z.ZodTypeDef,
@@ -120,46 +82,6 @@ export const CreateAccountExchangeDwollaV1HalJSON$inboundSchema: z.ZodType<
   InvalidExchangeTokenError$inboundSchema,
   InvalidExchangeError$inboundSchema,
 ]);
-
-/** @internal */
-export type CreateAccountExchangeDwollaV1HalJSON$Outbound =
-  | InvalidExchangeTokenError$Outbound
-  | InvalidExchangeError$Outbound;
-
-/** @internal */
-export const CreateAccountExchangeDwollaV1HalJSON$outboundSchema: z.ZodType<
-  CreateAccountExchangeDwollaV1HalJSON$Outbound,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  InvalidExchangeTokenError$outboundSchema,
-  InvalidExchangeError$outboundSchema,
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateAccountExchangeDwollaV1HalJSON$ {
-  /** @deprecated use `CreateAccountExchangeDwollaV1HalJSON$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateAccountExchangeDwollaV1HalJSON$inboundSchema;
-  /** @deprecated use `CreateAccountExchangeDwollaV1HalJSON$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateAccountExchangeDwollaV1HalJSON$outboundSchema;
-  /** @deprecated use `CreateAccountExchangeDwollaV1HalJSON$Outbound` instead. */
-  export type Outbound = CreateAccountExchangeDwollaV1HalJSON$Outbound;
-}
-
-export function createAccountExchangeDwollaV1HalJSONToJSON(
-  createAccountExchangeDwollaV1HalJSON: CreateAccountExchangeDwollaV1HalJSON,
-): string {
-  return JSON.stringify(
-    CreateAccountExchangeDwollaV1HalJSON$outboundSchema.parse(
-      createAccountExchangeDwollaV1HalJSON,
-    ),
-  );
-}
 
 export function createAccountExchangeDwollaV1HalJSONFromJSON(
   jsonString: string,

@@ -29,44 +29,6 @@ export const AchAddendaEntriesNotEnabledForAccountErrorLinks$inboundSchema:
     unknown
   > = z.object({});
 
-/** @internal */
-export type AchAddendaEntriesNotEnabledForAccountErrorLinks$Outbound = {};
-
-/** @internal */
-export const AchAddendaEntriesNotEnabledForAccountErrorLinks$outboundSchema:
-  z.ZodType<
-    AchAddendaEntriesNotEnabledForAccountErrorLinks$Outbound,
-    z.ZodTypeDef,
-    AchAddendaEntriesNotEnabledForAccountErrorLinks
-  > = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AchAddendaEntriesNotEnabledForAccountErrorLinks$ {
-  /** @deprecated use `AchAddendaEntriesNotEnabledForAccountErrorLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    AchAddendaEntriesNotEnabledForAccountErrorLinks$inboundSchema;
-  /** @deprecated use `AchAddendaEntriesNotEnabledForAccountErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    AchAddendaEntriesNotEnabledForAccountErrorLinks$outboundSchema;
-  /** @deprecated use `AchAddendaEntriesNotEnabledForAccountErrorLinks$Outbound` instead. */
-  export type Outbound =
-    AchAddendaEntriesNotEnabledForAccountErrorLinks$Outbound;
-}
-
-export function achAddendaEntriesNotEnabledForAccountErrorLinksToJSON(
-  achAddendaEntriesNotEnabledForAccountErrorLinks:
-    AchAddendaEntriesNotEnabledForAccountErrorLinks,
-): string {
-  return JSON.stringify(
-    AchAddendaEntriesNotEnabledForAccountErrorLinks$outboundSchema.parse(
-      achAddendaEntriesNotEnabledForAccountErrorLinks,
-    ),
-  );
-}
-
 export function achAddendaEntriesNotEnabledForAccountErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -102,60 +64,6 @@ export const AchAddendaEntriesNotEnabledForAccountErrorError$inboundSchema:
     });
   });
 
-/** @internal */
-export type AchAddendaEntriesNotEnabledForAccountErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: AchAddendaEntriesNotEnabledForAccountErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const AchAddendaEntriesNotEnabledForAccountErrorError$outboundSchema:
-  z.ZodType<
-    AchAddendaEntriesNotEnabledForAccountErrorError$Outbound,
-    z.ZodTypeDef,
-    AchAddendaEntriesNotEnabledForAccountErrorError
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    path: z.string().optional(),
-    links: z.lazy(() =>
-      AchAddendaEntriesNotEnabledForAccountErrorLinks$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      links: "_links",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AchAddendaEntriesNotEnabledForAccountErrorError$ {
-  /** @deprecated use `AchAddendaEntriesNotEnabledForAccountErrorError$inboundSchema` instead. */
-  export const inboundSchema =
-    AchAddendaEntriesNotEnabledForAccountErrorError$inboundSchema;
-  /** @deprecated use `AchAddendaEntriesNotEnabledForAccountErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    AchAddendaEntriesNotEnabledForAccountErrorError$outboundSchema;
-  /** @deprecated use `AchAddendaEntriesNotEnabledForAccountErrorError$Outbound` instead. */
-  export type Outbound =
-    AchAddendaEntriesNotEnabledForAccountErrorError$Outbound;
-}
-
-export function achAddendaEntriesNotEnabledForAccountErrorErrorToJSON(
-  achAddendaEntriesNotEnabledForAccountErrorError:
-    AchAddendaEntriesNotEnabledForAccountErrorError,
-): string {
-  return JSON.stringify(
-    AchAddendaEntriesNotEnabledForAccountErrorError$outboundSchema.parse(
-      achAddendaEntriesNotEnabledForAccountErrorError,
-    ),
-  );
-}
-
 export function achAddendaEntriesNotEnabledForAccountErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -185,54 +93,6 @@ export const AchAddendaEntriesNotEnabledForAccountErrorEmbedded$inboundSchema:
       ),
     ).optional(),
   });
-
-/** @internal */
-export type AchAddendaEntriesNotEnabledForAccountErrorEmbedded$Outbound = {
-  errors?:
-    | Array<AchAddendaEntriesNotEnabledForAccountErrorError$Outbound>
-    | undefined;
-};
-
-/** @internal */
-export const AchAddendaEntriesNotEnabledForAccountErrorEmbedded$outboundSchema:
-  z.ZodType<
-    AchAddendaEntriesNotEnabledForAccountErrorEmbedded$Outbound,
-    z.ZodTypeDef,
-    AchAddendaEntriesNotEnabledForAccountErrorEmbedded
-  > = z.object({
-    errors: z.array(
-      z.lazy(() =>
-        AchAddendaEntriesNotEnabledForAccountErrorError$outboundSchema
-      ),
-    ).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AchAddendaEntriesNotEnabledForAccountErrorEmbedded$ {
-  /** @deprecated use `AchAddendaEntriesNotEnabledForAccountErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    AchAddendaEntriesNotEnabledForAccountErrorEmbedded$inboundSchema;
-  /** @deprecated use `AchAddendaEntriesNotEnabledForAccountErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    AchAddendaEntriesNotEnabledForAccountErrorEmbedded$outboundSchema;
-  /** @deprecated use `AchAddendaEntriesNotEnabledForAccountErrorEmbedded$Outbound` instead. */
-  export type Outbound =
-    AchAddendaEntriesNotEnabledForAccountErrorEmbedded$Outbound;
-}
-
-export function achAddendaEntriesNotEnabledForAccountErrorEmbeddedToJSON(
-  achAddendaEntriesNotEnabledForAccountErrorEmbedded:
-    AchAddendaEntriesNotEnabledForAccountErrorEmbedded,
-): string {
-  return JSON.stringify(
-    AchAddendaEntriesNotEnabledForAccountErrorEmbedded$outboundSchema.parse(
-      achAddendaEntriesNotEnabledForAccountErrorEmbedded,
-    ),
-  );
-}
 
 export function achAddendaEntriesNotEnabledForAccountErrorEmbeddedFromJSON(
   jsonString: string,

@@ -38,21 +38,6 @@ export type CreateBeneficialOwnerDocumentResponse = {
 };
 
 /** @internal */
-export const CreateBeneficialOwnerDocumentFile$inboundSchema: z.ZodType<
-  CreateBeneficialOwnerDocumentFile,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  fileName: z.string(),
-  content: z.union([
-    z.instanceof(ReadableStream<Uint8Array>),
-    z.instanceof(Blob),
-    z.instanceof(ArrayBuffer),
-    z.instanceof(Uint8Array),
-  ]),
-});
-
-/** @internal */
 export type CreateBeneficialOwnerDocumentFile$Outbound = {
   fileName: string;
   content: ReadableStream<Uint8Array> | Blob | ArrayBuffer | Uint8Array;
@@ -73,20 +58,6 @@ export const CreateBeneficialOwnerDocumentFile$outboundSchema: z.ZodType<
   ]),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateBeneficialOwnerDocumentFile$ {
-  /** @deprecated use `CreateBeneficialOwnerDocumentFile$inboundSchema` instead. */
-  export const inboundSchema = CreateBeneficialOwnerDocumentFile$inboundSchema;
-  /** @deprecated use `CreateBeneficialOwnerDocumentFile$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateBeneficialOwnerDocumentFile$outboundSchema;
-  /** @deprecated use `CreateBeneficialOwnerDocumentFile$Outbound` instead. */
-  export type Outbound = CreateBeneficialOwnerDocumentFile$Outbound;
-}
-
 export function createBeneficialOwnerDocumentFileToJSON(
   createBeneficialOwnerDocumentFile: CreateBeneficialOwnerDocumentFile,
 ): string {
@@ -96,27 +67,6 @@ export function createBeneficialOwnerDocumentFileToJSON(
     ),
   );
 }
-
-export function createBeneficialOwnerDocumentFileFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateBeneficialOwnerDocumentFile, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateBeneficialOwnerDocumentFile$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateBeneficialOwnerDocumentFile' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateBeneficialOwnerDocumentRequestBody$inboundSchema: z.ZodType<
-  CreateBeneficialOwnerDocumentRequestBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  documentType: z.string().optional(),
-  file: z.lazy(() => CreateBeneficialOwnerDocumentFile$inboundSchema)
-    .optional(),
-});
 
 /** @internal */
 export type CreateBeneficialOwnerDocumentRequestBody$Outbound = {
@@ -136,21 +86,6 @@ export const CreateBeneficialOwnerDocumentRequestBody$outboundSchema: z.ZodType<
   ).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateBeneficialOwnerDocumentRequestBody$ {
-  /** @deprecated use `CreateBeneficialOwnerDocumentRequestBody$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateBeneficialOwnerDocumentRequestBody$inboundSchema;
-  /** @deprecated use `CreateBeneficialOwnerDocumentRequestBody$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateBeneficialOwnerDocumentRequestBody$outboundSchema;
-  /** @deprecated use `CreateBeneficialOwnerDocumentRequestBody$Outbound` instead. */
-  export type Outbound = CreateBeneficialOwnerDocumentRequestBody$Outbound;
-}
-
 export function createBeneficialOwnerDocumentRequestBodyToJSON(
   createBeneficialOwnerDocumentRequestBody:
     CreateBeneficialOwnerDocumentRequestBody,
@@ -161,38 +96,6 @@ export function createBeneficialOwnerDocumentRequestBodyToJSON(
     ),
   );
 }
-
-export function createBeneficialOwnerDocumentRequestBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateBeneficialOwnerDocumentRequestBody,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateBeneficialOwnerDocumentRequestBody$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreateBeneficialOwnerDocumentRequestBody' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateBeneficialOwnerDocumentRequest$inboundSchema: z.ZodType<
-  CreateBeneficialOwnerDocumentRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  RequestBody: z.lazy(() =>
-    CreateBeneficialOwnerDocumentRequestBody$inboundSchema
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "RequestBody": "requestBody",
-  });
-});
 
 /** @internal */
 export type CreateBeneficialOwnerDocumentRequest$Outbound = {
@@ -216,21 +119,6 @@ export const CreateBeneficialOwnerDocumentRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateBeneficialOwnerDocumentRequest$ {
-  /** @deprecated use `CreateBeneficialOwnerDocumentRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateBeneficialOwnerDocumentRequest$inboundSchema;
-  /** @deprecated use `CreateBeneficialOwnerDocumentRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateBeneficialOwnerDocumentRequest$outboundSchema;
-  /** @deprecated use `CreateBeneficialOwnerDocumentRequest$Outbound` instead. */
-  export type Outbound = CreateBeneficialOwnerDocumentRequest$Outbound;
-}
-
 export function createBeneficialOwnerDocumentRequestToJSON(
   createBeneficialOwnerDocumentRequest: CreateBeneficialOwnerDocumentRequest,
 ): string {
@@ -238,17 +126,6 @@ export function createBeneficialOwnerDocumentRequestToJSON(
     CreateBeneficialOwnerDocumentRequest$outboundSchema.parse(
       createBeneficialOwnerDocumentRequest,
     ),
-  );
-}
-
-export function createBeneficialOwnerDocumentRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateBeneficialOwnerDocumentRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateBeneficialOwnerDocumentRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateBeneficialOwnerDocumentRequest' from JSON`,
   );
 }
 
@@ -264,49 +141,6 @@ export const CreateBeneficialOwnerDocumentResponse$inboundSchema: z.ZodType<
     "Headers": "headers",
   });
 });
-
-/** @internal */
-export type CreateBeneficialOwnerDocumentResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-};
-
-/** @internal */
-export const CreateBeneficialOwnerDocumentResponse$outboundSchema: z.ZodType<
-  CreateBeneficialOwnerDocumentResponse$Outbound,
-  z.ZodTypeDef,
-  CreateBeneficialOwnerDocumentResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateBeneficialOwnerDocumentResponse$ {
-  /** @deprecated use `CreateBeneficialOwnerDocumentResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateBeneficialOwnerDocumentResponse$inboundSchema;
-  /** @deprecated use `CreateBeneficialOwnerDocumentResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateBeneficialOwnerDocumentResponse$outboundSchema;
-  /** @deprecated use `CreateBeneficialOwnerDocumentResponse$Outbound` instead. */
-  export type Outbound = CreateBeneficialOwnerDocumentResponse$Outbound;
-}
-
-export function createBeneficialOwnerDocumentResponseToJSON(
-  createBeneficialOwnerDocumentResponse: CreateBeneficialOwnerDocumentResponse,
-): string {
-  return JSON.stringify(
-    CreateBeneficialOwnerDocumentResponse$outboundSchema.parse(
-      createBeneficialOwnerDocumentResponse,
-    ),
-  );
-}
 
 export function createBeneficialOwnerDocumentResponseFromJSON(
   jsonString: string,

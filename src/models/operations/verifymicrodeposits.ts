@@ -68,13 +68,6 @@ export type VerifyMicroDepositsResponse = {
 };
 
 /** @internal */
-export const Amount1$inboundSchema: z.ZodType<Amount1, z.ZodTypeDef, unknown> =
-  z.object({
-    value: z.string(),
-    currency: z.string(),
-  });
-
-/** @internal */
 export type Amount1$Outbound = {
   value: string;
   currency: string;
@@ -90,39 +83,9 @@ export const Amount1$outboundSchema: z.ZodType<
   currency: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Amount1$ {
-  /** @deprecated use `Amount1$inboundSchema` instead. */
-  export const inboundSchema = Amount1$inboundSchema;
-  /** @deprecated use `Amount1$outboundSchema` instead. */
-  export const outboundSchema = Amount1$outboundSchema;
-  /** @deprecated use `Amount1$Outbound` instead. */
-  export type Outbound = Amount1$Outbound;
-}
-
 export function amount1ToJSON(amount1: Amount1): string {
   return JSON.stringify(Amount1$outboundSchema.parse(amount1));
 }
-
-export function amount1FromJSON(
-  jsonString: string,
-): SafeParseResult<Amount1, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Amount1$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Amount1' from JSON`,
-  );
-}
-
-/** @internal */
-export const Amount2$inboundSchema: z.ZodType<Amount2, z.ZodTypeDef, unknown> =
-  z.object({
-    value: z.string(),
-    currency: z.string(),
-  });
 
 /** @internal */
 export type Amount2$Outbound = {
@@ -140,42 +103,9 @@ export const Amount2$outboundSchema: z.ZodType<
   currency: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Amount2$ {
-  /** @deprecated use `Amount2$inboundSchema` instead. */
-  export const inboundSchema = Amount2$inboundSchema;
-  /** @deprecated use `Amount2$outboundSchema` instead. */
-  export const outboundSchema = Amount2$outboundSchema;
-  /** @deprecated use `Amount2$Outbound` instead. */
-  export type Outbound = Amount2$Outbound;
-}
-
 export function amount2ToJSON(amount2: Amount2): string {
   return JSON.stringify(Amount2$outboundSchema.parse(amount2));
 }
-
-export function amount2FromJSON(
-  jsonString: string,
-): SafeParseResult<Amount2, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Amount2$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Amount2' from JSON`,
-  );
-}
-
-/** @internal */
-export const VerifyMicroDepositsRequestBody$inboundSchema: z.ZodType<
-  VerifyMicroDepositsRequestBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  amount1: z.lazy(() => Amount1$inboundSchema),
-  amount2: z.lazy(() => Amount2$inboundSchema),
-});
 
 /** @internal */
 export type VerifyMicroDepositsRequestBody$Outbound = {
@@ -193,19 +123,6 @@ export const VerifyMicroDepositsRequestBody$outboundSchema: z.ZodType<
   amount2: z.lazy(() => Amount2$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VerifyMicroDepositsRequestBody$ {
-  /** @deprecated use `VerifyMicroDepositsRequestBody$inboundSchema` instead. */
-  export const inboundSchema = VerifyMicroDepositsRequestBody$inboundSchema;
-  /** @deprecated use `VerifyMicroDepositsRequestBody$outboundSchema` instead. */
-  export const outboundSchema = VerifyMicroDepositsRequestBody$outboundSchema;
-  /** @deprecated use `VerifyMicroDepositsRequestBody$Outbound` instead. */
-  export type Outbound = VerifyMicroDepositsRequestBody$Outbound;
-}
-
 export function verifyMicroDepositsRequestBodyToJSON(
   verifyMicroDepositsRequestBody: VerifyMicroDepositsRequestBody,
 ): string {
@@ -215,30 +132,6 @@ export function verifyMicroDepositsRequestBodyToJSON(
     ),
   );
 }
-
-export function verifyMicroDepositsRequestBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<VerifyMicroDepositsRequestBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => VerifyMicroDepositsRequestBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VerifyMicroDepositsRequestBody' from JSON`,
-  );
-}
-
-/** @internal */
-export const VerifyMicroDepositsRequest$inboundSchema: z.ZodType<
-  VerifyMicroDepositsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  RequestBody: z.lazy(() => VerifyMicroDepositsRequestBody$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "RequestBody": "requestBody",
-  });
-});
 
 /** @internal */
 export type VerifyMicroDepositsRequest$Outbound = {
@@ -260,34 +153,11 @@ export const VerifyMicroDepositsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VerifyMicroDepositsRequest$ {
-  /** @deprecated use `VerifyMicroDepositsRequest$inboundSchema` instead. */
-  export const inboundSchema = VerifyMicroDepositsRequest$inboundSchema;
-  /** @deprecated use `VerifyMicroDepositsRequest$outboundSchema` instead. */
-  export const outboundSchema = VerifyMicroDepositsRequest$outboundSchema;
-  /** @deprecated use `VerifyMicroDepositsRequest$Outbound` instead. */
-  export type Outbound = VerifyMicroDepositsRequest$Outbound;
-}
-
 export function verifyMicroDepositsRequestToJSON(
   verifyMicroDepositsRequest: VerifyMicroDepositsRequest,
 ): string {
   return JSON.stringify(
     VerifyMicroDepositsRequest$outboundSchema.parse(verifyMicroDepositsRequest),
-  );
-}
-
-export function verifyMicroDepositsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<VerifyMicroDepositsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => VerifyMicroDepositsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VerifyMicroDepositsRequest' from JSON`,
   );
 }
 
@@ -297,35 +167,6 @@ export const BadRequestLinks$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
-/** @internal */
-export type BadRequestLinks$Outbound = {};
-
-/** @internal */
-export const BadRequestLinks$outboundSchema: z.ZodType<
-  BadRequestLinks$Outbound,
-  z.ZodTypeDef,
-  BadRequestLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BadRequestLinks$ {
-  /** @deprecated use `BadRequestLinks$inboundSchema` instead. */
-  export const inboundSchema = BadRequestLinks$inboundSchema;
-  /** @deprecated use `BadRequestLinks$outboundSchema` instead. */
-  export const outboundSchema = BadRequestLinks$outboundSchema;
-  /** @deprecated use `BadRequestLinks$Outbound` instead. */
-  export type Outbound = BadRequestLinks$Outbound;
-}
-
-export function badRequestLinksToJSON(
-  badRequestLinks: BadRequestLinks,
-): string {
-  return JSON.stringify(BadRequestLinks$outboundSchema.parse(badRequestLinks));
-}
 
 export function badRequestLinksFromJSON(
   jsonString: string,
@@ -350,47 +191,6 @@ export const ErrorT$inboundSchema: z.ZodType<ErrorT, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type ErrorT$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: BadRequestLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const ErrorT$outboundSchema: z.ZodType<
-  ErrorT$Outbound,
-  z.ZodTypeDef,
-  ErrorT
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  links: z.lazy(() => BadRequestLinks$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ErrorT$ {
-  /** @deprecated use `ErrorT$inboundSchema` instead. */
-  export const inboundSchema = ErrorT$inboundSchema;
-  /** @deprecated use `ErrorT$outboundSchema` instead. */
-  export const outboundSchema = ErrorT$outboundSchema;
-  /** @deprecated use `ErrorT$Outbound` instead. */
-  export type Outbound = ErrorT$Outbound;
-}
-
-export function errorToJSON(errorT: ErrorT): string {
-  return JSON.stringify(ErrorT$outboundSchema.parse(errorT));
-}
-
 export function errorFromJSON(
   jsonString: string,
 ): SafeParseResult<ErrorT, SDKValidationError> {
@@ -409,43 +209,6 @@ export const VerifyMicroDepositsEmbedded$inboundSchema: z.ZodType<
 > = z.object({
   errors: z.array(z.lazy(() => ErrorT$inboundSchema)).optional(),
 });
-
-/** @internal */
-export type VerifyMicroDepositsEmbedded$Outbound = {
-  errors?: Array<ErrorT$Outbound> | undefined;
-};
-
-/** @internal */
-export const VerifyMicroDepositsEmbedded$outboundSchema: z.ZodType<
-  VerifyMicroDepositsEmbedded$Outbound,
-  z.ZodTypeDef,
-  VerifyMicroDepositsEmbedded
-> = z.object({
-  errors: z.array(z.lazy(() => ErrorT$outboundSchema)).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VerifyMicroDepositsEmbedded$ {
-  /** @deprecated use `VerifyMicroDepositsEmbedded$inboundSchema` instead. */
-  export const inboundSchema = VerifyMicroDepositsEmbedded$inboundSchema;
-  /** @deprecated use `VerifyMicroDepositsEmbedded$outboundSchema` instead. */
-  export const outboundSchema = VerifyMicroDepositsEmbedded$outboundSchema;
-  /** @deprecated use `VerifyMicroDepositsEmbedded$Outbound` instead. */
-  export type Outbound = VerifyMicroDepositsEmbedded$Outbound;
-}
-
-export function verifyMicroDepositsEmbeddedToJSON(
-  verifyMicroDepositsEmbedded: VerifyMicroDepositsEmbedded,
-): string {
-  return JSON.stringify(
-    VerifyMicroDepositsEmbedded$outboundSchema.parse(
-      verifyMicroDepositsEmbedded,
-    ),
-  );
-}
 
 export function verifyMicroDepositsEmbeddedFromJSON(
   jsonString: string,
@@ -472,49 +235,6 @@ export const VerifyMicroDepositsSelf$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type VerifyMicroDepositsSelf$Outbound = {
-  href?: string | undefined;
-  type?: string | undefined;
-  "resource-type"?: string | undefined;
-};
-
-/** @internal */
-export const VerifyMicroDepositsSelf$outboundSchema: z.ZodType<
-  VerifyMicroDepositsSelf$Outbound,
-  z.ZodTypeDef,
-  VerifyMicroDepositsSelf
-> = z.object({
-  href: z.string().optional(),
-  type: z.string().optional(),
-  resourceType: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    resourceType: "resource-type",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VerifyMicroDepositsSelf$ {
-  /** @deprecated use `VerifyMicroDepositsSelf$inboundSchema` instead. */
-  export const inboundSchema = VerifyMicroDepositsSelf$inboundSchema;
-  /** @deprecated use `VerifyMicroDepositsSelf$outboundSchema` instead. */
-  export const outboundSchema = VerifyMicroDepositsSelf$outboundSchema;
-  /** @deprecated use `VerifyMicroDepositsSelf$Outbound` instead. */
-  export type Outbound = VerifyMicroDepositsSelf$Outbound;
-}
-
-export function verifyMicroDepositsSelfToJSON(
-  verifyMicroDepositsSelf: VerifyMicroDepositsSelf,
-): string {
-  return JSON.stringify(
-    VerifyMicroDepositsSelf$outboundSchema.parse(verifyMicroDepositsSelf),
-  );
-}
-
 export function verifyMicroDepositsSelfFromJSON(
   jsonString: string,
 ): SafeParseResult<VerifyMicroDepositsSelf, SDKValidationError> {
@@ -533,41 +253,6 @@ export const VerifyMicroDepositsLinks$inboundSchema: z.ZodType<
 > = z.object({
   self: z.lazy(() => VerifyMicroDepositsSelf$inboundSchema).optional(),
 });
-
-/** @internal */
-export type VerifyMicroDepositsLinks$Outbound = {
-  self?: VerifyMicroDepositsSelf$Outbound | undefined;
-};
-
-/** @internal */
-export const VerifyMicroDepositsLinks$outboundSchema: z.ZodType<
-  VerifyMicroDepositsLinks$Outbound,
-  z.ZodTypeDef,
-  VerifyMicroDepositsLinks
-> = z.object({
-  self: z.lazy(() => VerifyMicroDepositsSelf$outboundSchema).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VerifyMicroDepositsLinks$ {
-  /** @deprecated use `VerifyMicroDepositsLinks$inboundSchema` instead. */
-  export const inboundSchema = VerifyMicroDepositsLinks$inboundSchema;
-  /** @deprecated use `VerifyMicroDepositsLinks$outboundSchema` instead. */
-  export const outboundSchema = VerifyMicroDepositsLinks$outboundSchema;
-  /** @deprecated use `VerifyMicroDepositsLinks$Outbound` instead. */
-  export type Outbound = VerifyMicroDepositsLinks$Outbound;
-}
-
-export function verifyMicroDepositsLinksToJSON(
-  verifyMicroDepositsLinks: VerifyMicroDepositsLinks,
-): string {
-  return JSON.stringify(
-    VerifyMicroDepositsLinks$outboundSchema.parse(verifyMicroDepositsLinks),
-  );
-}
 
 export function verifyMicroDepositsLinksFromJSON(
   jsonString: string,
@@ -591,47 +276,6 @@ export const VerifyMicroDepositsResponse$inboundSchema: z.ZodType<
     "_links": "links",
   });
 });
-
-/** @internal */
-export type VerifyMicroDepositsResponse$Outbound = {
-  _links?: VerifyMicroDepositsLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const VerifyMicroDepositsResponse$outboundSchema: z.ZodType<
-  VerifyMicroDepositsResponse$Outbound,
-  z.ZodTypeDef,
-  VerifyMicroDepositsResponse
-> = z.object({
-  links: z.lazy(() => VerifyMicroDepositsLinks$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VerifyMicroDepositsResponse$ {
-  /** @deprecated use `VerifyMicroDepositsResponse$inboundSchema` instead. */
-  export const inboundSchema = VerifyMicroDepositsResponse$inboundSchema;
-  /** @deprecated use `VerifyMicroDepositsResponse$outboundSchema` instead. */
-  export const outboundSchema = VerifyMicroDepositsResponse$outboundSchema;
-  /** @deprecated use `VerifyMicroDepositsResponse$Outbound` instead. */
-  export type Outbound = VerifyMicroDepositsResponse$Outbound;
-}
-
-export function verifyMicroDepositsResponseToJSON(
-  verifyMicroDepositsResponse: VerifyMicroDepositsResponse,
-): string {
-  return JSON.stringify(
-    VerifyMicroDepositsResponse$outboundSchema.parse(
-      verifyMicroDepositsResponse,
-    ),
-  );
-}
 
 export function verifyMicroDepositsResponseFromJSON(
   jsonString: string,

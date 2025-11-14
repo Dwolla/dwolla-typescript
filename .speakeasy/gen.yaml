@@ -23,12 +23,13 @@ generation:
   sdkHooksConfigAccess: true
   schemas:
     allOfMergeStrategy: shallowMerge
+  requestBodyFieldName: ""
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.0.1-beta.11
+  version: 0.0.1-beta.12
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -36,6 +37,8 @@ typescript:
     peerDependencies: {}
   additionalPackageJSON:
     description: Dwolla TypeScript SDK (Beta). Breaking changes may occur between beta versions.
+  additionalScripts: {}
+  alwaysIncludeInboundAndOutbound: false
   author: Speakeasy
   baseErrorName: DwollaError
   clientServerStatusCodesAsErrors: true
@@ -46,6 +49,7 @@ typescript:
   enableReactQuery: false
   enumFormat: union
   envVarPrefix: DWOLLA
+  exportZodModelNamespace: false
   flattenGlobalSecurity: true
   flatteningOrder: parameters-first
   generateExamples: true
@@ -68,6 +72,7 @@ typescript:
   responseFormat: flat
   sseFlatResponse: false
   templateVersion: v2
+  unionStrategy: left-to-right
   usageSDKInitImports: []
   useIndexModules: true
   zodVersion: v3

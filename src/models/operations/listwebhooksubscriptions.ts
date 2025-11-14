@@ -39,43 +39,6 @@ export const ListWebhookSubscriptionsSelf$inboundSchema: z.ZodType<
   href: z.string().optional(),
 });
 
-/** @internal */
-export type ListWebhookSubscriptionsSelf$Outbound = {
-  href?: string | undefined;
-};
-
-/** @internal */
-export const ListWebhookSubscriptionsSelf$outboundSchema: z.ZodType<
-  ListWebhookSubscriptionsSelf$Outbound,
-  z.ZodTypeDef,
-  ListWebhookSubscriptionsSelf
-> = z.object({
-  href: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListWebhookSubscriptionsSelf$ {
-  /** @deprecated use `ListWebhookSubscriptionsSelf$inboundSchema` instead. */
-  export const inboundSchema = ListWebhookSubscriptionsSelf$inboundSchema;
-  /** @deprecated use `ListWebhookSubscriptionsSelf$outboundSchema` instead. */
-  export const outboundSchema = ListWebhookSubscriptionsSelf$outboundSchema;
-  /** @deprecated use `ListWebhookSubscriptionsSelf$Outbound` instead. */
-  export type Outbound = ListWebhookSubscriptionsSelf$Outbound;
-}
-
-export function listWebhookSubscriptionsSelfToJSON(
-  listWebhookSubscriptionsSelf: ListWebhookSubscriptionsSelf,
-): string {
-  return JSON.stringify(
-    ListWebhookSubscriptionsSelf$outboundSchema.parse(
-      listWebhookSubscriptionsSelf,
-    ),
-  );
-}
-
 export function listWebhookSubscriptionsSelfFromJSON(
   jsonString: string,
 ): SafeParseResult<ListWebhookSubscriptionsSelf, SDKValidationError> {
@@ -94,43 +57,6 @@ export const ListWebhookSubscriptionsLinks$inboundSchema: z.ZodType<
 > = z.object({
   self: z.lazy(() => ListWebhookSubscriptionsSelf$inboundSchema).optional(),
 });
-
-/** @internal */
-export type ListWebhookSubscriptionsLinks$Outbound = {
-  self?: ListWebhookSubscriptionsSelf$Outbound | undefined;
-};
-
-/** @internal */
-export const ListWebhookSubscriptionsLinks$outboundSchema: z.ZodType<
-  ListWebhookSubscriptionsLinks$Outbound,
-  z.ZodTypeDef,
-  ListWebhookSubscriptionsLinks
-> = z.object({
-  self: z.lazy(() => ListWebhookSubscriptionsSelf$outboundSchema).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListWebhookSubscriptionsLinks$ {
-  /** @deprecated use `ListWebhookSubscriptionsLinks$inboundSchema` instead. */
-  export const inboundSchema = ListWebhookSubscriptionsLinks$inboundSchema;
-  /** @deprecated use `ListWebhookSubscriptionsLinks$outboundSchema` instead. */
-  export const outboundSchema = ListWebhookSubscriptionsLinks$outboundSchema;
-  /** @deprecated use `ListWebhookSubscriptionsLinks$Outbound` instead. */
-  export type Outbound = ListWebhookSubscriptionsLinks$Outbound;
-}
-
-export function listWebhookSubscriptionsLinksToJSON(
-  listWebhookSubscriptionsLinks: ListWebhookSubscriptionsLinks,
-): string {
-  return JSON.stringify(
-    ListWebhookSubscriptionsLinks$outboundSchema.parse(
-      listWebhookSubscriptionsLinks,
-    ),
-  );
-}
 
 export function listWebhookSubscriptionsLinksFromJSON(
   jsonString: string,
@@ -155,50 +81,6 @@ export const ListWebhookSubscriptionsEmbedded$inboundSchema: z.ZodType<
     "webhook-subscriptions": "webhookSubscriptions",
   });
 });
-
-/** @internal */
-export type ListWebhookSubscriptionsEmbedded$Outbound = {
-  "webhook-subscriptions"?:
-    | Array<models.WebhookSubscription$Outbound>
-    | undefined;
-};
-
-/** @internal */
-export const ListWebhookSubscriptionsEmbedded$outboundSchema: z.ZodType<
-  ListWebhookSubscriptionsEmbedded$Outbound,
-  z.ZodTypeDef,
-  ListWebhookSubscriptionsEmbedded
-> = z.object({
-  webhookSubscriptions: z.array(models.WebhookSubscription$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    webhookSubscriptions: "webhook-subscriptions",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListWebhookSubscriptionsEmbedded$ {
-  /** @deprecated use `ListWebhookSubscriptionsEmbedded$inboundSchema` instead. */
-  export const inboundSchema = ListWebhookSubscriptionsEmbedded$inboundSchema;
-  /** @deprecated use `ListWebhookSubscriptionsEmbedded$outboundSchema` instead. */
-  export const outboundSchema = ListWebhookSubscriptionsEmbedded$outboundSchema;
-  /** @deprecated use `ListWebhookSubscriptionsEmbedded$Outbound` instead. */
-  export type Outbound = ListWebhookSubscriptionsEmbedded$Outbound;
-}
-
-export function listWebhookSubscriptionsEmbeddedToJSON(
-  listWebhookSubscriptionsEmbedded: ListWebhookSubscriptionsEmbedded,
-): string {
-  return JSON.stringify(
-    ListWebhookSubscriptionsEmbedded$outboundSchema.parse(
-      listWebhookSubscriptionsEmbedded,
-    ),
-  );
-}
 
 export function listWebhookSubscriptionsEmbeddedFromJSON(
   jsonString: string,
@@ -226,53 +108,6 @@ export const ListWebhookSubscriptionsResponse$inboundSchema: z.ZodType<
     "_embedded": "embedded",
   });
 });
-
-/** @internal */
-export type ListWebhookSubscriptionsResponse$Outbound = {
-  _links?: ListWebhookSubscriptionsLinks$Outbound | undefined;
-  _embedded?: ListWebhookSubscriptionsEmbedded$Outbound | undefined;
-  total?: number | undefined;
-};
-
-/** @internal */
-export const ListWebhookSubscriptionsResponse$outboundSchema: z.ZodType<
-  ListWebhookSubscriptionsResponse$Outbound,
-  z.ZodTypeDef,
-  ListWebhookSubscriptionsResponse
-> = z.object({
-  links: z.lazy(() => ListWebhookSubscriptionsLinks$outboundSchema).optional(),
-  embedded: z.lazy(() => ListWebhookSubscriptionsEmbedded$outboundSchema)
-    .optional(),
-  total: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListWebhookSubscriptionsResponse$ {
-  /** @deprecated use `ListWebhookSubscriptionsResponse$inboundSchema` instead. */
-  export const inboundSchema = ListWebhookSubscriptionsResponse$inboundSchema;
-  /** @deprecated use `ListWebhookSubscriptionsResponse$outboundSchema` instead. */
-  export const outboundSchema = ListWebhookSubscriptionsResponse$outboundSchema;
-  /** @deprecated use `ListWebhookSubscriptionsResponse$Outbound` instead. */
-  export type Outbound = ListWebhookSubscriptionsResponse$Outbound;
-}
-
-export function listWebhookSubscriptionsResponseToJSON(
-  listWebhookSubscriptionsResponse: ListWebhookSubscriptionsResponse,
-): string {
-  return JSON.stringify(
-    ListWebhookSubscriptionsResponse$outboundSchema.parse(
-      listWebhookSubscriptionsResponse,
-    ),
-  );
-}
 
 export function listWebhookSubscriptionsResponseFromJSON(
   jsonString: string,

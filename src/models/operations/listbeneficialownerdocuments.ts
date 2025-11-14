@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListBeneficialOwnerDocumentsRequest = {
   /**
@@ -13,15 +10,6 @@ export type ListBeneficialOwnerDocumentsRequest = {
    */
   id: string;
 };
-
-/** @internal */
-export const ListBeneficialOwnerDocumentsRequest$inboundSchema: z.ZodType<
-  ListBeneficialOwnerDocumentsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
 
 /** @internal */
 export type ListBeneficialOwnerDocumentsRequest$Outbound = {
@@ -37,21 +25,6 @@ export const ListBeneficialOwnerDocumentsRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListBeneficialOwnerDocumentsRequest$ {
-  /** @deprecated use `ListBeneficialOwnerDocumentsRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    ListBeneficialOwnerDocumentsRequest$inboundSchema;
-  /** @deprecated use `ListBeneficialOwnerDocumentsRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    ListBeneficialOwnerDocumentsRequest$outboundSchema;
-  /** @deprecated use `ListBeneficialOwnerDocumentsRequest$Outbound` instead. */
-  export type Outbound = ListBeneficialOwnerDocumentsRequest$Outbound;
-}
-
 export function listBeneficialOwnerDocumentsRequestToJSON(
   listBeneficialOwnerDocumentsRequest: ListBeneficialOwnerDocumentsRequest,
 ): string {
@@ -59,16 +32,5 @@ export function listBeneficialOwnerDocumentsRequestToJSON(
     ListBeneficialOwnerDocumentsRequest$outboundSchema.parse(
       listBeneficialOwnerDocumentsRequest,
     ),
-  );
-}
-
-export function listBeneficialOwnerDocumentsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListBeneficialOwnerDocumentsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      ListBeneficialOwnerDocumentsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListBeneficialOwnerDocumentsRequest' from JSON`,
   );
 }

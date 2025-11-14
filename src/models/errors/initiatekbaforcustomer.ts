@@ -8,14 +8,10 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import {
   ForbiddenError,
   ForbiddenError$inboundSchema,
-  ForbiddenError$Outbound,
-  ForbiddenError$outboundSchema,
 } from "./forbiddenerror.js";
 import {
   InvalidResourceStateSchemaError,
   InvalidResourceStateSchemaError$inboundSchema,
-  InvalidResourceStateSchemaError$Outbound,
-  InvalidResourceStateSchemaError$outboundSchema,
 } from "./invalidresourcestateschemaerror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
@@ -35,46 +31,6 @@ export const InitiateKbaForCustomerDwollaV1HalJSON$inboundSchema: z.ZodType<
   InvalidResourceStateSchemaError$inboundSchema,
   ForbiddenError$inboundSchema,
 ]);
-
-/** @internal */
-export type InitiateKbaForCustomerDwollaV1HalJSON$Outbound =
-  | InvalidResourceStateSchemaError$Outbound
-  | ForbiddenError$Outbound;
-
-/** @internal */
-export const InitiateKbaForCustomerDwollaV1HalJSON$outboundSchema: z.ZodType<
-  InitiateKbaForCustomerDwollaV1HalJSON$Outbound,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  InvalidResourceStateSchemaError$outboundSchema,
-  ForbiddenError$outboundSchema,
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InitiateKbaForCustomerDwollaV1HalJSON$ {
-  /** @deprecated use `InitiateKbaForCustomerDwollaV1HalJSON$inboundSchema` instead. */
-  export const inboundSchema =
-    InitiateKbaForCustomerDwollaV1HalJSON$inboundSchema;
-  /** @deprecated use `InitiateKbaForCustomerDwollaV1HalJSON$outboundSchema` instead. */
-  export const outboundSchema =
-    InitiateKbaForCustomerDwollaV1HalJSON$outboundSchema;
-  /** @deprecated use `InitiateKbaForCustomerDwollaV1HalJSON$Outbound` instead. */
-  export type Outbound = InitiateKbaForCustomerDwollaV1HalJSON$Outbound;
-}
-
-export function initiateKbaForCustomerDwollaV1HalJSONToJSON(
-  initiateKbaForCustomerDwollaV1HalJSON: InitiateKbaForCustomerDwollaV1HalJSON,
-): string {
-  return JSON.stringify(
-    InitiateKbaForCustomerDwollaV1HalJSON$outboundSchema.parse(
-      initiateKbaForCustomerDwollaV1HalJSON,
-    ),
-  );
-}
 
 export function initiateKbaForCustomerDwollaV1HalJSONFromJSON(
   jsonString: string,

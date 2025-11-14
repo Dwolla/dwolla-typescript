@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListBeneficialOwnersForCustomerRequest = {
   /**
@@ -13,15 +10,6 @@ export type ListBeneficialOwnersForCustomerRequest = {
    */
   id: string;
 };
-
-/** @internal */
-export const ListBeneficialOwnersForCustomerRequest$inboundSchema: z.ZodType<
-  ListBeneficialOwnersForCustomerRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
 
 /** @internal */
 export type ListBeneficialOwnersForCustomerRequest$Outbound = {
@@ -37,21 +25,6 @@ export const ListBeneficialOwnersForCustomerRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListBeneficialOwnersForCustomerRequest$ {
-  /** @deprecated use `ListBeneficialOwnersForCustomerRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    ListBeneficialOwnersForCustomerRequest$inboundSchema;
-  /** @deprecated use `ListBeneficialOwnersForCustomerRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    ListBeneficialOwnersForCustomerRequest$outboundSchema;
-  /** @deprecated use `ListBeneficialOwnersForCustomerRequest$Outbound` instead. */
-  export type Outbound = ListBeneficialOwnersForCustomerRequest$Outbound;
-}
-
 export function listBeneficialOwnersForCustomerRequestToJSON(
   listBeneficialOwnersForCustomerRequest:
     ListBeneficialOwnersForCustomerRequest,
@@ -60,16 +33,5 @@ export function listBeneficialOwnersForCustomerRequestToJSON(
     ListBeneficialOwnersForCustomerRequest$outboundSchema.parse(
       listBeneficialOwnersForCustomerRequest,
     ),
-  );
-}
-
-export function listBeneficialOwnersForCustomerRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListBeneficialOwnersForCustomerRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      ListBeneficialOwnersForCustomerRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListBeneficialOwnersForCustomerRequest' from JSON`,
   );
 }

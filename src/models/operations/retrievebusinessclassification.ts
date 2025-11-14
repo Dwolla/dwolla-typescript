@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RetrieveBusinessClassificationRequest = {
   /**
@@ -13,15 +10,6 @@ export type RetrieveBusinessClassificationRequest = {
    */
   id: string;
 };
-
-/** @internal */
-export const RetrieveBusinessClassificationRequest$inboundSchema: z.ZodType<
-  RetrieveBusinessClassificationRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
 
 /** @internal */
 export type RetrieveBusinessClassificationRequest$Outbound = {
@@ -37,21 +25,6 @@ export const RetrieveBusinessClassificationRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RetrieveBusinessClassificationRequest$ {
-  /** @deprecated use `RetrieveBusinessClassificationRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    RetrieveBusinessClassificationRequest$inboundSchema;
-  /** @deprecated use `RetrieveBusinessClassificationRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    RetrieveBusinessClassificationRequest$outboundSchema;
-  /** @deprecated use `RetrieveBusinessClassificationRequest$Outbound` instead. */
-  export type Outbound = RetrieveBusinessClassificationRequest$Outbound;
-}
-
 export function retrieveBusinessClassificationRequestToJSON(
   retrieveBusinessClassificationRequest: RetrieveBusinessClassificationRequest,
 ): string {
@@ -59,16 +32,5 @@ export function retrieveBusinessClassificationRequestToJSON(
     RetrieveBusinessClassificationRequest$outboundSchema.parse(
       retrieveBusinessClassificationRequest,
     ),
-  );
-}
-
-export function retrieveBusinessClassificationRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<RetrieveBusinessClassificationRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      RetrieveBusinessClassificationRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'RetrieveBusinessClassificationRequest' from JSON`,
   );
 }

@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
-import { Result as SafeParseResult } from "../types/fp.js";
 import { RFCDate } from "../types/rfcdate.js";
-import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 export type CreateFinicitySecureExchangeExchangePartner = {
   href?: string | undefined;
@@ -46,16 +43,6 @@ export type CreateFinicitySecureExchange = {
 };
 
 /** @internal */
-export const CreateFinicitySecureExchangeExchangePartner$inboundSchema:
-  z.ZodType<
-    CreateFinicitySecureExchangeExchangePartner,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    href: z.string().optional(),
-  });
-
-/** @internal */
 export type CreateFinicitySecureExchangeExchangePartner$Outbound = {
   href?: string | undefined;
 };
@@ -70,21 +57,6 @@ export const CreateFinicitySecureExchangeExchangePartner$outboundSchema:
     href: z.string().optional(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateFinicitySecureExchangeExchangePartner$ {
-  /** @deprecated use `CreateFinicitySecureExchangeExchangePartner$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateFinicitySecureExchangeExchangePartner$inboundSchema;
-  /** @deprecated use `CreateFinicitySecureExchangeExchangePartner$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateFinicitySecureExchangeExchangePartner$outboundSchema;
-  /** @deprecated use `CreateFinicitySecureExchangeExchangePartner$Outbound` instead. */
-  export type Outbound = CreateFinicitySecureExchangeExchangePartner$Outbound;
-}
-
 export function createFinicitySecureExchangeExchangePartnerToJSON(
   createFinicitySecureExchangeExchangePartner:
     CreateFinicitySecureExchangeExchangePartner,
@@ -95,37 +67,6 @@ export function createFinicitySecureExchangeExchangePartnerToJSON(
     ),
   );
 }
-
-export function createFinicitySecureExchangeExchangePartnerFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateFinicitySecureExchangeExchangePartner,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateFinicitySecureExchangeExchangePartner$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreateFinicitySecureExchangeExchangePartner' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateFinicitySecureExchangeLinks$inboundSchema: z.ZodType<
-  CreateFinicitySecureExchangeLinks,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  "exchange-partner": z.lazy(() =>
-    CreateFinicitySecureExchangeExchangePartner$inboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "exchange-partner": "exchangePartner",
-  });
-});
 
 /** @internal */
 export type CreateFinicitySecureExchangeLinks$Outbound = {
@@ -149,20 +90,6 @@ export const CreateFinicitySecureExchangeLinks$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateFinicitySecureExchangeLinks$ {
-  /** @deprecated use `CreateFinicitySecureExchangeLinks$inboundSchema` instead. */
-  export const inboundSchema = CreateFinicitySecureExchangeLinks$inboundSchema;
-  /** @deprecated use `CreateFinicitySecureExchangeLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateFinicitySecureExchangeLinks$outboundSchema;
-  /** @deprecated use `CreateFinicitySecureExchangeLinks$Outbound` instead. */
-  export type Outbound = CreateFinicitySecureExchangeLinks$Outbound;
-}
-
 export function createFinicitySecureExchangeLinksToJSON(
   createFinicitySecureExchangeLinks: CreateFinicitySecureExchangeLinks,
 ): string {
@@ -172,28 +99,6 @@ export function createFinicitySecureExchangeLinksToJSON(
     ),
   );
 }
-
-export function createFinicitySecureExchangeLinksFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateFinicitySecureExchangeLinks, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateFinicitySecureExchangeLinks$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateFinicitySecureExchangeLinks' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccessPeriod$inboundSchema: z.ZodType<
-  AccessPeriod,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  type: z.string().optional(),
-  startTime: z.string().transform(v => new RFCDate(v)).optional(),
-  endTime: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-});
 
 /** @internal */
 export type AccessPeriod$Outbound = {
@@ -213,40 +118,9 @@ export const AccessPeriod$outboundSchema: z.ZodType<
   endTime: z.date().transform(v => v.toISOString()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccessPeriod$ {
-  /** @deprecated use `AccessPeriod$inboundSchema` instead. */
-  export const inboundSchema = AccessPeriod$inboundSchema;
-  /** @deprecated use `AccessPeriod$outboundSchema` instead. */
-  export const outboundSchema = AccessPeriod$outboundSchema;
-  /** @deprecated use `AccessPeriod$Outbound` instead. */
-  export type Outbound = AccessPeriod$Outbound;
-}
-
 export function accessPeriodToJSON(accessPeriod: AccessPeriod): string {
   return JSON.stringify(AccessPeriod$outboundSchema.parse(accessPeriod));
 }
-
-export function accessPeriodFromJSON(
-  jsonString: string,
-): SafeParseResult<AccessPeriod, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccessPeriod$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccessPeriod' from JSON`,
-  );
-}
-
-/** @internal */
-export const Product$inboundSchema: z.ZodType<Product, z.ZodTypeDef, unknown> =
-  z.object({
-    product: z.string().optional(),
-    accountId: z.string().optional(),
-    accessPeriod: z.lazy(() => AccessPeriod$inboundSchema).optional(),
-  });
 
 /** @internal */
 export type Product$Outbound = {
@@ -266,49 +140,9 @@ export const Product$outboundSchema: z.ZodType<
   accessPeriod: z.lazy(() => AccessPeriod$outboundSchema).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Product$ {
-  /** @deprecated use `Product$inboundSchema` instead. */
-  export const inboundSchema = Product$inboundSchema;
-  /** @deprecated use `Product$outboundSchema` instead. */
-  export const outboundSchema = Product$outboundSchema;
-  /** @deprecated use `Product$Outbound` instead. */
-  export type Outbound = Product$Outbound;
-}
-
 export function productToJSON(product: Product): string {
   return JSON.stringify(Product$outboundSchema.parse(product));
 }
-
-export function productFromJSON(
-  jsonString: string,
-): SafeParseResult<Product, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Product$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Product' from JSON`,
-  );
-}
-
-/** @internal */
-export const Finicity$inboundSchema: z.ZodType<
-  Finicity,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  profile: z.number().int().optional(),
-  version: z.string().optional(),
-  receiptId: z.string().optional(),
-  receiptVersion: z.string().optional(),
-  customerId: z.string().optional(),
-  partnerId: z.number().int().optional(),
-  products: z.array(z.lazy(() => Product$inboundSchema)).optional(),
-  timestamp: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-});
 
 /** @internal */
 export type Finicity$Outbound = {
@@ -338,47 +172,9 @@ export const Finicity$outboundSchema: z.ZodType<
   timestamp: z.date().transform(v => v.toISOString()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Finicity$ {
-  /** @deprecated use `Finicity$inboundSchema` instead. */
-  export const inboundSchema = Finicity$inboundSchema;
-  /** @deprecated use `Finicity$outboundSchema` instead. */
-  export const outboundSchema = Finicity$outboundSchema;
-  /** @deprecated use `Finicity$Outbound` instead. */
-  export type Outbound = Finicity$Outbound;
-}
-
 export function finicityToJSON(finicity: Finicity): string {
   return JSON.stringify(Finicity$outboundSchema.parse(finicity));
 }
-
-export function finicityFromJSON(
-  jsonString: string,
-): SafeParseResult<Finicity, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Finicity$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Finicity' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateFinicitySecureExchange$inboundSchema: z.ZodType<
-  CreateFinicitySecureExchange,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  _links: z.lazy(() => CreateFinicitySecureExchangeLinks$inboundSchema)
-    .optional(),
-  finicity: z.lazy(() => Finicity$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
 
 /** @internal */
 export type CreateFinicitySecureExchange$Outbound = {
@@ -401,19 +197,6 @@ export const CreateFinicitySecureExchange$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateFinicitySecureExchange$ {
-  /** @deprecated use `CreateFinicitySecureExchange$inboundSchema` instead. */
-  export const inboundSchema = CreateFinicitySecureExchange$inboundSchema;
-  /** @deprecated use `CreateFinicitySecureExchange$outboundSchema` instead. */
-  export const outboundSchema = CreateFinicitySecureExchange$outboundSchema;
-  /** @deprecated use `CreateFinicitySecureExchange$Outbound` instead. */
-  export type Outbound = CreateFinicitySecureExchange$Outbound;
-}
-
 export function createFinicitySecureExchangeToJSON(
   createFinicitySecureExchange: CreateFinicitySecureExchange,
 ): string {
@@ -421,15 +204,5 @@ export function createFinicitySecureExchangeToJSON(
     CreateFinicitySecureExchange$outboundSchema.parse(
       createFinicitySecureExchange,
     ),
-  );
-}
-
-export function createFinicitySecureExchangeFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateFinicitySecureExchange, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateFinicitySecureExchange$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateFinicitySecureExchange' from JSON`,
   );
 }

@@ -6,19 +6,9 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
-import {
-  Document,
-  Document$inboundSchema,
-  Document$Outbound,
-  Document$outboundSchema,
-} from "./document.js";
+import { Document, Document$inboundSchema } from "./document.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  HalLink,
-  HalLink$inboundSchema,
-  HalLink$Outbound,
-  HalLink$outboundSchema,
-} from "./hallink.js";
+import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 
 export type DocumentsEmbedded = {
   documents?: Array<Document> | undefined;
@@ -38,41 +28,6 @@ export const DocumentsEmbedded$inboundSchema: z.ZodType<
 > = z.object({
   documents: z.array(Document$inboundSchema).optional(),
 });
-
-/** @internal */
-export type DocumentsEmbedded$Outbound = {
-  documents?: Array<Document$Outbound> | undefined;
-};
-
-/** @internal */
-export const DocumentsEmbedded$outboundSchema: z.ZodType<
-  DocumentsEmbedded$Outbound,
-  z.ZodTypeDef,
-  DocumentsEmbedded
-> = z.object({
-  documents: z.array(Document$outboundSchema).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DocumentsEmbedded$ {
-  /** @deprecated use `DocumentsEmbedded$inboundSchema` instead. */
-  export const inboundSchema = DocumentsEmbedded$inboundSchema;
-  /** @deprecated use `DocumentsEmbedded$outboundSchema` instead. */
-  export const outboundSchema = DocumentsEmbedded$outboundSchema;
-  /** @deprecated use `DocumentsEmbedded$Outbound` instead. */
-  export type Outbound = DocumentsEmbedded$Outbound;
-}
-
-export function documentsEmbeddedToJSON(
-  documentsEmbedded: DocumentsEmbedded,
-): string {
-  return JSON.stringify(
-    DocumentsEmbedded$outboundSchema.parse(documentsEmbedded),
-  );
-}
 
 export function documentsEmbeddedFromJSON(
   jsonString: string,
@@ -99,46 +54,6 @@ export const Documents$inboundSchema: z.ZodType<
     "_embedded": "embedded",
   });
 });
-
-/** @internal */
-export type Documents$Outbound = {
-  _links?: { [k: string]: HalLink$Outbound } | undefined;
-  _embedded?: DocumentsEmbedded$Outbound | undefined;
-  total?: number | undefined;
-};
-
-/** @internal */
-export const Documents$outboundSchema: z.ZodType<
-  Documents$Outbound,
-  z.ZodTypeDef,
-  Documents
-> = z.object({
-  links: z.record(HalLink$outboundSchema).optional(),
-  embedded: z.lazy(() => DocumentsEmbedded$outboundSchema).optional(),
-  total: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Documents$ {
-  /** @deprecated use `Documents$inboundSchema` instead. */
-  export const inboundSchema = Documents$inboundSchema;
-  /** @deprecated use `Documents$outboundSchema` instead. */
-  export const outboundSchema = Documents$outboundSchema;
-  /** @deprecated use `Documents$Outbound` instead. */
-  export type Outbound = Documents$Outbound;
-}
-
-export function documentsToJSON(documents: Documents): string {
-  return JSON.stringify(Documents$outboundSchema.parse(documents));
-}
 
 export function documentsFromJSON(
   jsonString: string,

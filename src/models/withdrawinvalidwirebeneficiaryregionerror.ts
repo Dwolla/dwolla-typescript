@@ -29,44 +29,6 @@ export const WithdrawInvalidWireBeneficiaryRegionErrorLinks$inboundSchema:
     unknown
   > = z.object({});
 
-/** @internal */
-export type WithdrawInvalidWireBeneficiaryRegionErrorLinks$Outbound = {};
-
-/** @internal */
-export const WithdrawInvalidWireBeneficiaryRegionErrorLinks$outboundSchema:
-  z.ZodType<
-    WithdrawInvalidWireBeneficiaryRegionErrorLinks$Outbound,
-    z.ZodTypeDef,
-    WithdrawInvalidWireBeneficiaryRegionErrorLinks
-  > = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawInvalidWireBeneficiaryRegionErrorLinks$ {
-  /** @deprecated use `WithdrawInvalidWireBeneficiaryRegionErrorLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawInvalidWireBeneficiaryRegionErrorLinks$inboundSchema;
-  /** @deprecated use `WithdrawInvalidWireBeneficiaryRegionErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawInvalidWireBeneficiaryRegionErrorLinks$outboundSchema;
-  /** @deprecated use `WithdrawInvalidWireBeneficiaryRegionErrorLinks$Outbound` instead. */
-  export type Outbound =
-    WithdrawInvalidWireBeneficiaryRegionErrorLinks$Outbound;
-}
-
-export function withdrawInvalidWireBeneficiaryRegionErrorLinksToJSON(
-  withdrawInvalidWireBeneficiaryRegionErrorLinks:
-    WithdrawInvalidWireBeneficiaryRegionErrorLinks,
-): string {
-  return JSON.stringify(
-    WithdrawInvalidWireBeneficiaryRegionErrorLinks$outboundSchema.parse(
-      withdrawInvalidWireBeneficiaryRegionErrorLinks,
-    ),
-  );
-}
-
 export function withdrawInvalidWireBeneficiaryRegionErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -102,60 +64,6 @@ export const WithdrawInvalidWireBeneficiaryRegionErrorError$inboundSchema:
     });
   });
 
-/** @internal */
-export type WithdrawInvalidWireBeneficiaryRegionErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: WithdrawInvalidWireBeneficiaryRegionErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const WithdrawInvalidWireBeneficiaryRegionErrorError$outboundSchema:
-  z.ZodType<
-    WithdrawInvalidWireBeneficiaryRegionErrorError$Outbound,
-    z.ZodTypeDef,
-    WithdrawInvalidWireBeneficiaryRegionErrorError
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    path: z.string().optional(),
-    links: z.lazy(() =>
-      WithdrawInvalidWireBeneficiaryRegionErrorLinks$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      links: "_links",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawInvalidWireBeneficiaryRegionErrorError$ {
-  /** @deprecated use `WithdrawInvalidWireBeneficiaryRegionErrorError$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawInvalidWireBeneficiaryRegionErrorError$inboundSchema;
-  /** @deprecated use `WithdrawInvalidWireBeneficiaryRegionErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawInvalidWireBeneficiaryRegionErrorError$outboundSchema;
-  /** @deprecated use `WithdrawInvalidWireBeneficiaryRegionErrorError$Outbound` instead. */
-  export type Outbound =
-    WithdrawInvalidWireBeneficiaryRegionErrorError$Outbound;
-}
-
-export function withdrawInvalidWireBeneficiaryRegionErrorErrorToJSON(
-  withdrawInvalidWireBeneficiaryRegionErrorError:
-    WithdrawInvalidWireBeneficiaryRegionErrorError,
-): string {
-  return JSON.stringify(
-    WithdrawInvalidWireBeneficiaryRegionErrorError$outboundSchema.parse(
-      withdrawInvalidWireBeneficiaryRegionErrorError,
-    ),
-  );
-}
-
 export function withdrawInvalidWireBeneficiaryRegionErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -185,54 +93,6 @@ export const WithdrawInvalidWireBeneficiaryRegionErrorEmbedded$inboundSchema:
       ),
     ).optional(),
   });
-
-/** @internal */
-export type WithdrawInvalidWireBeneficiaryRegionErrorEmbedded$Outbound = {
-  errors?:
-    | Array<WithdrawInvalidWireBeneficiaryRegionErrorError$Outbound>
-    | undefined;
-};
-
-/** @internal */
-export const WithdrawInvalidWireBeneficiaryRegionErrorEmbedded$outboundSchema:
-  z.ZodType<
-    WithdrawInvalidWireBeneficiaryRegionErrorEmbedded$Outbound,
-    z.ZodTypeDef,
-    WithdrawInvalidWireBeneficiaryRegionErrorEmbedded
-  > = z.object({
-    errors: z.array(
-      z.lazy(() =>
-        WithdrawInvalidWireBeneficiaryRegionErrorError$outboundSchema
-      ),
-    ).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawInvalidWireBeneficiaryRegionErrorEmbedded$ {
-  /** @deprecated use `WithdrawInvalidWireBeneficiaryRegionErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawInvalidWireBeneficiaryRegionErrorEmbedded$inboundSchema;
-  /** @deprecated use `WithdrawInvalidWireBeneficiaryRegionErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawInvalidWireBeneficiaryRegionErrorEmbedded$outboundSchema;
-  /** @deprecated use `WithdrawInvalidWireBeneficiaryRegionErrorEmbedded$Outbound` instead. */
-  export type Outbound =
-    WithdrawInvalidWireBeneficiaryRegionErrorEmbedded$Outbound;
-}
-
-export function withdrawInvalidWireBeneficiaryRegionErrorEmbeddedToJSON(
-  withdrawInvalidWireBeneficiaryRegionErrorEmbedded:
-    WithdrawInvalidWireBeneficiaryRegionErrorEmbedded,
-): string {
-  return JSON.stringify(
-    WithdrawInvalidWireBeneficiaryRegionErrorEmbedded$outboundSchema.parse(
-      withdrawInvalidWireBeneficiaryRegionErrorEmbedded,
-    ),
-  );
-}
 
 export function withdrawInvalidWireBeneficiaryRegionErrorEmbeddedFromJSON(
   jsonString: string,

@@ -28,39 +28,6 @@ export const TransferExpiredForFeeErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type TransferExpiredForFeeErrorLinks$Outbound = {};
-
-/** @internal */
-export const TransferExpiredForFeeErrorLinks$outboundSchema: z.ZodType<
-  TransferExpiredForFeeErrorLinks$Outbound,
-  z.ZodTypeDef,
-  TransferExpiredForFeeErrorLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransferExpiredForFeeErrorLinks$ {
-  /** @deprecated use `TransferExpiredForFeeErrorLinks$inboundSchema` instead. */
-  export const inboundSchema = TransferExpiredForFeeErrorLinks$inboundSchema;
-  /** @deprecated use `TransferExpiredForFeeErrorLinks$outboundSchema` instead. */
-  export const outboundSchema = TransferExpiredForFeeErrorLinks$outboundSchema;
-  /** @deprecated use `TransferExpiredForFeeErrorLinks$Outbound` instead. */
-  export type Outbound = TransferExpiredForFeeErrorLinks$Outbound;
-}
-
-export function transferExpiredForFeeErrorLinksToJSON(
-  transferExpiredForFeeErrorLinks: TransferExpiredForFeeErrorLinks,
-): string {
-  return JSON.stringify(
-    TransferExpiredForFeeErrorLinks$outboundSchema.parse(
-      transferExpiredForFeeErrorLinks,
-    ),
-  );
-}
-
 export function transferExpiredForFeeErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<TransferExpiredForFeeErrorLinks, SDKValidationError> {
@@ -88,54 +55,6 @@ export const TransferExpiredForFeeErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type TransferExpiredForFeeErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: TransferExpiredForFeeErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const TransferExpiredForFeeErrorError$outboundSchema: z.ZodType<
-  TransferExpiredForFeeErrorError$Outbound,
-  z.ZodTypeDef,
-  TransferExpiredForFeeErrorError
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  links: z.lazy(() => TransferExpiredForFeeErrorLinks$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransferExpiredForFeeErrorError$ {
-  /** @deprecated use `TransferExpiredForFeeErrorError$inboundSchema` instead. */
-  export const inboundSchema = TransferExpiredForFeeErrorError$inboundSchema;
-  /** @deprecated use `TransferExpiredForFeeErrorError$outboundSchema` instead. */
-  export const outboundSchema = TransferExpiredForFeeErrorError$outboundSchema;
-  /** @deprecated use `TransferExpiredForFeeErrorError$Outbound` instead. */
-  export type Outbound = TransferExpiredForFeeErrorError$Outbound;
-}
-
-export function transferExpiredForFeeErrorErrorToJSON(
-  transferExpiredForFeeErrorError: TransferExpiredForFeeErrorError,
-): string {
-  return JSON.stringify(
-    TransferExpiredForFeeErrorError$outboundSchema.parse(
-      transferExpiredForFeeErrorError,
-    ),
-  );
-}
-
 export function transferExpiredForFeeErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<TransferExpiredForFeeErrorError, SDKValidationError> {
@@ -155,45 +74,6 @@ export const TransferExpiredForFeeErrorEmbedded$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => TransferExpiredForFeeErrorError$inboundSchema))
     .optional(),
 });
-
-/** @internal */
-export type TransferExpiredForFeeErrorEmbedded$Outbound = {
-  errors?: Array<TransferExpiredForFeeErrorError$Outbound> | undefined;
-};
-
-/** @internal */
-export const TransferExpiredForFeeErrorEmbedded$outboundSchema: z.ZodType<
-  TransferExpiredForFeeErrorEmbedded$Outbound,
-  z.ZodTypeDef,
-  TransferExpiredForFeeErrorEmbedded
-> = z.object({
-  errors: z.array(z.lazy(() => TransferExpiredForFeeErrorError$outboundSchema))
-    .optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransferExpiredForFeeErrorEmbedded$ {
-  /** @deprecated use `TransferExpiredForFeeErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema = TransferExpiredForFeeErrorEmbedded$inboundSchema;
-  /** @deprecated use `TransferExpiredForFeeErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    TransferExpiredForFeeErrorEmbedded$outboundSchema;
-  /** @deprecated use `TransferExpiredForFeeErrorEmbedded$Outbound` instead. */
-  export type Outbound = TransferExpiredForFeeErrorEmbedded$Outbound;
-}
-
-export function transferExpiredForFeeErrorEmbeddedToJSON(
-  transferExpiredForFeeErrorEmbedded: TransferExpiredForFeeErrorEmbedded,
-): string {
-  return JSON.stringify(
-    TransferExpiredForFeeErrorEmbedded$outboundSchema.parse(
-      transferExpiredForFeeErrorEmbedded,
-    ),
-  );
-}
 
 export function transferExpiredForFeeErrorEmbeddedFromJSON(
   jsonString: string,

@@ -21,7 +21,6 @@ export const TransferAmount$inboundSchema: z.ZodType<
   value: z.string(),
   currency: z.string(),
 });
-
 /** @internal */
 export type TransferAmount$Outbound = {
   value: string;
@@ -38,23 +37,9 @@ export const TransferAmount$outboundSchema: z.ZodType<
   currency: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransferAmount$ {
-  /** @deprecated use `TransferAmount$inboundSchema` instead. */
-  export const inboundSchema = TransferAmount$inboundSchema;
-  /** @deprecated use `TransferAmount$outboundSchema` instead. */
-  export const outboundSchema = TransferAmount$outboundSchema;
-  /** @deprecated use `TransferAmount$Outbound` instead. */
-  export type Outbound = TransferAmount$Outbound;
-}
-
 export function transferAmountToJSON(transferAmount: TransferAmount): string {
   return JSON.stringify(TransferAmount$outboundSchema.parse(transferAmount));
 }
-
 export function transferAmountFromJSON(
   jsonString: string,
 ): SafeParseResult<TransferAmount, SDKValidationError> {

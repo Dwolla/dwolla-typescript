@@ -18,13 +18,6 @@ export type SimulateBankTransferProcessingRequest = {};
 export type SimulateBankTransferProcessingResponse = {};
 
 /** @internal */
-export const SimulateBankTransferProcessingRequest$inboundSchema: z.ZodType<
-  SimulateBankTransferProcessingRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
 export type SimulateBankTransferProcessingRequest$Outbound = {};
 
 /** @internal */
@@ -33,21 +26,6 @@ export const SimulateBankTransferProcessingRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SimulateBankTransferProcessingRequest
 > = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SimulateBankTransferProcessingRequest$ {
-  /** @deprecated use `SimulateBankTransferProcessingRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    SimulateBankTransferProcessingRequest$inboundSchema;
-  /** @deprecated use `SimulateBankTransferProcessingRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    SimulateBankTransferProcessingRequest$outboundSchema;
-  /** @deprecated use `SimulateBankTransferProcessingRequest$Outbound` instead. */
-  export type Outbound = SimulateBankTransferProcessingRequest$Outbound;
-}
 
 export function simulateBankTransferProcessingRequestToJSON(
   simulateBankTransferProcessingRequest: SimulateBankTransferProcessingRequest,
@@ -59,59 +37,12 @@ export function simulateBankTransferProcessingRequestToJSON(
   );
 }
 
-export function simulateBankTransferProcessingRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<SimulateBankTransferProcessingRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      SimulateBankTransferProcessingRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SimulateBankTransferProcessingRequest' from JSON`,
-  );
-}
-
 /** @internal */
 export const SimulateBankTransferProcessingResponse$inboundSchema: z.ZodType<
   SimulateBankTransferProcessingResponse,
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
-/** @internal */
-export type SimulateBankTransferProcessingResponse$Outbound = {};
-
-/** @internal */
-export const SimulateBankTransferProcessingResponse$outboundSchema: z.ZodType<
-  SimulateBankTransferProcessingResponse$Outbound,
-  z.ZodTypeDef,
-  SimulateBankTransferProcessingResponse
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SimulateBankTransferProcessingResponse$ {
-  /** @deprecated use `SimulateBankTransferProcessingResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    SimulateBankTransferProcessingResponse$inboundSchema;
-  /** @deprecated use `SimulateBankTransferProcessingResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    SimulateBankTransferProcessingResponse$outboundSchema;
-  /** @deprecated use `SimulateBankTransferProcessingResponse$Outbound` instead. */
-  export type Outbound = SimulateBankTransferProcessingResponse$Outbound;
-}
-
-export function simulateBankTransferProcessingResponseToJSON(
-  simulateBankTransferProcessingResponse:
-    SimulateBankTransferProcessingResponse,
-): string {
-  return JSON.stringify(
-    SimulateBankTransferProcessingResponse$outboundSchema.parse(
-      simulateBankTransferProcessingResponse,
-    ),
-  );
-}
 
 export function simulateBankTransferProcessingResponseFromJSON(
   jsonString: string,

@@ -20,15 +20,6 @@ export type DeleteBeneficialOwnerRequest = {
 export type DeleteBeneficialOwnerResponse = {};
 
 /** @internal */
-export const DeleteBeneficialOwnerRequest$inboundSchema: z.ZodType<
-  DeleteBeneficialOwnerRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
-
-/** @internal */
 export type DeleteBeneficialOwnerRequest$Outbound = {
   id: string;
 };
@@ -42,19 +33,6 @@ export const DeleteBeneficialOwnerRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteBeneficialOwnerRequest$ {
-  /** @deprecated use `DeleteBeneficialOwnerRequest$inboundSchema` instead. */
-  export const inboundSchema = DeleteBeneficialOwnerRequest$inboundSchema;
-  /** @deprecated use `DeleteBeneficialOwnerRequest$outboundSchema` instead. */
-  export const outboundSchema = DeleteBeneficialOwnerRequest$outboundSchema;
-  /** @deprecated use `DeleteBeneficialOwnerRequest$Outbound` instead. */
-  export type Outbound = DeleteBeneficialOwnerRequest$Outbound;
-}
-
 export function deleteBeneficialOwnerRequestToJSON(
   deleteBeneficialOwnerRequest: DeleteBeneficialOwnerRequest,
 ): string {
@@ -65,55 +43,12 @@ export function deleteBeneficialOwnerRequestToJSON(
   );
 }
 
-export function deleteBeneficialOwnerRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<DeleteBeneficialOwnerRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DeleteBeneficialOwnerRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DeleteBeneficialOwnerRequest' from JSON`,
-  );
-}
-
 /** @internal */
 export const DeleteBeneficialOwnerResponse$inboundSchema: z.ZodType<
   DeleteBeneficialOwnerResponse,
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
-/** @internal */
-export type DeleteBeneficialOwnerResponse$Outbound = {};
-
-/** @internal */
-export const DeleteBeneficialOwnerResponse$outboundSchema: z.ZodType<
-  DeleteBeneficialOwnerResponse$Outbound,
-  z.ZodTypeDef,
-  DeleteBeneficialOwnerResponse
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteBeneficialOwnerResponse$ {
-  /** @deprecated use `DeleteBeneficialOwnerResponse$inboundSchema` instead. */
-  export const inboundSchema = DeleteBeneficialOwnerResponse$inboundSchema;
-  /** @deprecated use `DeleteBeneficialOwnerResponse$outboundSchema` instead. */
-  export const outboundSchema = DeleteBeneficialOwnerResponse$outboundSchema;
-  /** @deprecated use `DeleteBeneficialOwnerResponse$Outbound` instead. */
-  export type Outbound = DeleteBeneficialOwnerResponse$Outbound;
-}
-
-export function deleteBeneficialOwnerResponseToJSON(
-  deleteBeneficialOwnerResponse: DeleteBeneficialOwnerResponse,
-): string {
-  return JSON.stringify(
-    DeleteBeneficialOwnerResponse$outboundSchema.parse(
-      deleteBeneficialOwnerResponse,
-    ),
-  );
-}
 
 export function deleteBeneficialOwnerResponseFromJSON(
   jsonString: string,

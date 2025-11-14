@@ -28,42 +28,6 @@ export const FacilitatorFeeAccountNotFoundErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type FacilitatorFeeAccountNotFoundErrorLinks$Outbound = {};
-
-/** @internal */
-export const FacilitatorFeeAccountNotFoundErrorLinks$outboundSchema: z.ZodType<
-  FacilitatorFeeAccountNotFoundErrorLinks$Outbound,
-  z.ZodTypeDef,
-  FacilitatorFeeAccountNotFoundErrorLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FacilitatorFeeAccountNotFoundErrorLinks$ {
-  /** @deprecated use `FacilitatorFeeAccountNotFoundErrorLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    FacilitatorFeeAccountNotFoundErrorLinks$inboundSchema;
-  /** @deprecated use `FacilitatorFeeAccountNotFoundErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    FacilitatorFeeAccountNotFoundErrorLinks$outboundSchema;
-  /** @deprecated use `FacilitatorFeeAccountNotFoundErrorLinks$Outbound` instead. */
-  export type Outbound = FacilitatorFeeAccountNotFoundErrorLinks$Outbound;
-}
-
-export function facilitatorFeeAccountNotFoundErrorLinksToJSON(
-  facilitatorFeeAccountNotFoundErrorLinks:
-    FacilitatorFeeAccountNotFoundErrorLinks,
-): string {
-  return JSON.stringify(
-    FacilitatorFeeAccountNotFoundErrorLinks$outboundSchema.parse(
-      facilitatorFeeAccountNotFoundErrorLinks,
-    ),
-  );
-}
-
 export function facilitatorFeeAccountNotFoundErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -97,57 +61,6 @@ export const FacilitatorFeeAccountNotFoundErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type FacilitatorFeeAccountNotFoundErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: FacilitatorFeeAccountNotFoundErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const FacilitatorFeeAccountNotFoundErrorError$outboundSchema: z.ZodType<
-  FacilitatorFeeAccountNotFoundErrorError$Outbound,
-  z.ZodTypeDef,
-  FacilitatorFeeAccountNotFoundErrorError
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  links: z.lazy(() => FacilitatorFeeAccountNotFoundErrorLinks$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FacilitatorFeeAccountNotFoundErrorError$ {
-  /** @deprecated use `FacilitatorFeeAccountNotFoundErrorError$inboundSchema` instead. */
-  export const inboundSchema =
-    FacilitatorFeeAccountNotFoundErrorError$inboundSchema;
-  /** @deprecated use `FacilitatorFeeAccountNotFoundErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    FacilitatorFeeAccountNotFoundErrorError$outboundSchema;
-  /** @deprecated use `FacilitatorFeeAccountNotFoundErrorError$Outbound` instead. */
-  export type Outbound = FacilitatorFeeAccountNotFoundErrorError$Outbound;
-}
-
-export function facilitatorFeeAccountNotFoundErrorErrorToJSON(
-  facilitatorFeeAccountNotFoundErrorError:
-    FacilitatorFeeAccountNotFoundErrorError,
-): string {
-  return JSON.stringify(
-    FacilitatorFeeAccountNotFoundErrorError$outboundSchema.parse(
-      facilitatorFeeAccountNotFoundErrorError,
-    ),
-  );
-}
-
 export function facilitatorFeeAccountNotFoundErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -172,49 +85,6 @@ export const FacilitatorFeeAccountNotFoundErrorEmbedded$inboundSchema:
         z.lazy(() => FacilitatorFeeAccountNotFoundErrorError$inboundSchema),
       ).optional(),
     });
-
-/** @internal */
-export type FacilitatorFeeAccountNotFoundErrorEmbedded$Outbound = {
-  errors?: Array<FacilitatorFeeAccountNotFoundErrorError$Outbound> | undefined;
-};
-
-/** @internal */
-export const FacilitatorFeeAccountNotFoundErrorEmbedded$outboundSchema:
-  z.ZodType<
-    FacilitatorFeeAccountNotFoundErrorEmbedded$Outbound,
-    z.ZodTypeDef,
-    FacilitatorFeeAccountNotFoundErrorEmbedded
-  > = z.object({
-    errors: z.array(
-      z.lazy(() => FacilitatorFeeAccountNotFoundErrorError$outboundSchema),
-    ).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FacilitatorFeeAccountNotFoundErrorEmbedded$ {
-  /** @deprecated use `FacilitatorFeeAccountNotFoundErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    FacilitatorFeeAccountNotFoundErrorEmbedded$inboundSchema;
-  /** @deprecated use `FacilitatorFeeAccountNotFoundErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    FacilitatorFeeAccountNotFoundErrorEmbedded$outboundSchema;
-  /** @deprecated use `FacilitatorFeeAccountNotFoundErrorEmbedded$Outbound` instead. */
-  export type Outbound = FacilitatorFeeAccountNotFoundErrorEmbedded$Outbound;
-}
-
-export function facilitatorFeeAccountNotFoundErrorEmbeddedToJSON(
-  facilitatorFeeAccountNotFoundErrorEmbedded:
-    FacilitatorFeeAccountNotFoundErrorEmbedded,
-): string {
-  return JSON.stringify(
-    FacilitatorFeeAccountNotFoundErrorEmbedded$outboundSchema.parse(
-      facilitatorFeeAccountNotFoundErrorEmbedded,
-    ),
-  );
-}
 
 export function facilitatorFeeAccountNotFoundErrorEmbeddedFromJSON(
   jsonString: string,

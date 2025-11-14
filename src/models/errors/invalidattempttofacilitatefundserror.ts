@@ -48,36 +48,3 @@ export const InvalidAttemptToFacilitateFundsError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type InvalidAttemptToFacilitateFundsError$Outbound = {
-  code: string;
-  message: string;
-};
-
-/** @internal */
-export const InvalidAttemptToFacilitateFundsError$outboundSchema: z.ZodType<
-  InvalidAttemptToFacilitateFundsError$Outbound,
-  z.ZodTypeDef,
-  InvalidAttemptToFacilitateFundsError
-> = z.instanceof(InvalidAttemptToFacilitateFundsError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string(),
-    message: z.string(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidAttemptToFacilitateFundsError$ {
-  /** @deprecated use `InvalidAttemptToFacilitateFundsError$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidAttemptToFacilitateFundsError$inboundSchema;
-  /** @deprecated use `InvalidAttemptToFacilitateFundsError$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidAttemptToFacilitateFundsError$outboundSchema;
-  /** @deprecated use `InvalidAttemptToFacilitateFundsError$Outbound` instead. */
-  export type Outbound = InvalidAttemptToFacilitateFundsError$Outbound;
-}

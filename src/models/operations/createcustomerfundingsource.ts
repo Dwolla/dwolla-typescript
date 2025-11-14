@@ -25,20 +25,6 @@ export type CreateCustomerFundingSourceResponse = {
 };
 
 /** @internal */
-export const CreateCustomerFundingSourceRequest$inboundSchema: z.ZodType<
-  CreateCustomerFundingSourceRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  CreateCustomerFundingSource: models.CreateCustomerFundingSource$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "CreateCustomerFundingSource": "createCustomerFundingSource",
-  });
-});
-
-/** @internal */
 export type CreateCustomerFundingSourceRequest$Outbound = {
   id: string;
   CreateCustomerFundingSource: models.CreateCustomerFundingSource$Outbound;
@@ -59,20 +45,6 @@ export const CreateCustomerFundingSourceRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerFundingSourceRequest$ {
-  /** @deprecated use `CreateCustomerFundingSourceRequest$inboundSchema` instead. */
-  export const inboundSchema = CreateCustomerFundingSourceRequest$inboundSchema;
-  /** @deprecated use `CreateCustomerFundingSourceRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerFundingSourceRequest$outboundSchema;
-  /** @deprecated use `CreateCustomerFundingSourceRequest$Outbound` instead. */
-  export type Outbound = CreateCustomerFundingSourceRequest$Outbound;
-}
-
 export function createCustomerFundingSourceRequestToJSON(
   createCustomerFundingSourceRequest: CreateCustomerFundingSourceRequest,
 ): string {
@@ -80,17 +52,6 @@ export function createCustomerFundingSourceRequestToJSON(
     CreateCustomerFundingSourceRequest$outboundSchema.parse(
       createCustomerFundingSourceRequest,
     ),
-  );
-}
-
-export function createCustomerFundingSourceRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateCustomerFundingSourceRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateCustomerFundingSourceRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateCustomerFundingSourceRequest' from JSON`,
   );
 }
 
@@ -106,49 +67,6 @@ export const CreateCustomerFundingSourceResponse$inboundSchema: z.ZodType<
     "Headers": "headers",
   });
 });
-
-/** @internal */
-export type CreateCustomerFundingSourceResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-};
-
-/** @internal */
-export const CreateCustomerFundingSourceResponse$outboundSchema: z.ZodType<
-  CreateCustomerFundingSourceResponse$Outbound,
-  z.ZodTypeDef,
-  CreateCustomerFundingSourceResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerFundingSourceResponse$ {
-  /** @deprecated use `CreateCustomerFundingSourceResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerFundingSourceResponse$inboundSchema;
-  /** @deprecated use `CreateCustomerFundingSourceResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerFundingSourceResponse$outboundSchema;
-  /** @deprecated use `CreateCustomerFundingSourceResponse$Outbound` instead. */
-  export type Outbound = CreateCustomerFundingSourceResponse$Outbound;
-}
-
-export function createCustomerFundingSourceResponseToJSON(
-  createCustomerFundingSourceResponse: CreateCustomerFundingSourceResponse,
-): string {
-  return JSON.stringify(
-    CreateCustomerFundingSourceResponse$outboundSchema.parse(
-      createCustomerFundingSourceResponse,
-    ),
-  );
-}
 
 export function createCustomerFundingSourceResponseFromJSON(
   jsonString: string,

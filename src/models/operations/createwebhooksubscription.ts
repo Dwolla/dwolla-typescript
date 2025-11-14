@@ -21,16 +21,6 @@ export type CreateWebhookSubscriptionResponse = {
 };
 
 /** @internal */
-export const CreateWebhookSubscriptionRequest$inboundSchema: z.ZodType<
-  CreateWebhookSubscriptionRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  url: z.string(),
-  secret: z.string(),
-});
-
-/** @internal */
 export type CreateWebhookSubscriptionRequest$Outbound = {
   url: string;
   secret: string;
@@ -46,19 +36,6 @@ export const CreateWebhookSubscriptionRequest$outboundSchema: z.ZodType<
   secret: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateWebhookSubscriptionRequest$ {
-  /** @deprecated use `CreateWebhookSubscriptionRequest$inboundSchema` instead. */
-  export const inboundSchema = CreateWebhookSubscriptionRequest$inboundSchema;
-  /** @deprecated use `CreateWebhookSubscriptionRequest$outboundSchema` instead. */
-  export const outboundSchema = CreateWebhookSubscriptionRequest$outboundSchema;
-  /** @deprecated use `CreateWebhookSubscriptionRequest$Outbound` instead. */
-  export type Outbound = CreateWebhookSubscriptionRequest$Outbound;
-}
-
 export function createWebhookSubscriptionRequestToJSON(
   createWebhookSubscriptionRequest: CreateWebhookSubscriptionRequest,
 ): string {
@@ -66,16 +43,6 @@ export function createWebhookSubscriptionRequestToJSON(
     CreateWebhookSubscriptionRequest$outboundSchema.parse(
       createWebhookSubscriptionRequest,
     ),
-  );
-}
-
-export function createWebhookSubscriptionRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateWebhookSubscriptionRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateWebhookSubscriptionRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateWebhookSubscriptionRequest' from JSON`,
   );
 }
 
@@ -91,48 +58,6 @@ export const CreateWebhookSubscriptionResponse$inboundSchema: z.ZodType<
     "Headers": "headers",
   });
 });
-
-/** @internal */
-export type CreateWebhookSubscriptionResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-};
-
-/** @internal */
-export const CreateWebhookSubscriptionResponse$outboundSchema: z.ZodType<
-  CreateWebhookSubscriptionResponse$Outbound,
-  z.ZodTypeDef,
-  CreateWebhookSubscriptionResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateWebhookSubscriptionResponse$ {
-  /** @deprecated use `CreateWebhookSubscriptionResponse$inboundSchema` instead. */
-  export const inboundSchema = CreateWebhookSubscriptionResponse$inboundSchema;
-  /** @deprecated use `CreateWebhookSubscriptionResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateWebhookSubscriptionResponse$outboundSchema;
-  /** @deprecated use `CreateWebhookSubscriptionResponse$Outbound` instead. */
-  export type Outbound = CreateWebhookSubscriptionResponse$Outbound;
-}
-
-export function createWebhookSubscriptionResponseToJSON(
-  createWebhookSubscriptionResponse: CreateWebhookSubscriptionResponse,
-): string {
-  return JSON.stringify(
-    CreateWebhookSubscriptionResponse$outboundSchema.parse(
-      createWebhookSubscriptionResponse,
-    ),
-  );
-}
 
 export function createWebhookSubscriptionResponseFromJSON(
   jsonString: string,

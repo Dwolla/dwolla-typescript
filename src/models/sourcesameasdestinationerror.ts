@@ -28,40 +28,6 @@ export const SourceSameAsDestinationErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type SourceSameAsDestinationErrorLinks$Outbound = {};
-
-/** @internal */
-export const SourceSameAsDestinationErrorLinks$outboundSchema: z.ZodType<
-  SourceSameAsDestinationErrorLinks$Outbound,
-  z.ZodTypeDef,
-  SourceSameAsDestinationErrorLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SourceSameAsDestinationErrorLinks$ {
-  /** @deprecated use `SourceSameAsDestinationErrorLinks$inboundSchema` instead. */
-  export const inboundSchema = SourceSameAsDestinationErrorLinks$inboundSchema;
-  /** @deprecated use `SourceSameAsDestinationErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    SourceSameAsDestinationErrorLinks$outboundSchema;
-  /** @deprecated use `SourceSameAsDestinationErrorLinks$Outbound` instead. */
-  export type Outbound = SourceSameAsDestinationErrorLinks$Outbound;
-}
-
-export function sourceSameAsDestinationErrorLinksToJSON(
-  sourceSameAsDestinationErrorLinks: SourceSameAsDestinationErrorLinks,
-): string {
-  return JSON.stringify(
-    SourceSameAsDestinationErrorLinks$outboundSchema.parse(
-      sourceSameAsDestinationErrorLinks,
-    ),
-  );
-}
-
 export function sourceSameAsDestinationErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<SourceSameAsDestinationErrorLinks, SDKValidationError> {
@@ -89,55 +55,6 @@ export const SourceSameAsDestinationErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type SourceSameAsDestinationErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: SourceSameAsDestinationErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const SourceSameAsDestinationErrorError$outboundSchema: z.ZodType<
-  SourceSameAsDestinationErrorError$Outbound,
-  z.ZodTypeDef,
-  SourceSameAsDestinationErrorError
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  links: z.lazy(() => SourceSameAsDestinationErrorLinks$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SourceSameAsDestinationErrorError$ {
-  /** @deprecated use `SourceSameAsDestinationErrorError$inboundSchema` instead. */
-  export const inboundSchema = SourceSameAsDestinationErrorError$inboundSchema;
-  /** @deprecated use `SourceSameAsDestinationErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    SourceSameAsDestinationErrorError$outboundSchema;
-  /** @deprecated use `SourceSameAsDestinationErrorError$Outbound` instead. */
-  export type Outbound = SourceSameAsDestinationErrorError$Outbound;
-}
-
-export function sourceSameAsDestinationErrorErrorToJSON(
-  sourceSameAsDestinationErrorError: SourceSameAsDestinationErrorError,
-): string {
-  return JSON.stringify(
-    SourceSameAsDestinationErrorError$outboundSchema.parse(
-      sourceSameAsDestinationErrorError,
-    ),
-  );
-}
-
 export function sourceSameAsDestinationErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<SourceSameAsDestinationErrorError, SDKValidationError> {
@@ -157,47 +74,6 @@ export const SourceSameAsDestinationErrorEmbedded$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => SourceSameAsDestinationErrorError$inboundSchema))
     .optional(),
 });
-
-/** @internal */
-export type SourceSameAsDestinationErrorEmbedded$Outbound = {
-  errors?: Array<SourceSameAsDestinationErrorError$Outbound> | undefined;
-};
-
-/** @internal */
-export const SourceSameAsDestinationErrorEmbedded$outboundSchema: z.ZodType<
-  SourceSameAsDestinationErrorEmbedded$Outbound,
-  z.ZodTypeDef,
-  SourceSameAsDestinationErrorEmbedded
-> = z.object({
-  errors: z.array(
-    z.lazy(() => SourceSameAsDestinationErrorError$outboundSchema),
-  ).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SourceSameAsDestinationErrorEmbedded$ {
-  /** @deprecated use `SourceSameAsDestinationErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    SourceSameAsDestinationErrorEmbedded$inboundSchema;
-  /** @deprecated use `SourceSameAsDestinationErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    SourceSameAsDestinationErrorEmbedded$outboundSchema;
-  /** @deprecated use `SourceSameAsDestinationErrorEmbedded$Outbound` instead. */
-  export type Outbound = SourceSameAsDestinationErrorEmbedded$Outbound;
-}
-
-export function sourceSameAsDestinationErrorEmbeddedToJSON(
-  sourceSameAsDestinationErrorEmbedded: SourceSameAsDestinationErrorEmbedded,
-): string {
-  return JSON.stringify(
-    SourceSameAsDestinationErrorEmbedded$outboundSchema.parse(
-      sourceSameAsDestinationErrorEmbedded,
-    ),
-  );
-}
 
 export function sourceSameAsDestinationErrorEmbeddedFromJSON(
   jsonString: string,

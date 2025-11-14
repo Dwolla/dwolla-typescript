@@ -31,7 +31,6 @@ export const InternationalAddress$inboundSchema: z.ZodType<
   country: z.string(),
   stateProvinceRegion: z.string(),
 });
-
 /** @internal */
 export type InternationalAddress$Outbound = {
   address1: string;
@@ -58,19 +57,6 @@ export const InternationalAddress$outboundSchema: z.ZodType<
   stateProvinceRegion: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InternationalAddress$ {
-  /** @deprecated use `InternationalAddress$inboundSchema` instead. */
-  export const inboundSchema = InternationalAddress$inboundSchema;
-  /** @deprecated use `InternationalAddress$outboundSchema` instead. */
-  export const outboundSchema = InternationalAddress$outboundSchema;
-  /** @deprecated use `InternationalAddress$Outbound` instead. */
-  export type Outbound = InternationalAddress$Outbound;
-}
-
 export function internationalAddressToJSON(
   internationalAddress: InternationalAddress,
 ): string {
@@ -78,7 +64,6 @@ export function internationalAddressToJSON(
     InternationalAddress$outboundSchema.parse(internationalAddress),
   );
 }
-
 export function internationalAddressFromJSON(
   jsonString: string,
 ): SafeParseResult<InternationalAddress, SDKValidationError> {

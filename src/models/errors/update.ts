@@ -86,39 +86,6 @@ export const UpdateForbiddenDwollaV1HalJSONError$inboundSchema: z.ZodType<
   });
 
 /** @internal */
-export type UpdateForbiddenDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const UpdateForbiddenDwollaV1HalJSONError$outboundSchema: z.ZodType<
-  UpdateForbiddenDwollaV1HalJSONError$Outbound,
-  z.ZodTypeDef,
-  UpdateForbiddenDwollaV1HalJSONError
-> = z.instanceof(UpdateForbiddenDwollaV1HalJSONError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateForbiddenDwollaV1HalJSONError$ {
-  /** @deprecated use `UpdateForbiddenDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateForbiddenDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `UpdateForbiddenDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateForbiddenDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `UpdateForbiddenDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound = UpdateForbiddenDwollaV1HalJSONError$Outbound;
-}
-
-/** @internal */
 export const UpdateBadRequestDwollaV1HalJSONError$inboundSchema: z.ZodType<
   UpdateBadRequestDwollaV1HalJSONError,
   z.ZodTypeDef,
@@ -137,36 +104,3 @@ export const UpdateBadRequestDwollaV1HalJSONError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type UpdateBadRequestDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const UpdateBadRequestDwollaV1HalJSONError$outboundSchema: z.ZodType<
-  UpdateBadRequestDwollaV1HalJSONError$Outbound,
-  z.ZodTypeDef,
-  UpdateBadRequestDwollaV1HalJSONError
-> = z.instanceof(UpdateBadRequestDwollaV1HalJSONError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateBadRequestDwollaV1HalJSONError$ {
-  /** @deprecated use `UpdateBadRequestDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateBadRequestDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `UpdateBadRequestDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateBadRequestDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `UpdateBadRequestDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound = UpdateBadRequestDwollaV1HalJSONError$Outbound;
-}

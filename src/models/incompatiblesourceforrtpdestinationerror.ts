@@ -29,43 +29,6 @@ export const IncompatibleSourceForRtpDestinationErrorLinks$inboundSchema:
     unknown
   > = z.object({});
 
-/** @internal */
-export type IncompatibleSourceForRtpDestinationErrorLinks$Outbound = {};
-
-/** @internal */
-export const IncompatibleSourceForRtpDestinationErrorLinks$outboundSchema:
-  z.ZodType<
-    IncompatibleSourceForRtpDestinationErrorLinks$Outbound,
-    z.ZodTypeDef,
-    IncompatibleSourceForRtpDestinationErrorLinks
-  > = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IncompatibleSourceForRtpDestinationErrorLinks$ {
-  /** @deprecated use `IncompatibleSourceForRtpDestinationErrorLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    IncompatibleSourceForRtpDestinationErrorLinks$inboundSchema;
-  /** @deprecated use `IncompatibleSourceForRtpDestinationErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    IncompatibleSourceForRtpDestinationErrorLinks$outboundSchema;
-  /** @deprecated use `IncompatibleSourceForRtpDestinationErrorLinks$Outbound` instead. */
-  export type Outbound = IncompatibleSourceForRtpDestinationErrorLinks$Outbound;
-}
-
-export function incompatibleSourceForRtpDestinationErrorLinksToJSON(
-  incompatibleSourceForRtpDestinationErrorLinks:
-    IncompatibleSourceForRtpDestinationErrorLinks,
-): string {
-  return JSON.stringify(
-    IncompatibleSourceForRtpDestinationErrorLinks$outboundSchema.parse(
-      incompatibleSourceForRtpDestinationErrorLinks,
-    ),
-  );
-}
-
 export function incompatibleSourceForRtpDestinationErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -101,59 +64,6 @@ export const IncompatibleSourceForRtpDestinationErrorError$inboundSchema:
     });
   });
 
-/** @internal */
-export type IncompatibleSourceForRtpDestinationErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: IncompatibleSourceForRtpDestinationErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const IncompatibleSourceForRtpDestinationErrorError$outboundSchema:
-  z.ZodType<
-    IncompatibleSourceForRtpDestinationErrorError$Outbound,
-    z.ZodTypeDef,
-    IncompatibleSourceForRtpDestinationErrorError
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    path: z.string().optional(),
-    links: z.lazy(() =>
-      IncompatibleSourceForRtpDestinationErrorLinks$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      links: "_links",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IncompatibleSourceForRtpDestinationErrorError$ {
-  /** @deprecated use `IncompatibleSourceForRtpDestinationErrorError$inboundSchema` instead. */
-  export const inboundSchema =
-    IncompatibleSourceForRtpDestinationErrorError$inboundSchema;
-  /** @deprecated use `IncompatibleSourceForRtpDestinationErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    IncompatibleSourceForRtpDestinationErrorError$outboundSchema;
-  /** @deprecated use `IncompatibleSourceForRtpDestinationErrorError$Outbound` instead. */
-  export type Outbound = IncompatibleSourceForRtpDestinationErrorError$Outbound;
-}
-
-export function incompatibleSourceForRtpDestinationErrorErrorToJSON(
-  incompatibleSourceForRtpDestinationErrorError:
-    IncompatibleSourceForRtpDestinationErrorError,
-): string {
-  return JSON.stringify(
-    IncompatibleSourceForRtpDestinationErrorError$outboundSchema.parse(
-      incompatibleSourceForRtpDestinationErrorError,
-    ),
-  );
-}
-
 export function incompatibleSourceForRtpDestinationErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -181,54 +91,6 @@ export const IncompatibleSourceForRtpDestinationErrorEmbedded$inboundSchema:
       z.lazy(() => IncompatibleSourceForRtpDestinationErrorError$inboundSchema),
     ).optional(),
   });
-
-/** @internal */
-export type IncompatibleSourceForRtpDestinationErrorEmbedded$Outbound = {
-  errors?:
-    | Array<IncompatibleSourceForRtpDestinationErrorError$Outbound>
-    | undefined;
-};
-
-/** @internal */
-export const IncompatibleSourceForRtpDestinationErrorEmbedded$outboundSchema:
-  z.ZodType<
-    IncompatibleSourceForRtpDestinationErrorEmbedded$Outbound,
-    z.ZodTypeDef,
-    IncompatibleSourceForRtpDestinationErrorEmbedded
-  > = z.object({
-    errors: z.array(
-      z.lazy(() =>
-        IncompatibleSourceForRtpDestinationErrorError$outboundSchema
-      ),
-    ).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IncompatibleSourceForRtpDestinationErrorEmbedded$ {
-  /** @deprecated use `IncompatibleSourceForRtpDestinationErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    IncompatibleSourceForRtpDestinationErrorEmbedded$inboundSchema;
-  /** @deprecated use `IncompatibleSourceForRtpDestinationErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    IncompatibleSourceForRtpDestinationErrorEmbedded$outboundSchema;
-  /** @deprecated use `IncompatibleSourceForRtpDestinationErrorEmbedded$Outbound` instead. */
-  export type Outbound =
-    IncompatibleSourceForRtpDestinationErrorEmbedded$Outbound;
-}
-
-export function incompatibleSourceForRtpDestinationErrorEmbeddedToJSON(
-  incompatibleSourceForRtpDestinationErrorEmbedded:
-    IncompatibleSourceForRtpDestinationErrorEmbedded,
-): string {
-  return JSON.stringify(
-    IncompatibleSourceForRtpDestinationErrorEmbedded$outboundSchema.parse(
-      incompatibleSourceForRtpDestinationErrorEmbedded,
-    ),
-  );
-}
 
 export function incompatibleSourceForRtpDestinationErrorEmbeddedFromJSON(
   jsonString: string,

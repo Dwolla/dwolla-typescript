@@ -3,19 +3,14 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
-import { Result as SafeParseResult } from "../types/fp.js";
-import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import {
   InternationalAddress,
-  InternationalAddress$inboundSchema,
   InternationalAddress$Outbound,
   InternationalAddress$outboundSchema,
 } from "./internationaladdress.js";
 import {
   Passport,
-  Passport$inboundSchema,
   Passport$Outbound,
   Passport$outboundSchema,
 } from "./passport.js";
@@ -69,21 +64,6 @@ export type CreateVerifiedBusinessCustomerWithInternationalController = {
 };
 
 /** @internal */
-export const CreateVerifiedBusinessCustomerWithInternationalControllerController$inboundSchema:
-  z.ZodType<
-    CreateVerifiedBusinessCustomerWithInternationalControllerController,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    firstName: z.string(),
-    lastName: z.string(),
-    title: z.string(),
-    dateOfBirth: z.string(),
-    address: InternationalAddress$inboundSchema,
-    passport: Passport$inboundSchema,
-  });
-
-/** @internal */
 export type CreateVerifiedBusinessCustomerWithInternationalControllerController$Outbound =
   {
     firstName: string;
@@ -109,22 +89,6 @@ export const CreateVerifiedBusinessCustomerWithInternationalControllerController
     passport: Passport$outboundSchema,
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateVerifiedBusinessCustomerWithInternationalControllerController$ {
-  /** @deprecated use `CreateVerifiedBusinessCustomerWithInternationalControllerController$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateVerifiedBusinessCustomerWithInternationalControllerController$inboundSchema;
-  /** @deprecated use `CreateVerifiedBusinessCustomerWithInternationalControllerController$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateVerifiedBusinessCustomerWithInternationalControllerController$outboundSchema;
-  /** @deprecated use `CreateVerifiedBusinessCustomerWithInternationalControllerController$Outbound` instead. */
-  export type Outbound =
-    CreateVerifiedBusinessCustomerWithInternationalControllerController$Outbound;
-}
-
 export function createVerifiedBusinessCustomerWithInternationalControllerControllerToJSON(
   createVerifiedBusinessCustomerWithInternationalControllerController:
     CreateVerifiedBusinessCustomerWithInternationalControllerController,
@@ -137,79 +101,13 @@ export function createVerifiedBusinessCustomerWithInternationalControllerControl
   );
 }
 
-export function createVerifiedBusinessCustomerWithInternationalControllerControllerFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateVerifiedBusinessCustomerWithInternationalControllerController,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateVerifiedBusinessCustomerWithInternationalControllerController$inboundSchema
-        .parse(JSON.parse(x)),
-    `Failed to parse 'CreateVerifiedBusinessCustomerWithInternationalControllerController' from JSON`,
-  );
-}
-
 /** @internal */
-export const CreateVerifiedBusinessCustomerWithInternationalControllerBusinessType$inboundSchema:
+export const CreateVerifiedBusinessCustomerWithInternationalControllerBusinessType$outboundSchema:
   z.ZodNativeEnum<
     typeof CreateVerifiedBusinessCustomerWithInternationalControllerBusinessType
   > = z.nativeEnum(
     CreateVerifiedBusinessCustomerWithInternationalControllerBusinessType,
   );
-
-/** @internal */
-export const CreateVerifiedBusinessCustomerWithInternationalControllerBusinessType$outboundSchema:
-  z.ZodNativeEnum<
-    typeof CreateVerifiedBusinessCustomerWithInternationalControllerBusinessType
-  > =
-    CreateVerifiedBusinessCustomerWithInternationalControllerBusinessType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateVerifiedBusinessCustomerWithInternationalControllerBusinessType$ {
-  /** @deprecated use `CreateVerifiedBusinessCustomerWithInternationalControllerBusinessType$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateVerifiedBusinessCustomerWithInternationalControllerBusinessType$inboundSchema;
-  /** @deprecated use `CreateVerifiedBusinessCustomerWithInternationalControllerBusinessType$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateVerifiedBusinessCustomerWithInternationalControllerBusinessType$outboundSchema;
-}
-
-/** @internal */
-export const CreateVerifiedBusinessCustomerWithInternationalController$inboundSchema:
-  z.ZodType<
-    CreateVerifiedBusinessCustomerWithInternationalController,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    firstName: z.string(),
-    lastName: z.string(),
-    email: z.string(),
-    ipAddress: z.string().optional(),
-    phone: z.string().optional(),
-    correlationId: z.string().optional(),
-    type: z.literal("business").default("business").optional(),
-    address1: z.string(),
-    address2: z.string().optional(),
-    city: z.string(),
-    state: z.string(),
-    postalCode: z.string(),
-    businessClassification: z.string(),
-    businessName: z.string(),
-    doingBusinessAs: z.string().optional(),
-    ein: z.string(),
-    website: z.string().optional(),
-    controller: z.lazy(() =>
-      CreateVerifiedBusinessCustomerWithInternationalControllerController$inboundSchema
-    ),
-    businessType:
-      CreateVerifiedBusinessCustomerWithInternationalControllerBusinessType$inboundSchema,
-  });
 
 /** @internal */
 export type CreateVerifiedBusinessCustomerWithInternationalController$Outbound =
@@ -267,22 +165,6 @@ export const CreateVerifiedBusinessCustomerWithInternationalController$outboundS
       CreateVerifiedBusinessCustomerWithInternationalControllerBusinessType$outboundSchema,
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateVerifiedBusinessCustomerWithInternationalController$ {
-  /** @deprecated use `CreateVerifiedBusinessCustomerWithInternationalController$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateVerifiedBusinessCustomerWithInternationalController$inboundSchema;
-  /** @deprecated use `CreateVerifiedBusinessCustomerWithInternationalController$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateVerifiedBusinessCustomerWithInternationalController$outboundSchema;
-  /** @deprecated use `CreateVerifiedBusinessCustomerWithInternationalController$Outbound` instead. */
-  export type Outbound =
-    CreateVerifiedBusinessCustomerWithInternationalController$Outbound;
-}
-
 export function createVerifiedBusinessCustomerWithInternationalControllerToJSON(
   createVerifiedBusinessCustomerWithInternationalController:
     CreateVerifiedBusinessCustomerWithInternationalController,
@@ -290,20 +172,5 @@ export function createVerifiedBusinessCustomerWithInternationalControllerToJSON(
   return JSON.stringify(
     CreateVerifiedBusinessCustomerWithInternationalController$outboundSchema
       .parse(createVerifiedBusinessCustomerWithInternationalController),
-  );
-}
-
-export function createVerifiedBusinessCustomerWithInternationalControllerFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateVerifiedBusinessCustomerWithInternationalController,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateVerifiedBusinessCustomerWithInternationalController$inboundSchema
-        .parse(JSON.parse(x)),
-    `Failed to parse 'CreateVerifiedBusinessCustomerWithInternationalController' from JSON`,
   );
 }

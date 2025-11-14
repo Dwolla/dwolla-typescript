@@ -7,12 +7,7 @@ import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  HalLink,
-  HalLink$inboundSchema,
-  HalLink$Outbound,
-  HalLink$outboundSchema,
-} from "./hallink.js";
+import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 
 export type Exchange = {
   links?: { [k: string]: HalLink } | undefined;
@@ -37,47 +32,6 @@ export const Exchange$inboundSchema: z.ZodType<
     "_links": "links",
   });
 });
-
-/** @internal */
-export type Exchange$Outbound = {
-  _links?: { [k: string]: HalLink$Outbound } | undefined;
-  id?: string | undefined;
-  status?: string | undefined;
-  created?: string | undefined;
-};
-
-/** @internal */
-export const Exchange$outboundSchema: z.ZodType<
-  Exchange$Outbound,
-  z.ZodTypeDef,
-  Exchange
-> = z.object({
-  links: z.record(HalLink$outboundSchema).optional(),
-  id: z.string().optional(),
-  status: z.string().optional(),
-  created: z.date().transform(v => v.toISOString()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Exchange$ {
-  /** @deprecated use `Exchange$inboundSchema` instead. */
-  export const inboundSchema = Exchange$inboundSchema;
-  /** @deprecated use `Exchange$outboundSchema` instead. */
-  export const outboundSchema = Exchange$outboundSchema;
-  /** @deprecated use `Exchange$Outbound` instead. */
-  export type Outbound = Exchange$Outbound;
-}
-
-export function exchangeToJSON(exchange: Exchange): string {
-  return JSON.stringify(Exchange$outboundSchema.parse(exchange));
-}
 
 export function exchangeFromJSON(
   jsonString: string,

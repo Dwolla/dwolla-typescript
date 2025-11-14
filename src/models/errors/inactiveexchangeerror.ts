@@ -48,34 +48,3 @@ export const InactiveExchangeError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type InactiveExchangeError$Outbound = {
-  code: string;
-  message: string;
-};
-
-/** @internal */
-export const InactiveExchangeError$outboundSchema: z.ZodType<
-  InactiveExchangeError$Outbound,
-  z.ZodTypeDef,
-  InactiveExchangeError
-> = z.instanceof(InactiveExchangeError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string(),
-    message: z.string(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InactiveExchangeError$ {
-  /** @deprecated use `InactiveExchangeError$inboundSchema` instead. */
-  export const inboundSchema = InactiveExchangeError$inboundSchema;
-  /** @deprecated use `InactiveExchangeError$outboundSchema` instead. */
-  export const outboundSchema = InactiveExchangeError$outboundSchema;
-  /** @deprecated use `InactiveExchangeError$Outbound` instead. */
-  export type Outbound = InactiveExchangeError$Outbound;
-}

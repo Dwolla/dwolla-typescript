@@ -57,38 +57,3 @@ export const ListBeneficialOwnersForCustomerDwollaV1HalJSONError$inboundSchema:
         body: v.body$,
       });
     });
-
-/** @internal */
-export type ListBeneficialOwnersForCustomerDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const ListBeneficialOwnersForCustomerDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    ListBeneficialOwnersForCustomerDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    ListBeneficialOwnersForCustomerDwollaV1HalJSONError
-  > = z.instanceof(ListBeneficialOwnersForCustomerDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListBeneficialOwnersForCustomerDwollaV1HalJSONError$ {
-  /** @deprecated use `ListBeneficialOwnersForCustomerDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    ListBeneficialOwnersForCustomerDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `ListBeneficialOwnersForCustomerDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    ListBeneficialOwnersForCustomerDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `ListBeneficialOwnersForCustomerDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    ListBeneficialOwnersForCustomerDwollaV1HalJSONError$Outbound;
-}

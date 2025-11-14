@@ -28,37 +28,6 @@ export const WireInvalidImadErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type WireInvalidImadErrorLinks$Outbound = {};
-
-/** @internal */
-export const WireInvalidImadErrorLinks$outboundSchema: z.ZodType<
-  WireInvalidImadErrorLinks$Outbound,
-  z.ZodTypeDef,
-  WireInvalidImadErrorLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WireInvalidImadErrorLinks$ {
-  /** @deprecated use `WireInvalidImadErrorLinks$inboundSchema` instead. */
-  export const inboundSchema = WireInvalidImadErrorLinks$inboundSchema;
-  /** @deprecated use `WireInvalidImadErrorLinks$outboundSchema` instead. */
-  export const outboundSchema = WireInvalidImadErrorLinks$outboundSchema;
-  /** @deprecated use `WireInvalidImadErrorLinks$Outbound` instead. */
-  export type Outbound = WireInvalidImadErrorLinks$Outbound;
-}
-
-export function wireInvalidImadErrorLinksToJSON(
-  wireInvalidImadErrorLinks: WireInvalidImadErrorLinks,
-): string {
-  return JSON.stringify(
-    WireInvalidImadErrorLinks$outboundSchema.parse(wireInvalidImadErrorLinks),
-  );
-}
-
 export function wireInvalidImadErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<WireInvalidImadErrorLinks, SDKValidationError> {
@@ -85,51 +54,6 @@ export const WireInvalidImadErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type WireInvalidImadErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: WireInvalidImadErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const WireInvalidImadErrorError$outboundSchema: z.ZodType<
-  WireInvalidImadErrorError$Outbound,
-  z.ZodTypeDef,
-  WireInvalidImadErrorError
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  links: z.lazy(() => WireInvalidImadErrorLinks$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WireInvalidImadErrorError$ {
-  /** @deprecated use `WireInvalidImadErrorError$inboundSchema` instead. */
-  export const inboundSchema = WireInvalidImadErrorError$inboundSchema;
-  /** @deprecated use `WireInvalidImadErrorError$outboundSchema` instead. */
-  export const outboundSchema = WireInvalidImadErrorError$outboundSchema;
-  /** @deprecated use `WireInvalidImadErrorError$Outbound` instead. */
-  export type Outbound = WireInvalidImadErrorError$Outbound;
-}
-
-export function wireInvalidImadErrorErrorToJSON(
-  wireInvalidImadErrorError: WireInvalidImadErrorError,
-): string {
-  return JSON.stringify(
-    WireInvalidImadErrorError$outboundSchema.parse(wireInvalidImadErrorError),
-  );
-}
-
 export function wireInvalidImadErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<WireInvalidImadErrorError, SDKValidationError> {
@@ -149,44 +73,6 @@ export const WireInvalidImadErrorEmbedded$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => WireInvalidImadErrorError$inboundSchema))
     .optional(),
 });
-
-/** @internal */
-export type WireInvalidImadErrorEmbedded$Outbound = {
-  errors?: Array<WireInvalidImadErrorError$Outbound> | undefined;
-};
-
-/** @internal */
-export const WireInvalidImadErrorEmbedded$outboundSchema: z.ZodType<
-  WireInvalidImadErrorEmbedded$Outbound,
-  z.ZodTypeDef,
-  WireInvalidImadErrorEmbedded
-> = z.object({
-  errors: z.array(z.lazy(() => WireInvalidImadErrorError$outboundSchema))
-    .optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WireInvalidImadErrorEmbedded$ {
-  /** @deprecated use `WireInvalidImadErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema = WireInvalidImadErrorEmbedded$inboundSchema;
-  /** @deprecated use `WireInvalidImadErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema = WireInvalidImadErrorEmbedded$outboundSchema;
-  /** @deprecated use `WireInvalidImadErrorEmbedded$Outbound` instead. */
-  export type Outbound = WireInvalidImadErrorEmbedded$Outbound;
-}
-
-export function wireInvalidImadErrorEmbeddedToJSON(
-  wireInvalidImadErrorEmbedded: WireInvalidImadErrorEmbedded,
-): string {
-  return JSON.stringify(
-    WireInvalidImadErrorEmbedded$outboundSchema.parse(
-      wireInvalidImadErrorEmbedded,
-    ),
-  );
-}
 
 export function wireInvalidImadErrorEmbeddedFromJSON(
   jsonString: string,

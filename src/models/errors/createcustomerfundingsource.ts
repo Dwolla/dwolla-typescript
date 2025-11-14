@@ -8,21 +8,15 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import {
   DuplicateFundingSourceError,
   DuplicateFundingSourceError$inboundSchema,
-  DuplicateFundingSourceError$Outbound,
-  DuplicateFundingSourceError$outboundSchema,
 } from "./duplicatefundingsourceerror.js";
 import { DwollaError } from "./dwollaerror.js";
 import {
   InactiveExchangeError,
   InactiveExchangeError$inboundSchema,
-  InactiveExchangeError$Outbound,
-  InactiveExchangeError$outboundSchema,
 } from "./inactiveexchangeerror.js";
 import {
   InvalidExchangeTokenErrorError,
   InvalidExchangeTokenErrorError$inboundSchema,
-  InvalidExchangeTokenErrorError$Outbound,
-  InvalidExchangeTokenErrorError$outboundSchema,
 } from "./invalidexchangetokenerrorerror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
@@ -120,41 +114,6 @@ export const CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError$inboundSche
     });
 
 /** @internal */
-export type CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError
-  > = z.instanceof(CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError$ {
-  /** @deprecated use `CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError$Outbound;
-}
-
-/** @internal */
 export const CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError$inboundSchema:
   z.ZodType<
     CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError,
@@ -176,42 +135,6 @@ export const CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError$inboundSch
     });
 
 /** @internal */
-export type CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError$Outbound =
-  {
-    code?: string | undefined;
-    message?: string | undefined;
-  };
-
-/** @internal */
-export const CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError
-  > = z.instanceof(CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError$ {
-  /** @deprecated use `CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError$Outbound;
-}
-
-/** @internal */
 export const CreateCustomerFundingSourceDwollaV1HalJSON$inboundSchema:
   z.ZodType<CreateCustomerFundingSourceDwollaV1HalJSON, z.ZodTypeDef, unknown> =
     z.union([
@@ -219,50 +142,6 @@ export const CreateCustomerFundingSourceDwollaV1HalJSON$inboundSchema:
       InvalidExchangeTokenErrorError$inboundSchema,
       DuplicateFundingSourceError$inboundSchema,
     ]);
-
-/** @internal */
-export type CreateCustomerFundingSourceDwollaV1HalJSON$Outbound =
-  | InactiveExchangeError$Outbound
-  | InvalidExchangeTokenErrorError$Outbound
-  | DuplicateFundingSourceError$Outbound;
-
-/** @internal */
-export const CreateCustomerFundingSourceDwollaV1HalJSON$outboundSchema:
-  z.ZodType<
-    CreateCustomerFundingSourceDwollaV1HalJSON$Outbound,
-    z.ZodTypeDef,
-    unknown
-  > = z.union([
-    InactiveExchangeError$outboundSchema,
-    InvalidExchangeTokenErrorError$outboundSchema,
-    DuplicateFundingSourceError$outboundSchema,
-  ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerFundingSourceDwollaV1HalJSON$ {
-  /** @deprecated use `CreateCustomerFundingSourceDwollaV1HalJSON$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerFundingSourceDwollaV1HalJSON$inboundSchema;
-  /** @deprecated use `CreateCustomerFundingSourceDwollaV1HalJSON$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerFundingSourceDwollaV1HalJSON$outboundSchema;
-  /** @deprecated use `CreateCustomerFundingSourceDwollaV1HalJSON$Outbound` instead. */
-  export type Outbound = CreateCustomerFundingSourceDwollaV1HalJSON$Outbound;
-}
-
-export function createCustomerFundingSourceDwollaV1HalJSONToJSON(
-  createCustomerFundingSourceDwollaV1HalJSON:
-    CreateCustomerFundingSourceDwollaV1HalJSON,
-): string {
-  return JSON.stringify(
-    CreateCustomerFundingSourceDwollaV1HalJSON$outboundSchema.parse(
-      createCustomerFundingSourceDwollaV1HalJSON,
-    ),
-  );
-}
 
 export function createCustomerFundingSourceDwollaV1HalJSONFromJSON(
   jsonString: string,

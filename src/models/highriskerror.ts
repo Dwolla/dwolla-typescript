@@ -28,37 +28,6 @@ export const HighRiskErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type HighRiskErrorLinks$Outbound = {};
-
-/** @internal */
-export const HighRiskErrorLinks$outboundSchema: z.ZodType<
-  HighRiskErrorLinks$Outbound,
-  z.ZodTypeDef,
-  HighRiskErrorLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HighRiskErrorLinks$ {
-  /** @deprecated use `HighRiskErrorLinks$inboundSchema` instead. */
-  export const inboundSchema = HighRiskErrorLinks$inboundSchema;
-  /** @deprecated use `HighRiskErrorLinks$outboundSchema` instead. */
-  export const outboundSchema = HighRiskErrorLinks$outboundSchema;
-  /** @deprecated use `HighRiskErrorLinks$Outbound` instead. */
-  export type Outbound = HighRiskErrorLinks$Outbound;
-}
-
-export function highRiskErrorLinksToJSON(
-  highRiskErrorLinks: HighRiskErrorLinks,
-): string {
-  return JSON.stringify(
-    HighRiskErrorLinks$outboundSchema.parse(highRiskErrorLinks),
-  );
-}
-
 export function highRiskErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<HighRiskErrorLinks, SDKValidationError> {
@@ -85,51 +54,6 @@ export const HighRiskErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type HighRiskErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: HighRiskErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const HighRiskErrorError$outboundSchema: z.ZodType<
-  HighRiskErrorError$Outbound,
-  z.ZodTypeDef,
-  HighRiskErrorError
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  links: z.lazy(() => HighRiskErrorLinks$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HighRiskErrorError$ {
-  /** @deprecated use `HighRiskErrorError$inboundSchema` instead. */
-  export const inboundSchema = HighRiskErrorError$inboundSchema;
-  /** @deprecated use `HighRiskErrorError$outboundSchema` instead. */
-  export const outboundSchema = HighRiskErrorError$outboundSchema;
-  /** @deprecated use `HighRiskErrorError$Outbound` instead. */
-  export type Outbound = HighRiskErrorError$Outbound;
-}
-
-export function highRiskErrorErrorToJSON(
-  highRiskErrorError: HighRiskErrorError,
-): string {
-  return JSON.stringify(
-    HighRiskErrorError$outboundSchema.parse(highRiskErrorError),
-  );
-}
-
 export function highRiskErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<HighRiskErrorError, SDKValidationError> {
@@ -148,41 +72,6 @@ export const HighRiskErrorEmbedded$inboundSchema: z.ZodType<
 > = z.object({
   errors: z.array(z.lazy(() => HighRiskErrorError$inboundSchema)).optional(),
 });
-
-/** @internal */
-export type HighRiskErrorEmbedded$Outbound = {
-  errors?: Array<HighRiskErrorError$Outbound> | undefined;
-};
-
-/** @internal */
-export const HighRiskErrorEmbedded$outboundSchema: z.ZodType<
-  HighRiskErrorEmbedded$Outbound,
-  z.ZodTypeDef,
-  HighRiskErrorEmbedded
-> = z.object({
-  errors: z.array(z.lazy(() => HighRiskErrorError$outboundSchema)).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HighRiskErrorEmbedded$ {
-  /** @deprecated use `HighRiskErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema = HighRiskErrorEmbedded$inboundSchema;
-  /** @deprecated use `HighRiskErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema = HighRiskErrorEmbedded$outboundSchema;
-  /** @deprecated use `HighRiskErrorEmbedded$Outbound` instead. */
-  export type Outbound = HighRiskErrorEmbedded$Outbound;
-}
-
-export function highRiskErrorEmbeddedToJSON(
-  highRiskErrorEmbedded: HighRiskErrorEmbedded,
-): string {
-  return JSON.stringify(
-    HighRiskErrorEmbedded$outboundSchema.parse(highRiskErrorEmbedded),
-  );
-}
 
 export function highRiskErrorEmbeddedFromJSON(
   jsonString: string,

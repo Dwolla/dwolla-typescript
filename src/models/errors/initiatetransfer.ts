@@ -8,417 +8,276 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import {
   AchAddendaEntriesNotEnabledForAccountError,
   AchAddendaEntriesNotEnabledForAccountError$inboundSchema,
-  AchAddendaEntriesNotEnabledForAccountError$Outbound,
-  AchAddendaEntriesNotEnabledForAccountError$outboundSchema,
 } from "./achaddendaentriesnotenabledforaccounterror.js";
 import {
   CannotParseAmountError,
   CannotParseAmountError$inboundSchema,
-  CannotParseAmountError$Outbound,
-  CannotParseAmountError$outboundSchema,
 } from "./cannotparseamounterror.js";
 import {
   DepositAccountRestrictedError,
   DepositAccountRestrictedError$inboundSchema,
-  DepositAccountRestrictedError$Outbound,
-  DepositAccountRestrictedError$outboundSchema,
 } from "./depositaccountrestrictederror.js";
 import {
   DestinationAddendaMaxLengthError,
   DestinationAddendaMaxLengthError$inboundSchema,
-  DestinationAddendaMaxLengthError$Outbound,
-  DestinationAddendaMaxLengthError$outboundSchema,
 } from "./destinationaddendamaxlengtherror.js";
 import {
   DestinationProcessingChannelNotSupportedError,
   DestinationProcessingChannelNotSupportedError$inboundSchema,
-  DestinationProcessingChannelNotSupportedError$Outbound,
-  DestinationProcessingChannelNotSupportedError$outboundSchema,
 } from "./destinationprocessingchannelnotsupportederror.js";
 import {
   DestinationRemittanceDataMaxLengthError,
   DestinationRemittanceDataMaxLengthError$inboundSchema,
-  DestinationRemittanceDataMaxLengthError$Outbound,
-  DestinationRemittanceDataMaxLengthError$outboundSchema,
 } from "./destinationremittancedatamaxlengtherror.js";
 import {
   DirectAccountWithoutBankError,
   DirectAccountWithoutBankError$inboundSchema,
-  DirectAccountWithoutBankError$Outbound,
-  DirectAccountWithoutBankError$outboundSchema,
 } from "./directaccountwithoutbankerror.js";
 import {
   FacilitatorFeeAccountNotFoundError,
   FacilitatorFeeAccountNotFoundError$inboundSchema,
-  FacilitatorFeeAccountNotFoundError$Outbound,
-  FacilitatorFeeAccountNotFoundError$outboundSchema,
 } from "./facilitatorfeeaccountnotfounderror.js";
 import {
   FacilitatorFeeBelowMinimumError,
   FacilitatorFeeBelowMinimumError$inboundSchema,
-  FacilitatorFeeBelowMinimumError$Outbound,
-  FacilitatorFeeBelowMinimumError$outboundSchema,
 } from "./facilitatorfeebelowminimumerror.js";
 import {
   FacilitatorFeeSumTooLargeError,
   FacilitatorFeeSumTooLargeError$inboundSchema,
-  FacilitatorFeeSumTooLargeError$Outbound,
-  FacilitatorFeeSumTooLargeError$outboundSchema,
 } from "./facilitatorfeesumtoolargeerror.js";
-import {
-  HighRiskError,
-  HighRiskError$inboundSchema,
-  HighRiskError$Outbound,
-  HighRiskError$outboundSchema,
-} from "./highriskerror.js";
+import { HighRiskError, HighRiskError$inboundSchema } from "./highriskerror.js";
 import {
   IncompatibleAddendaEntriesError,
   IncompatibleAddendaEntriesError$inboundSchema,
-  IncompatibleAddendaEntriesError$Outbound,
-  IncompatibleAddendaEntriesError$outboundSchema,
 } from "./incompatibleaddendaentrieserror.js";
 import {
   IncompatibleHoldingsError,
   IncompatibleHoldingsError$inboundSchema,
-  IncompatibleHoldingsError$Outbound,
-  IncompatibleHoldingsError$outboundSchema,
 } from "./incompatibleholdingserror.js";
 import {
   IncompatibleSourceAndDestinationTypesError,
   IncompatibleSourceAndDestinationTypesError$inboundSchema,
-  IncompatibleSourceAndDestinationTypesError$Outbound,
-  IncompatibleSourceAndDestinationTypesError$outboundSchema,
 } from "./incompatiblesourceanddestinationtypeserror.js";
 import {
   IncompatibleSourceForRtpDestinationError,
   IncompatibleSourceForRtpDestinationError$inboundSchema,
-  IncompatibleSourceForRtpDestinationError$Outbound,
-  IncompatibleSourceForRtpDestinationError$outboundSchema,
 } from "./incompatiblesourceforrtpdestinationerror.js";
 import {
   InsufficientFundsError,
   InsufficientFundsError$inboundSchema,
-  InsufficientFundsError$Outbound,
-  InsufficientFundsError$outboundSchema,
 } from "./insufficientfundserror.js";
 import {
   InvalidAmountForDestinationClearingTypeError,
   InvalidAmountForDestinationClearingTypeError$inboundSchema,
-  InvalidAmountForDestinationClearingTypeError$Outbound,
-  InvalidAmountForDestinationClearingTypeError$outboundSchema,
 } from "./invalidamountfordestinationclearingtypeerror.js";
 import {
   InvalidAmountForDestinationProcessingChannelError,
   InvalidAmountForDestinationProcessingChannelError$inboundSchema,
-  InvalidAmountForDestinationProcessingChannelError$Outbound,
-  InvalidAmountForDestinationProcessingChannelError$outboundSchema,
 } from "./invalidamountfordestinationprocessingchannelerror.js";
 import {
   InvalidAmountLimitError,
   InvalidAmountLimitError$inboundSchema,
-  InvalidAmountLimitError$Outbound,
-  InvalidAmountLimitError$outboundSchema,
 } from "./invalidamountlimiterror.js";
 import {
   InvalidAttemptToFacilitateFundsError,
   InvalidAttemptToFacilitateFundsError$inboundSchema,
-  InvalidAttemptToFacilitateFundsError$Outbound,
-  InvalidAttemptToFacilitateFundsError$outboundSchema,
 } from "./invalidattempttofacilitatefundserror.js";
 import {
   InvalidAttemptToPayInFundsError,
   InvalidAttemptToPayInFundsError$inboundSchema,
-  InvalidAttemptToPayInFundsError$Outbound,
-  InvalidAttemptToPayInFundsError$outboundSchema,
 } from "./invalidattempttopayinfundserror.js";
 import {
   InvalidAttemptToPayOutFundsError,
   InvalidAttemptToPayOutFundsError$inboundSchema,
-  InvalidAttemptToPayOutFundsError$Outbound,
-  InvalidAttemptToPayOutFundsError$outboundSchema,
 } from "./invalidattempttopayoutfundserror.js";
 import {
   InvalidCorrelationIdError,
   InvalidCorrelationIdError$inboundSchema,
-  InvalidCorrelationIdError$Outbound,
-  InvalidCorrelationIdError$outboundSchema,
 } from "./invalidcorrelationiderror.js";
 import {
   InvalidDestinationBankAccountTypeError,
   InvalidDestinationBankAccountTypeError$inboundSchema,
-  InvalidDestinationBankAccountTypeError$Outbound,
-  InvalidDestinationBankAccountTypeError$outboundSchema,
 } from "./invaliddestinationbankaccounttypeerror.js";
 import {
   InvalidDestinationClearingTypeError,
   InvalidDestinationClearingTypeError$inboundSchema,
-  InvalidDestinationClearingTypeError$Outbound,
-  InvalidDestinationClearingTypeError$outboundSchema,
 } from "./invaliddestinationclearingtypeerror.js";
 import {
   InvalidDestinationFundingSourceError,
   InvalidDestinationFundingSourceError$inboundSchema,
-  InvalidDestinationFundingSourceError$Outbound,
-  InvalidDestinationFundingSourceError$outboundSchema,
 } from "./invaliddestinationfundingsourceerror.js";
 import {
   InvalidFacilitatorError,
   InvalidFacilitatorError$inboundSchema,
-  InvalidFacilitatorError$Outbound,
-  InvalidFacilitatorError$outboundSchema,
 } from "./invalidfacilitatorerror.js";
 import {
   InvalidFacilitatorFeeAmountError,
   InvalidFacilitatorFeeAmountError$inboundSchema,
-  InvalidFacilitatorFeeAmountError$Outbound,
-  InvalidFacilitatorFeeAmountError$outboundSchema,
 } from "./invalidfacilitatorfeeamounterror.js";
 import {
   InvalidFacilitatorFeeCollectFromCombinationError,
   InvalidFacilitatorFeeCollectFromCombinationError$inboundSchema,
-  InvalidFacilitatorFeeCollectFromCombinationError$Outbound,
-  InvalidFacilitatorFeeCollectFromCombinationError$outboundSchema,
 } from "./invalidfacilitatorfeecollectfromcombinationerror.js";
 import {
   InvalidFacilitatorFeeCollectFromError,
   InvalidFacilitatorFeeCollectFromError$inboundSchema,
-  InvalidFacilitatorFeeCollectFromError$Outbound,
-  InvalidFacilitatorFeeCollectFromError$outboundSchema,
 } from "./invalidfacilitatorfeecollectfromerror.js";
 import {
   InvalidFeeOdfiError,
   InvalidFeeOdfiError$inboundSchema,
-  InvalidFeeOdfiError$Outbound,
-  InvalidFeeOdfiError$outboundSchema,
 } from "./invalidfeeodfierror.js";
 import {
   InvalidMetadataError,
   InvalidMetadataError$inboundSchema,
-  InvalidMetadataError$Outbound,
-  InvalidMetadataError$outboundSchema,
 } from "./invalidmetadataerror.js";
 import {
   InvalidPointOfSaleAddendaAddressError,
   InvalidPointOfSaleAddendaAddressError$inboundSchema,
-  InvalidPointOfSaleAddendaAddressError$Outbound,
-  InvalidPointOfSaleAddendaAddressError$outboundSchema,
 } from "./invalidpointofsaleaddendaaddresserror.js";
 import {
   InvalidPointOfSaleAddendaCityError,
   InvalidPointOfSaleAddendaCityError$inboundSchema,
-  InvalidPointOfSaleAddendaCityError$Outbound,
-  InvalidPointOfSaleAddendaCityError$outboundSchema,
 } from "./invalidpointofsaleaddendacityerror.js";
 import {
   InvalidPointOfSaleAddendaDateError,
   InvalidPointOfSaleAddendaDateError$inboundSchema,
-  InvalidPointOfSaleAddendaDateError$Outbound,
-  InvalidPointOfSaleAddendaDateError$outboundSchema,
 } from "./invalidpointofsaleaddendadateerror.js";
 import {
   InvalidPointOfSaleAddendaIdentificationCodeError,
   InvalidPointOfSaleAddendaIdentificationCodeError$inboundSchema,
-  InvalidPointOfSaleAddendaIdentificationCodeError$Outbound,
-  InvalidPointOfSaleAddendaIdentificationCodeError$outboundSchema,
 } from "./invalidpointofsaleaddendaidentificationcodeerror.js";
 import {
   InvalidPointOfSaleAddendaSerialNumberError,
   InvalidPointOfSaleAddendaSerialNumberError$inboundSchema,
-  InvalidPointOfSaleAddendaSerialNumberError$Outbound,
-  InvalidPointOfSaleAddendaSerialNumberError$outboundSchema,
 } from "./invalidpointofsaleaddendaserialnumbererror.js";
 import {
   InvalidPointOfSaleAddendaStateError,
   InvalidPointOfSaleAddendaStateError$inboundSchema,
-  InvalidPointOfSaleAddendaStateError$Outbound,
-  InvalidPointOfSaleAddendaStateError$outboundSchema,
 } from "./invalidpointofsaleaddendastateerror.js";
 import {
   InvalidSourceBankAccountTypeError,
   InvalidSourceBankAccountTypeError$inboundSchema,
-  InvalidSourceBankAccountTypeError$Outbound,
-  InvalidSourceBankAccountTypeError$outboundSchema,
 } from "./invalidsourcebankaccounttypeerror.js";
 import {
   InvalidSourceFundingSourceError,
   InvalidSourceFundingSourceError$inboundSchema,
-  InvalidSourceFundingSourceError$Outbound,
-  InvalidSourceFundingSourceError$outboundSchema,
 } from "./invalidsourcefundingsourceerror.js";
 import {
   OperationBlockedError,
   OperationBlockedError$inboundSchema,
-  OperationBlockedError$Outbound,
-  OperationBlockedError$outboundSchema,
 } from "./operationblockederror.js";
 import {
   PointOfSaleAddendaEntriesNotEnabledForAccountError,
   PointOfSaleAddendaEntriesNotEnabledForAccountError$inboundSchema,
-  PointOfSaleAddendaEntriesNotEnabledForAccountError$Outbound,
-  PointOfSaleAddendaEntriesNotEnabledForAccountError$outboundSchema,
 } from "./pointofsaleaddendaentriesnotenabledforaccounterror.js";
 import {
   ReceiverNotFoundError,
   ReceiverNotFoundError$inboundSchema,
-  ReceiverNotFoundError$Outbound,
-  ReceiverNotFoundError$outboundSchema,
 } from "./receivernotfounderror.js";
 import {
   ReceiverRestrictedError,
   ReceiverRestrictedError$inboundSchema,
-  ReceiverRestrictedError$Outbound,
-  ReceiverRestrictedError$outboundSchema,
 } from "./receiverrestrictederror.js";
 import {
   RtpAccountSettingNotEnabledError,
   RtpAccountSettingNotEnabledError$inboundSchema,
-  RtpAccountSettingNotEnabledError$Outbound,
-  RtpAccountSettingNotEnabledError$outboundSchema,
 } from "./rtpaccountsettingnotenablederror.js";
 import {
   RtpFacilitatorFeeNotSupportedError,
   RtpFacilitatorFeeNotSupportedError$inboundSchema,
-  RtpFacilitatorFeeNotSupportedError$Outbound,
-  RtpFacilitatorFeeNotSupportedError$outboundSchema,
 } from "./rtpfacilitatorfeenotsupportederror.js";
 import {
   RtpPersonalToPersonalNotSupportedError,
   RtpPersonalToPersonalNotSupportedError$inboundSchema,
-  RtpPersonalToPersonalNotSupportedError$Outbound,
-  RtpPersonalToPersonalNotSupportedError$outboundSchema,
 } from "./rtppersonaltopersonalnotsupportederror.js";
 import {
   RtpUnverifiedSenderNotSupportedError,
   RtpUnverifiedSenderNotSupportedError$inboundSchema,
-  RtpUnverifiedSenderNotSupportedError$Outbound,
-  RtpUnverifiedSenderNotSupportedError$outboundSchema,
 } from "./rtpunverifiedsendernotsupportederror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 import {
   SenderRestrictedError,
   SenderRestrictedError$inboundSchema,
-  SenderRestrictedError$Outbound,
-  SenderRestrictedError$outboundSchema,
 } from "./senderrestrictederror.js";
 import {
   SourceAddendaMaxLengthError,
   SourceAddendaMaxLengthError$inboundSchema,
-  SourceAddendaMaxLengthError$Outbound,
-  SourceAddendaMaxLengthError$outboundSchema,
 } from "./sourceaddendamaxlengtherror.js";
 import {
   SourceNotFoundError,
   SourceNotFoundError$inboundSchema,
-  SourceNotFoundError$Outbound,
-  SourceNotFoundError$outboundSchema,
 } from "./sourcenotfounderror.js";
 import {
   SourceSameAsDestinationError,
   SourceSameAsDestinationError$inboundSchema,
-  SourceSameAsDestinationError$Outbound,
-  SourceSameAsDestinationError$outboundSchema,
 } from "./sourcesameasdestinationerror.js";
 import {
   TransferExpiredForFeeError,
   TransferExpiredForFeeError$inboundSchema,
-  TransferExpiredForFeeError$Outbound,
-  TransferExpiredForFeeError$outboundSchema,
 } from "./transferexpiredforfeeerror.js";
 import {
   WeeklyReceiveLimitReachedError,
   WeeklyReceiveLimitReachedError$inboundSchema,
-  WeeklyReceiveLimitReachedError$Outbound,
-  WeeklyReceiveLimitReachedError$outboundSchema,
 } from "./weeklyreceivelimitreachederror.js";
 import {
   WireAccountNotFoundError,
   WireAccountNotFoundError$inboundSchema,
-  WireAccountNotFoundError$Outbound,
-  WireAccountNotFoundError$outboundSchema,
 } from "./wireaccountnotfounderror.js";
 import {
   WireAccountRestrictedError,
   WireAccountRestrictedError$inboundSchema,
-  WireAccountRestrictedError$Outbound,
-  WireAccountRestrictedError$outboundSchema,
 } from "./wireaccountrestrictederror.js";
 import {
   WireInvalidImadError,
   WireInvalidImadError$inboundSchema,
-  WireInvalidImadError$Outbound,
-  WireInvalidImadError$outboundSchema,
 } from "./wireinvalidimaderror.js";
 import {
   WireNotEnabledError,
   WireNotEnabledError$inboundSchema,
-  WireNotEnabledError$Outbound,
-  WireNotEnabledError$outboundSchema,
 } from "./wirenotenablederror.js";
 import {
   WithdrawAccountRestrictedError,
   WithdrawAccountRestrictedError$inboundSchema,
-  WithdrawAccountRestrictedError$Outbound,
-  WithdrawAccountRestrictedError$outboundSchema,
 } from "./withdrawaccountrestrictederror.js";
 import {
   WithdrawInvalidAmountError,
   WithdrawInvalidAmountError$inboundSchema,
-  WithdrawInvalidAmountError$Outbound,
-  WithdrawInvalidAmountError$outboundSchema,
 } from "./withdrawinvalidamounterror.js";
 import {
   WithdrawInvalidAmountForClearingTypeError,
   WithdrawInvalidAmountForClearingTypeError$inboundSchema,
-  WithdrawInvalidAmountForClearingTypeError$Outbound,
-  WithdrawInvalidAmountForClearingTypeError$outboundSchema,
 } from "./withdrawinvalidamountforclearingtypeerror.js";
 import {
   WithdrawInvalidFundingSourceError,
   WithdrawInvalidFundingSourceError$inboundSchema,
-  WithdrawInvalidFundingSourceError$Outbound,
-  WithdrawInvalidFundingSourceError$outboundSchema,
 } from "./withdrawinvalidfundingsourceerror.js";
 import {
   WithdrawInvalidWireBeneficiaryCountryError,
   WithdrawInvalidWireBeneficiaryCountryError$inboundSchema,
-  WithdrawInvalidWireBeneficiaryCountryError$Outbound,
-  WithdrawInvalidWireBeneficiaryCountryError$outboundSchema,
 } from "./withdrawinvalidwirebeneficiarycountryerror.js";
 import {
   WithdrawInvalidWireBeneficiaryLocalityError,
   WithdrawInvalidWireBeneficiaryLocalityError$inboundSchema,
-  WithdrawInvalidWireBeneficiaryLocalityError$Outbound,
-  WithdrawInvalidWireBeneficiaryLocalityError$outboundSchema,
 } from "./withdrawinvalidwirebeneficiarylocalityerror.js";
 import {
   WithdrawInvalidWireBeneficiaryRegionError,
   WithdrawInvalidWireBeneficiaryRegionError$inboundSchema,
-  WithdrawInvalidWireBeneficiaryRegionError$Outbound,
-  WithdrawInvalidWireBeneficiaryRegionError$outboundSchema,
 } from "./withdrawinvalidwirebeneficiaryregionerror.js";
 import {
   WithdrawInvalidWireOriginatorToBeneficiaryError,
   WithdrawInvalidWireOriginatorToBeneficiaryError$inboundSchema,
-  WithdrawInvalidWireOriginatorToBeneficiaryError$Outbound,
-  WithdrawInvalidWireOriginatorToBeneficiaryError$outboundSchema,
 } from "./withdrawinvalidwireoriginatortobeneficiaryerror.js";
 import {
   WithdrawProcessingChannelNotSupportedError,
   WithdrawProcessingChannelNotSupportedError$inboundSchema,
-  WithdrawProcessingChannelNotSupportedError$Outbound,
-  WithdrawProcessingChannelNotSupportedError$outboundSchema,
 } from "./withdrawprocessingchannelnotsupportederror.js";
 import {
   WithdrawRtpPersonalWithdrawalNotSupportedError,
   WithdrawRtpPersonalWithdrawalNotSupportedError$inboundSchema,
-  WithdrawRtpPersonalWithdrawalNotSupportedError$Outbound,
-  WithdrawRtpPersonalWithdrawalNotSupportedError$outboundSchema,
 } from "./withdrawrtppersonalwithdrawalnotsupportederror.js";
 import {
   WithdrawRtpUnverifiedSenderNotSupportedError,
   WithdrawRtpUnverifiedSenderNotSupportedError$inboundSchema,
-  WithdrawRtpUnverifiedSenderNotSupportedError$Outbound,
-  WithdrawRtpUnverifiedSenderNotSupportedError$outboundSchema,
 } from "./withdrawrtpunverifiedsendernotsupportederror.js";
 
 /**
@@ -512,51 +371,6 @@ export const InitiateTransferForbiddenDwollaV1HalJSON$inboundSchema: z.ZodType<
   RtpAccountSettingNotEnabledError$inboundSchema,
 ]);
 
-/** @internal */
-export type InitiateTransferForbiddenDwollaV1HalJSON$Outbound =
-  | InvalidAttemptToFacilitateFundsError$Outbound
-  | InvalidAttemptToPayInFundsError$Outbound
-  | InvalidAttemptToPayOutFundsError$Outbound
-  | RtpAccountSettingNotEnabledError$Outbound;
-
-/** @internal */
-export const InitiateTransferForbiddenDwollaV1HalJSON$outboundSchema: z.ZodType<
-  InitiateTransferForbiddenDwollaV1HalJSON$Outbound,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  InvalidAttemptToFacilitateFundsError$outboundSchema,
-  InvalidAttemptToPayInFundsError$outboundSchema,
-  InvalidAttemptToPayOutFundsError$outboundSchema,
-  RtpAccountSettingNotEnabledError$outboundSchema,
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InitiateTransferForbiddenDwollaV1HalJSON$ {
-  /** @deprecated use `InitiateTransferForbiddenDwollaV1HalJSON$inboundSchema` instead. */
-  export const inboundSchema =
-    InitiateTransferForbiddenDwollaV1HalJSON$inboundSchema;
-  /** @deprecated use `InitiateTransferForbiddenDwollaV1HalJSON$outboundSchema` instead. */
-  export const outboundSchema =
-    InitiateTransferForbiddenDwollaV1HalJSON$outboundSchema;
-  /** @deprecated use `InitiateTransferForbiddenDwollaV1HalJSON$Outbound` instead. */
-  export type Outbound = InitiateTransferForbiddenDwollaV1HalJSON$Outbound;
-}
-
-export function initiateTransferForbiddenDwollaV1HalJSONToJSON(
-  initiateTransferForbiddenDwollaV1HalJSON:
-    InitiateTransferForbiddenDwollaV1HalJSON,
-): string {
-  return JSON.stringify(
-    InitiateTransferForbiddenDwollaV1HalJSON$outboundSchema.parse(
-      initiateTransferForbiddenDwollaV1HalJSON,
-    ),
-  );
-}
-
 export function initiateTransferForbiddenDwollaV1HalJSONFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -645,174 +459,6 @@ export const InitiateTransferBadRequestDwollaV1HalJSON$inboundSchema: z.ZodType<
   WireNotEnabledError$inboundSchema,
   WireAccountNotFoundError$inboundSchema,
 ]);
-
-/** @internal */
-export type InitiateTransferBadRequestDwollaV1HalJSON$Outbound =
-  | SourceNotFoundError$Outbound
-  | ReceiverNotFoundError$Outbound
-  | InvalidSourceFundingSourceError$Outbound
-  | SenderRestrictedError$Outbound
-  | ReceiverRestrictedError$Outbound
-  | InvalidMetadataError$Outbound
-  | OperationBlockedError$Outbound
-  | InvalidAmountLimitError$Outbound
-  | CannotParseAmountError$Outbound
-  | InsufficientFundsError$Outbound
-  | FacilitatorFeeAccountNotFoundError$Outbound
-  | FacilitatorFeeSumTooLargeError$Outbound
-  | FacilitatorFeeBelowMinimumError$Outbound
-  | HighRiskError$Outbound
-  | IncompatibleHoldingsError$Outbound
-  | DirectAccountWithoutBankError$Outbound
-  | SourceSameAsDestinationError$Outbound
-  | InvalidFacilitatorError$Outbound
-  | InvalidFacilitatorFeeCollectFromError$Outbound
-  | InvalidFacilitatorFeeCollectFromCombinationError$Outbound
-  | InvalidDestinationFundingSourceError$Outbound
-  | InvalidFacilitatorFeeAmountError$Outbound
-  | WeeklyReceiveLimitReachedError$Outbound
-  | InvalidDestinationClearingTypeError$Outbound
-  | InvalidAmountForDestinationClearingTypeError$Outbound
-  | InvalidCorrelationIdError$Outbound
-  | SourceAddendaMaxLengthError$Outbound
-  | DestinationAddendaMaxLengthError$Outbound
-  | AchAddendaEntriesNotEnabledForAccountError$Outbound
-  | PointOfSaleAddendaEntriesNotEnabledForAccountError$Outbound
-  | IncompatibleAddendaEntriesError$Outbound
-  | InvalidPointOfSaleAddendaIdentificationCodeError$Outbound
-  | InvalidPointOfSaleAddendaSerialNumberError$Outbound
-  | InvalidPointOfSaleAddendaDateError$Outbound
-  | InvalidPointOfSaleAddendaAddressError$Outbound
-  | InvalidPointOfSaleAddendaCityError$Outbound
-  | InvalidPointOfSaleAddendaStateError$Outbound
-  | TransferExpiredForFeeError$Outbound
-  | InvalidFeeOdfiError$Outbound
-  | InvalidSourceBankAccountTypeError$Outbound
-  | InvalidDestinationBankAccountTypeError$Outbound
-  | IncompatibleSourceAndDestinationTypesError$Outbound
-  | IncompatibleSourceForRtpDestinationError$Outbound
-  | InvalidAmountForDestinationProcessingChannelError$Outbound
-  | RtpFacilitatorFeeNotSupportedError$Outbound
-  | RtpUnverifiedSenderNotSupportedError$Outbound
-  | RtpPersonalToPersonalNotSupportedError$Outbound
-  | DestinationProcessingChannelNotSupportedError$Outbound
-  | DestinationRemittanceDataMaxLengthError$Outbound
-  | WithdrawInvalidAmountError$Outbound
-  | WithdrawInvalidFundingSourceError$Outbound
-  | WithdrawAccountRestrictedError$Outbound
-  | WithdrawInvalidAmountForClearingTypeError$Outbound
-  | WithdrawInvalidWireBeneficiaryLocalityError$Outbound
-  | WithdrawInvalidWireBeneficiaryRegionError$Outbound
-  | WithdrawInvalidWireBeneficiaryCountryError$Outbound
-  | WithdrawInvalidWireOriginatorToBeneficiaryError$Outbound
-  | WithdrawProcessingChannelNotSupportedError$Outbound
-  | WithdrawRtpUnverifiedSenderNotSupportedError$Outbound
-  | WithdrawRtpPersonalWithdrawalNotSupportedError$Outbound
-  | DepositAccountRestrictedError$Outbound
-  | WireInvalidImadError$Outbound
-  | WireAccountRestrictedError$Outbound
-  | WireNotEnabledError$Outbound
-  | WireAccountNotFoundError$Outbound;
-
-/** @internal */
-export const InitiateTransferBadRequestDwollaV1HalJSON$outboundSchema:
-  z.ZodType<
-    InitiateTransferBadRequestDwollaV1HalJSON$Outbound,
-    z.ZodTypeDef,
-    unknown
-  > = z.union([
-    SourceNotFoundError$outboundSchema,
-    ReceiverNotFoundError$outboundSchema,
-    InvalidSourceFundingSourceError$outboundSchema,
-    SenderRestrictedError$outboundSchema,
-    ReceiverRestrictedError$outboundSchema,
-    InvalidMetadataError$outboundSchema,
-    OperationBlockedError$outboundSchema,
-    InvalidAmountLimitError$outboundSchema,
-    CannotParseAmountError$outboundSchema,
-    InsufficientFundsError$outboundSchema,
-    FacilitatorFeeAccountNotFoundError$outboundSchema,
-    FacilitatorFeeSumTooLargeError$outboundSchema,
-    FacilitatorFeeBelowMinimumError$outboundSchema,
-    HighRiskError$outboundSchema,
-    IncompatibleHoldingsError$outboundSchema,
-    DirectAccountWithoutBankError$outboundSchema,
-    SourceSameAsDestinationError$outboundSchema,
-    InvalidFacilitatorError$outboundSchema,
-    InvalidFacilitatorFeeCollectFromError$outboundSchema,
-    InvalidFacilitatorFeeCollectFromCombinationError$outboundSchema,
-    InvalidDestinationFundingSourceError$outboundSchema,
-    InvalidFacilitatorFeeAmountError$outboundSchema,
-    WeeklyReceiveLimitReachedError$outboundSchema,
-    InvalidDestinationClearingTypeError$outboundSchema,
-    InvalidAmountForDestinationClearingTypeError$outboundSchema,
-    InvalidCorrelationIdError$outboundSchema,
-    SourceAddendaMaxLengthError$outboundSchema,
-    DestinationAddendaMaxLengthError$outboundSchema,
-    AchAddendaEntriesNotEnabledForAccountError$outboundSchema,
-    PointOfSaleAddendaEntriesNotEnabledForAccountError$outboundSchema,
-    IncompatibleAddendaEntriesError$outboundSchema,
-    InvalidPointOfSaleAddendaIdentificationCodeError$outboundSchema,
-    InvalidPointOfSaleAddendaSerialNumberError$outboundSchema,
-    InvalidPointOfSaleAddendaDateError$outboundSchema,
-    InvalidPointOfSaleAddendaAddressError$outboundSchema,
-    InvalidPointOfSaleAddendaCityError$outboundSchema,
-    InvalidPointOfSaleAddendaStateError$outboundSchema,
-    TransferExpiredForFeeError$outboundSchema,
-    InvalidFeeOdfiError$outboundSchema,
-    InvalidSourceBankAccountTypeError$outboundSchema,
-    InvalidDestinationBankAccountTypeError$outboundSchema,
-    IncompatibleSourceAndDestinationTypesError$outboundSchema,
-    IncompatibleSourceForRtpDestinationError$outboundSchema,
-    InvalidAmountForDestinationProcessingChannelError$outboundSchema,
-    RtpFacilitatorFeeNotSupportedError$outboundSchema,
-    RtpUnverifiedSenderNotSupportedError$outboundSchema,
-    RtpPersonalToPersonalNotSupportedError$outboundSchema,
-    DestinationProcessingChannelNotSupportedError$outboundSchema,
-    DestinationRemittanceDataMaxLengthError$outboundSchema,
-    WithdrawInvalidAmountError$outboundSchema,
-    WithdrawInvalidFundingSourceError$outboundSchema,
-    WithdrawAccountRestrictedError$outboundSchema,
-    WithdrawInvalidAmountForClearingTypeError$outboundSchema,
-    WithdrawInvalidWireBeneficiaryLocalityError$outboundSchema,
-    WithdrawInvalidWireBeneficiaryRegionError$outboundSchema,
-    WithdrawInvalidWireBeneficiaryCountryError$outboundSchema,
-    WithdrawInvalidWireOriginatorToBeneficiaryError$outboundSchema,
-    WithdrawProcessingChannelNotSupportedError$outboundSchema,
-    WithdrawRtpUnverifiedSenderNotSupportedError$outboundSchema,
-    WithdrawRtpPersonalWithdrawalNotSupportedError$outboundSchema,
-    DepositAccountRestrictedError$outboundSchema,
-    WireInvalidImadError$outboundSchema,
-    WireAccountRestrictedError$outboundSchema,
-    WireNotEnabledError$outboundSchema,
-    WireAccountNotFoundError$outboundSchema,
-  ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InitiateTransferBadRequestDwollaV1HalJSON$ {
-  /** @deprecated use `InitiateTransferBadRequestDwollaV1HalJSON$inboundSchema` instead. */
-  export const inboundSchema =
-    InitiateTransferBadRequestDwollaV1HalJSON$inboundSchema;
-  /** @deprecated use `InitiateTransferBadRequestDwollaV1HalJSON$outboundSchema` instead. */
-  export const outboundSchema =
-    InitiateTransferBadRequestDwollaV1HalJSON$outboundSchema;
-  /** @deprecated use `InitiateTransferBadRequestDwollaV1HalJSON$Outbound` instead. */
-  export type Outbound = InitiateTransferBadRequestDwollaV1HalJSON$Outbound;
-}
-
-export function initiateTransferBadRequestDwollaV1HalJSONToJSON(
-  initiateTransferBadRequestDwollaV1HalJSON:
-    InitiateTransferBadRequestDwollaV1HalJSON,
-): string {
-  return JSON.stringify(
-    InitiateTransferBadRequestDwollaV1HalJSON$outboundSchema.parse(
-      initiateTransferBadRequestDwollaV1HalJSON,
-    ),
-  );
-}
 
 export function initiateTransferBadRequestDwollaV1HalJSONFromJSON(
   jsonString: string,

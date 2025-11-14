@@ -29,44 +29,6 @@ export const WithdrawRtpUnverifiedSenderNotSupportedErrorLinks$inboundSchema:
     unknown
   > = z.object({});
 
-/** @internal */
-export type WithdrawRtpUnverifiedSenderNotSupportedErrorLinks$Outbound = {};
-
-/** @internal */
-export const WithdrawRtpUnverifiedSenderNotSupportedErrorLinks$outboundSchema:
-  z.ZodType<
-    WithdrawRtpUnverifiedSenderNotSupportedErrorLinks$Outbound,
-    z.ZodTypeDef,
-    WithdrawRtpUnverifiedSenderNotSupportedErrorLinks
-  > = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawRtpUnverifiedSenderNotSupportedErrorLinks$ {
-  /** @deprecated use `WithdrawRtpUnverifiedSenderNotSupportedErrorLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawRtpUnverifiedSenderNotSupportedErrorLinks$inboundSchema;
-  /** @deprecated use `WithdrawRtpUnverifiedSenderNotSupportedErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawRtpUnverifiedSenderNotSupportedErrorLinks$outboundSchema;
-  /** @deprecated use `WithdrawRtpUnverifiedSenderNotSupportedErrorLinks$Outbound` instead. */
-  export type Outbound =
-    WithdrawRtpUnverifiedSenderNotSupportedErrorLinks$Outbound;
-}
-
-export function withdrawRtpUnverifiedSenderNotSupportedErrorLinksToJSON(
-  withdrawRtpUnverifiedSenderNotSupportedErrorLinks:
-    WithdrawRtpUnverifiedSenderNotSupportedErrorLinks,
-): string {
-  return JSON.stringify(
-    WithdrawRtpUnverifiedSenderNotSupportedErrorLinks$outboundSchema.parse(
-      withdrawRtpUnverifiedSenderNotSupportedErrorLinks,
-    ),
-  );
-}
-
 export function withdrawRtpUnverifiedSenderNotSupportedErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -102,62 +64,6 @@ export const WithdrawRtpUnverifiedSenderNotSupportedErrorError$inboundSchema:
     });
   });
 
-/** @internal */
-export type WithdrawRtpUnverifiedSenderNotSupportedErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?:
-    | WithdrawRtpUnverifiedSenderNotSupportedErrorLinks$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const WithdrawRtpUnverifiedSenderNotSupportedErrorError$outboundSchema:
-  z.ZodType<
-    WithdrawRtpUnverifiedSenderNotSupportedErrorError$Outbound,
-    z.ZodTypeDef,
-    WithdrawRtpUnverifiedSenderNotSupportedErrorError
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    path: z.string().optional(),
-    links: z.lazy(() =>
-      WithdrawRtpUnverifiedSenderNotSupportedErrorLinks$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      links: "_links",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawRtpUnverifiedSenderNotSupportedErrorError$ {
-  /** @deprecated use `WithdrawRtpUnverifiedSenderNotSupportedErrorError$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawRtpUnverifiedSenderNotSupportedErrorError$inboundSchema;
-  /** @deprecated use `WithdrawRtpUnverifiedSenderNotSupportedErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawRtpUnverifiedSenderNotSupportedErrorError$outboundSchema;
-  /** @deprecated use `WithdrawRtpUnverifiedSenderNotSupportedErrorError$Outbound` instead. */
-  export type Outbound =
-    WithdrawRtpUnverifiedSenderNotSupportedErrorError$Outbound;
-}
-
-export function withdrawRtpUnverifiedSenderNotSupportedErrorErrorToJSON(
-  withdrawRtpUnverifiedSenderNotSupportedErrorError:
-    WithdrawRtpUnverifiedSenderNotSupportedErrorError,
-): string {
-  return JSON.stringify(
-    WithdrawRtpUnverifiedSenderNotSupportedErrorError$outboundSchema.parse(
-      withdrawRtpUnverifiedSenderNotSupportedErrorError,
-    ),
-  );
-}
-
 export function withdrawRtpUnverifiedSenderNotSupportedErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -187,54 +93,6 @@ export const WithdrawRtpUnverifiedSenderNotSupportedErrorEmbedded$inboundSchema:
       ),
     ).optional(),
   });
-
-/** @internal */
-export type WithdrawRtpUnverifiedSenderNotSupportedErrorEmbedded$Outbound = {
-  errors?:
-    | Array<WithdrawRtpUnverifiedSenderNotSupportedErrorError$Outbound>
-    | undefined;
-};
-
-/** @internal */
-export const WithdrawRtpUnverifiedSenderNotSupportedErrorEmbedded$outboundSchema:
-  z.ZodType<
-    WithdrawRtpUnverifiedSenderNotSupportedErrorEmbedded$Outbound,
-    z.ZodTypeDef,
-    WithdrawRtpUnverifiedSenderNotSupportedErrorEmbedded
-  > = z.object({
-    errors: z.array(
-      z.lazy(() =>
-        WithdrawRtpUnverifiedSenderNotSupportedErrorError$outboundSchema
-      ),
-    ).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawRtpUnverifiedSenderNotSupportedErrorEmbedded$ {
-  /** @deprecated use `WithdrawRtpUnverifiedSenderNotSupportedErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawRtpUnverifiedSenderNotSupportedErrorEmbedded$inboundSchema;
-  /** @deprecated use `WithdrawRtpUnverifiedSenderNotSupportedErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawRtpUnverifiedSenderNotSupportedErrorEmbedded$outboundSchema;
-  /** @deprecated use `WithdrawRtpUnverifiedSenderNotSupportedErrorEmbedded$Outbound` instead. */
-  export type Outbound =
-    WithdrawRtpUnverifiedSenderNotSupportedErrorEmbedded$Outbound;
-}
-
-export function withdrawRtpUnverifiedSenderNotSupportedErrorEmbeddedToJSON(
-  withdrawRtpUnverifiedSenderNotSupportedErrorEmbedded:
-    WithdrawRtpUnverifiedSenderNotSupportedErrorEmbedded,
-): string {
-  return JSON.stringify(
-    WithdrawRtpUnverifiedSenderNotSupportedErrorEmbedded$outboundSchema.parse(
-      withdrawRtpUnverifiedSenderNotSupportedErrorEmbedded,
-    ),
-  );
-}
 
 export function withdrawRtpUnverifiedSenderNotSupportedErrorEmbeddedFromJSON(
   jsonString: string,

@@ -29,44 +29,6 @@ export const IncompatibleSourceAndDestinationTypesErrorLinks$inboundSchema:
     unknown
   > = z.object({});
 
-/** @internal */
-export type IncompatibleSourceAndDestinationTypesErrorLinks$Outbound = {};
-
-/** @internal */
-export const IncompatibleSourceAndDestinationTypesErrorLinks$outboundSchema:
-  z.ZodType<
-    IncompatibleSourceAndDestinationTypesErrorLinks$Outbound,
-    z.ZodTypeDef,
-    IncompatibleSourceAndDestinationTypesErrorLinks
-  > = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IncompatibleSourceAndDestinationTypesErrorLinks$ {
-  /** @deprecated use `IncompatibleSourceAndDestinationTypesErrorLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    IncompatibleSourceAndDestinationTypesErrorLinks$inboundSchema;
-  /** @deprecated use `IncompatibleSourceAndDestinationTypesErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    IncompatibleSourceAndDestinationTypesErrorLinks$outboundSchema;
-  /** @deprecated use `IncompatibleSourceAndDestinationTypesErrorLinks$Outbound` instead. */
-  export type Outbound =
-    IncompatibleSourceAndDestinationTypesErrorLinks$Outbound;
-}
-
-export function incompatibleSourceAndDestinationTypesErrorLinksToJSON(
-  incompatibleSourceAndDestinationTypesErrorLinks:
-    IncompatibleSourceAndDestinationTypesErrorLinks,
-): string {
-  return JSON.stringify(
-    IncompatibleSourceAndDestinationTypesErrorLinks$outboundSchema.parse(
-      incompatibleSourceAndDestinationTypesErrorLinks,
-    ),
-  );
-}
-
 export function incompatibleSourceAndDestinationTypesErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -102,60 +64,6 @@ export const IncompatibleSourceAndDestinationTypesErrorError$inboundSchema:
     });
   });
 
-/** @internal */
-export type IncompatibleSourceAndDestinationTypesErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: IncompatibleSourceAndDestinationTypesErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const IncompatibleSourceAndDestinationTypesErrorError$outboundSchema:
-  z.ZodType<
-    IncompatibleSourceAndDestinationTypesErrorError$Outbound,
-    z.ZodTypeDef,
-    IncompatibleSourceAndDestinationTypesErrorError
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    path: z.string().optional(),
-    links: z.lazy(() =>
-      IncompatibleSourceAndDestinationTypesErrorLinks$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      links: "_links",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IncompatibleSourceAndDestinationTypesErrorError$ {
-  /** @deprecated use `IncompatibleSourceAndDestinationTypesErrorError$inboundSchema` instead. */
-  export const inboundSchema =
-    IncompatibleSourceAndDestinationTypesErrorError$inboundSchema;
-  /** @deprecated use `IncompatibleSourceAndDestinationTypesErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    IncompatibleSourceAndDestinationTypesErrorError$outboundSchema;
-  /** @deprecated use `IncompatibleSourceAndDestinationTypesErrorError$Outbound` instead. */
-  export type Outbound =
-    IncompatibleSourceAndDestinationTypesErrorError$Outbound;
-}
-
-export function incompatibleSourceAndDestinationTypesErrorErrorToJSON(
-  incompatibleSourceAndDestinationTypesErrorError:
-    IncompatibleSourceAndDestinationTypesErrorError,
-): string {
-  return JSON.stringify(
-    IncompatibleSourceAndDestinationTypesErrorError$outboundSchema.parse(
-      incompatibleSourceAndDestinationTypesErrorError,
-    ),
-  );
-}
-
 export function incompatibleSourceAndDestinationTypesErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -185,54 +93,6 @@ export const IncompatibleSourceAndDestinationTypesErrorEmbedded$inboundSchema:
       ),
     ).optional(),
   });
-
-/** @internal */
-export type IncompatibleSourceAndDestinationTypesErrorEmbedded$Outbound = {
-  errors?:
-    | Array<IncompatibleSourceAndDestinationTypesErrorError$Outbound>
-    | undefined;
-};
-
-/** @internal */
-export const IncompatibleSourceAndDestinationTypesErrorEmbedded$outboundSchema:
-  z.ZodType<
-    IncompatibleSourceAndDestinationTypesErrorEmbedded$Outbound,
-    z.ZodTypeDef,
-    IncompatibleSourceAndDestinationTypesErrorEmbedded
-  > = z.object({
-    errors: z.array(
-      z.lazy(() =>
-        IncompatibleSourceAndDestinationTypesErrorError$outboundSchema
-      ),
-    ).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IncompatibleSourceAndDestinationTypesErrorEmbedded$ {
-  /** @deprecated use `IncompatibleSourceAndDestinationTypesErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    IncompatibleSourceAndDestinationTypesErrorEmbedded$inboundSchema;
-  /** @deprecated use `IncompatibleSourceAndDestinationTypesErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    IncompatibleSourceAndDestinationTypesErrorEmbedded$outboundSchema;
-  /** @deprecated use `IncompatibleSourceAndDestinationTypesErrorEmbedded$Outbound` instead. */
-  export type Outbound =
-    IncompatibleSourceAndDestinationTypesErrorEmbedded$Outbound;
-}
-
-export function incompatibleSourceAndDestinationTypesErrorEmbeddedToJSON(
-  incompatibleSourceAndDestinationTypesErrorEmbedded:
-    IncompatibleSourceAndDestinationTypesErrorEmbedded,
-): string {
-  return JSON.stringify(
-    IncompatibleSourceAndDestinationTypesErrorEmbedded$outboundSchema.parse(
-      incompatibleSourceAndDestinationTypesErrorEmbedded,
-    ),
-  );
-}
 
 export function incompatibleSourceAndDestinationTypesErrorEmbeddedFromJSON(
   jsonString: string,

@@ -50,16 +50,6 @@ export type VerifyKbaQuestionsResponse = {
 };
 
 /** @internal */
-export const VerifyKbaQuestionsAnswer$inboundSchema: z.ZodType<
-  VerifyKbaQuestionsAnswer,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  questionId: z.string().optional(),
-  answerId: z.string().optional(),
-});
-
-/** @internal */
 export type VerifyKbaQuestionsAnswer$Outbound = {
   questionId?: string | undefined;
   answerId?: string | undefined;
@@ -75,19 +65,6 @@ export const VerifyKbaQuestionsAnswer$outboundSchema: z.ZodType<
   answerId: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VerifyKbaQuestionsAnswer$ {
-  /** @deprecated use `VerifyKbaQuestionsAnswer$inboundSchema` instead. */
-  export const inboundSchema = VerifyKbaQuestionsAnswer$inboundSchema;
-  /** @deprecated use `VerifyKbaQuestionsAnswer$outboundSchema` instead. */
-  export const outboundSchema = VerifyKbaQuestionsAnswer$outboundSchema;
-  /** @deprecated use `VerifyKbaQuestionsAnswer$Outbound` instead. */
-  export type Outbound = VerifyKbaQuestionsAnswer$Outbound;
-}
-
 export function verifyKbaQuestionsAnswerToJSON(
   verifyKbaQuestionsAnswer: VerifyKbaQuestionsAnswer,
 ): string {
@@ -95,25 +72,6 @@ export function verifyKbaQuestionsAnswerToJSON(
     VerifyKbaQuestionsAnswer$outboundSchema.parse(verifyKbaQuestionsAnswer),
   );
 }
-
-export function verifyKbaQuestionsAnswerFromJSON(
-  jsonString: string,
-): SafeParseResult<VerifyKbaQuestionsAnswer, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => VerifyKbaQuestionsAnswer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VerifyKbaQuestionsAnswer' from JSON`,
-  );
-}
-
-/** @internal */
-export const VerifyKbaQuestionsRequestBody$inboundSchema: z.ZodType<
-  VerifyKbaQuestionsRequestBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  answers: z.array(z.lazy(() => VerifyKbaQuestionsAnswer$inboundSchema)),
-});
 
 /** @internal */
 export type VerifyKbaQuestionsRequestBody$Outbound = {
@@ -129,19 +87,6 @@ export const VerifyKbaQuestionsRequestBody$outboundSchema: z.ZodType<
   answers: z.array(z.lazy(() => VerifyKbaQuestionsAnswer$outboundSchema)),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VerifyKbaQuestionsRequestBody$ {
-  /** @deprecated use `VerifyKbaQuestionsRequestBody$inboundSchema` instead. */
-  export const inboundSchema = VerifyKbaQuestionsRequestBody$inboundSchema;
-  /** @deprecated use `VerifyKbaQuestionsRequestBody$outboundSchema` instead. */
-  export const outboundSchema = VerifyKbaQuestionsRequestBody$outboundSchema;
-  /** @deprecated use `VerifyKbaQuestionsRequestBody$Outbound` instead. */
-  export type Outbound = VerifyKbaQuestionsRequestBody$Outbound;
-}
-
 export function verifyKbaQuestionsRequestBodyToJSON(
   verifyKbaQuestionsRequestBody: VerifyKbaQuestionsRequestBody,
 ): string {
@@ -151,30 +96,6 @@ export function verifyKbaQuestionsRequestBodyToJSON(
     ),
   );
 }
-
-export function verifyKbaQuestionsRequestBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<VerifyKbaQuestionsRequestBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => VerifyKbaQuestionsRequestBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VerifyKbaQuestionsRequestBody' from JSON`,
-  );
-}
-
-/** @internal */
-export const VerifyKbaQuestionsRequest$inboundSchema: z.ZodType<
-  VerifyKbaQuestionsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  RequestBody: z.lazy(() => VerifyKbaQuestionsRequestBody$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "RequestBody": "requestBody",
-  });
-});
 
 /** @internal */
 export type VerifyKbaQuestionsRequest$Outbound = {
@@ -196,34 +117,11 @@ export const VerifyKbaQuestionsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VerifyKbaQuestionsRequest$ {
-  /** @deprecated use `VerifyKbaQuestionsRequest$inboundSchema` instead. */
-  export const inboundSchema = VerifyKbaQuestionsRequest$inboundSchema;
-  /** @deprecated use `VerifyKbaQuestionsRequest$outboundSchema` instead. */
-  export const outboundSchema = VerifyKbaQuestionsRequest$outboundSchema;
-  /** @deprecated use `VerifyKbaQuestionsRequest$Outbound` instead. */
-  export type Outbound = VerifyKbaQuestionsRequest$Outbound;
-}
-
 export function verifyKbaQuestionsRequestToJSON(
   verifyKbaQuestionsRequest: VerifyKbaQuestionsRequest,
 ): string {
   return JSON.stringify(
     VerifyKbaQuestionsRequest$outboundSchema.parse(verifyKbaQuestionsRequest),
-  );
-}
-
-export function verifyKbaQuestionsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<VerifyKbaQuestionsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => VerifyKbaQuestionsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VerifyKbaQuestionsRequest' from JSON`,
   );
 }
 
@@ -241,49 +139,6 @@ export const VerifyKbaQuestionsCustomer$inboundSchema: z.ZodType<
     "resource-type": "resourceType",
   });
 });
-
-/** @internal */
-export type VerifyKbaQuestionsCustomer$Outbound = {
-  href?: string | undefined;
-  type?: string | undefined;
-  "resource-type"?: string | undefined;
-};
-
-/** @internal */
-export const VerifyKbaQuestionsCustomer$outboundSchema: z.ZodType<
-  VerifyKbaQuestionsCustomer$Outbound,
-  z.ZodTypeDef,
-  VerifyKbaQuestionsCustomer
-> = z.object({
-  href: z.string().optional(),
-  type: z.string().optional(),
-  resourceType: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    resourceType: "resource-type",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VerifyKbaQuestionsCustomer$ {
-  /** @deprecated use `VerifyKbaQuestionsCustomer$inboundSchema` instead. */
-  export const inboundSchema = VerifyKbaQuestionsCustomer$inboundSchema;
-  /** @deprecated use `VerifyKbaQuestionsCustomer$outboundSchema` instead. */
-  export const outboundSchema = VerifyKbaQuestionsCustomer$outboundSchema;
-  /** @deprecated use `VerifyKbaQuestionsCustomer$Outbound` instead. */
-  export type Outbound = VerifyKbaQuestionsCustomer$Outbound;
-}
-
-export function verifyKbaQuestionsCustomerToJSON(
-  verifyKbaQuestionsCustomer: VerifyKbaQuestionsCustomer,
-): string {
-  return JSON.stringify(
-    VerifyKbaQuestionsCustomer$outboundSchema.parse(verifyKbaQuestionsCustomer),
-  );
-}
 
 export function verifyKbaQuestionsCustomerFromJSON(
   jsonString: string,
@@ -303,41 +158,6 @@ export const VerifyKbaQuestionsLinks$inboundSchema: z.ZodType<
 > = z.object({
   customer: z.lazy(() => VerifyKbaQuestionsCustomer$inboundSchema).optional(),
 });
-
-/** @internal */
-export type VerifyKbaQuestionsLinks$Outbound = {
-  customer?: VerifyKbaQuestionsCustomer$Outbound | undefined;
-};
-
-/** @internal */
-export const VerifyKbaQuestionsLinks$outboundSchema: z.ZodType<
-  VerifyKbaQuestionsLinks$Outbound,
-  z.ZodTypeDef,
-  VerifyKbaQuestionsLinks
-> = z.object({
-  customer: z.lazy(() => VerifyKbaQuestionsCustomer$outboundSchema).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VerifyKbaQuestionsLinks$ {
-  /** @deprecated use `VerifyKbaQuestionsLinks$inboundSchema` instead. */
-  export const inboundSchema = VerifyKbaQuestionsLinks$inboundSchema;
-  /** @deprecated use `VerifyKbaQuestionsLinks$outboundSchema` instead. */
-  export const outboundSchema = VerifyKbaQuestionsLinks$outboundSchema;
-  /** @deprecated use `VerifyKbaQuestionsLinks$Outbound` instead. */
-  export type Outbound = VerifyKbaQuestionsLinks$Outbound;
-}
-
-export function verifyKbaQuestionsLinksToJSON(
-  verifyKbaQuestionsLinks: VerifyKbaQuestionsLinks,
-): string {
-  return JSON.stringify(
-    VerifyKbaQuestionsLinks$outboundSchema.parse(verifyKbaQuestionsLinks),
-  );
-}
 
 export function verifyKbaQuestionsLinksFromJSON(
   jsonString: string,
@@ -362,47 +182,6 @@ export const VerifyKbaQuestionsResponse$inboundSchema: z.ZodType<
     "_links": "links",
   });
 });
-
-/** @internal */
-export type VerifyKbaQuestionsResponse$Outbound = {
-  _links?: VerifyKbaQuestionsLinks$Outbound | undefined;
-  verificationStatus?: string | undefined;
-};
-
-/** @internal */
-export const VerifyKbaQuestionsResponse$outboundSchema: z.ZodType<
-  VerifyKbaQuestionsResponse$Outbound,
-  z.ZodTypeDef,
-  VerifyKbaQuestionsResponse
-> = z.object({
-  links: z.lazy(() => VerifyKbaQuestionsLinks$outboundSchema).optional(),
-  verificationStatus: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VerifyKbaQuestionsResponse$ {
-  /** @deprecated use `VerifyKbaQuestionsResponse$inboundSchema` instead. */
-  export const inboundSchema = VerifyKbaQuestionsResponse$inboundSchema;
-  /** @deprecated use `VerifyKbaQuestionsResponse$outboundSchema` instead. */
-  export const outboundSchema = VerifyKbaQuestionsResponse$outboundSchema;
-  /** @deprecated use `VerifyKbaQuestionsResponse$Outbound` instead. */
-  export type Outbound = VerifyKbaQuestionsResponse$Outbound;
-}
-
-export function verifyKbaQuestionsResponseToJSON(
-  verifyKbaQuestionsResponse: VerifyKbaQuestionsResponse,
-): string {
-  return JSON.stringify(
-    VerifyKbaQuestionsResponse$outboundSchema.parse(verifyKbaQuestionsResponse),
-  );
-}
 
 export function verifyKbaQuestionsResponseFromJSON(
   jsonString: string,

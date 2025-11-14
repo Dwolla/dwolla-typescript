@@ -7,12 +7,7 @@ import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  HalLink,
-  HalLink$inboundSchema,
-  HalLink$Outbound,
-  HalLink$outboundSchema,
-} from "./hallink.js";
+import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 
 export type DocumentLinks = {
   self?: HalLink | undefined;
@@ -43,37 +38,6 @@ export const DocumentLinks$inboundSchema: z.ZodType<
   self: HalLink$inboundSchema.optional(),
 });
 
-/** @internal */
-export type DocumentLinks$Outbound = {
-  self?: HalLink$Outbound | undefined;
-};
-
-/** @internal */
-export const DocumentLinks$outboundSchema: z.ZodType<
-  DocumentLinks$Outbound,
-  z.ZodTypeDef,
-  DocumentLinks
-> = z.object({
-  self: HalLink$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DocumentLinks$ {
-  /** @deprecated use `DocumentLinks$inboundSchema` instead. */
-  export const inboundSchema = DocumentLinks$inboundSchema;
-  /** @deprecated use `DocumentLinks$outboundSchema` instead. */
-  export const outboundSchema = DocumentLinks$outboundSchema;
-  /** @deprecated use `DocumentLinks$Outbound` instead. */
-  export type Outbound = DocumentLinks$Outbound;
-}
-
-export function documentLinksToJSON(documentLinks: DocumentLinks): string {
-  return JSON.stringify(DocumentLinks$outboundSchema.parse(documentLinks));
-}
-
 export function documentLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<DocumentLinks, SDKValidationError> {
@@ -93,43 +57,6 @@ export const AllFailureReason$inboundSchema: z.ZodType<
   reason: z.string().optional(),
   description: z.string().optional(),
 });
-
-/** @internal */
-export type AllFailureReason$Outbound = {
-  reason?: string | undefined;
-  description?: string | undefined;
-};
-
-/** @internal */
-export const AllFailureReason$outboundSchema: z.ZodType<
-  AllFailureReason$Outbound,
-  z.ZodTypeDef,
-  AllFailureReason
-> = z.object({
-  reason: z.string().optional(),
-  description: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AllFailureReason$ {
-  /** @deprecated use `AllFailureReason$inboundSchema` instead. */
-  export const inboundSchema = AllFailureReason$inboundSchema;
-  /** @deprecated use `AllFailureReason$outboundSchema` instead. */
-  export const outboundSchema = AllFailureReason$outboundSchema;
-  /** @deprecated use `AllFailureReason$Outbound` instead. */
-  export type Outbound = AllFailureReason$Outbound;
-}
-
-export function allFailureReasonToJSON(
-  allFailureReason: AllFailureReason,
-): string {
-  return JSON.stringify(
-    AllFailureReason$outboundSchema.parse(allFailureReason),
-  );
-}
 
 export function allFailureReasonFromJSON(
   jsonString: string,
@@ -162,56 +89,6 @@ export const Document$inboundSchema: z.ZodType<
     "_links": "links",
   });
 });
-
-/** @internal */
-export type Document$Outbound = {
-  _links?: DocumentLinks$Outbound | undefined;
-  id?: string | undefined;
-  status?: string | undefined;
-  type?: string | undefined;
-  created?: string | undefined;
-  documentVerificationStatus?: string | undefined;
-  failureReason?: string | undefined;
-  allFailureReasons?: Array<AllFailureReason$Outbound> | undefined;
-};
-
-/** @internal */
-export const Document$outboundSchema: z.ZodType<
-  Document$Outbound,
-  z.ZodTypeDef,
-  Document
-> = z.object({
-  links: z.lazy(() => DocumentLinks$outboundSchema).optional(),
-  id: z.string().optional(),
-  status: z.string().optional(),
-  type: z.string().optional(),
-  created: z.date().transform(v => v.toISOString()).optional(),
-  documentVerificationStatus: z.string().optional(),
-  failureReason: z.string().optional(),
-  allFailureReasons: z.array(z.lazy(() => AllFailureReason$outboundSchema))
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Document$ {
-  /** @deprecated use `Document$inboundSchema` instead. */
-  export const inboundSchema = Document$inboundSchema;
-  /** @deprecated use `Document$outboundSchema` instead. */
-  export const outboundSchema = Document$outboundSchema;
-  /** @deprecated use `Document$Outbound` instead. */
-  export type Outbound = Document$Outbound;
-}
-
-export function documentToJSON(document: Document): string {
-  return JSON.stringify(Document$outboundSchema.parse(document));
-}
 
 export function documentFromJSON(
   jsonString: string,

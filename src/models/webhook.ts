@@ -80,37 +80,6 @@ export const WebhookSelf$inboundSchema: z.ZodType<
   href: z.string().optional(),
 });
 
-/** @internal */
-export type WebhookSelf$Outbound = {
-  href?: string | undefined;
-};
-
-/** @internal */
-export const WebhookSelf$outboundSchema: z.ZodType<
-  WebhookSelf$Outbound,
-  z.ZodTypeDef,
-  WebhookSelf
-> = z.object({
-  href: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookSelf$ {
-  /** @deprecated use `WebhookSelf$inboundSchema` instead. */
-  export const inboundSchema = WebhookSelf$inboundSchema;
-  /** @deprecated use `WebhookSelf$outboundSchema` instead. */
-  export const outboundSchema = WebhookSelf$outboundSchema;
-  /** @deprecated use `WebhookSelf$Outbound` instead. */
-  export type Outbound = WebhookSelf$Outbound;
-}
-
-export function webhookSelfToJSON(webhookSelf: WebhookSelf): string {
-  return JSON.stringify(WebhookSelf$outboundSchema.parse(webhookSelf));
-}
-
 export function webhookSelfFromJSON(
   jsonString: string,
 ): SafeParseResult<WebhookSelf, SDKValidationError> {
@@ -129,37 +98,6 @@ export const Subscription$inboundSchema: z.ZodType<
 > = z.object({
   href: z.string().optional(),
 });
-
-/** @internal */
-export type Subscription$Outbound = {
-  href?: string | undefined;
-};
-
-/** @internal */
-export const Subscription$outboundSchema: z.ZodType<
-  Subscription$Outbound,
-  z.ZodTypeDef,
-  Subscription
-> = z.object({
-  href: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Subscription$ {
-  /** @deprecated use `Subscription$inboundSchema` instead. */
-  export const inboundSchema = Subscription$inboundSchema;
-  /** @deprecated use `Subscription$outboundSchema` instead. */
-  export const outboundSchema = Subscription$outboundSchema;
-  /** @deprecated use `Subscription$Outbound` instead. */
-  export type Outbound = Subscription$Outbound;
-}
-
-export function subscriptionToJSON(subscription: Subscription): string {
-  return JSON.stringify(Subscription$outboundSchema.parse(subscription));
-}
 
 export function subscriptionFromJSON(
   jsonString: string,
@@ -180,37 +118,6 @@ export const WebhookRetry$inboundSchema: z.ZodType<
   href: z.string().optional(),
 });
 
-/** @internal */
-export type WebhookRetry$Outbound = {
-  href?: string | undefined;
-};
-
-/** @internal */
-export const WebhookRetry$outboundSchema: z.ZodType<
-  WebhookRetry$Outbound,
-  z.ZodTypeDef,
-  WebhookRetry
-> = z.object({
-  href: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookRetry$ {
-  /** @deprecated use `WebhookRetry$inboundSchema` instead. */
-  export const inboundSchema = WebhookRetry$inboundSchema;
-  /** @deprecated use `WebhookRetry$outboundSchema` instead. */
-  export const outboundSchema = WebhookRetry$outboundSchema;
-  /** @deprecated use `WebhookRetry$Outbound` instead. */
-  export type Outbound = WebhookRetry$Outbound;
-}
-
-export function webhookRetryToJSON(webhookRetry: WebhookRetry): string {
-  return JSON.stringify(WebhookRetry$outboundSchema.parse(webhookRetry));
-}
-
 export function webhookRetryFromJSON(
   jsonString: string,
 ): SafeParseResult<WebhookRetry, SDKValidationError> {
@@ -229,37 +136,6 @@ export const WebhookEvent$inboundSchema: z.ZodType<
 > = z.object({
   href: z.string().optional(),
 });
-
-/** @internal */
-export type WebhookEvent$Outbound = {
-  href?: string | undefined;
-};
-
-/** @internal */
-export const WebhookEvent$outboundSchema: z.ZodType<
-  WebhookEvent$Outbound,
-  z.ZodTypeDef,
-  WebhookEvent
-> = z.object({
-  href: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookEvent$ {
-  /** @deprecated use `WebhookEvent$inboundSchema` instead. */
-  export const inboundSchema = WebhookEvent$inboundSchema;
-  /** @deprecated use `WebhookEvent$outboundSchema` instead. */
-  export const outboundSchema = WebhookEvent$outboundSchema;
-  /** @deprecated use `WebhookEvent$Outbound` instead. */
-  export type Outbound = WebhookEvent$Outbound;
-}
-
-export function webhookEventToJSON(webhookEvent: WebhookEvent): string {
-  return JSON.stringify(WebhookEvent$outboundSchema.parse(webhookEvent));
-}
 
 export function webhookEventFromJSON(
   jsonString: string,
@@ -283,43 +159,6 @@ export const WebhookLinks$inboundSchema: z.ZodType<
   event: z.lazy(() => WebhookEvent$inboundSchema).optional(),
 });
 
-/** @internal */
-export type WebhookLinks$Outbound = {
-  self?: WebhookSelf$Outbound | undefined;
-  subscription?: Subscription$Outbound | undefined;
-  retry?: WebhookRetry$Outbound | undefined;
-  event?: WebhookEvent$Outbound | undefined;
-};
-
-/** @internal */
-export const WebhookLinks$outboundSchema: z.ZodType<
-  WebhookLinks$Outbound,
-  z.ZodTypeDef,
-  WebhookLinks
-> = z.object({
-  self: z.lazy(() => WebhookSelf$outboundSchema).optional(),
-  subscription: z.lazy(() => Subscription$outboundSchema).optional(),
-  retry: z.lazy(() => WebhookRetry$outboundSchema).optional(),
-  event: z.lazy(() => WebhookEvent$outboundSchema).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookLinks$ {
-  /** @deprecated use `WebhookLinks$inboundSchema` instead. */
-  export const inboundSchema = WebhookLinks$inboundSchema;
-  /** @deprecated use `WebhookLinks$outboundSchema` instead. */
-  export const outboundSchema = WebhookLinks$outboundSchema;
-  /** @deprecated use `WebhookLinks$Outbound` instead. */
-  export type Outbound = WebhookLinks$Outbound;
-}
-
-export function webhookLinksToJSON(webhookLinks: WebhookLinks): string {
-  return JSON.stringify(WebhookLinks$outboundSchema.parse(webhookLinks));
-}
-
 export function webhookLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<WebhookLinks, SDKValidationError> {
@@ -339,39 +178,6 @@ export const RequestHeader$inboundSchema: z.ZodType<
   name: z.string().optional(),
   value: z.string().optional(),
 });
-
-/** @internal */
-export type RequestHeader$Outbound = {
-  name?: string | undefined;
-  value?: string | undefined;
-};
-
-/** @internal */
-export const RequestHeader$outboundSchema: z.ZodType<
-  RequestHeader$Outbound,
-  z.ZodTypeDef,
-  RequestHeader
-> = z.object({
-  name: z.string().optional(),
-  value: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RequestHeader$ {
-  /** @deprecated use `RequestHeader$inboundSchema` instead. */
-  export const inboundSchema = RequestHeader$inboundSchema;
-  /** @deprecated use `RequestHeader$outboundSchema` instead. */
-  export const outboundSchema = RequestHeader$outboundSchema;
-  /** @deprecated use `RequestHeader$Outbound` instead. */
-  export type Outbound = RequestHeader$Outbound;
-}
-
-export function requestHeaderToJSON(requestHeader: RequestHeader): string {
-  return JSON.stringify(RequestHeader$outboundSchema.parse(requestHeader));
-}
 
 export function requestHeaderFromJSON(
   jsonString: string,
@@ -396,43 +202,6 @@ export const RequestT$inboundSchema: z.ZodType<
   body: z.string().optional(),
 });
 
-/** @internal */
-export type RequestT$Outbound = {
-  timestamp?: string | undefined;
-  url?: string | undefined;
-  headers?: Array<RequestHeader$Outbound> | undefined;
-  body?: string | undefined;
-};
-
-/** @internal */
-export const RequestT$outboundSchema: z.ZodType<
-  RequestT$Outbound,
-  z.ZodTypeDef,
-  RequestT
-> = z.object({
-  timestamp: z.date().transform(v => v.toISOString()).optional(),
-  url: z.string().optional(),
-  headers: z.array(z.lazy(() => RequestHeader$outboundSchema)).optional(),
-  body: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RequestT$ {
-  /** @deprecated use `RequestT$inboundSchema` instead. */
-  export const inboundSchema = RequestT$inboundSchema;
-  /** @deprecated use `RequestT$outboundSchema` instead. */
-  export const outboundSchema = RequestT$outboundSchema;
-  /** @deprecated use `RequestT$Outbound` instead. */
-  export type Outbound = RequestT$Outbound;
-}
-
-export function requestToJSON(requestT: RequestT): string {
-  return JSON.stringify(RequestT$outboundSchema.parse(requestT));
-}
-
 export function requestFromJSON(
   jsonString: string,
 ): SafeParseResult<RequestT, SDKValidationError> {
@@ -452,39 +221,6 @@ export const ResponseHeader$inboundSchema: z.ZodType<
   name: z.string().optional(),
   value: z.string().optional(),
 });
-
-/** @internal */
-export type ResponseHeader$Outbound = {
-  name?: string | undefined;
-  value?: string | undefined;
-};
-
-/** @internal */
-export const ResponseHeader$outboundSchema: z.ZodType<
-  ResponseHeader$Outbound,
-  z.ZodTypeDef,
-  ResponseHeader
-> = z.object({
-  name: z.string().optional(),
-  value: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseHeader$ {
-  /** @deprecated use `ResponseHeader$inboundSchema` instead. */
-  export const inboundSchema = ResponseHeader$inboundSchema;
-  /** @deprecated use `ResponseHeader$outboundSchema` instead. */
-  export const outboundSchema = ResponseHeader$outboundSchema;
-  /** @deprecated use `ResponseHeader$Outbound` instead. */
-  export type Outbound = ResponseHeader$Outbound;
-}
-
-export function responseHeaderToJSON(responseHeader: ResponseHeader): string {
-  return JSON.stringify(ResponseHeader$outboundSchema.parse(responseHeader));
-}
 
 export function responseHeaderFromJSON(
   jsonString: string,
@@ -509,43 +245,6 @@ export const ResponseT$inboundSchema: z.ZodType<
   body: z.string().optional(),
 });
 
-/** @internal */
-export type ResponseT$Outbound = {
-  timestamp?: string | undefined;
-  headers?: Array<ResponseHeader$Outbound> | undefined;
-  statusCode?: number | undefined;
-  body?: string | undefined;
-};
-
-/** @internal */
-export const ResponseT$outboundSchema: z.ZodType<
-  ResponseT$Outbound,
-  z.ZodTypeDef,
-  ResponseT
-> = z.object({
-  timestamp: z.date().transform(v => v.toISOString()).optional(),
-  headers: z.array(z.lazy(() => ResponseHeader$outboundSchema)).optional(),
-  statusCode: z.number().int().optional(),
-  body: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseT$ {
-  /** @deprecated use `ResponseT$inboundSchema` instead. */
-  export const inboundSchema = ResponseT$inboundSchema;
-  /** @deprecated use `ResponseT$outboundSchema` instead. */
-  export const outboundSchema = ResponseT$outboundSchema;
-  /** @deprecated use `ResponseT$Outbound` instead. */
-  export type Outbound = ResponseT$Outbound;
-}
-
-export function responseToJSON(responseT: ResponseT): string {
-  return JSON.stringify(ResponseT$outboundSchema.parse(responseT));
-}
-
 export function responseFromJSON(
   jsonString: string,
 ): SafeParseResult<ResponseT, SDKValidationError> {
@@ -563,41 +262,6 @@ export const Attempt$inboundSchema: z.ZodType<Attempt, z.ZodTypeDef, unknown> =
     request: z.lazy(() => RequestT$inboundSchema).optional(),
     response: z.lazy(() => ResponseT$inboundSchema).optional(),
   });
-
-/** @internal */
-export type Attempt$Outbound = {
-  id?: string | undefined;
-  request?: RequestT$Outbound | undefined;
-  response?: ResponseT$Outbound | undefined;
-};
-
-/** @internal */
-export const Attempt$outboundSchema: z.ZodType<
-  Attempt$Outbound,
-  z.ZodTypeDef,
-  Attempt
-> = z.object({
-  id: z.string().optional(),
-  request: z.lazy(() => RequestT$outboundSchema).optional(),
-  response: z.lazy(() => ResponseT$outboundSchema).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Attempt$ {
-  /** @deprecated use `Attempt$inboundSchema` instead. */
-  export const inboundSchema = Attempt$inboundSchema;
-  /** @deprecated use `Attempt$outboundSchema` instead. */
-  export const outboundSchema = Attempt$outboundSchema;
-  /** @deprecated use `Attempt$Outbound` instead. */
-  export type Outbound = Attempt$Outbound;
-}
-
-export function attemptToJSON(attempt: Attempt): string {
-  return JSON.stringify(Attempt$outboundSchema.parse(attempt));
-}
 
 export function attemptFromJSON(
   jsonString: string,
@@ -624,53 +288,6 @@ export const Webhook$inboundSchema: z.ZodType<Webhook, z.ZodTypeDef, unknown> =
       "_links": "links",
     });
   });
-
-/** @internal */
-export type Webhook$Outbound = {
-  _links?: WebhookLinks$Outbound | undefined;
-  id?: string | undefined;
-  topic?: string | undefined;
-  accountId?: string | undefined;
-  eventId?: string | undefined;
-  subscriptionId?: string | undefined;
-  attempts?: Array<Attempt$Outbound> | undefined;
-};
-
-/** @internal */
-export const Webhook$outboundSchema: z.ZodType<
-  Webhook$Outbound,
-  z.ZodTypeDef,
-  Webhook
-> = z.object({
-  links: z.lazy(() => WebhookLinks$outboundSchema).optional(),
-  id: z.string().optional(),
-  topic: z.string().optional(),
-  accountId: z.string().optional(),
-  eventId: z.string().optional(),
-  subscriptionId: z.string().optional(),
-  attempts: z.array(z.lazy(() => Attempt$outboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Webhook$ {
-  /** @deprecated use `Webhook$inboundSchema` instead. */
-  export const inboundSchema = Webhook$inboundSchema;
-  /** @deprecated use `Webhook$outboundSchema` instead. */
-  export const outboundSchema = Webhook$outboundSchema;
-  /** @deprecated use `Webhook$Outbound` instead. */
-  export type Outbound = Webhook$Outbound;
-}
-
-export function webhookToJSON(webhook: Webhook): string {
-  return JSON.stringify(Webhook$outboundSchema.parse(webhook));
-}
 
 export function webhookFromJSON(
   jsonString: string,

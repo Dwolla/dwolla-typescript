@@ -8,21 +8,15 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import {
   DuplicateResourceSchemaError,
   DuplicateResourceSchemaError$inboundSchema,
-  DuplicateResourceSchemaError$Outbound,
-  DuplicateResourceSchemaError$outboundSchema,
 } from "./duplicateresourceschemaerror.js";
 import { DwollaError } from "./dwollaerror.js";
 import {
   InvalidFileTypeSchemaError,
   InvalidFileTypeSchemaError$inboundSchema,
-  InvalidFileTypeSchemaError$Outbound,
-  InvalidFileTypeSchemaError$outboundSchema,
 } from "./invalidfiletypeschemaerror.js";
 import {
   MaximumNumberOfResourcesSchemaError,
   MaximumNumberOfResourcesSchemaError$inboundSchema,
-  MaximumNumberOfResourcesSchemaError$Outbound,
-  MaximumNumberOfResourcesSchemaError$outboundSchema,
 } from "./maximumnumberofresourcesschemaerror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
@@ -88,41 +82,6 @@ export const CreateBeneficialOwnerDocumentDwollaV1HalJSONError$inboundSchema:
     });
 
 /** @internal */
-export type CreateBeneficialOwnerDocumentDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const CreateBeneficialOwnerDocumentDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    CreateBeneficialOwnerDocumentDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    CreateBeneficialOwnerDocumentDwollaV1HalJSONError
-  > = z.instanceof(CreateBeneficialOwnerDocumentDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateBeneficialOwnerDocumentDwollaV1HalJSONError$ {
-  /** @deprecated use `CreateBeneficialOwnerDocumentDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateBeneficialOwnerDocumentDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `CreateBeneficialOwnerDocumentDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateBeneficialOwnerDocumentDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `CreateBeneficialOwnerDocumentDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    CreateBeneficialOwnerDocumentDwollaV1HalJSONError$Outbound;
-}
-
-/** @internal */
 export const CreateBeneficialOwnerDocumentDwollaV1HalJSON$inboundSchema:
   z.ZodType<
     CreateBeneficialOwnerDocumentDwollaV1HalJSON,
@@ -133,50 +92,6 @@ export const CreateBeneficialOwnerDocumentDwollaV1HalJSON$inboundSchema:
     InvalidFileTypeSchemaError$inboundSchema,
     DuplicateResourceSchemaError$inboundSchema,
   ]);
-
-/** @internal */
-export type CreateBeneficialOwnerDocumentDwollaV1HalJSON$Outbound =
-  | MaximumNumberOfResourcesSchemaError$Outbound
-  | InvalidFileTypeSchemaError$Outbound
-  | DuplicateResourceSchemaError$Outbound;
-
-/** @internal */
-export const CreateBeneficialOwnerDocumentDwollaV1HalJSON$outboundSchema:
-  z.ZodType<
-    CreateBeneficialOwnerDocumentDwollaV1HalJSON$Outbound,
-    z.ZodTypeDef,
-    unknown
-  > = z.union([
-    MaximumNumberOfResourcesSchemaError$outboundSchema,
-    InvalidFileTypeSchemaError$outboundSchema,
-    DuplicateResourceSchemaError$outboundSchema,
-  ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateBeneficialOwnerDocumentDwollaV1HalJSON$ {
-  /** @deprecated use `CreateBeneficialOwnerDocumentDwollaV1HalJSON$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateBeneficialOwnerDocumentDwollaV1HalJSON$inboundSchema;
-  /** @deprecated use `CreateBeneficialOwnerDocumentDwollaV1HalJSON$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateBeneficialOwnerDocumentDwollaV1HalJSON$outboundSchema;
-  /** @deprecated use `CreateBeneficialOwnerDocumentDwollaV1HalJSON$Outbound` instead. */
-  export type Outbound = CreateBeneficialOwnerDocumentDwollaV1HalJSON$Outbound;
-}
-
-export function createBeneficialOwnerDocumentDwollaV1HalJSONToJSON(
-  createBeneficialOwnerDocumentDwollaV1HalJSON:
-    CreateBeneficialOwnerDocumentDwollaV1HalJSON,
-): string {
-  return JSON.stringify(
-    CreateBeneficialOwnerDocumentDwollaV1HalJSON$outboundSchema.parse(
-      createBeneficialOwnerDocumentDwollaV1HalJSON,
-    ),
-  );
-}
 
 export function createBeneficialOwnerDocumentDwollaV1HalJSONFromJSON(
   jsonString: string,

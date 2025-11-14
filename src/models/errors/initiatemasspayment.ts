@@ -54,36 +54,3 @@ export const InitiateMassPaymentDwollaV1HalJSONError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type InitiateMassPaymentDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const InitiateMassPaymentDwollaV1HalJSONError$outboundSchema: z.ZodType<
-  InitiateMassPaymentDwollaV1HalJSONError$Outbound,
-  z.ZodTypeDef,
-  InitiateMassPaymentDwollaV1HalJSONError
-> = z.instanceof(InitiateMassPaymentDwollaV1HalJSONError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InitiateMassPaymentDwollaV1HalJSONError$ {
-  /** @deprecated use `InitiateMassPaymentDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    InitiateMassPaymentDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `InitiateMassPaymentDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    InitiateMassPaymentDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `InitiateMassPaymentDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound = InitiateMassPaymentDwollaV1HalJSONError$Outbound;
-}

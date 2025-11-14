@@ -48,34 +48,3 @@ export const RtpAccountSettingNotEnabledError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type RtpAccountSettingNotEnabledError$Outbound = {
-  code: string;
-  message: string;
-};
-
-/** @internal */
-export const RtpAccountSettingNotEnabledError$outboundSchema: z.ZodType<
-  RtpAccountSettingNotEnabledError$Outbound,
-  z.ZodTypeDef,
-  RtpAccountSettingNotEnabledError
-> = z.instanceof(RtpAccountSettingNotEnabledError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string(),
-    message: z.string(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RtpAccountSettingNotEnabledError$ {
-  /** @deprecated use `RtpAccountSettingNotEnabledError$inboundSchema` instead. */
-  export const inboundSchema = RtpAccountSettingNotEnabledError$inboundSchema;
-  /** @deprecated use `RtpAccountSettingNotEnabledError$outboundSchema` instead. */
-  export const outboundSchema = RtpAccountSettingNotEnabledError$outboundSchema;
-  /** @deprecated use `RtpAccountSettingNotEnabledError$Outbound` instead. */
-  export type Outbound = RtpAccountSettingNotEnabledError$Outbound;
-}

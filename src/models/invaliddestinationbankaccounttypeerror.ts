@@ -29,43 +29,6 @@ export const InvalidDestinationBankAccountTypeErrorLinks$inboundSchema:
     unknown
   > = z.object({});
 
-/** @internal */
-export type InvalidDestinationBankAccountTypeErrorLinks$Outbound = {};
-
-/** @internal */
-export const InvalidDestinationBankAccountTypeErrorLinks$outboundSchema:
-  z.ZodType<
-    InvalidDestinationBankAccountTypeErrorLinks$Outbound,
-    z.ZodTypeDef,
-    InvalidDestinationBankAccountTypeErrorLinks
-  > = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidDestinationBankAccountTypeErrorLinks$ {
-  /** @deprecated use `InvalidDestinationBankAccountTypeErrorLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidDestinationBankAccountTypeErrorLinks$inboundSchema;
-  /** @deprecated use `InvalidDestinationBankAccountTypeErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidDestinationBankAccountTypeErrorLinks$outboundSchema;
-  /** @deprecated use `InvalidDestinationBankAccountTypeErrorLinks$Outbound` instead. */
-  export type Outbound = InvalidDestinationBankAccountTypeErrorLinks$Outbound;
-}
-
-export function invalidDestinationBankAccountTypeErrorLinksToJSON(
-  invalidDestinationBankAccountTypeErrorLinks:
-    InvalidDestinationBankAccountTypeErrorLinks,
-): string {
-  return JSON.stringify(
-    InvalidDestinationBankAccountTypeErrorLinks$outboundSchema.parse(
-      invalidDestinationBankAccountTypeErrorLinks,
-    ),
-  );
-}
-
 export function invalidDestinationBankAccountTypeErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -101,59 +64,6 @@ export const InvalidDestinationBankAccountTypeErrorError$inboundSchema:
     });
   });
 
-/** @internal */
-export type InvalidDestinationBankAccountTypeErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: InvalidDestinationBankAccountTypeErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const InvalidDestinationBankAccountTypeErrorError$outboundSchema:
-  z.ZodType<
-    InvalidDestinationBankAccountTypeErrorError$Outbound,
-    z.ZodTypeDef,
-    InvalidDestinationBankAccountTypeErrorError
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    path: z.string().optional(),
-    links: z.lazy(() =>
-      InvalidDestinationBankAccountTypeErrorLinks$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      links: "_links",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidDestinationBankAccountTypeErrorError$ {
-  /** @deprecated use `InvalidDestinationBankAccountTypeErrorError$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidDestinationBankAccountTypeErrorError$inboundSchema;
-  /** @deprecated use `InvalidDestinationBankAccountTypeErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidDestinationBankAccountTypeErrorError$outboundSchema;
-  /** @deprecated use `InvalidDestinationBankAccountTypeErrorError$Outbound` instead. */
-  export type Outbound = InvalidDestinationBankAccountTypeErrorError$Outbound;
-}
-
-export function invalidDestinationBankAccountTypeErrorErrorToJSON(
-  invalidDestinationBankAccountTypeErrorError:
-    InvalidDestinationBankAccountTypeErrorError,
-): string {
-  return JSON.stringify(
-    InvalidDestinationBankAccountTypeErrorError$outboundSchema.parse(
-      invalidDestinationBankAccountTypeErrorError,
-    ),
-  );
-}
-
 export function invalidDestinationBankAccountTypeErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -181,52 +91,6 @@ export const InvalidDestinationBankAccountTypeErrorEmbedded$inboundSchema:
       z.lazy(() => InvalidDestinationBankAccountTypeErrorError$inboundSchema),
     ).optional(),
   });
-
-/** @internal */
-export type InvalidDestinationBankAccountTypeErrorEmbedded$Outbound = {
-  errors?:
-    | Array<InvalidDestinationBankAccountTypeErrorError$Outbound>
-    | undefined;
-};
-
-/** @internal */
-export const InvalidDestinationBankAccountTypeErrorEmbedded$outboundSchema:
-  z.ZodType<
-    InvalidDestinationBankAccountTypeErrorEmbedded$Outbound,
-    z.ZodTypeDef,
-    InvalidDestinationBankAccountTypeErrorEmbedded
-  > = z.object({
-    errors: z.array(
-      z.lazy(() => InvalidDestinationBankAccountTypeErrorError$outboundSchema),
-    ).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidDestinationBankAccountTypeErrorEmbedded$ {
-  /** @deprecated use `InvalidDestinationBankAccountTypeErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidDestinationBankAccountTypeErrorEmbedded$inboundSchema;
-  /** @deprecated use `InvalidDestinationBankAccountTypeErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidDestinationBankAccountTypeErrorEmbedded$outboundSchema;
-  /** @deprecated use `InvalidDestinationBankAccountTypeErrorEmbedded$Outbound` instead. */
-  export type Outbound =
-    InvalidDestinationBankAccountTypeErrorEmbedded$Outbound;
-}
-
-export function invalidDestinationBankAccountTypeErrorEmbeddedToJSON(
-  invalidDestinationBankAccountTypeErrorEmbedded:
-    InvalidDestinationBankAccountTypeErrorEmbedded,
-): string {
-  return JSON.stringify(
-    InvalidDestinationBankAccountTypeErrorEmbedded$outboundSchema.parse(
-      invalidDestinationBankAccountTypeErrorEmbedded,
-    ),
-  );
-}
 
 export function invalidDestinationBankAccountTypeErrorEmbeddedFromJSON(
   jsonString: string,

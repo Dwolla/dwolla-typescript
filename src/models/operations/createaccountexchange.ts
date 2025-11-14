@@ -29,18 +29,6 @@ export type CreateAccountExchangeResponse = {
 };
 
 /** @internal */
-export const CreateAccountExchangeRequest$inboundSchema: z.ZodType<
-  CreateAccountExchangeRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  models.CreateFlinksSecureExchange$inboundSchema,
-  models.CreateFinicitySecureExchange$inboundSchema,
-  models.CreateMXSecureExchange$inboundSchema,
-  models.CreatePlaidSecureExchange$inboundSchema,
-]);
-
-/** @internal */
 export type CreateAccountExchangeRequest$Outbound =
   | models.CreateFlinksSecureExchange$Outbound
   | models.CreateFinicitySecureExchange$Outbound
@@ -59,19 +47,6 @@ export const CreateAccountExchangeRequest$outboundSchema: z.ZodType<
   models.CreatePlaidSecureExchange$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateAccountExchangeRequest$ {
-  /** @deprecated use `CreateAccountExchangeRequest$inboundSchema` instead. */
-  export const inboundSchema = CreateAccountExchangeRequest$inboundSchema;
-  /** @deprecated use `CreateAccountExchangeRequest$outboundSchema` instead. */
-  export const outboundSchema = CreateAccountExchangeRequest$outboundSchema;
-  /** @deprecated use `CreateAccountExchangeRequest$Outbound` instead. */
-  export type Outbound = CreateAccountExchangeRequest$Outbound;
-}
-
 export function createAccountExchangeRequestToJSON(
   createAccountExchangeRequest: CreateAccountExchangeRequest,
 ): string {
@@ -82,56 +57,12 @@ export function createAccountExchangeRequestToJSON(
   );
 }
 
-export function createAccountExchangeRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateAccountExchangeRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateAccountExchangeRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateAccountExchangeRequest' from JSON`,
-  );
-}
-
 /** @internal */
 export const CreateAccountExchangeResponseBody$inboundSchema: z.ZodType<
   CreateAccountExchangeResponseBody,
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
-/** @internal */
-export type CreateAccountExchangeResponseBody$Outbound = {};
-
-/** @internal */
-export const CreateAccountExchangeResponseBody$outboundSchema: z.ZodType<
-  CreateAccountExchangeResponseBody$Outbound,
-  z.ZodTypeDef,
-  CreateAccountExchangeResponseBody
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateAccountExchangeResponseBody$ {
-  /** @deprecated use `CreateAccountExchangeResponseBody$inboundSchema` instead. */
-  export const inboundSchema = CreateAccountExchangeResponseBody$inboundSchema;
-  /** @deprecated use `CreateAccountExchangeResponseBody$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateAccountExchangeResponseBody$outboundSchema;
-  /** @deprecated use `CreateAccountExchangeResponseBody$Outbound` instead. */
-  export type Outbound = CreateAccountExchangeResponseBody$Outbound;
-}
-
-export function createAccountExchangeResponseBodyToJSON(
-  createAccountExchangeResponseBody: CreateAccountExchangeResponseBody,
-): string {
-  return JSON.stringify(
-    CreateAccountExchangeResponseBody$outboundSchema.parse(
-      createAccountExchangeResponseBody,
-    ),
-  );
-}
 
 export function createAccountExchangeResponseBodyFromJSON(
   jsonString: string,
@@ -157,50 +88,6 @@ export const CreateAccountExchangeResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
-/** @internal */
-export type CreateAccountExchangeResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-  Result: CreateAccountExchangeResponseBody$Outbound;
-};
-
-/** @internal */
-export const CreateAccountExchangeResponse$outboundSchema: z.ZodType<
-  CreateAccountExchangeResponse$Outbound,
-  z.ZodTypeDef,
-  CreateAccountExchangeResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-  result: z.lazy(() => CreateAccountExchangeResponseBody$outboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-    result: "Result",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateAccountExchangeResponse$ {
-  /** @deprecated use `CreateAccountExchangeResponse$inboundSchema` instead. */
-  export const inboundSchema = CreateAccountExchangeResponse$inboundSchema;
-  /** @deprecated use `CreateAccountExchangeResponse$outboundSchema` instead. */
-  export const outboundSchema = CreateAccountExchangeResponse$outboundSchema;
-  /** @deprecated use `CreateAccountExchangeResponse$Outbound` instead. */
-  export type Outbound = CreateAccountExchangeResponse$Outbound;
-}
-
-export function createAccountExchangeResponseToJSON(
-  createAccountExchangeResponse: CreateAccountExchangeResponse,
-): string {
-  return JSON.stringify(
-    CreateAccountExchangeResponse$outboundSchema.parse(
-      createAccountExchangeResponse,
-    ),
-  );
-}
 
 export function createAccountExchangeResponseFromJSON(
   jsonString: string,

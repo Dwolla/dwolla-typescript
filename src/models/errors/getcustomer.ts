@@ -86,39 +86,6 @@ export const GetCustomerNotFoundDwollaV1HalJSONError$inboundSchema: z.ZodType<
   });
 
 /** @internal */
-export type GetCustomerNotFoundDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const GetCustomerNotFoundDwollaV1HalJSONError$outboundSchema: z.ZodType<
-  GetCustomerNotFoundDwollaV1HalJSONError$Outbound,
-  z.ZodTypeDef,
-  GetCustomerNotFoundDwollaV1HalJSONError
-> = z.instanceof(GetCustomerNotFoundDwollaV1HalJSONError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetCustomerNotFoundDwollaV1HalJSONError$ {
-  /** @deprecated use `GetCustomerNotFoundDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    GetCustomerNotFoundDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `GetCustomerNotFoundDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    GetCustomerNotFoundDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `GetCustomerNotFoundDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound = GetCustomerNotFoundDwollaV1HalJSONError$Outbound;
-}
-
-/** @internal */
 export const GetCustomerForbiddenDwollaV1HalJSONError$inboundSchema: z.ZodType<
   GetCustomerForbiddenDwollaV1HalJSONError,
   z.ZodTypeDef,
@@ -137,36 +104,3 @@ export const GetCustomerForbiddenDwollaV1HalJSONError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type GetCustomerForbiddenDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const GetCustomerForbiddenDwollaV1HalJSONError$outboundSchema: z.ZodType<
-  GetCustomerForbiddenDwollaV1HalJSONError$Outbound,
-  z.ZodTypeDef,
-  GetCustomerForbiddenDwollaV1HalJSONError
-> = z.instanceof(GetCustomerForbiddenDwollaV1HalJSONError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetCustomerForbiddenDwollaV1HalJSONError$ {
-  /** @deprecated use `GetCustomerForbiddenDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    GetCustomerForbiddenDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `GetCustomerForbiddenDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    GetCustomerForbiddenDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `GetCustomerForbiddenDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound = GetCustomerForbiddenDwollaV1HalJSONError$Outbound;
-}

@@ -7,18 +7,8 @@ import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  HalLink,
-  HalLink$inboundSchema,
-  HalLink$Outbound,
-  HalLink$outboundSchema,
-} from "./hallink.js";
-import {
-  Transfer,
-  Transfer$inboundSchema,
-  Transfer$Outbound,
-  Transfer$outboundSchema,
-} from "./transfer.js";
+import { HalLink, HalLink$inboundSchema } from "./hallink.js";
+import { Transfer, Transfer$inboundSchema } from "./transfer.js";
 
 export type TransfersEmbedded = {
   transfers?: Array<Transfer> | undefined;
@@ -38,41 +28,6 @@ export const TransfersEmbedded$inboundSchema: z.ZodType<
 > = z.object({
   transfers: z.array(Transfer$inboundSchema).optional(),
 });
-
-/** @internal */
-export type TransfersEmbedded$Outbound = {
-  transfers?: Array<Transfer$Outbound> | undefined;
-};
-
-/** @internal */
-export const TransfersEmbedded$outboundSchema: z.ZodType<
-  TransfersEmbedded$Outbound,
-  z.ZodTypeDef,
-  TransfersEmbedded
-> = z.object({
-  transfers: z.array(Transfer$outboundSchema).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransfersEmbedded$ {
-  /** @deprecated use `TransfersEmbedded$inboundSchema` instead. */
-  export const inboundSchema = TransfersEmbedded$inboundSchema;
-  /** @deprecated use `TransfersEmbedded$outboundSchema` instead. */
-  export const outboundSchema = TransfersEmbedded$outboundSchema;
-  /** @deprecated use `TransfersEmbedded$Outbound` instead. */
-  export type Outbound = TransfersEmbedded$Outbound;
-}
-
-export function transfersEmbeddedToJSON(
-  transfersEmbedded: TransfersEmbedded,
-): string {
-  return JSON.stringify(
-    TransfersEmbedded$outboundSchema.parse(transfersEmbedded),
-  );
-}
 
 export function transfersEmbeddedFromJSON(
   jsonString: string,
@@ -99,46 +54,6 @@ export const Transfers$inboundSchema: z.ZodType<
     "_embedded": "embedded",
   });
 });
-
-/** @internal */
-export type Transfers$Outbound = {
-  _links?: { [k: string]: HalLink$Outbound } | undefined;
-  _embedded?: TransfersEmbedded$Outbound | undefined;
-  total?: number | undefined;
-};
-
-/** @internal */
-export const Transfers$outboundSchema: z.ZodType<
-  Transfers$Outbound,
-  z.ZodTypeDef,
-  Transfers
-> = z.object({
-  links: z.record(HalLink$outboundSchema).optional(),
-  embedded: z.lazy(() => TransfersEmbedded$outboundSchema).optional(),
-  total: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Transfers$ {
-  /** @deprecated use `Transfers$inboundSchema` instead. */
-  export const inboundSchema = Transfers$inboundSchema;
-  /** @deprecated use `Transfers$outboundSchema` instead. */
-  export const outboundSchema = Transfers$outboundSchema;
-  /** @deprecated use `Transfers$Outbound` instead. */
-  export type Outbound = Transfers$Outbound;
-}
-
-export function transfersToJSON(transfers: Transfers): string {
-  return JSON.stringify(Transfers$outboundSchema.parse(transfers));
-}
 
 export function transfersFromJSON(
   jsonString: string,

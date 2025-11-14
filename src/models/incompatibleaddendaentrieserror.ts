@@ -28,41 +28,6 @@ export const IncompatibleAddendaEntriesErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type IncompatibleAddendaEntriesErrorLinks$Outbound = {};
-
-/** @internal */
-export const IncompatibleAddendaEntriesErrorLinks$outboundSchema: z.ZodType<
-  IncompatibleAddendaEntriesErrorLinks$Outbound,
-  z.ZodTypeDef,
-  IncompatibleAddendaEntriesErrorLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IncompatibleAddendaEntriesErrorLinks$ {
-  /** @deprecated use `IncompatibleAddendaEntriesErrorLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    IncompatibleAddendaEntriesErrorLinks$inboundSchema;
-  /** @deprecated use `IncompatibleAddendaEntriesErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    IncompatibleAddendaEntriesErrorLinks$outboundSchema;
-  /** @deprecated use `IncompatibleAddendaEntriesErrorLinks$Outbound` instead. */
-  export type Outbound = IncompatibleAddendaEntriesErrorLinks$Outbound;
-}
-
-export function incompatibleAddendaEntriesErrorLinksToJSON(
-  incompatibleAddendaEntriesErrorLinks: IncompatibleAddendaEntriesErrorLinks,
-): string {
-  return JSON.stringify(
-    IncompatibleAddendaEntriesErrorLinks$outboundSchema.parse(
-      incompatibleAddendaEntriesErrorLinks,
-    ),
-  );
-}
-
 export function incompatibleAddendaEntriesErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<IncompatibleAddendaEntriesErrorLinks, SDKValidationError> {
@@ -91,56 +56,6 @@ export const IncompatibleAddendaEntriesErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type IncompatibleAddendaEntriesErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: IncompatibleAddendaEntriesErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const IncompatibleAddendaEntriesErrorError$outboundSchema: z.ZodType<
-  IncompatibleAddendaEntriesErrorError$Outbound,
-  z.ZodTypeDef,
-  IncompatibleAddendaEntriesErrorError
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  links: z.lazy(() => IncompatibleAddendaEntriesErrorLinks$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IncompatibleAddendaEntriesErrorError$ {
-  /** @deprecated use `IncompatibleAddendaEntriesErrorError$inboundSchema` instead. */
-  export const inboundSchema =
-    IncompatibleAddendaEntriesErrorError$inboundSchema;
-  /** @deprecated use `IncompatibleAddendaEntriesErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    IncompatibleAddendaEntriesErrorError$outboundSchema;
-  /** @deprecated use `IncompatibleAddendaEntriesErrorError$Outbound` instead. */
-  export type Outbound = IncompatibleAddendaEntriesErrorError$Outbound;
-}
-
-export function incompatibleAddendaEntriesErrorErrorToJSON(
-  incompatibleAddendaEntriesErrorError: IncompatibleAddendaEntriesErrorError,
-): string {
-  return JSON.stringify(
-    IncompatibleAddendaEntriesErrorError$outboundSchema.parse(
-      incompatibleAddendaEntriesErrorError,
-    ),
-  );
-}
-
 export function incompatibleAddendaEntriesErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<IncompatibleAddendaEntriesErrorError, SDKValidationError> {
@@ -162,48 +77,6 @@ export const IncompatibleAddendaEntriesErrorEmbedded$inboundSchema: z.ZodType<
     z.lazy(() => IncompatibleAddendaEntriesErrorError$inboundSchema),
   ).optional(),
 });
-
-/** @internal */
-export type IncompatibleAddendaEntriesErrorEmbedded$Outbound = {
-  errors?: Array<IncompatibleAddendaEntriesErrorError$Outbound> | undefined;
-};
-
-/** @internal */
-export const IncompatibleAddendaEntriesErrorEmbedded$outboundSchema: z.ZodType<
-  IncompatibleAddendaEntriesErrorEmbedded$Outbound,
-  z.ZodTypeDef,
-  IncompatibleAddendaEntriesErrorEmbedded
-> = z.object({
-  errors: z.array(
-    z.lazy(() => IncompatibleAddendaEntriesErrorError$outboundSchema),
-  ).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IncompatibleAddendaEntriesErrorEmbedded$ {
-  /** @deprecated use `IncompatibleAddendaEntriesErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    IncompatibleAddendaEntriesErrorEmbedded$inboundSchema;
-  /** @deprecated use `IncompatibleAddendaEntriesErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    IncompatibleAddendaEntriesErrorEmbedded$outboundSchema;
-  /** @deprecated use `IncompatibleAddendaEntriesErrorEmbedded$Outbound` instead. */
-  export type Outbound = IncompatibleAddendaEntriesErrorEmbedded$Outbound;
-}
-
-export function incompatibleAddendaEntriesErrorEmbeddedToJSON(
-  incompatibleAddendaEntriesErrorEmbedded:
-    IncompatibleAddendaEntriesErrorEmbedded,
-): string {
-  return JSON.stringify(
-    IncompatibleAddendaEntriesErrorEmbedded$outboundSchema.parse(
-      incompatibleAddendaEntriesErrorEmbedded,
-    ),
-  );
-}
 
 export function incompatibleAddendaEntriesErrorEmbeddedFromJSON(
   jsonString: string,

@@ -54,41 +54,6 @@ export const WebhookRetriesSelf$inboundSchema: z.ZodType<
   href: z.string().optional(),
 });
 
-/** @internal */
-export type WebhookRetriesSelf$Outbound = {
-  href?: string | undefined;
-};
-
-/** @internal */
-export const WebhookRetriesSelf$outboundSchema: z.ZodType<
-  WebhookRetriesSelf$Outbound,
-  z.ZodTypeDef,
-  WebhookRetriesSelf
-> = z.object({
-  href: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookRetriesSelf$ {
-  /** @deprecated use `WebhookRetriesSelf$inboundSchema` instead. */
-  export const inboundSchema = WebhookRetriesSelf$inboundSchema;
-  /** @deprecated use `WebhookRetriesSelf$outboundSchema` instead. */
-  export const outboundSchema = WebhookRetriesSelf$outboundSchema;
-  /** @deprecated use `WebhookRetriesSelf$Outbound` instead. */
-  export type Outbound = WebhookRetriesSelf$Outbound;
-}
-
-export function webhookRetriesSelfToJSON(
-  webhookRetriesSelf: WebhookRetriesSelf,
-): string {
-  return JSON.stringify(
-    WebhookRetriesSelf$outboundSchema.parse(webhookRetriesSelf),
-  );
-}
-
 export function webhookRetriesSelfFromJSON(
   jsonString: string,
 ): SafeParseResult<WebhookRetriesSelf, SDKValidationError> {
@@ -107,41 +72,6 @@ export const WebhookRetriesLinks$inboundSchema: z.ZodType<
 > = z.object({
   self: z.lazy(() => WebhookRetriesSelf$inboundSchema).optional(),
 });
-
-/** @internal */
-export type WebhookRetriesLinks$Outbound = {
-  self?: WebhookRetriesSelf$Outbound | undefined;
-};
-
-/** @internal */
-export const WebhookRetriesLinks$outboundSchema: z.ZodType<
-  WebhookRetriesLinks$Outbound,
-  z.ZodTypeDef,
-  WebhookRetriesLinks
-> = z.object({
-  self: z.lazy(() => WebhookRetriesSelf$outboundSchema).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookRetriesLinks$ {
-  /** @deprecated use `WebhookRetriesLinks$inboundSchema` instead. */
-  export const inboundSchema = WebhookRetriesLinks$inboundSchema;
-  /** @deprecated use `WebhookRetriesLinks$outboundSchema` instead. */
-  export const outboundSchema = WebhookRetriesLinks$outboundSchema;
-  /** @deprecated use `WebhookRetriesLinks$Outbound` instead. */
-  export type Outbound = WebhookRetriesLinks$Outbound;
-}
-
-export function webhookRetriesLinksToJSON(
-  webhookRetriesLinks: WebhookRetriesLinks,
-): string {
-  return JSON.stringify(
-    WebhookRetriesLinks$outboundSchema.parse(webhookRetriesLinks),
-  );
-}
 
 export function webhookRetriesLinksFromJSON(
   jsonString: string,
@@ -162,37 +92,6 @@ export const RetrySelf$inboundSchema: z.ZodType<
   href: z.string().optional(),
 });
 
-/** @internal */
-export type RetrySelf$Outbound = {
-  href?: string | undefined;
-};
-
-/** @internal */
-export const RetrySelf$outboundSchema: z.ZodType<
-  RetrySelf$Outbound,
-  z.ZodTypeDef,
-  RetrySelf
-> = z.object({
-  href: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RetrySelf$ {
-  /** @deprecated use `RetrySelf$inboundSchema` instead. */
-  export const inboundSchema = RetrySelf$inboundSchema;
-  /** @deprecated use `RetrySelf$outboundSchema` instead. */
-  export const outboundSchema = RetrySelf$outboundSchema;
-  /** @deprecated use `RetrySelf$Outbound` instead. */
-  export type Outbound = RetrySelf$Outbound;
-}
-
-export function retrySelfToJSON(retrySelf: RetrySelf): string {
-  return JSON.stringify(RetrySelf$outboundSchema.parse(retrySelf));
-}
-
 export function retrySelfFromJSON(
   jsonString: string,
 ): SafeParseResult<RetrySelf, SDKValidationError> {
@@ -211,41 +110,6 @@ export const WebhookRetriesWebhook$inboundSchema: z.ZodType<
 > = z.object({
   href: z.string().optional(),
 });
-
-/** @internal */
-export type WebhookRetriesWebhook$Outbound = {
-  href?: string | undefined;
-};
-
-/** @internal */
-export const WebhookRetriesWebhook$outboundSchema: z.ZodType<
-  WebhookRetriesWebhook$Outbound,
-  z.ZodTypeDef,
-  WebhookRetriesWebhook
-> = z.object({
-  href: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookRetriesWebhook$ {
-  /** @deprecated use `WebhookRetriesWebhook$inboundSchema` instead. */
-  export const inboundSchema = WebhookRetriesWebhook$inboundSchema;
-  /** @deprecated use `WebhookRetriesWebhook$outboundSchema` instead. */
-  export const outboundSchema = WebhookRetriesWebhook$outboundSchema;
-  /** @deprecated use `WebhookRetriesWebhook$Outbound` instead. */
-  export type Outbound = WebhookRetriesWebhook$Outbound;
-}
-
-export function webhookRetriesWebhookToJSON(
-  webhookRetriesWebhook: WebhookRetriesWebhook,
-): string {
-  return JSON.stringify(
-    WebhookRetriesWebhook$outboundSchema.parse(webhookRetriesWebhook),
-  );
-}
 
 export function webhookRetriesWebhookFromJSON(
   jsonString: string,
@@ -266,39 +130,6 @@ export const RetryLinks$inboundSchema: z.ZodType<
   self: z.lazy(() => RetrySelf$inboundSchema).optional(),
   webhook: z.lazy(() => WebhookRetriesWebhook$inboundSchema).optional(),
 });
-
-/** @internal */
-export type RetryLinks$Outbound = {
-  self?: RetrySelf$Outbound | undefined;
-  webhook?: WebhookRetriesWebhook$Outbound | undefined;
-};
-
-/** @internal */
-export const RetryLinks$outboundSchema: z.ZodType<
-  RetryLinks$Outbound,
-  z.ZodTypeDef,
-  RetryLinks
-> = z.object({
-  self: z.lazy(() => RetrySelf$outboundSchema).optional(),
-  webhook: z.lazy(() => WebhookRetriesWebhook$outboundSchema).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RetryLinks$ {
-  /** @deprecated use `RetryLinks$inboundSchema` instead. */
-  export const inboundSchema = RetryLinks$inboundSchema;
-  /** @deprecated use `RetryLinks$outboundSchema` instead. */
-  export const outboundSchema = RetryLinks$outboundSchema;
-  /** @deprecated use `RetryLinks$Outbound` instead. */
-  export type Outbound = RetryLinks$Outbound;
-}
-
-export function retryLinksToJSON(retryLinks: RetryLinks): string {
-  return JSON.stringify(RetryLinks$outboundSchema.parse(retryLinks));
-}
 
 export function retryLinksFromJSON(
   jsonString: string,
@@ -326,49 +157,6 @@ export const WebhookRetriesRetry$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type WebhookRetriesRetry$Outbound = {
-  _links?: RetryLinks$Outbound | undefined;
-  id?: string | undefined;
-  timestamp?: string | undefined;
-};
-
-/** @internal */
-export const WebhookRetriesRetry$outboundSchema: z.ZodType<
-  WebhookRetriesRetry$Outbound,
-  z.ZodTypeDef,
-  WebhookRetriesRetry
-> = z.object({
-  links: z.lazy(() => RetryLinks$outboundSchema).optional(),
-  id: z.string().optional(),
-  timestamp: z.date().transform(v => v.toISOString()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookRetriesRetry$ {
-  /** @deprecated use `WebhookRetriesRetry$inboundSchema` instead. */
-  export const inboundSchema = WebhookRetriesRetry$inboundSchema;
-  /** @deprecated use `WebhookRetriesRetry$outboundSchema` instead. */
-  export const outboundSchema = WebhookRetriesRetry$outboundSchema;
-  /** @deprecated use `WebhookRetriesRetry$Outbound` instead. */
-  export type Outbound = WebhookRetriesRetry$Outbound;
-}
-
-export function webhookRetriesRetryToJSON(
-  webhookRetriesRetry: WebhookRetriesRetry,
-): string {
-  return JSON.stringify(
-    WebhookRetriesRetry$outboundSchema.parse(webhookRetriesRetry),
-  );
-}
-
 export function webhookRetriesRetryFromJSON(
   jsonString: string,
 ): SafeParseResult<WebhookRetriesRetry, SDKValidationError> {
@@ -387,41 +175,6 @@ export const WebhookRetriesEmbedded$inboundSchema: z.ZodType<
 > = z.object({
   retries: z.array(z.lazy(() => WebhookRetriesRetry$inboundSchema)).optional(),
 });
-
-/** @internal */
-export type WebhookRetriesEmbedded$Outbound = {
-  retries?: Array<WebhookRetriesRetry$Outbound> | undefined;
-};
-
-/** @internal */
-export const WebhookRetriesEmbedded$outboundSchema: z.ZodType<
-  WebhookRetriesEmbedded$Outbound,
-  z.ZodTypeDef,
-  WebhookRetriesEmbedded
-> = z.object({
-  retries: z.array(z.lazy(() => WebhookRetriesRetry$outboundSchema)).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookRetriesEmbedded$ {
-  /** @deprecated use `WebhookRetriesEmbedded$inboundSchema` instead. */
-  export const inboundSchema = WebhookRetriesEmbedded$inboundSchema;
-  /** @deprecated use `WebhookRetriesEmbedded$outboundSchema` instead. */
-  export const outboundSchema = WebhookRetriesEmbedded$outboundSchema;
-  /** @deprecated use `WebhookRetriesEmbedded$Outbound` instead. */
-  export type Outbound = WebhookRetriesEmbedded$Outbound;
-}
-
-export function webhookRetriesEmbeddedToJSON(
-  webhookRetriesEmbedded: WebhookRetriesEmbedded,
-): string {
-  return JSON.stringify(
-    WebhookRetriesEmbedded$outboundSchema.parse(webhookRetriesEmbedded),
-  );
-}
 
 export function webhookRetriesEmbeddedFromJSON(
   jsonString: string,
@@ -448,46 +201,6 @@ export const WebhookRetries$inboundSchema: z.ZodType<
     "_embedded": "embedded",
   });
 });
-
-/** @internal */
-export type WebhookRetries$Outbound = {
-  _links?: WebhookRetriesLinks$Outbound | undefined;
-  _embedded?: WebhookRetriesEmbedded$Outbound | undefined;
-  total?: number | undefined;
-};
-
-/** @internal */
-export const WebhookRetries$outboundSchema: z.ZodType<
-  WebhookRetries$Outbound,
-  z.ZodTypeDef,
-  WebhookRetries
-> = z.object({
-  links: z.lazy(() => WebhookRetriesLinks$outboundSchema).optional(),
-  embedded: z.lazy(() => WebhookRetriesEmbedded$outboundSchema).optional(),
-  total: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookRetries$ {
-  /** @deprecated use `WebhookRetries$inboundSchema` instead. */
-  export const inboundSchema = WebhookRetries$inboundSchema;
-  /** @deprecated use `WebhookRetries$outboundSchema` instead. */
-  export const outboundSchema = WebhookRetries$outboundSchema;
-  /** @deprecated use `WebhookRetries$Outbound` instead. */
-  export type Outbound = WebhookRetries$Outbound;
-}
-
-export function webhookRetriesToJSON(webhookRetries: WebhookRetries): string {
-  return JSON.stringify(WebhookRetries$outboundSchema.parse(webhookRetries));
-}
 
 export function webhookRetriesFromJSON(
   jsonString: string,

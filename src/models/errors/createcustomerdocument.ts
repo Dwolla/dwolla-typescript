@@ -8,33 +8,23 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import {
   DuplicateResourceSchemaError,
   DuplicateResourceSchemaError$inboundSchema,
-  DuplicateResourceSchemaError$Outbound,
-  DuplicateResourceSchemaError$outboundSchema,
 } from "./duplicateresourceschemaerror.js";
 import { DwollaError } from "./dwollaerror.js";
 import {
   InvalidFileTypeSchemaError,
   InvalidFileTypeSchemaError$inboundSchema,
-  InvalidFileTypeSchemaError$Outbound,
-  InvalidFileTypeSchemaError$outboundSchema,
 } from "./invalidfiletypeschemaerror.js";
 import {
   InvalidResourceStateSchemaError,
   InvalidResourceStateSchemaError$inboundSchema,
-  InvalidResourceStateSchemaError$Outbound,
-  InvalidResourceStateSchemaError$outboundSchema,
 } from "./invalidresourcestateschemaerror.js";
 import {
   MaximumNumberOfResourcesSchemaError,
   MaximumNumberOfResourcesSchemaError$inboundSchema,
-  MaximumNumberOfResourcesSchemaError$Outbound,
-  MaximumNumberOfResourcesSchemaError$outboundSchema,
 } from "./maximumnumberofresourcesschemaerror.js";
 import {
   NotAuthorizedSchemaError,
   NotAuthorizedSchemaError$inboundSchema,
-  NotAuthorizedSchemaError$Outbound,
-  NotAuthorizedSchemaError$outboundSchema,
 } from "./notauthorizedschemaerror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
@@ -140,44 +130,6 @@ export const CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError$inb
     });
 
 /** @internal */
-export type CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError$Outbound =
-  {
-    code?: string | undefined;
-    message?: string | undefined;
-  };
-
-/** @internal */
-export const CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError
-  > = z.instanceof(
-    CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError,
-  )
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError$ {
-  /** @deprecated use `CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError$Outbound;
-}
-
-/** @internal */
 export const CreateCustomerDocumentNotFoundDwollaV1HalJSONError$inboundSchema:
   z.ZodType<
     CreateCustomerDocumentNotFoundDwollaV1HalJSONError,
@@ -199,41 +151,6 @@ export const CreateCustomerDocumentNotFoundDwollaV1HalJSONError$inboundSchema:
     });
 
 /** @internal */
-export type CreateCustomerDocumentNotFoundDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const CreateCustomerDocumentNotFoundDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    CreateCustomerDocumentNotFoundDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    CreateCustomerDocumentNotFoundDwollaV1HalJSONError
-  > = z.instanceof(CreateCustomerDocumentNotFoundDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerDocumentNotFoundDwollaV1HalJSONError$ {
-  /** @deprecated use `CreateCustomerDocumentNotFoundDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerDocumentNotFoundDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `CreateCustomerDocumentNotFoundDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerDocumentNotFoundDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `CreateCustomerDocumentNotFoundDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    CreateCustomerDocumentNotFoundDwollaV1HalJSONError$Outbound;
-}
-
-/** @internal */
 export const CreateCustomerDocumentForbiddenDwollaV1HalJSON$inboundSchema:
   z.ZodType<
     CreateCustomerDocumentForbiddenDwollaV1HalJSON,
@@ -243,49 +160,6 @@ export const CreateCustomerDocumentForbiddenDwollaV1HalJSON$inboundSchema:
     InvalidResourceStateSchemaError$inboundSchema,
     NotAuthorizedSchemaError$inboundSchema,
   ]);
-
-/** @internal */
-export type CreateCustomerDocumentForbiddenDwollaV1HalJSON$Outbound =
-  | InvalidResourceStateSchemaError$Outbound
-  | NotAuthorizedSchemaError$Outbound;
-
-/** @internal */
-export const CreateCustomerDocumentForbiddenDwollaV1HalJSON$outboundSchema:
-  z.ZodType<
-    CreateCustomerDocumentForbiddenDwollaV1HalJSON$Outbound,
-    z.ZodTypeDef,
-    unknown
-  > = z.union([
-    InvalidResourceStateSchemaError$outboundSchema,
-    NotAuthorizedSchemaError$outboundSchema,
-  ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerDocumentForbiddenDwollaV1HalJSON$ {
-  /** @deprecated use `CreateCustomerDocumentForbiddenDwollaV1HalJSON$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerDocumentForbiddenDwollaV1HalJSON$inboundSchema;
-  /** @deprecated use `CreateCustomerDocumentForbiddenDwollaV1HalJSON$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerDocumentForbiddenDwollaV1HalJSON$outboundSchema;
-  /** @deprecated use `CreateCustomerDocumentForbiddenDwollaV1HalJSON$Outbound` instead. */
-  export type Outbound =
-    CreateCustomerDocumentForbiddenDwollaV1HalJSON$Outbound;
-}
-
-export function createCustomerDocumentForbiddenDwollaV1HalJSONToJSON(
-  createCustomerDocumentForbiddenDwollaV1HalJSON:
-    CreateCustomerDocumentForbiddenDwollaV1HalJSON,
-): string {
-  return JSON.stringify(
-    CreateCustomerDocumentForbiddenDwollaV1HalJSON$outboundSchema.parse(
-      createCustomerDocumentForbiddenDwollaV1HalJSON,
-    ),
-  );
-}
 
 export function createCustomerDocumentForbiddenDwollaV1HalJSONFromJSON(
   jsonString: string,
@@ -314,51 +188,6 @@ export const CreateCustomerDocumentBadRequestDwollaV1HalJSON$inboundSchema:
     InvalidFileTypeSchemaError$inboundSchema,
     DuplicateResourceSchemaError$inboundSchema,
   ]);
-
-/** @internal */
-export type CreateCustomerDocumentBadRequestDwollaV1HalJSON$Outbound =
-  | MaximumNumberOfResourcesSchemaError$Outbound
-  | InvalidFileTypeSchemaError$Outbound
-  | DuplicateResourceSchemaError$Outbound;
-
-/** @internal */
-export const CreateCustomerDocumentBadRequestDwollaV1HalJSON$outboundSchema:
-  z.ZodType<
-    CreateCustomerDocumentBadRequestDwollaV1HalJSON$Outbound,
-    z.ZodTypeDef,
-    unknown
-  > = z.union([
-    MaximumNumberOfResourcesSchemaError$outboundSchema,
-    InvalidFileTypeSchemaError$outboundSchema,
-    DuplicateResourceSchemaError$outboundSchema,
-  ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerDocumentBadRequestDwollaV1HalJSON$ {
-  /** @deprecated use `CreateCustomerDocumentBadRequestDwollaV1HalJSON$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerDocumentBadRequestDwollaV1HalJSON$inboundSchema;
-  /** @deprecated use `CreateCustomerDocumentBadRequestDwollaV1HalJSON$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerDocumentBadRequestDwollaV1HalJSON$outboundSchema;
-  /** @deprecated use `CreateCustomerDocumentBadRequestDwollaV1HalJSON$Outbound` instead. */
-  export type Outbound =
-    CreateCustomerDocumentBadRequestDwollaV1HalJSON$Outbound;
-}
-
-export function createCustomerDocumentBadRequestDwollaV1HalJSONToJSON(
-  createCustomerDocumentBadRequestDwollaV1HalJSON:
-    CreateCustomerDocumentBadRequestDwollaV1HalJSON,
-): string {
-  return JSON.stringify(
-    CreateCustomerDocumentBadRequestDwollaV1HalJSON$outboundSchema.parse(
-      createCustomerDocumentBadRequestDwollaV1HalJSON,
-    ),
-  );
-}
 
 export function createCustomerDocumentBadRequestDwollaV1HalJSONFromJSON(
   jsonString: string,

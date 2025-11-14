@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
-import { Result as SafeParseResult } from "../types/fp.js";
-import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 export type CreateMXOpenBankingExchangeExchangePartner = {
   href: string;
@@ -29,13 +26,6 @@ export type CreateMXOpenBankingExchange = {
 };
 
 /** @internal */
-export const CreateMXOpenBankingExchangeExchangePartner$inboundSchema:
-  z.ZodType<CreateMXOpenBankingExchangeExchangePartner, z.ZodTypeDef, unknown> =
-    z.object({
-      href: z.string(),
-    });
-
-/** @internal */
 export type CreateMXOpenBankingExchangeExchangePartner$Outbound = {
   href: string;
 };
@@ -50,21 +40,6 @@ export const CreateMXOpenBankingExchangeExchangePartner$outboundSchema:
     href: z.string(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateMXOpenBankingExchangeExchangePartner$ {
-  /** @deprecated use `CreateMXOpenBankingExchangeExchangePartner$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateMXOpenBankingExchangeExchangePartner$inboundSchema;
-  /** @deprecated use `CreateMXOpenBankingExchangeExchangePartner$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateMXOpenBankingExchangeExchangePartner$outboundSchema;
-  /** @deprecated use `CreateMXOpenBankingExchangeExchangePartner$Outbound` instead. */
-  export type Outbound = CreateMXOpenBankingExchangeExchangePartner$Outbound;
-}
-
 export function createMXOpenBankingExchangeExchangePartnerToJSON(
   createMXOpenBankingExchangeExchangePartner:
     CreateMXOpenBankingExchangeExchangePartner,
@@ -75,37 +50,6 @@ export function createMXOpenBankingExchangeExchangePartnerToJSON(
     ),
   );
 }
-
-export function createMXOpenBankingExchangeExchangePartnerFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateMXOpenBankingExchangeExchangePartner,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateMXOpenBankingExchangeExchangePartner$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreateMXOpenBankingExchangeExchangePartner' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateMXOpenBankingExchangeLinks$inboundSchema: z.ZodType<
-  CreateMXOpenBankingExchangeLinks,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  "exchange-partner": z.lazy(() =>
-    CreateMXOpenBankingExchangeExchangePartner$inboundSchema
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "exchange-partner": "exchangePartner",
-  });
-});
 
 /** @internal */
 export type CreateMXOpenBankingExchangeLinks$Outbound = {
@@ -127,19 +71,6 @@ export const CreateMXOpenBankingExchangeLinks$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateMXOpenBankingExchangeLinks$ {
-  /** @deprecated use `CreateMXOpenBankingExchangeLinks$inboundSchema` instead. */
-  export const inboundSchema = CreateMXOpenBankingExchangeLinks$inboundSchema;
-  /** @deprecated use `CreateMXOpenBankingExchangeLinks$outboundSchema` instead. */
-  export const outboundSchema = CreateMXOpenBankingExchangeLinks$outboundSchema;
-  /** @deprecated use `CreateMXOpenBankingExchangeLinks$Outbound` instead. */
-  export type Outbound = CreateMXOpenBankingExchangeLinks$Outbound;
-}
-
 export function createMXOpenBankingExchangeLinksToJSON(
   createMXOpenBankingExchangeLinks: CreateMXOpenBankingExchangeLinks,
 ): string {
@@ -149,21 +80,6 @@ export function createMXOpenBankingExchangeLinksToJSON(
     ),
   );
 }
-
-export function createMXOpenBankingExchangeLinksFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateMXOpenBankingExchangeLinks, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateMXOpenBankingExchangeLinks$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateMXOpenBankingExchangeLinks' from JSON`,
-  );
-}
-
-/** @internal */
-export const Mx$inboundSchema: z.ZodType<Mx, z.ZodTypeDef, unknown> = z.object({
-  availableConnectionToken: z.string(),
-});
 
 /** @internal */
 export type Mx$Outbound = {
@@ -176,46 +92,9 @@ export const Mx$outboundSchema: z.ZodType<Mx$Outbound, z.ZodTypeDef, Mx> = z
     availableConnectionToken: z.string(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Mx$ {
-  /** @deprecated use `Mx$inboundSchema` instead. */
-  export const inboundSchema = Mx$inboundSchema;
-  /** @deprecated use `Mx$outboundSchema` instead. */
-  export const outboundSchema = Mx$outboundSchema;
-  /** @deprecated use `Mx$Outbound` instead. */
-  export type Outbound = Mx$Outbound;
-}
-
 export function mxToJSON(mx: Mx): string {
   return JSON.stringify(Mx$outboundSchema.parse(mx));
 }
-
-export function mxFromJSON(
-  jsonString: string,
-): SafeParseResult<Mx, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Mx$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Mx' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateMXOpenBankingExchange$inboundSchema: z.ZodType<
-  CreateMXOpenBankingExchange,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  _links: z.lazy(() => CreateMXOpenBankingExchangeLinks$inboundSchema),
-  mx: z.lazy(() => Mx$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
 
 /** @internal */
 export type CreateMXOpenBankingExchange$Outbound = {
@@ -237,19 +116,6 @@ export const CreateMXOpenBankingExchange$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateMXOpenBankingExchange$ {
-  /** @deprecated use `CreateMXOpenBankingExchange$inboundSchema` instead. */
-  export const inboundSchema = CreateMXOpenBankingExchange$inboundSchema;
-  /** @deprecated use `CreateMXOpenBankingExchange$outboundSchema` instead. */
-  export const outboundSchema = CreateMXOpenBankingExchange$outboundSchema;
-  /** @deprecated use `CreateMXOpenBankingExchange$Outbound` instead. */
-  export type Outbound = CreateMXOpenBankingExchange$Outbound;
-}
-
 export function createMXOpenBankingExchangeToJSON(
   createMXOpenBankingExchange: CreateMXOpenBankingExchange,
 ): string {
@@ -257,15 +123,5 @@ export function createMXOpenBankingExchangeToJSON(
     CreateMXOpenBankingExchange$outboundSchema.parse(
       createMXOpenBankingExchange,
     ),
-  );
-}
-
-export function createMXOpenBankingExchangeFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateMXOpenBankingExchange, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateMXOpenBankingExchange$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateMXOpenBankingExchange' from JSON`,
   );
 }

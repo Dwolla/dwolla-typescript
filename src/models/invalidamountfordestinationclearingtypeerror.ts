@@ -29,44 +29,6 @@ export const InvalidAmountForDestinationClearingTypeErrorLinks$inboundSchema:
     unknown
   > = z.object({});
 
-/** @internal */
-export type InvalidAmountForDestinationClearingTypeErrorLinks$Outbound = {};
-
-/** @internal */
-export const InvalidAmountForDestinationClearingTypeErrorLinks$outboundSchema:
-  z.ZodType<
-    InvalidAmountForDestinationClearingTypeErrorLinks$Outbound,
-    z.ZodTypeDef,
-    InvalidAmountForDestinationClearingTypeErrorLinks
-  > = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidAmountForDestinationClearingTypeErrorLinks$ {
-  /** @deprecated use `InvalidAmountForDestinationClearingTypeErrorLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidAmountForDestinationClearingTypeErrorLinks$inboundSchema;
-  /** @deprecated use `InvalidAmountForDestinationClearingTypeErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidAmountForDestinationClearingTypeErrorLinks$outboundSchema;
-  /** @deprecated use `InvalidAmountForDestinationClearingTypeErrorLinks$Outbound` instead. */
-  export type Outbound =
-    InvalidAmountForDestinationClearingTypeErrorLinks$Outbound;
-}
-
-export function invalidAmountForDestinationClearingTypeErrorLinksToJSON(
-  invalidAmountForDestinationClearingTypeErrorLinks:
-    InvalidAmountForDestinationClearingTypeErrorLinks,
-): string {
-  return JSON.stringify(
-    InvalidAmountForDestinationClearingTypeErrorLinks$outboundSchema.parse(
-      invalidAmountForDestinationClearingTypeErrorLinks,
-    ),
-  );
-}
-
 export function invalidAmountForDestinationClearingTypeErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -102,62 +64,6 @@ export const InvalidAmountForDestinationClearingTypeErrorError$inboundSchema:
     });
   });
 
-/** @internal */
-export type InvalidAmountForDestinationClearingTypeErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?:
-    | InvalidAmountForDestinationClearingTypeErrorLinks$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const InvalidAmountForDestinationClearingTypeErrorError$outboundSchema:
-  z.ZodType<
-    InvalidAmountForDestinationClearingTypeErrorError$Outbound,
-    z.ZodTypeDef,
-    InvalidAmountForDestinationClearingTypeErrorError
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    path: z.string().optional(),
-    links: z.lazy(() =>
-      InvalidAmountForDestinationClearingTypeErrorLinks$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      links: "_links",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidAmountForDestinationClearingTypeErrorError$ {
-  /** @deprecated use `InvalidAmountForDestinationClearingTypeErrorError$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidAmountForDestinationClearingTypeErrorError$inboundSchema;
-  /** @deprecated use `InvalidAmountForDestinationClearingTypeErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidAmountForDestinationClearingTypeErrorError$outboundSchema;
-  /** @deprecated use `InvalidAmountForDestinationClearingTypeErrorError$Outbound` instead. */
-  export type Outbound =
-    InvalidAmountForDestinationClearingTypeErrorError$Outbound;
-}
-
-export function invalidAmountForDestinationClearingTypeErrorErrorToJSON(
-  invalidAmountForDestinationClearingTypeErrorError:
-    InvalidAmountForDestinationClearingTypeErrorError,
-): string {
-  return JSON.stringify(
-    InvalidAmountForDestinationClearingTypeErrorError$outboundSchema.parse(
-      invalidAmountForDestinationClearingTypeErrorError,
-    ),
-  );
-}
-
 export function invalidAmountForDestinationClearingTypeErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -187,54 +93,6 @@ export const InvalidAmountForDestinationClearingTypeErrorEmbedded$inboundSchema:
       ),
     ).optional(),
   });
-
-/** @internal */
-export type InvalidAmountForDestinationClearingTypeErrorEmbedded$Outbound = {
-  errors?:
-    | Array<InvalidAmountForDestinationClearingTypeErrorError$Outbound>
-    | undefined;
-};
-
-/** @internal */
-export const InvalidAmountForDestinationClearingTypeErrorEmbedded$outboundSchema:
-  z.ZodType<
-    InvalidAmountForDestinationClearingTypeErrorEmbedded$Outbound,
-    z.ZodTypeDef,
-    InvalidAmountForDestinationClearingTypeErrorEmbedded
-  > = z.object({
-    errors: z.array(
-      z.lazy(() =>
-        InvalidAmountForDestinationClearingTypeErrorError$outboundSchema
-      ),
-    ).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidAmountForDestinationClearingTypeErrorEmbedded$ {
-  /** @deprecated use `InvalidAmountForDestinationClearingTypeErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidAmountForDestinationClearingTypeErrorEmbedded$inboundSchema;
-  /** @deprecated use `InvalidAmountForDestinationClearingTypeErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidAmountForDestinationClearingTypeErrorEmbedded$outboundSchema;
-  /** @deprecated use `InvalidAmountForDestinationClearingTypeErrorEmbedded$Outbound` instead. */
-  export type Outbound =
-    InvalidAmountForDestinationClearingTypeErrorEmbedded$Outbound;
-}
-
-export function invalidAmountForDestinationClearingTypeErrorEmbeddedToJSON(
-  invalidAmountForDestinationClearingTypeErrorEmbedded:
-    InvalidAmountForDestinationClearingTypeErrorEmbedded,
-): string {
-  return JSON.stringify(
-    InvalidAmountForDestinationClearingTypeErrorEmbedded$outboundSchema.parse(
-      invalidAmountForDestinationClearingTypeErrorEmbedded,
-    ),
-  );
-}
 
 export function invalidAmountForDestinationClearingTypeErrorEmbeddedFromJSON(
   jsonString: string,

@@ -9,16 +9,9 @@ import { Result as SafeParseResult } from "../types/fp.js";
 import {
   BusinessClassification,
   BusinessClassification$inboundSchema,
-  BusinessClassification$Outbound,
-  BusinessClassification$outboundSchema,
 } from "./businessclassification.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  HalLink,
-  HalLink$inboundSchema,
-  HalLink$Outbound,
-  HalLink$outboundSchema,
-} from "./hallink.js";
+import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 
 export type BusinessClassificationsEmbedded = {
   businessClassifications?: Array<BusinessClassification> | undefined;
@@ -43,50 +36,6 @@ export const BusinessClassificationsEmbedded$inboundSchema: z.ZodType<
     "business-classifications": "businessClassifications",
   });
 });
-
-/** @internal */
-export type BusinessClassificationsEmbedded$Outbound = {
-  "business-classifications"?:
-    | Array<BusinessClassification$Outbound>
-    | undefined;
-};
-
-/** @internal */
-export const BusinessClassificationsEmbedded$outboundSchema: z.ZodType<
-  BusinessClassificationsEmbedded$Outbound,
-  z.ZodTypeDef,
-  BusinessClassificationsEmbedded
-> = z.object({
-  businessClassifications: z.array(BusinessClassification$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    businessClassifications: "business-classifications",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BusinessClassificationsEmbedded$ {
-  /** @deprecated use `BusinessClassificationsEmbedded$inboundSchema` instead. */
-  export const inboundSchema = BusinessClassificationsEmbedded$inboundSchema;
-  /** @deprecated use `BusinessClassificationsEmbedded$outboundSchema` instead. */
-  export const outboundSchema = BusinessClassificationsEmbedded$outboundSchema;
-  /** @deprecated use `BusinessClassificationsEmbedded$Outbound` instead. */
-  export type Outbound = BusinessClassificationsEmbedded$Outbound;
-}
-
-export function businessClassificationsEmbeddedToJSON(
-  businessClassificationsEmbedded: BusinessClassificationsEmbedded,
-): string {
-  return JSON.stringify(
-    BusinessClassificationsEmbedded$outboundSchema.parse(
-      businessClassificationsEmbedded,
-    ),
-  );
-}
 
 export function businessClassificationsEmbeddedFromJSON(
   jsonString: string,
@@ -114,51 +63,6 @@ export const BusinessClassifications$inboundSchema: z.ZodType<
     "_embedded": "embedded",
   });
 });
-
-/** @internal */
-export type BusinessClassifications$Outbound = {
-  _links?: { [k: string]: HalLink$Outbound } | undefined;
-  _embedded?: BusinessClassificationsEmbedded$Outbound | undefined;
-  total?: number | undefined;
-};
-
-/** @internal */
-export const BusinessClassifications$outboundSchema: z.ZodType<
-  BusinessClassifications$Outbound,
-  z.ZodTypeDef,
-  BusinessClassifications
-> = z.object({
-  links: z.record(HalLink$outboundSchema).optional(),
-  embedded: z.lazy(() => BusinessClassificationsEmbedded$outboundSchema)
-    .optional(),
-  total: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BusinessClassifications$ {
-  /** @deprecated use `BusinessClassifications$inboundSchema` instead. */
-  export const inboundSchema = BusinessClassifications$inboundSchema;
-  /** @deprecated use `BusinessClassifications$outboundSchema` instead. */
-  export const outboundSchema = BusinessClassifications$outboundSchema;
-  /** @deprecated use `BusinessClassifications$Outbound` instead. */
-  export type Outbound = BusinessClassifications$Outbound;
-}
-
-export function businessClassificationsToJSON(
-  businessClassifications: BusinessClassifications,
-): string {
-  return JSON.stringify(
-    BusinessClassifications$outboundSchema.parse(businessClassifications),
-  );
-}
 
 export function businessClassificationsFromJSON(
   jsonString: string,

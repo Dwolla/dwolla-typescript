@@ -48,34 +48,3 @@ export const NotAuthorizedSchemaError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type NotAuthorizedSchemaError$Outbound = {
-  code: string;
-  message: string;
-};
-
-/** @internal */
-export const NotAuthorizedSchemaError$outboundSchema: z.ZodType<
-  NotAuthorizedSchemaError$Outbound,
-  z.ZodTypeDef,
-  NotAuthorizedSchemaError
-> = z.instanceof(NotAuthorizedSchemaError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string(),
-    message: z.string(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NotAuthorizedSchemaError$ {
-  /** @deprecated use `NotAuthorizedSchemaError$inboundSchema` instead. */
-  export const inboundSchema = NotAuthorizedSchemaError$inboundSchema;
-  /** @deprecated use `NotAuthorizedSchemaError$outboundSchema` instead. */
-  export const outboundSchema = NotAuthorizedSchemaError$outboundSchema;
-  /** @deprecated use `NotAuthorizedSchemaError$Outbound` instead. */
-  export type Outbound = NotAuthorizedSchemaError$Outbound;
-}

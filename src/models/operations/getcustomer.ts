@@ -26,15 +26,6 @@ export type GetCustomerResponse =
   | models.VerifiedBusinessCustomer;
 
 /** @internal */
-export const GetCustomerRequest$inboundSchema: z.ZodType<
-  GetCustomerRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
-
-/** @internal */
 export type GetCustomerRequest$Outbound = {
   id: string;
 };
@@ -48,34 +39,11 @@ export const GetCustomerRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetCustomerRequest$ {
-  /** @deprecated use `GetCustomerRequest$inboundSchema` instead. */
-  export const inboundSchema = GetCustomerRequest$inboundSchema;
-  /** @deprecated use `GetCustomerRequest$outboundSchema` instead. */
-  export const outboundSchema = GetCustomerRequest$outboundSchema;
-  /** @deprecated use `GetCustomerRequest$Outbound` instead. */
-  export type Outbound = GetCustomerRequest$Outbound;
-}
-
 export function getCustomerRequestToJSON(
   getCustomerRequest: GetCustomerRequest,
 ): string {
   return JSON.stringify(
     GetCustomerRequest$outboundSchema.parse(getCustomerRequest),
-  );
-}
-
-export function getCustomerRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetCustomerRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetCustomerRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetCustomerRequest' from JSON`,
   );
 }
 
@@ -91,48 +59,6 @@ export const GetCustomerResponse$inboundSchema: z.ZodType<
   models.VerifiedSolePropCustomer$inboundSchema,
   models.VerifiedBusinessCustomer$inboundSchema,
 ]);
-
-/** @internal */
-export type GetCustomerResponse$Outbound =
-  | models.UnverifiedCustomer$Outbound
-  | models.UnverifiedBusinessCustomer$Outbound
-  | models.VerifiedPersonalCustomer$Outbound
-  | models.VerifiedSolePropCustomer$Outbound
-  | models.VerifiedBusinessCustomer$Outbound;
-
-/** @internal */
-export const GetCustomerResponse$outboundSchema: z.ZodType<
-  GetCustomerResponse$Outbound,
-  z.ZodTypeDef,
-  GetCustomerResponse
-> = z.union([
-  models.UnverifiedCustomer$outboundSchema,
-  models.UnverifiedBusinessCustomer$outboundSchema,
-  models.VerifiedPersonalCustomer$outboundSchema,
-  models.VerifiedSolePropCustomer$outboundSchema,
-  models.VerifiedBusinessCustomer$outboundSchema,
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetCustomerResponse$ {
-  /** @deprecated use `GetCustomerResponse$inboundSchema` instead. */
-  export const inboundSchema = GetCustomerResponse$inboundSchema;
-  /** @deprecated use `GetCustomerResponse$outboundSchema` instead. */
-  export const outboundSchema = GetCustomerResponse$outboundSchema;
-  /** @deprecated use `GetCustomerResponse$Outbound` instead. */
-  export type Outbound = GetCustomerResponse$Outbound;
-}
-
-export function getCustomerResponseToJSON(
-  getCustomerResponse: GetCustomerResponse,
-): string {
-  return JSON.stringify(
-    GetCustomerResponse$outboundSchema.parse(getCustomerResponse),
-  );
-}
 
 export function getCustomerResponseFromJSON(
   jsonString: string,

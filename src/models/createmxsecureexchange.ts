@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
-import { Result as SafeParseResult } from "../types/fp.js";
-import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 export type CreateMXSecureExchangeExchangePartner = {
   href?: string | undefined;
@@ -22,15 +19,6 @@ export type CreateMXSecureExchange = {
 };
 
 /** @internal */
-export const CreateMXSecureExchangeExchangePartner$inboundSchema: z.ZodType<
-  CreateMXSecureExchangeExchangePartner,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  href: z.string().optional(),
-});
-
-/** @internal */
 export type CreateMXSecureExchangeExchangePartner$Outbound = {
   href?: string | undefined;
 };
@@ -44,21 +32,6 @@ export const CreateMXSecureExchangeExchangePartner$outboundSchema: z.ZodType<
   href: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateMXSecureExchangeExchangePartner$ {
-  /** @deprecated use `CreateMXSecureExchangeExchangePartner$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateMXSecureExchangeExchangePartner$inboundSchema;
-  /** @deprecated use `CreateMXSecureExchangeExchangePartner$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateMXSecureExchangeExchangePartner$outboundSchema;
-  /** @deprecated use `CreateMXSecureExchangeExchangePartner$Outbound` instead. */
-  export type Outbound = CreateMXSecureExchangeExchangePartner$Outbound;
-}
-
 export function createMXSecureExchangeExchangePartnerToJSON(
   createMXSecureExchangeExchangePartner: CreateMXSecureExchangeExchangePartner,
 ): string {
@@ -68,32 +41,6 @@ export function createMXSecureExchangeExchangePartnerToJSON(
     ),
   );
 }
-
-export function createMXSecureExchangeExchangePartnerFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateMXSecureExchangeExchangePartner, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateMXSecureExchangeExchangePartner$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateMXSecureExchangeExchangePartner' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateMXSecureExchangeLinks$inboundSchema: z.ZodType<
-  CreateMXSecureExchangeLinks,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  "exchange-partner": z.lazy(() =>
-    CreateMXSecureExchangeExchangePartner$inboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "exchange-partner": "exchangePartner",
-  });
-});
 
 /** @internal */
 export type CreateMXSecureExchangeLinks$Outbound = {
@@ -117,19 +64,6 @@ export const CreateMXSecureExchangeLinks$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateMXSecureExchangeLinks$ {
-  /** @deprecated use `CreateMXSecureExchangeLinks$inboundSchema` instead. */
-  export const inboundSchema = CreateMXSecureExchangeLinks$inboundSchema;
-  /** @deprecated use `CreateMXSecureExchangeLinks$outboundSchema` instead. */
-  export const outboundSchema = CreateMXSecureExchangeLinks$outboundSchema;
-  /** @deprecated use `CreateMXSecureExchangeLinks$Outbound` instead. */
-  export type Outbound = CreateMXSecureExchangeLinks$Outbound;
-}
-
 export function createMXSecureExchangeLinksToJSON(
   createMXSecureExchangeLinks: CreateMXSecureExchangeLinks,
 ): string {
@@ -139,30 +73,6 @@ export function createMXSecureExchangeLinksToJSON(
     ),
   );
 }
-
-export function createMXSecureExchangeLinksFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateMXSecureExchangeLinks, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateMXSecureExchangeLinks$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateMXSecureExchangeLinks' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateMXSecureExchange$inboundSchema: z.ZodType<
-  CreateMXSecureExchange,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  _links: z.lazy(() => CreateMXSecureExchangeLinks$inboundSchema).optional(),
-  token: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
 
 /** @internal */
 export type CreateMXSecureExchange$Outbound = {
@@ -184,33 +94,10 @@ export const CreateMXSecureExchange$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateMXSecureExchange$ {
-  /** @deprecated use `CreateMXSecureExchange$inboundSchema` instead. */
-  export const inboundSchema = CreateMXSecureExchange$inboundSchema;
-  /** @deprecated use `CreateMXSecureExchange$outboundSchema` instead. */
-  export const outboundSchema = CreateMXSecureExchange$outboundSchema;
-  /** @deprecated use `CreateMXSecureExchange$Outbound` instead. */
-  export type Outbound = CreateMXSecureExchange$Outbound;
-}
-
 export function createMXSecureExchangeToJSON(
   createMXSecureExchange: CreateMXSecureExchange,
 ): string {
   return JSON.stringify(
     CreateMXSecureExchange$outboundSchema.parse(createMXSecureExchange),
-  );
-}
-
-export function createMXSecureExchangeFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateMXSecureExchange, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateMXSecureExchange$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateMXSecureExchange' from JSON`,
   );
 }

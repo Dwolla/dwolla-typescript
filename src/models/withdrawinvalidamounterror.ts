@@ -28,39 +28,6 @@ export const WithdrawInvalidAmountErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type WithdrawInvalidAmountErrorLinks$Outbound = {};
-
-/** @internal */
-export const WithdrawInvalidAmountErrorLinks$outboundSchema: z.ZodType<
-  WithdrawInvalidAmountErrorLinks$Outbound,
-  z.ZodTypeDef,
-  WithdrawInvalidAmountErrorLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawInvalidAmountErrorLinks$ {
-  /** @deprecated use `WithdrawInvalidAmountErrorLinks$inboundSchema` instead. */
-  export const inboundSchema = WithdrawInvalidAmountErrorLinks$inboundSchema;
-  /** @deprecated use `WithdrawInvalidAmountErrorLinks$outboundSchema` instead. */
-  export const outboundSchema = WithdrawInvalidAmountErrorLinks$outboundSchema;
-  /** @deprecated use `WithdrawInvalidAmountErrorLinks$Outbound` instead. */
-  export type Outbound = WithdrawInvalidAmountErrorLinks$Outbound;
-}
-
-export function withdrawInvalidAmountErrorLinksToJSON(
-  withdrawInvalidAmountErrorLinks: WithdrawInvalidAmountErrorLinks,
-): string {
-  return JSON.stringify(
-    WithdrawInvalidAmountErrorLinks$outboundSchema.parse(
-      withdrawInvalidAmountErrorLinks,
-    ),
-  );
-}
-
 export function withdrawInvalidAmountErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<WithdrawInvalidAmountErrorLinks, SDKValidationError> {
@@ -88,54 +55,6 @@ export const WithdrawInvalidAmountErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type WithdrawInvalidAmountErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: WithdrawInvalidAmountErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const WithdrawInvalidAmountErrorError$outboundSchema: z.ZodType<
-  WithdrawInvalidAmountErrorError$Outbound,
-  z.ZodTypeDef,
-  WithdrawInvalidAmountErrorError
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  links: z.lazy(() => WithdrawInvalidAmountErrorLinks$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawInvalidAmountErrorError$ {
-  /** @deprecated use `WithdrawInvalidAmountErrorError$inboundSchema` instead. */
-  export const inboundSchema = WithdrawInvalidAmountErrorError$inboundSchema;
-  /** @deprecated use `WithdrawInvalidAmountErrorError$outboundSchema` instead. */
-  export const outboundSchema = WithdrawInvalidAmountErrorError$outboundSchema;
-  /** @deprecated use `WithdrawInvalidAmountErrorError$Outbound` instead. */
-  export type Outbound = WithdrawInvalidAmountErrorError$Outbound;
-}
-
-export function withdrawInvalidAmountErrorErrorToJSON(
-  withdrawInvalidAmountErrorError: WithdrawInvalidAmountErrorError,
-): string {
-  return JSON.stringify(
-    WithdrawInvalidAmountErrorError$outboundSchema.parse(
-      withdrawInvalidAmountErrorError,
-    ),
-  );
-}
-
 export function withdrawInvalidAmountErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<WithdrawInvalidAmountErrorError, SDKValidationError> {
@@ -155,45 +74,6 @@ export const WithdrawInvalidAmountErrorEmbedded$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => WithdrawInvalidAmountErrorError$inboundSchema))
     .optional(),
 });
-
-/** @internal */
-export type WithdrawInvalidAmountErrorEmbedded$Outbound = {
-  errors?: Array<WithdrawInvalidAmountErrorError$Outbound> | undefined;
-};
-
-/** @internal */
-export const WithdrawInvalidAmountErrorEmbedded$outboundSchema: z.ZodType<
-  WithdrawInvalidAmountErrorEmbedded$Outbound,
-  z.ZodTypeDef,
-  WithdrawInvalidAmountErrorEmbedded
-> = z.object({
-  errors: z.array(z.lazy(() => WithdrawInvalidAmountErrorError$outboundSchema))
-    .optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawInvalidAmountErrorEmbedded$ {
-  /** @deprecated use `WithdrawInvalidAmountErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema = WithdrawInvalidAmountErrorEmbedded$inboundSchema;
-  /** @deprecated use `WithdrawInvalidAmountErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawInvalidAmountErrorEmbedded$outboundSchema;
-  /** @deprecated use `WithdrawInvalidAmountErrorEmbedded$Outbound` instead. */
-  export type Outbound = WithdrawInvalidAmountErrorEmbedded$Outbound;
-}
-
-export function withdrawInvalidAmountErrorEmbeddedToJSON(
-  withdrawInvalidAmountErrorEmbedded: WithdrawInvalidAmountErrorEmbedded,
-): string {
-  return JSON.stringify(
-    WithdrawInvalidAmountErrorEmbedded$outboundSchema.parse(
-      withdrawInvalidAmountErrorEmbedded,
-    ),
-  );
-}
 
 export function withdrawInvalidAmountErrorEmbeddedFromJSON(
   jsonString: string,

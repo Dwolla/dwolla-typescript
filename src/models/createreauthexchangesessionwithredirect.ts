@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
-import { Result as SafeParseResult } from "../types/fp.js";
-import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 export type CreateReAuthExchangeSessionWithRedirectRedirectUrl = {
   /**
@@ -27,16 +24,6 @@ export type CreateReAuthExchangeSessionWithRedirect = {
 };
 
 /** @internal */
-export const CreateReAuthExchangeSessionWithRedirectRedirectUrl$inboundSchema:
-  z.ZodType<
-    CreateReAuthExchangeSessionWithRedirectRedirectUrl,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    href: z.string(),
-  });
-
-/** @internal */
 export type CreateReAuthExchangeSessionWithRedirectRedirectUrl$Outbound = {
   href: string;
 };
@@ -51,22 +38,6 @@ export const CreateReAuthExchangeSessionWithRedirectRedirectUrl$outboundSchema:
     href: z.string(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateReAuthExchangeSessionWithRedirectRedirectUrl$ {
-  /** @deprecated use `CreateReAuthExchangeSessionWithRedirectRedirectUrl$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateReAuthExchangeSessionWithRedirectRedirectUrl$inboundSchema;
-  /** @deprecated use `CreateReAuthExchangeSessionWithRedirectRedirectUrl$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateReAuthExchangeSessionWithRedirectRedirectUrl$outboundSchema;
-  /** @deprecated use `CreateReAuthExchangeSessionWithRedirectRedirectUrl$Outbound` instead. */
-  export type Outbound =
-    CreateReAuthExchangeSessionWithRedirectRedirectUrl$Outbound;
-}
-
 export function createReAuthExchangeSessionWithRedirectRedirectUrlToJSON(
   createReAuthExchangeSessionWithRedirectRedirectUrl:
     CreateReAuthExchangeSessionWithRedirectRedirectUrl,
@@ -77,38 +48,6 @@ export function createReAuthExchangeSessionWithRedirectRedirectUrlToJSON(
     ),
   );
 }
-
-export function createReAuthExchangeSessionWithRedirectRedirectUrlFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateReAuthExchangeSessionWithRedirectRedirectUrl,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateReAuthExchangeSessionWithRedirectRedirectUrl$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreateReAuthExchangeSessionWithRedirectRedirectUrl' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateReAuthExchangeSessionWithRedirectLinks$inboundSchema:
-  z.ZodType<
-    CreateReAuthExchangeSessionWithRedirectLinks,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    "redirect-url": z.lazy(() =>
-      CreateReAuthExchangeSessionWithRedirectRedirectUrl$inboundSchema
-    ),
-  }).transform((v) => {
-    return remap$(v, {
-      "redirect-url": "redirectUrl",
-    });
-  });
 
 /** @internal */
 export type CreateReAuthExchangeSessionWithRedirectLinks$Outbound = {
@@ -131,21 +70,6 @@ export const CreateReAuthExchangeSessionWithRedirectLinks$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateReAuthExchangeSessionWithRedirectLinks$ {
-  /** @deprecated use `CreateReAuthExchangeSessionWithRedirectLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateReAuthExchangeSessionWithRedirectLinks$inboundSchema;
-  /** @deprecated use `CreateReAuthExchangeSessionWithRedirectLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateReAuthExchangeSessionWithRedirectLinks$outboundSchema;
-  /** @deprecated use `CreateReAuthExchangeSessionWithRedirectLinks$Outbound` instead. */
-  export type Outbound = CreateReAuthExchangeSessionWithRedirectLinks$Outbound;
-}
-
 export function createReAuthExchangeSessionWithRedirectLinksToJSON(
   createReAuthExchangeSessionWithRedirectLinks:
     CreateReAuthExchangeSessionWithRedirectLinks,
@@ -156,37 +80,6 @@ export function createReAuthExchangeSessionWithRedirectLinksToJSON(
     ),
   );
 }
-
-export function createReAuthExchangeSessionWithRedirectLinksFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateReAuthExchangeSessionWithRedirectLinks,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateReAuthExchangeSessionWithRedirectLinks$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreateReAuthExchangeSessionWithRedirectLinks' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateReAuthExchangeSessionWithRedirect$inboundSchema: z.ZodType<
-  CreateReAuthExchangeSessionWithRedirect,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  _links: z.lazy(() =>
-    CreateReAuthExchangeSessionWithRedirectLinks$inboundSchema
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
 
 /** @internal */
 export type CreateReAuthExchangeSessionWithRedirect$Outbound = {
@@ -208,21 +101,6 @@ export const CreateReAuthExchangeSessionWithRedirect$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateReAuthExchangeSessionWithRedirect$ {
-  /** @deprecated use `CreateReAuthExchangeSessionWithRedirect$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateReAuthExchangeSessionWithRedirect$inboundSchema;
-  /** @deprecated use `CreateReAuthExchangeSessionWithRedirect$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateReAuthExchangeSessionWithRedirect$outboundSchema;
-  /** @deprecated use `CreateReAuthExchangeSessionWithRedirect$Outbound` instead. */
-  export type Outbound = CreateReAuthExchangeSessionWithRedirect$Outbound;
-}
-
 export function createReAuthExchangeSessionWithRedirectToJSON(
   createReAuthExchangeSessionWithRedirect:
     CreateReAuthExchangeSessionWithRedirect,
@@ -231,21 +109,5 @@ export function createReAuthExchangeSessionWithRedirectToJSON(
     CreateReAuthExchangeSessionWithRedirect$outboundSchema.parse(
       createReAuthExchangeSessionWithRedirect,
     ),
-  );
-}
-
-export function createReAuthExchangeSessionWithRedirectFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateReAuthExchangeSessionWithRedirect,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateReAuthExchangeSessionWithRedirect$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreateReAuthExchangeSessionWithRedirect' from JSON`,
   );
 }

@@ -31,44 +31,6 @@ export const WithdrawInvalidWireOriginatorToBeneficiaryErrorLinks$inboundSchema:
     unknown
   > = z.object({});
 
-/** @internal */
-export type WithdrawInvalidWireOriginatorToBeneficiaryErrorLinks$Outbound = {};
-
-/** @internal */
-export const WithdrawInvalidWireOriginatorToBeneficiaryErrorLinks$outboundSchema:
-  z.ZodType<
-    WithdrawInvalidWireOriginatorToBeneficiaryErrorLinks$Outbound,
-    z.ZodTypeDef,
-    WithdrawInvalidWireOriginatorToBeneficiaryErrorLinks
-  > = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawInvalidWireOriginatorToBeneficiaryErrorLinks$ {
-  /** @deprecated use `WithdrawInvalidWireOriginatorToBeneficiaryErrorLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawInvalidWireOriginatorToBeneficiaryErrorLinks$inboundSchema;
-  /** @deprecated use `WithdrawInvalidWireOriginatorToBeneficiaryErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawInvalidWireOriginatorToBeneficiaryErrorLinks$outboundSchema;
-  /** @deprecated use `WithdrawInvalidWireOriginatorToBeneficiaryErrorLinks$Outbound` instead. */
-  export type Outbound =
-    WithdrawInvalidWireOriginatorToBeneficiaryErrorLinks$Outbound;
-}
-
-export function withdrawInvalidWireOriginatorToBeneficiaryErrorLinksToJSON(
-  withdrawInvalidWireOriginatorToBeneficiaryErrorLinks:
-    WithdrawInvalidWireOriginatorToBeneficiaryErrorLinks,
-): string {
-  return JSON.stringify(
-    WithdrawInvalidWireOriginatorToBeneficiaryErrorLinks$outboundSchema.parse(
-      withdrawInvalidWireOriginatorToBeneficiaryErrorLinks,
-    ),
-  );
-}
-
 export function withdrawInvalidWireOriginatorToBeneficiaryErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -104,62 +66,6 @@ export const WithdrawInvalidWireOriginatorToBeneficiaryErrorError$inboundSchema:
     });
   });
 
-/** @internal */
-export type WithdrawInvalidWireOriginatorToBeneficiaryErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?:
-    | WithdrawInvalidWireOriginatorToBeneficiaryErrorLinks$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const WithdrawInvalidWireOriginatorToBeneficiaryErrorError$outboundSchema:
-  z.ZodType<
-    WithdrawInvalidWireOriginatorToBeneficiaryErrorError$Outbound,
-    z.ZodTypeDef,
-    WithdrawInvalidWireOriginatorToBeneficiaryErrorError
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    path: z.string().optional(),
-    links: z.lazy(() =>
-      WithdrawInvalidWireOriginatorToBeneficiaryErrorLinks$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      links: "_links",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawInvalidWireOriginatorToBeneficiaryErrorError$ {
-  /** @deprecated use `WithdrawInvalidWireOriginatorToBeneficiaryErrorError$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawInvalidWireOriginatorToBeneficiaryErrorError$inboundSchema;
-  /** @deprecated use `WithdrawInvalidWireOriginatorToBeneficiaryErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawInvalidWireOriginatorToBeneficiaryErrorError$outboundSchema;
-  /** @deprecated use `WithdrawInvalidWireOriginatorToBeneficiaryErrorError$Outbound` instead. */
-  export type Outbound =
-    WithdrawInvalidWireOriginatorToBeneficiaryErrorError$Outbound;
-}
-
-export function withdrawInvalidWireOriginatorToBeneficiaryErrorErrorToJSON(
-  withdrawInvalidWireOriginatorToBeneficiaryErrorError:
-    WithdrawInvalidWireOriginatorToBeneficiaryErrorError,
-): string {
-  return JSON.stringify(
-    WithdrawInvalidWireOriginatorToBeneficiaryErrorError$outboundSchema.parse(
-      withdrawInvalidWireOriginatorToBeneficiaryErrorError,
-    ),
-  );
-}
-
 export function withdrawInvalidWireOriginatorToBeneficiaryErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -189,53 +95,6 @@ export const WithdrawInvalidWireOriginatorToBeneficiaryErrorEmbedded$inboundSche
       ),
     ).optional(),
   });
-
-/** @internal */
-export type WithdrawInvalidWireOriginatorToBeneficiaryErrorEmbedded$Outbound = {
-  errors?:
-    | Array<WithdrawInvalidWireOriginatorToBeneficiaryErrorError$Outbound>
-    | undefined;
-};
-
-/** @internal */
-export const WithdrawInvalidWireOriginatorToBeneficiaryErrorEmbedded$outboundSchema:
-  z.ZodType<
-    WithdrawInvalidWireOriginatorToBeneficiaryErrorEmbedded$Outbound,
-    z.ZodTypeDef,
-    WithdrawInvalidWireOriginatorToBeneficiaryErrorEmbedded
-  > = z.object({
-    errors: z.array(
-      z.lazy(() =>
-        WithdrawInvalidWireOriginatorToBeneficiaryErrorError$outboundSchema
-      ),
-    ).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawInvalidWireOriginatorToBeneficiaryErrorEmbedded$ {
-  /** @deprecated use `WithdrawInvalidWireOriginatorToBeneficiaryErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawInvalidWireOriginatorToBeneficiaryErrorEmbedded$inboundSchema;
-  /** @deprecated use `WithdrawInvalidWireOriginatorToBeneficiaryErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawInvalidWireOriginatorToBeneficiaryErrorEmbedded$outboundSchema;
-  /** @deprecated use `WithdrawInvalidWireOriginatorToBeneficiaryErrorEmbedded$Outbound` instead. */
-  export type Outbound =
-    WithdrawInvalidWireOriginatorToBeneficiaryErrorEmbedded$Outbound;
-}
-
-export function withdrawInvalidWireOriginatorToBeneficiaryErrorEmbeddedToJSON(
-  withdrawInvalidWireOriginatorToBeneficiaryErrorEmbedded:
-    WithdrawInvalidWireOriginatorToBeneficiaryErrorEmbedded,
-): string {
-  return JSON.stringify(
-    WithdrawInvalidWireOriginatorToBeneficiaryErrorEmbedded$outboundSchema
-      .parse(withdrawInvalidWireOriginatorToBeneficiaryErrorEmbedded),
-  );
-}
 
 export function withdrawInvalidWireOriginatorToBeneficiaryErrorEmbeddedFromJSON(
   jsonString: string,

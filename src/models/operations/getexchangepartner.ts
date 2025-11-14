@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetExchangePartnerRequest = {
   /**
@@ -13,15 +10,6 @@ export type GetExchangePartnerRequest = {
    */
   id: string;
 };
-
-/** @internal */
-export const GetExchangePartnerRequest$inboundSchema: z.ZodType<
-  GetExchangePartnerRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
 
 /** @internal */
 export type GetExchangePartnerRequest$Outbound = {
@@ -37,33 +25,10 @@ export const GetExchangePartnerRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetExchangePartnerRequest$ {
-  /** @deprecated use `GetExchangePartnerRequest$inboundSchema` instead. */
-  export const inboundSchema = GetExchangePartnerRequest$inboundSchema;
-  /** @deprecated use `GetExchangePartnerRequest$outboundSchema` instead. */
-  export const outboundSchema = GetExchangePartnerRequest$outboundSchema;
-  /** @deprecated use `GetExchangePartnerRequest$Outbound` instead. */
-  export type Outbound = GetExchangePartnerRequest$Outbound;
-}
-
 export function getExchangePartnerRequestToJSON(
   getExchangePartnerRequest: GetExchangePartnerRequest,
 ): string {
   return JSON.stringify(
     GetExchangePartnerRequest$outboundSchema.parse(getExchangePartnerRequest),
-  );
-}
-
-export function getExchangePartnerRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetExchangePartnerRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetExchangePartnerRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetExchangePartnerRequest' from JSON`,
   );
 }

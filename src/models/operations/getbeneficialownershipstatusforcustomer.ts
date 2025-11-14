@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetBeneficialOwnershipStatusForCustomerRequest = {
   /**
@@ -13,16 +10,6 @@ export type GetBeneficialOwnershipStatusForCustomerRequest = {
    */
   id: string;
 };
-
-/** @internal */
-export const GetBeneficialOwnershipStatusForCustomerRequest$inboundSchema:
-  z.ZodType<
-    GetBeneficialOwnershipStatusForCustomerRequest,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    id: z.string(),
-  });
 
 /** @internal */
 export type GetBeneficialOwnershipStatusForCustomerRequest$Outbound = {
@@ -39,22 +26,6 @@ export const GetBeneficialOwnershipStatusForCustomerRequest$outboundSchema:
     id: z.string(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetBeneficialOwnershipStatusForCustomerRequest$ {
-  /** @deprecated use `GetBeneficialOwnershipStatusForCustomerRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    GetBeneficialOwnershipStatusForCustomerRequest$inboundSchema;
-  /** @deprecated use `GetBeneficialOwnershipStatusForCustomerRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    GetBeneficialOwnershipStatusForCustomerRequest$outboundSchema;
-  /** @deprecated use `GetBeneficialOwnershipStatusForCustomerRequest$Outbound` instead. */
-  export type Outbound =
-    GetBeneficialOwnershipStatusForCustomerRequest$Outbound;
-}
-
 export function getBeneficialOwnershipStatusForCustomerRequestToJSON(
   getBeneficialOwnershipStatusForCustomerRequest:
     GetBeneficialOwnershipStatusForCustomerRequest,
@@ -63,21 +34,5 @@ export function getBeneficialOwnershipStatusForCustomerRequestToJSON(
     GetBeneficialOwnershipStatusForCustomerRequest$outboundSchema.parse(
       getBeneficialOwnershipStatusForCustomerRequest,
     ),
-  );
-}
-
-export function getBeneficialOwnershipStatusForCustomerRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  GetBeneficialOwnershipStatusForCustomerRequest,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      GetBeneficialOwnershipStatusForCustomerRequest$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'GetBeneficialOwnershipStatusForCustomerRequest' from JSON`,
   );
 }

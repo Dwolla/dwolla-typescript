@@ -28,37 +28,6 @@ export const InvalidUrlFormatErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type InvalidUrlFormatErrorLinks$Outbound = {};
-
-/** @internal */
-export const InvalidUrlFormatErrorLinks$outboundSchema: z.ZodType<
-  InvalidUrlFormatErrorLinks$Outbound,
-  z.ZodTypeDef,
-  InvalidUrlFormatErrorLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidUrlFormatErrorLinks$ {
-  /** @deprecated use `InvalidUrlFormatErrorLinks$inboundSchema` instead. */
-  export const inboundSchema = InvalidUrlFormatErrorLinks$inboundSchema;
-  /** @deprecated use `InvalidUrlFormatErrorLinks$outboundSchema` instead. */
-  export const outboundSchema = InvalidUrlFormatErrorLinks$outboundSchema;
-  /** @deprecated use `InvalidUrlFormatErrorLinks$Outbound` instead. */
-  export type Outbound = InvalidUrlFormatErrorLinks$Outbound;
-}
-
-export function invalidUrlFormatErrorLinksToJSON(
-  invalidUrlFormatErrorLinks: InvalidUrlFormatErrorLinks,
-): string {
-  return JSON.stringify(
-    InvalidUrlFormatErrorLinks$outboundSchema.parse(invalidUrlFormatErrorLinks),
-  );
-}
-
 export function invalidUrlFormatErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<InvalidUrlFormatErrorLinks, SDKValidationError> {
@@ -85,51 +54,6 @@ export const InvalidUrlFormatErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type InvalidUrlFormatErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: InvalidUrlFormatErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const InvalidUrlFormatErrorError$outboundSchema: z.ZodType<
-  InvalidUrlFormatErrorError$Outbound,
-  z.ZodTypeDef,
-  InvalidUrlFormatErrorError
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  links: z.lazy(() => InvalidUrlFormatErrorLinks$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidUrlFormatErrorError$ {
-  /** @deprecated use `InvalidUrlFormatErrorError$inboundSchema` instead. */
-  export const inboundSchema = InvalidUrlFormatErrorError$inboundSchema;
-  /** @deprecated use `InvalidUrlFormatErrorError$outboundSchema` instead. */
-  export const outboundSchema = InvalidUrlFormatErrorError$outboundSchema;
-  /** @deprecated use `InvalidUrlFormatErrorError$Outbound` instead. */
-  export type Outbound = InvalidUrlFormatErrorError$Outbound;
-}
-
-export function invalidUrlFormatErrorErrorToJSON(
-  invalidUrlFormatErrorError: InvalidUrlFormatErrorError,
-): string {
-  return JSON.stringify(
-    InvalidUrlFormatErrorError$outboundSchema.parse(invalidUrlFormatErrorError),
-  );
-}
-
 export function invalidUrlFormatErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<InvalidUrlFormatErrorError, SDKValidationError> {
@@ -149,44 +73,6 @@ export const InvalidUrlFormatErrorEmbedded$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => InvalidUrlFormatErrorError$inboundSchema))
     .optional(),
 });
-
-/** @internal */
-export type InvalidUrlFormatErrorEmbedded$Outbound = {
-  errors?: Array<InvalidUrlFormatErrorError$Outbound> | undefined;
-};
-
-/** @internal */
-export const InvalidUrlFormatErrorEmbedded$outboundSchema: z.ZodType<
-  InvalidUrlFormatErrorEmbedded$Outbound,
-  z.ZodTypeDef,
-  InvalidUrlFormatErrorEmbedded
-> = z.object({
-  errors: z.array(z.lazy(() => InvalidUrlFormatErrorError$outboundSchema))
-    .optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidUrlFormatErrorEmbedded$ {
-  /** @deprecated use `InvalidUrlFormatErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema = InvalidUrlFormatErrorEmbedded$inboundSchema;
-  /** @deprecated use `InvalidUrlFormatErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema = InvalidUrlFormatErrorEmbedded$outboundSchema;
-  /** @deprecated use `InvalidUrlFormatErrorEmbedded$Outbound` instead. */
-  export type Outbound = InvalidUrlFormatErrorEmbedded$Outbound;
-}
-
-export function invalidUrlFormatErrorEmbeddedToJSON(
-  invalidUrlFormatErrorEmbedded: InvalidUrlFormatErrorEmbedded,
-): string {
-  return JSON.stringify(
-    InvalidUrlFormatErrorEmbedded$outboundSchema.parse(
-      invalidUrlFormatErrorEmbedded,
-    ),
-  );
-}
 
 export function invalidUrlFormatErrorEmbeddedFromJSON(
   jsonString: string,

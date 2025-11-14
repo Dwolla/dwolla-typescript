@@ -91,41 +91,6 @@ export const CreateLabelReallocationNotFoundDwollaV1HalJSONError$inboundSchema:
     });
 
 /** @internal */
-export type CreateLabelReallocationNotFoundDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const CreateLabelReallocationNotFoundDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    CreateLabelReallocationNotFoundDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    CreateLabelReallocationNotFoundDwollaV1HalJSONError
-  > = z.instanceof(CreateLabelReallocationNotFoundDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateLabelReallocationNotFoundDwollaV1HalJSONError$ {
-  /** @deprecated use `CreateLabelReallocationNotFoundDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateLabelReallocationNotFoundDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `CreateLabelReallocationNotFoundDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateLabelReallocationNotFoundDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `CreateLabelReallocationNotFoundDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    CreateLabelReallocationNotFoundDwollaV1HalJSONError$Outbound;
-}
-
-/** @internal */
 export const CreateLabelReallocationForbiddenDwollaV1HalJSONError$inboundSchema:
   z.ZodType<
     CreateLabelReallocationForbiddenDwollaV1HalJSONError,
@@ -145,38 +110,3 @@ export const CreateLabelReallocationForbiddenDwollaV1HalJSONError$inboundSchema:
         body: v.body$,
       });
     });
-
-/** @internal */
-export type CreateLabelReallocationForbiddenDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const CreateLabelReallocationForbiddenDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    CreateLabelReallocationForbiddenDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    CreateLabelReallocationForbiddenDwollaV1HalJSONError
-  > = z.instanceof(CreateLabelReallocationForbiddenDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateLabelReallocationForbiddenDwollaV1HalJSONError$ {
-  /** @deprecated use `CreateLabelReallocationForbiddenDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateLabelReallocationForbiddenDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `CreateLabelReallocationForbiddenDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateLabelReallocationForbiddenDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `CreateLabelReallocationForbiddenDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    CreateLabelReallocationForbiddenDwollaV1HalJSONError$Outbound;
-}

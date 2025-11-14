@@ -22,45 +22,6 @@ export const ValidationErrorSchemaEmbedded$inboundSchema: z.ZodType<
   message: z.string().optional(),
 });
 
-/** @internal */
-export type ValidationErrorSchemaEmbedded$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const ValidationErrorSchemaEmbedded$outboundSchema: z.ZodType<
-  ValidationErrorSchemaEmbedded$Outbound,
-  z.ZodTypeDef,
-  ValidationErrorSchemaEmbedded
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ValidationErrorSchemaEmbedded$ {
-  /** @deprecated use `ValidationErrorSchemaEmbedded$inboundSchema` instead. */
-  export const inboundSchema = ValidationErrorSchemaEmbedded$inboundSchema;
-  /** @deprecated use `ValidationErrorSchemaEmbedded$outboundSchema` instead. */
-  export const outboundSchema = ValidationErrorSchemaEmbedded$outboundSchema;
-  /** @deprecated use `ValidationErrorSchemaEmbedded$Outbound` instead. */
-  export type Outbound = ValidationErrorSchemaEmbedded$Outbound;
-}
-
-export function validationErrorSchemaEmbeddedToJSON(
-  validationErrorSchemaEmbedded: ValidationErrorSchemaEmbedded,
-): string {
-  return JSON.stringify(
-    ValidationErrorSchemaEmbedded$outboundSchema.parse(
-      validationErrorSchemaEmbedded,
-    ),
-  );
-}
-
 export function validationErrorSchemaEmbeddedFromJSON(
   jsonString: string,
 ): SafeParseResult<ValidationErrorSchemaEmbedded, SDKValidationError> {

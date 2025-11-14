@@ -54,35 +54,3 @@ export const GetVanRoutingDwollaV1HalJSONError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type GetVanRoutingDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const GetVanRoutingDwollaV1HalJSONError$outboundSchema: z.ZodType<
-  GetVanRoutingDwollaV1HalJSONError$Outbound,
-  z.ZodTypeDef,
-  GetVanRoutingDwollaV1HalJSONError
-> = z.instanceof(GetVanRoutingDwollaV1HalJSONError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetVanRoutingDwollaV1HalJSONError$ {
-  /** @deprecated use `GetVanRoutingDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema = GetVanRoutingDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `GetVanRoutingDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    GetVanRoutingDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `GetVanRoutingDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound = GetVanRoutingDwollaV1HalJSONError$Outbound;
-}

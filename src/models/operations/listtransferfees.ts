@@ -38,15 +38,6 @@ export type ListTransferFeesResponse = {
 };
 
 /** @internal */
-export const ListTransferFeesRequest$inboundSchema: z.ZodType<
-  ListTransferFeesRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
-
-/** @internal */
 export type ListTransferFeesRequest$Outbound = {
   id: string;
 };
@@ -60,34 +51,11 @@ export const ListTransferFeesRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListTransferFeesRequest$ {
-  /** @deprecated use `ListTransferFeesRequest$inboundSchema` instead. */
-  export const inboundSchema = ListTransferFeesRequest$inboundSchema;
-  /** @deprecated use `ListTransferFeesRequest$outboundSchema` instead. */
-  export const outboundSchema = ListTransferFeesRequest$outboundSchema;
-  /** @deprecated use `ListTransferFeesRequest$Outbound` instead. */
-  export type Outbound = ListTransferFeesRequest$Outbound;
-}
-
 export function listTransferFeesRequestToJSON(
   listTransferFeesRequest: ListTransferFeesRequest,
 ): string {
   return JSON.stringify(
     ListTransferFeesRequest$outboundSchema.parse(listTransferFeesRequest),
-  );
-}
-
-export function listTransferFeesRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListTransferFeesRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListTransferFeesRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListTransferFeesRequest' from JSON`,
   );
 }
 
@@ -100,43 +68,6 @@ export const ListTransferFeesAmount$inboundSchema: z.ZodType<
   value: z.string().optional(),
   currency: z.string().optional(),
 });
-
-/** @internal */
-export type ListTransferFeesAmount$Outbound = {
-  value?: string | undefined;
-  currency?: string | undefined;
-};
-
-/** @internal */
-export const ListTransferFeesAmount$outboundSchema: z.ZodType<
-  ListTransferFeesAmount$Outbound,
-  z.ZodTypeDef,
-  ListTransferFeesAmount
-> = z.object({
-  value: z.string().optional(),
-  currency: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListTransferFeesAmount$ {
-  /** @deprecated use `ListTransferFeesAmount$inboundSchema` instead. */
-  export const inboundSchema = ListTransferFeesAmount$inboundSchema;
-  /** @deprecated use `ListTransferFeesAmount$outboundSchema` instead. */
-  export const outboundSchema = ListTransferFeesAmount$outboundSchema;
-  /** @deprecated use `ListTransferFeesAmount$Outbound` instead. */
-  export type Outbound = ListTransferFeesAmount$Outbound;
-}
-
-export function listTransferFeesAmountToJSON(
-  listTransferFeesAmount: ListTransferFeesAmount,
-): string {
-  return JSON.stringify(
-    ListTransferFeesAmount$outboundSchema.parse(listTransferFeesAmount),
-  );
-}
 
 export function listTransferFeesAmountFromJSON(
   jsonString: string,
@@ -166,49 +97,6 @@ export const Transaction$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type Transaction$Outbound = {
-  _links?: { [k: string]: models.HalLink$Outbound } | undefined;
-  id?: string | undefined;
-  status?: string | undefined;
-  amount?: ListTransferFeesAmount$Outbound | undefined;
-  created?: string | undefined;
-};
-
-/** @internal */
-export const Transaction$outboundSchema: z.ZodType<
-  Transaction$Outbound,
-  z.ZodTypeDef,
-  Transaction
-> = z.object({
-  links: z.record(models.HalLink$outboundSchema).optional(),
-  id: z.string().optional(),
-  status: z.string().optional(),
-  amount: z.lazy(() => ListTransferFeesAmount$outboundSchema).optional(),
-  created: z.date().transform(v => v.toISOString()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Transaction$ {
-  /** @deprecated use `Transaction$inboundSchema` instead. */
-  export const inboundSchema = Transaction$inboundSchema;
-  /** @deprecated use `Transaction$outboundSchema` instead. */
-  export const outboundSchema = Transaction$outboundSchema;
-  /** @deprecated use `Transaction$Outbound` instead. */
-  export type Outbound = Transaction$Outbound;
-}
-
-export function transactionToJSON(transaction: Transaction): string {
-  return JSON.stringify(Transaction$outboundSchema.parse(transaction));
-}
-
 export function transactionFromJSON(
   jsonString: string,
 ): SafeParseResult<Transaction, SDKValidationError> {
@@ -228,43 +116,6 @@ export const ListTransferFeesResponse$inboundSchema: z.ZodType<
   transactions: z.array(z.lazy(() => Transaction$inboundSchema)).optional(),
   total: z.string().optional(),
 });
-
-/** @internal */
-export type ListTransferFeesResponse$Outbound = {
-  transactions?: Array<Transaction$Outbound> | undefined;
-  total?: string | undefined;
-};
-
-/** @internal */
-export const ListTransferFeesResponse$outboundSchema: z.ZodType<
-  ListTransferFeesResponse$Outbound,
-  z.ZodTypeDef,
-  ListTransferFeesResponse
-> = z.object({
-  transactions: z.array(z.lazy(() => Transaction$outboundSchema)).optional(),
-  total: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListTransferFeesResponse$ {
-  /** @deprecated use `ListTransferFeesResponse$inboundSchema` instead. */
-  export const inboundSchema = ListTransferFeesResponse$inboundSchema;
-  /** @deprecated use `ListTransferFeesResponse$outboundSchema` instead. */
-  export const outboundSchema = ListTransferFeesResponse$outboundSchema;
-  /** @deprecated use `ListTransferFeesResponse$Outbound` instead. */
-  export type Outbound = ListTransferFeesResponse$Outbound;
-}
-
-export function listTransferFeesResponseToJSON(
-  listTransferFeesResponse: ListTransferFeesResponse,
-): string {
-  return JSON.stringify(
-    ListTransferFeesResponse$outboundSchema.parse(listTransferFeesResponse),
-  );
-}
 
 export function listTransferFeesResponseFromJSON(
   jsonString: string,

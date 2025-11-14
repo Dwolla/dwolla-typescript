@@ -31,20 +31,6 @@ export type UpdateResponse =
   | models.VerifiedBusinessCustomer;
 
 /** @internal */
-export const UpdateRequest$inboundSchema: z.ZodType<
-  UpdateRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  RequestBody: z.any().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "RequestBody": "requestBody",
-  });
-});
-
-/** @internal */
 export type UpdateRequest$Outbound = {
   id: string;
   RequestBody?: any | undefined;
@@ -64,31 +50,8 @@ export const UpdateRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateRequest$ {
-  /** @deprecated use `UpdateRequest$inboundSchema` instead. */
-  export const inboundSchema = UpdateRequest$inboundSchema;
-  /** @deprecated use `UpdateRequest$outboundSchema` instead. */
-  export const outboundSchema = UpdateRequest$outboundSchema;
-  /** @deprecated use `UpdateRequest$Outbound` instead. */
-  export type Outbound = UpdateRequest$Outbound;
-}
-
 export function updateRequestToJSON(updateRequest: UpdateRequest): string {
   return JSON.stringify(UpdateRequest$outboundSchema.parse(updateRequest));
-}
-
-export function updateRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateRequest' from JSON`,
-  );
 }
 
 /** @internal */
@@ -103,44 +66,6 @@ export const UpdateResponse$inboundSchema: z.ZodType<
   models.VerifiedSolePropCustomer$inboundSchema,
   models.VerifiedBusinessCustomer$inboundSchema,
 ]);
-
-/** @internal */
-export type UpdateResponse$Outbound =
-  | models.UnverifiedCustomer$Outbound
-  | models.UnverifiedBusinessCustomer$Outbound
-  | models.VerifiedPersonalCustomer$Outbound
-  | models.VerifiedSolePropCustomer$Outbound
-  | models.VerifiedBusinessCustomer$Outbound;
-
-/** @internal */
-export const UpdateResponse$outboundSchema: z.ZodType<
-  UpdateResponse$Outbound,
-  z.ZodTypeDef,
-  UpdateResponse
-> = z.union([
-  models.UnverifiedCustomer$outboundSchema,
-  models.UnverifiedBusinessCustomer$outboundSchema,
-  models.VerifiedPersonalCustomer$outboundSchema,
-  models.VerifiedSolePropCustomer$outboundSchema,
-  models.VerifiedBusinessCustomer$outboundSchema,
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateResponse$ {
-  /** @deprecated use `UpdateResponse$inboundSchema` instead. */
-  export const inboundSchema = UpdateResponse$inboundSchema;
-  /** @deprecated use `UpdateResponse$outboundSchema` instead. */
-  export const outboundSchema = UpdateResponse$outboundSchema;
-  /** @deprecated use `UpdateResponse$Outbound` instead. */
-  export type Outbound = UpdateResponse$Outbound;
-}
-
-export function updateResponseToJSON(updateResponse: UpdateResponse): string {
-  return JSON.stringify(UpdateResponse$outboundSchema.parse(updateResponse));
-}
 
 export function updateResponseFromJSON(
   jsonString: string,

@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../lib/schemas.js";
-import { Result as SafeParseResult } from "../types/fp.js";
-import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 /**
  * Request body for removing a bank funding source
@@ -13,15 +10,6 @@ import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 export type RemoveBank = {
   removed: boolean;
 };
-
-/** @internal */
-export const RemoveBank$inboundSchema: z.ZodType<
-  RemoveBank,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  removed: z.boolean(),
-});
 
 /** @internal */
 export type RemoveBank$Outbound = {
@@ -37,29 +25,6 @@ export const RemoveBank$outboundSchema: z.ZodType<
   removed: z.boolean(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RemoveBank$ {
-  /** @deprecated use `RemoveBank$inboundSchema` instead. */
-  export const inboundSchema = RemoveBank$inboundSchema;
-  /** @deprecated use `RemoveBank$outboundSchema` instead. */
-  export const outboundSchema = RemoveBank$outboundSchema;
-  /** @deprecated use `RemoveBank$Outbound` instead. */
-  export type Outbound = RemoveBank$Outbound;
-}
-
 export function removeBankToJSON(removeBank: RemoveBank): string {
   return JSON.stringify(RemoveBank$outboundSchema.parse(removeBank));
-}
-
-export function removeBankFromJSON(
-  jsonString: string,
-): SafeParseResult<RemoveBank, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => RemoveBank$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'RemoveBank' from JSON`,
-  );
 }

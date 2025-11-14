@@ -36,20 +36,6 @@ export type CreateCustomerExchangeResponse = {
 };
 
 /** @internal */
-export const CreateCustomerExchangeRequestBody$inboundSchema: z.ZodType<
-  CreateCustomerExchangeRequestBody,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  models.CreateMXOpenBankingExchange$inboundSchema,
-  models.CreateFlinksSecureExchange$inboundSchema,
-  models.CreatePlaidOpenBankingExchange$inboundSchema,
-  models.CreateFinicitySecureExchange$inboundSchema,
-  models.CreateMXSecureExchange$inboundSchema,
-  models.CreatePlaidSecureExchange$inboundSchema,
-]);
-
-/** @internal */
 export type CreateCustomerExchangeRequestBody$Outbound =
   | models.CreateMXOpenBankingExchange$Outbound
   | models.CreateFlinksSecureExchange$Outbound
@@ -72,20 +58,6 @@ export const CreateCustomerExchangeRequestBody$outboundSchema: z.ZodType<
   models.CreatePlaidSecureExchange$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerExchangeRequestBody$ {
-  /** @deprecated use `CreateCustomerExchangeRequestBody$inboundSchema` instead. */
-  export const inboundSchema = CreateCustomerExchangeRequestBody$inboundSchema;
-  /** @deprecated use `CreateCustomerExchangeRequestBody$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerExchangeRequestBody$outboundSchema;
-  /** @deprecated use `CreateCustomerExchangeRequestBody$Outbound` instead. */
-  export type Outbound = CreateCustomerExchangeRequestBody$Outbound;
-}
-
 export function createCustomerExchangeRequestBodyToJSON(
   createCustomerExchangeRequestBody: CreateCustomerExchangeRequestBody,
 ): string {
@@ -95,37 +67,6 @@ export function createCustomerExchangeRequestBodyToJSON(
     ),
   );
 }
-
-export function createCustomerExchangeRequestBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateCustomerExchangeRequestBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateCustomerExchangeRequestBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateCustomerExchangeRequestBody' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateCustomerExchangeRequest$inboundSchema: z.ZodType<
-  CreateCustomerExchangeRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  RequestBody: z.union([
-    models.CreateMXOpenBankingExchange$inboundSchema,
-    models.CreateFlinksSecureExchange$inboundSchema,
-    models.CreatePlaidOpenBankingExchange$inboundSchema,
-    models.CreateFinicitySecureExchange$inboundSchema,
-    models.CreateMXSecureExchange$inboundSchema,
-    models.CreatePlaidSecureExchange$inboundSchema,
-  ]),
-}).transform((v) => {
-  return remap$(v, {
-    "RequestBody": "requestBody",
-  });
-});
 
 /** @internal */
 export type CreateCustomerExchangeRequest$Outbound = {
@@ -160,19 +101,6 @@ export const CreateCustomerExchangeRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerExchangeRequest$ {
-  /** @deprecated use `CreateCustomerExchangeRequest$inboundSchema` instead. */
-  export const inboundSchema = CreateCustomerExchangeRequest$inboundSchema;
-  /** @deprecated use `CreateCustomerExchangeRequest$outboundSchema` instead. */
-  export const outboundSchema = CreateCustomerExchangeRequest$outboundSchema;
-  /** @deprecated use `CreateCustomerExchangeRequest$Outbound` instead. */
-  export type Outbound = CreateCustomerExchangeRequest$Outbound;
-}
-
 export function createCustomerExchangeRequestToJSON(
   createCustomerExchangeRequest: CreateCustomerExchangeRequest,
 ): string {
@@ -180,16 +108,6 @@ export function createCustomerExchangeRequestToJSON(
     CreateCustomerExchangeRequest$outboundSchema.parse(
       createCustomerExchangeRequest,
     ),
-  );
-}
-
-export function createCustomerExchangeRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateCustomerExchangeRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateCustomerExchangeRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateCustomerExchangeRequest' from JSON`,
   );
 }
 
@@ -205,47 +123,6 @@ export const CreateCustomerExchangeResponse$inboundSchema: z.ZodType<
     "Headers": "headers",
   });
 });
-
-/** @internal */
-export type CreateCustomerExchangeResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-};
-
-/** @internal */
-export const CreateCustomerExchangeResponse$outboundSchema: z.ZodType<
-  CreateCustomerExchangeResponse$Outbound,
-  z.ZodTypeDef,
-  CreateCustomerExchangeResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerExchangeResponse$ {
-  /** @deprecated use `CreateCustomerExchangeResponse$inboundSchema` instead. */
-  export const inboundSchema = CreateCustomerExchangeResponse$inboundSchema;
-  /** @deprecated use `CreateCustomerExchangeResponse$outboundSchema` instead. */
-  export const outboundSchema = CreateCustomerExchangeResponse$outboundSchema;
-  /** @deprecated use `CreateCustomerExchangeResponse$Outbound` instead. */
-  export type Outbound = CreateCustomerExchangeResponse$Outbound;
-}
-
-export function createCustomerExchangeResponseToJSON(
-  createCustomerExchangeResponse: CreateCustomerExchangeResponse,
-): string {
-  return JSON.stringify(
-    CreateCustomerExchangeResponse$outboundSchema.parse(
-      createCustomerExchangeResponse,
-    ),
-  );
-}
 
 export function createCustomerExchangeResponseFromJSON(
   jsonString: string,

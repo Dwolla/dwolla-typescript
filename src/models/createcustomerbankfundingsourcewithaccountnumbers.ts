@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
-import { Result as SafeParseResult } from "../types/fp.js";
-import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 /**
  * Type of bank account
@@ -68,7 +65,7 @@ export type CreateCustomerBankFundingSourceWithAccountNumbers = {
   /**
    * Use when creating an unverified bank account.
    */
-  verified?: false | undefined;
+  verified?: boolean | undefined;
   /**
    * An array containing a list of processing channels. ACH is the default processing channel for bank transfers.
    */
@@ -79,7 +76,7 @@ export type CreateCustomerBankFundingSourceWithAccountNumbers = {
 };
 
 /** @internal */
-export const CreateCustomerBankFundingSourceWithAccountNumbersBankAccountType$inboundSchema:
+export const CreateCustomerBankFundingSourceWithAccountNumbersBankAccountType$outboundSchema:
   z.ZodNativeEnum<
     typeof CreateCustomerBankFundingSourceWithAccountNumbersBankAccountType
   > = z.nativeEnum(
@@ -87,59 +84,10 @@ export const CreateCustomerBankFundingSourceWithAccountNumbersBankAccountType$in
   );
 
 /** @internal */
-export const CreateCustomerBankFundingSourceWithAccountNumbersBankAccountType$outboundSchema:
-  z.ZodNativeEnum<
-    typeof CreateCustomerBankFundingSourceWithAccountNumbersBankAccountType
-  > =
-    CreateCustomerBankFundingSourceWithAccountNumbersBankAccountType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerBankFundingSourceWithAccountNumbersBankAccountType$ {
-  /** @deprecated use `CreateCustomerBankFundingSourceWithAccountNumbersBankAccountType$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerBankFundingSourceWithAccountNumbersBankAccountType$inboundSchema;
-  /** @deprecated use `CreateCustomerBankFundingSourceWithAccountNumbersBankAccountType$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerBankFundingSourceWithAccountNumbersBankAccountType$outboundSchema;
-}
-
-/** @internal */
-export const CreateCustomerBankFundingSourceWithAccountNumbersChannel$inboundSchema:
-  z.ZodNativeEnum<
-    typeof CreateCustomerBankFundingSourceWithAccountNumbersChannel
-  > = z.nativeEnum(CreateCustomerBankFundingSourceWithAccountNumbersChannel);
-
-/** @internal */
 export const CreateCustomerBankFundingSourceWithAccountNumbersChannel$outboundSchema:
   z.ZodNativeEnum<
     typeof CreateCustomerBankFundingSourceWithAccountNumbersChannel
-  > = CreateCustomerBankFundingSourceWithAccountNumbersChannel$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerBankFundingSourceWithAccountNumbersChannel$ {
-  /** @deprecated use `CreateCustomerBankFundingSourceWithAccountNumbersChannel$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerBankFundingSourceWithAccountNumbersChannel$inboundSchema;
-  /** @deprecated use `CreateCustomerBankFundingSourceWithAccountNumbersChannel$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerBankFundingSourceWithAccountNumbersChannel$outboundSchema;
-}
-
-/** @internal */
-export const CreateCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorization$inboundSchema:
-  z.ZodType<
-    CreateCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorization,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    href: z.string(),
-  });
+  > = z.nativeEnum(CreateCustomerBankFundingSourceWithAccountNumbersChannel);
 
 /** @internal */
 export type CreateCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorization$Outbound =
@@ -157,22 +105,6 @@ export const CreateCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorizat
     href: z.string(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorization$ {
-  /** @deprecated use `CreateCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorization$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorization$inboundSchema;
-  /** @deprecated use `CreateCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorization$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorization$outboundSchema;
-  /** @deprecated use `CreateCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorization$Outbound` instead. */
-  export type Outbound =
-    CreateCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorization$Outbound;
-}
-
 export function createCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorizationToJSON(
   createCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorization:
     CreateCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorization,
@@ -184,37 +116,6 @@ export function createCustomerBankFundingSourceWithAccountNumbersOnDemandAuthori
       ),
   );
 }
-
-export function createCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorizationFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorization,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorization$inboundSchema
-        .parse(JSON.parse(x)),
-    `Failed to parse 'CreateCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorization' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateCustomerBankFundingSourceWithAccountNumbersLinks$inboundSchema:
-  z.ZodType<
-    CreateCustomerBankFundingSourceWithAccountNumbersLinks,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    "on-demand-authorization": z.lazy(() =>
-      CreateCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorization$inboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "on-demand-authorization": "onDemandAuthorization",
-    });
-  });
 
 /** @internal */
 export type CreateCustomerBankFundingSourceWithAccountNumbersLinks$Outbound = {
@@ -239,22 +140,6 @@ export const CreateCustomerBankFundingSourceWithAccountNumbersLinks$outboundSche
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerBankFundingSourceWithAccountNumbersLinks$ {
-  /** @deprecated use `CreateCustomerBankFundingSourceWithAccountNumbersLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerBankFundingSourceWithAccountNumbersLinks$inboundSchema;
-  /** @deprecated use `CreateCustomerBankFundingSourceWithAccountNumbersLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerBankFundingSourceWithAccountNumbersLinks$outboundSchema;
-  /** @deprecated use `CreateCustomerBankFundingSourceWithAccountNumbersLinks$Outbound` instead. */
-  export type Outbound =
-    CreateCustomerBankFundingSourceWithAccountNumbersLinks$Outbound;
-}
-
 export function createCustomerBankFundingSourceWithAccountNumbersLinksToJSON(
   createCustomerBankFundingSourceWithAccountNumbersLinks:
     CreateCustomerBankFundingSourceWithAccountNumbersLinks,
@@ -266,53 +151,13 @@ export function createCustomerBankFundingSourceWithAccountNumbersLinksToJSON(
   );
 }
 
-export function createCustomerBankFundingSourceWithAccountNumbersLinksFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateCustomerBankFundingSourceWithAccountNumbersLinks,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateCustomerBankFundingSourceWithAccountNumbersLinks$inboundSchema
-        .parse(JSON.parse(x)),
-    `Failed to parse 'CreateCustomerBankFundingSourceWithAccountNumbersLinks' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateCustomerBankFundingSourceWithAccountNumbers$inboundSchema:
-  z.ZodType<
-    CreateCustomerBankFundingSourceWithAccountNumbers,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    routingNumber: z.string(),
-    accountNumber: z.string(),
-    bankAccountType:
-      CreateCustomerBankFundingSourceWithAccountNumbersBankAccountType$inboundSchema,
-    name: z.string(),
-    verified: z.literal(false).default(false).optional(),
-    channels: z.array(
-      CreateCustomerBankFundingSourceWithAccountNumbersChannel$inboundSchema,
-    ).optional(),
-    _links: z.lazy(() =>
-      CreateCustomerBankFundingSourceWithAccountNumbersLinks$inboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "_links": "links",
-    });
-  });
-
 /** @internal */
 export type CreateCustomerBankFundingSourceWithAccountNumbers$Outbound = {
   routingNumber: string;
   accountNumber: string;
   bankAccountType: string;
   name: string;
-  verified: false;
+  verified?: boolean | undefined;
   channels?: Array<string> | undefined;
   _links?:
     | CreateCustomerBankFundingSourceWithAccountNumbersLinks$Outbound
@@ -331,7 +176,7 @@ export const CreateCustomerBankFundingSourceWithAccountNumbers$outboundSchema:
     bankAccountType:
       CreateCustomerBankFundingSourceWithAccountNumbersBankAccountType$outboundSchema,
     name: z.string(),
-    verified: z.literal(false),
+    verified: z.boolean().optional(),
     channels: z.array(
       CreateCustomerBankFundingSourceWithAccountNumbersChannel$outboundSchema,
     ).optional(),
@@ -344,22 +189,6 @@ export const CreateCustomerBankFundingSourceWithAccountNumbers$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerBankFundingSourceWithAccountNumbers$ {
-  /** @deprecated use `CreateCustomerBankFundingSourceWithAccountNumbers$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerBankFundingSourceWithAccountNumbers$inboundSchema;
-  /** @deprecated use `CreateCustomerBankFundingSourceWithAccountNumbers$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerBankFundingSourceWithAccountNumbers$outboundSchema;
-  /** @deprecated use `CreateCustomerBankFundingSourceWithAccountNumbers$Outbound` instead. */
-  export type Outbound =
-    CreateCustomerBankFundingSourceWithAccountNumbers$Outbound;
-}
-
 export function createCustomerBankFundingSourceWithAccountNumbersToJSON(
   createCustomerBankFundingSourceWithAccountNumbers:
     CreateCustomerBankFundingSourceWithAccountNumbers,
@@ -368,21 +197,5 @@ export function createCustomerBankFundingSourceWithAccountNumbersToJSON(
     CreateCustomerBankFundingSourceWithAccountNumbers$outboundSchema.parse(
       createCustomerBankFundingSourceWithAccountNumbers,
     ),
-  );
-}
-
-export function createCustomerBankFundingSourceWithAccountNumbersFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateCustomerBankFundingSourceWithAccountNumbers,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateCustomerBankFundingSourceWithAccountNumbers$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreateCustomerBankFundingSourceWithAccountNumbers' from JSON`,
   );
 }

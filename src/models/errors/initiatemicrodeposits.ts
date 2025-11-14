@@ -91,41 +91,6 @@ export const InitiateMicroDepositsNotFoundDwollaV1HalJSONError$inboundSchema:
     });
 
 /** @internal */
-export type InitiateMicroDepositsNotFoundDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const InitiateMicroDepositsNotFoundDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    InitiateMicroDepositsNotFoundDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    InitiateMicroDepositsNotFoundDwollaV1HalJSONError
-  > = z.instanceof(InitiateMicroDepositsNotFoundDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InitiateMicroDepositsNotFoundDwollaV1HalJSONError$ {
-  /** @deprecated use `InitiateMicroDepositsNotFoundDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    InitiateMicroDepositsNotFoundDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `InitiateMicroDepositsNotFoundDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    InitiateMicroDepositsNotFoundDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `InitiateMicroDepositsNotFoundDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    InitiateMicroDepositsNotFoundDwollaV1HalJSONError$Outbound;
-}
-
-/** @internal */
 export const InitiateMicroDepositsForbiddenDwollaV1HalJSONError$inboundSchema:
   z.ZodType<
     InitiateMicroDepositsForbiddenDwollaV1HalJSONError,
@@ -145,38 +110,3 @@ export const InitiateMicroDepositsForbiddenDwollaV1HalJSONError$inboundSchema:
         body: v.body$,
       });
     });
-
-/** @internal */
-export type InitiateMicroDepositsForbiddenDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const InitiateMicroDepositsForbiddenDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    InitiateMicroDepositsForbiddenDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    InitiateMicroDepositsForbiddenDwollaV1HalJSONError
-  > = z.instanceof(InitiateMicroDepositsForbiddenDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InitiateMicroDepositsForbiddenDwollaV1HalJSONError$ {
-  /** @deprecated use `InitiateMicroDepositsForbiddenDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    InitiateMicroDepositsForbiddenDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `InitiateMicroDepositsForbiddenDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    InitiateMicroDepositsForbiddenDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `InitiateMicroDepositsForbiddenDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    InitiateMicroDepositsForbiddenDwollaV1HalJSONError$Outbound;
-}

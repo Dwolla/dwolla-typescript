@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetFundingSourceRequest = {
   /**
@@ -13,15 +10,6 @@ export type GetFundingSourceRequest = {
    */
   id: string;
 };
-
-/** @internal */
-export const GetFundingSourceRequest$inboundSchema: z.ZodType<
-  GetFundingSourceRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
 
 /** @internal */
 export type GetFundingSourceRequest$Outbound = {
@@ -37,33 +25,10 @@ export const GetFundingSourceRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetFundingSourceRequest$ {
-  /** @deprecated use `GetFundingSourceRequest$inboundSchema` instead. */
-  export const inboundSchema = GetFundingSourceRequest$inboundSchema;
-  /** @deprecated use `GetFundingSourceRequest$outboundSchema` instead. */
-  export const outboundSchema = GetFundingSourceRequest$outboundSchema;
-  /** @deprecated use `GetFundingSourceRequest$Outbound` instead. */
-  export type Outbound = GetFundingSourceRequest$Outbound;
-}
-
 export function getFundingSourceRequestToJSON(
   getFundingSourceRequest: GetFundingSourceRequest,
 ): string {
   return JSON.stringify(
     GetFundingSourceRequest$outboundSchema.parse(getFundingSourceRequest),
-  );
-}
-
-export function getFundingSourceRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetFundingSourceRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetFundingSourceRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetFundingSourceRequest' from JSON`,
   );
 }

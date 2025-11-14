@@ -8,14 +8,10 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import {
   BadRequestSchemaError,
   BadRequestSchemaError$inboundSchema,
-  BadRequestSchemaError$Outbound,
-  BadRequestSchemaError$outboundSchema,
 } from "./badrequestschemaerror.js";
 import {
   DuplicateResourceSchemaError,
   DuplicateResourceSchemaError$inboundSchema,
-  DuplicateResourceSchemaError$Outbound,
-  DuplicateResourceSchemaError$outboundSchema,
 } from "./duplicateresourceschemaerror.js";
 import { DwollaError } from "./dwollaerror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
@@ -78,39 +74,6 @@ export const CreateFundingSourceDwollaV1HalJSONError$inboundSchema: z.ZodType<
   });
 
 /** @internal */
-export type CreateFundingSourceDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const CreateFundingSourceDwollaV1HalJSONError$outboundSchema: z.ZodType<
-  CreateFundingSourceDwollaV1HalJSONError$Outbound,
-  z.ZodTypeDef,
-  CreateFundingSourceDwollaV1HalJSONError
-> = z.instanceof(CreateFundingSourceDwollaV1HalJSONError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateFundingSourceDwollaV1HalJSONError$ {
-  /** @deprecated use `CreateFundingSourceDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateFundingSourceDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `CreateFundingSourceDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateFundingSourceDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `CreateFundingSourceDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound = CreateFundingSourceDwollaV1HalJSONError$Outbound;
-}
-
-/** @internal */
 export const CreateFundingSourceDwollaV1HalJSON$inboundSchema: z.ZodType<
   CreateFundingSourceDwollaV1HalJSON,
   z.ZodTypeDef,
@@ -119,45 +82,6 @@ export const CreateFundingSourceDwollaV1HalJSON$inboundSchema: z.ZodType<
   BadRequestSchemaError$inboundSchema,
   DuplicateResourceSchemaError$inboundSchema,
 ]);
-
-/** @internal */
-export type CreateFundingSourceDwollaV1HalJSON$Outbound =
-  | BadRequestSchemaError$Outbound
-  | DuplicateResourceSchemaError$Outbound;
-
-/** @internal */
-export const CreateFundingSourceDwollaV1HalJSON$outboundSchema: z.ZodType<
-  CreateFundingSourceDwollaV1HalJSON$Outbound,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  BadRequestSchemaError$outboundSchema,
-  DuplicateResourceSchemaError$outboundSchema,
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateFundingSourceDwollaV1HalJSON$ {
-  /** @deprecated use `CreateFundingSourceDwollaV1HalJSON$inboundSchema` instead. */
-  export const inboundSchema = CreateFundingSourceDwollaV1HalJSON$inboundSchema;
-  /** @deprecated use `CreateFundingSourceDwollaV1HalJSON$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateFundingSourceDwollaV1HalJSON$outboundSchema;
-  /** @deprecated use `CreateFundingSourceDwollaV1HalJSON$Outbound` instead. */
-  export type Outbound = CreateFundingSourceDwollaV1HalJSON$Outbound;
-}
-
-export function createFundingSourceDwollaV1HalJSONToJSON(
-  createFundingSourceDwollaV1HalJSON: CreateFundingSourceDwollaV1HalJSON,
-): string {
-  return JSON.stringify(
-    CreateFundingSourceDwollaV1HalJSON$outboundSchema.parse(
-      createFundingSourceDwollaV1HalJSON,
-    ),
-  );
-}
 
 export function createFundingSourceDwollaV1HalJSONFromJSON(
   jsonString: string,

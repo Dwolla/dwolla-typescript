@@ -28,39 +28,6 @@ export const IncompatibleHoldingsErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type IncompatibleHoldingsErrorLinks$Outbound = {};
-
-/** @internal */
-export const IncompatibleHoldingsErrorLinks$outboundSchema: z.ZodType<
-  IncompatibleHoldingsErrorLinks$Outbound,
-  z.ZodTypeDef,
-  IncompatibleHoldingsErrorLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IncompatibleHoldingsErrorLinks$ {
-  /** @deprecated use `IncompatibleHoldingsErrorLinks$inboundSchema` instead. */
-  export const inboundSchema = IncompatibleHoldingsErrorLinks$inboundSchema;
-  /** @deprecated use `IncompatibleHoldingsErrorLinks$outboundSchema` instead. */
-  export const outboundSchema = IncompatibleHoldingsErrorLinks$outboundSchema;
-  /** @deprecated use `IncompatibleHoldingsErrorLinks$Outbound` instead. */
-  export type Outbound = IncompatibleHoldingsErrorLinks$Outbound;
-}
-
-export function incompatibleHoldingsErrorLinksToJSON(
-  incompatibleHoldingsErrorLinks: IncompatibleHoldingsErrorLinks,
-): string {
-  return JSON.stringify(
-    IncompatibleHoldingsErrorLinks$outboundSchema.parse(
-      incompatibleHoldingsErrorLinks,
-    ),
-  );
-}
-
 export function incompatibleHoldingsErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<IncompatibleHoldingsErrorLinks, SDKValidationError> {
@@ -87,53 +54,6 @@ export const IncompatibleHoldingsErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type IncompatibleHoldingsErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: IncompatibleHoldingsErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const IncompatibleHoldingsErrorError$outboundSchema: z.ZodType<
-  IncompatibleHoldingsErrorError$Outbound,
-  z.ZodTypeDef,
-  IncompatibleHoldingsErrorError
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  links: z.lazy(() => IncompatibleHoldingsErrorLinks$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IncompatibleHoldingsErrorError$ {
-  /** @deprecated use `IncompatibleHoldingsErrorError$inboundSchema` instead. */
-  export const inboundSchema = IncompatibleHoldingsErrorError$inboundSchema;
-  /** @deprecated use `IncompatibleHoldingsErrorError$outboundSchema` instead. */
-  export const outboundSchema = IncompatibleHoldingsErrorError$outboundSchema;
-  /** @deprecated use `IncompatibleHoldingsErrorError$Outbound` instead. */
-  export type Outbound = IncompatibleHoldingsErrorError$Outbound;
-}
-
-export function incompatibleHoldingsErrorErrorToJSON(
-  incompatibleHoldingsErrorError: IncompatibleHoldingsErrorError,
-): string {
-  return JSON.stringify(
-    IncompatibleHoldingsErrorError$outboundSchema.parse(
-      incompatibleHoldingsErrorError,
-    ),
-  );
-}
-
 export function incompatibleHoldingsErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<IncompatibleHoldingsErrorError, SDKValidationError> {
@@ -153,45 +73,6 @@ export const IncompatibleHoldingsErrorEmbedded$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => IncompatibleHoldingsErrorError$inboundSchema))
     .optional(),
 });
-
-/** @internal */
-export type IncompatibleHoldingsErrorEmbedded$Outbound = {
-  errors?: Array<IncompatibleHoldingsErrorError$Outbound> | undefined;
-};
-
-/** @internal */
-export const IncompatibleHoldingsErrorEmbedded$outboundSchema: z.ZodType<
-  IncompatibleHoldingsErrorEmbedded$Outbound,
-  z.ZodTypeDef,
-  IncompatibleHoldingsErrorEmbedded
-> = z.object({
-  errors: z.array(z.lazy(() => IncompatibleHoldingsErrorError$outboundSchema))
-    .optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IncompatibleHoldingsErrorEmbedded$ {
-  /** @deprecated use `IncompatibleHoldingsErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema = IncompatibleHoldingsErrorEmbedded$inboundSchema;
-  /** @deprecated use `IncompatibleHoldingsErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    IncompatibleHoldingsErrorEmbedded$outboundSchema;
-  /** @deprecated use `IncompatibleHoldingsErrorEmbedded$Outbound` instead. */
-  export type Outbound = IncompatibleHoldingsErrorEmbedded$Outbound;
-}
-
-export function incompatibleHoldingsErrorEmbeddedToJSON(
-  incompatibleHoldingsErrorEmbedded: IncompatibleHoldingsErrorEmbedded,
-): string {
-  return JSON.stringify(
-    IncompatibleHoldingsErrorEmbedded$outboundSchema.parse(
-      incompatibleHoldingsErrorEmbedded,
-    ),
-  );
-}
 
 export function incompatibleHoldingsErrorEmbeddedFromJSON(
   jsonString: string,

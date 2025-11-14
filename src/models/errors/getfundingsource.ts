@@ -54,36 +54,3 @@ export const GetFundingSourceDwollaV1HalJSONError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type GetFundingSourceDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const GetFundingSourceDwollaV1HalJSONError$outboundSchema: z.ZodType<
-  GetFundingSourceDwollaV1HalJSONError$Outbound,
-  z.ZodTypeDef,
-  GetFundingSourceDwollaV1HalJSONError
-> = z.instanceof(GetFundingSourceDwollaV1HalJSONError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetFundingSourceDwollaV1HalJSONError$ {
-  /** @deprecated use `GetFundingSourceDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    GetFundingSourceDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `GetFundingSourceDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    GetFundingSourceDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `GetFundingSourceDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound = GetFundingSourceDwollaV1HalJSONError$Outbound;
-}

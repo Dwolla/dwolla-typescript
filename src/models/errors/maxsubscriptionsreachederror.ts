@@ -48,34 +48,3 @@ export const MaxSubscriptionsReachedError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type MaxSubscriptionsReachedError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const MaxSubscriptionsReachedError$outboundSchema: z.ZodType<
-  MaxSubscriptionsReachedError$Outbound,
-  z.ZodTypeDef,
-  MaxSubscriptionsReachedError
-> = z.instanceof(MaxSubscriptionsReachedError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MaxSubscriptionsReachedError$ {
-  /** @deprecated use `MaxSubscriptionsReachedError$inboundSchema` instead. */
-  export const inboundSchema = MaxSubscriptionsReachedError$inboundSchema;
-  /** @deprecated use `MaxSubscriptionsReachedError$outboundSchema` instead. */
-  export const outboundSchema = MaxSubscriptionsReachedError$outboundSchema;
-  /** @deprecated use `MaxSubscriptionsReachedError$Outbound` instead. */
-  export type Outbound = MaxSubscriptionsReachedError$Outbound;
-}

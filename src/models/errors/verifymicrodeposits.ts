@@ -128,41 +128,6 @@ export const VerifyMicroDepositsNotFoundDwollaV1HalJSONError$inboundSchema:
     });
 
 /** @internal */
-export type VerifyMicroDepositsNotFoundDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const VerifyMicroDepositsNotFoundDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    VerifyMicroDepositsNotFoundDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    VerifyMicroDepositsNotFoundDwollaV1HalJSONError
-  > = z.instanceof(VerifyMicroDepositsNotFoundDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VerifyMicroDepositsNotFoundDwollaV1HalJSONError$ {
-  /** @deprecated use `VerifyMicroDepositsNotFoundDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    VerifyMicroDepositsNotFoundDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `VerifyMicroDepositsNotFoundDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    VerifyMicroDepositsNotFoundDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `VerifyMicroDepositsNotFoundDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    VerifyMicroDepositsNotFoundDwollaV1HalJSONError$Outbound;
-}
-
-/** @internal */
 export const VerifyMicroDepositsForbiddenDwollaV1HalJSONError$inboundSchema:
   z.ZodType<
     VerifyMicroDepositsForbiddenDwollaV1HalJSONError,
@@ -182,41 +147,6 @@ export const VerifyMicroDepositsForbiddenDwollaV1HalJSONError$inboundSchema:
         body: v.body$,
       });
     });
-
-/** @internal */
-export type VerifyMicroDepositsForbiddenDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const VerifyMicroDepositsForbiddenDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    VerifyMicroDepositsForbiddenDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    VerifyMicroDepositsForbiddenDwollaV1HalJSONError
-  > = z.instanceof(VerifyMicroDepositsForbiddenDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VerifyMicroDepositsForbiddenDwollaV1HalJSONError$ {
-  /** @deprecated use `VerifyMicroDepositsForbiddenDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    VerifyMicroDepositsForbiddenDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `VerifyMicroDepositsForbiddenDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    VerifyMicroDepositsForbiddenDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `VerifyMicroDepositsForbiddenDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    VerifyMicroDepositsForbiddenDwollaV1HalJSONError$Outbound;
-}
 
 /** @internal */
 export const VerifyMicroDepositsBadRequestDwollaV1HalJSONError$inboundSchema:
@@ -245,48 +175,3 @@ export const VerifyMicroDepositsBadRequestDwollaV1HalJSONError$inboundSchema:
         body: v.body$,
       });
     });
-
-/** @internal */
-export type VerifyMicroDepositsBadRequestDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  _embedded?: operations.VerifyMicroDepositsEmbedded$Outbound | undefined;
-};
-
-/** @internal */
-export const VerifyMicroDepositsBadRequestDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    VerifyMicroDepositsBadRequestDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    VerifyMicroDepositsBadRequestDwollaV1HalJSONError
-  > = z.instanceof(VerifyMicroDepositsBadRequestDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(
-      z.object({
-        code: z.string().optional(),
-        message: z.string().optional(),
-        embedded: z.lazy(() =>
-          operations.VerifyMicroDepositsEmbedded$outboundSchema
-        ).optional(),
-      }).transform((v) => {
-        return remap$(v, {
-          embedded: "_embedded",
-        });
-      }),
-    );
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VerifyMicroDepositsBadRequestDwollaV1HalJSONError$ {
-  /** @deprecated use `VerifyMicroDepositsBadRequestDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    VerifyMicroDepositsBadRequestDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `VerifyMicroDepositsBadRequestDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    VerifyMicroDepositsBadRequestDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `VerifyMicroDepositsBadRequestDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    VerifyMicroDepositsBadRequestDwollaV1HalJSONError$Outbound;
-}

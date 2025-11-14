@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
-import { Result as SafeParseResult } from "../types/fp.js";
-import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 export type CreatePlaidOpenBankingExchangeExchangePartner = {
   href: string;
@@ -29,16 +26,6 @@ export type CreatePlaidOpenBankingExchange = {
 };
 
 /** @internal */
-export const CreatePlaidOpenBankingExchangeExchangePartner$inboundSchema:
-  z.ZodType<
-    CreatePlaidOpenBankingExchangeExchangePartner,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    href: z.string(),
-  });
-
-/** @internal */
 export type CreatePlaidOpenBankingExchangeExchangePartner$Outbound = {
   href: string;
 };
@@ -53,21 +40,6 @@ export const CreatePlaidOpenBankingExchangeExchangePartner$outboundSchema:
     href: z.string(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreatePlaidOpenBankingExchangeExchangePartner$ {
-  /** @deprecated use `CreatePlaidOpenBankingExchangeExchangePartner$inboundSchema` instead. */
-  export const inboundSchema =
-    CreatePlaidOpenBankingExchangeExchangePartner$inboundSchema;
-  /** @deprecated use `CreatePlaidOpenBankingExchangeExchangePartner$outboundSchema` instead. */
-  export const outboundSchema =
-    CreatePlaidOpenBankingExchangeExchangePartner$outboundSchema;
-  /** @deprecated use `CreatePlaidOpenBankingExchangeExchangePartner$Outbound` instead. */
-  export type Outbound = CreatePlaidOpenBankingExchangeExchangePartner$Outbound;
-}
-
 export function createPlaidOpenBankingExchangeExchangePartnerToJSON(
   createPlaidOpenBankingExchangeExchangePartner:
     CreatePlaidOpenBankingExchangeExchangePartner,
@@ -78,37 +50,6 @@ export function createPlaidOpenBankingExchangeExchangePartnerToJSON(
     ),
   );
 }
-
-export function createPlaidOpenBankingExchangeExchangePartnerFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreatePlaidOpenBankingExchangeExchangePartner,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreatePlaidOpenBankingExchangeExchangePartner$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreatePlaidOpenBankingExchangeExchangePartner' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreatePlaidOpenBankingExchangeLinks$inboundSchema: z.ZodType<
-  CreatePlaidOpenBankingExchangeLinks,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  "exchange-partner": z.lazy(() =>
-    CreatePlaidOpenBankingExchangeExchangePartner$inboundSchema
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "exchange-partner": "exchangePartner",
-  });
-});
 
 /** @internal */
 export type CreatePlaidOpenBankingExchangeLinks$Outbound = {
@@ -130,21 +71,6 @@ export const CreatePlaidOpenBankingExchangeLinks$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreatePlaidOpenBankingExchangeLinks$ {
-  /** @deprecated use `CreatePlaidOpenBankingExchangeLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    CreatePlaidOpenBankingExchangeLinks$inboundSchema;
-  /** @deprecated use `CreatePlaidOpenBankingExchangeLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    CreatePlaidOpenBankingExchangeLinks$outboundSchema;
-  /** @deprecated use `CreatePlaidOpenBankingExchangeLinks$Outbound` instead. */
-  export type Outbound = CreatePlaidOpenBankingExchangeLinks$Outbound;
-}
-
 export function createPlaidOpenBankingExchangeLinksToJSON(
   createPlaidOpenBankingExchangeLinks: CreatePlaidOpenBankingExchangeLinks,
 ): string {
@@ -154,23 +80,6 @@ export function createPlaidOpenBankingExchangeLinksToJSON(
     ),
   );
 }
-
-export function createPlaidOpenBankingExchangeLinksFromJSON(
-  jsonString: string,
-): SafeParseResult<CreatePlaidOpenBankingExchangeLinks, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreatePlaidOpenBankingExchangeLinks$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreatePlaidOpenBankingExchangeLinks' from JSON`,
-  );
-}
-
-/** @internal */
-export const Plaid$inboundSchema: z.ZodType<Plaid, z.ZodTypeDef, unknown> = z
-  .object({
-    publicToken: z.string(),
-  });
 
 /** @internal */
 export type Plaid$Outbound = {
@@ -186,46 +95,9 @@ export const Plaid$outboundSchema: z.ZodType<
   publicToken: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Plaid$ {
-  /** @deprecated use `Plaid$inboundSchema` instead. */
-  export const inboundSchema = Plaid$inboundSchema;
-  /** @deprecated use `Plaid$outboundSchema` instead. */
-  export const outboundSchema = Plaid$outboundSchema;
-  /** @deprecated use `Plaid$Outbound` instead. */
-  export type Outbound = Plaid$Outbound;
-}
-
 export function plaidToJSON(plaid: Plaid): string {
   return JSON.stringify(Plaid$outboundSchema.parse(plaid));
 }
-
-export function plaidFromJSON(
-  jsonString: string,
-): SafeParseResult<Plaid, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Plaid$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Plaid' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreatePlaidOpenBankingExchange$inboundSchema: z.ZodType<
-  CreatePlaidOpenBankingExchange,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  _links: z.lazy(() => CreatePlaidOpenBankingExchangeLinks$inboundSchema),
-  plaid: z.lazy(() => Plaid$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
 
 /** @internal */
 export type CreatePlaidOpenBankingExchange$Outbound = {
@@ -247,19 +119,6 @@ export const CreatePlaidOpenBankingExchange$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreatePlaidOpenBankingExchange$ {
-  /** @deprecated use `CreatePlaidOpenBankingExchange$inboundSchema` instead. */
-  export const inboundSchema = CreatePlaidOpenBankingExchange$inboundSchema;
-  /** @deprecated use `CreatePlaidOpenBankingExchange$outboundSchema` instead. */
-  export const outboundSchema = CreatePlaidOpenBankingExchange$outboundSchema;
-  /** @deprecated use `CreatePlaidOpenBankingExchange$Outbound` instead. */
-  export type Outbound = CreatePlaidOpenBankingExchange$Outbound;
-}
-
 export function createPlaidOpenBankingExchangeToJSON(
   createPlaidOpenBankingExchange: CreatePlaidOpenBankingExchange,
 ): string {
@@ -267,15 +126,5 @@ export function createPlaidOpenBankingExchangeToJSON(
     CreatePlaidOpenBankingExchange$outboundSchema.parse(
       createPlaidOpenBankingExchange,
     ),
-  );
-}
-
-export function createPlaidOpenBankingExchangeFromJSON(
-  jsonString: string,
-): SafeParseResult<CreatePlaidOpenBankingExchange, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreatePlaidOpenBankingExchange$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreatePlaidOpenBankingExchange' from JSON`,
   );
 }

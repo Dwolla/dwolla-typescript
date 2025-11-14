@@ -54,34 +54,3 @@ export const NotFoundError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type NotFoundError$Outbound = {
-  code: string;
-  message: string;
-};
-
-/** @internal */
-export const NotFoundError$outboundSchema: z.ZodType<
-  NotFoundError$Outbound,
-  z.ZodTypeDef,
-  NotFoundError
-> = z.instanceof(NotFoundError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string(),
-    message: z.string(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NotFoundError$ {
-  /** @deprecated use `NotFoundError$inboundSchema` instead. */
-  export const inboundSchema = NotFoundError$inboundSchema;
-  /** @deprecated use `NotFoundError$outboundSchema` instead. */
-  export const outboundSchema = NotFoundError$outboundSchema;
-  /** @deprecated use `NotFoundError$Outbound` instead. */
-  export type Outbound = NotFoundError$Outbound;
-}

@@ -48,34 +48,3 @@ export const InvalidResourceStateSchemaError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type InvalidResourceStateSchemaError$Outbound = {
-  code: string;
-  message: string;
-};
-
-/** @internal */
-export const InvalidResourceStateSchemaError$outboundSchema: z.ZodType<
-  InvalidResourceStateSchemaError$Outbound,
-  z.ZodTypeDef,
-  InvalidResourceStateSchemaError
-> = z.instanceof(InvalidResourceStateSchemaError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string(),
-    message: z.string(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidResourceStateSchemaError$ {
-  /** @deprecated use `InvalidResourceStateSchemaError$inboundSchema` instead. */
-  export const inboundSchema = InvalidResourceStateSchemaError$inboundSchema;
-  /** @deprecated use `InvalidResourceStateSchemaError$outboundSchema` instead. */
-  export const outboundSchema = InvalidResourceStateSchemaError$outboundSchema;
-  /** @deprecated use `InvalidResourceStateSchemaError$Outbound` instead. */
-  export type Outbound = InvalidResourceStateSchemaError$Outbound;
-}

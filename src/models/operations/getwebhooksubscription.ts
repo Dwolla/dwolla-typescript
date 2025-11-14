@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetWebhookSubscriptionRequest = {
   /**
@@ -13,15 +10,6 @@ export type GetWebhookSubscriptionRequest = {
    */
   id: string;
 };
-
-/** @internal */
-export const GetWebhookSubscriptionRequest$inboundSchema: z.ZodType<
-  GetWebhookSubscriptionRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
 
 /** @internal */
 export type GetWebhookSubscriptionRequest$Outbound = {
@@ -37,19 +25,6 @@ export const GetWebhookSubscriptionRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetWebhookSubscriptionRequest$ {
-  /** @deprecated use `GetWebhookSubscriptionRequest$inboundSchema` instead. */
-  export const inboundSchema = GetWebhookSubscriptionRequest$inboundSchema;
-  /** @deprecated use `GetWebhookSubscriptionRequest$outboundSchema` instead. */
-  export const outboundSchema = GetWebhookSubscriptionRequest$outboundSchema;
-  /** @deprecated use `GetWebhookSubscriptionRequest$Outbound` instead. */
-  export type Outbound = GetWebhookSubscriptionRequest$Outbound;
-}
-
 export function getWebhookSubscriptionRequestToJSON(
   getWebhookSubscriptionRequest: GetWebhookSubscriptionRequest,
 ): string {
@@ -57,15 +32,5 @@ export function getWebhookSubscriptionRequestToJSON(
     GetWebhookSubscriptionRequest$outboundSchema.parse(
       getWebhookSubscriptionRequest,
     ),
-  );
-}
-
-export function getWebhookSubscriptionRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetWebhookSubscriptionRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetWebhookSubscriptionRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetWebhookSubscriptionRequest' from JSON`,
   );
 }

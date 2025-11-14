@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListCustomerLabelsRequest = {
   /**
@@ -21,17 +18,6 @@ export type ListCustomerLabelsRequest = {
    */
   offset?: string | undefined;
 };
-
-/** @internal */
-export const ListCustomerLabelsRequest$inboundSchema: z.ZodType<
-  ListCustomerLabelsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  limit: z.string().optional(),
-  offset: z.string().optional(),
-});
 
 /** @internal */
 export type ListCustomerLabelsRequest$Outbound = {
@@ -51,33 +37,10 @@ export const ListCustomerLabelsRequest$outboundSchema: z.ZodType<
   offset: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListCustomerLabelsRequest$ {
-  /** @deprecated use `ListCustomerLabelsRequest$inboundSchema` instead. */
-  export const inboundSchema = ListCustomerLabelsRequest$inboundSchema;
-  /** @deprecated use `ListCustomerLabelsRequest$outboundSchema` instead. */
-  export const outboundSchema = ListCustomerLabelsRequest$outboundSchema;
-  /** @deprecated use `ListCustomerLabelsRequest$Outbound` instead. */
-  export type Outbound = ListCustomerLabelsRequest$Outbound;
-}
-
 export function listCustomerLabelsRequestToJSON(
   listCustomerLabelsRequest: ListCustomerLabelsRequest,
 ): string {
   return JSON.stringify(
     ListCustomerLabelsRequest$outboundSchema.parse(listCustomerLabelsRequest),
-  );
-}
-
-export function listCustomerLabelsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListCustomerLabelsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListCustomerLabelsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListCustomerLabelsRequest' from JSON`,
   );
 }

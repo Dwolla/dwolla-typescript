@@ -7,12 +7,7 @@ import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  HalLink,
-  HalLink$inboundSchema,
-  HalLink$Outbound,
-  HalLink$outboundSchema,
-} from "./hallink.js";
+import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 
 export type Event = {
   links?: { [k: string]: HalLink } | undefined;
@@ -36,49 +31,6 @@ export const Event$inboundSchema: z.ZodType<Event, z.ZodTypeDef, unknown> = z
       "_links": "links",
     });
   });
-
-/** @internal */
-export type Event$Outbound = {
-  _links?: { [k: string]: HalLink$Outbound } | undefined;
-  id?: string | undefined;
-  created?: string | undefined;
-  topic?: string | undefined;
-  resourceId?: string | undefined;
-};
-
-/** @internal */
-export const Event$outboundSchema: z.ZodType<
-  Event$Outbound,
-  z.ZodTypeDef,
-  Event
-> = z.object({
-  links: z.record(HalLink$outboundSchema).optional(),
-  id: z.string().optional(),
-  created: z.date().transform(v => v.toISOString()).optional(),
-  topic: z.string().optional(),
-  resourceId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Event$ {
-  /** @deprecated use `Event$inboundSchema` instead. */
-  export const inboundSchema = Event$inboundSchema;
-  /** @deprecated use `Event$outboundSchema` instead. */
-  export const outboundSchema = Event$outboundSchema;
-  /** @deprecated use `Event$Outbound` instead. */
-  export type Outbound = Event$Outbound;
-}
-
-export function eventToJSON(event: Event): string {
-  return JSON.stringify(Event$outboundSchema.parse(event));
-}
 
 export function eventFromJSON(
   jsonString: string,

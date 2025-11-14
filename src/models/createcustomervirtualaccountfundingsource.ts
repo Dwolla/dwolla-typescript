@@ -3,10 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
-import { Result as SafeParseResult } from "../types/fp.js";
-import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 /**
  * Type of funding source. Must be set to "virtual" for VAN creation.
@@ -50,61 +47,15 @@ export type CreateCustomerVirtualAccountFundingSource = {
 };
 
 /** @internal */
-export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
+export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
   Type,
 );
-
-/** @internal */
-export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
-  Type$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Type$ {
-  /** @deprecated use `Type$inboundSchema` instead. */
-  export const inboundSchema = Type$inboundSchema;
-  /** @deprecated use `Type$outboundSchema` instead. */
-  export const outboundSchema = Type$outboundSchema;
-}
-
-/** @internal */
-export const CreateCustomerVirtualAccountFundingSourceBankAccountType$inboundSchema:
-  z.ZodNativeEnum<
-    typeof CreateCustomerVirtualAccountFundingSourceBankAccountType
-  > = z.nativeEnum(CreateCustomerVirtualAccountFundingSourceBankAccountType);
 
 /** @internal */
 export const CreateCustomerVirtualAccountFundingSourceBankAccountType$outboundSchema:
   z.ZodNativeEnum<
     typeof CreateCustomerVirtualAccountFundingSourceBankAccountType
-  > = CreateCustomerVirtualAccountFundingSourceBankAccountType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerVirtualAccountFundingSourceBankAccountType$ {
-  /** @deprecated use `CreateCustomerVirtualAccountFundingSourceBankAccountType$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerVirtualAccountFundingSourceBankAccountType$inboundSchema;
-  /** @deprecated use `CreateCustomerVirtualAccountFundingSourceBankAccountType$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerVirtualAccountFundingSourceBankAccountType$outboundSchema;
-}
-
-/** @internal */
-export const CreateCustomerVirtualAccountFundingSource$inboundSchema: z.ZodType<
-  CreateCustomerVirtualAccountFundingSource,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.string(),
-  type: Type$inboundSchema,
-  bankAccountType:
-    CreateCustomerVirtualAccountFundingSourceBankAccountType$inboundSchema,
-});
+  > = z.nativeEnum(CreateCustomerVirtualAccountFundingSourceBankAccountType);
 
 /** @internal */
 export type CreateCustomerVirtualAccountFundingSource$Outbound = {
@@ -126,21 +77,6 @@ export const CreateCustomerVirtualAccountFundingSource$outboundSchema:
       CreateCustomerVirtualAccountFundingSourceBankAccountType$outboundSchema,
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerVirtualAccountFundingSource$ {
-  /** @deprecated use `CreateCustomerVirtualAccountFundingSource$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerVirtualAccountFundingSource$inboundSchema;
-  /** @deprecated use `CreateCustomerVirtualAccountFundingSource$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerVirtualAccountFundingSource$outboundSchema;
-  /** @deprecated use `CreateCustomerVirtualAccountFundingSource$Outbound` instead. */
-  export type Outbound = CreateCustomerVirtualAccountFundingSource$Outbound;
-}
-
 export function createCustomerVirtualAccountFundingSourceToJSON(
   createCustomerVirtualAccountFundingSource:
     CreateCustomerVirtualAccountFundingSource,
@@ -149,21 +85,5 @@ export function createCustomerVirtualAccountFundingSourceToJSON(
     CreateCustomerVirtualAccountFundingSource$outboundSchema.parse(
       createCustomerVirtualAccountFundingSource,
     ),
-  );
-}
-
-export function createCustomerVirtualAccountFundingSourceFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateCustomerVirtualAccountFundingSource,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateCustomerVirtualAccountFundingSource$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreateCustomerVirtualAccountFundingSource' from JSON`,
   );
 }

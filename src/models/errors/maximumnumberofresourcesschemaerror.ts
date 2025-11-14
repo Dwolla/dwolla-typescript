@@ -48,36 +48,3 @@ export const MaximumNumberOfResourcesSchemaError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type MaximumNumberOfResourcesSchemaError$Outbound = {
-  code: string;
-  message: string;
-};
-
-/** @internal */
-export const MaximumNumberOfResourcesSchemaError$outboundSchema: z.ZodType<
-  MaximumNumberOfResourcesSchemaError$Outbound,
-  z.ZodTypeDef,
-  MaximumNumberOfResourcesSchemaError
-> = z.instanceof(MaximumNumberOfResourcesSchemaError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string(),
-    message: z.string(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MaximumNumberOfResourcesSchemaError$ {
-  /** @deprecated use `MaximumNumberOfResourcesSchemaError$inboundSchema` instead. */
-  export const inboundSchema =
-    MaximumNumberOfResourcesSchemaError$inboundSchema;
-  /** @deprecated use `MaximumNumberOfResourcesSchemaError$outboundSchema` instead. */
-  export const outboundSchema =
-    MaximumNumberOfResourcesSchemaError$outboundSchema;
-  /** @deprecated use `MaximumNumberOfResourcesSchemaError$Outbound` instead. */
-  export type Outbound = MaximumNumberOfResourcesSchemaError$Outbound;
-}

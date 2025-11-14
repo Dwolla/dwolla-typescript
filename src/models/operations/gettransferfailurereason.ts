@@ -27,15 +27,6 @@ export type GetTransferFailureReasonResponse = {
 };
 
 /** @internal */
-export const GetTransferFailureReasonRequest$inboundSchema: z.ZodType<
-  GetTransferFailureReasonRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
-
-/** @internal */
 export type GetTransferFailureReasonRequest$Outbound = {
   id: string;
 };
@@ -49,19 +40,6 @@ export const GetTransferFailureReasonRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetTransferFailureReasonRequest$ {
-  /** @deprecated use `GetTransferFailureReasonRequest$inboundSchema` instead. */
-  export const inboundSchema = GetTransferFailureReasonRequest$inboundSchema;
-  /** @deprecated use `GetTransferFailureReasonRequest$outboundSchema` instead. */
-  export const outboundSchema = GetTransferFailureReasonRequest$outboundSchema;
-  /** @deprecated use `GetTransferFailureReasonRequest$Outbound` instead. */
-  export type Outbound = GetTransferFailureReasonRequest$Outbound;
-}
-
 export function getTransferFailureReasonRequestToJSON(
   getTransferFailureReasonRequest: GetTransferFailureReasonRequest,
 ): string {
@@ -69,16 +47,6 @@ export function getTransferFailureReasonRequestToJSON(
     GetTransferFailureReasonRequest$outboundSchema.parse(
       getTransferFailureReasonRequest,
     ),
-  );
-}
-
-export function getTransferFailureReasonRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetTransferFailureReasonRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetTransferFailureReasonRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetTransferFailureReasonRequest' from JSON`,
   );
 }
 
@@ -97,53 +65,6 @@ export const GetTransferFailureReasonResponse$inboundSchema: z.ZodType<
     "_links": "links",
   });
 });
-
-/** @internal */
-export type GetTransferFailureReasonResponse$Outbound = {
-  _links?: { [k: string]: models.HalLink$Outbound } | undefined;
-  code?: string | undefined;
-  description?: string | undefined;
-  explanation?: string | undefined;
-};
-
-/** @internal */
-export const GetTransferFailureReasonResponse$outboundSchema: z.ZodType<
-  GetTransferFailureReasonResponse$Outbound,
-  z.ZodTypeDef,
-  GetTransferFailureReasonResponse
-> = z.object({
-  links: z.record(models.HalLink$outboundSchema).optional(),
-  code: z.string().optional(),
-  description: z.string().optional(),
-  explanation: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetTransferFailureReasonResponse$ {
-  /** @deprecated use `GetTransferFailureReasonResponse$inboundSchema` instead. */
-  export const inboundSchema = GetTransferFailureReasonResponse$inboundSchema;
-  /** @deprecated use `GetTransferFailureReasonResponse$outboundSchema` instead. */
-  export const outboundSchema = GetTransferFailureReasonResponse$outboundSchema;
-  /** @deprecated use `GetTransferFailureReasonResponse$Outbound` instead. */
-  export type Outbound = GetTransferFailureReasonResponse$Outbound;
-}
-
-export function getTransferFailureReasonResponseToJSON(
-  getTransferFailureReasonResponse: GetTransferFailureReasonResponse,
-): string {
-  return JSON.stringify(
-    GetTransferFailureReasonResponse$outboundSchema.parse(
-      getTransferFailureReasonResponse,
-    ),
-  );
-}
 
 export function getTransferFailureReasonResponseFromJSON(
   jsonString: string,

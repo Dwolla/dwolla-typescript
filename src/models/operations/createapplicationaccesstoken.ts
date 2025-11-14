@@ -60,36 +60,8 @@ export type CreateApplicationAccessTokenResponse = {
 };
 
 /** @internal */
-export const GrantType$inboundSchema: z.ZodNativeEnum<typeof GrantType> = z
+export const GrantType$outboundSchema: z.ZodNativeEnum<typeof GrantType> = z
   .nativeEnum(GrantType);
-
-/** @internal */
-export const GrantType$outboundSchema: z.ZodNativeEnum<typeof GrantType> =
-  GrantType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GrantType$ {
-  /** @deprecated use `GrantType$inboundSchema` instead. */
-  export const inboundSchema = GrantType$inboundSchema;
-  /** @deprecated use `GrantType$outboundSchema` instead. */
-  export const outboundSchema = GrantType$outboundSchema;
-}
-
-/** @internal */
-export const CreateApplicationAccessTokenRequest$inboundSchema: z.ZodType<
-  CreateApplicationAccessTokenRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  grant_type: GrantType$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "grant_type": "grantType",
-  });
-});
 
 /** @internal */
 export type CreateApplicationAccessTokenRequest$Outbound = {
@@ -109,21 +81,6 @@ export const CreateApplicationAccessTokenRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateApplicationAccessTokenRequest$ {
-  /** @deprecated use `CreateApplicationAccessTokenRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateApplicationAccessTokenRequest$inboundSchema;
-  /** @deprecated use `CreateApplicationAccessTokenRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateApplicationAccessTokenRequest$outboundSchema;
-  /** @deprecated use `CreateApplicationAccessTokenRequest$Outbound` instead. */
-  export type Outbound = CreateApplicationAccessTokenRequest$Outbound;
-}
-
 export function createApplicationAccessTokenRequestToJSON(
   createApplicationAccessTokenRequest: CreateApplicationAccessTokenRequest,
 ): string {
@@ -134,35 +91,9 @@ export function createApplicationAccessTokenRequestToJSON(
   );
 }
 
-export function createApplicationAccessTokenRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateApplicationAccessTokenRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateApplicationAccessTokenRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateApplicationAccessTokenRequest' from JSON`,
-  );
-}
-
 /** @internal */
 export const TokenType$inboundSchema: z.ZodNativeEnum<typeof TokenType> = z
   .nativeEnum(TokenType);
-
-/** @internal */
-export const TokenType$outboundSchema: z.ZodNativeEnum<typeof TokenType> =
-  TokenType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TokenType$ {
-  /** @deprecated use `TokenType$inboundSchema` instead. */
-  export const inboundSchema = TokenType$inboundSchema;
-  /** @deprecated use `TokenType$outboundSchema` instead. */
-  export const outboundSchema = TokenType$outboundSchema;
-}
 
 /** @internal */
 export const CreateApplicationAccessTokenResponse$inboundSchema: z.ZodType<
@@ -180,55 +111,6 @@ export const CreateApplicationAccessTokenResponse$inboundSchema: z.ZodType<
     "expires_in": "expiresIn",
   });
 });
-
-/** @internal */
-export type CreateApplicationAccessTokenResponse$Outbound = {
-  access_token: string;
-  token_type: string;
-  expires_in: number;
-};
-
-/** @internal */
-export const CreateApplicationAccessTokenResponse$outboundSchema: z.ZodType<
-  CreateApplicationAccessTokenResponse$Outbound,
-  z.ZodTypeDef,
-  CreateApplicationAccessTokenResponse
-> = z.object({
-  accessToken: z.string(),
-  tokenType: TokenType$outboundSchema,
-  expiresIn: z.number().int(),
-}).transform((v) => {
-  return remap$(v, {
-    accessToken: "access_token",
-    tokenType: "token_type",
-    expiresIn: "expires_in",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateApplicationAccessTokenResponse$ {
-  /** @deprecated use `CreateApplicationAccessTokenResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateApplicationAccessTokenResponse$inboundSchema;
-  /** @deprecated use `CreateApplicationAccessTokenResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateApplicationAccessTokenResponse$outboundSchema;
-  /** @deprecated use `CreateApplicationAccessTokenResponse$Outbound` instead. */
-  export type Outbound = CreateApplicationAccessTokenResponse$Outbound;
-}
-
-export function createApplicationAccessTokenResponseToJSON(
-  createApplicationAccessTokenResponse: CreateApplicationAccessTokenResponse,
-): string {
-  return JSON.stringify(
-    CreateApplicationAccessTokenResponse$outboundSchema.parse(
-      createApplicationAccessTokenResponse,
-    ),
-  );
-}
 
 export function createApplicationAccessTokenResponseFromJSON(
   jsonString: string,

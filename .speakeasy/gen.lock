@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 53ac026a-ff11-435d-914b-31df5268afb0
 management:
-  docChecksum: ed39fde0555f12436d6063488a897626
+  docChecksum: 12a138e706b75a1316f28c3a20b7b239
   docVersion: "2.0"
-  speakeasyVersion: 1.645.2
-  generationVersion: 2.735.1
-  releaseVersion: 0.0.1-beta.11
-  configChecksum: b0e5cf9540d6844f5b51f62be47fd740
+  speakeasyVersion: 1.656.3
+  generationVersion: 2.753.7
+  releaseVersion: 0.0.1-beta.12
+  configChecksum: 1e283a782923099d7f97ece958a99875
   repoURL: https://github.com/Dwolla/dwolla-typescript.git
   installationURL: https://github.com/Dwolla/dwolla-typescript
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.24.2
+    core: 3.26.7
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.1
     enumUnions: 0.1.0
@@ -2629,3 +2629,4 @@ examples:
           application/vnd.dwolla.v1.hal+json: {"code": "forbidden", "message": "Not authorized to simulate transfer processing."}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Typescript SDK Changes Detected:\n* `dwolla.customers.fundingSources.create()`: \n  *  `request.createCustomerFundingSource.[createCustomerBankFundingSourceWithAccountNumbers].verified` **Changed**\n* `dwolla.fundingSources.balance.get()`:  `response` **Changed**\n"

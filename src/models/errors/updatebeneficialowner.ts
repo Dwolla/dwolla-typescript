@@ -91,41 +91,6 @@ export const UpdateBeneficialOwnerNotFoundDwollaV1HalJSONError$inboundSchema:
     });
 
 /** @internal */
-export type UpdateBeneficialOwnerNotFoundDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const UpdateBeneficialOwnerNotFoundDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    UpdateBeneficialOwnerNotFoundDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    UpdateBeneficialOwnerNotFoundDwollaV1HalJSONError
-  > = z.instanceof(UpdateBeneficialOwnerNotFoundDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateBeneficialOwnerNotFoundDwollaV1HalJSONError$ {
-  /** @deprecated use `UpdateBeneficialOwnerNotFoundDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateBeneficialOwnerNotFoundDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `UpdateBeneficialOwnerNotFoundDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateBeneficialOwnerNotFoundDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `UpdateBeneficialOwnerNotFoundDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    UpdateBeneficialOwnerNotFoundDwollaV1HalJSONError$Outbound;
-}
-
-/** @internal */
 export const UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError$inboundSchema:
   z.ZodType<
     UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError,
@@ -145,38 +110,3 @@ export const UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError$inboundSchema:
         body: v.body$,
       });
     });
-
-/** @internal */
-export type UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError
-  > = z.instanceof(UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError$ {
-  /** @deprecated use `UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError$Outbound;
-}

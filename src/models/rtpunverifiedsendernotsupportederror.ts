@@ -28,43 +28,6 @@ export const RtpUnverifiedSenderNotSupportedErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type RtpUnverifiedSenderNotSupportedErrorLinks$Outbound = {};
-
-/** @internal */
-export const RtpUnverifiedSenderNotSupportedErrorLinks$outboundSchema:
-  z.ZodType<
-    RtpUnverifiedSenderNotSupportedErrorLinks$Outbound,
-    z.ZodTypeDef,
-    RtpUnverifiedSenderNotSupportedErrorLinks
-  > = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RtpUnverifiedSenderNotSupportedErrorLinks$ {
-  /** @deprecated use `RtpUnverifiedSenderNotSupportedErrorLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    RtpUnverifiedSenderNotSupportedErrorLinks$inboundSchema;
-  /** @deprecated use `RtpUnverifiedSenderNotSupportedErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    RtpUnverifiedSenderNotSupportedErrorLinks$outboundSchema;
-  /** @deprecated use `RtpUnverifiedSenderNotSupportedErrorLinks$Outbound` instead. */
-  export type Outbound = RtpUnverifiedSenderNotSupportedErrorLinks$Outbound;
-}
-
-export function rtpUnverifiedSenderNotSupportedErrorLinksToJSON(
-  rtpUnverifiedSenderNotSupportedErrorLinks:
-    RtpUnverifiedSenderNotSupportedErrorLinks,
-): string {
-  return JSON.stringify(
-    RtpUnverifiedSenderNotSupportedErrorLinks$outboundSchema.parse(
-      rtpUnverifiedSenderNotSupportedErrorLinks,
-    ),
-  );
-}
-
 export function rtpUnverifiedSenderNotSupportedErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -98,59 +61,6 @@ export const RtpUnverifiedSenderNotSupportedErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type RtpUnverifiedSenderNotSupportedErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: RtpUnverifiedSenderNotSupportedErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const RtpUnverifiedSenderNotSupportedErrorError$outboundSchema:
-  z.ZodType<
-    RtpUnverifiedSenderNotSupportedErrorError$Outbound,
-    z.ZodTypeDef,
-    RtpUnverifiedSenderNotSupportedErrorError
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    path: z.string().optional(),
-    links: z.lazy(() =>
-      RtpUnverifiedSenderNotSupportedErrorLinks$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      links: "_links",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RtpUnverifiedSenderNotSupportedErrorError$ {
-  /** @deprecated use `RtpUnverifiedSenderNotSupportedErrorError$inboundSchema` instead. */
-  export const inboundSchema =
-    RtpUnverifiedSenderNotSupportedErrorError$inboundSchema;
-  /** @deprecated use `RtpUnverifiedSenderNotSupportedErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    RtpUnverifiedSenderNotSupportedErrorError$outboundSchema;
-  /** @deprecated use `RtpUnverifiedSenderNotSupportedErrorError$Outbound` instead. */
-  export type Outbound = RtpUnverifiedSenderNotSupportedErrorError$Outbound;
-}
-
-export function rtpUnverifiedSenderNotSupportedErrorErrorToJSON(
-  rtpUnverifiedSenderNotSupportedErrorError:
-    RtpUnverifiedSenderNotSupportedErrorError,
-): string {
-  return JSON.stringify(
-    RtpUnverifiedSenderNotSupportedErrorError$outboundSchema.parse(
-      rtpUnverifiedSenderNotSupportedErrorError,
-    ),
-  );
-}
-
 export function rtpUnverifiedSenderNotSupportedErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -178,51 +88,6 @@ export const RtpUnverifiedSenderNotSupportedErrorEmbedded$inboundSchema:
       z.lazy(() => RtpUnverifiedSenderNotSupportedErrorError$inboundSchema),
     ).optional(),
   });
-
-/** @internal */
-export type RtpUnverifiedSenderNotSupportedErrorEmbedded$Outbound = {
-  errors?:
-    | Array<RtpUnverifiedSenderNotSupportedErrorError$Outbound>
-    | undefined;
-};
-
-/** @internal */
-export const RtpUnverifiedSenderNotSupportedErrorEmbedded$outboundSchema:
-  z.ZodType<
-    RtpUnverifiedSenderNotSupportedErrorEmbedded$Outbound,
-    z.ZodTypeDef,
-    RtpUnverifiedSenderNotSupportedErrorEmbedded
-  > = z.object({
-    errors: z.array(
-      z.lazy(() => RtpUnverifiedSenderNotSupportedErrorError$outboundSchema),
-    ).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RtpUnverifiedSenderNotSupportedErrorEmbedded$ {
-  /** @deprecated use `RtpUnverifiedSenderNotSupportedErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    RtpUnverifiedSenderNotSupportedErrorEmbedded$inboundSchema;
-  /** @deprecated use `RtpUnverifiedSenderNotSupportedErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    RtpUnverifiedSenderNotSupportedErrorEmbedded$outboundSchema;
-  /** @deprecated use `RtpUnverifiedSenderNotSupportedErrorEmbedded$Outbound` instead. */
-  export type Outbound = RtpUnverifiedSenderNotSupportedErrorEmbedded$Outbound;
-}
-
-export function rtpUnverifiedSenderNotSupportedErrorEmbeddedToJSON(
-  rtpUnverifiedSenderNotSupportedErrorEmbedded:
-    RtpUnverifiedSenderNotSupportedErrorEmbedded,
-): string {
-  return JSON.stringify(
-    RtpUnverifiedSenderNotSupportedErrorEmbedded$outboundSchema.parse(
-      rtpUnverifiedSenderNotSupportedErrorEmbedded,
-    ),
-  );
-}
 
 export function rtpUnverifiedSenderNotSupportedErrorEmbeddedFromJSON(
   jsonString: string,

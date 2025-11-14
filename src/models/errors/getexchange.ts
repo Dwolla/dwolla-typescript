@@ -86,39 +86,6 @@ export const GetExchangeNotFoundDwollaV1HalJSONError$inboundSchema: z.ZodType<
   });
 
 /** @internal */
-export type GetExchangeNotFoundDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const GetExchangeNotFoundDwollaV1HalJSONError$outboundSchema: z.ZodType<
-  GetExchangeNotFoundDwollaV1HalJSONError$Outbound,
-  z.ZodTypeDef,
-  GetExchangeNotFoundDwollaV1HalJSONError
-> = z.instanceof(GetExchangeNotFoundDwollaV1HalJSONError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetExchangeNotFoundDwollaV1HalJSONError$ {
-  /** @deprecated use `GetExchangeNotFoundDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    GetExchangeNotFoundDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `GetExchangeNotFoundDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    GetExchangeNotFoundDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `GetExchangeNotFoundDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound = GetExchangeNotFoundDwollaV1HalJSONError$Outbound;
-}
-
-/** @internal */
 export const GetExchangeUnauthorizedDwollaV1HalJSONError$inboundSchema:
   z.ZodType<
     GetExchangeUnauthorizedDwollaV1HalJSONError,
@@ -138,37 +105,3 @@ export const GetExchangeUnauthorizedDwollaV1HalJSONError$inboundSchema:
         body: v.body$,
       });
     });
-
-/** @internal */
-export type GetExchangeUnauthorizedDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const GetExchangeUnauthorizedDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    GetExchangeUnauthorizedDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    GetExchangeUnauthorizedDwollaV1HalJSONError
-  > = z.instanceof(GetExchangeUnauthorizedDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetExchangeUnauthorizedDwollaV1HalJSONError$ {
-  /** @deprecated use `GetExchangeUnauthorizedDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    GetExchangeUnauthorizedDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `GetExchangeUnauthorizedDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    GetExchangeUnauthorizedDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `GetExchangeUnauthorizedDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound = GetExchangeUnauthorizedDwollaV1HalJSONError$Outbound;
-}
