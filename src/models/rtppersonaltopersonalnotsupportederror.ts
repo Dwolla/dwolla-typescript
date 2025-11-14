@@ -29,43 +29,6 @@ export const RtpPersonalToPersonalNotSupportedErrorLinks$inboundSchema:
     unknown
   > = z.object({});
 
-/** @internal */
-export type RtpPersonalToPersonalNotSupportedErrorLinks$Outbound = {};
-
-/** @internal */
-export const RtpPersonalToPersonalNotSupportedErrorLinks$outboundSchema:
-  z.ZodType<
-    RtpPersonalToPersonalNotSupportedErrorLinks$Outbound,
-    z.ZodTypeDef,
-    RtpPersonalToPersonalNotSupportedErrorLinks
-  > = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RtpPersonalToPersonalNotSupportedErrorLinks$ {
-  /** @deprecated use `RtpPersonalToPersonalNotSupportedErrorLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    RtpPersonalToPersonalNotSupportedErrorLinks$inboundSchema;
-  /** @deprecated use `RtpPersonalToPersonalNotSupportedErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    RtpPersonalToPersonalNotSupportedErrorLinks$outboundSchema;
-  /** @deprecated use `RtpPersonalToPersonalNotSupportedErrorLinks$Outbound` instead. */
-  export type Outbound = RtpPersonalToPersonalNotSupportedErrorLinks$Outbound;
-}
-
-export function rtpPersonalToPersonalNotSupportedErrorLinksToJSON(
-  rtpPersonalToPersonalNotSupportedErrorLinks:
-    RtpPersonalToPersonalNotSupportedErrorLinks,
-): string {
-  return JSON.stringify(
-    RtpPersonalToPersonalNotSupportedErrorLinks$outboundSchema.parse(
-      rtpPersonalToPersonalNotSupportedErrorLinks,
-    ),
-  );
-}
-
 export function rtpPersonalToPersonalNotSupportedErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -101,59 +64,6 @@ export const RtpPersonalToPersonalNotSupportedErrorError$inboundSchema:
     });
   });
 
-/** @internal */
-export type RtpPersonalToPersonalNotSupportedErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: RtpPersonalToPersonalNotSupportedErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const RtpPersonalToPersonalNotSupportedErrorError$outboundSchema:
-  z.ZodType<
-    RtpPersonalToPersonalNotSupportedErrorError$Outbound,
-    z.ZodTypeDef,
-    RtpPersonalToPersonalNotSupportedErrorError
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    path: z.string().optional(),
-    links: z.lazy(() =>
-      RtpPersonalToPersonalNotSupportedErrorLinks$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      links: "_links",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RtpPersonalToPersonalNotSupportedErrorError$ {
-  /** @deprecated use `RtpPersonalToPersonalNotSupportedErrorError$inboundSchema` instead. */
-  export const inboundSchema =
-    RtpPersonalToPersonalNotSupportedErrorError$inboundSchema;
-  /** @deprecated use `RtpPersonalToPersonalNotSupportedErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    RtpPersonalToPersonalNotSupportedErrorError$outboundSchema;
-  /** @deprecated use `RtpPersonalToPersonalNotSupportedErrorError$Outbound` instead. */
-  export type Outbound = RtpPersonalToPersonalNotSupportedErrorError$Outbound;
-}
-
-export function rtpPersonalToPersonalNotSupportedErrorErrorToJSON(
-  rtpPersonalToPersonalNotSupportedErrorError:
-    RtpPersonalToPersonalNotSupportedErrorError,
-): string {
-  return JSON.stringify(
-    RtpPersonalToPersonalNotSupportedErrorError$outboundSchema.parse(
-      rtpPersonalToPersonalNotSupportedErrorError,
-    ),
-  );
-}
-
 export function rtpPersonalToPersonalNotSupportedErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -181,52 +91,6 @@ export const RtpPersonalToPersonalNotSupportedErrorEmbedded$inboundSchema:
       z.lazy(() => RtpPersonalToPersonalNotSupportedErrorError$inboundSchema),
     ).optional(),
   });
-
-/** @internal */
-export type RtpPersonalToPersonalNotSupportedErrorEmbedded$Outbound = {
-  errors?:
-    | Array<RtpPersonalToPersonalNotSupportedErrorError$Outbound>
-    | undefined;
-};
-
-/** @internal */
-export const RtpPersonalToPersonalNotSupportedErrorEmbedded$outboundSchema:
-  z.ZodType<
-    RtpPersonalToPersonalNotSupportedErrorEmbedded$Outbound,
-    z.ZodTypeDef,
-    RtpPersonalToPersonalNotSupportedErrorEmbedded
-  > = z.object({
-    errors: z.array(
-      z.lazy(() => RtpPersonalToPersonalNotSupportedErrorError$outboundSchema),
-    ).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RtpPersonalToPersonalNotSupportedErrorEmbedded$ {
-  /** @deprecated use `RtpPersonalToPersonalNotSupportedErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    RtpPersonalToPersonalNotSupportedErrorEmbedded$inboundSchema;
-  /** @deprecated use `RtpPersonalToPersonalNotSupportedErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    RtpPersonalToPersonalNotSupportedErrorEmbedded$outboundSchema;
-  /** @deprecated use `RtpPersonalToPersonalNotSupportedErrorEmbedded$Outbound` instead. */
-  export type Outbound =
-    RtpPersonalToPersonalNotSupportedErrorEmbedded$Outbound;
-}
-
-export function rtpPersonalToPersonalNotSupportedErrorEmbeddedToJSON(
-  rtpPersonalToPersonalNotSupportedErrorEmbedded:
-    RtpPersonalToPersonalNotSupportedErrorEmbedded,
-): string {
-  return JSON.stringify(
-    RtpPersonalToPersonalNotSupportedErrorEmbedded$outboundSchema.parse(
-      rtpPersonalToPersonalNotSupportedErrorEmbedded,
-    ),
-  );
-}
 
 export function rtpPersonalToPersonalNotSupportedErrorEmbeddedFromJSON(
   jsonString: string,

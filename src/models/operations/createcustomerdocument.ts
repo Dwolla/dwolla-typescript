@@ -38,21 +38,6 @@ export type CreateCustomerDocumentResponse = {
 };
 
 /** @internal */
-export const CreateCustomerDocumentFile$inboundSchema: z.ZodType<
-  CreateCustomerDocumentFile,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  fileName: z.string(),
-  content: z.union([
-    z.instanceof(ReadableStream<Uint8Array>),
-    z.instanceof(Blob),
-    z.instanceof(ArrayBuffer),
-    z.instanceof(Uint8Array),
-  ]),
-});
-
-/** @internal */
 export type CreateCustomerDocumentFile$Outbound = {
   fileName: string;
   content: ReadableStream<Uint8Array> | Blob | ArrayBuffer | Uint8Array;
@@ -73,19 +58,6 @@ export const CreateCustomerDocumentFile$outboundSchema: z.ZodType<
   ]),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerDocumentFile$ {
-  /** @deprecated use `CreateCustomerDocumentFile$inboundSchema` instead. */
-  export const inboundSchema = CreateCustomerDocumentFile$inboundSchema;
-  /** @deprecated use `CreateCustomerDocumentFile$outboundSchema` instead. */
-  export const outboundSchema = CreateCustomerDocumentFile$outboundSchema;
-  /** @deprecated use `CreateCustomerDocumentFile$Outbound` instead. */
-  export type Outbound = CreateCustomerDocumentFile$Outbound;
-}
-
 export function createCustomerDocumentFileToJSON(
   createCustomerDocumentFile: CreateCustomerDocumentFile,
 ): string {
@@ -93,26 +65,6 @@ export function createCustomerDocumentFileToJSON(
     CreateCustomerDocumentFile$outboundSchema.parse(createCustomerDocumentFile),
   );
 }
-
-export function createCustomerDocumentFileFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateCustomerDocumentFile, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateCustomerDocumentFile$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateCustomerDocumentFile' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateCustomerDocumentRequestBody$inboundSchema: z.ZodType<
-  CreateCustomerDocumentRequestBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  documentType: z.string().optional(),
-  file: z.lazy(() => CreateCustomerDocumentFile$inboundSchema).optional(),
-});
 
 /** @internal */
 export type CreateCustomerDocumentRequestBody$Outbound = {
@@ -132,20 +84,6 @@ export const CreateCustomerDocumentRequestBody$outboundSchema: z.ZodType<
   ).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerDocumentRequestBody$ {
-  /** @deprecated use `CreateCustomerDocumentRequestBody$inboundSchema` instead. */
-  export const inboundSchema = CreateCustomerDocumentRequestBody$inboundSchema;
-  /** @deprecated use `CreateCustomerDocumentRequestBody$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerDocumentRequestBody$outboundSchema;
-  /** @deprecated use `CreateCustomerDocumentRequestBody$Outbound` instead. */
-  export type Outbound = CreateCustomerDocumentRequestBody$Outbound;
-}
-
 export function createCustomerDocumentRequestBodyToJSON(
   createCustomerDocumentRequestBody: CreateCustomerDocumentRequestBody,
 ): string {
@@ -155,30 +93,6 @@ export function createCustomerDocumentRequestBodyToJSON(
     ),
   );
 }
-
-export function createCustomerDocumentRequestBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateCustomerDocumentRequestBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateCustomerDocumentRequestBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateCustomerDocumentRequestBody' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateCustomerDocumentRequest$inboundSchema: z.ZodType<
-  CreateCustomerDocumentRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  RequestBody: z.lazy(() => CreateCustomerDocumentRequestBody$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "RequestBody": "requestBody",
-  });
-});
 
 /** @internal */
 export type CreateCustomerDocumentRequest$Outbound = {
@@ -200,19 +114,6 @@ export const CreateCustomerDocumentRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerDocumentRequest$ {
-  /** @deprecated use `CreateCustomerDocumentRequest$inboundSchema` instead. */
-  export const inboundSchema = CreateCustomerDocumentRequest$inboundSchema;
-  /** @deprecated use `CreateCustomerDocumentRequest$outboundSchema` instead. */
-  export const outboundSchema = CreateCustomerDocumentRequest$outboundSchema;
-  /** @deprecated use `CreateCustomerDocumentRequest$Outbound` instead. */
-  export type Outbound = CreateCustomerDocumentRequest$Outbound;
-}
-
 export function createCustomerDocumentRequestToJSON(
   createCustomerDocumentRequest: CreateCustomerDocumentRequest,
 ): string {
@@ -220,16 +121,6 @@ export function createCustomerDocumentRequestToJSON(
     CreateCustomerDocumentRequest$outboundSchema.parse(
       createCustomerDocumentRequest,
     ),
-  );
-}
-
-export function createCustomerDocumentRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateCustomerDocumentRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateCustomerDocumentRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateCustomerDocumentRequest' from JSON`,
   );
 }
 
@@ -245,47 +136,6 @@ export const CreateCustomerDocumentResponse$inboundSchema: z.ZodType<
     "Headers": "headers",
   });
 });
-
-/** @internal */
-export type CreateCustomerDocumentResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-};
-
-/** @internal */
-export const CreateCustomerDocumentResponse$outboundSchema: z.ZodType<
-  CreateCustomerDocumentResponse$Outbound,
-  z.ZodTypeDef,
-  CreateCustomerDocumentResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerDocumentResponse$ {
-  /** @deprecated use `CreateCustomerDocumentResponse$inboundSchema` instead. */
-  export const inboundSchema = CreateCustomerDocumentResponse$inboundSchema;
-  /** @deprecated use `CreateCustomerDocumentResponse$outboundSchema` instead. */
-  export const outboundSchema = CreateCustomerDocumentResponse$outboundSchema;
-  /** @deprecated use `CreateCustomerDocumentResponse$Outbound` instead. */
-  export type Outbound = CreateCustomerDocumentResponse$Outbound;
-}
-
-export function createCustomerDocumentResponseToJSON(
-  createCustomerDocumentResponse: CreateCustomerDocumentResponse,
-): string {
-  return JSON.stringify(
-    CreateCustomerDocumentResponse$outboundSchema.parse(
-      createCustomerDocumentResponse,
-    ),
-  );
-}
 
 export function createCustomerDocumentResponseFromJSON(
   jsonString: string,

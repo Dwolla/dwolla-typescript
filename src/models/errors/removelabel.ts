@@ -54,34 +54,3 @@ export const RemoveLabelDwollaV1HalJSONError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type RemoveLabelDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const RemoveLabelDwollaV1HalJSONError$outboundSchema: z.ZodType<
-  RemoveLabelDwollaV1HalJSONError$Outbound,
-  z.ZodTypeDef,
-  RemoveLabelDwollaV1HalJSONError
-> = z.instanceof(RemoveLabelDwollaV1HalJSONError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RemoveLabelDwollaV1HalJSONError$ {
-  /** @deprecated use `RemoveLabelDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema = RemoveLabelDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `RemoveLabelDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema = RemoveLabelDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `RemoveLabelDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound = RemoveLabelDwollaV1HalJSONError$Outbound;
-}

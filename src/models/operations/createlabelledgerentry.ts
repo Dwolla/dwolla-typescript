@@ -42,16 +42,6 @@ export type CreateLabelLedgerEntryResponse = {
 };
 
 /** @internal */
-export const CreateLabelLedgerEntryAmount$inboundSchema: z.ZodType<
-  CreateLabelLedgerEntryAmount,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  value: z.string(),
-  currency: z.string(),
-});
-
-/** @internal */
 export type CreateLabelLedgerEntryAmount$Outbound = {
   value: string;
   currency: string;
@@ -67,19 +57,6 @@ export const CreateLabelLedgerEntryAmount$outboundSchema: z.ZodType<
   currency: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateLabelLedgerEntryAmount$ {
-  /** @deprecated use `CreateLabelLedgerEntryAmount$inboundSchema` instead. */
-  export const inboundSchema = CreateLabelLedgerEntryAmount$inboundSchema;
-  /** @deprecated use `CreateLabelLedgerEntryAmount$outboundSchema` instead. */
-  export const outboundSchema = CreateLabelLedgerEntryAmount$outboundSchema;
-  /** @deprecated use `CreateLabelLedgerEntryAmount$Outbound` instead. */
-  export type Outbound = CreateLabelLedgerEntryAmount$Outbound;
-}
-
 export function createLabelLedgerEntryAmountToJSON(
   createLabelLedgerEntryAmount: CreateLabelLedgerEntryAmount,
 ): string {
@@ -89,25 +66,6 @@ export function createLabelLedgerEntryAmountToJSON(
     ),
   );
 }
-
-export function createLabelLedgerEntryAmountFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateLabelLedgerEntryAmount, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateLabelLedgerEntryAmount$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateLabelLedgerEntryAmount' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateLabelLedgerEntryRequestBody$inboundSchema: z.ZodType<
-  CreateLabelLedgerEntryRequestBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  amount: z.lazy(() => CreateLabelLedgerEntryAmount$inboundSchema),
-});
 
 /** @internal */
 export type CreateLabelLedgerEntryRequestBody$Outbound = {
@@ -123,20 +81,6 @@ export const CreateLabelLedgerEntryRequestBody$outboundSchema: z.ZodType<
   amount: z.lazy(() => CreateLabelLedgerEntryAmount$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateLabelLedgerEntryRequestBody$ {
-  /** @deprecated use `CreateLabelLedgerEntryRequestBody$inboundSchema` instead. */
-  export const inboundSchema = CreateLabelLedgerEntryRequestBody$inboundSchema;
-  /** @deprecated use `CreateLabelLedgerEntryRequestBody$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateLabelLedgerEntryRequestBody$outboundSchema;
-  /** @deprecated use `CreateLabelLedgerEntryRequestBody$Outbound` instead. */
-  export type Outbound = CreateLabelLedgerEntryRequestBody$Outbound;
-}
-
 export function createLabelLedgerEntryRequestBodyToJSON(
   createLabelLedgerEntryRequestBody: CreateLabelLedgerEntryRequestBody,
 ): string {
@@ -146,30 +90,6 @@ export function createLabelLedgerEntryRequestBodyToJSON(
     ),
   );
 }
-
-export function createLabelLedgerEntryRequestBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateLabelLedgerEntryRequestBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateLabelLedgerEntryRequestBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateLabelLedgerEntryRequestBody' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateLabelLedgerEntryRequest$inboundSchema: z.ZodType<
-  CreateLabelLedgerEntryRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  RequestBody: z.lazy(() => CreateLabelLedgerEntryRequestBody$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "RequestBody": "requestBody",
-  });
-});
 
 /** @internal */
 export type CreateLabelLedgerEntryRequest$Outbound = {
@@ -191,19 +111,6 @@ export const CreateLabelLedgerEntryRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateLabelLedgerEntryRequest$ {
-  /** @deprecated use `CreateLabelLedgerEntryRequest$inboundSchema` instead. */
-  export const inboundSchema = CreateLabelLedgerEntryRequest$inboundSchema;
-  /** @deprecated use `CreateLabelLedgerEntryRequest$outboundSchema` instead. */
-  export const outboundSchema = CreateLabelLedgerEntryRequest$outboundSchema;
-  /** @deprecated use `CreateLabelLedgerEntryRequest$Outbound` instead. */
-  export type Outbound = CreateLabelLedgerEntryRequest$Outbound;
-}
-
 export function createLabelLedgerEntryRequestToJSON(
   createLabelLedgerEntryRequest: CreateLabelLedgerEntryRequest,
 ): string {
@@ -211,16 +118,6 @@ export function createLabelLedgerEntryRequestToJSON(
     CreateLabelLedgerEntryRequest$outboundSchema.parse(
       createLabelLedgerEntryRequest,
     ),
-  );
-}
-
-export function createLabelLedgerEntryRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateLabelLedgerEntryRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateLabelLedgerEntryRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateLabelLedgerEntryRequest' from JSON`,
   );
 }
 
@@ -236,47 +133,6 @@ export const CreateLabelLedgerEntryResponse$inboundSchema: z.ZodType<
     "Headers": "headers",
   });
 });
-
-/** @internal */
-export type CreateLabelLedgerEntryResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-};
-
-/** @internal */
-export const CreateLabelLedgerEntryResponse$outboundSchema: z.ZodType<
-  CreateLabelLedgerEntryResponse$Outbound,
-  z.ZodTypeDef,
-  CreateLabelLedgerEntryResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateLabelLedgerEntryResponse$ {
-  /** @deprecated use `CreateLabelLedgerEntryResponse$inboundSchema` instead. */
-  export const inboundSchema = CreateLabelLedgerEntryResponse$inboundSchema;
-  /** @deprecated use `CreateLabelLedgerEntryResponse$outboundSchema` instead. */
-  export const outboundSchema = CreateLabelLedgerEntryResponse$outboundSchema;
-  /** @deprecated use `CreateLabelLedgerEntryResponse$Outbound` instead. */
-  export type Outbound = CreateLabelLedgerEntryResponse$Outbound;
-}
-
-export function createLabelLedgerEntryResponseToJSON(
-  createLabelLedgerEntryResponse: CreateLabelLedgerEntryResponse,
-): string {
-  return JSON.stringify(
-    CreateLabelLedgerEntryResponse$outboundSchema.parse(
-      createLabelLedgerEntryResponse,
-    ),
-  );
-}
 
 export function createLabelLedgerEntryResponseFromJSON(
   jsonString: string,

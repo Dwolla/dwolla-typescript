@@ -28,43 +28,6 @@ export const InvalidDestinationFundingSourceErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type InvalidDestinationFundingSourceErrorLinks$Outbound = {};
-
-/** @internal */
-export const InvalidDestinationFundingSourceErrorLinks$outboundSchema:
-  z.ZodType<
-    InvalidDestinationFundingSourceErrorLinks$Outbound,
-    z.ZodTypeDef,
-    InvalidDestinationFundingSourceErrorLinks
-  > = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidDestinationFundingSourceErrorLinks$ {
-  /** @deprecated use `InvalidDestinationFundingSourceErrorLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidDestinationFundingSourceErrorLinks$inboundSchema;
-  /** @deprecated use `InvalidDestinationFundingSourceErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidDestinationFundingSourceErrorLinks$outboundSchema;
-  /** @deprecated use `InvalidDestinationFundingSourceErrorLinks$Outbound` instead. */
-  export type Outbound = InvalidDestinationFundingSourceErrorLinks$Outbound;
-}
-
-export function invalidDestinationFundingSourceErrorLinksToJSON(
-  invalidDestinationFundingSourceErrorLinks:
-    InvalidDestinationFundingSourceErrorLinks,
-): string {
-  return JSON.stringify(
-    InvalidDestinationFundingSourceErrorLinks$outboundSchema.parse(
-      invalidDestinationFundingSourceErrorLinks,
-    ),
-  );
-}
-
 export function invalidDestinationFundingSourceErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -98,59 +61,6 @@ export const InvalidDestinationFundingSourceErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type InvalidDestinationFundingSourceErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: InvalidDestinationFundingSourceErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const InvalidDestinationFundingSourceErrorError$outboundSchema:
-  z.ZodType<
-    InvalidDestinationFundingSourceErrorError$Outbound,
-    z.ZodTypeDef,
-    InvalidDestinationFundingSourceErrorError
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    path: z.string().optional(),
-    links: z.lazy(() =>
-      InvalidDestinationFundingSourceErrorLinks$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      links: "_links",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidDestinationFundingSourceErrorError$ {
-  /** @deprecated use `InvalidDestinationFundingSourceErrorError$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidDestinationFundingSourceErrorError$inboundSchema;
-  /** @deprecated use `InvalidDestinationFundingSourceErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidDestinationFundingSourceErrorError$outboundSchema;
-  /** @deprecated use `InvalidDestinationFundingSourceErrorError$Outbound` instead. */
-  export type Outbound = InvalidDestinationFundingSourceErrorError$Outbound;
-}
-
-export function invalidDestinationFundingSourceErrorErrorToJSON(
-  invalidDestinationFundingSourceErrorError:
-    InvalidDestinationFundingSourceErrorError,
-): string {
-  return JSON.stringify(
-    InvalidDestinationFundingSourceErrorError$outboundSchema.parse(
-      invalidDestinationFundingSourceErrorError,
-    ),
-  );
-}
-
 export function invalidDestinationFundingSourceErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -178,51 +88,6 @@ export const InvalidDestinationFundingSourceErrorEmbedded$inboundSchema:
       z.lazy(() => InvalidDestinationFundingSourceErrorError$inboundSchema),
     ).optional(),
   });
-
-/** @internal */
-export type InvalidDestinationFundingSourceErrorEmbedded$Outbound = {
-  errors?:
-    | Array<InvalidDestinationFundingSourceErrorError$Outbound>
-    | undefined;
-};
-
-/** @internal */
-export const InvalidDestinationFundingSourceErrorEmbedded$outboundSchema:
-  z.ZodType<
-    InvalidDestinationFundingSourceErrorEmbedded$Outbound,
-    z.ZodTypeDef,
-    InvalidDestinationFundingSourceErrorEmbedded
-  > = z.object({
-    errors: z.array(
-      z.lazy(() => InvalidDestinationFundingSourceErrorError$outboundSchema),
-    ).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidDestinationFundingSourceErrorEmbedded$ {
-  /** @deprecated use `InvalidDestinationFundingSourceErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidDestinationFundingSourceErrorEmbedded$inboundSchema;
-  /** @deprecated use `InvalidDestinationFundingSourceErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidDestinationFundingSourceErrorEmbedded$outboundSchema;
-  /** @deprecated use `InvalidDestinationFundingSourceErrorEmbedded$Outbound` instead. */
-  export type Outbound = InvalidDestinationFundingSourceErrorEmbedded$Outbound;
-}
-
-export function invalidDestinationFundingSourceErrorEmbeddedToJSON(
-  invalidDestinationFundingSourceErrorEmbedded:
-    InvalidDestinationFundingSourceErrorEmbedded,
-): string {
-  return JSON.stringify(
-    InvalidDestinationFundingSourceErrorEmbedded$outboundSchema.parse(
-      invalidDestinationFundingSourceErrorEmbedded,
-    ),
-  );
-}
 
 export function invalidDestinationFundingSourceErrorEmbeddedFromJSON(
   jsonString: string,

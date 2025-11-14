@@ -52,37 +52,3 @@ export const ListAndSearchTransfersDwollaV1HalJSONError$inboundSchema:
           body: v.body$,
         });
       });
-
-/** @internal */
-export type ListAndSearchTransfersDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const ListAndSearchTransfersDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    ListAndSearchTransfersDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    ListAndSearchTransfersDwollaV1HalJSONError
-  > = z.instanceof(ListAndSearchTransfersDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListAndSearchTransfersDwollaV1HalJSONError$ {
-  /** @deprecated use `ListAndSearchTransfersDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    ListAndSearchTransfersDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `ListAndSearchTransfersDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    ListAndSearchTransfersDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `ListAndSearchTransfersDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound = ListAndSearchTransfersDwollaV1HalJSONError$Outbound;
-}

@@ -7,12 +7,7 @@ import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  HalLink,
-  HalLink$inboundSchema,
-  HalLink$Outbound,
-  HalLink$outboundSchema,
-} from "./hallink.js";
+import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 
 /**
  * Shared models between all Customer types
@@ -52,63 +47,6 @@ export const UnverifiedBusinessCustomer$inboundSchema: z.ZodType<
     "_links": "links",
   });
 });
-
-/** @internal */
-export type UnverifiedBusinessCustomer$Outbound = {
-  _links?: { [k: string]: HalLink$Outbound } | undefined;
-  id?: string | undefined;
-  firstName?: string | undefined;
-  lastName?: string | undefined;
-  email?: string | undefined;
-  type?: string | undefined;
-  status?: string | undefined;
-  correlationId?: string | undefined;
-  created?: string | undefined;
-  businessName?: string | undefined;
-};
-
-/** @internal */
-export const UnverifiedBusinessCustomer$outboundSchema: z.ZodType<
-  UnverifiedBusinessCustomer$Outbound,
-  z.ZodTypeDef,
-  UnverifiedBusinessCustomer
-> = z.object({
-  links: z.record(HalLink$outboundSchema).optional(),
-  id: z.string().optional(),
-  firstName: z.string().optional(),
-  lastName: z.string().optional(),
-  email: z.string().optional(),
-  type: z.string().optional(),
-  status: z.string().optional(),
-  correlationId: z.string().optional(),
-  created: z.date().transform(v => v.toISOString()).optional(),
-  businessName: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UnverifiedBusinessCustomer$ {
-  /** @deprecated use `UnverifiedBusinessCustomer$inboundSchema` instead. */
-  export const inboundSchema = UnverifiedBusinessCustomer$inboundSchema;
-  /** @deprecated use `UnverifiedBusinessCustomer$outboundSchema` instead. */
-  export const outboundSchema = UnverifiedBusinessCustomer$outboundSchema;
-  /** @deprecated use `UnverifiedBusinessCustomer$Outbound` instead. */
-  export type Outbound = UnverifiedBusinessCustomer$Outbound;
-}
-
-export function unverifiedBusinessCustomerToJSON(
-  unverifiedBusinessCustomer: UnverifiedBusinessCustomer,
-): string {
-  return JSON.stringify(
-    UnverifiedBusinessCustomer$outboundSchema.parse(unverifiedBusinessCustomer),
-  );
-}
 
 export function unverifiedBusinessCustomerFromJSON(
   jsonString: string,

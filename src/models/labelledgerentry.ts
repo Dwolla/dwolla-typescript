@@ -7,12 +7,7 @@ import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  HalLink,
-  HalLink$inboundSchema,
-  HalLink$Outbound,
-  HalLink$outboundSchema,
-} from "./hallink.js";
+import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 
 export type LabelLedgerEntryAmount = {
   value?: string | undefined;
@@ -35,43 +30,6 @@ export const LabelLedgerEntryAmount$inboundSchema: z.ZodType<
   value: z.string().optional(),
   currency: z.string().optional(),
 });
-
-/** @internal */
-export type LabelLedgerEntryAmount$Outbound = {
-  value?: string | undefined;
-  currency?: string | undefined;
-};
-
-/** @internal */
-export const LabelLedgerEntryAmount$outboundSchema: z.ZodType<
-  LabelLedgerEntryAmount$Outbound,
-  z.ZodTypeDef,
-  LabelLedgerEntryAmount
-> = z.object({
-  value: z.string().optional(),
-  currency: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LabelLedgerEntryAmount$ {
-  /** @deprecated use `LabelLedgerEntryAmount$inboundSchema` instead. */
-  export const inboundSchema = LabelLedgerEntryAmount$inboundSchema;
-  /** @deprecated use `LabelLedgerEntryAmount$outboundSchema` instead. */
-  export const outboundSchema = LabelLedgerEntryAmount$outboundSchema;
-  /** @deprecated use `LabelLedgerEntryAmount$Outbound` instead. */
-  export type Outbound = LabelLedgerEntryAmount$Outbound;
-}
-
-export function labelLedgerEntryAmountToJSON(
-  labelLedgerEntryAmount: LabelLedgerEntryAmount,
-): string {
-  return JSON.stringify(
-    LabelLedgerEntryAmount$outboundSchema.parse(labelLedgerEntryAmount),
-  );
-}
 
 export function labelLedgerEntryAmountFromJSON(
   jsonString: string,
@@ -99,51 +57,6 @@ export const LabelLedgerEntry$inboundSchema: z.ZodType<
     "_links": "links",
   });
 });
-
-/** @internal */
-export type LabelLedgerEntry$Outbound = {
-  _links?: { [k: string]: HalLink$Outbound } | undefined;
-  id?: string | undefined;
-  amount?: LabelLedgerEntryAmount$Outbound | undefined;
-  created?: string | undefined;
-};
-
-/** @internal */
-export const LabelLedgerEntry$outboundSchema: z.ZodType<
-  LabelLedgerEntry$Outbound,
-  z.ZodTypeDef,
-  LabelLedgerEntry
-> = z.object({
-  links: z.record(HalLink$outboundSchema).optional(),
-  id: z.string().optional(),
-  amount: z.lazy(() => LabelLedgerEntryAmount$outboundSchema).optional(),
-  created: z.date().transform(v => v.toISOString()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LabelLedgerEntry$ {
-  /** @deprecated use `LabelLedgerEntry$inboundSchema` instead. */
-  export const inboundSchema = LabelLedgerEntry$inboundSchema;
-  /** @deprecated use `LabelLedgerEntry$outboundSchema` instead. */
-  export const outboundSchema = LabelLedgerEntry$outboundSchema;
-  /** @deprecated use `LabelLedgerEntry$Outbound` instead. */
-  export type Outbound = LabelLedgerEntry$Outbound;
-}
-
-export function labelLedgerEntryToJSON(
-  labelLedgerEntry: LabelLedgerEntry,
-): string {
-  return JSON.stringify(
-    LabelLedgerEntry$outboundSchema.parse(labelLedgerEntry),
-  );
-}
 
 export function labelLedgerEntryFromJSON(
   jsonString: string,

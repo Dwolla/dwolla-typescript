@@ -60,51 +60,6 @@ export const AvailableExchangeConnectionsSelf$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type AvailableExchangeConnectionsSelf$Outbound = {
-  href: string;
-  type: string;
-  "resource-type": string;
-};
-
-/** @internal */
-export const AvailableExchangeConnectionsSelf$outboundSchema: z.ZodType<
-  AvailableExchangeConnectionsSelf$Outbound,
-  z.ZodTypeDef,
-  AvailableExchangeConnectionsSelf
-> = z.object({
-  href: z.string(),
-  type: z.string(),
-  resourceType: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    resourceType: "resource-type",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AvailableExchangeConnectionsSelf$ {
-  /** @deprecated use `AvailableExchangeConnectionsSelf$inboundSchema` instead. */
-  export const inboundSchema = AvailableExchangeConnectionsSelf$inboundSchema;
-  /** @deprecated use `AvailableExchangeConnectionsSelf$outboundSchema` instead. */
-  export const outboundSchema = AvailableExchangeConnectionsSelf$outboundSchema;
-  /** @deprecated use `AvailableExchangeConnectionsSelf$Outbound` instead. */
-  export type Outbound = AvailableExchangeConnectionsSelf$Outbound;
-}
-
-export function availableExchangeConnectionsSelfToJSON(
-  availableExchangeConnectionsSelf: AvailableExchangeConnectionsSelf,
-): string {
-  return JSON.stringify(
-    AvailableExchangeConnectionsSelf$outboundSchema.parse(
-      availableExchangeConnectionsSelf,
-    ),
-  );
-}
-
 export function availableExchangeConnectionsSelfFromJSON(
   jsonString: string,
 ): SafeParseResult<AvailableExchangeConnectionsSelf, SDKValidationError> {
@@ -130,53 +85,6 @@ export const AvailableExchangeConnectionsCustomers$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type AvailableExchangeConnectionsCustomers$Outbound = {
-  href: string;
-  type: string;
-  "resource-type": string;
-};
-
-/** @internal */
-export const AvailableExchangeConnectionsCustomers$outboundSchema: z.ZodType<
-  AvailableExchangeConnectionsCustomers$Outbound,
-  z.ZodTypeDef,
-  AvailableExchangeConnectionsCustomers
-> = z.object({
-  href: z.string(),
-  type: z.string(),
-  resourceType: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    resourceType: "resource-type",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AvailableExchangeConnectionsCustomers$ {
-  /** @deprecated use `AvailableExchangeConnectionsCustomers$inboundSchema` instead. */
-  export const inboundSchema =
-    AvailableExchangeConnectionsCustomers$inboundSchema;
-  /** @deprecated use `AvailableExchangeConnectionsCustomers$outboundSchema` instead. */
-  export const outboundSchema =
-    AvailableExchangeConnectionsCustomers$outboundSchema;
-  /** @deprecated use `AvailableExchangeConnectionsCustomers$Outbound` instead. */
-  export type Outbound = AvailableExchangeConnectionsCustomers$Outbound;
-}
-
-export function availableExchangeConnectionsCustomersToJSON(
-  availableExchangeConnectionsCustomers: AvailableExchangeConnectionsCustomers,
-): string {
-  return JSON.stringify(
-    AvailableExchangeConnectionsCustomers$outboundSchema.parse(
-      availableExchangeConnectionsCustomers,
-    ),
-  );
-}
-
 export function availableExchangeConnectionsCustomersFromJSON(
   jsonString: string,
 ): SafeParseResult<AvailableExchangeConnectionsCustomers, SDKValidationError> {
@@ -198,46 +106,6 @@ export const AvailableExchangeConnectionsLinks$inboundSchema: z.ZodType<
   customers: z.lazy(() => AvailableExchangeConnectionsCustomers$inboundSchema),
 });
 
-/** @internal */
-export type AvailableExchangeConnectionsLinks$Outbound = {
-  self: AvailableExchangeConnectionsSelf$Outbound;
-  customers: AvailableExchangeConnectionsCustomers$Outbound;
-};
-
-/** @internal */
-export const AvailableExchangeConnectionsLinks$outboundSchema: z.ZodType<
-  AvailableExchangeConnectionsLinks$Outbound,
-  z.ZodTypeDef,
-  AvailableExchangeConnectionsLinks
-> = z.object({
-  self: z.lazy(() => AvailableExchangeConnectionsSelf$outboundSchema),
-  customers: z.lazy(() => AvailableExchangeConnectionsCustomers$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AvailableExchangeConnectionsLinks$ {
-  /** @deprecated use `AvailableExchangeConnectionsLinks$inboundSchema` instead. */
-  export const inboundSchema = AvailableExchangeConnectionsLinks$inboundSchema;
-  /** @deprecated use `AvailableExchangeConnectionsLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    AvailableExchangeConnectionsLinks$outboundSchema;
-  /** @deprecated use `AvailableExchangeConnectionsLinks$Outbound` instead. */
-  export type Outbound = AvailableExchangeConnectionsLinks$Outbound;
-}
-
-export function availableExchangeConnectionsLinksToJSON(
-  availableExchangeConnectionsLinks: AvailableExchangeConnectionsLinks,
-): string {
-  return JSON.stringify(
-    AvailableExchangeConnectionsLinks$outboundSchema.parse(
-      availableExchangeConnectionsLinks,
-    ),
-  );
-}
-
 export function availableExchangeConnectionsLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<AvailableExchangeConnectionsLinks, SDKValidationError> {
@@ -257,45 +125,6 @@ export const AvailableExchangeConnection$inboundSchema: z.ZodType<
   availableConnectionToken: z.string(),
   name: z.string(),
 });
-
-/** @internal */
-export type AvailableExchangeConnection$Outbound = {
-  availableConnectionToken: string;
-  name: string;
-};
-
-/** @internal */
-export const AvailableExchangeConnection$outboundSchema: z.ZodType<
-  AvailableExchangeConnection$Outbound,
-  z.ZodTypeDef,
-  AvailableExchangeConnection
-> = z.object({
-  availableConnectionToken: z.string(),
-  name: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AvailableExchangeConnection$ {
-  /** @deprecated use `AvailableExchangeConnection$inboundSchema` instead. */
-  export const inboundSchema = AvailableExchangeConnection$inboundSchema;
-  /** @deprecated use `AvailableExchangeConnection$outboundSchema` instead. */
-  export const outboundSchema = AvailableExchangeConnection$outboundSchema;
-  /** @deprecated use `AvailableExchangeConnection$Outbound` instead. */
-  export type Outbound = AvailableExchangeConnection$Outbound;
-}
-
-export function availableExchangeConnectionToJSON(
-  availableExchangeConnection: AvailableExchangeConnection,
-): string {
-  return JSON.stringify(
-    AvailableExchangeConnection$outboundSchema.parse(
-      availableExchangeConnection,
-    ),
-  );
-}
 
 export function availableExchangeConnectionFromJSON(
   jsonString: string,
@@ -322,51 +151,6 @@ export const AvailableExchangeConnectionsEmbedded$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type AvailableExchangeConnectionsEmbedded$Outbound = {
-  "available-exchange-connections": Array<AvailableExchangeConnection$Outbound>;
-};
-
-/** @internal */
-export const AvailableExchangeConnectionsEmbedded$outboundSchema: z.ZodType<
-  AvailableExchangeConnectionsEmbedded$Outbound,
-  z.ZodTypeDef,
-  AvailableExchangeConnectionsEmbedded
-> = z.object({
-  availableExchangeConnections: z.array(
-    z.lazy(() => AvailableExchangeConnection$outboundSchema),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    availableExchangeConnections: "available-exchange-connections",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AvailableExchangeConnectionsEmbedded$ {
-  /** @deprecated use `AvailableExchangeConnectionsEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    AvailableExchangeConnectionsEmbedded$inboundSchema;
-  /** @deprecated use `AvailableExchangeConnectionsEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    AvailableExchangeConnectionsEmbedded$outboundSchema;
-  /** @deprecated use `AvailableExchangeConnectionsEmbedded$Outbound` instead. */
-  export type Outbound = AvailableExchangeConnectionsEmbedded$Outbound;
-}
-
-export function availableExchangeConnectionsEmbeddedToJSON(
-  availableExchangeConnectionsEmbedded: AvailableExchangeConnectionsEmbedded,
-): string {
-  return JSON.stringify(
-    AvailableExchangeConnectionsEmbedded$outboundSchema.parse(
-      availableExchangeConnectionsEmbedded,
-    ),
-  );
-}
-
 export function availableExchangeConnectionsEmbeddedFromJSON(
   jsonString: string,
 ): SafeParseResult<AvailableExchangeConnectionsEmbedded, SDKValidationError> {
@@ -392,50 +176,6 @@ export const AvailableExchangeConnections$inboundSchema: z.ZodType<
     "_embedded": "embedded",
   });
 });
-
-/** @internal */
-export type AvailableExchangeConnections$Outbound = {
-  _links: AvailableExchangeConnectionsLinks$Outbound;
-  _embedded: AvailableExchangeConnectionsEmbedded$Outbound;
-};
-
-/** @internal */
-export const AvailableExchangeConnections$outboundSchema: z.ZodType<
-  AvailableExchangeConnections$Outbound,
-  z.ZodTypeDef,
-  AvailableExchangeConnections
-> = z.object({
-  links: z.lazy(() => AvailableExchangeConnectionsLinks$outboundSchema),
-  embedded: z.lazy(() => AvailableExchangeConnectionsEmbedded$outboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AvailableExchangeConnections$ {
-  /** @deprecated use `AvailableExchangeConnections$inboundSchema` instead. */
-  export const inboundSchema = AvailableExchangeConnections$inboundSchema;
-  /** @deprecated use `AvailableExchangeConnections$outboundSchema` instead. */
-  export const outboundSchema = AvailableExchangeConnections$outboundSchema;
-  /** @deprecated use `AvailableExchangeConnections$Outbound` instead. */
-  export type Outbound = AvailableExchangeConnections$Outbound;
-}
-
-export function availableExchangeConnectionsToJSON(
-  availableExchangeConnections: AvailableExchangeConnections,
-): string {
-  return JSON.stringify(
-    AvailableExchangeConnections$outboundSchema.parse(
-      availableExchangeConnections,
-    ),
-  );
-}
 
 export function availableExchangeConnectionsFromJSON(
   jsonString: string,

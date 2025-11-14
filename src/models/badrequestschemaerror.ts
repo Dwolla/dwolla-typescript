@@ -22,43 +22,6 @@ export const BadRequestSchemaEmbedded$inboundSchema: z.ZodType<
   message: z.string().optional(),
 });
 
-/** @internal */
-export type BadRequestSchemaEmbedded$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const BadRequestSchemaEmbedded$outboundSchema: z.ZodType<
-  BadRequestSchemaEmbedded$Outbound,
-  z.ZodTypeDef,
-  BadRequestSchemaEmbedded
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BadRequestSchemaEmbedded$ {
-  /** @deprecated use `BadRequestSchemaEmbedded$inboundSchema` instead. */
-  export const inboundSchema = BadRequestSchemaEmbedded$inboundSchema;
-  /** @deprecated use `BadRequestSchemaEmbedded$outboundSchema` instead. */
-  export const outboundSchema = BadRequestSchemaEmbedded$outboundSchema;
-  /** @deprecated use `BadRequestSchemaEmbedded$Outbound` instead. */
-  export type Outbound = BadRequestSchemaEmbedded$Outbound;
-}
-
-export function badRequestSchemaEmbeddedToJSON(
-  badRequestSchemaEmbedded: BadRequestSchemaEmbedded,
-): string {
-  return JSON.stringify(
-    BadRequestSchemaEmbedded$outboundSchema.parse(badRequestSchemaEmbedded),
-  );
-}
-
 export function badRequestSchemaEmbeddedFromJSON(
   jsonString: string,
 ): SafeParseResult<BadRequestSchemaEmbedded, SDKValidationError> {

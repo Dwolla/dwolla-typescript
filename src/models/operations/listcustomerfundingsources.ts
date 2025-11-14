@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListCustomerFundingSourcesRequest = {
   /**
@@ -13,15 +10,6 @@ export type ListCustomerFundingSourcesRequest = {
    */
   id: string;
 };
-
-/** @internal */
-export const ListCustomerFundingSourcesRequest$inboundSchema: z.ZodType<
-  ListCustomerFundingSourcesRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
 
 /** @internal */
 export type ListCustomerFundingSourcesRequest$Outbound = {
@@ -37,20 +25,6 @@ export const ListCustomerFundingSourcesRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListCustomerFundingSourcesRequest$ {
-  /** @deprecated use `ListCustomerFundingSourcesRequest$inboundSchema` instead. */
-  export const inboundSchema = ListCustomerFundingSourcesRequest$inboundSchema;
-  /** @deprecated use `ListCustomerFundingSourcesRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    ListCustomerFundingSourcesRequest$outboundSchema;
-  /** @deprecated use `ListCustomerFundingSourcesRequest$Outbound` instead. */
-  export type Outbound = ListCustomerFundingSourcesRequest$Outbound;
-}
-
 export function listCustomerFundingSourcesRequestToJSON(
   listCustomerFundingSourcesRequest: ListCustomerFundingSourcesRequest,
 ): string {
@@ -58,15 +32,5 @@ export function listCustomerFundingSourcesRequestToJSON(
     ListCustomerFundingSourcesRequest$outboundSchema.parse(
       listCustomerFundingSourcesRequest,
     ),
-  );
-}
-
-export function listCustomerFundingSourcesRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListCustomerFundingSourcesRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListCustomerFundingSourcesRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListCustomerFundingSourcesRequest' from JSON`,
   );
 }

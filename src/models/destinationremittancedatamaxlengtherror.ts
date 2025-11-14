@@ -29,43 +29,6 @@ export const DestinationRemittanceDataMaxLengthErrorLinks$inboundSchema:
     unknown
   > = z.object({});
 
-/** @internal */
-export type DestinationRemittanceDataMaxLengthErrorLinks$Outbound = {};
-
-/** @internal */
-export const DestinationRemittanceDataMaxLengthErrorLinks$outboundSchema:
-  z.ZodType<
-    DestinationRemittanceDataMaxLengthErrorLinks$Outbound,
-    z.ZodTypeDef,
-    DestinationRemittanceDataMaxLengthErrorLinks
-  > = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DestinationRemittanceDataMaxLengthErrorLinks$ {
-  /** @deprecated use `DestinationRemittanceDataMaxLengthErrorLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    DestinationRemittanceDataMaxLengthErrorLinks$inboundSchema;
-  /** @deprecated use `DestinationRemittanceDataMaxLengthErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    DestinationRemittanceDataMaxLengthErrorLinks$outboundSchema;
-  /** @deprecated use `DestinationRemittanceDataMaxLengthErrorLinks$Outbound` instead. */
-  export type Outbound = DestinationRemittanceDataMaxLengthErrorLinks$Outbound;
-}
-
-export function destinationRemittanceDataMaxLengthErrorLinksToJSON(
-  destinationRemittanceDataMaxLengthErrorLinks:
-    DestinationRemittanceDataMaxLengthErrorLinks,
-): string {
-  return JSON.stringify(
-    DestinationRemittanceDataMaxLengthErrorLinks$outboundSchema.parse(
-      destinationRemittanceDataMaxLengthErrorLinks,
-    ),
-  );
-}
-
 export function destinationRemittanceDataMaxLengthErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -101,59 +64,6 @@ export const DestinationRemittanceDataMaxLengthErrorError$inboundSchema:
     });
   });
 
-/** @internal */
-export type DestinationRemittanceDataMaxLengthErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: DestinationRemittanceDataMaxLengthErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const DestinationRemittanceDataMaxLengthErrorError$outboundSchema:
-  z.ZodType<
-    DestinationRemittanceDataMaxLengthErrorError$Outbound,
-    z.ZodTypeDef,
-    DestinationRemittanceDataMaxLengthErrorError
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    path: z.string().optional(),
-    links: z.lazy(() =>
-      DestinationRemittanceDataMaxLengthErrorLinks$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      links: "_links",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DestinationRemittanceDataMaxLengthErrorError$ {
-  /** @deprecated use `DestinationRemittanceDataMaxLengthErrorError$inboundSchema` instead. */
-  export const inboundSchema =
-    DestinationRemittanceDataMaxLengthErrorError$inboundSchema;
-  /** @deprecated use `DestinationRemittanceDataMaxLengthErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    DestinationRemittanceDataMaxLengthErrorError$outboundSchema;
-  /** @deprecated use `DestinationRemittanceDataMaxLengthErrorError$Outbound` instead. */
-  export type Outbound = DestinationRemittanceDataMaxLengthErrorError$Outbound;
-}
-
-export function destinationRemittanceDataMaxLengthErrorErrorToJSON(
-  destinationRemittanceDataMaxLengthErrorError:
-    DestinationRemittanceDataMaxLengthErrorError,
-): string {
-  return JSON.stringify(
-    DestinationRemittanceDataMaxLengthErrorError$outboundSchema.parse(
-      destinationRemittanceDataMaxLengthErrorError,
-    ),
-  );
-}
-
 export function destinationRemittanceDataMaxLengthErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -181,52 +91,6 @@ export const DestinationRemittanceDataMaxLengthErrorEmbedded$inboundSchema:
       z.lazy(() => DestinationRemittanceDataMaxLengthErrorError$inboundSchema),
     ).optional(),
   });
-
-/** @internal */
-export type DestinationRemittanceDataMaxLengthErrorEmbedded$Outbound = {
-  errors?:
-    | Array<DestinationRemittanceDataMaxLengthErrorError$Outbound>
-    | undefined;
-};
-
-/** @internal */
-export const DestinationRemittanceDataMaxLengthErrorEmbedded$outboundSchema:
-  z.ZodType<
-    DestinationRemittanceDataMaxLengthErrorEmbedded$Outbound,
-    z.ZodTypeDef,
-    DestinationRemittanceDataMaxLengthErrorEmbedded
-  > = z.object({
-    errors: z.array(
-      z.lazy(() => DestinationRemittanceDataMaxLengthErrorError$outboundSchema),
-    ).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DestinationRemittanceDataMaxLengthErrorEmbedded$ {
-  /** @deprecated use `DestinationRemittanceDataMaxLengthErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    DestinationRemittanceDataMaxLengthErrorEmbedded$inboundSchema;
-  /** @deprecated use `DestinationRemittanceDataMaxLengthErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    DestinationRemittanceDataMaxLengthErrorEmbedded$outboundSchema;
-  /** @deprecated use `DestinationRemittanceDataMaxLengthErrorEmbedded$Outbound` instead. */
-  export type Outbound =
-    DestinationRemittanceDataMaxLengthErrorEmbedded$Outbound;
-}
-
-export function destinationRemittanceDataMaxLengthErrorEmbeddedToJSON(
-  destinationRemittanceDataMaxLengthErrorEmbedded:
-    DestinationRemittanceDataMaxLengthErrorEmbedded,
-): string {
-  return JSON.stringify(
-    DestinationRemittanceDataMaxLengthErrorEmbedded$outboundSchema.parse(
-      destinationRemittanceDataMaxLengthErrorEmbedded,
-    ),
-  );
-}
 
 export function destinationRemittanceDataMaxLengthErrorEmbeddedFromJSON(
   jsonString: string,

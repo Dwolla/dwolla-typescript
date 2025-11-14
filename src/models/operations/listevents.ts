@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListEventsRequest = {
   /**
@@ -17,16 +14,6 @@ export type ListEventsRequest = {
    */
   offset?: number | undefined;
 };
-
-/** @internal */
-export const ListEventsRequest$inboundSchema: z.ZodType<
-  ListEventsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  limit: z.number().int().optional(),
-  offset: z.number().int().optional(),
-});
 
 /** @internal */
 export type ListEventsRequest$Outbound = {
@@ -44,33 +31,10 @@ export const ListEventsRequest$outboundSchema: z.ZodType<
   offset: z.number().int().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListEventsRequest$ {
-  /** @deprecated use `ListEventsRequest$inboundSchema` instead. */
-  export const inboundSchema = ListEventsRequest$inboundSchema;
-  /** @deprecated use `ListEventsRequest$outboundSchema` instead. */
-  export const outboundSchema = ListEventsRequest$outboundSchema;
-  /** @deprecated use `ListEventsRequest$Outbound` instead. */
-  export type Outbound = ListEventsRequest$Outbound;
-}
-
 export function listEventsRequestToJSON(
   listEventsRequest: ListEventsRequest,
 ): string {
   return JSON.stringify(
     ListEventsRequest$outboundSchema.parse(listEventsRequest),
-  );
-}
-
-export function listEventsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListEventsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListEventsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListEventsRequest' from JSON`,
   );
 }

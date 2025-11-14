@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
-import { Result as SafeParseResult } from "../types/fp.js";
-import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 /**
  * Type of bank account
@@ -63,62 +60,15 @@ export type CreateCustomerBankFundingSourceWithPlaid = {
 };
 
 /** @internal */
-export const CreateCustomerBankFundingSourceWithPlaidBankAccountType$inboundSchema:
+export const CreateCustomerBankFundingSourceWithPlaidBankAccountType$outboundSchema:
   z.ZodNativeEnum<
     typeof CreateCustomerBankFundingSourceWithPlaidBankAccountType
   > = z.nativeEnum(CreateCustomerBankFundingSourceWithPlaidBankAccountType);
 
 /** @internal */
-export const CreateCustomerBankFundingSourceWithPlaidBankAccountType$outboundSchema:
-  z.ZodNativeEnum<
-    typeof CreateCustomerBankFundingSourceWithPlaidBankAccountType
-  > = CreateCustomerBankFundingSourceWithPlaidBankAccountType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerBankFundingSourceWithPlaidBankAccountType$ {
-  /** @deprecated use `CreateCustomerBankFundingSourceWithPlaidBankAccountType$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerBankFundingSourceWithPlaidBankAccountType$inboundSchema;
-  /** @deprecated use `CreateCustomerBankFundingSourceWithPlaidBankAccountType$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerBankFundingSourceWithPlaidBankAccountType$outboundSchema;
-}
-
-/** @internal */
-export const CreateCustomerBankFundingSourceWithPlaidChannel$inboundSchema:
+export const CreateCustomerBankFundingSourceWithPlaidChannel$outboundSchema:
   z.ZodNativeEnum<typeof CreateCustomerBankFundingSourceWithPlaidChannel> = z
     .nativeEnum(CreateCustomerBankFundingSourceWithPlaidChannel);
-
-/** @internal */
-export const CreateCustomerBankFundingSourceWithPlaidChannel$outboundSchema:
-  z.ZodNativeEnum<typeof CreateCustomerBankFundingSourceWithPlaidChannel> =
-    CreateCustomerBankFundingSourceWithPlaidChannel$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerBankFundingSourceWithPlaidChannel$ {
-  /** @deprecated use `CreateCustomerBankFundingSourceWithPlaidChannel$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerBankFundingSourceWithPlaidChannel$inboundSchema;
-  /** @deprecated use `CreateCustomerBankFundingSourceWithPlaidChannel$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerBankFundingSourceWithPlaidChannel$outboundSchema;
-}
-
-/** @internal */
-export const CreateCustomerBankFundingSourceWithPlaidOnDemandAuthorization$inboundSchema:
-  z.ZodType<
-    CreateCustomerBankFundingSourceWithPlaidOnDemandAuthorization,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    href: z.string(),
-  });
 
 /** @internal */
 export type CreateCustomerBankFundingSourceWithPlaidOnDemandAuthorization$Outbound =
@@ -136,22 +86,6 @@ export const CreateCustomerBankFundingSourceWithPlaidOnDemandAuthorization$outbo
     href: z.string(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerBankFundingSourceWithPlaidOnDemandAuthorization$ {
-  /** @deprecated use `CreateCustomerBankFundingSourceWithPlaidOnDemandAuthorization$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerBankFundingSourceWithPlaidOnDemandAuthorization$inboundSchema;
-  /** @deprecated use `CreateCustomerBankFundingSourceWithPlaidOnDemandAuthorization$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerBankFundingSourceWithPlaidOnDemandAuthorization$outboundSchema;
-  /** @deprecated use `CreateCustomerBankFundingSourceWithPlaidOnDemandAuthorization$Outbound` instead. */
-  export type Outbound =
-    CreateCustomerBankFundingSourceWithPlaidOnDemandAuthorization$Outbound;
-}
-
 export function createCustomerBankFundingSourceWithPlaidOnDemandAuthorizationToJSON(
   createCustomerBankFundingSourceWithPlaidOnDemandAuthorization:
     CreateCustomerBankFundingSourceWithPlaidOnDemandAuthorization,
@@ -161,37 +95,6 @@ export function createCustomerBankFundingSourceWithPlaidOnDemandAuthorizationToJ
       .parse(createCustomerBankFundingSourceWithPlaidOnDemandAuthorization),
   );
 }
-
-export function createCustomerBankFundingSourceWithPlaidOnDemandAuthorizationFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateCustomerBankFundingSourceWithPlaidOnDemandAuthorization,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateCustomerBankFundingSourceWithPlaidOnDemandAuthorization$inboundSchema
-        .parse(JSON.parse(x)),
-    `Failed to parse 'CreateCustomerBankFundingSourceWithPlaidOnDemandAuthorization' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateCustomerBankFundingSourceWithPlaidLinks$inboundSchema:
-  z.ZodType<
-    CreateCustomerBankFundingSourceWithPlaidLinks,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    "on-demand-authorization": z.lazy(() =>
-      CreateCustomerBankFundingSourceWithPlaidOnDemandAuthorization$inboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "on-demand-authorization": "onDemandAuthorization",
-    });
-  });
 
 /** @internal */
 export type CreateCustomerBankFundingSourceWithPlaidLinks$Outbound = {
@@ -216,21 +119,6 @@ export const CreateCustomerBankFundingSourceWithPlaidLinks$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerBankFundingSourceWithPlaidLinks$ {
-  /** @deprecated use `CreateCustomerBankFundingSourceWithPlaidLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerBankFundingSourceWithPlaidLinks$inboundSchema;
-  /** @deprecated use `CreateCustomerBankFundingSourceWithPlaidLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerBankFundingSourceWithPlaidLinks$outboundSchema;
-  /** @deprecated use `CreateCustomerBankFundingSourceWithPlaidLinks$Outbound` instead. */
-  export type Outbound = CreateCustomerBankFundingSourceWithPlaidLinks$Outbound;
-}
-
 export function createCustomerBankFundingSourceWithPlaidLinksToJSON(
   createCustomerBankFundingSourceWithPlaidLinks:
     CreateCustomerBankFundingSourceWithPlaidLinks,
@@ -241,44 +129,6 @@ export function createCustomerBankFundingSourceWithPlaidLinksToJSON(
     ),
   );
 }
-
-export function createCustomerBankFundingSourceWithPlaidLinksFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateCustomerBankFundingSourceWithPlaidLinks,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateCustomerBankFundingSourceWithPlaidLinks$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreateCustomerBankFundingSourceWithPlaidLinks' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateCustomerBankFundingSourceWithPlaid$inboundSchema: z.ZodType<
-  CreateCustomerBankFundingSourceWithPlaid,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  plaidToken: z.string(),
-  bankAccountType:
-    CreateCustomerBankFundingSourceWithPlaidBankAccountType$inboundSchema,
-  name: z.string(),
-  channels: z.array(
-    CreateCustomerBankFundingSourceWithPlaidChannel$inboundSchema,
-  ).optional(),
-  _links: z.lazy(() =>
-    CreateCustomerBankFundingSourceWithPlaidLinks$inboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
 
 /** @internal */
 export type CreateCustomerBankFundingSourceWithPlaid$Outbound = {
@@ -311,21 +161,6 @@ export const CreateCustomerBankFundingSourceWithPlaid$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerBankFundingSourceWithPlaid$ {
-  /** @deprecated use `CreateCustomerBankFundingSourceWithPlaid$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerBankFundingSourceWithPlaid$inboundSchema;
-  /** @deprecated use `CreateCustomerBankFundingSourceWithPlaid$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerBankFundingSourceWithPlaid$outboundSchema;
-  /** @deprecated use `CreateCustomerBankFundingSourceWithPlaid$Outbound` instead. */
-  export type Outbound = CreateCustomerBankFundingSourceWithPlaid$Outbound;
-}
-
 export function createCustomerBankFundingSourceWithPlaidToJSON(
   createCustomerBankFundingSourceWithPlaid:
     CreateCustomerBankFundingSourceWithPlaid,
@@ -334,21 +169,5 @@ export function createCustomerBankFundingSourceWithPlaidToJSON(
     CreateCustomerBankFundingSourceWithPlaid$outboundSchema.parse(
       createCustomerBankFundingSourceWithPlaid,
     ),
-  );
-}
-
-export function createCustomerBankFundingSourceWithPlaidFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateCustomerBankFundingSourceWithPlaid,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateCustomerBankFundingSourceWithPlaid$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreateCustomerBankFundingSourceWithPlaid' from JSON`,
   );
 }

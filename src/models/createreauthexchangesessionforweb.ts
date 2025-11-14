@@ -3,21 +3,11 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../lib/schemas.js";
-import { Result as SafeParseResult } from "../types/fp.js";
-import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 /**
  * Create re-auth exchange session for web (Plaid web sessions where request body is optional)
  */
 export type CreateReAuthExchangeSessionForWeb = {};
-
-/** @internal */
-export const CreateReAuthExchangeSessionForWeb$inboundSchema: z.ZodType<
-  CreateReAuthExchangeSessionForWeb,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
 
 /** @internal */
 export type CreateReAuthExchangeSessionForWeb$Outbound = {};
@@ -29,20 +19,6 @@ export const CreateReAuthExchangeSessionForWeb$outboundSchema: z.ZodType<
   CreateReAuthExchangeSessionForWeb
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateReAuthExchangeSessionForWeb$ {
-  /** @deprecated use `CreateReAuthExchangeSessionForWeb$inboundSchema` instead. */
-  export const inboundSchema = CreateReAuthExchangeSessionForWeb$inboundSchema;
-  /** @deprecated use `CreateReAuthExchangeSessionForWeb$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateReAuthExchangeSessionForWeb$outboundSchema;
-  /** @deprecated use `CreateReAuthExchangeSessionForWeb$Outbound` instead. */
-  export type Outbound = CreateReAuthExchangeSessionForWeb$Outbound;
-}
-
 export function createReAuthExchangeSessionForWebToJSON(
   createReAuthExchangeSessionForWeb: CreateReAuthExchangeSessionForWeb,
 ): string {
@@ -50,15 +26,5 @@ export function createReAuthExchangeSessionForWebToJSON(
     CreateReAuthExchangeSessionForWeb$outboundSchema.parse(
       createReAuthExchangeSessionForWeb,
     ),
-  );
-}
-
-export function createReAuthExchangeSessionForWebFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateReAuthExchangeSessionForWeb, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateReAuthExchangeSessionForWeb$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateReAuthExchangeSessionForWeb' from JSON`,
   );
 }

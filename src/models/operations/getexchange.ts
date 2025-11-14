@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetExchangeRequest = {
   /**
@@ -13,15 +10,6 @@ export type GetExchangeRequest = {
    */
   id: string;
 };
-
-/** @internal */
-export const GetExchangeRequest$inboundSchema: z.ZodType<
-  GetExchangeRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
 
 /** @internal */
 export type GetExchangeRequest$Outbound = {
@@ -37,33 +25,10 @@ export const GetExchangeRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetExchangeRequest$ {
-  /** @deprecated use `GetExchangeRequest$inboundSchema` instead. */
-  export const inboundSchema = GetExchangeRequest$inboundSchema;
-  /** @deprecated use `GetExchangeRequest$outboundSchema` instead. */
-  export const outboundSchema = GetExchangeRequest$outboundSchema;
-  /** @deprecated use `GetExchangeRequest$Outbound` instead. */
-  export type Outbound = GetExchangeRequest$Outbound;
-}
-
 export function getExchangeRequestToJSON(
   getExchangeRequest: GetExchangeRequest,
 ): string {
   return JSON.stringify(
     GetExchangeRequest$outboundSchema.parse(getExchangeRequest),
-  );
-}
-
-export function getExchangeRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetExchangeRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetExchangeRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetExchangeRequest' from JSON`,
   );
 }

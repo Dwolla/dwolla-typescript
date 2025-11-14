@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
-import { Result as SafeParseResult } from "../types/fp.js";
-import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 export type CreateCustomerExchangeSessionWithRedirectExchangePartner = {
   href: string;
@@ -32,16 +29,6 @@ export type CreateCustomerExchangeSessionWithRedirect = {
 };
 
 /** @internal */
-export const CreateCustomerExchangeSessionWithRedirectExchangePartner$inboundSchema:
-  z.ZodType<
-    CreateCustomerExchangeSessionWithRedirectExchangePartner,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    href: z.string(),
-  });
-
-/** @internal */
 export type CreateCustomerExchangeSessionWithRedirectExchangePartner$Outbound =
   {
     href: string;
@@ -57,22 +44,6 @@ export const CreateCustomerExchangeSessionWithRedirectExchangePartner$outboundSc
     href: z.string(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerExchangeSessionWithRedirectExchangePartner$ {
-  /** @deprecated use `CreateCustomerExchangeSessionWithRedirectExchangePartner$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerExchangeSessionWithRedirectExchangePartner$inboundSchema;
-  /** @deprecated use `CreateCustomerExchangeSessionWithRedirectExchangePartner$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerExchangeSessionWithRedirectExchangePartner$outboundSchema;
-  /** @deprecated use `CreateCustomerExchangeSessionWithRedirectExchangePartner$Outbound` instead. */
-  export type Outbound =
-    CreateCustomerExchangeSessionWithRedirectExchangePartner$Outbound;
-}
-
 export function createCustomerExchangeSessionWithRedirectExchangePartnerToJSON(
   createCustomerExchangeSessionWithRedirectExchangePartner:
     CreateCustomerExchangeSessionWithRedirectExchangePartner,
@@ -82,31 +53,6 @@ export function createCustomerExchangeSessionWithRedirectExchangePartnerToJSON(
       .parse(createCustomerExchangeSessionWithRedirectExchangePartner),
   );
 }
-
-export function createCustomerExchangeSessionWithRedirectExchangePartnerFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateCustomerExchangeSessionWithRedirectExchangePartner,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateCustomerExchangeSessionWithRedirectExchangePartner$inboundSchema
-        .parse(JSON.parse(x)),
-    `Failed to parse 'CreateCustomerExchangeSessionWithRedirectExchangePartner' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateCustomerExchangeSessionWithRedirectRedirectUrl$inboundSchema:
-  z.ZodType<
-    CreateCustomerExchangeSessionWithRedirectRedirectUrl,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    href: z.string(),
-  });
 
 /** @internal */
 export type CreateCustomerExchangeSessionWithRedirectRedirectUrl$Outbound = {
@@ -123,22 +69,6 @@ export const CreateCustomerExchangeSessionWithRedirectRedirectUrl$outboundSchema
     href: z.string(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerExchangeSessionWithRedirectRedirectUrl$ {
-  /** @deprecated use `CreateCustomerExchangeSessionWithRedirectRedirectUrl$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerExchangeSessionWithRedirectRedirectUrl$inboundSchema;
-  /** @deprecated use `CreateCustomerExchangeSessionWithRedirectRedirectUrl$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerExchangeSessionWithRedirectRedirectUrl$outboundSchema;
-  /** @deprecated use `CreateCustomerExchangeSessionWithRedirectRedirectUrl$Outbound` instead. */
-  export type Outbound =
-    CreateCustomerExchangeSessionWithRedirectRedirectUrl$Outbound;
-}
-
 export function createCustomerExchangeSessionWithRedirectRedirectUrlToJSON(
   createCustomerExchangeSessionWithRedirectRedirectUrl:
     CreateCustomerExchangeSessionWithRedirectRedirectUrl,
@@ -149,42 +79,6 @@ export function createCustomerExchangeSessionWithRedirectRedirectUrlToJSON(
     ),
   );
 }
-
-export function createCustomerExchangeSessionWithRedirectRedirectUrlFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateCustomerExchangeSessionWithRedirectRedirectUrl,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateCustomerExchangeSessionWithRedirectRedirectUrl$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreateCustomerExchangeSessionWithRedirectRedirectUrl' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateCustomerExchangeSessionWithRedirectLinks$inboundSchema:
-  z.ZodType<
-    CreateCustomerExchangeSessionWithRedirectLinks,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    "exchange-partner": z.lazy(() =>
-      CreateCustomerExchangeSessionWithRedirectExchangePartner$inboundSchema
-    ),
-    "redirect-url": z.lazy(() =>
-      CreateCustomerExchangeSessionWithRedirectRedirectUrl$inboundSchema
-    ),
-  }).transform((v) => {
-    return remap$(v, {
-      "exchange-partner": "exchangePartner",
-      "redirect-url": "redirectUrl",
-    });
-  });
 
 /** @internal */
 export type CreateCustomerExchangeSessionWithRedirectLinks$Outbound = {
@@ -213,22 +107,6 @@ export const CreateCustomerExchangeSessionWithRedirectLinks$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerExchangeSessionWithRedirectLinks$ {
-  /** @deprecated use `CreateCustomerExchangeSessionWithRedirectLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerExchangeSessionWithRedirectLinks$inboundSchema;
-  /** @deprecated use `CreateCustomerExchangeSessionWithRedirectLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerExchangeSessionWithRedirectLinks$outboundSchema;
-  /** @deprecated use `CreateCustomerExchangeSessionWithRedirectLinks$Outbound` instead. */
-  export type Outbound =
-    CreateCustomerExchangeSessionWithRedirectLinks$Outbound;
-}
-
 export function createCustomerExchangeSessionWithRedirectLinksToJSON(
   createCustomerExchangeSessionWithRedirectLinks:
     CreateCustomerExchangeSessionWithRedirectLinks,
@@ -239,37 +117,6 @@ export function createCustomerExchangeSessionWithRedirectLinksToJSON(
     ),
   );
 }
-
-export function createCustomerExchangeSessionWithRedirectLinksFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateCustomerExchangeSessionWithRedirectLinks,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateCustomerExchangeSessionWithRedirectLinks$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreateCustomerExchangeSessionWithRedirectLinks' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateCustomerExchangeSessionWithRedirect$inboundSchema: z.ZodType<
-  CreateCustomerExchangeSessionWithRedirect,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  _links: z.lazy(() =>
-    CreateCustomerExchangeSessionWithRedirectLinks$inboundSchema
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
 
 /** @internal */
 export type CreateCustomerExchangeSessionWithRedirect$Outbound = {
@@ -292,21 +139,6 @@ export const CreateCustomerExchangeSessionWithRedirect$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerExchangeSessionWithRedirect$ {
-  /** @deprecated use `CreateCustomerExchangeSessionWithRedirect$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerExchangeSessionWithRedirect$inboundSchema;
-  /** @deprecated use `CreateCustomerExchangeSessionWithRedirect$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerExchangeSessionWithRedirect$outboundSchema;
-  /** @deprecated use `CreateCustomerExchangeSessionWithRedirect$Outbound` instead. */
-  export type Outbound = CreateCustomerExchangeSessionWithRedirect$Outbound;
-}
-
 export function createCustomerExchangeSessionWithRedirectToJSON(
   createCustomerExchangeSessionWithRedirect:
     CreateCustomerExchangeSessionWithRedirect,
@@ -315,21 +147,5 @@ export function createCustomerExchangeSessionWithRedirectToJSON(
     CreateCustomerExchangeSessionWithRedirect$outboundSchema.parse(
       createCustomerExchangeSessionWithRedirect,
     ),
-  );
-}
-
-export function createCustomerExchangeSessionWithRedirectFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateCustomerExchangeSessionWithRedirect,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateCustomerExchangeSessionWithRedirect$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreateCustomerExchangeSessionWithRedirect' from JSON`,
   );
 }

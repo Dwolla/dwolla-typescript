@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
 
 /**
@@ -30,16 +27,6 @@ export type UpdateBeneficialOwnerRequest = {
 };
 
 /** @internal */
-export const UpdateBeneficialOwnerRequestBody$inboundSchema: z.ZodType<
-  UpdateBeneficialOwnerRequestBody,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  models.CreateUSBeneficialOwner$inboundSchema,
-  models.CreateInternationalBeneficialOwner$inboundSchema,
-]);
-
-/** @internal */
 export type UpdateBeneficialOwnerRequestBody$Outbound =
   | models.CreateUSBeneficialOwner$Outbound
   | models.CreateInternationalBeneficialOwner$Outbound;
@@ -54,19 +41,6 @@ export const UpdateBeneficialOwnerRequestBody$outboundSchema: z.ZodType<
   models.CreateInternationalBeneficialOwner$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateBeneficialOwnerRequestBody$ {
-  /** @deprecated use `UpdateBeneficialOwnerRequestBody$inboundSchema` instead. */
-  export const inboundSchema = UpdateBeneficialOwnerRequestBody$inboundSchema;
-  /** @deprecated use `UpdateBeneficialOwnerRequestBody$outboundSchema` instead. */
-  export const outboundSchema = UpdateBeneficialOwnerRequestBody$outboundSchema;
-  /** @deprecated use `UpdateBeneficialOwnerRequestBody$Outbound` instead. */
-  export type Outbound = UpdateBeneficialOwnerRequestBody$Outbound;
-}
-
 export function updateBeneficialOwnerRequestBodyToJSON(
   updateBeneficialOwnerRequestBody: UpdateBeneficialOwnerRequestBody,
 ): string {
@@ -76,33 +50,6 @@ export function updateBeneficialOwnerRequestBodyToJSON(
     ),
   );
 }
-
-export function updateBeneficialOwnerRequestBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateBeneficialOwnerRequestBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateBeneficialOwnerRequestBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateBeneficialOwnerRequestBody' from JSON`,
-  );
-}
-
-/** @internal */
-export const UpdateBeneficialOwnerRequest$inboundSchema: z.ZodType<
-  UpdateBeneficialOwnerRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  RequestBody: z.union([
-    models.CreateUSBeneficialOwner$inboundSchema,
-    models.CreateInternationalBeneficialOwner$inboundSchema,
-  ]),
-}).transform((v) => {
-  return remap$(v, {
-    "RequestBody": "requestBody",
-  });
-});
 
 /** @internal */
 export type UpdateBeneficialOwnerRequest$Outbound = {
@@ -129,19 +76,6 @@ export const UpdateBeneficialOwnerRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateBeneficialOwnerRequest$ {
-  /** @deprecated use `UpdateBeneficialOwnerRequest$inboundSchema` instead. */
-  export const inboundSchema = UpdateBeneficialOwnerRequest$inboundSchema;
-  /** @deprecated use `UpdateBeneficialOwnerRequest$outboundSchema` instead. */
-  export const outboundSchema = UpdateBeneficialOwnerRequest$outboundSchema;
-  /** @deprecated use `UpdateBeneficialOwnerRequest$Outbound` instead. */
-  export type Outbound = UpdateBeneficialOwnerRequest$Outbound;
-}
-
 export function updateBeneficialOwnerRequestToJSON(
   updateBeneficialOwnerRequest: UpdateBeneficialOwnerRequest,
 ): string {
@@ -149,15 +83,5 @@ export function updateBeneficialOwnerRequestToJSON(
     UpdateBeneficialOwnerRequest$outboundSchema.parse(
       updateBeneficialOwnerRequest,
     ),
-  );
-}
-
-export function updateBeneficialOwnerRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateBeneficialOwnerRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateBeneficialOwnerRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateBeneficialOwnerRequest' from JSON`,
   );
 }

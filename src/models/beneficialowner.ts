@@ -7,17 +7,10 @@ import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  HalLink,
-  HalLink$inboundSchema,
-  HalLink$Outbound,
-  HalLink$outboundSchema,
-} from "./hallink.js";
+import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 import {
   InternationalAddress,
   InternationalAddress$inboundSchema,
-  InternationalAddress$Outbound,
-  InternationalAddress$outboundSchema,
 } from "./internationaladdress.js";
 
 /**
@@ -52,55 +45,6 @@ export const BeneficialOwner$inboundSchema: z.ZodType<
     "_links": "links",
   });
 });
-
-/** @internal */
-export type BeneficialOwner$Outbound = {
-  _links?: { [k: string]: HalLink$Outbound } | undefined;
-  id?: string | undefined;
-  firstName?: string | undefined;
-  lastName?: string | undefined;
-  address?: InternationalAddress$Outbound | undefined;
-  verificationStatus?: string | undefined;
-  created?: string | undefined;
-};
-
-/** @internal */
-export const BeneficialOwner$outboundSchema: z.ZodType<
-  BeneficialOwner$Outbound,
-  z.ZodTypeDef,
-  BeneficialOwner
-> = z.object({
-  links: z.record(HalLink$outboundSchema).optional(),
-  id: z.string().optional(),
-  firstName: z.string().optional(),
-  lastName: z.string().optional(),
-  address: InternationalAddress$outboundSchema.optional(),
-  verificationStatus: z.string().optional(),
-  created: z.date().transform(v => v.toISOString()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BeneficialOwner$ {
-  /** @deprecated use `BeneficialOwner$inboundSchema` instead. */
-  export const inboundSchema = BeneficialOwner$inboundSchema;
-  /** @deprecated use `BeneficialOwner$outboundSchema` instead. */
-  export const outboundSchema = BeneficialOwner$outboundSchema;
-  /** @deprecated use `BeneficialOwner$Outbound` instead. */
-  export type Outbound = BeneficialOwner$Outbound;
-}
-
-export function beneficialOwnerToJSON(
-  beneficialOwner: BeneficialOwner,
-): string {
-  return JSON.stringify(BeneficialOwner$outboundSchema.parse(beneficialOwner));
-}
 
 export function beneficialOwnerFromJSON(
   jsonString: string,

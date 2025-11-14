@@ -32,15 +32,6 @@ export type CancelTransferRequest = {
 export type CancelTransferResponse = {};
 
 /** @internal */
-export const CancelTransferRequestBody$inboundSchema: z.ZodType<
-  CancelTransferRequestBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  status: z.literal("cancelled").default("cancelled").optional(),
-});
-
-/** @internal */
 export type CancelTransferRequestBody$Outbound = {
   status: "cancelled";
 };
@@ -54,19 +45,6 @@ export const CancelTransferRequestBody$outboundSchema: z.ZodType<
   status: z.literal("cancelled"),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CancelTransferRequestBody$ {
-  /** @deprecated use `CancelTransferRequestBody$inboundSchema` instead. */
-  export const inboundSchema = CancelTransferRequestBody$inboundSchema;
-  /** @deprecated use `CancelTransferRequestBody$outboundSchema` instead. */
-  export const outboundSchema = CancelTransferRequestBody$outboundSchema;
-  /** @deprecated use `CancelTransferRequestBody$Outbound` instead. */
-  export type Outbound = CancelTransferRequestBody$Outbound;
-}
-
 export function cancelTransferRequestBodyToJSON(
   cancelTransferRequestBody: CancelTransferRequestBody,
 ): string {
@@ -74,30 +52,6 @@ export function cancelTransferRequestBodyToJSON(
     CancelTransferRequestBody$outboundSchema.parse(cancelTransferRequestBody),
   );
 }
-
-export function cancelTransferRequestBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<CancelTransferRequestBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CancelTransferRequestBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CancelTransferRequestBody' from JSON`,
-  );
-}
-
-/** @internal */
-export const CancelTransferRequest$inboundSchema: z.ZodType<
-  CancelTransferRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  RequestBody: z.lazy(() => CancelTransferRequestBody$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "RequestBody": "requestBody",
-  });
-});
 
 /** @internal */
 export type CancelTransferRequest$Outbound = {
@@ -119,34 +73,11 @@ export const CancelTransferRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CancelTransferRequest$ {
-  /** @deprecated use `CancelTransferRequest$inboundSchema` instead. */
-  export const inboundSchema = CancelTransferRequest$inboundSchema;
-  /** @deprecated use `CancelTransferRequest$outboundSchema` instead. */
-  export const outboundSchema = CancelTransferRequest$outboundSchema;
-  /** @deprecated use `CancelTransferRequest$Outbound` instead. */
-  export type Outbound = CancelTransferRequest$Outbound;
-}
-
 export function cancelTransferRequestToJSON(
   cancelTransferRequest: CancelTransferRequest,
 ): string {
   return JSON.stringify(
     CancelTransferRequest$outboundSchema.parse(cancelTransferRequest),
-  );
-}
-
-export function cancelTransferRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CancelTransferRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CancelTransferRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CancelTransferRequest' from JSON`,
   );
 }
 
@@ -156,37 +87,6 @@ export const CancelTransferResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
-/** @internal */
-export type CancelTransferResponse$Outbound = {};
-
-/** @internal */
-export const CancelTransferResponse$outboundSchema: z.ZodType<
-  CancelTransferResponse$Outbound,
-  z.ZodTypeDef,
-  CancelTransferResponse
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CancelTransferResponse$ {
-  /** @deprecated use `CancelTransferResponse$inboundSchema` instead. */
-  export const inboundSchema = CancelTransferResponse$inboundSchema;
-  /** @deprecated use `CancelTransferResponse$outboundSchema` instead. */
-  export const outboundSchema = CancelTransferResponse$outboundSchema;
-  /** @deprecated use `CancelTransferResponse$Outbound` instead. */
-  export type Outbound = CancelTransferResponse$Outbound;
-}
-
-export function cancelTransferResponseToJSON(
-  cancelTransferResponse: CancelTransferResponse,
-): string {
-  return JSON.stringify(
-    CancelTransferResponse$outboundSchema.parse(cancelTransferResponse),
-  );
-}
 
 export function cancelTransferResponseFromJSON(
   jsonString: string,

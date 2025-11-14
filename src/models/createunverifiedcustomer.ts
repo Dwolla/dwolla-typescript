@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../lib/schemas.js";
-import { Result as SafeParseResult } from "../types/fp.js";
-import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 /**
  * Create an Unverified Customer
@@ -19,21 +16,6 @@ export type CreateUnverifiedCustomer = {
   correlationId?: string | undefined;
   businessName?: string | undefined;
 };
-
-/** @internal */
-export const CreateUnverifiedCustomer$inboundSchema: z.ZodType<
-  CreateUnverifiedCustomer,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
-  email: z.string(),
-  ipAddress: z.string().optional(),
-  phone: z.string().optional(),
-  correlationId: z.string().optional(),
-  businessName: z.string().optional(),
-});
 
 /** @internal */
 export type CreateUnverifiedCustomer$Outbound = {
@@ -61,33 +43,10 @@ export const CreateUnverifiedCustomer$outboundSchema: z.ZodType<
   businessName: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateUnverifiedCustomer$ {
-  /** @deprecated use `CreateUnverifiedCustomer$inboundSchema` instead. */
-  export const inboundSchema = CreateUnverifiedCustomer$inboundSchema;
-  /** @deprecated use `CreateUnverifiedCustomer$outboundSchema` instead. */
-  export const outboundSchema = CreateUnverifiedCustomer$outboundSchema;
-  /** @deprecated use `CreateUnverifiedCustomer$Outbound` instead. */
-  export type Outbound = CreateUnverifiedCustomer$Outbound;
-}
-
 export function createUnverifiedCustomerToJSON(
   createUnverifiedCustomer: CreateUnverifiedCustomer,
 ): string {
   return JSON.stringify(
     CreateUnverifiedCustomer$outboundSchema.parse(createUnverifiedCustomer),
-  );
-}
-
-export function createUnverifiedCustomerFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateUnverifiedCustomer, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateUnverifiedCustomer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateUnverifiedCustomer' from JSON`,
   );
 }

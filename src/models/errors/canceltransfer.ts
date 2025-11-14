@@ -8,21 +8,15 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import {
   BadRequestError,
   BadRequestError$inboundSchema,
-  BadRequestError$Outbound,
-  BadRequestError$outboundSchema,
 } from "./badrequesterror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 import {
   StatusInvalidError,
   StatusInvalidError$inboundSchema,
-  StatusInvalidError$Outbound,
-  StatusInvalidError$outboundSchema,
 } from "./statusinvaliderror.js";
 import {
   StatusNotAllowedError,
   StatusNotAllowedError$inboundSchema,
-  StatusNotAllowedError$Outbound,
-  StatusNotAllowedError$outboundSchema,
 } from "./statusnotallowederror.js";
 
 /**
@@ -43,46 +37,6 @@ export const CancelTransferDwollaV1HalJSON$inboundSchema: z.ZodType<
   StatusInvalidError$inboundSchema,
   StatusNotAllowedError$inboundSchema,
 ]);
-
-/** @internal */
-export type CancelTransferDwollaV1HalJSON$Outbound =
-  | BadRequestError$Outbound
-  | StatusInvalidError$Outbound
-  | StatusNotAllowedError$Outbound;
-
-/** @internal */
-export const CancelTransferDwollaV1HalJSON$outboundSchema: z.ZodType<
-  CancelTransferDwollaV1HalJSON$Outbound,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  BadRequestError$outboundSchema,
-  StatusInvalidError$outboundSchema,
-  StatusNotAllowedError$outboundSchema,
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CancelTransferDwollaV1HalJSON$ {
-  /** @deprecated use `CancelTransferDwollaV1HalJSON$inboundSchema` instead. */
-  export const inboundSchema = CancelTransferDwollaV1HalJSON$inboundSchema;
-  /** @deprecated use `CancelTransferDwollaV1HalJSON$outboundSchema` instead. */
-  export const outboundSchema = CancelTransferDwollaV1HalJSON$outboundSchema;
-  /** @deprecated use `CancelTransferDwollaV1HalJSON$Outbound` instead. */
-  export type Outbound = CancelTransferDwollaV1HalJSON$Outbound;
-}
-
-export function cancelTransferDwollaV1HalJSONToJSON(
-  cancelTransferDwollaV1HalJSON: CancelTransferDwollaV1HalJSON,
-): string {
-  return JSON.stringify(
-    CancelTransferDwollaV1HalJSON$outboundSchema.parse(
-      cancelTransferDwollaV1HalJSON,
-    ),
-  );
-}
 
 export function cancelTransferDwollaV1HalJSONFromJSON(
   jsonString: string,

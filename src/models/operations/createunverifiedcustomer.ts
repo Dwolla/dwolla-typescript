@@ -25,47 +25,6 @@ export const CreateUnverifiedCustomerResponse$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type CreateUnverifiedCustomerResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-};
-
-/** @internal */
-export const CreateUnverifiedCustomerResponse$outboundSchema: z.ZodType<
-  CreateUnverifiedCustomerResponse$Outbound,
-  z.ZodTypeDef,
-  CreateUnverifiedCustomerResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateUnverifiedCustomerResponse$ {
-  /** @deprecated use `CreateUnverifiedCustomerResponse$inboundSchema` instead. */
-  export const inboundSchema = CreateUnverifiedCustomerResponse$inboundSchema;
-  /** @deprecated use `CreateUnverifiedCustomerResponse$outboundSchema` instead. */
-  export const outboundSchema = CreateUnverifiedCustomerResponse$outboundSchema;
-  /** @deprecated use `CreateUnverifiedCustomerResponse$Outbound` instead. */
-  export type Outbound = CreateUnverifiedCustomerResponse$Outbound;
-}
-
-export function createUnverifiedCustomerResponseToJSON(
-  createUnverifiedCustomerResponse: CreateUnverifiedCustomerResponse,
-): string {
-  return JSON.stringify(
-    CreateUnverifiedCustomerResponse$outboundSchema.parse(
-      createUnverifiedCustomerResponse,
-    ),
-  );
-}
-
 export function createUnverifiedCustomerResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateUnverifiedCustomerResponse, SDKValidationError> {

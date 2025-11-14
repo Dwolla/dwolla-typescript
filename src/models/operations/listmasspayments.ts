@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListMassPaymentsRequest = {
   /**
@@ -27,18 +24,6 @@ export type ListMassPaymentsRequest = {
 };
 
 /** @internal */
-export const ListMassPaymentsRequest$inboundSchema: z.ZodType<
-  ListMassPaymentsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  limit: z.number().int().default(25),
-  offset: z.number().int().default(0),
-  correlationId: z.string().optional(),
-});
-
-/** @internal */
 export type ListMassPaymentsRequest$Outbound = {
   id: string;
   limit: number;
@@ -58,33 +43,10 @@ export const ListMassPaymentsRequest$outboundSchema: z.ZodType<
   correlationId: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListMassPaymentsRequest$ {
-  /** @deprecated use `ListMassPaymentsRequest$inboundSchema` instead. */
-  export const inboundSchema = ListMassPaymentsRequest$inboundSchema;
-  /** @deprecated use `ListMassPaymentsRequest$outboundSchema` instead. */
-  export const outboundSchema = ListMassPaymentsRequest$outboundSchema;
-  /** @deprecated use `ListMassPaymentsRequest$Outbound` instead. */
-  export type Outbound = ListMassPaymentsRequest$Outbound;
-}
-
 export function listMassPaymentsRequestToJSON(
   listMassPaymentsRequest: ListMassPaymentsRequest,
 ): string {
   return JSON.stringify(
     ListMassPaymentsRequest$outboundSchema.parse(listMassPaymentsRequest),
-  );
-}
-
-export function listMassPaymentsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListMassPaymentsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListMassPaymentsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListMassPaymentsRequest' from JSON`,
   );
 }

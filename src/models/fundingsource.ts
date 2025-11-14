@@ -8,12 +8,7 @@ import { safeParse } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  HalLink,
-  HalLink$inboundSchema,
-  HalLink$Outbound,
-  HalLink$outboundSchema,
-} from "./hallink.js";
+import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 
 export const FundingSourceChannel = {
   Ach: "ach",
@@ -45,22 +40,6 @@ export const FundingSourceChannel$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(FundingSourceChannel);
 
 /** @internal */
-export const FundingSourceChannel$outboundSchema: z.ZodNativeEnum<
-  typeof FundingSourceChannel
-> = FundingSourceChannel$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FundingSourceChannel$ {
-  /** @deprecated use `FundingSourceChannel$inboundSchema` instead. */
-  export const inboundSchema = FundingSourceChannel$inboundSchema;
-  /** @deprecated use `FundingSourceChannel$outboundSchema` instead. */
-  export const outboundSchema = FundingSourceChannel$outboundSchema;
-}
-
-/** @internal */
 export const FundingSource$inboundSchema: z.ZodType<
   FundingSource,
   z.ZodTypeDef,
@@ -83,61 +62,6 @@ export const FundingSource$inboundSchema: z.ZodType<
     "_links": "links",
   });
 });
-
-/** @internal */
-export type FundingSource$Outbound = {
-  _links?: { [k: string]: HalLink$Outbound } | undefined;
-  id?: string | undefined;
-  status?: string | undefined;
-  type?: string | undefined;
-  bankAccountType?: string | undefined;
-  name?: string | undefined;
-  created?: string | undefined;
-  removed?: boolean | undefined;
-  channels?: Array<string> | undefined;
-  bankName?: string | undefined;
-  fingerprint?: string | undefined;
-};
-
-/** @internal */
-export const FundingSource$outboundSchema: z.ZodType<
-  FundingSource$Outbound,
-  z.ZodTypeDef,
-  FundingSource
-> = z.object({
-  links: z.record(HalLink$outboundSchema).optional(),
-  id: z.string().optional(),
-  status: z.string().optional(),
-  type: z.string().optional(),
-  bankAccountType: z.string().optional(),
-  name: z.string().optional(),
-  created: z.date().transform(v => v.toISOString()).optional(),
-  removed: z.boolean().optional(),
-  channels: z.array(FundingSourceChannel$outboundSchema).optional(),
-  bankName: z.string().optional(),
-  fingerprint: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FundingSource$ {
-  /** @deprecated use `FundingSource$inboundSchema` instead. */
-  export const inboundSchema = FundingSource$inboundSchema;
-  /** @deprecated use `FundingSource$outboundSchema` instead. */
-  export const outboundSchema = FundingSource$outboundSchema;
-  /** @deprecated use `FundingSource$Outbound` instead. */
-  export type Outbound = FundingSource$Outbound;
-}
-
-export function fundingSourceToJSON(fundingSource: FundingSource): string {
-  return JSON.stringify(FundingSource$outboundSchema.parse(fundingSource));
-}
 
 export function fundingSourceFromJSON(
   jsonString: string,

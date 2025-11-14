@@ -3,24 +3,11 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../lib/schemas.js";
-import { Result as SafeParseResult } from "../types/fp.js";
-import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 export type Passport = {
   number: string;
   country: string;
 };
-
-/** @internal */
-export const Passport$inboundSchema: z.ZodType<
-  Passport,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  number: z.string(),
-  country: z.string(),
-});
 
 /** @internal */
 export type Passport$Outbound = {
@@ -38,29 +25,6 @@ export const Passport$outboundSchema: z.ZodType<
   country: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Passport$ {
-  /** @deprecated use `Passport$inboundSchema` instead. */
-  export const inboundSchema = Passport$inboundSchema;
-  /** @deprecated use `Passport$outboundSchema` instead. */
-  export const outboundSchema = Passport$outboundSchema;
-  /** @deprecated use `Passport$Outbound` instead. */
-  export type Outbound = Passport$Outbound;
-}
-
 export function passportToJSON(passport: Passport): string {
   return JSON.stringify(Passport$outboundSchema.parse(passport));
-}
-
-export function passportFromJSON(
-  jsonString: string,
-): SafeParseResult<Passport, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Passport$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Passport' from JSON`,
-  );
 }

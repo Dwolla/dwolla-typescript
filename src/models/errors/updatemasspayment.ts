@@ -89,40 +89,6 @@ export const UpdateMassPaymentNotFoundDwollaV1HalJSONError$inboundSchema:
     });
 
 /** @internal */
-export type UpdateMassPaymentNotFoundDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const UpdateMassPaymentNotFoundDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    UpdateMassPaymentNotFoundDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    UpdateMassPaymentNotFoundDwollaV1HalJSONError
-  > = z.instanceof(UpdateMassPaymentNotFoundDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateMassPaymentNotFoundDwollaV1HalJSONError$ {
-  /** @deprecated use `UpdateMassPaymentNotFoundDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateMassPaymentNotFoundDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `UpdateMassPaymentNotFoundDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateMassPaymentNotFoundDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `UpdateMassPaymentNotFoundDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound = UpdateMassPaymentNotFoundDwollaV1HalJSONError$Outbound;
-}
-
-/** @internal */
 export const UpdateMassPaymentForbiddenDwollaV1HalJSONError$inboundSchema:
   z.ZodType<
     UpdateMassPaymentForbiddenDwollaV1HalJSONError,
@@ -142,38 +108,3 @@ export const UpdateMassPaymentForbiddenDwollaV1HalJSONError$inboundSchema:
         body: v.body$,
       });
     });
-
-/** @internal */
-export type UpdateMassPaymentForbiddenDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const UpdateMassPaymentForbiddenDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    UpdateMassPaymentForbiddenDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    UpdateMassPaymentForbiddenDwollaV1HalJSONError
-  > = z.instanceof(UpdateMassPaymentForbiddenDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateMassPaymentForbiddenDwollaV1HalJSONError$ {
-  /** @deprecated use `UpdateMassPaymentForbiddenDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateMassPaymentForbiddenDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `UpdateMassPaymentForbiddenDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateMassPaymentForbiddenDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `UpdateMassPaymentForbiddenDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    UpdateMassPaymentForbiddenDwollaV1HalJSONError$Outbound;
-}

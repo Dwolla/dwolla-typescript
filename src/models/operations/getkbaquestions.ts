@@ -46,15 +46,6 @@ export type GetKbaQuestionsResponse = {
 };
 
 /** @internal */
-export const GetKbaQuestionsRequest$inboundSchema: z.ZodType<
-  GetKbaQuestionsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
-
-/** @internal */
 export type GetKbaQuestionsRequest$Outbound = {
   id: string;
 };
@@ -68,34 +59,11 @@ export const GetKbaQuestionsRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetKbaQuestionsRequest$ {
-  /** @deprecated use `GetKbaQuestionsRequest$inboundSchema` instead. */
-  export const inboundSchema = GetKbaQuestionsRequest$inboundSchema;
-  /** @deprecated use `GetKbaQuestionsRequest$outboundSchema` instead. */
-  export const outboundSchema = GetKbaQuestionsRequest$outboundSchema;
-  /** @deprecated use `GetKbaQuestionsRequest$Outbound` instead. */
-  export type Outbound = GetKbaQuestionsRequest$Outbound;
-}
-
 export function getKbaQuestionsRequestToJSON(
   getKbaQuestionsRequest: GetKbaQuestionsRequest,
 ): string {
   return JSON.stringify(
     GetKbaQuestionsRequest$outboundSchema.parse(getKbaQuestionsRequest),
-  );
-}
-
-export function getKbaQuestionsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetKbaQuestionsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetKbaQuestionsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetKbaQuestionsRequest' from JSON`,
   );
 }
 
@@ -113,45 +81,6 @@ export const LinksAnswer$inboundSchema: z.ZodType<
     "resource-type": "resourceType",
   });
 });
-
-/** @internal */
-export type LinksAnswer$Outbound = {
-  href?: string | undefined;
-  type?: string | undefined;
-  "resource-type"?: string | undefined;
-};
-
-/** @internal */
-export const LinksAnswer$outboundSchema: z.ZodType<
-  LinksAnswer$Outbound,
-  z.ZodTypeDef,
-  LinksAnswer
-> = z.object({
-  href: z.string().optional(),
-  type: z.string().optional(),
-  resourceType: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    resourceType: "resource-type",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LinksAnswer$ {
-  /** @deprecated use `LinksAnswer$inboundSchema` instead. */
-  export const inboundSchema = LinksAnswer$inboundSchema;
-  /** @deprecated use `LinksAnswer$outboundSchema` instead. */
-  export const outboundSchema = LinksAnswer$outboundSchema;
-  /** @deprecated use `LinksAnswer$Outbound` instead. */
-  export type Outbound = LinksAnswer$Outbound;
-}
-
-export function linksAnswerToJSON(linksAnswer: LinksAnswer): string {
-  return JSON.stringify(LinksAnswer$outboundSchema.parse(linksAnswer));
-}
 
 export function linksAnswerFromJSON(
   jsonString: string,
@@ -171,41 +100,6 @@ export const GetKbaQuestionsLinks$inboundSchema: z.ZodType<
 > = z.object({
   answer: z.lazy(() => LinksAnswer$inboundSchema).optional(),
 });
-
-/** @internal */
-export type GetKbaQuestionsLinks$Outbound = {
-  answer?: LinksAnswer$Outbound | undefined;
-};
-
-/** @internal */
-export const GetKbaQuestionsLinks$outboundSchema: z.ZodType<
-  GetKbaQuestionsLinks$Outbound,
-  z.ZodTypeDef,
-  GetKbaQuestionsLinks
-> = z.object({
-  answer: z.lazy(() => LinksAnswer$outboundSchema).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetKbaQuestionsLinks$ {
-  /** @deprecated use `GetKbaQuestionsLinks$inboundSchema` instead. */
-  export const inboundSchema = GetKbaQuestionsLinks$inboundSchema;
-  /** @deprecated use `GetKbaQuestionsLinks$outboundSchema` instead. */
-  export const outboundSchema = GetKbaQuestionsLinks$outboundSchema;
-  /** @deprecated use `GetKbaQuestionsLinks$Outbound` instead. */
-  export type Outbound = GetKbaQuestionsLinks$Outbound;
-}
-
-export function getKbaQuestionsLinksToJSON(
-  getKbaQuestionsLinks: GetKbaQuestionsLinks,
-): string {
-  return JSON.stringify(
-    GetKbaQuestionsLinks$outboundSchema.parse(getKbaQuestionsLinks),
-  );
-}
 
 export function getKbaQuestionsLinksFromJSON(
   jsonString: string,
@@ -227,39 +121,6 @@ export const QuestionAnswer$inboundSchema: z.ZodType<
   text: z.string().optional(),
 });
 
-/** @internal */
-export type QuestionAnswer$Outbound = {
-  id?: string | undefined;
-  text?: string | undefined;
-};
-
-/** @internal */
-export const QuestionAnswer$outboundSchema: z.ZodType<
-  QuestionAnswer$Outbound,
-  z.ZodTypeDef,
-  QuestionAnswer
-> = z.object({
-  id: z.string().optional(),
-  text: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace QuestionAnswer$ {
-  /** @deprecated use `QuestionAnswer$inboundSchema` instead. */
-  export const inboundSchema = QuestionAnswer$inboundSchema;
-  /** @deprecated use `QuestionAnswer$outboundSchema` instead. */
-  export const outboundSchema = QuestionAnswer$outboundSchema;
-  /** @deprecated use `QuestionAnswer$Outbound` instead. */
-  export type Outbound = QuestionAnswer$Outbound;
-}
-
-export function questionAnswerToJSON(questionAnswer: QuestionAnswer): string {
-  return JSON.stringify(QuestionAnswer$outboundSchema.parse(questionAnswer));
-}
-
 export function questionAnswerFromJSON(
   jsonString: string,
 ): SafeParseResult<QuestionAnswer, SDKValidationError> {
@@ -280,41 +141,6 @@ export const Question$inboundSchema: z.ZodType<
   text: z.string().optional(),
   answers: z.array(z.lazy(() => QuestionAnswer$inboundSchema)).optional(),
 });
-
-/** @internal */
-export type Question$Outbound = {
-  id?: string | undefined;
-  text?: string | undefined;
-  answers?: Array<QuestionAnswer$Outbound> | undefined;
-};
-
-/** @internal */
-export const Question$outboundSchema: z.ZodType<
-  Question$Outbound,
-  z.ZodTypeDef,
-  Question
-> = z.object({
-  id: z.string().optional(),
-  text: z.string().optional(),
-  answers: z.array(z.lazy(() => QuestionAnswer$outboundSchema)).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Question$ {
-  /** @deprecated use `Question$inboundSchema` instead. */
-  export const inboundSchema = Question$inboundSchema;
-  /** @deprecated use `Question$outboundSchema` instead. */
-  export const outboundSchema = Question$outboundSchema;
-  /** @deprecated use `Question$Outbound` instead. */
-  export type Outbound = Question$Outbound;
-}
-
-export function questionToJSON(question: Question): string {
-  return JSON.stringify(Question$outboundSchema.parse(question));
-}
 
 export function questionFromJSON(
   jsonString: string,
@@ -340,49 +166,6 @@ export const GetKbaQuestionsResponse$inboundSchema: z.ZodType<
     "_links": "links",
   });
 });
-
-/** @internal */
-export type GetKbaQuestionsResponse$Outbound = {
-  _links?: GetKbaQuestionsLinks$Outbound | undefined;
-  id?: string | undefined;
-  questions?: Array<Question$Outbound> | undefined;
-};
-
-/** @internal */
-export const GetKbaQuestionsResponse$outboundSchema: z.ZodType<
-  GetKbaQuestionsResponse$Outbound,
-  z.ZodTypeDef,
-  GetKbaQuestionsResponse
-> = z.object({
-  links: z.lazy(() => GetKbaQuestionsLinks$outboundSchema).optional(),
-  id: z.string().optional(),
-  questions: z.array(z.lazy(() => Question$outboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetKbaQuestionsResponse$ {
-  /** @deprecated use `GetKbaQuestionsResponse$inboundSchema` instead. */
-  export const inboundSchema = GetKbaQuestionsResponse$inboundSchema;
-  /** @deprecated use `GetKbaQuestionsResponse$outboundSchema` instead. */
-  export const outboundSchema = GetKbaQuestionsResponse$outboundSchema;
-  /** @deprecated use `GetKbaQuestionsResponse$Outbound` instead. */
-  export type Outbound = GetKbaQuestionsResponse$Outbound;
-}
-
-export function getKbaQuestionsResponseToJSON(
-  getKbaQuestionsResponse: GetKbaQuestionsResponse,
-): string {
-  return JSON.stringify(
-    GetKbaQuestionsResponse$outboundSchema.parse(getKbaQuestionsResponse),
-  );
-}
 
 export function getKbaQuestionsResponseFromJSON(
   jsonString: string,

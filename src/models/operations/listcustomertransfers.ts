@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListCustomerTransfersRequest = {
   /**
@@ -51,24 +48,6 @@ export type ListCustomerTransfersRequest = {
 };
 
 /** @internal */
-export const ListCustomerTransfersRequest$inboundSchema: z.ZodType<
-  ListCustomerTransfersRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  search: z.string().optional(),
-  startAmount: z.string().optional(),
-  endAmount: z.string().optional(),
-  startDate: z.string().optional(),
-  endDate: z.string().optional(),
-  status: z.string().optional(),
-  correlationId: z.string().optional(),
-  limit: z.string().optional(),
-  offset: z.string().optional(),
-});
-
-/** @internal */
 export type ListCustomerTransfersRequest$Outbound = {
   id: string;
   search?: string | undefined;
@@ -100,19 +79,6 @@ export const ListCustomerTransfersRequest$outboundSchema: z.ZodType<
   offset: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListCustomerTransfersRequest$ {
-  /** @deprecated use `ListCustomerTransfersRequest$inboundSchema` instead. */
-  export const inboundSchema = ListCustomerTransfersRequest$inboundSchema;
-  /** @deprecated use `ListCustomerTransfersRequest$outboundSchema` instead. */
-  export const outboundSchema = ListCustomerTransfersRequest$outboundSchema;
-  /** @deprecated use `ListCustomerTransfersRequest$Outbound` instead. */
-  export type Outbound = ListCustomerTransfersRequest$Outbound;
-}
-
 export function listCustomerTransfersRequestToJSON(
   listCustomerTransfersRequest: ListCustomerTransfersRequest,
 ): string {
@@ -120,15 +86,5 @@ export function listCustomerTransfersRequestToJSON(
     ListCustomerTransfersRequest$outboundSchema.parse(
       listCustomerTransfersRequest,
     ),
-  );
-}
-
-export function listCustomerTransfersRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListCustomerTransfersRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListCustomerTransfersRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListCustomerTransfersRequest' from JSON`,
   );
 }

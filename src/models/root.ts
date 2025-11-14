@@ -7,12 +7,7 @@ import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  HalLink,
-  HalLink$inboundSchema,
-  HalLink$Outbound,
-  HalLink$outboundSchema,
-} from "./hallink.js";
+import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 
 export type Root = {
   links?: { [k: string]: HalLink } | undefined;
@@ -27,38 +22,6 @@ export const Root$inboundSchema: z.ZodType<Root, z.ZodTypeDef, unknown> = z
       "_links": "links",
     });
   });
-
-/** @internal */
-export type Root$Outbound = {
-  _links?: { [k: string]: HalLink$Outbound } | undefined;
-};
-
-/** @internal */
-export const Root$outboundSchema: z.ZodType<Root$Outbound, z.ZodTypeDef, Root> =
-  z.object({
-    links: z.record(HalLink$outboundSchema).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      links: "_links",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Root$ {
-  /** @deprecated use `Root$inboundSchema` instead. */
-  export const inboundSchema = Root$inboundSchema;
-  /** @deprecated use `Root$outboundSchema` instead. */
-  export const outboundSchema = Root$outboundSchema;
-  /** @deprecated use `Root$Outbound` instead. */
-  export type Outbound = Root$Outbound;
-}
-
-export function rootToJSON(root: Root): string {
-  return JSON.stringify(Root$outboundSchema.parse(root));
-}
 
 export function rootFromJSON(
   jsonString: string,

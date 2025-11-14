@@ -48,34 +48,3 @@ export const DuplicateFundingSourceError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type DuplicateFundingSourceError$Outbound = {
-  code: string;
-  message: string;
-};
-
-/** @internal */
-export const DuplicateFundingSourceError$outboundSchema: z.ZodType<
-  DuplicateFundingSourceError$Outbound,
-  z.ZodTypeDef,
-  DuplicateFundingSourceError
-> = z.instanceof(DuplicateFundingSourceError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string(),
-    message: z.string(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DuplicateFundingSourceError$ {
-  /** @deprecated use `DuplicateFundingSourceError$inboundSchema` instead. */
-  export const inboundSchema = DuplicateFundingSourceError$inboundSchema;
-  /** @deprecated use `DuplicateFundingSourceError$outboundSchema` instead. */
-  export const outboundSchema = DuplicateFundingSourceError$outboundSchema;
-  /** @deprecated use `DuplicateFundingSourceError$Outbound` instead. */
-  export type Outbound = DuplicateFundingSourceError$Outbound;
-}

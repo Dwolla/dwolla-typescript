@@ -8,21 +8,15 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import {
   InvalidUrlFormatError,
   InvalidUrlFormatError$inboundSchema,
-  InvalidUrlFormatError$Outbound,
-  InvalidUrlFormatError$outboundSchema,
 } from "./invalidurlformaterror.js";
 import {
   MaxSubscriptionsReachedError,
   MaxSubscriptionsReachedError$inboundSchema,
-  MaxSubscriptionsReachedError$Outbound,
-  MaxSubscriptionsReachedError$outboundSchema,
 } from "./maxsubscriptionsreachederror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 import {
   SecretTooLongError,
   SecretTooLongError$inboundSchema,
-  SecretTooLongError$Outbound,
-  SecretTooLongError$outboundSchema,
 } from "./secrettoolongerror.js";
 
 /**
@@ -43,49 +37,6 @@ export const CreateWebhookSubscriptionDwollaV1HalJSON$inboundSchema: z.ZodType<
   SecretTooLongError$inboundSchema,
   MaxSubscriptionsReachedError$inboundSchema,
 ]);
-
-/** @internal */
-export type CreateWebhookSubscriptionDwollaV1HalJSON$Outbound =
-  | InvalidUrlFormatError$Outbound
-  | SecretTooLongError$Outbound
-  | MaxSubscriptionsReachedError$Outbound;
-
-/** @internal */
-export const CreateWebhookSubscriptionDwollaV1HalJSON$outboundSchema: z.ZodType<
-  CreateWebhookSubscriptionDwollaV1HalJSON$Outbound,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  InvalidUrlFormatError$outboundSchema,
-  SecretTooLongError$outboundSchema,
-  MaxSubscriptionsReachedError$outboundSchema,
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateWebhookSubscriptionDwollaV1HalJSON$ {
-  /** @deprecated use `CreateWebhookSubscriptionDwollaV1HalJSON$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateWebhookSubscriptionDwollaV1HalJSON$inboundSchema;
-  /** @deprecated use `CreateWebhookSubscriptionDwollaV1HalJSON$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateWebhookSubscriptionDwollaV1HalJSON$outboundSchema;
-  /** @deprecated use `CreateWebhookSubscriptionDwollaV1HalJSON$Outbound` instead. */
-  export type Outbound = CreateWebhookSubscriptionDwollaV1HalJSON$Outbound;
-}
-
-export function createWebhookSubscriptionDwollaV1HalJSONToJSON(
-  createWebhookSubscriptionDwollaV1HalJSON:
-    CreateWebhookSubscriptionDwollaV1HalJSON,
-): string {
-  return JSON.stringify(
-    CreateWebhookSubscriptionDwollaV1HalJSON$outboundSchema.parse(
-      createWebhookSubscriptionDwollaV1HalJSON,
-    ),
-  );
-}
 
 export function createWebhookSubscriptionDwollaV1HalJSONFromJSON(
   jsonString: string,

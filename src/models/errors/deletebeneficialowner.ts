@@ -54,37 +54,3 @@ export const DeleteBeneficialOwnerDwollaV1HalJSONError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type DeleteBeneficialOwnerDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const DeleteBeneficialOwnerDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    DeleteBeneficialOwnerDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    DeleteBeneficialOwnerDwollaV1HalJSONError
-  > = z.instanceof(DeleteBeneficialOwnerDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteBeneficialOwnerDwollaV1HalJSONError$ {
-  /** @deprecated use `DeleteBeneficialOwnerDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    DeleteBeneficialOwnerDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `DeleteBeneficialOwnerDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    DeleteBeneficialOwnerDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `DeleteBeneficialOwnerDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound = DeleteBeneficialOwnerDwollaV1HalJSONError$Outbound;
-}

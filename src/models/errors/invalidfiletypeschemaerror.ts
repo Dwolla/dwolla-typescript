@@ -48,34 +48,3 @@ export const InvalidFileTypeSchemaError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type InvalidFileTypeSchemaError$Outbound = {
-  code: string;
-  message: string;
-};
-
-/** @internal */
-export const InvalidFileTypeSchemaError$outboundSchema: z.ZodType<
-  InvalidFileTypeSchemaError$Outbound,
-  z.ZodTypeDef,
-  InvalidFileTypeSchemaError
-> = z.instanceof(InvalidFileTypeSchemaError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string(),
-    message: z.string(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidFileTypeSchemaError$ {
-  /** @deprecated use `InvalidFileTypeSchemaError$inboundSchema` instead. */
-  export const inboundSchema = InvalidFileTypeSchemaError$inboundSchema;
-  /** @deprecated use `InvalidFileTypeSchemaError$outboundSchema` instead. */
-  export const outboundSchema = InvalidFileTypeSchemaError$outboundSchema;
-  /** @deprecated use `InvalidFileTypeSchemaError$Outbound` instead. */
-  export type Outbound = InvalidFileTypeSchemaError$Outbound;
-}

@@ -65,49 +65,6 @@ export const ExchangeSessionSelf$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type ExchangeSessionSelf$Outbound = {
-  href: string;
-  type: string;
-  "resource-type": string;
-};
-
-/** @internal */
-export const ExchangeSessionSelf$outboundSchema: z.ZodType<
-  ExchangeSessionSelf$Outbound,
-  z.ZodTypeDef,
-  ExchangeSessionSelf
-> = z.object({
-  href: z.string(),
-  type: z.string(),
-  resourceType: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    resourceType: "resource-type",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ExchangeSessionSelf$ {
-  /** @deprecated use `ExchangeSessionSelf$inboundSchema` instead. */
-  export const inboundSchema = ExchangeSessionSelf$inboundSchema;
-  /** @deprecated use `ExchangeSessionSelf$outboundSchema` instead. */
-  export const outboundSchema = ExchangeSessionSelf$outboundSchema;
-  /** @deprecated use `ExchangeSessionSelf$Outbound` instead. */
-  export type Outbound = ExchangeSessionSelf$Outbound;
-}
-
-export function exchangeSessionSelfToJSON(
-  exchangeSessionSelf: ExchangeSessionSelf,
-): string {
-  return JSON.stringify(
-    ExchangeSessionSelf$outboundSchema.parse(exchangeSessionSelf),
-  );
-}
-
 export function exchangeSessionSelfFromJSON(
   jsonString: string,
 ): SafeParseResult<ExchangeSessionSelf, SDKValidationError> {
@@ -133,51 +90,6 @@ export const ExchangeSessionExchangePartner$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type ExchangeSessionExchangePartner$Outbound = {
-  href: string;
-  type: string;
-  "resource-type": string;
-};
-
-/** @internal */
-export const ExchangeSessionExchangePartner$outboundSchema: z.ZodType<
-  ExchangeSessionExchangePartner$Outbound,
-  z.ZodTypeDef,
-  ExchangeSessionExchangePartner
-> = z.object({
-  href: z.string(),
-  type: z.string(),
-  resourceType: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    resourceType: "resource-type",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ExchangeSessionExchangePartner$ {
-  /** @deprecated use `ExchangeSessionExchangePartner$inboundSchema` instead. */
-  export const inboundSchema = ExchangeSessionExchangePartner$inboundSchema;
-  /** @deprecated use `ExchangeSessionExchangePartner$outboundSchema` instead. */
-  export const outboundSchema = ExchangeSessionExchangePartner$outboundSchema;
-  /** @deprecated use `ExchangeSessionExchangePartner$Outbound` instead. */
-  export type Outbound = ExchangeSessionExchangePartner$Outbound;
-}
-
-export function exchangeSessionExchangePartnerToJSON(
-  exchangeSessionExchangePartner: ExchangeSessionExchangePartner,
-): string {
-  return JSON.stringify(
-    ExchangeSessionExchangePartner$outboundSchema.parse(
-      exchangeSessionExchangePartner,
-    ),
-  );
-}
-
 export function exchangeSessionExchangePartnerFromJSON(
   jsonString: string,
 ): SafeParseResult<ExchangeSessionExchangePartner, SDKValidationError> {
@@ -202,49 +114,6 @@ export const ExternalProviderSession$inboundSchema: z.ZodType<
     "resource-type": "resourceType",
   });
 });
-
-/** @internal */
-export type ExternalProviderSession$Outbound = {
-  href: string;
-  type: string;
-  "resource-type": string;
-};
-
-/** @internal */
-export const ExternalProviderSession$outboundSchema: z.ZodType<
-  ExternalProviderSession$Outbound,
-  z.ZodTypeDef,
-  ExternalProviderSession
-> = z.object({
-  href: z.string(),
-  type: z.string(),
-  resourceType: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    resourceType: "resource-type",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ExternalProviderSession$ {
-  /** @deprecated use `ExternalProviderSession$inboundSchema` instead. */
-  export const inboundSchema = ExternalProviderSession$inboundSchema;
-  /** @deprecated use `ExternalProviderSession$outboundSchema` instead. */
-  export const outboundSchema = ExternalProviderSession$outboundSchema;
-  /** @deprecated use `ExternalProviderSession$Outbound` instead. */
-  export type Outbound = ExternalProviderSession$Outbound;
-}
-
-export function externalProviderSessionToJSON(
-  externalProviderSession: ExternalProviderSession,
-): string {
-  return JSON.stringify(
-    ExternalProviderSession$outboundSchema.parse(externalProviderSession),
-  );
-}
 
 export function externalProviderSessionFromJSON(
   jsonString: string,
@@ -276,51 +145,6 @@ export const ExchangeSessionLinks$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type ExchangeSessionLinks$Outbound = {
-  self: ExchangeSessionSelf$Outbound;
-  "exchange-partner": ExchangeSessionExchangePartner$Outbound;
-  "external-provider-session"?: ExternalProviderSession$Outbound | undefined;
-};
-
-/** @internal */
-export const ExchangeSessionLinks$outboundSchema: z.ZodType<
-  ExchangeSessionLinks$Outbound,
-  z.ZodTypeDef,
-  ExchangeSessionLinks
-> = z.object({
-  self: z.lazy(() => ExchangeSessionSelf$outboundSchema),
-  exchangePartner: z.lazy(() => ExchangeSessionExchangePartner$outboundSchema),
-  externalProviderSession: z.lazy(() => ExternalProviderSession$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    exchangePartner: "exchange-partner",
-    externalProviderSession: "external-provider-session",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ExchangeSessionLinks$ {
-  /** @deprecated use `ExchangeSessionLinks$inboundSchema` instead. */
-  export const inboundSchema = ExchangeSessionLinks$inboundSchema;
-  /** @deprecated use `ExchangeSessionLinks$outboundSchema` instead. */
-  export const outboundSchema = ExchangeSessionLinks$outboundSchema;
-  /** @deprecated use `ExchangeSessionLinks$Outbound` instead. */
-  export type Outbound = ExchangeSessionLinks$Outbound;
-}
-
-export function exchangeSessionLinksToJSON(
-  exchangeSessionLinks: ExchangeSessionLinks,
-): string {
-  return JSON.stringify(
-    ExchangeSessionLinks$outboundSchema.parse(exchangeSessionLinks),
-  );
-}
-
 export function exchangeSessionLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<ExchangeSessionLinks, SDKValidationError> {
@@ -345,47 +169,6 @@ export const ExchangeSession$inboundSchema: z.ZodType<
     "_links": "links",
   });
 });
-
-/** @internal */
-export type ExchangeSession$Outbound = {
-  created: string;
-  _links: ExchangeSessionLinks$Outbound;
-  externalProviderSessionToken?: string | undefined;
-};
-
-/** @internal */
-export const ExchangeSession$outboundSchema: z.ZodType<
-  ExchangeSession$Outbound,
-  z.ZodTypeDef,
-  ExchangeSession
-> = z.object({
-  created: z.date().transform(v => v.toISOString()),
-  links: z.lazy(() => ExchangeSessionLinks$outboundSchema),
-  externalProviderSessionToken: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ExchangeSession$ {
-  /** @deprecated use `ExchangeSession$inboundSchema` instead. */
-  export const inboundSchema = ExchangeSession$inboundSchema;
-  /** @deprecated use `ExchangeSession$outboundSchema` instead. */
-  export const outboundSchema = ExchangeSession$outboundSchema;
-  /** @deprecated use `ExchangeSession$Outbound` instead. */
-  export type Outbound = ExchangeSession$Outbound;
-}
-
-export function exchangeSessionToJSON(
-  exchangeSession: ExchangeSession,
-): string {
-  return JSON.stringify(ExchangeSession$outboundSchema.parse(exchangeSession));
-}
 
 export function exchangeSessionFromJSON(
   jsonString: string,

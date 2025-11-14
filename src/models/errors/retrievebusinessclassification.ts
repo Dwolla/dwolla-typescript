@@ -57,38 +57,3 @@ export const RetrieveBusinessClassificationDwollaV1HalJSONError$inboundSchema:
         body: v.body$,
       });
     });
-
-/** @internal */
-export type RetrieveBusinessClassificationDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const RetrieveBusinessClassificationDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    RetrieveBusinessClassificationDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    RetrieveBusinessClassificationDwollaV1HalJSONError
-  > = z.instanceof(RetrieveBusinessClassificationDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RetrieveBusinessClassificationDwollaV1HalJSONError$ {
-  /** @deprecated use `RetrieveBusinessClassificationDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    RetrieveBusinessClassificationDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `RetrieveBusinessClassificationDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    RetrieveBusinessClassificationDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `RetrieveBusinessClassificationDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    RetrieveBusinessClassificationDwollaV1HalJSONError$Outbound;
-}

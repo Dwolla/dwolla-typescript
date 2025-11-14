@@ -34,17 +34,6 @@ export type CreateBeneficialOwnerForCustomerResponse = {
 };
 
 /** @internal */
-export const CreateBeneficialOwnerForCustomerRequestBody$inboundSchema:
-  z.ZodType<
-    CreateBeneficialOwnerForCustomerRequestBody,
-    z.ZodTypeDef,
-    unknown
-  > = z.union([
-    models.CreateUSBeneficialOwner$inboundSchema,
-    models.CreateInternationalBeneficialOwner$inboundSchema,
-  ]);
-
-/** @internal */
 export type CreateBeneficialOwnerForCustomerRequestBody$Outbound =
   | models.CreateUSBeneficialOwner$Outbound
   | models.CreateInternationalBeneficialOwner$Outbound;
@@ -60,21 +49,6 @@ export const CreateBeneficialOwnerForCustomerRequestBody$outboundSchema:
     models.CreateInternationalBeneficialOwner$outboundSchema,
   ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateBeneficialOwnerForCustomerRequestBody$ {
-  /** @deprecated use `CreateBeneficialOwnerForCustomerRequestBody$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateBeneficialOwnerForCustomerRequestBody$inboundSchema;
-  /** @deprecated use `CreateBeneficialOwnerForCustomerRequestBody$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateBeneficialOwnerForCustomerRequestBody$outboundSchema;
-  /** @deprecated use `CreateBeneficialOwnerForCustomerRequestBody$Outbound` instead. */
-  export type Outbound = CreateBeneficialOwnerForCustomerRequestBody$Outbound;
-}
-
 export function createBeneficialOwnerForCustomerRequestBodyToJSON(
   createBeneficialOwnerForCustomerRequestBody:
     CreateBeneficialOwnerForCustomerRequestBody,
@@ -85,39 +59,6 @@ export function createBeneficialOwnerForCustomerRequestBodyToJSON(
     ),
   );
 }
-
-export function createBeneficialOwnerForCustomerRequestBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateBeneficialOwnerForCustomerRequestBody,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateBeneficialOwnerForCustomerRequestBody$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreateBeneficialOwnerForCustomerRequestBody' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateBeneficialOwnerForCustomerRequest$inboundSchema: z.ZodType<
-  CreateBeneficialOwnerForCustomerRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  RequestBody: z.union([
-    models.CreateUSBeneficialOwner$inboundSchema,
-    models.CreateInternationalBeneficialOwner$inboundSchema,
-  ]),
-}).transform((v) => {
-  return remap$(v, {
-    "RequestBody": "requestBody",
-  });
-});
 
 /** @internal */
 export type CreateBeneficialOwnerForCustomerRequest$Outbound = {
@@ -144,21 +85,6 @@ export const CreateBeneficialOwnerForCustomerRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateBeneficialOwnerForCustomerRequest$ {
-  /** @deprecated use `CreateBeneficialOwnerForCustomerRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateBeneficialOwnerForCustomerRequest$inboundSchema;
-  /** @deprecated use `CreateBeneficialOwnerForCustomerRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateBeneficialOwnerForCustomerRequest$outboundSchema;
-  /** @deprecated use `CreateBeneficialOwnerForCustomerRequest$Outbound` instead. */
-  export type Outbound = CreateBeneficialOwnerForCustomerRequest$Outbound;
-}
-
 export function createBeneficialOwnerForCustomerRequestToJSON(
   createBeneficialOwnerForCustomerRequest:
     CreateBeneficialOwnerForCustomerRequest,
@@ -167,22 +93,6 @@ export function createBeneficialOwnerForCustomerRequestToJSON(
     CreateBeneficialOwnerForCustomerRequest$outboundSchema.parse(
       createBeneficialOwnerForCustomerRequest,
     ),
-  );
-}
-
-export function createBeneficialOwnerForCustomerRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateBeneficialOwnerForCustomerRequest,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateBeneficialOwnerForCustomerRequest$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreateBeneficialOwnerForCustomerRequest' from JSON`,
   );
 }
 
@@ -198,50 +108,6 @@ export const CreateBeneficialOwnerForCustomerResponse$inboundSchema: z.ZodType<
     "Headers": "headers",
   });
 });
-
-/** @internal */
-export type CreateBeneficialOwnerForCustomerResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-};
-
-/** @internal */
-export const CreateBeneficialOwnerForCustomerResponse$outboundSchema: z.ZodType<
-  CreateBeneficialOwnerForCustomerResponse$Outbound,
-  z.ZodTypeDef,
-  CreateBeneficialOwnerForCustomerResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateBeneficialOwnerForCustomerResponse$ {
-  /** @deprecated use `CreateBeneficialOwnerForCustomerResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateBeneficialOwnerForCustomerResponse$inboundSchema;
-  /** @deprecated use `CreateBeneficialOwnerForCustomerResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateBeneficialOwnerForCustomerResponse$outboundSchema;
-  /** @deprecated use `CreateBeneficialOwnerForCustomerResponse$Outbound` instead. */
-  export type Outbound = CreateBeneficialOwnerForCustomerResponse$Outbound;
-}
-
-export function createBeneficialOwnerForCustomerResponseToJSON(
-  createBeneficialOwnerForCustomerResponse:
-    CreateBeneficialOwnerForCustomerResponse,
-): string {
-  return JSON.stringify(
-    CreateBeneficialOwnerForCustomerResponse$outboundSchema.parse(
-      createBeneficialOwnerForCustomerResponse,
-    ),
-  );
-}
 
 export function createBeneficialOwnerForCustomerResponseFromJSON(
   jsonString: string,

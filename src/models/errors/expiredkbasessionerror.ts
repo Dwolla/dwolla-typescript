@@ -48,34 +48,3 @@ export const ExpiredKbaSessionError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type ExpiredKbaSessionError$Outbound = {
-  code: string;
-  message: string;
-};
-
-/** @internal */
-export const ExpiredKbaSessionError$outboundSchema: z.ZodType<
-  ExpiredKbaSessionError$Outbound,
-  z.ZodTypeDef,
-  ExpiredKbaSessionError
-> = z.instanceof(ExpiredKbaSessionError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string(),
-    message: z.string(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ExpiredKbaSessionError$ {
-  /** @deprecated use `ExpiredKbaSessionError$inboundSchema` instead. */
-  export const inboundSchema = ExpiredKbaSessionError$inboundSchema;
-  /** @deprecated use `ExpiredKbaSessionError$outboundSchema` instead. */
-  export const outboundSchema = ExpiredKbaSessionError$outboundSchema;
-  /** @deprecated use `ExpiredKbaSessionError$Outbound` instead. */
-  export type Outbound = ExpiredKbaSessionError$Outbound;
-}

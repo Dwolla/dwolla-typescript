@@ -9,20 +9,14 @@ import { DwollaError } from "./dwollaerror.js";
 import {
   ExpiredKbaSessionError,
   ExpiredKbaSessionError$inboundSchema,
-  ExpiredKbaSessionError$Outbound,
-  ExpiredKbaSessionError$outboundSchema,
 } from "./expiredkbasessionerror.js";
 import {
   ForbiddenError,
   ForbiddenError$inboundSchema,
-  ForbiddenError$Outbound,
-  ForbiddenError$outboundSchema,
 } from "./forbiddenerror.js";
 import {
   InvalidKbaSessionError,
   InvalidKbaSessionError$inboundSchema,
-  InvalidKbaSessionError$Outbound,
-  InvalidKbaSessionError$outboundSchema,
 } from "./invalidkbasessionerror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
@@ -85,39 +79,6 @@ export const VerifyKbaQuestionsDwollaV1HalJSONError$inboundSchema: z.ZodType<
   });
 
 /** @internal */
-export type VerifyKbaQuestionsDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const VerifyKbaQuestionsDwollaV1HalJSONError$outboundSchema: z.ZodType<
-  VerifyKbaQuestionsDwollaV1HalJSONError$Outbound,
-  z.ZodTypeDef,
-  VerifyKbaQuestionsDwollaV1HalJSONError
-> = z.instanceof(VerifyKbaQuestionsDwollaV1HalJSONError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VerifyKbaQuestionsDwollaV1HalJSONError$ {
-  /** @deprecated use `VerifyKbaQuestionsDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    VerifyKbaQuestionsDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `VerifyKbaQuestionsDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    VerifyKbaQuestionsDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `VerifyKbaQuestionsDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound = VerifyKbaQuestionsDwollaV1HalJSONError$Outbound;
-}
-
-/** @internal */
 export const VerifyKbaQuestionsDwollaV1HalJSON$inboundSchema: z.ZodType<
   VerifyKbaQuestionsDwollaV1HalJSON,
   z.ZodTypeDef,
@@ -127,47 +88,6 @@ export const VerifyKbaQuestionsDwollaV1HalJSON$inboundSchema: z.ZodType<
   InvalidKbaSessionError$inboundSchema,
   ExpiredKbaSessionError$inboundSchema,
 ]);
-
-/** @internal */
-export type VerifyKbaQuestionsDwollaV1HalJSON$Outbound =
-  | ForbiddenError$Outbound
-  | InvalidKbaSessionError$Outbound
-  | ExpiredKbaSessionError$Outbound;
-
-/** @internal */
-export const VerifyKbaQuestionsDwollaV1HalJSON$outboundSchema: z.ZodType<
-  VerifyKbaQuestionsDwollaV1HalJSON$Outbound,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  ForbiddenError$outboundSchema,
-  InvalidKbaSessionError$outboundSchema,
-  ExpiredKbaSessionError$outboundSchema,
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VerifyKbaQuestionsDwollaV1HalJSON$ {
-  /** @deprecated use `VerifyKbaQuestionsDwollaV1HalJSON$inboundSchema` instead. */
-  export const inboundSchema = VerifyKbaQuestionsDwollaV1HalJSON$inboundSchema;
-  /** @deprecated use `VerifyKbaQuestionsDwollaV1HalJSON$outboundSchema` instead. */
-  export const outboundSchema =
-    VerifyKbaQuestionsDwollaV1HalJSON$outboundSchema;
-  /** @deprecated use `VerifyKbaQuestionsDwollaV1HalJSON$Outbound` instead. */
-  export type Outbound = VerifyKbaQuestionsDwollaV1HalJSON$Outbound;
-}
-
-export function verifyKbaQuestionsDwollaV1HalJSONToJSON(
-  verifyKbaQuestionsDwollaV1HalJSON: VerifyKbaQuestionsDwollaV1HalJSON,
-): string {
-  return JSON.stringify(
-    VerifyKbaQuestionsDwollaV1HalJSON$outboundSchema.parse(
-      verifyKbaQuestionsDwollaV1HalJSON,
-    ),
-  );
-}
 
 export function verifyKbaQuestionsDwollaV1HalJSONFromJSON(
   jsonString: string,

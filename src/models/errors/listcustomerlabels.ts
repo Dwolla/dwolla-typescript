@@ -91,41 +91,6 @@ export const ListCustomerLabelsNotFoundDwollaV1HalJSONError$inboundSchema:
     });
 
 /** @internal */
-export type ListCustomerLabelsNotFoundDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const ListCustomerLabelsNotFoundDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    ListCustomerLabelsNotFoundDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    ListCustomerLabelsNotFoundDwollaV1HalJSONError
-  > = z.instanceof(ListCustomerLabelsNotFoundDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListCustomerLabelsNotFoundDwollaV1HalJSONError$ {
-  /** @deprecated use `ListCustomerLabelsNotFoundDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    ListCustomerLabelsNotFoundDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `ListCustomerLabelsNotFoundDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    ListCustomerLabelsNotFoundDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `ListCustomerLabelsNotFoundDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    ListCustomerLabelsNotFoundDwollaV1HalJSONError$Outbound;
-}
-
-/** @internal */
 export const ListCustomerLabelsForbiddenDwollaV1HalJSONError$inboundSchema:
   z.ZodType<
     ListCustomerLabelsForbiddenDwollaV1HalJSONError,
@@ -145,38 +110,3 @@ export const ListCustomerLabelsForbiddenDwollaV1HalJSONError$inboundSchema:
         body: v.body$,
       });
     });
-
-/** @internal */
-export type ListCustomerLabelsForbiddenDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const ListCustomerLabelsForbiddenDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    ListCustomerLabelsForbiddenDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    ListCustomerLabelsForbiddenDwollaV1HalJSONError
-  > = z.instanceof(ListCustomerLabelsForbiddenDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListCustomerLabelsForbiddenDwollaV1HalJSONError$ {
-  /** @deprecated use `ListCustomerLabelsForbiddenDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    ListCustomerLabelsForbiddenDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `ListCustomerLabelsForbiddenDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    ListCustomerLabelsForbiddenDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `ListCustomerLabelsForbiddenDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    ListCustomerLabelsForbiddenDwollaV1HalJSONError$Outbound;
-}

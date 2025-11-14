@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListWebhookRetriesRequest = {
   /**
@@ -13,15 +10,6 @@ export type ListWebhookRetriesRequest = {
    */
   id: string;
 };
-
-/** @internal */
-export const ListWebhookRetriesRequest$inboundSchema: z.ZodType<
-  ListWebhookRetriesRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
 
 /** @internal */
 export type ListWebhookRetriesRequest$Outbound = {
@@ -37,33 +25,10 @@ export const ListWebhookRetriesRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListWebhookRetriesRequest$ {
-  /** @deprecated use `ListWebhookRetriesRequest$inboundSchema` instead. */
-  export const inboundSchema = ListWebhookRetriesRequest$inboundSchema;
-  /** @deprecated use `ListWebhookRetriesRequest$outboundSchema` instead. */
-  export const outboundSchema = ListWebhookRetriesRequest$outboundSchema;
-  /** @deprecated use `ListWebhookRetriesRequest$Outbound` instead. */
-  export type Outbound = ListWebhookRetriesRequest$Outbound;
-}
-
 export function listWebhookRetriesRequestToJSON(
   listWebhookRetriesRequest: ListWebhookRetriesRequest,
 ): string {
   return JSON.stringify(
     ListWebhookRetriesRequest$outboundSchema.parse(listWebhookRetriesRequest),
-  );
-}
-
-export function listWebhookRetriesRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListWebhookRetriesRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListWebhookRetriesRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListWebhookRetriesRequest' from JSON`,
   );
 }

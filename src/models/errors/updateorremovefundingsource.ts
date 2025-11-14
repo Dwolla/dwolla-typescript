@@ -91,42 +91,6 @@ export const UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError$inboundSch
     });
 
 /** @internal */
-export type UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError$Outbound =
-  {
-    code?: string | undefined;
-    message?: string | undefined;
-  };
-
-/** @internal */
-export const UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError
-  > = z.instanceof(UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError$ {
-  /** @deprecated use `UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError$Outbound;
-}
-
-/** @internal */
 export const UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError$inboundSchema:
   z.ZodType<
     UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError,
@@ -146,39 +110,3 @@ export const UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError$inboundSc
         body: v.body$,
       });
     });
-
-/** @internal */
-export type UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError$Outbound =
-  {
-    code?: string | undefined;
-    message?: string | undefined;
-  };
-
-/** @internal */
-export const UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError
-  > = z.instanceof(UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError$ {
-  /** @deprecated use `UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError$Outbound;
-}

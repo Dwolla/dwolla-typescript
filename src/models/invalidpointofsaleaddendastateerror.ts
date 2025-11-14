@@ -28,42 +28,6 @@ export const InvalidPointOfSaleAddendaStateErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type InvalidPointOfSaleAddendaStateErrorLinks$Outbound = {};
-
-/** @internal */
-export const InvalidPointOfSaleAddendaStateErrorLinks$outboundSchema: z.ZodType<
-  InvalidPointOfSaleAddendaStateErrorLinks$Outbound,
-  z.ZodTypeDef,
-  InvalidPointOfSaleAddendaStateErrorLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidPointOfSaleAddendaStateErrorLinks$ {
-  /** @deprecated use `InvalidPointOfSaleAddendaStateErrorLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidPointOfSaleAddendaStateErrorLinks$inboundSchema;
-  /** @deprecated use `InvalidPointOfSaleAddendaStateErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidPointOfSaleAddendaStateErrorLinks$outboundSchema;
-  /** @deprecated use `InvalidPointOfSaleAddendaStateErrorLinks$Outbound` instead. */
-  export type Outbound = InvalidPointOfSaleAddendaStateErrorLinks$Outbound;
-}
-
-export function invalidPointOfSaleAddendaStateErrorLinksToJSON(
-  invalidPointOfSaleAddendaStateErrorLinks:
-    InvalidPointOfSaleAddendaStateErrorLinks,
-): string {
-  return JSON.stringify(
-    InvalidPointOfSaleAddendaStateErrorLinks$outboundSchema.parse(
-      invalidPointOfSaleAddendaStateErrorLinks,
-    ),
-  );
-}
-
 export function invalidPointOfSaleAddendaStateErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -97,57 +61,6 @@ export const InvalidPointOfSaleAddendaStateErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type InvalidPointOfSaleAddendaStateErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: InvalidPointOfSaleAddendaStateErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const InvalidPointOfSaleAddendaStateErrorError$outboundSchema: z.ZodType<
-  InvalidPointOfSaleAddendaStateErrorError$Outbound,
-  z.ZodTypeDef,
-  InvalidPointOfSaleAddendaStateErrorError
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  links: z.lazy(() => InvalidPointOfSaleAddendaStateErrorLinks$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidPointOfSaleAddendaStateErrorError$ {
-  /** @deprecated use `InvalidPointOfSaleAddendaStateErrorError$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidPointOfSaleAddendaStateErrorError$inboundSchema;
-  /** @deprecated use `InvalidPointOfSaleAddendaStateErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidPointOfSaleAddendaStateErrorError$outboundSchema;
-  /** @deprecated use `InvalidPointOfSaleAddendaStateErrorError$Outbound` instead. */
-  export type Outbound = InvalidPointOfSaleAddendaStateErrorError$Outbound;
-}
-
-export function invalidPointOfSaleAddendaStateErrorErrorToJSON(
-  invalidPointOfSaleAddendaStateErrorError:
-    InvalidPointOfSaleAddendaStateErrorError,
-): string {
-  return JSON.stringify(
-    InvalidPointOfSaleAddendaStateErrorError$outboundSchema.parse(
-      invalidPointOfSaleAddendaStateErrorError,
-    ),
-  );
-}
-
 export function invalidPointOfSaleAddendaStateErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -175,49 +88,6 @@ export const InvalidPointOfSaleAddendaStateErrorEmbedded$inboundSchema:
       z.lazy(() => InvalidPointOfSaleAddendaStateErrorError$inboundSchema),
     ).optional(),
   });
-
-/** @internal */
-export type InvalidPointOfSaleAddendaStateErrorEmbedded$Outbound = {
-  errors?: Array<InvalidPointOfSaleAddendaStateErrorError$Outbound> | undefined;
-};
-
-/** @internal */
-export const InvalidPointOfSaleAddendaStateErrorEmbedded$outboundSchema:
-  z.ZodType<
-    InvalidPointOfSaleAddendaStateErrorEmbedded$Outbound,
-    z.ZodTypeDef,
-    InvalidPointOfSaleAddendaStateErrorEmbedded
-  > = z.object({
-    errors: z.array(
-      z.lazy(() => InvalidPointOfSaleAddendaStateErrorError$outboundSchema),
-    ).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidPointOfSaleAddendaStateErrorEmbedded$ {
-  /** @deprecated use `InvalidPointOfSaleAddendaStateErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidPointOfSaleAddendaStateErrorEmbedded$inboundSchema;
-  /** @deprecated use `InvalidPointOfSaleAddendaStateErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidPointOfSaleAddendaStateErrorEmbedded$outboundSchema;
-  /** @deprecated use `InvalidPointOfSaleAddendaStateErrorEmbedded$Outbound` instead. */
-  export type Outbound = InvalidPointOfSaleAddendaStateErrorEmbedded$Outbound;
-}
-
-export function invalidPointOfSaleAddendaStateErrorEmbeddedToJSON(
-  invalidPointOfSaleAddendaStateErrorEmbedded:
-    InvalidPointOfSaleAddendaStateErrorEmbedded,
-): string {
-  return JSON.stringify(
-    InvalidPointOfSaleAddendaStateErrorEmbedded$outboundSchema.parse(
-      invalidPointOfSaleAddendaStateErrorEmbedded,
-    ),
-  );
-}
 
 export function invalidPointOfSaleAddendaStateErrorEmbeddedFromJSON(
   jsonString: string,

@@ -34,16 +34,6 @@ export type CreateCustomerExchangeSessionResponse = {
 };
 
 /** @internal */
-export const CreateCustomerExchangeSessionRequestBody$inboundSchema: z.ZodType<
-  CreateCustomerExchangeSessionRequestBody,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  models.CreateCustomerExchangeSessionWithRedirect$inboundSchema,
-  models.CreateCustomerExchangeSessionForWeb$inboundSchema,
-]);
-
-/** @internal */
 export type CreateCustomerExchangeSessionRequestBody$Outbound =
   | models.CreateCustomerExchangeSessionWithRedirect$Outbound
   | models.CreateCustomerExchangeSessionForWeb$Outbound;
@@ -58,21 +48,6 @@ export const CreateCustomerExchangeSessionRequestBody$outboundSchema: z.ZodType<
   models.CreateCustomerExchangeSessionForWeb$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerExchangeSessionRequestBody$ {
-  /** @deprecated use `CreateCustomerExchangeSessionRequestBody$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerExchangeSessionRequestBody$inboundSchema;
-  /** @deprecated use `CreateCustomerExchangeSessionRequestBody$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerExchangeSessionRequestBody$outboundSchema;
-  /** @deprecated use `CreateCustomerExchangeSessionRequestBody$Outbound` instead. */
-  export type Outbound = CreateCustomerExchangeSessionRequestBody$Outbound;
-}
-
 export function createCustomerExchangeSessionRequestBodyToJSON(
   createCustomerExchangeSessionRequestBody:
     CreateCustomerExchangeSessionRequestBody,
@@ -83,39 +58,6 @@ export function createCustomerExchangeSessionRequestBodyToJSON(
     ),
   );
 }
-
-export function createCustomerExchangeSessionRequestBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateCustomerExchangeSessionRequestBody,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateCustomerExchangeSessionRequestBody$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreateCustomerExchangeSessionRequestBody' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateCustomerExchangeSessionRequest$inboundSchema: z.ZodType<
-  CreateCustomerExchangeSessionRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  RequestBody: z.union([
-    models.CreateCustomerExchangeSessionWithRedirect$inboundSchema,
-    models.CreateCustomerExchangeSessionForWeb$inboundSchema,
-  ]),
-}).transform((v) => {
-  return remap$(v, {
-    "RequestBody": "requestBody",
-  });
-});
 
 /** @internal */
 export type CreateCustomerExchangeSessionRequest$Outbound = {
@@ -142,21 +84,6 @@ export const CreateCustomerExchangeSessionRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerExchangeSessionRequest$ {
-  /** @deprecated use `CreateCustomerExchangeSessionRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerExchangeSessionRequest$inboundSchema;
-  /** @deprecated use `CreateCustomerExchangeSessionRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerExchangeSessionRequest$outboundSchema;
-  /** @deprecated use `CreateCustomerExchangeSessionRequest$Outbound` instead. */
-  export type Outbound = CreateCustomerExchangeSessionRequest$Outbound;
-}
-
 export function createCustomerExchangeSessionRequestToJSON(
   createCustomerExchangeSessionRequest: CreateCustomerExchangeSessionRequest,
 ): string {
@@ -164,17 +91,6 @@ export function createCustomerExchangeSessionRequestToJSON(
     CreateCustomerExchangeSessionRequest$outboundSchema.parse(
       createCustomerExchangeSessionRequest,
     ),
-  );
-}
-
-export function createCustomerExchangeSessionRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateCustomerExchangeSessionRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateCustomerExchangeSessionRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateCustomerExchangeSessionRequest' from JSON`,
   );
 }
 
@@ -190,49 +106,6 @@ export const CreateCustomerExchangeSessionResponse$inboundSchema: z.ZodType<
     "Headers": "headers",
   });
 });
-
-/** @internal */
-export type CreateCustomerExchangeSessionResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-};
-
-/** @internal */
-export const CreateCustomerExchangeSessionResponse$outboundSchema: z.ZodType<
-  CreateCustomerExchangeSessionResponse$Outbound,
-  z.ZodTypeDef,
-  CreateCustomerExchangeSessionResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerExchangeSessionResponse$ {
-  /** @deprecated use `CreateCustomerExchangeSessionResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerExchangeSessionResponse$inboundSchema;
-  /** @deprecated use `CreateCustomerExchangeSessionResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerExchangeSessionResponse$outboundSchema;
-  /** @deprecated use `CreateCustomerExchangeSessionResponse$Outbound` instead. */
-  export type Outbound = CreateCustomerExchangeSessionResponse$Outbound;
-}
-
-export function createCustomerExchangeSessionResponseToJSON(
-  createCustomerExchangeSessionResponse: CreateCustomerExchangeSessionResponse,
-): string {
-  return JSON.stringify(
-    CreateCustomerExchangeSessionResponse$outboundSchema.parse(
-      createCustomerExchangeSessionResponse,
-    ),
-  );
-}
 
 export function createCustomerExchangeSessionResponseFromJSON(
   jsonString: string,

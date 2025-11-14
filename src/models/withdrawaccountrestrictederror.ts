@@ -28,41 +28,6 @@ export const WithdrawAccountRestrictedErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type WithdrawAccountRestrictedErrorLinks$Outbound = {};
-
-/** @internal */
-export const WithdrawAccountRestrictedErrorLinks$outboundSchema: z.ZodType<
-  WithdrawAccountRestrictedErrorLinks$Outbound,
-  z.ZodTypeDef,
-  WithdrawAccountRestrictedErrorLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawAccountRestrictedErrorLinks$ {
-  /** @deprecated use `WithdrawAccountRestrictedErrorLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawAccountRestrictedErrorLinks$inboundSchema;
-  /** @deprecated use `WithdrawAccountRestrictedErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawAccountRestrictedErrorLinks$outboundSchema;
-  /** @deprecated use `WithdrawAccountRestrictedErrorLinks$Outbound` instead. */
-  export type Outbound = WithdrawAccountRestrictedErrorLinks$Outbound;
-}
-
-export function withdrawAccountRestrictedErrorLinksToJSON(
-  withdrawAccountRestrictedErrorLinks: WithdrawAccountRestrictedErrorLinks,
-): string {
-  return JSON.stringify(
-    WithdrawAccountRestrictedErrorLinks$outboundSchema.parse(
-      withdrawAccountRestrictedErrorLinks,
-    ),
-  );
-}
-
 export function withdrawAccountRestrictedErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<WithdrawAccountRestrictedErrorLinks, SDKValidationError> {
@@ -91,56 +56,6 @@ export const WithdrawAccountRestrictedErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type WithdrawAccountRestrictedErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: WithdrawAccountRestrictedErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const WithdrawAccountRestrictedErrorError$outboundSchema: z.ZodType<
-  WithdrawAccountRestrictedErrorError$Outbound,
-  z.ZodTypeDef,
-  WithdrawAccountRestrictedErrorError
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  links: z.lazy(() => WithdrawAccountRestrictedErrorLinks$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawAccountRestrictedErrorError$ {
-  /** @deprecated use `WithdrawAccountRestrictedErrorError$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawAccountRestrictedErrorError$inboundSchema;
-  /** @deprecated use `WithdrawAccountRestrictedErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawAccountRestrictedErrorError$outboundSchema;
-  /** @deprecated use `WithdrawAccountRestrictedErrorError$Outbound` instead. */
-  export type Outbound = WithdrawAccountRestrictedErrorError$Outbound;
-}
-
-export function withdrawAccountRestrictedErrorErrorToJSON(
-  withdrawAccountRestrictedErrorError: WithdrawAccountRestrictedErrorError,
-): string {
-  return JSON.stringify(
-    WithdrawAccountRestrictedErrorError$outboundSchema.parse(
-      withdrawAccountRestrictedErrorError,
-    ),
-  );
-}
-
 export function withdrawAccountRestrictedErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<WithdrawAccountRestrictedErrorError, SDKValidationError> {
@@ -162,48 +77,6 @@ export const WithdrawAccountRestrictedErrorEmbedded$inboundSchema: z.ZodType<
     z.lazy(() => WithdrawAccountRestrictedErrorError$inboundSchema),
   ).optional(),
 });
-
-/** @internal */
-export type WithdrawAccountRestrictedErrorEmbedded$Outbound = {
-  errors?: Array<WithdrawAccountRestrictedErrorError$Outbound> | undefined;
-};
-
-/** @internal */
-export const WithdrawAccountRestrictedErrorEmbedded$outboundSchema: z.ZodType<
-  WithdrawAccountRestrictedErrorEmbedded$Outbound,
-  z.ZodTypeDef,
-  WithdrawAccountRestrictedErrorEmbedded
-> = z.object({
-  errors: z.array(
-    z.lazy(() => WithdrawAccountRestrictedErrorError$outboundSchema),
-  ).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawAccountRestrictedErrorEmbedded$ {
-  /** @deprecated use `WithdrawAccountRestrictedErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawAccountRestrictedErrorEmbedded$inboundSchema;
-  /** @deprecated use `WithdrawAccountRestrictedErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawAccountRestrictedErrorEmbedded$outboundSchema;
-  /** @deprecated use `WithdrawAccountRestrictedErrorEmbedded$Outbound` instead. */
-  export type Outbound = WithdrawAccountRestrictedErrorEmbedded$Outbound;
-}
-
-export function withdrawAccountRestrictedErrorEmbeddedToJSON(
-  withdrawAccountRestrictedErrorEmbedded:
-    WithdrawAccountRestrictedErrorEmbedded,
-): string {
-  return JSON.stringify(
-    WithdrawAccountRestrictedErrorEmbedded$outboundSchema.parse(
-      withdrawAccountRestrictedErrorEmbedded,
-    ),
-  );
-}
 
 export function withdrawAccountRestrictedErrorEmbeddedFromJSON(
   jsonString: string,

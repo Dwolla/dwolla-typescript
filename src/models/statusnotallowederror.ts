@@ -28,37 +28,6 @@ export const StatusNotAllowedErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type StatusNotAllowedErrorLinks$Outbound = {};
-
-/** @internal */
-export const StatusNotAllowedErrorLinks$outboundSchema: z.ZodType<
-  StatusNotAllowedErrorLinks$Outbound,
-  z.ZodTypeDef,
-  StatusNotAllowedErrorLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace StatusNotAllowedErrorLinks$ {
-  /** @deprecated use `StatusNotAllowedErrorLinks$inboundSchema` instead. */
-  export const inboundSchema = StatusNotAllowedErrorLinks$inboundSchema;
-  /** @deprecated use `StatusNotAllowedErrorLinks$outboundSchema` instead. */
-  export const outboundSchema = StatusNotAllowedErrorLinks$outboundSchema;
-  /** @deprecated use `StatusNotAllowedErrorLinks$Outbound` instead. */
-  export type Outbound = StatusNotAllowedErrorLinks$Outbound;
-}
-
-export function statusNotAllowedErrorLinksToJSON(
-  statusNotAllowedErrorLinks: StatusNotAllowedErrorLinks,
-): string {
-  return JSON.stringify(
-    StatusNotAllowedErrorLinks$outboundSchema.parse(statusNotAllowedErrorLinks),
-  );
-}
-
 export function statusNotAllowedErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<StatusNotAllowedErrorLinks, SDKValidationError> {
@@ -85,51 +54,6 @@ export const StatusNotAllowedErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type StatusNotAllowedErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: StatusNotAllowedErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const StatusNotAllowedErrorError$outboundSchema: z.ZodType<
-  StatusNotAllowedErrorError$Outbound,
-  z.ZodTypeDef,
-  StatusNotAllowedErrorError
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  links: z.lazy(() => StatusNotAllowedErrorLinks$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace StatusNotAllowedErrorError$ {
-  /** @deprecated use `StatusNotAllowedErrorError$inboundSchema` instead. */
-  export const inboundSchema = StatusNotAllowedErrorError$inboundSchema;
-  /** @deprecated use `StatusNotAllowedErrorError$outboundSchema` instead. */
-  export const outboundSchema = StatusNotAllowedErrorError$outboundSchema;
-  /** @deprecated use `StatusNotAllowedErrorError$Outbound` instead. */
-  export type Outbound = StatusNotAllowedErrorError$Outbound;
-}
-
-export function statusNotAllowedErrorErrorToJSON(
-  statusNotAllowedErrorError: StatusNotAllowedErrorError,
-): string {
-  return JSON.stringify(
-    StatusNotAllowedErrorError$outboundSchema.parse(statusNotAllowedErrorError),
-  );
-}
-
 export function statusNotAllowedErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<StatusNotAllowedErrorError, SDKValidationError> {
@@ -149,44 +73,6 @@ export const StatusNotAllowedErrorEmbedded$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => StatusNotAllowedErrorError$inboundSchema))
     .optional(),
 });
-
-/** @internal */
-export type StatusNotAllowedErrorEmbedded$Outbound = {
-  errors?: Array<StatusNotAllowedErrorError$Outbound> | undefined;
-};
-
-/** @internal */
-export const StatusNotAllowedErrorEmbedded$outboundSchema: z.ZodType<
-  StatusNotAllowedErrorEmbedded$Outbound,
-  z.ZodTypeDef,
-  StatusNotAllowedErrorEmbedded
-> = z.object({
-  errors: z.array(z.lazy(() => StatusNotAllowedErrorError$outboundSchema))
-    .optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace StatusNotAllowedErrorEmbedded$ {
-  /** @deprecated use `StatusNotAllowedErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema = StatusNotAllowedErrorEmbedded$inboundSchema;
-  /** @deprecated use `StatusNotAllowedErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema = StatusNotAllowedErrorEmbedded$outboundSchema;
-  /** @deprecated use `StatusNotAllowedErrorEmbedded$Outbound` instead. */
-  export type Outbound = StatusNotAllowedErrorEmbedded$Outbound;
-}
-
-export function statusNotAllowedErrorEmbeddedToJSON(
-  statusNotAllowedErrorEmbedded: StatusNotAllowedErrorEmbedded,
-): string {
-  return JSON.stringify(
-    StatusNotAllowedErrorEmbedded$outboundSchema.parse(
-      statusNotAllowedErrorEmbedded,
-    ),
-  );
-}
 
 export function statusNotAllowedErrorEmbeddedFromJSON(
   jsonString: string,

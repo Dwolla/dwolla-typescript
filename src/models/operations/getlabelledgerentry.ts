@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetLabelLedgerEntryRequest = {
   /**
@@ -13,15 +10,6 @@ export type GetLabelLedgerEntryRequest = {
    */
   ledgerEntryId: string;
 };
-
-/** @internal */
-export const GetLabelLedgerEntryRequest$inboundSchema: z.ZodType<
-  GetLabelLedgerEntryRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  ledgerEntryId: z.string(),
-});
 
 /** @internal */
 export type GetLabelLedgerEntryRequest$Outbound = {
@@ -37,33 +25,10 @@ export const GetLabelLedgerEntryRequest$outboundSchema: z.ZodType<
   ledgerEntryId: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetLabelLedgerEntryRequest$ {
-  /** @deprecated use `GetLabelLedgerEntryRequest$inboundSchema` instead. */
-  export const inboundSchema = GetLabelLedgerEntryRequest$inboundSchema;
-  /** @deprecated use `GetLabelLedgerEntryRequest$outboundSchema` instead. */
-  export const outboundSchema = GetLabelLedgerEntryRequest$outboundSchema;
-  /** @deprecated use `GetLabelLedgerEntryRequest$Outbound` instead. */
-  export type Outbound = GetLabelLedgerEntryRequest$Outbound;
-}
-
 export function getLabelLedgerEntryRequestToJSON(
   getLabelLedgerEntryRequest: GetLabelLedgerEntryRequest,
 ): string {
   return JSON.stringify(
     GetLabelLedgerEntryRequest$outboundSchema.parse(getLabelLedgerEntryRequest),
-  );
-}
-
-export function getLabelLedgerEntryRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetLabelLedgerEntryRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetLabelLedgerEntryRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetLabelLedgerEntryRequest' from JSON`,
   );
 }

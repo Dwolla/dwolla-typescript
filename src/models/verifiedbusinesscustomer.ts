@@ -7,12 +7,7 @@ import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  HalLink,
-  HalLink$inboundSchema,
-  HalLink$Outbound,
-  HalLink$outboundSchema,
-} from "./hallink.js";
+import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 
 export type VerifiedBusinessCustomerAddress = {
   address1?: string | undefined;
@@ -73,55 +68,6 @@ export const VerifiedBusinessCustomerAddress$inboundSchema: z.ZodType<
   stateProvinceRegion: z.string().optional(),
 });
 
-/** @internal */
-export type VerifiedBusinessCustomerAddress$Outbound = {
-  address1?: string | undefined;
-  address2?: string | undefined;
-  address3?: string | undefined;
-  city?: string | undefined;
-  postalCode?: string | undefined;
-  country?: string | undefined;
-  stateProvinceRegion?: string | undefined;
-};
-
-/** @internal */
-export const VerifiedBusinessCustomerAddress$outboundSchema: z.ZodType<
-  VerifiedBusinessCustomerAddress$Outbound,
-  z.ZodTypeDef,
-  VerifiedBusinessCustomerAddress
-> = z.object({
-  address1: z.string().optional(),
-  address2: z.string().optional(),
-  address3: z.string().optional(),
-  city: z.string().optional(),
-  postalCode: z.string().optional(),
-  country: z.string().optional(),
-  stateProvinceRegion: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VerifiedBusinessCustomerAddress$ {
-  /** @deprecated use `VerifiedBusinessCustomerAddress$inboundSchema` instead. */
-  export const inboundSchema = VerifiedBusinessCustomerAddress$inboundSchema;
-  /** @deprecated use `VerifiedBusinessCustomerAddress$outboundSchema` instead. */
-  export const outboundSchema = VerifiedBusinessCustomerAddress$outboundSchema;
-  /** @deprecated use `VerifiedBusinessCustomerAddress$Outbound` instead. */
-  export type Outbound = VerifiedBusinessCustomerAddress$Outbound;
-}
-
-export function verifiedBusinessCustomerAddressToJSON(
-  verifiedBusinessCustomerAddress: VerifiedBusinessCustomerAddress,
-): string {
-  return JSON.stringify(
-    VerifiedBusinessCustomerAddress$outboundSchema.parse(
-      verifiedBusinessCustomerAddress,
-    ),
-  );
-}
-
 export function verifiedBusinessCustomerAddressFromJSON(
   jsonString: string,
 ): SafeParseResult<VerifiedBusinessCustomerAddress, SDKValidationError> {
@@ -144,51 +90,6 @@ export const VerifiedBusinessCustomerController$inboundSchema: z.ZodType<
   address: z.lazy(() => VerifiedBusinessCustomerAddress$inboundSchema)
     .optional(),
 });
-
-/** @internal */
-export type VerifiedBusinessCustomerController$Outbound = {
-  firstName?: string | undefined;
-  lastName?: string | undefined;
-  title?: string | undefined;
-  address?: VerifiedBusinessCustomerAddress$Outbound | undefined;
-};
-
-/** @internal */
-export const VerifiedBusinessCustomerController$outboundSchema: z.ZodType<
-  VerifiedBusinessCustomerController$Outbound,
-  z.ZodTypeDef,
-  VerifiedBusinessCustomerController
-> = z.object({
-  firstName: z.string().optional(),
-  lastName: z.string().optional(),
-  title: z.string().optional(),
-  address: z.lazy(() => VerifiedBusinessCustomerAddress$outboundSchema)
-    .optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VerifiedBusinessCustomerController$ {
-  /** @deprecated use `VerifiedBusinessCustomerController$inboundSchema` instead. */
-  export const inboundSchema = VerifiedBusinessCustomerController$inboundSchema;
-  /** @deprecated use `VerifiedBusinessCustomerController$outboundSchema` instead. */
-  export const outboundSchema =
-    VerifiedBusinessCustomerController$outboundSchema;
-  /** @deprecated use `VerifiedBusinessCustomerController$Outbound` instead. */
-  export type Outbound = VerifiedBusinessCustomerController$Outbound;
-}
-
-export function verifiedBusinessCustomerControllerToJSON(
-  verifiedBusinessCustomerController: VerifiedBusinessCustomerController,
-): string {
-  return JSON.stringify(
-    VerifiedBusinessCustomerController$outboundSchema.parse(
-      verifiedBusinessCustomerController,
-    ),
-  );
-}
 
 export function verifiedBusinessCustomerControllerFromJSON(
   jsonString: string,
@@ -235,86 +136,6 @@ export const VerifiedBusinessCustomer$inboundSchema: z.ZodType<
     "_links": "links",
   });
 });
-
-/** @internal */
-export type VerifiedBusinessCustomer$Outbound = {
-  _links?: { [k: string]: HalLink$Outbound } | undefined;
-  id?: string | undefined;
-  firstName?: string | undefined;
-  lastName?: string | undefined;
-  email?: string | undefined;
-  type?: string | undefined;
-  status?: string | undefined;
-  correlationId?: string | undefined;
-  created?: string | undefined;
-  address1?: string | undefined;
-  address2?: string | undefined;
-  city?: string | undefined;
-  state?: string | undefined;
-  postalCode?: string | undefined;
-  phone?: string | undefined;
-  website?: string | undefined;
-  businessName?: string | undefined;
-  doingBusinessAs?: string | undefined;
-  businessType?: string | undefined;
-  businessClassification?: string | undefined;
-  controller?: VerifiedBusinessCustomerController$Outbound | undefined;
-};
-
-/** @internal */
-export const VerifiedBusinessCustomer$outboundSchema: z.ZodType<
-  VerifiedBusinessCustomer$Outbound,
-  z.ZodTypeDef,
-  VerifiedBusinessCustomer
-> = z.object({
-  links: z.record(HalLink$outboundSchema).optional(),
-  id: z.string().optional(),
-  firstName: z.string().optional(),
-  lastName: z.string().optional(),
-  email: z.string().optional(),
-  type: z.string().optional(),
-  status: z.string().optional(),
-  correlationId: z.string().optional(),
-  created: z.date().transform(v => v.toISOString()).optional(),
-  address1: z.string().optional(),
-  address2: z.string().optional(),
-  city: z.string().optional(),
-  state: z.string().optional(),
-  postalCode: z.string().optional(),
-  phone: z.string().optional(),
-  website: z.string().optional(),
-  businessName: z.string().optional(),
-  doingBusinessAs: z.string().optional(),
-  businessType: z.string().optional(),
-  businessClassification: z.string().optional(),
-  controller: z.lazy(() => VerifiedBusinessCustomerController$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VerifiedBusinessCustomer$ {
-  /** @deprecated use `VerifiedBusinessCustomer$inboundSchema` instead. */
-  export const inboundSchema = VerifiedBusinessCustomer$inboundSchema;
-  /** @deprecated use `VerifiedBusinessCustomer$outboundSchema` instead. */
-  export const outboundSchema = VerifiedBusinessCustomer$outboundSchema;
-  /** @deprecated use `VerifiedBusinessCustomer$Outbound` instead. */
-  export type Outbound = VerifiedBusinessCustomer$Outbound;
-}
-
-export function verifiedBusinessCustomerToJSON(
-  verifiedBusinessCustomer: VerifiedBusinessCustomer,
-): string {
-  return JSON.stringify(
-    VerifiedBusinessCustomer$outboundSchema.parse(verifiedBusinessCustomer),
-  );
-}
 
 export function verifiedBusinessCustomerFromJSON(
   jsonString: string,

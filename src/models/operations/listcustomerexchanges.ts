@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListCustomerExchangesRequest = {
   /**
@@ -13,15 +10,6 @@ export type ListCustomerExchangesRequest = {
    */
   id: string;
 };
-
-/** @internal */
-export const ListCustomerExchangesRequest$inboundSchema: z.ZodType<
-  ListCustomerExchangesRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
 
 /** @internal */
 export type ListCustomerExchangesRequest$Outbound = {
@@ -37,19 +25,6 @@ export const ListCustomerExchangesRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListCustomerExchangesRequest$ {
-  /** @deprecated use `ListCustomerExchangesRequest$inboundSchema` instead. */
-  export const inboundSchema = ListCustomerExchangesRequest$inboundSchema;
-  /** @deprecated use `ListCustomerExchangesRequest$outboundSchema` instead. */
-  export const outboundSchema = ListCustomerExchangesRequest$outboundSchema;
-  /** @deprecated use `ListCustomerExchangesRequest$Outbound` instead. */
-  export type Outbound = ListCustomerExchangesRequest$Outbound;
-}
-
 export function listCustomerExchangesRequestToJSON(
   listCustomerExchangesRequest: ListCustomerExchangesRequest,
 ): string {
@@ -57,15 +32,5 @@ export function listCustomerExchangesRequestToJSON(
     ListCustomerExchangesRequest$outboundSchema.parse(
       listCustomerExchangesRequest,
     ),
-  );
-}
-
-export function listCustomerExchangesRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListCustomerExchangesRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListCustomerExchangesRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListCustomerExchangesRequest' from JSON`,
   );
 }

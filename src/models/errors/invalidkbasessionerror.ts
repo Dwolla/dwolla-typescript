@@ -48,34 +48,3 @@ export const InvalidKbaSessionError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type InvalidKbaSessionError$Outbound = {
-  code: string;
-  message: string;
-};
-
-/** @internal */
-export const InvalidKbaSessionError$outboundSchema: z.ZodType<
-  InvalidKbaSessionError$Outbound,
-  z.ZodTypeDef,
-  InvalidKbaSessionError
-> = z.instanceof(InvalidKbaSessionError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string(),
-    message: z.string(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidKbaSessionError$ {
-  /** @deprecated use `InvalidKbaSessionError$inboundSchema` instead. */
-  export const inboundSchema = InvalidKbaSessionError$inboundSchema;
-  /** @deprecated use `InvalidKbaSessionError$outboundSchema` instead. */
-  export const outboundSchema = InvalidKbaSessionError$outboundSchema;
-  /** @deprecated use `InvalidKbaSessionError$Outbound` instead. */
-  export type Outbound = InvalidKbaSessionError$Outbound;
-}
