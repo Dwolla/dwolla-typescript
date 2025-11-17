@@ -28,39 +28,6 @@ export const InvalidFacilitatorErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type InvalidFacilitatorErrorLinks$Outbound = {};
-
-/** @internal */
-export const InvalidFacilitatorErrorLinks$outboundSchema: z.ZodType<
-  InvalidFacilitatorErrorLinks$Outbound,
-  z.ZodTypeDef,
-  InvalidFacilitatorErrorLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidFacilitatorErrorLinks$ {
-  /** @deprecated use `InvalidFacilitatorErrorLinks$inboundSchema` instead. */
-  export const inboundSchema = InvalidFacilitatorErrorLinks$inboundSchema;
-  /** @deprecated use `InvalidFacilitatorErrorLinks$outboundSchema` instead. */
-  export const outboundSchema = InvalidFacilitatorErrorLinks$outboundSchema;
-  /** @deprecated use `InvalidFacilitatorErrorLinks$Outbound` instead. */
-  export type Outbound = InvalidFacilitatorErrorLinks$Outbound;
-}
-
-export function invalidFacilitatorErrorLinksToJSON(
-  invalidFacilitatorErrorLinks: InvalidFacilitatorErrorLinks,
-): string {
-  return JSON.stringify(
-    InvalidFacilitatorErrorLinks$outboundSchema.parse(
-      invalidFacilitatorErrorLinks,
-    ),
-  );
-}
-
 export function invalidFacilitatorErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<InvalidFacilitatorErrorLinks, SDKValidationError> {
@@ -87,53 +54,6 @@ export const InvalidFacilitatorErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type InvalidFacilitatorErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: InvalidFacilitatorErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const InvalidFacilitatorErrorError$outboundSchema: z.ZodType<
-  InvalidFacilitatorErrorError$Outbound,
-  z.ZodTypeDef,
-  InvalidFacilitatorErrorError
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  links: z.lazy(() => InvalidFacilitatorErrorLinks$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidFacilitatorErrorError$ {
-  /** @deprecated use `InvalidFacilitatorErrorError$inboundSchema` instead. */
-  export const inboundSchema = InvalidFacilitatorErrorError$inboundSchema;
-  /** @deprecated use `InvalidFacilitatorErrorError$outboundSchema` instead. */
-  export const outboundSchema = InvalidFacilitatorErrorError$outboundSchema;
-  /** @deprecated use `InvalidFacilitatorErrorError$Outbound` instead. */
-  export type Outbound = InvalidFacilitatorErrorError$Outbound;
-}
-
-export function invalidFacilitatorErrorErrorToJSON(
-  invalidFacilitatorErrorError: InvalidFacilitatorErrorError,
-): string {
-  return JSON.stringify(
-    InvalidFacilitatorErrorError$outboundSchema.parse(
-      invalidFacilitatorErrorError,
-    ),
-  );
-}
-
 export function invalidFacilitatorErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<InvalidFacilitatorErrorError, SDKValidationError> {
@@ -153,44 +73,6 @@ export const InvalidFacilitatorErrorEmbedded$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => InvalidFacilitatorErrorError$inboundSchema))
     .optional(),
 });
-
-/** @internal */
-export type InvalidFacilitatorErrorEmbedded$Outbound = {
-  errors?: Array<InvalidFacilitatorErrorError$Outbound> | undefined;
-};
-
-/** @internal */
-export const InvalidFacilitatorErrorEmbedded$outboundSchema: z.ZodType<
-  InvalidFacilitatorErrorEmbedded$Outbound,
-  z.ZodTypeDef,
-  InvalidFacilitatorErrorEmbedded
-> = z.object({
-  errors: z.array(z.lazy(() => InvalidFacilitatorErrorError$outboundSchema))
-    .optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidFacilitatorErrorEmbedded$ {
-  /** @deprecated use `InvalidFacilitatorErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema = InvalidFacilitatorErrorEmbedded$inboundSchema;
-  /** @deprecated use `InvalidFacilitatorErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema = InvalidFacilitatorErrorEmbedded$outboundSchema;
-  /** @deprecated use `InvalidFacilitatorErrorEmbedded$Outbound` instead. */
-  export type Outbound = InvalidFacilitatorErrorEmbedded$Outbound;
-}
-
-export function invalidFacilitatorErrorEmbeddedToJSON(
-  invalidFacilitatorErrorEmbedded: InvalidFacilitatorErrorEmbedded,
-): string {
-  return JSON.stringify(
-    InvalidFacilitatorErrorEmbedded$outboundSchema.parse(
-      invalidFacilitatorErrorEmbedded,
-    ),
-  );
-}
 
 export function invalidFacilitatorErrorEmbeddedFromJSON(
   jsonString: string,

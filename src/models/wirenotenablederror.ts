@@ -28,37 +28,6 @@ export const WireNotEnabledErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type WireNotEnabledErrorLinks$Outbound = {};
-
-/** @internal */
-export const WireNotEnabledErrorLinks$outboundSchema: z.ZodType<
-  WireNotEnabledErrorLinks$Outbound,
-  z.ZodTypeDef,
-  WireNotEnabledErrorLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WireNotEnabledErrorLinks$ {
-  /** @deprecated use `WireNotEnabledErrorLinks$inboundSchema` instead. */
-  export const inboundSchema = WireNotEnabledErrorLinks$inboundSchema;
-  /** @deprecated use `WireNotEnabledErrorLinks$outboundSchema` instead. */
-  export const outboundSchema = WireNotEnabledErrorLinks$outboundSchema;
-  /** @deprecated use `WireNotEnabledErrorLinks$Outbound` instead. */
-  export type Outbound = WireNotEnabledErrorLinks$Outbound;
-}
-
-export function wireNotEnabledErrorLinksToJSON(
-  wireNotEnabledErrorLinks: WireNotEnabledErrorLinks,
-): string {
-  return JSON.stringify(
-    WireNotEnabledErrorLinks$outboundSchema.parse(wireNotEnabledErrorLinks),
-  );
-}
-
 export function wireNotEnabledErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<WireNotEnabledErrorLinks, SDKValidationError> {
@@ -85,51 +54,6 @@ export const WireNotEnabledErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type WireNotEnabledErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: WireNotEnabledErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const WireNotEnabledErrorError$outboundSchema: z.ZodType<
-  WireNotEnabledErrorError$Outbound,
-  z.ZodTypeDef,
-  WireNotEnabledErrorError
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  links: z.lazy(() => WireNotEnabledErrorLinks$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WireNotEnabledErrorError$ {
-  /** @deprecated use `WireNotEnabledErrorError$inboundSchema` instead. */
-  export const inboundSchema = WireNotEnabledErrorError$inboundSchema;
-  /** @deprecated use `WireNotEnabledErrorError$outboundSchema` instead. */
-  export const outboundSchema = WireNotEnabledErrorError$outboundSchema;
-  /** @deprecated use `WireNotEnabledErrorError$Outbound` instead. */
-  export type Outbound = WireNotEnabledErrorError$Outbound;
-}
-
-export function wireNotEnabledErrorErrorToJSON(
-  wireNotEnabledErrorError: WireNotEnabledErrorError,
-): string {
-  return JSON.stringify(
-    WireNotEnabledErrorError$outboundSchema.parse(wireNotEnabledErrorError),
-  );
-}
-
 export function wireNotEnabledErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<WireNotEnabledErrorError, SDKValidationError> {
@@ -149,44 +73,6 @@ export const WireNotEnabledErrorEmbedded$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => WireNotEnabledErrorError$inboundSchema))
     .optional(),
 });
-
-/** @internal */
-export type WireNotEnabledErrorEmbedded$Outbound = {
-  errors?: Array<WireNotEnabledErrorError$Outbound> | undefined;
-};
-
-/** @internal */
-export const WireNotEnabledErrorEmbedded$outboundSchema: z.ZodType<
-  WireNotEnabledErrorEmbedded$Outbound,
-  z.ZodTypeDef,
-  WireNotEnabledErrorEmbedded
-> = z.object({
-  errors: z.array(z.lazy(() => WireNotEnabledErrorError$outboundSchema))
-    .optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WireNotEnabledErrorEmbedded$ {
-  /** @deprecated use `WireNotEnabledErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema = WireNotEnabledErrorEmbedded$inboundSchema;
-  /** @deprecated use `WireNotEnabledErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema = WireNotEnabledErrorEmbedded$outboundSchema;
-  /** @deprecated use `WireNotEnabledErrorEmbedded$Outbound` instead. */
-  export type Outbound = WireNotEnabledErrorEmbedded$Outbound;
-}
-
-export function wireNotEnabledErrorEmbeddedToJSON(
-  wireNotEnabledErrorEmbedded: WireNotEnabledErrorEmbedded,
-): string {
-  return JSON.stringify(
-    WireNotEnabledErrorEmbedded$outboundSchema.parse(
-      wireNotEnabledErrorEmbedded,
-    ),
-  );
-}
 
 export function wireNotEnabledErrorEmbeddedFromJSON(
   jsonString: string,

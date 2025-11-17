@@ -26,45 +26,6 @@ export const HalLink$inboundSchema: z.ZodType<HalLink, z.ZodTypeDef, unknown> =
     });
   });
 
-/** @internal */
-export type HalLink$Outbound = {
-  href?: string | undefined;
-  type?: string | undefined;
-  "resource-type"?: string | undefined;
-};
-
-/** @internal */
-export const HalLink$outboundSchema: z.ZodType<
-  HalLink$Outbound,
-  z.ZodTypeDef,
-  HalLink
-> = z.object({
-  href: z.string().optional(),
-  type: z.string().optional(),
-  resourceType: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    resourceType: "resource-type",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HalLink$ {
-  /** @deprecated use `HalLink$inboundSchema` instead. */
-  export const inboundSchema = HalLink$inboundSchema;
-  /** @deprecated use `HalLink$outboundSchema` instead. */
-  export const outboundSchema = HalLink$outboundSchema;
-  /** @deprecated use `HalLink$Outbound` instead. */
-  export type Outbound = HalLink$Outbound;
-}
-
-export function halLinkToJSON(halLink: HalLink): string {
-  return JSON.stringify(HalLink$outboundSchema.parse(halLink));
-}
-
 export function halLinkFromJSON(
   jsonString: string,
 ): SafeParseResult<HalLink, SDKValidationError> {

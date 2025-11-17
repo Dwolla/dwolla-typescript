@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../lib/schemas.js";
-import { Result as SafeParseResult } from "../types/fp.js";
-import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 /**
  * Create a Verified Personal customer
@@ -26,28 +23,6 @@ export type CreateVerifiedPersonalCustomer = {
   ssn: string;
   dateOfBirth: string;
 };
-
-/** @internal */
-export const CreateVerifiedPersonalCustomer$inboundSchema: z.ZodType<
-  CreateVerifiedPersonalCustomer,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
-  email: z.string(),
-  ipAddress: z.string().optional(),
-  phone: z.string().optional(),
-  correlationId: z.string().optional(),
-  type: z.literal("personal").default("personal").optional(),
-  address1: z.string(),
-  address2: z.string().optional(),
-  city: z.string(),
-  state: z.string(),
-  postalCode: z.string(),
-  ssn: z.string(),
-  dateOfBirth: z.string(),
-});
 
 /** @internal */
 export type CreateVerifiedPersonalCustomer$Outbound = {
@@ -89,19 +64,6 @@ export const CreateVerifiedPersonalCustomer$outboundSchema: z.ZodType<
   dateOfBirth: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateVerifiedPersonalCustomer$ {
-  /** @deprecated use `CreateVerifiedPersonalCustomer$inboundSchema` instead. */
-  export const inboundSchema = CreateVerifiedPersonalCustomer$inboundSchema;
-  /** @deprecated use `CreateVerifiedPersonalCustomer$outboundSchema` instead. */
-  export const outboundSchema = CreateVerifiedPersonalCustomer$outboundSchema;
-  /** @deprecated use `CreateVerifiedPersonalCustomer$Outbound` instead. */
-  export type Outbound = CreateVerifiedPersonalCustomer$Outbound;
-}
-
 export function createVerifiedPersonalCustomerToJSON(
   createVerifiedPersonalCustomer: CreateVerifiedPersonalCustomer,
 ): string {
@@ -109,15 +71,5 @@ export function createVerifiedPersonalCustomerToJSON(
     CreateVerifiedPersonalCustomer$outboundSchema.parse(
       createVerifiedPersonalCustomer,
     ),
-  );
-}
-
-export function createVerifiedPersonalCustomerFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateVerifiedPersonalCustomer, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateVerifiedPersonalCustomer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateVerifiedPersonalCustomer' from JSON`,
   );
 }

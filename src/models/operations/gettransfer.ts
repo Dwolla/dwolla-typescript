@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetTransferRequest = {
   /**
@@ -13,15 +10,6 @@ export type GetTransferRequest = {
    */
   id: string;
 };
-
-/** @internal */
-export const GetTransferRequest$inboundSchema: z.ZodType<
-  GetTransferRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
 
 /** @internal */
 export type GetTransferRequest$Outbound = {
@@ -37,33 +25,10 @@ export const GetTransferRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetTransferRequest$ {
-  /** @deprecated use `GetTransferRequest$inboundSchema` instead. */
-  export const inboundSchema = GetTransferRequest$inboundSchema;
-  /** @deprecated use `GetTransferRequest$outboundSchema` instead. */
-  export const outboundSchema = GetTransferRequest$outboundSchema;
-  /** @deprecated use `GetTransferRequest$Outbound` instead. */
-  export type Outbound = GetTransferRequest$Outbound;
-}
-
 export function getTransferRequestToJSON(
   getTransferRequest: GetTransferRequest,
 ): string {
   return JSON.stringify(
     GetTransferRequest$outboundSchema.parse(getTransferRequest),
-  );
-}
-
-export function getTransferRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetTransferRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetTransferRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetTransferRequest' from JSON`,
   );
 }

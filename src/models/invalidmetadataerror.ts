@@ -28,37 +28,6 @@ export const InvalidMetadataErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type InvalidMetadataErrorLinks$Outbound = {};
-
-/** @internal */
-export const InvalidMetadataErrorLinks$outboundSchema: z.ZodType<
-  InvalidMetadataErrorLinks$Outbound,
-  z.ZodTypeDef,
-  InvalidMetadataErrorLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidMetadataErrorLinks$ {
-  /** @deprecated use `InvalidMetadataErrorLinks$inboundSchema` instead. */
-  export const inboundSchema = InvalidMetadataErrorLinks$inboundSchema;
-  /** @deprecated use `InvalidMetadataErrorLinks$outboundSchema` instead. */
-  export const outboundSchema = InvalidMetadataErrorLinks$outboundSchema;
-  /** @deprecated use `InvalidMetadataErrorLinks$Outbound` instead. */
-  export type Outbound = InvalidMetadataErrorLinks$Outbound;
-}
-
-export function invalidMetadataErrorLinksToJSON(
-  invalidMetadataErrorLinks: InvalidMetadataErrorLinks,
-): string {
-  return JSON.stringify(
-    InvalidMetadataErrorLinks$outboundSchema.parse(invalidMetadataErrorLinks),
-  );
-}
-
 export function invalidMetadataErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<InvalidMetadataErrorLinks, SDKValidationError> {
@@ -85,51 +54,6 @@ export const InvalidMetadataErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type InvalidMetadataErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: InvalidMetadataErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const InvalidMetadataErrorError$outboundSchema: z.ZodType<
-  InvalidMetadataErrorError$Outbound,
-  z.ZodTypeDef,
-  InvalidMetadataErrorError
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  links: z.lazy(() => InvalidMetadataErrorLinks$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidMetadataErrorError$ {
-  /** @deprecated use `InvalidMetadataErrorError$inboundSchema` instead. */
-  export const inboundSchema = InvalidMetadataErrorError$inboundSchema;
-  /** @deprecated use `InvalidMetadataErrorError$outboundSchema` instead. */
-  export const outboundSchema = InvalidMetadataErrorError$outboundSchema;
-  /** @deprecated use `InvalidMetadataErrorError$Outbound` instead. */
-  export type Outbound = InvalidMetadataErrorError$Outbound;
-}
-
-export function invalidMetadataErrorErrorToJSON(
-  invalidMetadataErrorError: InvalidMetadataErrorError,
-): string {
-  return JSON.stringify(
-    InvalidMetadataErrorError$outboundSchema.parse(invalidMetadataErrorError),
-  );
-}
-
 export function invalidMetadataErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<InvalidMetadataErrorError, SDKValidationError> {
@@ -149,44 +73,6 @@ export const InvalidMetadataErrorEmbedded$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => InvalidMetadataErrorError$inboundSchema))
     .optional(),
 });
-
-/** @internal */
-export type InvalidMetadataErrorEmbedded$Outbound = {
-  errors?: Array<InvalidMetadataErrorError$Outbound> | undefined;
-};
-
-/** @internal */
-export const InvalidMetadataErrorEmbedded$outboundSchema: z.ZodType<
-  InvalidMetadataErrorEmbedded$Outbound,
-  z.ZodTypeDef,
-  InvalidMetadataErrorEmbedded
-> = z.object({
-  errors: z.array(z.lazy(() => InvalidMetadataErrorError$outboundSchema))
-    .optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidMetadataErrorEmbedded$ {
-  /** @deprecated use `InvalidMetadataErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema = InvalidMetadataErrorEmbedded$inboundSchema;
-  /** @deprecated use `InvalidMetadataErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema = InvalidMetadataErrorEmbedded$outboundSchema;
-  /** @deprecated use `InvalidMetadataErrorEmbedded$Outbound` instead. */
-  export type Outbound = InvalidMetadataErrorEmbedded$Outbound;
-}
-
-export function invalidMetadataErrorEmbeddedToJSON(
-  invalidMetadataErrorEmbedded: InvalidMetadataErrorEmbedded,
-): string {
-  return JSON.stringify(
-    InvalidMetadataErrorEmbedded$outboundSchema.parse(
-      invalidMetadataErrorEmbedded,
-    ),
-  );
-}
 
 export function invalidMetadataErrorEmbeddedFromJSON(
   jsonString: string,

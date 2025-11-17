@@ -38,41 +38,6 @@ export const WebhookSubscriptionSelf$inboundSchema: z.ZodType<
   href: z.string().optional(),
 });
 
-/** @internal */
-export type WebhookSubscriptionSelf$Outbound = {
-  href?: string | undefined;
-};
-
-/** @internal */
-export const WebhookSubscriptionSelf$outboundSchema: z.ZodType<
-  WebhookSubscriptionSelf$Outbound,
-  z.ZodTypeDef,
-  WebhookSubscriptionSelf
-> = z.object({
-  href: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookSubscriptionSelf$ {
-  /** @deprecated use `WebhookSubscriptionSelf$inboundSchema` instead. */
-  export const inboundSchema = WebhookSubscriptionSelf$inboundSchema;
-  /** @deprecated use `WebhookSubscriptionSelf$outboundSchema` instead. */
-  export const outboundSchema = WebhookSubscriptionSelf$outboundSchema;
-  /** @deprecated use `WebhookSubscriptionSelf$Outbound` instead. */
-  export type Outbound = WebhookSubscriptionSelf$Outbound;
-}
-
-export function webhookSubscriptionSelfToJSON(
-  webhookSubscriptionSelf: WebhookSubscriptionSelf,
-): string {
-  return JSON.stringify(
-    WebhookSubscriptionSelf$outboundSchema.parse(webhookSubscriptionSelf),
-  );
-}
-
 export function webhookSubscriptionSelfFromJSON(
   jsonString: string,
 ): SafeParseResult<WebhookSubscriptionSelf, SDKValidationError> {
@@ -91,37 +56,6 @@ export const Webhooks$inboundSchema: z.ZodType<
 > = z.object({
   href: z.string().optional(),
 });
-
-/** @internal */
-export type Webhooks$Outbound = {
-  href?: string | undefined;
-};
-
-/** @internal */
-export const Webhooks$outboundSchema: z.ZodType<
-  Webhooks$Outbound,
-  z.ZodTypeDef,
-  Webhooks
-> = z.object({
-  href: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Webhooks$ {
-  /** @deprecated use `Webhooks$inboundSchema` instead. */
-  export const inboundSchema = Webhooks$inboundSchema;
-  /** @deprecated use `Webhooks$outboundSchema` instead. */
-  export const outboundSchema = Webhooks$outboundSchema;
-  /** @deprecated use `Webhooks$Outbound` instead. */
-  export type Outbound = Webhooks$Outbound;
-}
-
-export function webhooksToJSON(webhooks: Webhooks): string {
-  return JSON.stringify(Webhooks$outboundSchema.parse(webhooks));
-}
 
 export function webhooksFromJSON(
   jsonString: string,
@@ -142,43 +76,6 @@ export const WebhookSubscriptionLinks$inboundSchema: z.ZodType<
   self: z.lazy(() => WebhookSubscriptionSelf$inboundSchema).optional(),
   webhooks: z.lazy(() => Webhooks$inboundSchema).optional(),
 });
-
-/** @internal */
-export type WebhookSubscriptionLinks$Outbound = {
-  self?: WebhookSubscriptionSelf$Outbound | undefined;
-  webhooks?: Webhooks$Outbound | undefined;
-};
-
-/** @internal */
-export const WebhookSubscriptionLinks$outboundSchema: z.ZodType<
-  WebhookSubscriptionLinks$Outbound,
-  z.ZodTypeDef,
-  WebhookSubscriptionLinks
-> = z.object({
-  self: z.lazy(() => WebhookSubscriptionSelf$outboundSchema).optional(),
-  webhooks: z.lazy(() => Webhooks$outboundSchema).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookSubscriptionLinks$ {
-  /** @deprecated use `WebhookSubscriptionLinks$inboundSchema` instead. */
-  export const inboundSchema = WebhookSubscriptionLinks$inboundSchema;
-  /** @deprecated use `WebhookSubscriptionLinks$outboundSchema` instead. */
-  export const outboundSchema = WebhookSubscriptionLinks$outboundSchema;
-  /** @deprecated use `WebhookSubscriptionLinks$Outbound` instead. */
-  export type Outbound = WebhookSubscriptionLinks$Outbound;
-}
-
-export function webhookSubscriptionLinksToJSON(
-  webhookSubscriptionLinks: WebhookSubscriptionLinks,
-): string {
-  return JSON.stringify(
-    WebhookSubscriptionLinks$outboundSchema.parse(webhookSubscriptionLinks),
-  );
-}
 
 export function webhookSubscriptionLinksFromJSON(
   jsonString: string,
@@ -207,53 +104,6 @@ export const WebhookSubscription$inboundSchema: z.ZodType<
     "_links": "links",
   });
 });
-
-/** @internal */
-export type WebhookSubscription$Outbound = {
-  _links?: WebhookSubscriptionLinks$Outbound | undefined;
-  id?: string | undefined;
-  url?: string | undefined;
-  paused?: boolean | undefined;
-  created?: string | undefined;
-};
-
-/** @internal */
-export const WebhookSubscription$outboundSchema: z.ZodType<
-  WebhookSubscription$Outbound,
-  z.ZodTypeDef,
-  WebhookSubscription
-> = z.object({
-  links: z.lazy(() => WebhookSubscriptionLinks$outboundSchema).optional(),
-  id: z.string().optional(),
-  url: z.string().optional(),
-  paused: z.boolean().optional(),
-  created: z.date().transform(v => v.toISOString()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookSubscription$ {
-  /** @deprecated use `WebhookSubscription$inboundSchema` instead. */
-  export const inboundSchema = WebhookSubscription$inboundSchema;
-  /** @deprecated use `WebhookSubscription$outboundSchema` instead. */
-  export const outboundSchema = WebhookSubscription$outboundSchema;
-  /** @deprecated use `WebhookSubscription$Outbound` instead. */
-  export type Outbound = WebhookSubscription$Outbound;
-}
-
-export function webhookSubscriptionToJSON(
-  webhookSubscription: WebhookSubscription,
-): string {
-  return JSON.stringify(
-    WebhookSubscription$outboundSchema.parse(webhookSubscription),
-  );
-}
 
 export function webhookSubscriptionFromJSON(
   jsonString: string,

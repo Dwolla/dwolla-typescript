@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
-import { Result as SafeParseResult } from "../types/fp.js";
-import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 export type CreateCustomerExchangeSessionForWebExchangePartner = {
   href: string;
@@ -24,16 +21,6 @@ export type CreateCustomerExchangeSessionForWeb = {
 };
 
 /** @internal */
-export const CreateCustomerExchangeSessionForWebExchangePartner$inboundSchema:
-  z.ZodType<
-    CreateCustomerExchangeSessionForWebExchangePartner,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    href: z.string(),
-  });
-
-/** @internal */
 export type CreateCustomerExchangeSessionForWebExchangePartner$Outbound = {
   href: string;
 };
@@ -48,22 +35,6 @@ export const CreateCustomerExchangeSessionForWebExchangePartner$outboundSchema:
     href: z.string(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerExchangeSessionForWebExchangePartner$ {
-  /** @deprecated use `CreateCustomerExchangeSessionForWebExchangePartner$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerExchangeSessionForWebExchangePartner$inboundSchema;
-  /** @deprecated use `CreateCustomerExchangeSessionForWebExchangePartner$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerExchangeSessionForWebExchangePartner$outboundSchema;
-  /** @deprecated use `CreateCustomerExchangeSessionForWebExchangePartner$Outbound` instead. */
-  export type Outbound =
-    CreateCustomerExchangeSessionForWebExchangePartner$Outbound;
-}
-
 export function createCustomerExchangeSessionForWebExchangePartnerToJSON(
   createCustomerExchangeSessionForWebExchangePartner:
     CreateCustomerExchangeSessionForWebExchangePartner,
@@ -74,37 +45,6 @@ export function createCustomerExchangeSessionForWebExchangePartnerToJSON(
     ),
   );
 }
-
-export function createCustomerExchangeSessionForWebExchangePartnerFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateCustomerExchangeSessionForWebExchangePartner,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateCustomerExchangeSessionForWebExchangePartner$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreateCustomerExchangeSessionForWebExchangePartner' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateCustomerExchangeSessionForWebLinks$inboundSchema: z.ZodType<
-  CreateCustomerExchangeSessionForWebLinks,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  "exchange-partner": z.lazy(() =>
-    CreateCustomerExchangeSessionForWebExchangePartner$inboundSchema
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "exchange-partner": "exchangePartner",
-  });
-});
 
 /** @internal */
 export type CreateCustomerExchangeSessionForWebLinks$Outbound = {
@@ -127,21 +67,6 @@ export const CreateCustomerExchangeSessionForWebLinks$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerExchangeSessionForWebLinks$ {
-  /** @deprecated use `CreateCustomerExchangeSessionForWebLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerExchangeSessionForWebLinks$inboundSchema;
-  /** @deprecated use `CreateCustomerExchangeSessionForWebLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerExchangeSessionForWebLinks$outboundSchema;
-  /** @deprecated use `CreateCustomerExchangeSessionForWebLinks$Outbound` instead. */
-  export type Outbound = CreateCustomerExchangeSessionForWebLinks$Outbound;
-}
-
 export function createCustomerExchangeSessionForWebLinksToJSON(
   createCustomerExchangeSessionForWebLinks:
     CreateCustomerExchangeSessionForWebLinks,
@@ -152,35 +77,6 @@ export function createCustomerExchangeSessionForWebLinksToJSON(
     ),
   );
 }
-
-export function createCustomerExchangeSessionForWebLinksFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateCustomerExchangeSessionForWebLinks,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateCustomerExchangeSessionForWebLinks$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreateCustomerExchangeSessionForWebLinks' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateCustomerExchangeSessionForWeb$inboundSchema: z.ZodType<
-  CreateCustomerExchangeSessionForWeb,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  _links: z.lazy(() => CreateCustomerExchangeSessionForWebLinks$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
 
 /** @internal */
 export type CreateCustomerExchangeSessionForWeb$Outbound = {
@@ -200,21 +96,6 @@ export const CreateCustomerExchangeSessionForWeb$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomerExchangeSessionForWeb$ {
-  /** @deprecated use `CreateCustomerExchangeSessionForWeb$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateCustomerExchangeSessionForWeb$inboundSchema;
-  /** @deprecated use `CreateCustomerExchangeSessionForWeb$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateCustomerExchangeSessionForWeb$outboundSchema;
-  /** @deprecated use `CreateCustomerExchangeSessionForWeb$Outbound` instead. */
-  export type Outbound = CreateCustomerExchangeSessionForWeb$Outbound;
-}
-
 export function createCustomerExchangeSessionForWebToJSON(
   createCustomerExchangeSessionForWeb: CreateCustomerExchangeSessionForWeb,
 ): string {
@@ -222,16 +103,5 @@ export function createCustomerExchangeSessionForWebToJSON(
     CreateCustomerExchangeSessionForWeb$outboundSchema.parse(
       createCustomerExchangeSessionForWeb,
     ),
-  );
-}
-
-export function createCustomerExchangeSessionForWebFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateCustomerExchangeSessionForWeb, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateCustomerExchangeSessionForWeb$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateCustomerExchangeSessionForWeb' from JSON`,
   );
 }

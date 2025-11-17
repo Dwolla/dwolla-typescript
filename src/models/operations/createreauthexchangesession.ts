@@ -47,16 +47,6 @@ export type CreateReAuthExchangeSessionResponse = {
 };
 
 /** @internal */
-export const CreateReAuthExchangeSessionRequestBody$inboundSchema: z.ZodType<
-  CreateReAuthExchangeSessionRequestBody,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  models.CreateReAuthExchangeSessionWithRedirect$inboundSchema,
-  models.CreateReAuthExchangeSessionForWeb$inboundSchema,
-]);
-
-/** @internal */
 export type CreateReAuthExchangeSessionRequestBody$Outbound =
   | models.CreateReAuthExchangeSessionWithRedirect$Outbound
   | models.CreateReAuthExchangeSessionForWeb$Outbound;
@@ -71,21 +61,6 @@ export const CreateReAuthExchangeSessionRequestBody$outboundSchema: z.ZodType<
   models.CreateReAuthExchangeSessionForWeb$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateReAuthExchangeSessionRequestBody$ {
-  /** @deprecated use `CreateReAuthExchangeSessionRequestBody$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateReAuthExchangeSessionRequestBody$inboundSchema;
-  /** @deprecated use `CreateReAuthExchangeSessionRequestBody$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateReAuthExchangeSessionRequestBody$outboundSchema;
-  /** @deprecated use `CreateReAuthExchangeSessionRequestBody$Outbound` instead. */
-  export type Outbound = CreateReAuthExchangeSessionRequestBody$Outbound;
-}
-
 export function createReAuthExchangeSessionRequestBodyToJSON(
   createReAuthExchangeSessionRequestBody:
     CreateReAuthExchangeSessionRequestBody,
@@ -96,34 +71,6 @@ export function createReAuthExchangeSessionRequestBodyToJSON(
     ),
   );
 }
-
-export function createReAuthExchangeSessionRequestBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateReAuthExchangeSessionRequestBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateReAuthExchangeSessionRequestBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateReAuthExchangeSessionRequestBody' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateReAuthExchangeSessionRequest$inboundSchema: z.ZodType<
-  CreateReAuthExchangeSessionRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  RequestBody: z.union([
-    models.CreateReAuthExchangeSessionWithRedirect$inboundSchema,
-    models.CreateReAuthExchangeSessionForWeb$inboundSchema,
-  ]).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "RequestBody": "requestBody",
-  });
-});
 
 /** @internal */
 export type CreateReAuthExchangeSessionRequest$Outbound = {
@@ -151,20 +98,6 @@ export const CreateReAuthExchangeSessionRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateReAuthExchangeSessionRequest$ {
-  /** @deprecated use `CreateReAuthExchangeSessionRequest$inboundSchema` instead. */
-  export const inboundSchema = CreateReAuthExchangeSessionRequest$inboundSchema;
-  /** @deprecated use `CreateReAuthExchangeSessionRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateReAuthExchangeSessionRequest$outboundSchema;
-  /** @deprecated use `CreateReAuthExchangeSessionRequest$Outbound` instead. */
-  export type Outbound = CreateReAuthExchangeSessionRequest$Outbound;
-}
-
 export function createReAuthExchangeSessionRequestToJSON(
   createReAuthExchangeSessionRequest: CreateReAuthExchangeSessionRequest,
 ): string {
@@ -172,17 +105,6 @@ export function createReAuthExchangeSessionRequestToJSON(
     CreateReAuthExchangeSessionRequest$outboundSchema.parse(
       createReAuthExchangeSessionRequest,
     ),
-  );
-}
-
-export function createReAuthExchangeSessionRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateReAuthExchangeSessionRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateReAuthExchangeSessionRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateReAuthExchangeSessionRequest' from JSON`,
   );
 }
 
@@ -198,49 +120,6 @@ export const CreateReAuthExchangeSessionResponse$inboundSchema: z.ZodType<
     "Headers": "headers",
   });
 });
-
-/** @internal */
-export type CreateReAuthExchangeSessionResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-};
-
-/** @internal */
-export const CreateReAuthExchangeSessionResponse$outboundSchema: z.ZodType<
-  CreateReAuthExchangeSessionResponse$Outbound,
-  z.ZodTypeDef,
-  CreateReAuthExchangeSessionResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateReAuthExchangeSessionResponse$ {
-  /** @deprecated use `CreateReAuthExchangeSessionResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateReAuthExchangeSessionResponse$inboundSchema;
-  /** @deprecated use `CreateReAuthExchangeSessionResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateReAuthExchangeSessionResponse$outboundSchema;
-  /** @deprecated use `CreateReAuthExchangeSessionResponse$Outbound` instead. */
-  export type Outbound = CreateReAuthExchangeSessionResponse$Outbound;
-}
-
-export function createReAuthExchangeSessionResponseToJSON(
-  createReAuthExchangeSessionResponse: CreateReAuthExchangeSessionResponse,
-): string {
-  return JSON.stringify(
-    CreateReAuthExchangeSessionResponse$outboundSchema.parse(
-      createReAuthExchangeSessionResponse,
-    ),
-  );
-}
 
 export function createReAuthExchangeSessionResponseFromJSON(
   jsonString: string,

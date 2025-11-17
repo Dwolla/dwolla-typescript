@@ -98,44 +98,6 @@ export const GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONError
     });
 
 /** @internal */
-export type GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONError$Outbound =
-  {
-    code?: string | undefined;
-    message?: string | undefined;
-  };
-
-/** @internal */
-export const GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONError
-  > = z.instanceof(
-    GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONError,
-  )
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONError$ {
-  /** @deprecated use `GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONError$Outbound;
-}
-
-/** @internal */
 export const GetBeneficialOwnershipStatusForCustomerForbiddenDwollaV1HalJSONError$inboundSchema:
   z.ZodType<
     GetBeneficialOwnershipStatusForCustomerForbiddenDwollaV1HalJSONError,
@@ -154,41 +116,3 @@ export const GetBeneficialOwnershipStatusForCustomerForbiddenDwollaV1HalJSONErro
         { request: v.request$, response: v.response$, body: v.body$ },
       );
     });
-
-/** @internal */
-export type GetBeneficialOwnershipStatusForCustomerForbiddenDwollaV1HalJSONError$Outbound =
-  {
-    code?: string | undefined;
-    message?: string | undefined;
-  };
-
-/** @internal */
-export const GetBeneficialOwnershipStatusForCustomerForbiddenDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    GetBeneficialOwnershipStatusForCustomerForbiddenDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    GetBeneficialOwnershipStatusForCustomerForbiddenDwollaV1HalJSONError
-  > = z.instanceof(
-    GetBeneficialOwnershipStatusForCustomerForbiddenDwollaV1HalJSONError,
-  )
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetBeneficialOwnershipStatusForCustomerForbiddenDwollaV1HalJSONError$ {
-  /** @deprecated use `GetBeneficialOwnershipStatusForCustomerForbiddenDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    GetBeneficialOwnershipStatusForCustomerForbiddenDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `GetBeneficialOwnershipStatusForCustomerForbiddenDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    GetBeneficialOwnershipStatusForCustomerForbiddenDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `GetBeneficialOwnershipStatusForCustomerForbiddenDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    GetBeneficialOwnershipStatusForCustomerForbiddenDwollaV1HalJSONError$Outbound;
-}

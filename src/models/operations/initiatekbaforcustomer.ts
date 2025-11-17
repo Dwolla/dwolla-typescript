@@ -20,15 +20,6 @@ export type InitiateKbaForCustomerResponse = {
 };
 
 /** @internal */
-export const InitiateKbaForCustomerRequest$inboundSchema: z.ZodType<
-  InitiateKbaForCustomerRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
-
-/** @internal */
 export type InitiateKbaForCustomerRequest$Outbound = {
   id: string;
 };
@@ -42,19 +33,6 @@ export const InitiateKbaForCustomerRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InitiateKbaForCustomerRequest$ {
-  /** @deprecated use `InitiateKbaForCustomerRequest$inboundSchema` instead. */
-  export const inboundSchema = InitiateKbaForCustomerRequest$inboundSchema;
-  /** @deprecated use `InitiateKbaForCustomerRequest$outboundSchema` instead. */
-  export const outboundSchema = InitiateKbaForCustomerRequest$outboundSchema;
-  /** @deprecated use `InitiateKbaForCustomerRequest$Outbound` instead. */
-  export type Outbound = InitiateKbaForCustomerRequest$Outbound;
-}
-
 export function initiateKbaForCustomerRequestToJSON(
   initiateKbaForCustomerRequest: InitiateKbaForCustomerRequest,
 ): string {
@@ -62,16 +40,6 @@ export function initiateKbaForCustomerRequestToJSON(
     InitiateKbaForCustomerRequest$outboundSchema.parse(
       initiateKbaForCustomerRequest,
     ),
-  );
-}
-
-export function initiateKbaForCustomerRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<InitiateKbaForCustomerRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InitiateKbaForCustomerRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InitiateKbaForCustomerRequest' from JSON`,
   );
 }
 
@@ -87,47 +55,6 @@ export const InitiateKbaForCustomerResponse$inboundSchema: z.ZodType<
     "Headers": "headers",
   });
 });
-
-/** @internal */
-export type InitiateKbaForCustomerResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-};
-
-/** @internal */
-export const InitiateKbaForCustomerResponse$outboundSchema: z.ZodType<
-  InitiateKbaForCustomerResponse$Outbound,
-  z.ZodTypeDef,
-  InitiateKbaForCustomerResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InitiateKbaForCustomerResponse$ {
-  /** @deprecated use `InitiateKbaForCustomerResponse$inboundSchema` instead. */
-  export const inboundSchema = InitiateKbaForCustomerResponse$inboundSchema;
-  /** @deprecated use `InitiateKbaForCustomerResponse$outboundSchema` instead. */
-  export const outboundSchema = InitiateKbaForCustomerResponse$outboundSchema;
-  /** @deprecated use `InitiateKbaForCustomerResponse$Outbound` instead. */
-  export type Outbound = InitiateKbaForCustomerResponse$Outbound;
-}
-
-export function initiateKbaForCustomerResponseToJSON(
-  initiateKbaForCustomerResponse: InitiateKbaForCustomerResponse,
-): string {
-  return JSON.stringify(
-    InitiateKbaForCustomerResponse$outboundSchema.parse(
-      initiateKbaForCustomerResponse,
-    ),
-  );
-}
 
 export function initiateKbaForCustomerResponseFromJSON(
   jsonString: string,

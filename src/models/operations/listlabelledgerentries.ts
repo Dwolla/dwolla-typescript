@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListLabelLedgerEntriesRequest = {
   /**
@@ -21,17 +18,6 @@ export type ListLabelLedgerEntriesRequest = {
    */
   offset?: number | undefined;
 };
-
-/** @internal */
-export const ListLabelLedgerEntriesRequest$inboundSchema: z.ZodType<
-  ListLabelLedgerEntriesRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  limit: z.number().int().optional(),
-  offset: z.number().int().optional(),
-});
 
 /** @internal */
 export type ListLabelLedgerEntriesRequest$Outbound = {
@@ -51,19 +37,6 @@ export const ListLabelLedgerEntriesRequest$outboundSchema: z.ZodType<
   offset: z.number().int().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListLabelLedgerEntriesRequest$ {
-  /** @deprecated use `ListLabelLedgerEntriesRequest$inboundSchema` instead. */
-  export const inboundSchema = ListLabelLedgerEntriesRequest$inboundSchema;
-  /** @deprecated use `ListLabelLedgerEntriesRequest$outboundSchema` instead. */
-  export const outboundSchema = ListLabelLedgerEntriesRequest$outboundSchema;
-  /** @deprecated use `ListLabelLedgerEntriesRequest$Outbound` instead. */
-  export type Outbound = ListLabelLedgerEntriesRequest$Outbound;
-}
-
 export function listLabelLedgerEntriesRequestToJSON(
   listLabelLedgerEntriesRequest: ListLabelLedgerEntriesRequest,
 ): string {
@@ -71,15 +44,5 @@ export function listLabelLedgerEntriesRequestToJSON(
     ListLabelLedgerEntriesRequest$outboundSchema.parse(
       listLabelLedgerEntriesRequest,
     ),
-  );
-}
-
-export function listLabelLedgerEntriesRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListLabelLedgerEntriesRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListLabelLedgerEntriesRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListLabelLedgerEntriesRequest' from JSON`,
   );
 }

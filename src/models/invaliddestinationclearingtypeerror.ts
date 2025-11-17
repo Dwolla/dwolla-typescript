@@ -28,42 +28,6 @@ export const InvalidDestinationClearingTypeErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type InvalidDestinationClearingTypeErrorLinks$Outbound = {};
-
-/** @internal */
-export const InvalidDestinationClearingTypeErrorLinks$outboundSchema: z.ZodType<
-  InvalidDestinationClearingTypeErrorLinks$Outbound,
-  z.ZodTypeDef,
-  InvalidDestinationClearingTypeErrorLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidDestinationClearingTypeErrorLinks$ {
-  /** @deprecated use `InvalidDestinationClearingTypeErrorLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidDestinationClearingTypeErrorLinks$inboundSchema;
-  /** @deprecated use `InvalidDestinationClearingTypeErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidDestinationClearingTypeErrorLinks$outboundSchema;
-  /** @deprecated use `InvalidDestinationClearingTypeErrorLinks$Outbound` instead. */
-  export type Outbound = InvalidDestinationClearingTypeErrorLinks$Outbound;
-}
-
-export function invalidDestinationClearingTypeErrorLinksToJSON(
-  invalidDestinationClearingTypeErrorLinks:
-    InvalidDestinationClearingTypeErrorLinks,
-): string {
-  return JSON.stringify(
-    InvalidDestinationClearingTypeErrorLinks$outboundSchema.parse(
-      invalidDestinationClearingTypeErrorLinks,
-    ),
-  );
-}
-
 export function invalidDestinationClearingTypeErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -97,57 +61,6 @@ export const InvalidDestinationClearingTypeErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type InvalidDestinationClearingTypeErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: InvalidDestinationClearingTypeErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const InvalidDestinationClearingTypeErrorError$outboundSchema: z.ZodType<
-  InvalidDestinationClearingTypeErrorError$Outbound,
-  z.ZodTypeDef,
-  InvalidDestinationClearingTypeErrorError
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  links: z.lazy(() => InvalidDestinationClearingTypeErrorLinks$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidDestinationClearingTypeErrorError$ {
-  /** @deprecated use `InvalidDestinationClearingTypeErrorError$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidDestinationClearingTypeErrorError$inboundSchema;
-  /** @deprecated use `InvalidDestinationClearingTypeErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidDestinationClearingTypeErrorError$outboundSchema;
-  /** @deprecated use `InvalidDestinationClearingTypeErrorError$Outbound` instead. */
-  export type Outbound = InvalidDestinationClearingTypeErrorError$Outbound;
-}
-
-export function invalidDestinationClearingTypeErrorErrorToJSON(
-  invalidDestinationClearingTypeErrorError:
-    InvalidDestinationClearingTypeErrorError,
-): string {
-  return JSON.stringify(
-    InvalidDestinationClearingTypeErrorError$outboundSchema.parse(
-      invalidDestinationClearingTypeErrorError,
-    ),
-  );
-}
-
 export function invalidDestinationClearingTypeErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -175,49 +88,6 @@ export const InvalidDestinationClearingTypeErrorEmbedded$inboundSchema:
       z.lazy(() => InvalidDestinationClearingTypeErrorError$inboundSchema),
     ).optional(),
   });
-
-/** @internal */
-export type InvalidDestinationClearingTypeErrorEmbedded$Outbound = {
-  errors?: Array<InvalidDestinationClearingTypeErrorError$Outbound> | undefined;
-};
-
-/** @internal */
-export const InvalidDestinationClearingTypeErrorEmbedded$outboundSchema:
-  z.ZodType<
-    InvalidDestinationClearingTypeErrorEmbedded$Outbound,
-    z.ZodTypeDef,
-    InvalidDestinationClearingTypeErrorEmbedded
-  > = z.object({
-    errors: z.array(
-      z.lazy(() => InvalidDestinationClearingTypeErrorError$outboundSchema),
-    ).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidDestinationClearingTypeErrorEmbedded$ {
-  /** @deprecated use `InvalidDestinationClearingTypeErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidDestinationClearingTypeErrorEmbedded$inboundSchema;
-  /** @deprecated use `InvalidDestinationClearingTypeErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidDestinationClearingTypeErrorEmbedded$outboundSchema;
-  /** @deprecated use `InvalidDestinationClearingTypeErrorEmbedded$Outbound` instead. */
-  export type Outbound = InvalidDestinationClearingTypeErrorEmbedded$Outbound;
-}
-
-export function invalidDestinationClearingTypeErrorEmbeddedToJSON(
-  invalidDestinationClearingTypeErrorEmbedded:
-    InvalidDestinationClearingTypeErrorEmbedded,
-): string {
-  return JSON.stringify(
-    InvalidDestinationClearingTypeErrorEmbedded$outboundSchema.parse(
-      invalidDestinationClearingTypeErrorEmbedded,
-    ),
-  );
-}
 
 export function invalidDestinationClearingTypeErrorEmbeddedFromJSON(
   jsonString: string,

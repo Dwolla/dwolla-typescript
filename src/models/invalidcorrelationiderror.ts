@@ -28,39 +28,6 @@ export const InvalidCorrelationIdErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type InvalidCorrelationIdErrorLinks$Outbound = {};
-
-/** @internal */
-export const InvalidCorrelationIdErrorLinks$outboundSchema: z.ZodType<
-  InvalidCorrelationIdErrorLinks$Outbound,
-  z.ZodTypeDef,
-  InvalidCorrelationIdErrorLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidCorrelationIdErrorLinks$ {
-  /** @deprecated use `InvalidCorrelationIdErrorLinks$inboundSchema` instead. */
-  export const inboundSchema = InvalidCorrelationIdErrorLinks$inboundSchema;
-  /** @deprecated use `InvalidCorrelationIdErrorLinks$outboundSchema` instead. */
-  export const outboundSchema = InvalidCorrelationIdErrorLinks$outboundSchema;
-  /** @deprecated use `InvalidCorrelationIdErrorLinks$Outbound` instead. */
-  export type Outbound = InvalidCorrelationIdErrorLinks$Outbound;
-}
-
-export function invalidCorrelationIdErrorLinksToJSON(
-  invalidCorrelationIdErrorLinks: InvalidCorrelationIdErrorLinks,
-): string {
-  return JSON.stringify(
-    InvalidCorrelationIdErrorLinks$outboundSchema.parse(
-      invalidCorrelationIdErrorLinks,
-    ),
-  );
-}
-
 export function invalidCorrelationIdErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<InvalidCorrelationIdErrorLinks, SDKValidationError> {
@@ -87,53 +54,6 @@ export const InvalidCorrelationIdErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type InvalidCorrelationIdErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: InvalidCorrelationIdErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const InvalidCorrelationIdErrorError$outboundSchema: z.ZodType<
-  InvalidCorrelationIdErrorError$Outbound,
-  z.ZodTypeDef,
-  InvalidCorrelationIdErrorError
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  links: z.lazy(() => InvalidCorrelationIdErrorLinks$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidCorrelationIdErrorError$ {
-  /** @deprecated use `InvalidCorrelationIdErrorError$inboundSchema` instead. */
-  export const inboundSchema = InvalidCorrelationIdErrorError$inboundSchema;
-  /** @deprecated use `InvalidCorrelationIdErrorError$outboundSchema` instead. */
-  export const outboundSchema = InvalidCorrelationIdErrorError$outboundSchema;
-  /** @deprecated use `InvalidCorrelationIdErrorError$Outbound` instead. */
-  export type Outbound = InvalidCorrelationIdErrorError$Outbound;
-}
-
-export function invalidCorrelationIdErrorErrorToJSON(
-  invalidCorrelationIdErrorError: InvalidCorrelationIdErrorError,
-): string {
-  return JSON.stringify(
-    InvalidCorrelationIdErrorError$outboundSchema.parse(
-      invalidCorrelationIdErrorError,
-    ),
-  );
-}
-
 export function invalidCorrelationIdErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<InvalidCorrelationIdErrorError, SDKValidationError> {
@@ -153,45 +73,6 @@ export const InvalidCorrelationIdErrorEmbedded$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => InvalidCorrelationIdErrorError$inboundSchema))
     .optional(),
 });
-
-/** @internal */
-export type InvalidCorrelationIdErrorEmbedded$Outbound = {
-  errors?: Array<InvalidCorrelationIdErrorError$Outbound> | undefined;
-};
-
-/** @internal */
-export const InvalidCorrelationIdErrorEmbedded$outboundSchema: z.ZodType<
-  InvalidCorrelationIdErrorEmbedded$Outbound,
-  z.ZodTypeDef,
-  InvalidCorrelationIdErrorEmbedded
-> = z.object({
-  errors: z.array(z.lazy(() => InvalidCorrelationIdErrorError$outboundSchema))
-    .optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidCorrelationIdErrorEmbedded$ {
-  /** @deprecated use `InvalidCorrelationIdErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema = InvalidCorrelationIdErrorEmbedded$inboundSchema;
-  /** @deprecated use `InvalidCorrelationIdErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidCorrelationIdErrorEmbedded$outboundSchema;
-  /** @deprecated use `InvalidCorrelationIdErrorEmbedded$Outbound` instead. */
-  export type Outbound = InvalidCorrelationIdErrorEmbedded$Outbound;
-}
-
-export function invalidCorrelationIdErrorEmbeddedToJSON(
-  invalidCorrelationIdErrorEmbedded: InvalidCorrelationIdErrorEmbedded,
-): string {
-  return JSON.stringify(
-    InvalidCorrelationIdErrorEmbedded$outboundSchema.parse(
-      invalidCorrelationIdErrorEmbedded,
-    ),
-  );
-}
 
 export function invalidCorrelationIdErrorEmbeddedFromJSON(
   jsonString: string,

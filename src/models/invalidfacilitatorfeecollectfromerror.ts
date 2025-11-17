@@ -26,43 +26,6 @@ export const InvalidFacilitatorFeeCollectFromErrorLinks$inboundSchema:
   z.ZodType<InvalidFacilitatorFeeCollectFromErrorLinks, z.ZodTypeDef, unknown> =
     z.object({});
 
-/** @internal */
-export type InvalidFacilitatorFeeCollectFromErrorLinks$Outbound = {};
-
-/** @internal */
-export const InvalidFacilitatorFeeCollectFromErrorLinks$outboundSchema:
-  z.ZodType<
-    InvalidFacilitatorFeeCollectFromErrorLinks$Outbound,
-    z.ZodTypeDef,
-    InvalidFacilitatorFeeCollectFromErrorLinks
-  > = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidFacilitatorFeeCollectFromErrorLinks$ {
-  /** @deprecated use `InvalidFacilitatorFeeCollectFromErrorLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidFacilitatorFeeCollectFromErrorLinks$inboundSchema;
-  /** @deprecated use `InvalidFacilitatorFeeCollectFromErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidFacilitatorFeeCollectFromErrorLinks$outboundSchema;
-  /** @deprecated use `InvalidFacilitatorFeeCollectFromErrorLinks$Outbound` instead. */
-  export type Outbound = InvalidFacilitatorFeeCollectFromErrorLinks$Outbound;
-}
-
-export function invalidFacilitatorFeeCollectFromErrorLinksToJSON(
-  invalidFacilitatorFeeCollectFromErrorLinks:
-    InvalidFacilitatorFeeCollectFromErrorLinks,
-): string {
-  return JSON.stringify(
-    InvalidFacilitatorFeeCollectFromErrorLinks$outboundSchema.parse(
-      invalidFacilitatorFeeCollectFromErrorLinks,
-    ),
-  );
-}
-
 export function invalidFacilitatorFeeCollectFromErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -95,59 +58,6 @@ export const InvalidFacilitatorFeeCollectFromErrorError$inboundSchema:
       });
     });
 
-/** @internal */
-export type InvalidFacilitatorFeeCollectFromErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: InvalidFacilitatorFeeCollectFromErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const InvalidFacilitatorFeeCollectFromErrorError$outboundSchema:
-  z.ZodType<
-    InvalidFacilitatorFeeCollectFromErrorError$Outbound,
-    z.ZodTypeDef,
-    InvalidFacilitatorFeeCollectFromErrorError
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    path: z.string().optional(),
-    links: z.lazy(() =>
-      InvalidFacilitatorFeeCollectFromErrorLinks$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      links: "_links",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidFacilitatorFeeCollectFromErrorError$ {
-  /** @deprecated use `InvalidFacilitatorFeeCollectFromErrorError$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidFacilitatorFeeCollectFromErrorError$inboundSchema;
-  /** @deprecated use `InvalidFacilitatorFeeCollectFromErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidFacilitatorFeeCollectFromErrorError$outboundSchema;
-  /** @deprecated use `InvalidFacilitatorFeeCollectFromErrorError$Outbound` instead. */
-  export type Outbound = InvalidFacilitatorFeeCollectFromErrorError$Outbound;
-}
-
-export function invalidFacilitatorFeeCollectFromErrorErrorToJSON(
-  invalidFacilitatorFeeCollectFromErrorError:
-    InvalidFacilitatorFeeCollectFromErrorError,
-): string {
-  return JSON.stringify(
-    InvalidFacilitatorFeeCollectFromErrorError$outboundSchema.parse(
-      invalidFacilitatorFeeCollectFromErrorError,
-    ),
-  );
-}
-
 export function invalidFacilitatorFeeCollectFromErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -175,51 +85,6 @@ export const InvalidFacilitatorFeeCollectFromErrorEmbedded$inboundSchema:
       z.lazy(() => InvalidFacilitatorFeeCollectFromErrorError$inboundSchema),
     ).optional(),
   });
-
-/** @internal */
-export type InvalidFacilitatorFeeCollectFromErrorEmbedded$Outbound = {
-  errors?:
-    | Array<InvalidFacilitatorFeeCollectFromErrorError$Outbound>
-    | undefined;
-};
-
-/** @internal */
-export const InvalidFacilitatorFeeCollectFromErrorEmbedded$outboundSchema:
-  z.ZodType<
-    InvalidFacilitatorFeeCollectFromErrorEmbedded$Outbound,
-    z.ZodTypeDef,
-    InvalidFacilitatorFeeCollectFromErrorEmbedded
-  > = z.object({
-    errors: z.array(
-      z.lazy(() => InvalidFacilitatorFeeCollectFromErrorError$outboundSchema),
-    ).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidFacilitatorFeeCollectFromErrorEmbedded$ {
-  /** @deprecated use `InvalidFacilitatorFeeCollectFromErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidFacilitatorFeeCollectFromErrorEmbedded$inboundSchema;
-  /** @deprecated use `InvalidFacilitatorFeeCollectFromErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidFacilitatorFeeCollectFromErrorEmbedded$outboundSchema;
-  /** @deprecated use `InvalidFacilitatorFeeCollectFromErrorEmbedded$Outbound` instead. */
-  export type Outbound = InvalidFacilitatorFeeCollectFromErrorEmbedded$Outbound;
-}
-
-export function invalidFacilitatorFeeCollectFromErrorEmbeddedToJSON(
-  invalidFacilitatorFeeCollectFromErrorEmbedded:
-    InvalidFacilitatorFeeCollectFromErrorEmbedded,
-): string {
-  return JSON.stringify(
-    InvalidFacilitatorFeeCollectFromErrorEmbedded$outboundSchema.parse(
-      invalidFacilitatorFeeCollectFromErrorEmbedded,
-    ),
-  );
-}
 
 export function invalidFacilitatorFeeCollectFromErrorEmbeddedFromJSON(
   jsonString: string,

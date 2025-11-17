@@ -54,34 +54,3 @@ export const GetAccountDwollaV1HalJSONError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type GetAccountDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const GetAccountDwollaV1HalJSONError$outboundSchema: z.ZodType<
-  GetAccountDwollaV1HalJSONError$Outbound,
-  z.ZodTypeDef,
-  GetAccountDwollaV1HalJSONError
-> = z.instanceof(GetAccountDwollaV1HalJSONError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetAccountDwollaV1HalJSONError$ {
-  /** @deprecated use `GetAccountDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema = GetAccountDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `GetAccountDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema = GetAccountDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `GetAccountDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound = GetAccountDwollaV1HalJSONError$Outbound;
-}

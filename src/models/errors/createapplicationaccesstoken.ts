@@ -54,32 +54,3 @@ export const UnauthorizedError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type UnauthorizedError$Outbound = {
-  error?: string | undefined;
-};
-
-/** @internal */
-export const UnauthorizedError$outboundSchema: z.ZodType<
-  UnauthorizedError$Outbound,
-  z.ZodTypeDef,
-  UnauthorizedError
-> = z.instanceof(UnauthorizedError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    error: z.string().optional(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UnauthorizedError$ {
-  /** @deprecated use `UnauthorizedError$inboundSchema` instead. */
-  export const inboundSchema = UnauthorizedError$inboundSchema;
-  /** @deprecated use `UnauthorizedError$outboundSchema` instead. */
-  export const outboundSchema = UnauthorizedError$outboundSchema;
-  /** @deprecated use `UnauthorizedError$Outbound` instead. */
-  export type Outbound = UnauthorizedError$Outbound;
-}

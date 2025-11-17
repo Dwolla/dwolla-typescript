@@ -37,17 +37,6 @@ export type UpdateOrRemoveFundingSourceRequest = {
 export type UpdateOrRemoveFundingSourceResponse = {};
 
 /** @internal */
-export const UpdateOrRemoveFundingSourceRequestBody$inboundSchema: z.ZodType<
-  UpdateOrRemoveFundingSourceRequestBody,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  models.UpdateUnverifiedBank$inboundSchema,
-  models.UpdateVerifiedBank$inboundSchema,
-  models.RemoveBank$inboundSchema,
-]);
-
-/** @internal */
 export type UpdateOrRemoveFundingSourceRequestBody$Outbound =
   | models.UpdateUnverifiedBank$Outbound
   | models.UpdateVerifiedBank$Outbound
@@ -64,21 +53,6 @@ export const UpdateOrRemoveFundingSourceRequestBody$outboundSchema: z.ZodType<
   models.RemoveBank$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateOrRemoveFundingSourceRequestBody$ {
-  /** @deprecated use `UpdateOrRemoveFundingSourceRequestBody$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateOrRemoveFundingSourceRequestBody$inboundSchema;
-  /** @deprecated use `UpdateOrRemoveFundingSourceRequestBody$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateOrRemoveFundingSourceRequestBody$outboundSchema;
-  /** @deprecated use `UpdateOrRemoveFundingSourceRequestBody$Outbound` instead. */
-  export type Outbound = UpdateOrRemoveFundingSourceRequestBody$Outbound;
-}
-
 export function updateOrRemoveFundingSourceRequestBodyToJSON(
   updateOrRemoveFundingSourceRequestBody:
     UpdateOrRemoveFundingSourceRequestBody,
@@ -89,35 +63,6 @@ export function updateOrRemoveFundingSourceRequestBodyToJSON(
     ),
   );
 }
-
-export function updateOrRemoveFundingSourceRequestBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateOrRemoveFundingSourceRequestBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      UpdateOrRemoveFundingSourceRequestBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateOrRemoveFundingSourceRequestBody' from JSON`,
-  );
-}
-
-/** @internal */
-export const UpdateOrRemoveFundingSourceRequest$inboundSchema: z.ZodType<
-  UpdateOrRemoveFundingSourceRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  RequestBody: z.union([
-    models.UpdateUnverifiedBank$inboundSchema,
-    models.UpdateVerifiedBank$inboundSchema,
-    models.RemoveBank$inboundSchema,
-  ]),
-}).transform((v) => {
-  return remap$(v, {
-    "RequestBody": "requestBody",
-  });
-});
 
 /** @internal */
 export type UpdateOrRemoveFundingSourceRequest$Outbound = {
@@ -146,20 +91,6 @@ export const UpdateOrRemoveFundingSourceRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateOrRemoveFundingSourceRequest$ {
-  /** @deprecated use `UpdateOrRemoveFundingSourceRequest$inboundSchema` instead. */
-  export const inboundSchema = UpdateOrRemoveFundingSourceRequest$inboundSchema;
-  /** @deprecated use `UpdateOrRemoveFundingSourceRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateOrRemoveFundingSourceRequest$outboundSchema;
-  /** @deprecated use `UpdateOrRemoveFundingSourceRequest$Outbound` instead. */
-  export type Outbound = UpdateOrRemoveFundingSourceRequest$Outbound;
-}
-
 export function updateOrRemoveFundingSourceRequestToJSON(
   updateOrRemoveFundingSourceRequest: UpdateOrRemoveFundingSourceRequest,
 ): string {
@@ -170,58 +101,12 @@ export function updateOrRemoveFundingSourceRequestToJSON(
   );
 }
 
-export function updateOrRemoveFundingSourceRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateOrRemoveFundingSourceRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      UpdateOrRemoveFundingSourceRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateOrRemoveFundingSourceRequest' from JSON`,
-  );
-}
-
 /** @internal */
 export const UpdateOrRemoveFundingSourceResponse$inboundSchema: z.ZodType<
   UpdateOrRemoveFundingSourceResponse,
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
-/** @internal */
-export type UpdateOrRemoveFundingSourceResponse$Outbound = {};
-
-/** @internal */
-export const UpdateOrRemoveFundingSourceResponse$outboundSchema: z.ZodType<
-  UpdateOrRemoveFundingSourceResponse$Outbound,
-  z.ZodTypeDef,
-  UpdateOrRemoveFundingSourceResponse
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateOrRemoveFundingSourceResponse$ {
-  /** @deprecated use `UpdateOrRemoveFundingSourceResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateOrRemoveFundingSourceResponse$inboundSchema;
-  /** @deprecated use `UpdateOrRemoveFundingSourceResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateOrRemoveFundingSourceResponse$outboundSchema;
-  /** @deprecated use `UpdateOrRemoveFundingSourceResponse$Outbound` instead. */
-  export type Outbound = UpdateOrRemoveFundingSourceResponse$Outbound;
-}
-
-export function updateOrRemoveFundingSourceResponseToJSON(
-  updateOrRemoveFundingSourceResponse: UpdateOrRemoveFundingSourceResponse,
-): string {
-  return JSON.stringify(
-    UpdateOrRemoveFundingSourceResponse$outboundSchema.parse(
-      updateOrRemoveFundingSourceResponse,
-    ),
-  );
-}
 
 export function updateOrRemoveFundingSourceResponseFromJSON(
   jsonString: string,

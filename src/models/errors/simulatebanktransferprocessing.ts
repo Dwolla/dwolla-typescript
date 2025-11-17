@@ -92,42 +92,6 @@ export const SimulateBankTransferProcessingForbiddenDwollaV1HalJSONError$inbound
     });
 
 /** @internal */
-export type SimulateBankTransferProcessingForbiddenDwollaV1HalJSONError$Outbound =
-  {
-    code?: string | undefined;
-    message?: string | undefined;
-  };
-
-/** @internal */
-export const SimulateBankTransferProcessingForbiddenDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    SimulateBankTransferProcessingForbiddenDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    SimulateBankTransferProcessingForbiddenDwollaV1HalJSONError
-  > = z.instanceof(SimulateBankTransferProcessingForbiddenDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SimulateBankTransferProcessingForbiddenDwollaV1HalJSONError$ {
-  /** @deprecated use `SimulateBankTransferProcessingForbiddenDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    SimulateBankTransferProcessingForbiddenDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `SimulateBankTransferProcessingForbiddenDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    SimulateBankTransferProcessingForbiddenDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `SimulateBankTransferProcessingForbiddenDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    SimulateBankTransferProcessingForbiddenDwollaV1HalJSONError$Outbound;
-}
-
-/** @internal */
 export const SimulateBankTransferProcessingUnauthorizedDwollaV1HalJSONError$inboundSchema:
   z.ZodType<
     SimulateBankTransferProcessingUnauthorizedDwollaV1HalJSONError,
@@ -146,41 +110,3 @@ export const SimulateBankTransferProcessingUnauthorizedDwollaV1HalJSONError$inbo
         { request: v.request$, response: v.response$, body: v.body$ },
       );
     });
-
-/** @internal */
-export type SimulateBankTransferProcessingUnauthorizedDwollaV1HalJSONError$Outbound =
-  {
-    code?: string | undefined;
-    message?: string | undefined;
-  };
-
-/** @internal */
-export const SimulateBankTransferProcessingUnauthorizedDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    SimulateBankTransferProcessingUnauthorizedDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    SimulateBankTransferProcessingUnauthorizedDwollaV1HalJSONError
-  > = z.instanceof(
-    SimulateBankTransferProcessingUnauthorizedDwollaV1HalJSONError,
-  )
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SimulateBankTransferProcessingUnauthorizedDwollaV1HalJSONError$ {
-  /** @deprecated use `SimulateBankTransferProcessingUnauthorizedDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    SimulateBankTransferProcessingUnauthorizedDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `SimulateBankTransferProcessingUnauthorizedDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    SimulateBankTransferProcessingUnauthorizedDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `SimulateBankTransferProcessingUnauthorizedDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound =
-    SimulateBankTransferProcessingUnauthorizedDwollaV1HalJSONError$Outbound;
-}

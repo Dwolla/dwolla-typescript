@@ -54,34 +54,3 @@ export const BadRequestError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type BadRequestError$Outbound = {
-  code: string;
-  message: string;
-};
-
-/** @internal */
-export const BadRequestError$outboundSchema: z.ZodType<
-  BadRequestError$Outbound,
-  z.ZodTypeDef,
-  BadRequestError
-> = z.instanceof(BadRequestError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string(),
-    message: z.string(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BadRequestError$ {
-  /** @deprecated use `BadRequestError$inboundSchema` instead. */
-  export const inboundSchema = BadRequestError$inboundSchema;
-  /** @deprecated use `BadRequestError$outboundSchema` instead. */
-  export const outboundSchema = BadRequestError$outboundSchema;
-  /** @deprecated use `BadRequestError$Outbound` instead. */
-  export type Outbound = BadRequestError$Outbound;
-}

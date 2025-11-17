@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Parameters for updating a mass payment
@@ -27,15 +24,6 @@ export type UpdateMassPaymentRequest = {
 };
 
 /** @internal */
-export const UpdateMassPaymentRequestBody$inboundSchema: z.ZodType<
-  UpdateMassPaymentRequestBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  status: z.string(),
-});
-
-/** @internal */
 export type UpdateMassPaymentRequestBody$Outbound = {
   status: string;
 };
@@ -49,19 +37,6 @@ export const UpdateMassPaymentRequestBody$outboundSchema: z.ZodType<
   status: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateMassPaymentRequestBody$ {
-  /** @deprecated use `UpdateMassPaymentRequestBody$inboundSchema` instead. */
-  export const inboundSchema = UpdateMassPaymentRequestBody$inboundSchema;
-  /** @deprecated use `UpdateMassPaymentRequestBody$outboundSchema` instead. */
-  export const outboundSchema = UpdateMassPaymentRequestBody$outboundSchema;
-  /** @deprecated use `UpdateMassPaymentRequestBody$Outbound` instead. */
-  export type Outbound = UpdateMassPaymentRequestBody$Outbound;
-}
-
 export function updateMassPaymentRequestBodyToJSON(
   updateMassPaymentRequestBody: UpdateMassPaymentRequestBody,
 ): string {
@@ -71,30 +46,6 @@ export function updateMassPaymentRequestBodyToJSON(
     ),
   );
 }
-
-export function updateMassPaymentRequestBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateMassPaymentRequestBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateMassPaymentRequestBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateMassPaymentRequestBody' from JSON`,
-  );
-}
-
-/** @internal */
-export const UpdateMassPaymentRequest$inboundSchema: z.ZodType<
-  UpdateMassPaymentRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  RequestBody: z.lazy(() => UpdateMassPaymentRequestBody$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "RequestBody": "requestBody",
-  });
-});
 
 /** @internal */
 export type UpdateMassPaymentRequest$Outbound = {
@@ -116,33 +67,10 @@ export const UpdateMassPaymentRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateMassPaymentRequest$ {
-  /** @deprecated use `UpdateMassPaymentRequest$inboundSchema` instead. */
-  export const inboundSchema = UpdateMassPaymentRequest$inboundSchema;
-  /** @deprecated use `UpdateMassPaymentRequest$outboundSchema` instead. */
-  export const outboundSchema = UpdateMassPaymentRequest$outboundSchema;
-  /** @deprecated use `UpdateMassPaymentRequest$Outbound` instead. */
-  export type Outbound = UpdateMassPaymentRequest$Outbound;
-}
-
 export function updateMassPaymentRequestToJSON(
   updateMassPaymentRequest: UpdateMassPaymentRequest,
 ): string {
   return JSON.stringify(
     UpdateMassPaymentRequest$outboundSchema.parse(updateMassPaymentRequest),
-  );
-}
-
-export function updateMassPaymentRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateMassPaymentRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateMassPaymentRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateMassPaymentRequest' from JSON`,
   );
 }

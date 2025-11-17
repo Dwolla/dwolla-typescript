@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../lib/schemas.js";
-import { Result as SafeParseResult } from "../types/fp.js";
-import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
 /**
  * Create a Receive Only User
@@ -20,22 +17,6 @@ export type CreateReceiveOnlyUser = {
   correlationId?: string | undefined;
   businessName?: string | undefined;
 };
-
-/** @internal */
-export const CreateReceiveOnlyUser$inboundSchema: z.ZodType<
-  CreateReceiveOnlyUser,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
-  email: z.string(),
-  type: z.literal("receive-only").default("receive-only").optional(),
-  ipAddress: z.string().optional(),
-  phone: z.string().optional(),
-  correlationId: z.string().optional(),
-  businessName: z.string().optional(),
-});
 
 /** @internal */
 export type CreateReceiveOnlyUser$Outbound = {
@@ -65,33 +46,10 @@ export const CreateReceiveOnlyUser$outboundSchema: z.ZodType<
   businessName: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateReceiveOnlyUser$ {
-  /** @deprecated use `CreateReceiveOnlyUser$inboundSchema` instead. */
-  export const inboundSchema = CreateReceiveOnlyUser$inboundSchema;
-  /** @deprecated use `CreateReceiveOnlyUser$outboundSchema` instead. */
-  export const outboundSchema = CreateReceiveOnlyUser$outboundSchema;
-  /** @deprecated use `CreateReceiveOnlyUser$Outbound` instead. */
-  export type Outbound = CreateReceiveOnlyUser$Outbound;
-}
-
 export function createReceiveOnlyUserToJSON(
   createReceiveOnlyUser: CreateReceiveOnlyUser,
 ): string {
   return JSON.stringify(
     CreateReceiveOnlyUser$outboundSchema.parse(createReceiveOnlyUser),
-  );
-}
-
-export function createReceiveOnlyUserFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateReceiveOnlyUser, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateReceiveOnlyUser$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateReceiveOnlyUser' from JSON`,
   );
 }

@@ -25,47 +25,6 @@ export const CreateFundingSourceResponse$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type CreateFundingSourceResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-};
-
-/** @internal */
-export const CreateFundingSourceResponse$outboundSchema: z.ZodType<
-  CreateFundingSourceResponse$Outbound,
-  z.ZodTypeDef,
-  CreateFundingSourceResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateFundingSourceResponse$ {
-  /** @deprecated use `CreateFundingSourceResponse$inboundSchema` instead. */
-  export const inboundSchema = CreateFundingSourceResponse$inboundSchema;
-  /** @deprecated use `CreateFundingSourceResponse$outboundSchema` instead. */
-  export const outboundSchema = CreateFundingSourceResponse$outboundSchema;
-  /** @deprecated use `CreateFundingSourceResponse$Outbound` instead. */
-  export type Outbound = CreateFundingSourceResponse$Outbound;
-}
-
-export function createFundingSourceResponseToJSON(
-  createFundingSourceResponse: CreateFundingSourceResponse,
-): string {
-  return JSON.stringify(
-    CreateFundingSourceResponse$outboundSchema.parse(
-      createFundingSourceResponse,
-    ),
-  );
-}
-
 export function createFundingSourceResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateFundingSourceResponse, SDKValidationError> {

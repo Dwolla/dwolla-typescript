@@ -30,45 +30,6 @@ export const About$inboundSchema: z.ZodType<About, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type About$Outbound = {
-  href?: string | undefined;
-  type?: string | undefined;
-  "resource-type"?: string | undefined;
-};
-
-/** @internal */
-export const About$outboundSchema: z.ZodType<
-  About$Outbound,
-  z.ZodTypeDef,
-  About
-> = z.object({
-  href: z.string().optional(),
-  type: z.string().optional(),
-  resourceType: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    resourceType: "resource-type",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace About$ {
-  /** @deprecated use `About$inboundSchema` instead. */
-  export const inboundSchema = About$inboundSchema;
-  /** @deprecated use `About$outboundSchema` instead. */
-  export const outboundSchema = About$outboundSchema;
-  /** @deprecated use `About$Outbound` instead. */
-  export type Outbound = About$Outbound;
-}
-
-export function aboutToJSON(about: About): string {
-  return JSON.stringify(About$outboundSchema.parse(about));
-}
-
 export function aboutFromJSON(
   jsonString: string,
 ): SafeParseResult<About, SDKValidationError> {
@@ -87,43 +48,6 @@ export const DuplicateResourceSchemaLinks$inboundSchema: z.ZodType<
 > = z.object({
   about: z.lazy(() => About$inboundSchema).optional(),
 });
-
-/** @internal */
-export type DuplicateResourceSchemaLinks$Outbound = {
-  about?: About$Outbound | undefined;
-};
-
-/** @internal */
-export const DuplicateResourceSchemaLinks$outboundSchema: z.ZodType<
-  DuplicateResourceSchemaLinks$Outbound,
-  z.ZodTypeDef,
-  DuplicateResourceSchemaLinks
-> = z.object({
-  about: z.lazy(() => About$outboundSchema).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DuplicateResourceSchemaLinks$ {
-  /** @deprecated use `DuplicateResourceSchemaLinks$inboundSchema` instead. */
-  export const inboundSchema = DuplicateResourceSchemaLinks$inboundSchema;
-  /** @deprecated use `DuplicateResourceSchemaLinks$outboundSchema` instead. */
-  export const outboundSchema = DuplicateResourceSchemaLinks$outboundSchema;
-  /** @deprecated use `DuplicateResourceSchemaLinks$Outbound` instead. */
-  export type Outbound = DuplicateResourceSchemaLinks$Outbound;
-}
-
-export function duplicateResourceSchemaLinksToJSON(
-  duplicateResourceSchemaLinks: DuplicateResourceSchemaLinks,
-): string {
-  return JSON.stringify(
-    DuplicateResourceSchemaLinks$outboundSchema.parse(
-      duplicateResourceSchemaLinks,
-    ),
-  );
-}
 
 export function duplicateResourceSchemaLinksFromJSON(
   jsonString: string,

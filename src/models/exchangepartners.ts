@@ -10,15 +10,8 @@ import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import {
   ExchangePartner,
   ExchangePartner$inboundSchema,
-  ExchangePartner$Outbound,
-  ExchangePartner$outboundSchema,
 } from "./exchangepartner.js";
-import {
-  HalLink,
-  HalLink$inboundSchema,
-  HalLink$Outbound,
-  HalLink$outboundSchema,
-} from "./hallink.js";
+import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 
 export type ExchangePartnersEmbedded = {
   exchangePartners?: Array<ExchangePartner> | undefined;
@@ -42,45 +35,6 @@ export const ExchangePartnersEmbedded$inboundSchema: z.ZodType<
     "exchange-partners": "exchangePartners",
   });
 });
-
-/** @internal */
-export type ExchangePartnersEmbedded$Outbound = {
-  "exchange-partners"?: Array<ExchangePartner$Outbound> | undefined;
-};
-
-/** @internal */
-export const ExchangePartnersEmbedded$outboundSchema: z.ZodType<
-  ExchangePartnersEmbedded$Outbound,
-  z.ZodTypeDef,
-  ExchangePartnersEmbedded
-> = z.object({
-  exchangePartners: z.array(ExchangePartner$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    exchangePartners: "exchange-partners",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ExchangePartnersEmbedded$ {
-  /** @deprecated use `ExchangePartnersEmbedded$inboundSchema` instead. */
-  export const inboundSchema = ExchangePartnersEmbedded$inboundSchema;
-  /** @deprecated use `ExchangePartnersEmbedded$outboundSchema` instead. */
-  export const outboundSchema = ExchangePartnersEmbedded$outboundSchema;
-  /** @deprecated use `ExchangePartnersEmbedded$Outbound` instead. */
-  export type Outbound = ExchangePartnersEmbedded$Outbound;
-}
-
-export function exchangePartnersEmbeddedToJSON(
-  exchangePartnersEmbedded: ExchangePartnersEmbedded,
-): string {
-  return JSON.stringify(
-    ExchangePartnersEmbedded$outboundSchema.parse(exchangePartnersEmbedded),
-  );
-}
 
 export function exchangePartnersEmbeddedFromJSON(
   jsonString: string,
@@ -107,50 +61,6 @@ export const ExchangePartners$inboundSchema: z.ZodType<
     "_embedded": "embedded",
   });
 });
-
-/** @internal */
-export type ExchangePartners$Outbound = {
-  _links?: { [k: string]: HalLink$Outbound } | undefined;
-  _embedded?: ExchangePartnersEmbedded$Outbound | undefined;
-  total?: number | undefined;
-};
-
-/** @internal */
-export const ExchangePartners$outboundSchema: z.ZodType<
-  ExchangePartners$Outbound,
-  z.ZodTypeDef,
-  ExchangePartners
-> = z.object({
-  links: z.record(HalLink$outboundSchema).optional(),
-  embedded: z.lazy(() => ExchangePartnersEmbedded$outboundSchema).optional(),
-  total: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ExchangePartners$ {
-  /** @deprecated use `ExchangePartners$inboundSchema` instead. */
-  export const inboundSchema = ExchangePartners$inboundSchema;
-  /** @deprecated use `ExchangePartners$outboundSchema` instead. */
-  export const outboundSchema = ExchangePartners$outboundSchema;
-  /** @deprecated use `ExchangePartners$Outbound` instead. */
-  export type Outbound = ExchangePartners$Outbound;
-}
-
-export function exchangePartnersToJSON(
-  exchangePartners: ExchangePartners,
-): string {
-  return JSON.stringify(
-    ExchangePartners$outboundSchema.parse(exchangePartners),
-  );
-}
 
 export function exchangePartnersFromJSON(
   jsonString: string,

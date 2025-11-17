@@ -20,15 +20,6 @@ export type RetryWebhookResponse = {
 };
 
 /** @internal */
-export const RetryWebhookRequest$inboundSchema: z.ZodType<
-  RetryWebhookRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
-
-/** @internal */
 export type RetryWebhookRequest$Outbound = {
   id: string;
 };
@@ -42,34 +33,11 @@ export const RetryWebhookRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RetryWebhookRequest$ {
-  /** @deprecated use `RetryWebhookRequest$inboundSchema` instead. */
-  export const inboundSchema = RetryWebhookRequest$inboundSchema;
-  /** @deprecated use `RetryWebhookRequest$outboundSchema` instead. */
-  export const outboundSchema = RetryWebhookRequest$outboundSchema;
-  /** @deprecated use `RetryWebhookRequest$Outbound` instead. */
-  export type Outbound = RetryWebhookRequest$Outbound;
-}
-
 export function retryWebhookRequestToJSON(
   retryWebhookRequest: RetryWebhookRequest,
 ): string {
   return JSON.stringify(
     RetryWebhookRequest$outboundSchema.parse(retryWebhookRequest),
-  );
-}
-
-export function retryWebhookRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<RetryWebhookRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => RetryWebhookRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'RetryWebhookRequest' from JSON`,
   );
 }
 
@@ -85,45 +53,6 @@ export const RetryWebhookResponse$inboundSchema: z.ZodType<
     "Headers": "headers",
   });
 });
-
-/** @internal */
-export type RetryWebhookResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-};
-
-/** @internal */
-export const RetryWebhookResponse$outboundSchema: z.ZodType<
-  RetryWebhookResponse$Outbound,
-  z.ZodTypeDef,
-  RetryWebhookResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RetryWebhookResponse$ {
-  /** @deprecated use `RetryWebhookResponse$inboundSchema` instead. */
-  export const inboundSchema = RetryWebhookResponse$inboundSchema;
-  /** @deprecated use `RetryWebhookResponse$outboundSchema` instead. */
-  export const outboundSchema = RetryWebhookResponse$outboundSchema;
-  /** @deprecated use `RetryWebhookResponse$Outbound` instead. */
-  export type Outbound = RetryWebhookResponse$Outbound;
-}
-
-export function retryWebhookResponseToJSON(
-  retryWebhookResponse: RetryWebhookResponse,
-): string {
-  return JSON.stringify(
-    RetryWebhookResponse$outboundSchema.parse(retryWebhookResponse),
-  );
-}
 
 export function retryWebhookResponseFromJSON(
   jsonString: string,

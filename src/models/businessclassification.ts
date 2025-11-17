@@ -7,12 +7,7 @@ import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  HalLink,
-  HalLink$inboundSchema,
-  HalLink$Outbound,
-  HalLink$outboundSchema,
-} from "./hallink.js";
+import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 
 export type BusinessClassificationLinks = {
   self?: HalLink | undefined;
@@ -43,43 +38,6 @@ export const BusinessClassificationLinks$inboundSchema: z.ZodType<
   self: HalLink$inboundSchema.optional(),
 });
 
-/** @internal */
-export type BusinessClassificationLinks$Outbound = {
-  self?: HalLink$Outbound | undefined;
-};
-
-/** @internal */
-export const BusinessClassificationLinks$outboundSchema: z.ZodType<
-  BusinessClassificationLinks$Outbound,
-  z.ZodTypeDef,
-  BusinessClassificationLinks
-> = z.object({
-  self: HalLink$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BusinessClassificationLinks$ {
-  /** @deprecated use `BusinessClassificationLinks$inboundSchema` instead. */
-  export const inboundSchema = BusinessClassificationLinks$inboundSchema;
-  /** @deprecated use `BusinessClassificationLinks$outboundSchema` instead. */
-  export const outboundSchema = BusinessClassificationLinks$outboundSchema;
-  /** @deprecated use `BusinessClassificationLinks$Outbound` instead. */
-  export type Outbound = BusinessClassificationLinks$Outbound;
-}
-
-export function businessClassificationLinksToJSON(
-  businessClassificationLinks: BusinessClassificationLinks,
-): string {
-  return JSON.stringify(
-    BusinessClassificationLinks$outboundSchema.parse(
-      businessClassificationLinks,
-    ),
-  );
-}
-
 export function businessClassificationLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<BusinessClassificationLinks, SDKValidationError> {
@@ -99,43 +57,6 @@ export const IndustryClassification$inboundSchema: z.ZodType<
   id: z.string().optional(),
   name: z.string().optional(),
 });
-
-/** @internal */
-export type IndustryClassification$Outbound = {
-  id?: string | undefined;
-  name?: string | undefined;
-};
-
-/** @internal */
-export const IndustryClassification$outboundSchema: z.ZodType<
-  IndustryClassification$Outbound,
-  z.ZodTypeDef,
-  IndustryClassification
-> = z.object({
-  id: z.string().optional(),
-  name: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IndustryClassification$ {
-  /** @deprecated use `IndustryClassification$inboundSchema` instead. */
-  export const inboundSchema = IndustryClassification$inboundSchema;
-  /** @deprecated use `IndustryClassification$outboundSchema` instead. */
-  export const outboundSchema = IndustryClassification$outboundSchema;
-  /** @deprecated use `IndustryClassification$Outbound` instead. */
-  export type Outbound = IndustryClassification$Outbound;
-}
-
-export function industryClassificationToJSON(
-  industryClassification: IndustryClassification,
-): string {
-  return JSON.stringify(
-    IndustryClassification$outboundSchema.parse(industryClassification),
-  );
-}
 
 export function industryClassificationFromJSON(
   jsonString: string,
@@ -161,51 +82,6 @@ export const BusinessClassificationEmbedded$inboundSchema: z.ZodType<
     "industry-classifications": "industryClassifications",
   });
 });
-
-/** @internal */
-export type BusinessClassificationEmbedded$Outbound = {
-  "industry-classifications"?:
-    | Array<IndustryClassification$Outbound>
-    | undefined;
-};
-
-/** @internal */
-export const BusinessClassificationEmbedded$outboundSchema: z.ZodType<
-  BusinessClassificationEmbedded$Outbound,
-  z.ZodTypeDef,
-  BusinessClassificationEmbedded
-> = z.object({
-  industryClassifications: z.array(
-    z.lazy(() => IndustryClassification$outboundSchema),
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    industryClassifications: "industry-classifications",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BusinessClassificationEmbedded$ {
-  /** @deprecated use `BusinessClassificationEmbedded$inboundSchema` instead. */
-  export const inboundSchema = BusinessClassificationEmbedded$inboundSchema;
-  /** @deprecated use `BusinessClassificationEmbedded$outboundSchema` instead. */
-  export const outboundSchema = BusinessClassificationEmbedded$outboundSchema;
-  /** @deprecated use `BusinessClassificationEmbedded$Outbound` instead. */
-  export type Outbound = BusinessClassificationEmbedded$Outbound;
-}
-
-export function businessClassificationEmbeddedToJSON(
-  businessClassificationEmbedded: BusinessClassificationEmbedded,
-): string {
-  return JSON.stringify(
-    BusinessClassificationEmbedded$outboundSchema.parse(
-      businessClassificationEmbedded,
-    ),
-  );
-}
 
 export function businessClassificationEmbeddedFromJSON(
   jsonString: string,
@@ -234,53 +110,6 @@ export const BusinessClassification$inboundSchema: z.ZodType<
     "_embedded": "embedded",
   });
 });
-
-/** @internal */
-export type BusinessClassification$Outbound = {
-  _links?: BusinessClassificationLinks$Outbound | undefined;
-  _embedded?: BusinessClassificationEmbedded$Outbound | undefined;
-  id?: string | undefined;
-  name?: string | undefined;
-};
-
-/** @internal */
-export const BusinessClassification$outboundSchema: z.ZodType<
-  BusinessClassification$Outbound,
-  z.ZodTypeDef,
-  BusinessClassification
-> = z.object({
-  links: z.lazy(() => BusinessClassificationLinks$outboundSchema).optional(),
-  embedded: z.lazy(() => BusinessClassificationEmbedded$outboundSchema)
-    .optional(),
-  id: z.string().optional(),
-  name: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BusinessClassification$ {
-  /** @deprecated use `BusinessClassification$inboundSchema` instead. */
-  export const inboundSchema = BusinessClassification$inboundSchema;
-  /** @deprecated use `BusinessClassification$outboundSchema` instead. */
-  export const outboundSchema = BusinessClassification$outboundSchema;
-  /** @deprecated use `BusinessClassification$Outbound` instead. */
-  export type Outbound = BusinessClassification$Outbound;
-}
-
-export function businessClassificationToJSON(
-  businessClassification: BusinessClassification,
-): string {
-  return JSON.stringify(
-    BusinessClassification$outboundSchema.parse(businessClassification),
-  );
-}
 
 export function businessClassificationFromJSON(
   jsonString: string,

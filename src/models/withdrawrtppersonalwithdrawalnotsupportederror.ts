@@ -31,44 +31,6 @@ export const WithdrawRtpPersonalWithdrawalNotSupportedErrorLinks$inboundSchema:
     unknown
   > = z.object({});
 
-/** @internal */
-export type WithdrawRtpPersonalWithdrawalNotSupportedErrorLinks$Outbound = {};
-
-/** @internal */
-export const WithdrawRtpPersonalWithdrawalNotSupportedErrorLinks$outboundSchema:
-  z.ZodType<
-    WithdrawRtpPersonalWithdrawalNotSupportedErrorLinks$Outbound,
-    z.ZodTypeDef,
-    WithdrawRtpPersonalWithdrawalNotSupportedErrorLinks
-  > = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawRtpPersonalWithdrawalNotSupportedErrorLinks$ {
-  /** @deprecated use `WithdrawRtpPersonalWithdrawalNotSupportedErrorLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawRtpPersonalWithdrawalNotSupportedErrorLinks$inboundSchema;
-  /** @deprecated use `WithdrawRtpPersonalWithdrawalNotSupportedErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawRtpPersonalWithdrawalNotSupportedErrorLinks$outboundSchema;
-  /** @deprecated use `WithdrawRtpPersonalWithdrawalNotSupportedErrorLinks$Outbound` instead. */
-  export type Outbound =
-    WithdrawRtpPersonalWithdrawalNotSupportedErrorLinks$Outbound;
-}
-
-export function withdrawRtpPersonalWithdrawalNotSupportedErrorLinksToJSON(
-  withdrawRtpPersonalWithdrawalNotSupportedErrorLinks:
-    WithdrawRtpPersonalWithdrawalNotSupportedErrorLinks,
-): string {
-  return JSON.stringify(
-    WithdrawRtpPersonalWithdrawalNotSupportedErrorLinks$outboundSchema.parse(
-      withdrawRtpPersonalWithdrawalNotSupportedErrorLinks,
-    ),
-  );
-}
-
 export function withdrawRtpPersonalWithdrawalNotSupportedErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -104,62 +66,6 @@ export const WithdrawRtpPersonalWithdrawalNotSupportedErrorError$inboundSchema:
     });
   });
 
-/** @internal */
-export type WithdrawRtpPersonalWithdrawalNotSupportedErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?:
-    | WithdrawRtpPersonalWithdrawalNotSupportedErrorLinks$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const WithdrawRtpPersonalWithdrawalNotSupportedErrorError$outboundSchema:
-  z.ZodType<
-    WithdrawRtpPersonalWithdrawalNotSupportedErrorError$Outbound,
-    z.ZodTypeDef,
-    WithdrawRtpPersonalWithdrawalNotSupportedErrorError
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    path: z.string().optional(),
-    links: z.lazy(() =>
-      WithdrawRtpPersonalWithdrawalNotSupportedErrorLinks$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      links: "_links",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawRtpPersonalWithdrawalNotSupportedErrorError$ {
-  /** @deprecated use `WithdrawRtpPersonalWithdrawalNotSupportedErrorError$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawRtpPersonalWithdrawalNotSupportedErrorError$inboundSchema;
-  /** @deprecated use `WithdrawRtpPersonalWithdrawalNotSupportedErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawRtpPersonalWithdrawalNotSupportedErrorError$outboundSchema;
-  /** @deprecated use `WithdrawRtpPersonalWithdrawalNotSupportedErrorError$Outbound` instead. */
-  export type Outbound =
-    WithdrawRtpPersonalWithdrawalNotSupportedErrorError$Outbound;
-}
-
-export function withdrawRtpPersonalWithdrawalNotSupportedErrorErrorToJSON(
-  withdrawRtpPersonalWithdrawalNotSupportedErrorError:
-    WithdrawRtpPersonalWithdrawalNotSupportedErrorError,
-): string {
-  return JSON.stringify(
-    WithdrawRtpPersonalWithdrawalNotSupportedErrorError$outboundSchema.parse(
-      withdrawRtpPersonalWithdrawalNotSupportedErrorError,
-    ),
-  );
-}
-
 export function withdrawRtpPersonalWithdrawalNotSupportedErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -189,54 +95,6 @@ export const WithdrawRtpPersonalWithdrawalNotSupportedErrorEmbedded$inboundSchem
       ),
     ).optional(),
   });
-
-/** @internal */
-export type WithdrawRtpPersonalWithdrawalNotSupportedErrorEmbedded$Outbound = {
-  errors?:
-    | Array<WithdrawRtpPersonalWithdrawalNotSupportedErrorError$Outbound>
-    | undefined;
-};
-
-/** @internal */
-export const WithdrawRtpPersonalWithdrawalNotSupportedErrorEmbedded$outboundSchema:
-  z.ZodType<
-    WithdrawRtpPersonalWithdrawalNotSupportedErrorEmbedded$Outbound,
-    z.ZodTypeDef,
-    WithdrawRtpPersonalWithdrawalNotSupportedErrorEmbedded
-  > = z.object({
-    errors: z.array(
-      z.lazy(() =>
-        WithdrawRtpPersonalWithdrawalNotSupportedErrorError$outboundSchema
-      ),
-    ).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawRtpPersonalWithdrawalNotSupportedErrorEmbedded$ {
-  /** @deprecated use `WithdrawRtpPersonalWithdrawalNotSupportedErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawRtpPersonalWithdrawalNotSupportedErrorEmbedded$inboundSchema;
-  /** @deprecated use `WithdrawRtpPersonalWithdrawalNotSupportedErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawRtpPersonalWithdrawalNotSupportedErrorEmbedded$outboundSchema;
-  /** @deprecated use `WithdrawRtpPersonalWithdrawalNotSupportedErrorEmbedded$Outbound` instead. */
-  export type Outbound =
-    WithdrawRtpPersonalWithdrawalNotSupportedErrorEmbedded$Outbound;
-}
-
-export function withdrawRtpPersonalWithdrawalNotSupportedErrorEmbeddedToJSON(
-  withdrawRtpPersonalWithdrawalNotSupportedErrorEmbedded:
-    WithdrawRtpPersonalWithdrawalNotSupportedErrorEmbedded,
-): string {
-  return JSON.stringify(
-    WithdrawRtpPersonalWithdrawalNotSupportedErrorEmbedded$outboundSchema.parse(
-      withdrawRtpPersonalWithdrawalNotSupportedErrorEmbedded,
-    ),
-  );
-}
 
 export function withdrawRtpPersonalWithdrawalNotSupportedErrorEmbeddedFromJSON(
   jsonString: string,

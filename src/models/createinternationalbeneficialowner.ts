@@ -3,18 +3,13 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../lib/schemas.js";
-import { Result as SafeParseResult } from "../types/fp.js";
-import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import {
   InternationalAddress,
-  InternationalAddress$inboundSchema,
   InternationalAddress$Outbound,
   InternationalAddress$outboundSchema,
 } from "./internationaladdress.js";
 import {
   Passport,
-  Passport$inboundSchema,
   Passport$Outbound,
   Passport$outboundSchema,
 } from "./passport.js";
@@ -29,19 +24,6 @@ export type CreateInternationalBeneficialOwner = {
   address: InternationalAddress;
   passport: Passport;
 };
-
-/** @internal */
-export const CreateInternationalBeneficialOwner$inboundSchema: z.ZodType<
-  CreateInternationalBeneficialOwner,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
-  dateOfBirth: z.string(),
-  address: InternationalAddress$inboundSchema,
-  passport: Passport$inboundSchema,
-});
 
 /** @internal */
 export type CreateInternationalBeneficialOwner$Outbound = {
@@ -65,20 +47,6 @@ export const CreateInternationalBeneficialOwner$outboundSchema: z.ZodType<
   passport: Passport$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateInternationalBeneficialOwner$ {
-  /** @deprecated use `CreateInternationalBeneficialOwner$inboundSchema` instead. */
-  export const inboundSchema = CreateInternationalBeneficialOwner$inboundSchema;
-  /** @deprecated use `CreateInternationalBeneficialOwner$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateInternationalBeneficialOwner$outboundSchema;
-  /** @deprecated use `CreateInternationalBeneficialOwner$Outbound` instead. */
-  export type Outbound = CreateInternationalBeneficialOwner$Outbound;
-}
-
 export function createInternationalBeneficialOwnerToJSON(
   createInternationalBeneficialOwner: CreateInternationalBeneficialOwner,
 ): string {
@@ -86,16 +54,5 @@ export function createInternationalBeneficialOwnerToJSON(
     CreateInternationalBeneficialOwner$outboundSchema.parse(
       createInternationalBeneficialOwner,
     ),
-  );
-}
-
-export function createInternationalBeneficialOwnerFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateInternationalBeneficialOwner, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateInternationalBeneficialOwner$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateInternationalBeneficialOwner' from JSON`,
   );
 }

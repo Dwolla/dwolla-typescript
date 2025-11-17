@@ -7,12 +7,7 @@ import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  HalLink,
-  HalLink$inboundSchema,
-  HalLink$Outbound,
-  HalLink$outboundSchema,
-} from "./hallink.js";
+import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 
 /**
  * Shared models between all Customer types
@@ -66,77 +61,6 @@ export const VerifiedSolePropCustomer$inboundSchema: z.ZodType<
     "_links": "links",
   });
 });
-
-/** @internal */
-export type VerifiedSolePropCustomer$Outbound = {
-  _links?: { [k: string]: HalLink$Outbound } | undefined;
-  id?: string | undefined;
-  firstName?: string | undefined;
-  lastName?: string | undefined;
-  email?: string | undefined;
-  type?: string | undefined;
-  status?: string | undefined;
-  correlationId?: string | undefined;
-  created?: string | undefined;
-  address1?: string | undefined;
-  address2?: string | undefined;
-  city?: string | undefined;
-  state?: string | undefined;
-  postalCode?: string | undefined;
-  businessName?: string | undefined;
-  businessType?: string | undefined;
-  businessClassification?: string | undefined;
-};
-
-/** @internal */
-export const VerifiedSolePropCustomer$outboundSchema: z.ZodType<
-  VerifiedSolePropCustomer$Outbound,
-  z.ZodTypeDef,
-  VerifiedSolePropCustomer
-> = z.object({
-  links: z.record(HalLink$outboundSchema).optional(),
-  id: z.string().optional(),
-  firstName: z.string().optional(),
-  lastName: z.string().optional(),
-  email: z.string().optional(),
-  type: z.string().optional(),
-  status: z.string().optional(),
-  correlationId: z.string().optional(),
-  created: z.date().transform(v => v.toISOString()).optional(),
-  address1: z.string().optional(),
-  address2: z.string().optional(),
-  city: z.string().optional(),
-  state: z.string().optional(),
-  postalCode: z.string().optional(),
-  businessName: z.string().optional(),
-  businessType: z.string().optional(),
-  businessClassification: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VerifiedSolePropCustomer$ {
-  /** @deprecated use `VerifiedSolePropCustomer$inboundSchema` instead. */
-  export const inboundSchema = VerifiedSolePropCustomer$inboundSchema;
-  /** @deprecated use `VerifiedSolePropCustomer$outboundSchema` instead. */
-  export const outboundSchema = VerifiedSolePropCustomer$outboundSchema;
-  /** @deprecated use `VerifiedSolePropCustomer$Outbound` instead. */
-  export type Outbound = VerifiedSolePropCustomer$Outbound;
-}
-
-export function verifiedSolePropCustomerToJSON(
-  verifiedSolePropCustomer: VerifiedSolePropCustomer,
-): string {
-  return JSON.stringify(
-    VerifiedSolePropCustomer$outboundSchema.parse(verifiedSolePropCustomer),
-  );
-}
 
 export function verifiedSolePropCustomerFromJSON(
   jsonString: string,

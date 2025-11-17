@@ -31,45 +31,6 @@ export const InvalidAmountForDestinationProcessingChannelErrorLinks$inboundSchem
     unknown
   > = z.object({});
 
-/** @internal */
-export type InvalidAmountForDestinationProcessingChannelErrorLinks$Outbound =
-  {};
-
-/** @internal */
-export const InvalidAmountForDestinationProcessingChannelErrorLinks$outboundSchema:
-  z.ZodType<
-    InvalidAmountForDestinationProcessingChannelErrorLinks$Outbound,
-    z.ZodTypeDef,
-    InvalidAmountForDestinationProcessingChannelErrorLinks
-  > = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidAmountForDestinationProcessingChannelErrorLinks$ {
-  /** @deprecated use `InvalidAmountForDestinationProcessingChannelErrorLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidAmountForDestinationProcessingChannelErrorLinks$inboundSchema;
-  /** @deprecated use `InvalidAmountForDestinationProcessingChannelErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidAmountForDestinationProcessingChannelErrorLinks$outboundSchema;
-  /** @deprecated use `InvalidAmountForDestinationProcessingChannelErrorLinks$Outbound` instead. */
-  export type Outbound =
-    InvalidAmountForDestinationProcessingChannelErrorLinks$Outbound;
-}
-
-export function invalidAmountForDestinationProcessingChannelErrorLinksToJSON(
-  invalidAmountForDestinationProcessingChannelErrorLinks:
-    InvalidAmountForDestinationProcessingChannelErrorLinks,
-): string {
-  return JSON.stringify(
-    InvalidAmountForDestinationProcessingChannelErrorLinks$outboundSchema.parse(
-      invalidAmountForDestinationProcessingChannelErrorLinks,
-    ),
-  );
-}
-
 export function invalidAmountForDestinationProcessingChannelErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -104,62 +65,6 @@ export const InvalidAmountForDestinationProcessingChannelErrorError$inboundSchem
     });
   });
 
-/** @internal */
-export type InvalidAmountForDestinationProcessingChannelErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?:
-    | InvalidAmountForDestinationProcessingChannelErrorLinks$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const InvalidAmountForDestinationProcessingChannelErrorError$outboundSchema:
-  z.ZodType<
-    InvalidAmountForDestinationProcessingChannelErrorError$Outbound,
-    z.ZodTypeDef,
-    InvalidAmountForDestinationProcessingChannelErrorError
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    path: z.string().optional(),
-    links: z.lazy(() =>
-      InvalidAmountForDestinationProcessingChannelErrorLinks$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      links: "_links",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidAmountForDestinationProcessingChannelErrorError$ {
-  /** @deprecated use `InvalidAmountForDestinationProcessingChannelErrorError$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidAmountForDestinationProcessingChannelErrorError$inboundSchema;
-  /** @deprecated use `InvalidAmountForDestinationProcessingChannelErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidAmountForDestinationProcessingChannelErrorError$outboundSchema;
-  /** @deprecated use `InvalidAmountForDestinationProcessingChannelErrorError$Outbound` instead. */
-  export type Outbound =
-    InvalidAmountForDestinationProcessingChannelErrorError$Outbound;
-}
-
-export function invalidAmountForDestinationProcessingChannelErrorErrorToJSON(
-  invalidAmountForDestinationProcessingChannelErrorError:
-    InvalidAmountForDestinationProcessingChannelErrorError,
-): string {
-  return JSON.stringify(
-    InvalidAmountForDestinationProcessingChannelErrorError$outboundSchema.parse(
-      invalidAmountForDestinationProcessingChannelErrorError,
-    ),
-  );
-}
-
 export function invalidAmountForDestinationProcessingChannelErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -188,54 +93,6 @@ export const InvalidAmountForDestinationProcessingChannelErrorEmbedded$inboundSc
       ),
     ).optional(),
   });
-
-/** @internal */
-export type InvalidAmountForDestinationProcessingChannelErrorEmbedded$Outbound =
-  {
-    errors?:
-      | Array<InvalidAmountForDestinationProcessingChannelErrorError$Outbound>
-      | undefined;
-  };
-
-/** @internal */
-export const InvalidAmountForDestinationProcessingChannelErrorEmbedded$outboundSchema:
-  z.ZodType<
-    InvalidAmountForDestinationProcessingChannelErrorEmbedded$Outbound,
-    z.ZodTypeDef,
-    InvalidAmountForDestinationProcessingChannelErrorEmbedded
-  > = z.object({
-    errors: z.array(
-      z.lazy(() =>
-        InvalidAmountForDestinationProcessingChannelErrorError$outboundSchema
-      ),
-    ).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidAmountForDestinationProcessingChannelErrorEmbedded$ {
-  /** @deprecated use `InvalidAmountForDestinationProcessingChannelErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    InvalidAmountForDestinationProcessingChannelErrorEmbedded$inboundSchema;
-  /** @deprecated use `InvalidAmountForDestinationProcessingChannelErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    InvalidAmountForDestinationProcessingChannelErrorEmbedded$outboundSchema;
-  /** @deprecated use `InvalidAmountForDestinationProcessingChannelErrorEmbedded$Outbound` instead. */
-  export type Outbound =
-    InvalidAmountForDestinationProcessingChannelErrorEmbedded$Outbound;
-}
-
-export function invalidAmountForDestinationProcessingChannelErrorEmbeddedToJSON(
-  invalidAmountForDestinationProcessingChannelErrorEmbedded:
-    InvalidAmountForDestinationProcessingChannelErrorEmbedded,
-): string {
-  return JSON.stringify(
-    InvalidAmountForDestinationProcessingChannelErrorEmbedded$outboundSchema
-      .parse(invalidAmountForDestinationProcessingChannelErrorEmbedded),
-  );
-}
 
 export function invalidAmountForDestinationProcessingChannelErrorEmbeddedFromJSON(
   jsonString: string,

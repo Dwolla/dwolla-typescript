@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RetrieveBeneficialOwnerRequest = {
   /**
@@ -13,15 +10,6 @@ export type RetrieveBeneficialOwnerRequest = {
    */
   id: string;
 };
-
-/** @internal */
-export const RetrieveBeneficialOwnerRequest$inboundSchema: z.ZodType<
-  RetrieveBeneficialOwnerRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
 
 /** @internal */
 export type RetrieveBeneficialOwnerRequest$Outbound = {
@@ -37,19 +25,6 @@ export const RetrieveBeneficialOwnerRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RetrieveBeneficialOwnerRequest$ {
-  /** @deprecated use `RetrieveBeneficialOwnerRequest$inboundSchema` instead. */
-  export const inboundSchema = RetrieveBeneficialOwnerRequest$inboundSchema;
-  /** @deprecated use `RetrieveBeneficialOwnerRequest$outboundSchema` instead. */
-  export const outboundSchema = RetrieveBeneficialOwnerRequest$outboundSchema;
-  /** @deprecated use `RetrieveBeneficialOwnerRequest$Outbound` instead. */
-  export type Outbound = RetrieveBeneficialOwnerRequest$Outbound;
-}
-
 export function retrieveBeneficialOwnerRequestToJSON(
   retrieveBeneficialOwnerRequest: RetrieveBeneficialOwnerRequest,
 ): string {
@@ -57,15 +32,5 @@ export function retrieveBeneficialOwnerRequestToJSON(
     RetrieveBeneficialOwnerRequest$outboundSchema.parse(
       retrieveBeneficialOwnerRequest,
     ),
-  );
-}
-
-export function retrieveBeneficialOwnerRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<RetrieveBeneficialOwnerRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => RetrieveBeneficialOwnerRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'RetrieveBeneficialOwnerRequest' from JSON`,
   );
 }

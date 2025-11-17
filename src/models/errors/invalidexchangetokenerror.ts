@@ -48,34 +48,3 @@ export const InvalidExchangeTokenError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type InvalidExchangeTokenError$Outbound = {
-  code: string;
-  message: string;
-};
-
-/** @internal */
-export const InvalidExchangeTokenError$outboundSchema: z.ZodType<
-  InvalidExchangeTokenError$Outbound,
-  z.ZodTypeDef,
-  InvalidExchangeTokenError
-> = z.instanceof(InvalidExchangeTokenError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: z.string(),
-    message: z.string(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidExchangeTokenError$ {
-  /** @deprecated use `InvalidExchangeTokenError$inboundSchema` instead. */
-  export const inboundSchema = InvalidExchangeTokenError$inboundSchema;
-  /** @deprecated use `InvalidExchangeTokenError$outboundSchema` instead. */
-  export const outboundSchema = InvalidExchangeTokenError$outboundSchema;
-  /** @deprecated use `InvalidExchangeTokenError$Outbound` instead. */
-  export type Outbound = InvalidExchangeTokenError$Outbound;
-}

@@ -17,6 +17,7 @@ const value: models.CreateCustomerBankFundingSourceWithAccountNumbers = {
   accountNumber: "123456789",
   bankAccountType: "checking",
   name: "Jane Doe's Checking",
+  verified: false,
   links: {
     onDemandAuthorization: {
       href:

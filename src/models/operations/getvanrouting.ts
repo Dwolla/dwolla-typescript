@@ -26,15 +26,6 @@ export type GetVanRoutingResponse = {
 };
 
 /** @internal */
-export const GetVanRoutingRequest$inboundSchema: z.ZodType<
-  GetVanRoutingRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
-
-/** @internal */
 export type GetVanRoutingRequest$Outbound = {
   id: string;
 };
@@ -48,34 +39,11 @@ export const GetVanRoutingRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetVanRoutingRequest$ {
-  /** @deprecated use `GetVanRoutingRequest$inboundSchema` instead. */
-  export const inboundSchema = GetVanRoutingRequest$inboundSchema;
-  /** @deprecated use `GetVanRoutingRequest$outboundSchema` instead. */
-  export const outboundSchema = GetVanRoutingRequest$outboundSchema;
-  /** @deprecated use `GetVanRoutingRequest$Outbound` instead. */
-  export type Outbound = GetVanRoutingRequest$Outbound;
-}
-
 export function getVanRoutingRequestToJSON(
   getVanRoutingRequest: GetVanRoutingRequest,
 ): string {
   return JSON.stringify(
     GetVanRoutingRequest$outboundSchema.parse(getVanRoutingRequest),
-  );
-}
-
-export function getVanRoutingRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetVanRoutingRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetVanRoutingRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetVanRoutingRequest' from JSON`,
   );
 }
 
@@ -93,49 +61,6 @@ export const GetVanRoutingResponse$inboundSchema: z.ZodType<
     "_links": "links",
   });
 });
-
-/** @internal */
-export type GetVanRoutingResponse$Outbound = {
-  _links?: { [k: string]: models.HalLink$Outbound } | undefined;
-  accountNumber?: string | undefined;
-  routingNumber?: string | undefined;
-};
-
-/** @internal */
-export const GetVanRoutingResponse$outboundSchema: z.ZodType<
-  GetVanRoutingResponse$Outbound,
-  z.ZodTypeDef,
-  GetVanRoutingResponse
-> = z.object({
-  links: z.record(models.HalLink$outboundSchema).optional(),
-  accountNumber: z.string().optional(),
-  routingNumber: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetVanRoutingResponse$ {
-  /** @deprecated use `GetVanRoutingResponse$inboundSchema` instead. */
-  export const inboundSchema = GetVanRoutingResponse$inboundSchema;
-  /** @deprecated use `GetVanRoutingResponse$outboundSchema` instead. */
-  export const outboundSchema = GetVanRoutingResponse$outboundSchema;
-  /** @deprecated use `GetVanRoutingResponse$Outbound` instead. */
-  export type Outbound = GetVanRoutingResponse$Outbound;
-}
-
-export function getVanRoutingResponseToJSON(
-  getVanRoutingResponse: GetVanRoutingResponse,
-): string {
-  return JSON.stringify(
-    GetVanRoutingResponse$outboundSchema.parse(getVanRoutingResponse),
-  );
-}
 
 export function getVanRoutingResponseFromJSON(
   jsonString: string,

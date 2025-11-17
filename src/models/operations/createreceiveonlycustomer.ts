@@ -25,48 +25,6 @@ export const CreateReceiveOnlyCustomerResponse$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type CreateReceiveOnlyCustomerResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-};
-
-/** @internal */
-export const CreateReceiveOnlyCustomerResponse$outboundSchema: z.ZodType<
-  CreateReceiveOnlyCustomerResponse$Outbound,
-  z.ZodTypeDef,
-  CreateReceiveOnlyCustomerResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateReceiveOnlyCustomerResponse$ {
-  /** @deprecated use `CreateReceiveOnlyCustomerResponse$inboundSchema` instead. */
-  export const inboundSchema = CreateReceiveOnlyCustomerResponse$inboundSchema;
-  /** @deprecated use `CreateReceiveOnlyCustomerResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateReceiveOnlyCustomerResponse$outboundSchema;
-  /** @deprecated use `CreateReceiveOnlyCustomerResponse$Outbound` instead. */
-  export type Outbound = CreateReceiveOnlyCustomerResponse$Outbound;
-}
-
-export function createReceiveOnlyCustomerResponseToJSON(
-  createReceiveOnlyCustomerResponse: CreateReceiveOnlyCustomerResponse,
-): string {
-  return JSON.stringify(
-    CreateReceiveOnlyCustomerResponse$outboundSchema.parse(
-      createReceiveOnlyCustomerResponse,
-    ),
-  );
-}
-
 export function createReceiveOnlyCustomerResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateReceiveOnlyCustomerResponse, SDKValidationError> {

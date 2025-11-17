@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetMassPaymentItemRequest = {
   /**
@@ -13,15 +10,6 @@ export type GetMassPaymentItemRequest = {
    */
   itemId: string;
 };
-
-/** @internal */
-export const GetMassPaymentItemRequest$inboundSchema: z.ZodType<
-  GetMassPaymentItemRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  itemId: z.string(),
-});
 
 /** @internal */
 export type GetMassPaymentItemRequest$Outbound = {
@@ -37,33 +25,10 @@ export const GetMassPaymentItemRequest$outboundSchema: z.ZodType<
   itemId: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetMassPaymentItemRequest$ {
-  /** @deprecated use `GetMassPaymentItemRequest$inboundSchema` instead. */
-  export const inboundSchema = GetMassPaymentItemRequest$inboundSchema;
-  /** @deprecated use `GetMassPaymentItemRequest$outboundSchema` instead. */
-  export const outboundSchema = GetMassPaymentItemRequest$outboundSchema;
-  /** @deprecated use `GetMassPaymentItemRequest$Outbound` instead. */
-  export type Outbound = GetMassPaymentItemRequest$Outbound;
-}
-
 export function getMassPaymentItemRequestToJSON(
   getMassPaymentItemRequest: GetMassPaymentItemRequest,
 ): string {
   return JSON.stringify(
     GetMassPaymentItemRequest$outboundSchema.parse(getMassPaymentItemRequest),
-  );
-}
-
-export function getMassPaymentItemRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetMassPaymentItemRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetMassPaymentItemRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetMassPaymentItemRequest' from JSON`,
   );
 }

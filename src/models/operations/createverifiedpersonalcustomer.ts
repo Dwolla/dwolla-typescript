@@ -25,50 +25,6 @@ export const CreateVerifiedPersonalCustomerResponse$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type CreateVerifiedPersonalCustomerResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-};
-
-/** @internal */
-export const CreateVerifiedPersonalCustomerResponse$outboundSchema: z.ZodType<
-  CreateVerifiedPersonalCustomerResponse$Outbound,
-  z.ZodTypeDef,
-  CreateVerifiedPersonalCustomerResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateVerifiedPersonalCustomerResponse$ {
-  /** @deprecated use `CreateVerifiedPersonalCustomerResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateVerifiedPersonalCustomerResponse$inboundSchema;
-  /** @deprecated use `CreateVerifiedPersonalCustomerResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateVerifiedPersonalCustomerResponse$outboundSchema;
-  /** @deprecated use `CreateVerifiedPersonalCustomerResponse$Outbound` instead. */
-  export type Outbound = CreateVerifiedPersonalCustomerResponse$Outbound;
-}
-
-export function createVerifiedPersonalCustomerResponseToJSON(
-  createVerifiedPersonalCustomerResponse:
-    CreateVerifiedPersonalCustomerResponse,
-): string {
-  return JSON.stringify(
-    CreateVerifiedPersonalCustomerResponse$outboundSchema.parse(
-      createVerifiedPersonalCustomerResponse,
-    ),
-  );
-}
-
 export function createVerifiedPersonalCustomerResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateVerifiedPersonalCustomerResponse, SDKValidationError> {

@@ -7,18 +7,8 @@ import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  Event,
-  Event$inboundSchema,
-  Event$Outbound,
-  Event$outboundSchema,
-} from "./event.js";
-import {
-  HalLink,
-  HalLink$inboundSchema,
-  HalLink$Outbound,
-  HalLink$outboundSchema,
-} from "./hallink.js";
+import { Event, Event$inboundSchema } from "./event.js";
+import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 
 export type EventsLinks = {};
 
@@ -40,33 +30,6 @@ export const EventsLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type EventsLinks$Outbound = {};
-
-/** @internal */
-export const EventsLinks$outboundSchema: z.ZodType<
-  EventsLinks$Outbound,
-  z.ZodTypeDef,
-  EventsLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EventsLinks$ {
-  /** @deprecated use `EventsLinks$inboundSchema` instead. */
-  export const inboundSchema = EventsLinks$inboundSchema;
-  /** @deprecated use `EventsLinks$outboundSchema` instead. */
-  export const outboundSchema = EventsLinks$outboundSchema;
-  /** @deprecated use `EventsLinks$Outbound` instead. */
-  export type Outbound = EventsLinks$Outbound;
-}
-
-export function eventsLinksToJSON(eventsLinks: EventsLinks): string {
-  return JSON.stringify(EventsLinks$outboundSchema.parse(eventsLinks));
-}
-
 export function eventsLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<EventsLinks, SDKValidationError> {
@@ -85,37 +48,6 @@ export const EventsEmbedded$inboundSchema: z.ZodType<
 > = z.object({
   events: z.array(Event$inboundSchema).optional(),
 });
-
-/** @internal */
-export type EventsEmbedded$Outbound = {
-  events?: Array<Event$Outbound> | undefined;
-};
-
-/** @internal */
-export const EventsEmbedded$outboundSchema: z.ZodType<
-  EventsEmbedded$Outbound,
-  z.ZodTypeDef,
-  EventsEmbedded
-> = z.object({
-  events: z.array(Event$outboundSchema).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EventsEmbedded$ {
-  /** @deprecated use `EventsEmbedded$inboundSchema` instead. */
-  export const inboundSchema = EventsEmbedded$inboundSchema;
-  /** @deprecated use `EventsEmbedded$outboundSchema` instead. */
-  export const outboundSchema = EventsEmbedded$outboundSchema;
-  /** @deprecated use `EventsEmbedded$Outbound` instead. */
-  export type Outbound = EventsEmbedded$Outbound;
-}
-
-export function eventsEmbeddedToJSON(eventsEmbedded: EventsEmbedded): string {
-  return JSON.stringify(EventsEmbedded$outboundSchema.parse(eventsEmbedded));
-}
 
 export function eventsEmbeddedFromJSON(
   jsonString: string,
@@ -140,48 +72,6 @@ export const Events$inboundSchema: z.ZodType<Events, z.ZodTypeDef, unknown> = z
       "_embedded": "embedded",
     });
   });
-
-/** @internal */
-export type Events$Outbound = {
-  _links?: EventsLinks$Outbound | undefined;
-  additionalProperties?: HalLink$Outbound | undefined;
-  _embedded?: EventsEmbedded$Outbound | undefined;
-  total?: number | undefined;
-};
-
-/** @internal */
-export const Events$outboundSchema: z.ZodType<
-  Events$Outbound,
-  z.ZodTypeDef,
-  Events
-> = z.object({
-  links: z.lazy(() => EventsLinks$outboundSchema).optional(),
-  additionalProperties: HalLink$outboundSchema.optional(),
-  embedded: z.lazy(() => EventsEmbedded$outboundSchema).optional(),
-  total: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-    embedded: "_embedded",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Events$ {
-  /** @deprecated use `Events$inboundSchema` instead. */
-  export const inboundSchema = Events$inboundSchema;
-  /** @deprecated use `Events$outboundSchema` instead. */
-  export const outboundSchema = Events$outboundSchema;
-  /** @deprecated use `Events$Outbound` instead. */
-  export type Outbound = Events$Outbound;
-}
-
-export function eventsToJSON(events: Events): string {
-  return JSON.stringify(Events$outboundSchema.parse(events));
-}
 
 export function eventsFromJSON(
   jsonString: string,

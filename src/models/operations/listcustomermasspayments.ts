@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListCustomerMassPaymentsRequest = {
   /**
@@ -27,18 +24,6 @@ export type ListCustomerMassPaymentsRequest = {
 };
 
 /** @internal */
-export const ListCustomerMassPaymentsRequest$inboundSchema: z.ZodType<
-  ListCustomerMassPaymentsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  correlationId: z.string().optional(),
-  limit: z.number().int().optional(),
-  offset: z.number().int().optional(),
-});
-
-/** @internal */
 export type ListCustomerMassPaymentsRequest$Outbound = {
   id: string;
   correlationId?: string | undefined;
@@ -58,19 +43,6 @@ export const ListCustomerMassPaymentsRequest$outboundSchema: z.ZodType<
   offset: z.number().int().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListCustomerMassPaymentsRequest$ {
-  /** @deprecated use `ListCustomerMassPaymentsRequest$inboundSchema` instead. */
-  export const inboundSchema = ListCustomerMassPaymentsRequest$inboundSchema;
-  /** @deprecated use `ListCustomerMassPaymentsRequest$outboundSchema` instead. */
-  export const outboundSchema = ListCustomerMassPaymentsRequest$outboundSchema;
-  /** @deprecated use `ListCustomerMassPaymentsRequest$Outbound` instead. */
-  export type Outbound = ListCustomerMassPaymentsRequest$Outbound;
-}
-
 export function listCustomerMassPaymentsRequestToJSON(
   listCustomerMassPaymentsRequest: ListCustomerMassPaymentsRequest,
 ): string {
@@ -78,15 +50,5 @@ export function listCustomerMassPaymentsRequestToJSON(
     ListCustomerMassPaymentsRequest$outboundSchema.parse(
       listCustomerMassPaymentsRequest,
     ),
-  );
-}
-
-export function listCustomerMassPaymentsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ListCustomerMassPaymentsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListCustomerMassPaymentsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListCustomerMassPaymentsRequest' from JSON`,
   );
 }

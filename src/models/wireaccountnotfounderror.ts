@@ -28,39 +28,6 @@ export const WireAccountNotFoundErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type WireAccountNotFoundErrorLinks$Outbound = {};
-
-/** @internal */
-export const WireAccountNotFoundErrorLinks$outboundSchema: z.ZodType<
-  WireAccountNotFoundErrorLinks$Outbound,
-  z.ZodTypeDef,
-  WireAccountNotFoundErrorLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WireAccountNotFoundErrorLinks$ {
-  /** @deprecated use `WireAccountNotFoundErrorLinks$inboundSchema` instead. */
-  export const inboundSchema = WireAccountNotFoundErrorLinks$inboundSchema;
-  /** @deprecated use `WireAccountNotFoundErrorLinks$outboundSchema` instead. */
-  export const outboundSchema = WireAccountNotFoundErrorLinks$outboundSchema;
-  /** @deprecated use `WireAccountNotFoundErrorLinks$Outbound` instead. */
-  export type Outbound = WireAccountNotFoundErrorLinks$Outbound;
-}
-
-export function wireAccountNotFoundErrorLinksToJSON(
-  wireAccountNotFoundErrorLinks: WireAccountNotFoundErrorLinks,
-): string {
-  return JSON.stringify(
-    WireAccountNotFoundErrorLinks$outboundSchema.parse(
-      wireAccountNotFoundErrorLinks,
-    ),
-  );
-}
-
 export function wireAccountNotFoundErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<WireAccountNotFoundErrorLinks, SDKValidationError> {
@@ -87,53 +54,6 @@ export const WireAccountNotFoundErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type WireAccountNotFoundErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: WireAccountNotFoundErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const WireAccountNotFoundErrorError$outboundSchema: z.ZodType<
-  WireAccountNotFoundErrorError$Outbound,
-  z.ZodTypeDef,
-  WireAccountNotFoundErrorError
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  links: z.lazy(() => WireAccountNotFoundErrorLinks$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WireAccountNotFoundErrorError$ {
-  /** @deprecated use `WireAccountNotFoundErrorError$inboundSchema` instead. */
-  export const inboundSchema = WireAccountNotFoundErrorError$inboundSchema;
-  /** @deprecated use `WireAccountNotFoundErrorError$outboundSchema` instead. */
-  export const outboundSchema = WireAccountNotFoundErrorError$outboundSchema;
-  /** @deprecated use `WireAccountNotFoundErrorError$Outbound` instead. */
-  export type Outbound = WireAccountNotFoundErrorError$Outbound;
-}
-
-export function wireAccountNotFoundErrorErrorToJSON(
-  wireAccountNotFoundErrorError: WireAccountNotFoundErrorError,
-): string {
-  return JSON.stringify(
-    WireAccountNotFoundErrorError$outboundSchema.parse(
-      wireAccountNotFoundErrorError,
-    ),
-  );
-}
-
 export function wireAccountNotFoundErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<WireAccountNotFoundErrorError, SDKValidationError> {
@@ -153,44 +73,6 @@ export const WireAccountNotFoundErrorEmbedded$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => WireAccountNotFoundErrorError$inboundSchema))
     .optional(),
 });
-
-/** @internal */
-export type WireAccountNotFoundErrorEmbedded$Outbound = {
-  errors?: Array<WireAccountNotFoundErrorError$Outbound> | undefined;
-};
-
-/** @internal */
-export const WireAccountNotFoundErrorEmbedded$outboundSchema: z.ZodType<
-  WireAccountNotFoundErrorEmbedded$Outbound,
-  z.ZodTypeDef,
-  WireAccountNotFoundErrorEmbedded
-> = z.object({
-  errors: z.array(z.lazy(() => WireAccountNotFoundErrorError$outboundSchema))
-    .optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WireAccountNotFoundErrorEmbedded$ {
-  /** @deprecated use `WireAccountNotFoundErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema = WireAccountNotFoundErrorEmbedded$inboundSchema;
-  /** @deprecated use `WireAccountNotFoundErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema = WireAccountNotFoundErrorEmbedded$outboundSchema;
-  /** @deprecated use `WireAccountNotFoundErrorEmbedded$Outbound` instead. */
-  export type Outbound = WireAccountNotFoundErrorEmbedded$Outbound;
-}
-
-export function wireAccountNotFoundErrorEmbeddedToJSON(
-  wireAccountNotFoundErrorEmbedded: WireAccountNotFoundErrorEmbedded,
-): string {
-  return JSON.stringify(
-    WireAccountNotFoundErrorEmbedded$outboundSchema.parse(
-      wireAccountNotFoundErrorEmbedded,
-    ),
-  );
-}
 
 export function wireAccountNotFoundErrorEmbeddedFromJSON(
   jsonString: string,

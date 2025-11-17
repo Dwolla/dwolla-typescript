@@ -28,40 +28,6 @@ export const DirectAccountWithoutBankErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type DirectAccountWithoutBankErrorLinks$Outbound = {};
-
-/** @internal */
-export const DirectAccountWithoutBankErrorLinks$outboundSchema: z.ZodType<
-  DirectAccountWithoutBankErrorLinks$Outbound,
-  z.ZodTypeDef,
-  DirectAccountWithoutBankErrorLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DirectAccountWithoutBankErrorLinks$ {
-  /** @deprecated use `DirectAccountWithoutBankErrorLinks$inboundSchema` instead. */
-  export const inboundSchema = DirectAccountWithoutBankErrorLinks$inboundSchema;
-  /** @deprecated use `DirectAccountWithoutBankErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    DirectAccountWithoutBankErrorLinks$outboundSchema;
-  /** @deprecated use `DirectAccountWithoutBankErrorLinks$Outbound` instead. */
-  export type Outbound = DirectAccountWithoutBankErrorLinks$Outbound;
-}
-
-export function directAccountWithoutBankErrorLinksToJSON(
-  directAccountWithoutBankErrorLinks: DirectAccountWithoutBankErrorLinks,
-): string {
-  return JSON.stringify(
-    DirectAccountWithoutBankErrorLinks$outboundSchema.parse(
-      directAccountWithoutBankErrorLinks,
-    ),
-  );
-}
-
 export function directAccountWithoutBankErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<DirectAccountWithoutBankErrorLinks, SDKValidationError> {
@@ -90,55 +56,6 @@ export const DirectAccountWithoutBankErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type DirectAccountWithoutBankErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: DirectAccountWithoutBankErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const DirectAccountWithoutBankErrorError$outboundSchema: z.ZodType<
-  DirectAccountWithoutBankErrorError$Outbound,
-  z.ZodTypeDef,
-  DirectAccountWithoutBankErrorError
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  links: z.lazy(() => DirectAccountWithoutBankErrorLinks$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DirectAccountWithoutBankErrorError$ {
-  /** @deprecated use `DirectAccountWithoutBankErrorError$inboundSchema` instead. */
-  export const inboundSchema = DirectAccountWithoutBankErrorError$inboundSchema;
-  /** @deprecated use `DirectAccountWithoutBankErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    DirectAccountWithoutBankErrorError$outboundSchema;
-  /** @deprecated use `DirectAccountWithoutBankErrorError$Outbound` instead. */
-  export type Outbound = DirectAccountWithoutBankErrorError$Outbound;
-}
-
-export function directAccountWithoutBankErrorErrorToJSON(
-  directAccountWithoutBankErrorError: DirectAccountWithoutBankErrorError,
-): string {
-  return JSON.stringify(
-    DirectAccountWithoutBankErrorError$outboundSchema.parse(
-      directAccountWithoutBankErrorError,
-    ),
-  );
-}
-
 export function directAccountWithoutBankErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<DirectAccountWithoutBankErrorError, SDKValidationError> {
@@ -160,47 +77,6 @@ export const DirectAccountWithoutBankErrorEmbedded$inboundSchema: z.ZodType<
     z.lazy(() => DirectAccountWithoutBankErrorError$inboundSchema),
   ).optional(),
 });
-
-/** @internal */
-export type DirectAccountWithoutBankErrorEmbedded$Outbound = {
-  errors?: Array<DirectAccountWithoutBankErrorError$Outbound> | undefined;
-};
-
-/** @internal */
-export const DirectAccountWithoutBankErrorEmbedded$outboundSchema: z.ZodType<
-  DirectAccountWithoutBankErrorEmbedded$Outbound,
-  z.ZodTypeDef,
-  DirectAccountWithoutBankErrorEmbedded
-> = z.object({
-  errors: z.array(
-    z.lazy(() => DirectAccountWithoutBankErrorError$outboundSchema),
-  ).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DirectAccountWithoutBankErrorEmbedded$ {
-  /** @deprecated use `DirectAccountWithoutBankErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    DirectAccountWithoutBankErrorEmbedded$inboundSchema;
-  /** @deprecated use `DirectAccountWithoutBankErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    DirectAccountWithoutBankErrorEmbedded$outboundSchema;
-  /** @deprecated use `DirectAccountWithoutBankErrorEmbedded$Outbound` instead. */
-  export type Outbound = DirectAccountWithoutBankErrorEmbedded$Outbound;
-}
-
-export function directAccountWithoutBankErrorEmbeddedToJSON(
-  directAccountWithoutBankErrorEmbedded: DirectAccountWithoutBankErrorEmbedded,
-): string {
-  return JSON.stringify(
-    DirectAccountWithoutBankErrorEmbedded$outboundSchema.parse(
-      directAccountWithoutBankErrorEmbedded,
-    ),
-  );
-}
 
 export function directAccountWithoutBankErrorEmbeddedFromJSON(
   jsonString: string,

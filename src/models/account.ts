@@ -6,19 +6,9 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
-import {
-  Address,
-  Address$inboundSchema,
-  Address$Outbound,
-  Address$outboundSchema,
-} from "./address.js";
+import { Address, Address$inboundSchema } from "./address.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-import {
-  HalLink,
-  HalLink$inboundSchema,
-  HalLink$Outbound,
-  HalLink$outboundSchema,
-} from "./hallink.js";
+import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 
 export type Account = {
   links?: { [k: string]: HalLink } | undefined;
@@ -58,65 +48,6 @@ export const Account$inboundSchema: z.ZodType<Account, z.ZodTypeDef, unknown> =
       "_links": "links",
     });
   });
-
-/** @internal */
-export type Account$Outbound = {
-  _links?: { [k: string]: HalLink$Outbound } | undefined;
-  id?: string | undefined;
-  name?: string | undefined;
-  authorizedRep?: string | undefined;
-  timezoneOffset?: number | undefined;
-  email?: string | undefined;
-  phone?: string | undefined;
-  address?: Address$Outbound | undefined;
-  verificationStatus?: string | undefined;
-  ownershipStatus?: string | undefined;
-  ownershipCertificationStatus?: string | undefined;
-  type?: string | undefined;
-  created?: string | undefined;
-};
-
-/** @internal */
-export const Account$outboundSchema: z.ZodType<
-  Account$Outbound,
-  z.ZodTypeDef,
-  Account
-> = z.object({
-  links: z.record(HalLink$outboundSchema).optional(),
-  id: z.string().optional(),
-  name: z.string().optional(),
-  authorizedRep: z.string().optional(),
-  timezoneOffset: z.number().int().optional(),
-  email: z.string().optional(),
-  phone: z.string().optional(),
-  address: Address$outboundSchema.optional(),
-  verificationStatus: z.string().optional(),
-  ownershipStatus: z.string().optional(),
-  ownershipCertificationStatus: z.string().optional(),
-  type: z.string().optional(),
-  created: z.date().transform(v => v.toISOString()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Account$ {
-  /** @deprecated use `Account$inboundSchema` instead. */
-  export const inboundSchema = Account$inboundSchema;
-  /** @deprecated use `Account$outboundSchema` instead. */
-  export const outboundSchema = Account$outboundSchema;
-  /** @deprecated use `Account$Outbound` instead. */
-  export type Outbound = Account$Outbound;
-}
-
-export function accountToJSON(account: Account): string {
-  return JSON.stringify(Account$outboundSchema.parse(account));
-}
 
 export function accountFromJSON(
   jsonString: string,

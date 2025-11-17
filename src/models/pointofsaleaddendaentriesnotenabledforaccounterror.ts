@@ -31,44 +31,6 @@ export const PointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks$inboundSche
     unknown
   > = z.object({});
 
-/** @internal */
-export type PointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks$Outbound =
-  {};
-
-/** @internal */
-export const PointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks$outboundSchema:
-  z.ZodType<
-    PointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks$Outbound,
-    z.ZodTypeDef,
-    PointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks
-  > = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks$ {
-  /** @deprecated use `PointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    PointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks$inboundSchema;
-  /** @deprecated use `PointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    PointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks$outboundSchema;
-  /** @deprecated use `PointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks$Outbound` instead. */
-  export type Outbound =
-    PointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks$Outbound;
-}
-
-export function pointOfSaleAddendaEntriesNotEnabledForAccountErrorLinksToJSON(
-  pointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks:
-    PointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks,
-): string {
-  return JSON.stringify(
-    PointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks$outboundSchema
-      .parse(pointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks),
-  );
-}
-
 export function pointOfSaleAddendaEntriesNotEnabledForAccountErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -103,61 +65,6 @@ export const PointOfSaleAddendaEntriesNotEnabledForAccountErrorError$inboundSche
     });
   });
 
-/** @internal */
-export type PointOfSaleAddendaEntriesNotEnabledForAccountErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?:
-    | PointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const PointOfSaleAddendaEntriesNotEnabledForAccountErrorError$outboundSchema:
-  z.ZodType<
-    PointOfSaleAddendaEntriesNotEnabledForAccountErrorError$Outbound,
-    z.ZodTypeDef,
-    PointOfSaleAddendaEntriesNotEnabledForAccountErrorError
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    path: z.string().optional(),
-    links: z.lazy(() =>
-      PointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      links: "_links",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PointOfSaleAddendaEntriesNotEnabledForAccountErrorError$ {
-  /** @deprecated use `PointOfSaleAddendaEntriesNotEnabledForAccountErrorError$inboundSchema` instead. */
-  export const inboundSchema =
-    PointOfSaleAddendaEntriesNotEnabledForAccountErrorError$inboundSchema;
-  /** @deprecated use `PointOfSaleAddendaEntriesNotEnabledForAccountErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    PointOfSaleAddendaEntriesNotEnabledForAccountErrorError$outboundSchema;
-  /** @deprecated use `PointOfSaleAddendaEntriesNotEnabledForAccountErrorError$Outbound` instead. */
-  export type Outbound =
-    PointOfSaleAddendaEntriesNotEnabledForAccountErrorError$Outbound;
-}
-
-export function pointOfSaleAddendaEntriesNotEnabledForAccountErrorErrorToJSON(
-  pointOfSaleAddendaEntriesNotEnabledForAccountErrorError:
-    PointOfSaleAddendaEntriesNotEnabledForAccountErrorError,
-): string {
-  return JSON.stringify(
-    PointOfSaleAddendaEntriesNotEnabledForAccountErrorError$outboundSchema
-      .parse(pointOfSaleAddendaEntriesNotEnabledForAccountErrorError),
-  );
-}
-
 export function pointOfSaleAddendaEntriesNotEnabledForAccountErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -186,54 +93,6 @@ export const PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded$inboundS
       ),
     ).optional(),
   });
-
-/** @internal */
-export type PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded$Outbound =
-  {
-    errors?:
-      | Array<PointOfSaleAddendaEntriesNotEnabledForAccountErrorError$Outbound>
-      | undefined;
-  };
-
-/** @internal */
-export const PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded$outboundSchema:
-  z.ZodType<
-    PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded$Outbound,
-    z.ZodTypeDef,
-    PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded
-  > = z.object({
-    errors: z.array(
-      z.lazy(() =>
-        PointOfSaleAddendaEntriesNotEnabledForAccountErrorError$outboundSchema
-      ),
-    ).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded$ {
-  /** @deprecated use `PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded$inboundSchema;
-  /** @deprecated use `PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded$outboundSchema;
-  /** @deprecated use `PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded$Outbound` instead. */
-  export type Outbound =
-    PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded$Outbound;
-}
-
-export function pointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbeddedToJSON(
-  pointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded:
-    PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded,
-): string {
-  return JSON.stringify(
-    PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded$outboundSchema
-      .parse(pointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded),
-  );
-}
 
 export function pointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbeddedFromJSON(
   jsonString: string,

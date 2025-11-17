@@ -28,37 +28,6 @@ export const SecretTooLongErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type SecretTooLongErrorLinks$Outbound = {};
-
-/** @internal */
-export const SecretTooLongErrorLinks$outboundSchema: z.ZodType<
-  SecretTooLongErrorLinks$Outbound,
-  z.ZodTypeDef,
-  SecretTooLongErrorLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SecretTooLongErrorLinks$ {
-  /** @deprecated use `SecretTooLongErrorLinks$inboundSchema` instead. */
-  export const inboundSchema = SecretTooLongErrorLinks$inboundSchema;
-  /** @deprecated use `SecretTooLongErrorLinks$outboundSchema` instead. */
-  export const outboundSchema = SecretTooLongErrorLinks$outboundSchema;
-  /** @deprecated use `SecretTooLongErrorLinks$Outbound` instead. */
-  export type Outbound = SecretTooLongErrorLinks$Outbound;
-}
-
-export function secretTooLongErrorLinksToJSON(
-  secretTooLongErrorLinks: SecretTooLongErrorLinks,
-): string {
-  return JSON.stringify(
-    SecretTooLongErrorLinks$outboundSchema.parse(secretTooLongErrorLinks),
-  );
-}
-
 export function secretTooLongErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<SecretTooLongErrorLinks, SDKValidationError> {
@@ -85,51 +54,6 @@ export const SecretTooLongErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type SecretTooLongErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: SecretTooLongErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const SecretTooLongErrorError$outboundSchema: z.ZodType<
-  SecretTooLongErrorError$Outbound,
-  z.ZodTypeDef,
-  SecretTooLongErrorError
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  links: z.lazy(() => SecretTooLongErrorLinks$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SecretTooLongErrorError$ {
-  /** @deprecated use `SecretTooLongErrorError$inboundSchema` instead. */
-  export const inboundSchema = SecretTooLongErrorError$inboundSchema;
-  /** @deprecated use `SecretTooLongErrorError$outboundSchema` instead. */
-  export const outboundSchema = SecretTooLongErrorError$outboundSchema;
-  /** @deprecated use `SecretTooLongErrorError$Outbound` instead. */
-  export type Outbound = SecretTooLongErrorError$Outbound;
-}
-
-export function secretTooLongErrorErrorToJSON(
-  secretTooLongErrorError: SecretTooLongErrorError,
-): string {
-  return JSON.stringify(
-    SecretTooLongErrorError$outboundSchema.parse(secretTooLongErrorError),
-  );
-}
-
 export function secretTooLongErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<SecretTooLongErrorError, SDKValidationError> {
@@ -149,42 +73,6 @@ export const SecretTooLongErrorEmbedded$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => SecretTooLongErrorError$inboundSchema))
     .optional(),
 });
-
-/** @internal */
-export type SecretTooLongErrorEmbedded$Outbound = {
-  errors?: Array<SecretTooLongErrorError$Outbound> | undefined;
-};
-
-/** @internal */
-export const SecretTooLongErrorEmbedded$outboundSchema: z.ZodType<
-  SecretTooLongErrorEmbedded$Outbound,
-  z.ZodTypeDef,
-  SecretTooLongErrorEmbedded
-> = z.object({
-  errors: z.array(z.lazy(() => SecretTooLongErrorError$outboundSchema))
-    .optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SecretTooLongErrorEmbedded$ {
-  /** @deprecated use `SecretTooLongErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema = SecretTooLongErrorEmbedded$inboundSchema;
-  /** @deprecated use `SecretTooLongErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema = SecretTooLongErrorEmbedded$outboundSchema;
-  /** @deprecated use `SecretTooLongErrorEmbedded$Outbound` instead. */
-  export type Outbound = SecretTooLongErrorEmbedded$Outbound;
-}
-
-export function secretTooLongErrorEmbeddedToJSON(
-  secretTooLongErrorEmbedded: SecretTooLongErrorEmbedded,
-): string {
-  return JSON.stringify(
-    SecretTooLongErrorEmbedded$outboundSchema.parse(secretTooLongErrorEmbedded),
-  );
-}
 
 export function secretTooLongErrorEmbeddedFromJSON(
   jsonString: string,

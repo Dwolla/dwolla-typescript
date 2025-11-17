@@ -54,37 +54,3 @@ export const ListCustomerExchangesDwollaV1HalJSONError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type ListCustomerExchangesDwollaV1HalJSONError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const ListCustomerExchangesDwollaV1HalJSONError$outboundSchema:
-  z.ZodType<
-    ListCustomerExchangesDwollaV1HalJSONError$Outbound,
-    z.ZodTypeDef,
-    ListCustomerExchangesDwollaV1HalJSONError
-  > = z.instanceof(ListCustomerExchangesDwollaV1HalJSONError)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: z.string().optional(),
-      message: z.string().optional(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListCustomerExchangesDwollaV1HalJSONError$ {
-  /** @deprecated use `ListCustomerExchangesDwollaV1HalJSONError$inboundSchema` instead. */
-  export const inboundSchema =
-    ListCustomerExchangesDwollaV1HalJSONError$inboundSchema;
-  /** @deprecated use `ListCustomerExchangesDwollaV1HalJSONError$outboundSchema` instead. */
-  export const outboundSchema =
-    ListCustomerExchangesDwollaV1HalJSONError$outboundSchema;
-  /** @deprecated use `ListCustomerExchangesDwollaV1HalJSONError$Outbound` instead. */
-  export type Outbound = ListCustomerExchangesDwollaV1HalJSONError$Outbound;
-}

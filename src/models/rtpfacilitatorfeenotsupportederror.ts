@@ -28,42 +28,6 @@ export const RtpFacilitatorFeeNotSupportedErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type RtpFacilitatorFeeNotSupportedErrorLinks$Outbound = {};
-
-/** @internal */
-export const RtpFacilitatorFeeNotSupportedErrorLinks$outboundSchema: z.ZodType<
-  RtpFacilitatorFeeNotSupportedErrorLinks$Outbound,
-  z.ZodTypeDef,
-  RtpFacilitatorFeeNotSupportedErrorLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RtpFacilitatorFeeNotSupportedErrorLinks$ {
-  /** @deprecated use `RtpFacilitatorFeeNotSupportedErrorLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    RtpFacilitatorFeeNotSupportedErrorLinks$inboundSchema;
-  /** @deprecated use `RtpFacilitatorFeeNotSupportedErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    RtpFacilitatorFeeNotSupportedErrorLinks$outboundSchema;
-  /** @deprecated use `RtpFacilitatorFeeNotSupportedErrorLinks$Outbound` instead. */
-  export type Outbound = RtpFacilitatorFeeNotSupportedErrorLinks$Outbound;
-}
-
-export function rtpFacilitatorFeeNotSupportedErrorLinksToJSON(
-  rtpFacilitatorFeeNotSupportedErrorLinks:
-    RtpFacilitatorFeeNotSupportedErrorLinks,
-): string {
-  return JSON.stringify(
-    RtpFacilitatorFeeNotSupportedErrorLinks$outboundSchema.parse(
-      rtpFacilitatorFeeNotSupportedErrorLinks,
-    ),
-  );
-}
-
 export function rtpFacilitatorFeeNotSupportedErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -97,57 +61,6 @@ export const RtpFacilitatorFeeNotSupportedErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type RtpFacilitatorFeeNotSupportedErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: RtpFacilitatorFeeNotSupportedErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const RtpFacilitatorFeeNotSupportedErrorError$outboundSchema: z.ZodType<
-  RtpFacilitatorFeeNotSupportedErrorError$Outbound,
-  z.ZodTypeDef,
-  RtpFacilitatorFeeNotSupportedErrorError
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  links: z.lazy(() => RtpFacilitatorFeeNotSupportedErrorLinks$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RtpFacilitatorFeeNotSupportedErrorError$ {
-  /** @deprecated use `RtpFacilitatorFeeNotSupportedErrorError$inboundSchema` instead. */
-  export const inboundSchema =
-    RtpFacilitatorFeeNotSupportedErrorError$inboundSchema;
-  /** @deprecated use `RtpFacilitatorFeeNotSupportedErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    RtpFacilitatorFeeNotSupportedErrorError$outboundSchema;
-  /** @deprecated use `RtpFacilitatorFeeNotSupportedErrorError$Outbound` instead. */
-  export type Outbound = RtpFacilitatorFeeNotSupportedErrorError$Outbound;
-}
-
-export function rtpFacilitatorFeeNotSupportedErrorErrorToJSON(
-  rtpFacilitatorFeeNotSupportedErrorError:
-    RtpFacilitatorFeeNotSupportedErrorError,
-): string {
-  return JSON.stringify(
-    RtpFacilitatorFeeNotSupportedErrorError$outboundSchema.parse(
-      rtpFacilitatorFeeNotSupportedErrorError,
-    ),
-  );
-}
-
 export function rtpFacilitatorFeeNotSupportedErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -172,49 +85,6 @@ export const RtpFacilitatorFeeNotSupportedErrorEmbedded$inboundSchema:
         z.lazy(() => RtpFacilitatorFeeNotSupportedErrorError$inboundSchema),
       ).optional(),
     });
-
-/** @internal */
-export type RtpFacilitatorFeeNotSupportedErrorEmbedded$Outbound = {
-  errors?: Array<RtpFacilitatorFeeNotSupportedErrorError$Outbound> | undefined;
-};
-
-/** @internal */
-export const RtpFacilitatorFeeNotSupportedErrorEmbedded$outboundSchema:
-  z.ZodType<
-    RtpFacilitatorFeeNotSupportedErrorEmbedded$Outbound,
-    z.ZodTypeDef,
-    RtpFacilitatorFeeNotSupportedErrorEmbedded
-  > = z.object({
-    errors: z.array(
-      z.lazy(() => RtpFacilitatorFeeNotSupportedErrorError$outboundSchema),
-    ).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RtpFacilitatorFeeNotSupportedErrorEmbedded$ {
-  /** @deprecated use `RtpFacilitatorFeeNotSupportedErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    RtpFacilitatorFeeNotSupportedErrorEmbedded$inboundSchema;
-  /** @deprecated use `RtpFacilitatorFeeNotSupportedErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    RtpFacilitatorFeeNotSupportedErrorEmbedded$outboundSchema;
-  /** @deprecated use `RtpFacilitatorFeeNotSupportedErrorEmbedded$Outbound` instead. */
-  export type Outbound = RtpFacilitatorFeeNotSupportedErrorEmbedded$Outbound;
-}
-
-export function rtpFacilitatorFeeNotSupportedErrorEmbeddedToJSON(
-  rtpFacilitatorFeeNotSupportedErrorEmbedded:
-    RtpFacilitatorFeeNotSupportedErrorEmbedded,
-): string {
-  return JSON.stringify(
-    RtpFacilitatorFeeNotSupportedErrorEmbedded$outboundSchema.parse(
-      rtpFacilitatorFeeNotSupportedErrorEmbedded,
-    ),
-  );
-}
 
 export function rtpFacilitatorFeeNotSupportedErrorEmbeddedFromJSON(
   jsonString: string,

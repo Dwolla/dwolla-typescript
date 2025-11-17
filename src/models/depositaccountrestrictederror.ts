@@ -28,40 +28,6 @@ export const DepositAccountRestrictedErrorLinks$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type DepositAccountRestrictedErrorLinks$Outbound = {};
-
-/** @internal */
-export const DepositAccountRestrictedErrorLinks$outboundSchema: z.ZodType<
-  DepositAccountRestrictedErrorLinks$Outbound,
-  z.ZodTypeDef,
-  DepositAccountRestrictedErrorLinks
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DepositAccountRestrictedErrorLinks$ {
-  /** @deprecated use `DepositAccountRestrictedErrorLinks$inboundSchema` instead. */
-  export const inboundSchema = DepositAccountRestrictedErrorLinks$inboundSchema;
-  /** @deprecated use `DepositAccountRestrictedErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    DepositAccountRestrictedErrorLinks$outboundSchema;
-  /** @deprecated use `DepositAccountRestrictedErrorLinks$Outbound` instead. */
-  export type Outbound = DepositAccountRestrictedErrorLinks$Outbound;
-}
-
-export function depositAccountRestrictedErrorLinksToJSON(
-  depositAccountRestrictedErrorLinks: DepositAccountRestrictedErrorLinks,
-): string {
-  return JSON.stringify(
-    DepositAccountRestrictedErrorLinks$outboundSchema.parse(
-      depositAccountRestrictedErrorLinks,
-    ),
-  );
-}
-
 export function depositAccountRestrictedErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<DepositAccountRestrictedErrorLinks, SDKValidationError> {
@@ -90,55 +56,6 @@ export const DepositAccountRestrictedErrorError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type DepositAccountRestrictedErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: DepositAccountRestrictedErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const DepositAccountRestrictedErrorError$outboundSchema: z.ZodType<
-  DepositAccountRestrictedErrorError$Outbound,
-  z.ZodTypeDef,
-  DepositAccountRestrictedErrorError
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  links: z.lazy(() => DepositAccountRestrictedErrorLinks$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DepositAccountRestrictedErrorError$ {
-  /** @deprecated use `DepositAccountRestrictedErrorError$inboundSchema` instead. */
-  export const inboundSchema = DepositAccountRestrictedErrorError$inboundSchema;
-  /** @deprecated use `DepositAccountRestrictedErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    DepositAccountRestrictedErrorError$outboundSchema;
-  /** @deprecated use `DepositAccountRestrictedErrorError$Outbound` instead. */
-  export type Outbound = DepositAccountRestrictedErrorError$Outbound;
-}
-
-export function depositAccountRestrictedErrorErrorToJSON(
-  depositAccountRestrictedErrorError: DepositAccountRestrictedErrorError,
-): string {
-  return JSON.stringify(
-    DepositAccountRestrictedErrorError$outboundSchema.parse(
-      depositAccountRestrictedErrorError,
-    ),
-  );
-}
-
 export function depositAccountRestrictedErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<DepositAccountRestrictedErrorError, SDKValidationError> {
@@ -160,47 +77,6 @@ export const DepositAccountRestrictedErrorEmbedded$inboundSchema: z.ZodType<
     z.lazy(() => DepositAccountRestrictedErrorError$inboundSchema),
   ).optional(),
 });
-
-/** @internal */
-export type DepositAccountRestrictedErrorEmbedded$Outbound = {
-  errors?: Array<DepositAccountRestrictedErrorError$Outbound> | undefined;
-};
-
-/** @internal */
-export const DepositAccountRestrictedErrorEmbedded$outboundSchema: z.ZodType<
-  DepositAccountRestrictedErrorEmbedded$Outbound,
-  z.ZodTypeDef,
-  DepositAccountRestrictedErrorEmbedded
-> = z.object({
-  errors: z.array(
-    z.lazy(() => DepositAccountRestrictedErrorError$outboundSchema),
-  ).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DepositAccountRestrictedErrorEmbedded$ {
-  /** @deprecated use `DepositAccountRestrictedErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    DepositAccountRestrictedErrorEmbedded$inboundSchema;
-  /** @deprecated use `DepositAccountRestrictedErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    DepositAccountRestrictedErrorEmbedded$outboundSchema;
-  /** @deprecated use `DepositAccountRestrictedErrorEmbedded$Outbound` instead. */
-  export type Outbound = DepositAccountRestrictedErrorEmbedded$Outbound;
-}
-
-export function depositAccountRestrictedErrorEmbeddedToJSON(
-  depositAccountRestrictedErrorEmbedded: DepositAccountRestrictedErrorEmbedded,
-): string {
-  return JSON.stringify(
-    DepositAccountRestrictedErrorEmbedded$outboundSchema.parse(
-      depositAccountRestrictedErrorEmbedded,
-    ),
-  );
-}
 
 export function depositAccountRestrictedErrorEmbeddedFromJSON(
   jsonString: string,

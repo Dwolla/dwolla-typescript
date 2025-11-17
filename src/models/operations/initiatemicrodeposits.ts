@@ -20,15 +20,6 @@ export type InitiateMicroDepositsResponse = {
 };
 
 /** @internal */
-export const InitiateMicroDepositsRequest$inboundSchema: z.ZodType<
-  InitiateMicroDepositsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
-
-/** @internal */
 export type InitiateMicroDepositsRequest$Outbound = {
   id: string;
 };
@@ -42,19 +33,6 @@ export const InitiateMicroDepositsRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InitiateMicroDepositsRequest$ {
-  /** @deprecated use `InitiateMicroDepositsRequest$inboundSchema` instead. */
-  export const inboundSchema = InitiateMicroDepositsRequest$inboundSchema;
-  /** @deprecated use `InitiateMicroDepositsRequest$outboundSchema` instead. */
-  export const outboundSchema = InitiateMicroDepositsRequest$outboundSchema;
-  /** @deprecated use `InitiateMicroDepositsRequest$Outbound` instead. */
-  export type Outbound = InitiateMicroDepositsRequest$Outbound;
-}
-
 export function initiateMicroDepositsRequestToJSON(
   initiateMicroDepositsRequest: InitiateMicroDepositsRequest,
 ): string {
@@ -62,16 +40,6 @@ export function initiateMicroDepositsRequestToJSON(
     InitiateMicroDepositsRequest$outboundSchema.parse(
       initiateMicroDepositsRequest,
     ),
-  );
-}
-
-export function initiateMicroDepositsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<InitiateMicroDepositsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InitiateMicroDepositsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InitiateMicroDepositsRequest' from JSON`,
   );
 }
 
@@ -87,47 +55,6 @@ export const InitiateMicroDepositsResponse$inboundSchema: z.ZodType<
     "Headers": "headers",
   });
 });
-
-/** @internal */
-export type InitiateMicroDepositsResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-};
-
-/** @internal */
-export const InitiateMicroDepositsResponse$outboundSchema: z.ZodType<
-  InitiateMicroDepositsResponse$Outbound,
-  z.ZodTypeDef,
-  InitiateMicroDepositsResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InitiateMicroDepositsResponse$ {
-  /** @deprecated use `InitiateMicroDepositsResponse$inboundSchema` instead. */
-  export const inboundSchema = InitiateMicroDepositsResponse$inboundSchema;
-  /** @deprecated use `InitiateMicroDepositsResponse$outboundSchema` instead. */
-  export const outboundSchema = InitiateMicroDepositsResponse$outboundSchema;
-  /** @deprecated use `InitiateMicroDepositsResponse$Outbound` instead. */
-  export type Outbound = InitiateMicroDepositsResponse$Outbound;
-}
-
-export function initiateMicroDepositsResponseToJSON(
-  initiateMicroDepositsResponse: InitiateMicroDepositsResponse,
-): string {
-  return JSON.stringify(
-    InitiateMicroDepositsResponse$outboundSchema.parse(
-      initiateMicroDepositsResponse,
-    ),
-  );
-}
 
 export function initiateMicroDepositsResponseFromJSON(
   jsonString: string,

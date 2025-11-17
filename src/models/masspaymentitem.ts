@@ -62,41 +62,6 @@ export const MassPaymentItemSelf$inboundSchema: z.ZodType<
   href: z.string().optional(),
 });
 
-/** @internal */
-export type MassPaymentItemSelf$Outbound = {
-  href?: string | undefined;
-};
-
-/** @internal */
-export const MassPaymentItemSelf$outboundSchema: z.ZodType<
-  MassPaymentItemSelf$Outbound,
-  z.ZodTypeDef,
-  MassPaymentItemSelf
-> = z.object({
-  href: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MassPaymentItemSelf$ {
-  /** @deprecated use `MassPaymentItemSelf$inboundSchema` instead. */
-  export const inboundSchema = MassPaymentItemSelf$inboundSchema;
-  /** @deprecated use `MassPaymentItemSelf$outboundSchema` instead. */
-  export const outboundSchema = MassPaymentItemSelf$outboundSchema;
-  /** @deprecated use `MassPaymentItemSelf$Outbound` instead. */
-  export type Outbound = MassPaymentItemSelf$Outbound;
-}
-
-export function massPaymentItemSelfToJSON(
-  massPaymentItemSelf: MassPaymentItemSelf,
-): string {
-  return JSON.stringify(
-    MassPaymentItemSelf$outboundSchema.parse(massPaymentItemSelf),
-  );
-}
-
 export function massPaymentItemSelfFromJSON(
   jsonString: string,
 ): SafeParseResult<MassPaymentItemSelf, SDKValidationError> {
@@ -115,41 +80,6 @@ export const MassPaymentItemMassPayment$inboundSchema: z.ZodType<
 > = z.object({
   href: z.string().optional(),
 });
-
-/** @internal */
-export type MassPaymentItemMassPayment$Outbound = {
-  href?: string | undefined;
-};
-
-/** @internal */
-export const MassPaymentItemMassPayment$outboundSchema: z.ZodType<
-  MassPaymentItemMassPayment$Outbound,
-  z.ZodTypeDef,
-  MassPaymentItemMassPayment
-> = z.object({
-  href: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MassPaymentItemMassPayment$ {
-  /** @deprecated use `MassPaymentItemMassPayment$inboundSchema` instead. */
-  export const inboundSchema = MassPaymentItemMassPayment$inboundSchema;
-  /** @deprecated use `MassPaymentItemMassPayment$outboundSchema` instead. */
-  export const outboundSchema = MassPaymentItemMassPayment$outboundSchema;
-  /** @deprecated use `MassPaymentItemMassPayment$Outbound` instead. */
-  export type Outbound = MassPaymentItemMassPayment$Outbound;
-}
-
-export function massPaymentItemMassPaymentToJSON(
-  massPaymentItemMassPayment: MassPaymentItemMassPayment,
-): string {
-  return JSON.stringify(
-    MassPaymentItemMassPayment$outboundSchema.parse(massPaymentItemMassPayment),
-  );
-}
 
 export function massPaymentItemMassPaymentFromJSON(
   jsonString: string,
@@ -170,41 +100,6 @@ export const MassPaymentItemDestination$inboundSchema: z.ZodType<
   href: z.string().optional(),
 });
 
-/** @internal */
-export type MassPaymentItemDestination$Outbound = {
-  href?: string | undefined;
-};
-
-/** @internal */
-export const MassPaymentItemDestination$outboundSchema: z.ZodType<
-  MassPaymentItemDestination$Outbound,
-  z.ZodTypeDef,
-  MassPaymentItemDestination
-> = z.object({
-  href: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MassPaymentItemDestination$ {
-  /** @deprecated use `MassPaymentItemDestination$inboundSchema` instead. */
-  export const inboundSchema = MassPaymentItemDestination$inboundSchema;
-  /** @deprecated use `MassPaymentItemDestination$outboundSchema` instead. */
-  export const outboundSchema = MassPaymentItemDestination$outboundSchema;
-  /** @deprecated use `MassPaymentItemDestination$Outbound` instead. */
-  export type Outbound = MassPaymentItemDestination$Outbound;
-}
-
-export function massPaymentItemDestinationToJSON(
-  massPaymentItemDestination: MassPaymentItemDestination,
-): string {
-  return JSON.stringify(
-    MassPaymentItemDestination$outboundSchema.parse(massPaymentItemDestination),
-  );
-}
-
 export function massPaymentItemDestinationFromJSON(
   jsonString: string,
 ): SafeParseResult<MassPaymentItemDestination, SDKValidationError> {
@@ -223,41 +118,6 @@ export const MassPaymentItemTransfer$inboundSchema: z.ZodType<
 > = z.object({
   href: z.string().optional(),
 });
-
-/** @internal */
-export type MassPaymentItemTransfer$Outbound = {
-  href?: string | undefined;
-};
-
-/** @internal */
-export const MassPaymentItemTransfer$outboundSchema: z.ZodType<
-  MassPaymentItemTransfer$Outbound,
-  z.ZodTypeDef,
-  MassPaymentItemTransfer
-> = z.object({
-  href: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MassPaymentItemTransfer$ {
-  /** @deprecated use `MassPaymentItemTransfer$inboundSchema` instead. */
-  export const inboundSchema = MassPaymentItemTransfer$inboundSchema;
-  /** @deprecated use `MassPaymentItemTransfer$outboundSchema` instead. */
-  export const outboundSchema = MassPaymentItemTransfer$outboundSchema;
-  /** @deprecated use `MassPaymentItemTransfer$Outbound` instead. */
-  export type Outbound = MassPaymentItemTransfer$Outbound;
-}
-
-export function massPaymentItemTransferToJSON(
-  massPaymentItemTransfer: MassPaymentItemTransfer,
-): string {
-  return JSON.stringify(
-    MassPaymentItemTransfer$outboundSchema.parse(massPaymentItemTransfer),
-  );
-}
 
 export function massPaymentItemTransferFromJSON(
   jsonString: string,
@@ -287,53 +147,6 @@ export const MassPaymentItemLinks$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type MassPaymentItemLinks$Outbound = {
-  self?: MassPaymentItemSelf$Outbound | undefined;
-  "mass-payment"?: MassPaymentItemMassPayment$Outbound | undefined;
-  destination?: MassPaymentItemDestination$Outbound | undefined;
-  transfer?: MassPaymentItemTransfer$Outbound | undefined;
-};
-
-/** @internal */
-export const MassPaymentItemLinks$outboundSchema: z.ZodType<
-  MassPaymentItemLinks$Outbound,
-  z.ZodTypeDef,
-  MassPaymentItemLinks
-> = z.object({
-  self: z.lazy(() => MassPaymentItemSelf$outboundSchema).optional(),
-  massPayment: z.lazy(() => MassPaymentItemMassPayment$outboundSchema)
-    .optional(),
-  destination: z.lazy(() => MassPaymentItemDestination$outboundSchema)
-    .optional(),
-  transfer: z.lazy(() => MassPaymentItemTransfer$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    massPayment: "mass-payment",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MassPaymentItemLinks$ {
-  /** @deprecated use `MassPaymentItemLinks$inboundSchema` instead. */
-  export const inboundSchema = MassPaymentItemLinks$inboundSchema;
-  /** @deprecated use `MassPaymentItemLinks$outboundSchema` instead. */
-  export const outboundSchema = MassPaymentItemLinks$outboundSchema;
-  /** @deprecated use `MassPaymentItemLinks$Outbound` instead. */
-  export type Outbound = MassPaymentItemLinks$Outbound;
-}
-
-export function massPaymentItemLinksToJSON(
-  massPaymentItemLinks: MassPaymentItemLinks,
-): string {
-  return JSON.stringify(
-    MassPaymentItemLinks$outboundSchema.parse(massPaymentItemLinks),
-  );
-}
-
 export function massPaymentItemLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<MassPaymentItemLinks, SDKValidationError> {
@@ -354,43 +167,6 @@ export const MassPaymentItemAmount$inboundSchema: z.ZodType<
   currency: z.string().optional(),
 });
 
-/** @internal */
-export type MassPaymentItemAmount$Outbound = {
-  value?: string | undefined;
-  currency?: string | undefined;
-};
-
-/** @internal */
-export const MassPaymentItemAmount$outboundSchema: z.ZodType<
-  MassPaymentItemAmount$Outbound,
-  z.ZodTypeDef,
-  MassPaymentItemAmount
-> = z.object({
-  value: z.string().optional(),
-  currency: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MassPaymentItemAmount$ {
-  /** @deprecated use `MassPaymentItemAmount$inboundSchema` instead. */
-  export const inboundSchema = MassPaymentItemAmount$inboundSchema;
-  /** @deprecated use `MassPaymentItemAmount$outboundSchema` instead. */
-  export const outboundSchema = MassPaymentItemAmount$outboundSchema;
-  /** @deprecated use `MassPaymentItemAmount$Outbound` instead. */
-  export type Outbound = MassPaymentItemAmount$Outbound;
-}
-
-export function massPaymentItemAmountToJSON(
-  massPaymentItemAmount: MassPaymentItemAmount,
-): string {
-  return JSON.stringify(
-    MassPaymentItemAmount$outboundSchema.parse(massPaymentItemAmount),
-  );
-}
-
 export function massPaymentItemAmountFromJSON(
   jsonString: string,
 ): SafeParseResult<MassPaymentItemAmount, SDKValidationError> {
@@ -410,41 +186,6 @@ export const MassPaymentItemMetadata$inboundSchema: z.ZodType<
   item1: z.string().optional(),
 });
 
-/** @internal */
-export type MassPaymentItemMetadata$Outbound = {
-  item1?: string | undefined;
-};
-
-/** @internal */
-export const MassPaymentItemMetadata$outboundSchema: z.ZodType<
-  MassPaymentItemMetadata$Outbound,
-  z.ZodTypeDef,
-  MassPaymentItemMetadata
-> = z.object({
-  item1: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MassPaymentItemMetadata$ {
-  /** @deprecated use `MassPaymentItemMetadata$inboundSchema` instead. */
-  export const inboundSchema = MassPaymentItemMetadata$inboundSchema;
-  /** @deprecated use `MassPaymentItemMetadata$outboundSchema` instead. */
-  export const outboundSchema = MassPaymentItemMetadata$outboundSchema;
-  /** @deprecated use `MassPaymentItemMetadata$Outbound` instead. */
-  export type Outbound = MassPaymentItemMetadata$Outbound;
-}
-
-export function massPaymentItemMetadataToJSON(
-  massPaymentItemMetadata: MassPaymentItemMetadata,
-): string {
-  return JSON.stringify(
-    MassPaymentItemMetadata$outboundSchema.parse(massPaymentItemMetadata),
-  );
-}
-
 export function massPaymentItemMetadataFromJSON(
   jsonString: string,
 ): SafeParseResult<MassPaymentItemMetadata, SDKValidationError> {
@@ -463,43 +204,6 @@ export const MassPaymentItemProcessingChannel$inboundSchema: z.ZodType<
 > = z.object({
   destination: z.string().optional(),
 });
-
-/** @internal */
-export type MassPaymentItemProcessingChannel$Outbound = {
-  destination?: string | undefined;
-};
-
-/** @internal */
-export const MassPaymentItemProcessingChannel$outboundSchema: z.ZodType<
-  MassPaymentItemProcessingChannel$Outbound,
-  z.ZodTypeDef,
-  MassPaymentItemProcessingChannel
-> = z.object({
-  destination: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MassPaymentItemProcessingChannel$ {
-  /** @deprecated use `MassPaymentItemProcessingChannel$inboundSchema` instead. */
-  export const inboundSchema = MassPaymentItemProcessingChannel$inboundSchema;
-  /** @deprecated use `MassPaymentItemProcessingChannel$outboundSchema` instead. */
-  export const outboundSchema = MassPaymentItemProcessingChannel$outboundSchema;
-  /** @deprecated use `MassPaymentItemProcessingChannel$Outbound` instead. */
-  export type Outbound = MassPaymentItemProcessingChannel$Outbound;
-}
-
-export function massPaymentItemProcessingChannelToJSON(
-  massPaymentItemProcessingChannel: MassPaymentItemProcessingChannel,
-): string {
-  return JSON.stringify(
-    MassPaymentItemProcessingChannel$outboundSchema.parse(
-      massPaymentItemProcessingChannel,
-    ),
-  );
-}
 
 export function massPaymentItemProcessingChannelFromJSON(
   jsonString: string,
@@ -530,55 +234,6 @@ export const MassPaymentItem$inboundSchema: z.ZodType<
     "_links": "links",
   });
 });
-
-/** @internal */
-export type MassPaymentItem$Outbound = {
-  _links?: MassPaymentItemLinks$Outbound | undefined;
-  id?: string | undefined;
-  status?: string | undefined;
-  amount?: MassPaymentItemAmount$Outbound | undefined;
-  metadata?: MassPaymentItemMetadata$Outbound | undefined;
-  processingChannel?: MassPaymentItemProcessingChannel$Outbound | undefined;
-};
-
-/** @internal */
-export const MassPaymentItem$outboundSchema: z.ZodType<
-  MassPaymentItem$Outbound,
-  z.ZodTypeDef,
-  MassPaymentItem
-> = z.object({
-  links: z.lazy(() => MassPaymentItemLinks$outboundSchema).optional(),
-  id: z.string().optional(),
-  status: z.string().optional(),
-  amount: z.lazy(() => MassPaymentItemAmount$outboundSchema).optional(),
-  metadata: z.lazy(() => MassPaymentItemMetadata$outboundSchema).optional(),
-  processingChannel: z.lazy(() =>
-    MassPaymentItemProcessingChannel$outboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MassPaymentItem$ {
-  /** @deprecated use `MassPaymentItem$inboundSchema` instead. */
-  export const inboundSchema = MassPaymentItem$inboundSchema;
-  /** @deprecated use `MassPaymentItem$outboundSchema` instead. */
-  export const outboundSchema = MassPaymentItem$outboundSchema;
-  /** @deprecated use `MassPaymentItem$Outbound` instead. */
-  export type Outbound = MassPaymentItem$Outbound;
-}
-
-export function massPaymentItemToJSON(
-  massPaymentItem: MassPaymentItem,
-): string {
-  return JSON.stringify(MassPaymentItem$outboundSchema.parse(massPaymentItem));
-}
 
 export function massPaymentItemFromJSON(
   jsonString: string,

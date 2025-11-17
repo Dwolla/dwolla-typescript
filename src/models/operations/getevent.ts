@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetEventRequest = {
   /**
@@ -13,15 +10,6 @@ export type GetEventRequest = {
    */
   id: string;
 };
-
-/** @internal */
-export const GetEventRequest$inboundSchema: z.ZodType<
-  GetEventRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
 
 /** @internal */
 export type GetEventRequest$Outbound = {
@@ -37,31 +25,8 @@ export const GetEventRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetEventRequest$ {
-  /** @deprecated use `GetEventRequest$inboundSchema` instead. */
-  export const inboundSchema = GetEventRequest$inboundSchema;
-  /** @deprecated use `GetEventRequest$outboundSchema` instead. */
-  export const outboundSchema = GetEventRequest$outboundSchema;
-  /** @deprecated use `GetEventRequest$Outbound` instead. */
-  export type Outbound = GetEventRequest$Outbound;
-}
-
 export function getEventRequestToJSON(
   getEventRequest: GetEventRequest,
 ): string {
   return JSON.stringify(GetEventRequest$outboundSchema.parse(getEventRequest));
-}
-
-export function getEventRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetEventRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetEventRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetEventRequest' from JSON`,
-  );
 }

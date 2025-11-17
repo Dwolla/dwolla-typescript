@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RetrieveDocumentRequest = {
   /**
@@ -13,15 +10,6 @@ export type RetrieveDocumentRequest = {
    */
   id: string;
 };
-
-/** @internal */
-export const RetrieveDocumentRequest$inboundSchema: z.ZodType<
-  RetrieveDocumentRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
 
 /** @internal */
 export type RetrieveDocumentRequest$Outbound = {
@@ -37,33 +25,10 @@ export const RetrieveDocumentRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RetrieveDocumentRequest$ {
-  /** @deprecated use `RetrieveDocumentRequest$inboundSchema` instead. */
-  export const inboundSchema = RetrieveDocumentRequest$inboundSchema;
-  /** @deprecated use `RetrieveDocumentRequest$outboundSchema` instead. */
-  export const outboundSchema = RetrieveDocumentRequest$outboundSchema;
-  /** @deprecated use `RetrieveDocumentRequest$Outbound` instead. */
-  export type Outbound = RetrieveDocumentRequest$Outbound;
-}
-
 export function retrieveDocumentRequestToJSON(
   retrieveDocumentRequest: RetrieveDocumentRequest,
 ): string {
   return JSON.stringify(
     RetrieveDocumentRequest$outboundSchema.parse(retrieveDocumentRequest),
-  );
-}
-
-export function retrieveDocumentRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<RetrieveDocumentRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => RetrieveDocumentRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'RetrieveDocumentRequest' from JSON`,
   );
 }

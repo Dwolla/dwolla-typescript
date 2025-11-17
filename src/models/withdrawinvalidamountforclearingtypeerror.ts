@@ -29,44 +29,6 @@ export const WithdrawInvalidAmountForClearingTypeErrorLinks$inboundSchema:
     unknown
   > = z.object({});
 
-/** @internal */
-export type WithdrawInvalidAmountForClearingTypeErrorLinks$Outbound = {};
-
-/** @internal */
-export const WithdrawInvalidAmountForClearingTypeErrorLinks$outboundSchema:
-  z.ZodType<
-    WithdrawInvalidAmountForClearingTypeErrorLinks$Outbound,
-    z.ZodTypeDef,
-    WithdrawInvalidAmountForClearingTypeErrorLinks
-  > = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawInvalidAmountForClearingTypeErrorLinks$ {
-  /** @deprecated use `WithdrawInvalidAmountForClearingTypeErrorLinks$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawInvalidAmountForClearingTypeErrorLinks$inboundSchema;
-  /** @deprecated use `WithdrawInvalidAmountForClearingTypeErrorLinks$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawInvalidAmountForClearingTypeErrorLinks$outboundSchema;
-  /** @deprecated use `WithdrawInvalidAmountForClearingTypeErrorLinks$Outbound` instead. */
-  export type Outbound =
-    WithdrawInvalidAmountForClearingTypeErrorLinks$Outbound;
-}
-
-export function withdrawInvalidAmountForClearingTypeErrorLinksToJSON(
-  withdrawInvalidAmountForClearingTypeErrorLinks:
-    WithdrawInvalidAmountForClearingTypeErrorLinks,
-): string {
-  return JSON.stringify(
-    WithdrawInvalidAmountForClearingTypeErrorLinks$outboundSchema.parse(
-      withdrawInvalidAmountForClearingTypeErrorLinks,
-    ),
-  );
-}
-
 export function withdrawInvalidAmountForClearingTypeErrorLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -102,60 +64,6 @@ export const WithdrawInvalidAmountForClearingTypeErrorError$inboundSchema:
     });
   });
 
-/** @internal */
-export type WithdrawInvalidAmountForClearingTypeErrorError$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-  path?: string | undefined;
-  _links?: WithdrawInvalidAmountForClearingTypeErrorLinks$Outbound | undefined;
-};
-
-/** @internal */
-export const WithdrawInvalidAmountForClearingTypeErrorError$outboundSchema:
-  z.ZodType<
-    WithdrawInvalidAmountForClearingTypeErrorError$Outbound,
-    z.ZodTypeDef,
-    WithdrawInvalidAmountForClearingTypeErrorError
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    path: z.string().optional(),
-    links: z.lazy(() =>
-      WithdrawInvalidAmountForClearingTypeErrorLinks$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      links: "_links",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawInvalidAmountForClearingTypeErrorError$ {
-  /** @deprecated use `WithdrawInvalidAmountForClearingTypeErrorError$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawInvalidAmountForClearingTypeErrorError$inboundSchema;
-  /** @deprecated use `WithdrawInvalidAmountForClearingTypeErrorError$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawInvalidAmountForClearingTypeErrorError$outboundSchema;
-  /** @deprecated use `WithdrawInvalidAmountForClearingTypeErrorError$Outbound` instead. */
-  export type Outbound =
-    WithdrawInvalidAmountForClearingTypeErrorError$Outbound;
-}
-
-export function withdrawInvalidAmountForClearingTypeErrorErrorToJSON(
-  withdrawInvalidAmountForClearingTypeErrorError:
-    WithdrawInvalidAmountForClearingTypeErrorError,
-): string {
-  return JSON.stringify(
-    WithdrawInvalidAmountForClearingTypeErrorError$outboundSchema.parse(
-      withdrawInvalidAmountForClearingTypeErrorError,
-    ),
-  );
-}
-
 export function withdrawInvalidAmountForClearingTypeErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -185,54 +93,6 @@ export const WithdrawInvalidAmountForClearingTypeErrorEmbedded$inboundSchema:
       ),
     ).optional(),
   });
-
-/** @internal */
-export type WithdrawInvalidAmountForClearingTypeErrorEmbedded$Outbound = {
-  errors?:
-    | Array<WithdrawInvalidAmountForClearingTypeErrorError$Outbound>
-    | undefined;
-};
-
-/** @internal */
-export const WithdrawInvalidAmountForClearingTypeErrorEmbedded$outboundSchema:
-  z.ZodType<
-    WithdrawInvalidAmountForClearingTypeErrorEmbedded$Outbound,
-    z.ZodTypeDef,
-    WithdrawInvalidAmountForClearingTypeErrorEmbedded
-  > = z.object({
-    errors: z.array(
-      z.lazy(() =>
-        WithdrawInvalidAmountForClearingTypeErrorError$outboundSchema
-      ),
-    ).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WithdrawInvalidAmountForClearingTypeErrorEmbedded$ {
-  /** @deprecated use `WithdrawInvalidAmountForClearingTypeErrorEmbedded$inboundSchema` instead. */
-  export const inboundSchema =
-    WithdrawInvalidAmountForClearingTypeErrorEmbedded$inboundSchema;
-  /** @deprecated use `WithdrawInvalidAmountForClearingTypeErrorEmbedded$outboundSchema` instead. */
-  export const outboundSchema =
-    WithdrawInvalidAmountForClearingTypeErrorEmbedded$outboundSchema;
-  /** @deprecated use `WithdrawInvalidAmountForClearingTypeErrorEmbedded$Outbound` instead. */
-  export type Outbound =
-    WithdrawInvalidAmountForClearingTypeErrorEmbedded$Outbound;
-}
-
-export function withdrawInvalidAmountForClearingTypeErrorEmbeddedToJSON(
-  withdrawInvalidAmountForClearingTypeErrorEmbedded:
-    WithdrawInvalidAmountForClearingTypeErrorEmbedded,
-): string {
-  return JSON.stringify(
-    WithdrawInvalidAmountForClearingTypeErrorEmbedded$outboundSchema.parse(
-      withdrawInvalidAmountForClearingTypeErrorEmbedded,
-    ),
-  );
-}
 
 export function withdrawInvalidAmountForClearingTypeErrorEmbeddedFromJSON(
   jsonString: string,
