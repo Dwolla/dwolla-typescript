@@ -12,6 +12,7 @@ export * from "./certifybeneficialownershipforcustomer.js";
 export * from "./createaccountexchange.js";
 export * from "./createapplicationaccesstoken.js";
 export * from "./createbeneficialownerdocument.js";
+export * from "./createcustomer.js";
 export * from "./createcustomerdocument.js";
 export * from "./createcustomerexchange.js";
 export * from "./createcustomerexchangesession.js";

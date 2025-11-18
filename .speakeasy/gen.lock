@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 53ac026a-ff11-435d-914b-31df5268afb0
 management:
-  docChecksum: 12a138e706b75a1316f28c3a20b7b239
+  docChecksum: e239d05dc8074abaa65afff624454928
   docVersion: "2.0"
-  speakeasyVersion: 1.656.3
-  generationVersion: 2.753.7
-  releaseVersion: 0.0.1-beta.12
-  configChecksum: 1e283a782923099d7f97ece958a99875
+  speakeasyVersion: 1.656.2
+  generationVersion: 2.753.6
+  releaseVersion: 0.0.1-beta.14
+  configChecksum: 2de3dc7b621520b6dbe9a25ed1a62c89
   repoURL: https://github.com/Dwolla/dwolla-typescript.git
   installationURL: https://github.com/Dwolla/dwolla-typescript
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.26.7
+    core: 3.26.6
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.1
     enumUnions: 0.1.0
@@ -183,11 +183,13 @@ generatedFiles:
   - docs/models/errors/createcustomerexchangesessionbadrequestdwollav1haljson.md
   - docs/models/errors/createcustomerexchangesessiondwollav1haljsonerror.md
   - docs/models/errors/createcustomerexchangesessionforbiddendwollav1haljson.md
+  - docs/models/errors/createcustomerforbiddendwollav1haljsonerror.md
   - docs/models/errors/createcustomerfundingsourcedwollav1haljson.md
   - docs/models/errors/createcustomerfundingsourceforbiddendwollav1haljsonerror.md
   - docs/models/errors/createcustomerfundingsourcenotfounddwollav1haljsonerror.md
   - docs/models/errors/createcustomerlabelforbiddendwollav1haljsonerror.md
   - docs/models/errors/createcustomerlabelnotfounddwollav1haljsonerror.md
+  - docs/models/errors/createcustomernotfounddwollav1haljsonerror.md
   - docs/models/errors/createfundingsourcedwollav1haljson.md
   - docs/models/errors/createfundingsourcedwollav1haljsonerror.md
   - docs/models/errors/createlabelreallocationforbiddendwollav1haljsonerror.md
@@ -540,6 +542,8 @@ generatedFiles:
   - docs/models/operations/createcustomerlabelrequest.md
   - docs/models/operations/createcustomerlabelrequestbody.md
   - docs/models/operations/createcustomerlabelresponse.md
+  - docs/models/operations/createcustomerrequest.md
+  - docs/models/operations/createcustomerresponse.md
   - docs/models/operations/createfundingsourceresponse.md
   - docs/models/operations/createlabelledgerentryamount.md
   - docs/models/operations/createlabelledgerentryrequest.md
@@ -552,12 +556,6 @@ generatedFiles:
   - docs/models/operations/createreauthexchangesessionrequest.md
   - docs/models/operations/createreauthexchangesessionrequestbody.md
   - docs/models/operations/createreauthexchangesessionresponse.md
-  - docs/models/operations/createreceiveonlycustomerresponse.md
-  - docs/models/operations/createunverifiedcustomerresponse.md
-  - docs/models/operations/createverifiedbusinesscustomerresponse.md
-  - docs/models/operations/createverifiedbusinessinternationalcustomerresponse.md
-  - docs/models/operations/createverifiedpersonalcustomerresponse.md
-  - docs/models/operations/createverifiedsolepropcustomerresponse.md
   - docs/models/operations/createwebhooksubscriptionrequest.md
   - docs/models/operations/createwebhooksubscriptionresponse.md
   - docs/models/operations/deletebeneficialownerrequest.md
@@ -940,12 +938,7 @@ generatedFiles:
   - src/funcs/customersBeneficialOwnersList.ts
   - src/funcs/customersBeneficialOwnershipCertify.ts
   - src/funcs/customersBeneficialOwnershipGet.ts
-  - src/funcs/customersCreateReceiveOnly.ts
-  - src/funcs/customersCreateUnverified.ts
-  - src/funcs/customersCreateVerifiedBusiness.ts
-  - src/funcs/customersCreateVerifiedBusinessInternational.ts
-  - src/funcs/customersCreateVerifiedPersonal.ts
-  - src/funcs/customersCreateVerifiedSoleProp.ts
+  - src/funcs/customersCreate.ts
   - src/funcs/customersDocumentsCreate.ts
   - src/funcs/customersDocumentsList.ts
   - src/funcs/customersExchangeSessionsCreate.ts
@@ -1085,6 +1078,7 @@ generatedFiles:
   - src/models/errors/createaccountexchange.ts
   - src/models/errors/createapplicationaccesstoken.ts
   - src/models/errors/createbeneficialownerdocument.ts
+  - src/models/errors/createcustomer.ts
   - src/models/errors/createcustomerdocument.ts
   - src/models/errors/createcustomerexchange.ts
   - src/models/errors/createcustomerexchangesession.ts
@@ -1283,6 +1277,7 @@ generatedFiles:
   - src/models/operations/createbeneficialownerdocument.ts
   - src/models/operations/createbeneficialownerforcustomer.ts
   - src/models/operations/createclienttoken.ts
+  - src/models/operations/createcustomer.ts
   - src/models/operations/createcustomerdocument.ts
   - src/models/operations/createcustomerexchange.ts
   - src/models/operations/createcustomerexchangesession.ts
@@ -1292,12 +1287,6 @@ generatedFiles:
   - src/models/operations/createlabelledgerentry.ts
   - src/models/operations/createlabelreallocation.ts
   - src/models/operations/createreauthexchangesession.ts
-  - src/models/operations/createreceiveonlycustomer.ts
-  - src/models/operations/createunverifiedcustomer.ts
-  - src/models/operations/createverifiedbusinesscustomer.ts
-  - src/models/operations/createverifiedbusinessinternationalcustomer.ts
-  - src/models/operations/createverifiedpersonalcustomer.ts
-  - src/models/operations/createverifiedsolepropcustomer.ts
   - src/models/operations/createwebhooksubscription.ts
   - src/models/operations/delete.ts
   - src/models/operations/deletebeneficialowner.ts
@@ -2629,4 +2618,3 @@ examples:
           application/vnd.dwolla.v1.hal+json: {"code": "forbidden", "message": "Not authorized to simulate transfer processing."}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes Detected:\n* `dwolla.customers.fundingSources.create()`: \n  *  `request.createCustomerFundingSource.[createCustomerBankFundingSourceWithAccountNumbers].verified` **Changed**\n* `dwolla.fundingSources.balance.get()`:  `response` **Changed**\n"

@@ -24,236 +24,6 @@ actions:
     update:
       x-speakeasy-server-id: sandbox
 
-  # Remove the original customer creation POST endpoint. Customer creation has been moved to path fragments.
-  - target: $["paths"]["/customers"]["post"]
-    remove: true
-
-  # Add path fragments for separate customer creation methods
-  - target: $["paths"]
-    update:
-      "/customers#unverified":
-        post:
-          x-speakeasy-name-override: createUnverified
-          tags:
-            - customers
-          summary: Create an unverified customer
-          description: Creates a new unverified customer with basic information. Unverified customers have limited transaction capabilities.
-          operationId: createUnverifiedCustomer
-          parameters: 
-            - $ref: '#/components/parameters/Accept'
-          requestBody:
-            required: true
-            description: Parameters for unverified customer to be created
-            content:
-              application/vnd.dwolla.v1.hal+json:
-                schema:
-                  $ref: '#/components/schemas/CreateUnverifiedCustomer'
-          responses:
-            '201':
-              description: successful operation
-              headers:
-                Location:
-                  $ref: '#/components/headers/Location'
-            '400':
-              description: Bad Request
-              headers: {}
-              content:
-                application/vnd.dwolla.v1.hal+json:
-                  schema:
-                    $ref: '#/components/schemas/BadRequestSchema'
-            '403':
-              description: forbidden
-              headers: {}
-              content:
-                application/vnd.dwolla.v1.hal+json:
-                  schema:
-                    $ref: '#/components/schemas/ForbiddenError'
-      "/customers#receive-only":
-        post:
-          x-speakeasy-name-override: createReceiveOnly
-          tags:
-            - customers
-          summary: Create a receive-only user
-          description: Creates a new receive-only user who can only receive funds, not send them.
-          operationId: createReceiveOnlyCustomer
-          parameters: 
-            - $ref: '#/components/parameters/Accept'
-          requestBody:
-            required: true
-            description: Parameters for receive-only user to be created
-            content:
-              application/vnd.dwolla.v1.hal+json:
-                schema:
-                  $ref: '#/components/schemas/CreateReceiveOnlyUser'
-          responses:
-            '201':
-              description: successful operation
-              headers:
-                Location:
-                  $ref: '#/components/headers/Location'
-            '400':
-              description: Bad Request
-              headers: {}
-              content:
-                application/vnd.dwolla.v1.hal+json:
-                  schema:
-                    $ref: '#/components/schemas/BadRequestSchema'
-            '403':
-              description: forbidden
-              headers: {}
-              content:
-                application/vnd.dwolla.v1.hal+json:
-                  schema:
-                    $ref: '#/components/schemas/ForbiddenError'
-      "/customers#verified-personal":
-        post:
-          x-speakeasy-name-override: createVerifiedPersonal
-          tags:
-            - customers
-          summary: Create a verified personal customer
-          description: Creates a new verified personal customer with full transaction capabilities.
-          operationId: createVerifiedPersonalCustomer
-          parameters: 
-            - $ref: '#/components/parameters/Accept'
-          requestBody:
-            required: true
-            description: Parameters for verified personal customer to be created
-            content:
-              application/vnd.dwolla.v1.hal+json:
-                schema:
-                  $ref: '#/components/schemas/CreateVerifiedPersonalCustomer'
-          responses:
-            '201':
-              description: successful operation
-              headers:
-                Location:
-                  $ref: '#/components/headers/Location'
-            '400':
-              description: Bad Request
-              headers: {}
-              content:
-                application/vnd.dwolla.v1.hal+json:
-                  schema:
-                    $ref: '#/components/schemas/BadRequestSchema'
-            '403':
-              description: forbidden
-              headers: {}
-              content:
-                application/vnd.dwolla.v1.hal+json:
-                  schema:
-                    $ref: '#/components/schemas/ForbiddenError'
-      "/customers#verified-sole-prop":
-        post:
-          x-speakeasy-name-override: createVerifiedSoleProp
-          tags:
-            - customers
-          summary: Create a verified sole proprietorship customer
-          description: Creates a new verified sole proprietorship business customer.
-          operationId: createVerifiedSolePropCustomer
-          parameters: 
-            - $ref: '#/components/parameters/Accept'
-          requestBody:
-            required: true
-            description: Parameters for verified sole proprietorship customer to be created
-            content:
-              application/vnd.dwolla.v1.hal+json:
-                schema:
-                  $ref: '#/components/schemas/CreateVerifiedSolePropCustomer'
-          responses:
-            '201':
-              description: successful operation
-              headers:
-                Location:
-                  $ref: '#/components/headers/Location'
-            '400':
-              description: Bad Request
-              headers: {}
-              content:
-                application/vnd.dwolla.v1.hal+json:
-                  schema:
-                    $ref: '#/components/schemas/BadRequestSchema'
-            '403':
-              description: forbidden
-              headers: {}
-              content:
-                application/vnd.dwolla.v1.hal+json:
-                  schema:
-                    $ref: '#/components/schemas/ForbiddenError'
-      "/customers#verified-business":
-        post:
-          x-speakeasy-name-override: createVerifiedBusiness
-          tags:
-            - customers
-          summary: Create a verified business customer
-          description: Creates a new verified business customer with a US controller.
-          operationId: createVerifiedBusinessCustomer
-          parameters: 
-            - $ref: '#/components/parameters/Accept'
-          requestBody:
-            required: true
-            description: Parameters for verified business customer to be created
-            content:
-              application/vnd.dwolla.v1.hal+json:
-                schema:
-                  $ref: '#/components/schemas/CreateVerifiedBusinessCustomerWithController'
-          responses:
-            '201':
-              description: successful operation
-              headers:
-                Location:
-                  $ref: '#/components/headers/Location'
-            '400':
-              description: Bad Request
-              headers: {}
-              content:
-                application/vnd.dwolla.v1.hal+json:
-                  schema:
-                    $ref: '#/components/schemas/BadRequestSchema'
-            '403':
-              description: forbidden
-              headers: {}
-              content:
-                application/vnd.dwolla.v1.hal+json:
-                  schema:
-                    $ref: '#/components/schemas/ForbiddenError'
-      "/customers#verified-business-international":
-        post:
-          x-speakeasy-name-override: createVerifiedBusinessInternational
-          tags:
-            - customers
-          summary: Create a verified business customer with international controller
-          description: Creates a new verified business customer with an international (non-US) controller.
-          operationId: createVerifiedBusinessInternationalCustomer
-          parameters: 
-            - $ref: '#/components/parameters/Accept'
-          requestBody:
-            required: true
-            description: Parameters for verified business customer with international controller to be created
-            content:
-              application/vnd.dwolla.v1.hal+json:
-                schema:
-                  $ref: '#/components/schemas/CreateVerifiedBusinessCustomerWithInternationalController'
-          responses:
-            '201':
-              description: successful operation
-              headers:
-                Location:
-                  $ref: '#/components/headers/Location'
-            '400':
-              description: Bad Request
-              headers: {}
-              content:
-                application/vnd.dwolla.v1.hal+json:
-                  schema:
-                    $ref: '#/components/schemas/BadRequestSchema'
-            '403':
-              description: forbidden
-              headers: {}
-              content:
-                application/vnd.dwolla.v1.hal+json:
-                  schema:
-                    $ref: '#/components/schemas/ForbiddenError'
-
   # Remove existing customer update schemas from base spec to avoid duplicates
   - target: $["components"]["schemas"]["DeactivateCustomer"]
     remove: true
@@ -266,6 +36,8 @@ actions:
   - target: $["components"]["schemas"]["UpdateVerifiedPersonal"]
     remove: true
   - target: $["components"]["schemas"]["UpdateVerifiedBusiness"]
+    remove: true
+  - target: $["components"]["schemas"]["UpgradeToUnverified"]
     remove: true
   - target: $["components"]["schemas"]["UpgradeToVerifiedPersonal"]
     remove: true
@@ -424,6 +196,20 @@ actions:
           website:
             type: string
             example: https://www.domain.com
+      UpgradeToUnverified:
+        title: UpgradeToUnverified
+        description: Upgrade Receive Only User to Unverified Customer
+        type: object
+        required:
+          - operationType
+          - type
+        properties:
+          operationType:
+            type: string
+            const: upgradeToUnverified
+          type:
+            type: string
+            example: unverified
       UpgradeToVerifiedPersonal:
         title: UpgradeToVerifiedPersonal
         description: Upgrade Unverified Customer to Verified Personal Customer

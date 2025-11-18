@@ -1,17 +1,17 @@
-# CreateVerifiedBusinessCustomerResponse
+# CreateCustomerResponse
 
 ## Example Usage
 
 ```typescript
-import { CreateVerifiedBusinessCustomerResponse } from "dwolla/models/operations";
+import { CreateCustomerResponse } from "dwolla/models/operations";
 
-let value: CreateVerifiedBusinessCustomerResponse = {
+let value: CreateCustomerResponse = {
   headers: {
-    "key": [
-      "<value 1>",
-      "<value 2>",
-    ],
+    "key": [],
     "key1": [
+      "<value 1>",
+    ],
+    "key2": [
       "<value 1>",
     ],
   },

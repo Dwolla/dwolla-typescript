@@ -22,7 +22,7 @@ let value: CreateInternationalBeneficialOwner = {
   },
   passport: {
     number: "<value>",
-    country: "Tonga",
+    country: "South Sudan",
   },
 };
 ```

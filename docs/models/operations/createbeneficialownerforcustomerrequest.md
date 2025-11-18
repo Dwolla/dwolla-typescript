@@ -22,7 +22,7 @@ let value: CreateBeneficialOwnerForCustomerRequest = {
     },
     passport: {
       number: "<value>",
-      country: "Tonga",
+      country: "South Sudan",
     },
   },
 };
