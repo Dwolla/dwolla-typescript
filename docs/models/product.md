@@ -8,7 +8,7 @@ import { RFCDate } from "dwolla/types";
 
 let value: Product = {
   product: "moneyTransferDetails",
-  accountId: "1015199035827334900",
+  accountId: "1015199035827334916",
   accessPeriod: {
     type: "timeframe",
     startTime: new RFCDate("2022-07-06"),
@@ -22,5 +22,5 @@ let value: Product = {
 | Field                                            | Type                                             | Required                                         | Description                                      | Example                                          |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
 | `product`                                        | *string*                                         | :heavy_minus_sign:                               | N/A                                              | moneyTransferDetails                             |
-| `accountId`                                      | *string*                                         | :heavy_minus_sign:                               | N/A                                              | 1015199035827334900                              |
+| `accountId`                                      | *string*                                         | :heavy_minus_sign:                               | N/A                                              | 1015199035827334916                              |
 | `accessPeriod`                                   | [models.AccessPeriod](../models/accessperiod.md) | :heavy_minus_sign:                               | N/A                                              |                                                  |

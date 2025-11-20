@@ -10,7 +10,7 @@ import {
 } from "./internationaladdress.js";
 
 /**
- * Create a US Beneficial Owner (identified by SSN)
+ * Create a US Beneficial Owner (identified by SSN). For US-based beneficial owners only. Use SSN for identity verification instead of passport.
  */
 export type CreateUSBeneficialOwner = {
   firstName: string;

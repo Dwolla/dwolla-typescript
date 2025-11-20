@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { smartUnion } from "../../types/union.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
 
@@ -44,7 +45,7 @@ export const CreateBeneficialOwnerForCustomerRequestBody$outboundSchema:
     CreateBeneficialOwnerForCustomerRequestBody$Outbound,
     z.ZodTypeDef,
     CreateBeneficialOwnerForCustomerRequestBody
-  > = z.union([
+  > = smartUnion([
     models.CreateUSBeneficialOwner$outboundSchema,
     models.CreateInternationalBeneficialOwner$outboundSchema,
   ]);
@@ -75,7 +76,7 @@ export const CreateBeneficialOwnerForCustomerRequest$outboundSchema: z.ZodType<
   CreateBeneficialOwnerForCustomerRequest
 > = z.object({
   id: z.string(),
-  requestBody: z.union([
+  requestBody: smartUnion([
     models.CreateUSBeneficialOwner$outboundSchema,
     models.CreateInternationalBeneficialOwner$outboundSchema,
   ]),

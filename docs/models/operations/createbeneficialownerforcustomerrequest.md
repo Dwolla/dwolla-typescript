@@ -8,9 +8,9 @@ import { CreateBeneficialOwnerForCustomerRequest } from "dwolla/models/operation
 let value: CreateBeneficialOwnerForCustomerRequest = {
   id: "<id>",
   requestBody: {
-    firstName: "Corbin",
-    lastName: "Cassin",
-    dateOfBirth: "1953-03-19",
+    firstName: "John",
+    lastName: "Doe",
+    dateOfBirth: "1980-01-31",
     address: {
       address1: "462 Main Street",
       address2: "Suite 123",
@@ -20,10 +20,7 @@ let value: CreateBeneficialOwnerForCustomerRequest = {
       country: "USA",
       stateProvinceRegion: "IA",
     },
-    passport: {
-      number: "<value>",
-      country: "Tonga",
-    },
+    ssn: "123456789",
   },
 };
 ```

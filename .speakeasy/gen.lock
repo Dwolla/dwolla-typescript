@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 53ac026a-ff11-435d-914b-31df5268afb0
 management:
-  docChecksum: 12a138e706b75a1316f28c3a20b7b239
+  docChecksum: 42cfc58c3eb68a6a4de4b47956c205b9
   docVersion: "2.0"
-  speakeasyVersion: 1.656.3
-  generationVersion: 2.753.7
-  releaseVersion: 0.0.1-beta.12
-  configChecksum: 1e283a782923099d7f97ece958a99875
+  speakeasyVersion: 1.658.2
+  generationVersion: 2.755.9
+  releaseVersion: 0.0.1-beta.13
+  configChecksum: 0fc627c25b27407851e489453baa2bf5
   repoURL: https://github.com/Dwolla/dwolla-typescript.git
   installationURL: https://github.com/Dwolla/dwolla-typescript
   published: true
@@ -65,6 +65,7 @@ generatedFiles:
   - docs/models/beneficialownersembedded.md
   - docs/models/beneficialownership.md
   - docs/models/beneficialownershiplinks.md
+  - docs/models/beneficialownershipstatus.md
   - docs/models/businessclassification.md
   - docs/models/businessclassificationembedded.md
   - docs/models/businessclassificationlinks.md
@@ -103,30 +104,25 @@ generatedFiles:
   - docs/models/createcustomerfundingsource.md
   - docs/models/createcustomervirtualaccountfundingsource.md
   - docs/models/createcustomervirtualaccountfundingsourcebankaccounttype.md
+  - docs/models/createcustomervirtualaccountfundingsourcetype.md
   - docs/models/createfinicitysecureexchange.md
   - docs/models/createfinicitysecureexchangeexchangepartner.md
   - docs/models/createfinicitysecureexchangelinks.md
-  - docs/models/createflinkssecureexchange.md
-  - docs/models/createflinkssecureexchangeexchangepartner.md
-  - docs/models/createflinkssecureexchangelinks.md
   - docs/models/createinternationalbeneficialowner.md
   - docs/models/createmxopenbankingexchange.md
   - docs/models/createmxopenbankingexchangeexchangepartner.md
   - docs/models/createmxopenbankingexchangelinks.md
-  - docs/models/createmxsecureexchange.md
-  - docs/models/createmxsecureexchangeexchangepartner.md
-  - docs/models/createmxsecureexchangelinks.md
   - docs/models/createplaidopenbankingexchange.md
   - docs/models/createplaidopenbankingexchangeexchangepartner.md
   - docs/models/createplaidopenbankingexchangelinks.md
-  - docs/models/createplaidsecureexchange.md
-  - docs/models/createplaidsecureexchangeexchangepartner.md
-  - docs/models/createplaidsecureexchangelinks.md
   - docs/models/createreauthexchangesessionforweb.md
   - docs/models/createreauthexchangesessionwithredirect.md
   - docs/models/createreauthexchangesessionwithredirectlinks.md
   - docs/models/createreauthexchangesessionwithredirectredirecturl.md
   - docs/models/createreceiveonlyuser.md
+  - docs/models/createtokenbasedexchange.md
+  - docs/models/createtokenbasedexchangeexchangepartner.md
+  - docs/models/createtokenbasedexchangelinks.md
   - docs/models/createunverifiedcustomer.md
   - docs/models/createusbeneficialowner.md
   - docs/models/createverifiedbusinesscustomerwithcontroller.md
@@ -162,6 +158,9 @@ generatedFiles:
   - docs/models/documentlinks.md
   - docs/models/documents.md
   - docs/models/documentsembedded.md
+  - docs/models/documentstatus.md
+  - docs/models/documenttype.md
+  - docs/models/documentverificationstatus.md
   - docs/models/duplicateresourceschemalinks.md
   - docs/models/errors/achaddendaentriesnotenabledforaccounterror.md
   - docs/models/errors/badrequesterror.md
@@ -183,11 +182,13 @@ generatedFiles:
   - docs/models/errors/createcustomerexchangesessionbadrequestdwollav1haljson.md
   - docs/models/errors/createcustomerexchangesessiondwollav1haljsonerror.md
   - docs/models/errors/createcustomerexchangesessionforbiddendwollav1haljson.md
+  - docs/models/errors/createcustomerforbiddendwollav1haljsonerror.md
   - docs/models/errors/createcustomerfundingsourcedwollav1haljson.md
   - docs/models/errors/createcustomerfundingsourceforbiddendwollav1haljsonerror.md
   - docs/models/errors/createcustomerfundingsourcenotfounddwollav1haljsonerror.md
   - docs/models/errors/createcustomerlabelforbiddendwollav1haljsonerror.md
   - docs/models/errors/createcustomerlabelnotfounddwollav1haljsonerror.md
+  - docs/models/errors/createcustomernotfounddwollav1haljsonerror.md
   - docs/models/errors/createfundingsourcedwollav1haljson.md
   - docs/models/errors/createfundingsourcedwollav1haljsonerror.md
   - docs/models/errors/createlabelreallocationforbiddendwollav1haljsonerror.md
@@ -357,12 +358,14 @@ generatedFiles:
   - docs/models/exchangepartner.md
   - docs/models/exchangepartners.md
   - docs/models/exchangepartnersembedded.md
+  - docs/models/exchangepartnerstatus.md
   - docs/models/exchanges.md
   - docs/models/exchangesembedded.md
   - docs/models/exchangesession.md
   - docs/models/exchangesessionexchangepartner.md
   - docs/models/exchangesessionlinks.md
   - docs/models/exchangesessionself.md
+  - docs/models/exchangestatus.md
   - docs/models/externalprovidersession.md
   - docs/models/facilitatorfeeaccountnotfounderrorembedded.md
   - docs/models/facilitatorfeeaccountnotfounderrorerror.md
@@ -489,6 +492,7 @@ generatedFiles:
   - docs/models/masspayments.md
   - docs/models/masspaymentsembedded.md
   - docs/models/mx.md
+  - docs/models/name.md
   - docs/models/ondemandauthorization.md
   - docs/models/ondemandauthorizationlinks.md
   - docs/models/ondemandauthorizationself.md
@@ -513,6 +517,7 @@ generatedFiles:
   - docs/models/operations/createaccountexchangeresponsebody.md
   - docs/models/operations/createapplicationaccesstokenrequest.md
   - docs/models/operations/createapplicationaccesstokenresponse.md
+  - docs/models/operations/createbeneficialownerdocumentdocumenttype.md
   - docs/models/operations/createbeneficialownerdocumentfile.md
   - docs/models/operations/createbeneficialownerdocumentrequest.md
   - docs/models/operations/createbeneficialownerdocumentrequestbody.md
@@ -524,6 +529,7 @@ generatedFiles:
   - docs/models/operations/createclienttokenlinks.md
   - docs/models/operations/createclienttokenrequest.md
   - docs/models/operations/createclienttokenresponse.md
+  - docs/models/operations/createcustomerdocumentdocumenttype.md
   - docs/models/operations/createcustomerdocumentfile.md
   - docs/models/operations/createcustomerdocumentrequest.md
   - docs/models/operations/createcustomerdocumentrequestbody.md
@@ -540,6 +546,8 @@ generatedFiles:
   - docs/models/operations/createcustomerlabelrequest.md
   - docs/models/operations/createcustomerlabelrequestbody.md
   - docs/models/operations/createcustomerlabelresponse.md
+  - docs/models/operations/createcustomerrequest.md
+  - docs/models/operations/createcustomerresponse.md
   - docs/models/operations/createfundingsourceresponse.md
   - docs/models/operations/createlabelledgerentryamount.md
   - docs/models/operations/createlabelledgerentryrequest.md
@@ -552,12 +560,6 @@ generatedFiles:
   - docs/models/operations/createreauthexchangesessionrequest.md
   - docs/models/operations/createreauthexchangesessionrequestbody.md
   - docs/models/operations/createreauthexchangesessionresponse.md
-  - docs/models/operations/createreceiveonlycustomerresponse.md
-  - docs/models/operations/createunverifiedcustomerresponse.md
-  - docs/models/operations/createverifiedbusinesscustomerresponse.md
-  - docs/models/operations/createverifiedbusinessinternationalcustomerresponse.md
-  - docs/models/operations/createverifiedpersonalcustomerresponse.md
-  - docs/models/operations/createverifiedsolepropcustomerresponse.md
   - docs/models/operations/createwebhooksubscriptionrequest.md
   - docs/models/operations/createwebhooksubscriptionresponse.md
   - docs/models/operations/deletebeneficialownerrequest.md
@@ -731,6 +733,9 @@ generatedFiles:
   - docs/models/pointofsaleaddendaentriesnotenabledforaccounterrorerror.md
   - docs/models/pointofsaleaddendaentriesnotenabledforaccounterrorlinks.md
   - docs/models/product.md
+  - docs/models/receiveonlycustomer.md
+  - docs/models/receiveonlycustomerstatus.md
+  - docs/models/receiveonlycustomertype.md
   - docs/models/receivernotfounderrorembedded.md
   - docs/models/receivernotfounderrorerror.md
   - docs/models/receivernotfounderrorlinks.md
@@ -792,17 +797,26 @@ generatedFiles:
   - docs/models/transferprocessingchannel.md
   - docs/models/transfers.md
   - docs/models/transfersembedded.md
-  - docs/models/type.md
-  - docs/models/unverifiedbusinesscustomer.md
   - docs/models/unverifiedcustomer.md
+  - docs/models/unverifiedcustomerstatus.md
+  - docs/models/unverifiedcustomertype.md
   - docs/models/updateunverifiedbank.md
   - docs/models/updateverifiedbank.md
   - docs/models/validationerrorschemaembedded.md
+  - docs/models/verificationstatus.md
   - docs/models/verifiedbusinesscustomer.md
   - docs/models/verifiedbusinesscustomeraddress.md
+  - docs/models/verifiedbusinesscustomerbusinesstype.md
   - docs/models/verifiedbusinesscustomercontroller.md
+  - docs/models/verifiedbusinesscustomerstatus.md
+  - docs/models/verifiedbusinesscustomertype.md
   - docs/models/verifiedpersonalcustomer.md
+  - docs/models/verifiedpersonalcustomerstatus.md
+  - docs/models/verifiedpersonalcustomertype.md
   - docs/models/verifiedsolepropcustomer.md
+  - docs/models/verifiedsolepropcustomerbusinesstype.md
+  - docs/models/verifiedsolepropcustomerstatus.md
+  - docs/models/verifiedsolepropcustomertype.md
   - docs/models/webhook.md
   - docs/models/webhookevent.md
   - docs/models/webhooklinks.md
@@ -940,12 +954,7 @@ generatedFiles:
   - src/funcs/customersBeneficialOwnersList.ts
   - src/funcs/customersBeneficialOwnershipCertify.ts
   - src/funcs/customersBeneficialOwnershipGet.ts
-  - src/funcs/customersCreateReceiveOnly.ts
-  - src/funcs/customersCreateUnverified.ts
-  - src/funcs/customersCreateVerifiedBusiness.ts
-  - src/funcs/customersCreateVerifiedBusinessInternational.ts
-  - src/funcs/customersCreateVerifiedPersonal.ts
-  - src/funcs/customersCreateVerifiedSoleProp.ts
+  - src/funcs/customersCreate.ts
   - src/funcs/customersDocumentsCreate.ts
   - src/funcs/customersDocumentsList.ts
   - src/funcs/customersExchangeSessionsCreate.ts
@@ -1051,15 +1060,13 @@ generatedFiles:
   - src/models/createcustomerfundingsource.ts
   - src/models/createcustomervirtualaccountfundingsource.ts
   - src/models/createfinicitysecureexchange.ts
-  - src/models/createflinkssecureexchange.ts
   - src/models/createinternationalbeneficialowner.ts
   - src/models/createmxopenbankingexchange.ts
-  - src/models/createmxsecureexchange.ts
   - src/models/createplaidopenbankingexchange.ts
-  - src/models/createplaidsecureexchange.ts
   - src/models/createreauthexchangesessionforweb.ts
   - src/models/createreauthexchangesessionwithredirect.ts
   - src/models/createreceiveonlyuser.ts
+  - src/models/createtokenbasedexchange.ts
   - src/models/createunverifiedcustomer.ts
   - src/models/createusbeneficialowner.ts
   - src/models/createverifiedbusinesscustomerwithcontroller.ts
@@ -1085,6 +1092,7 @@ generatedFiles:
   - src/models/errors/createaccountexchange.ts
   - src/models/errors/createapplicationaccesstoken.ts
   - src/models/errors/createbeneficialownerdocument.ts
+  - src/models/errors/createcustomer.ts
   - src/models/errors/createcustomerdocument.ts
   - src/models/errors/createcustomerexchange.ts
   - src/models/errors/createcustomerexchangesession.ts
@@ -1283,6 +1291,7 @@ generatedFiles:
   - src/models/operations/createbeneficialownerdocument.ts
   - src/models/operations/createbeneficialownerforcustomer.ts
   - src/models/operations/createclienttoken.ts
+  - src/models/operations/createcustomer.ts
   - src/models/operations/createcustomerdocument.ts
   - src/models/operations/createcustomerexchange.ts
   - src/models/operations/createcustomerexchangesession.ts
@@ -1292,12 +1301,6 @@ generatedFiles:
   - src/models/operations/createlabelledgerentry.ts
   - src/models/operations/createlabelreallocation.ts
   - src/models/operations/createreauthexchangesession.ts
-  - src/models/operations/createreceiveonlycustomer.ts
-  - src/models/operations/createunverifiedcustomer.ts
-  - src/models/operations/createverifiedbusinesscustomer.ts
-  - src/models/operations/createverifiedbusinessinternationalcustomer.ts
-  - src/models/operations/createverifiedpersonalcustomer.ts
-  - src/models/operations/createverifiedsolepropcustomer.ts
   - src/models/operations/createwebhooksubscription.ts
   - src/models/operations/delete.ts
   - src/models/operations/deletebeneficialowner.ts
@@ -1362,6 +1365,7 @@ generatedFiles:
   - src/models/operations/verifymicrodeposits.ts
   - src/models/passport.ts
   - src/models/pointofsaleaddendaentriesnotenabledforaccounterror.ts
+  - src/models/receiveonlycustomer.ts
   - src/models/receivernotfounderror.ts
   - src/models/receiverrestrictederror.ts
   - src/models/removebank.ts
@@ -1381,7 +1385,6 @@ generatedFiles:
   - src/models/transferamount.ts
   - src/models/transferexpiredforfeeerror.ts
   - src/models/transfers.ts
-  - src/models/unverifiedbusinesscustomer.ts
   - src/models/unverifiedcustomer.ts
   - src/models/updateunverifiedbank.ts
   - src/models/updateverifiedbank.ts
@@ -1465,6 +1468,7 @@ generatedFiles:
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - src/types/streams.ts
+  - src/types/union.ts
   - tsconfig.json
 examples:
   createApplicationAccessToken:
@@ -1547,7 +1551,7 @@ examples:
     speakeasy-default-list-and-search-customers:
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"customers": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "c41125c5-99c4-4303-a9f6-d066d28a61e3", "firstName": "Jane", "lastName": "Doe", "email": "janedoe@mail.com", "type": "personal", "status": "verified", "correlationId": "CID-abe2bb3d-d2ff-433b-95a3-0debd960ed25", "created": "2022-10-07T16:46:13.023Z", "address1": "123 Main Street", "address2": "Ste 123", "city": "Des Moines", "state": "IA", "postalCode": "50309"}]}}
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"customers": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "c41125c5-99c4-4303-a9f6-d066d28a61e3", "firstName": "Jane", "lastName": "Doe", "email": "janedoe@mail.com", "correlationId": "CID-abe2bb3d-d2ff-433b-95a3-0debd960ed25", "created": "2022-10-07T16:46:13.023Z", "type": "personal", "status": "verified", "address1": "123 Main Street", "address2": "Ste 123", "city": "Des Moines", "state": "IA", "postalCode": "50309"}]}}
         "403":
           application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
   createCustomer:
@@ -1568,7 +1572,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "c41125c5-99c4-4303-a9f6-d066d28a61e3", "firstName": "Jane", "lastName": "Doe", "email": "janedoe@mail.com", "type": "unverified", "status": "unverified", "correlationId": "CID-abe2bb3d-d2ff-433b-95a3-0debd960ed25", "created": "2022-10-07T16:46:13.023Z"}
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "c41125c5-99c4-4303-a9f6-d066d28a61e3", "firstName": "Jane", "lastName": "Doe", "email": "janedoe@mail.com", "correlationId": "CID-abe2bb3d-d2ff-433b-95a3-0debd960ed25", "created": "2022-10-07T16:46:13.023Z", "type": "unverified", "status": "unverified"}
         "403":
           application/vnd.dwolla.v1.hal+json: {"code": "forbidden", "message": "Not authorized to get a customer by id."}
         "404":
@@ -1582,7 +1586,7 @@ examples:
         application/json: {"firstName": "Business", "lastName": "Owner", "email": "solePropBusiness@email.com", "type": "business", "dateOfBirth": "1980-01-31", "ssn": "6789", "address1": "99-99 33rd St", "city": "Some City", "state": "NY", "postalCode": "11101", "businessClassification": "9ed3f670-7d6f-11e3-b1ce-5404a6144203", "businessType": "soleProprietorship", "businessName": "Jane Corp", "ein": "00-0000000", "operationType": "upgradeToVerifiedSoleProp"}
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "c41125c5-99c4-4303-a9f6-d066d28a61e3", "firstName": "Jane", "lastName": "Doe", "email": "janedoe@mail.com", "type": "receive-only", "status": "unverified", "correlationId": "CID-abe2bb3d-d2ff-433b-95a3-0debd960ed25", "created": "2022-10-07T16:46:13.023Z", "businessName": "Jane Corp llc"}
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "c41125c5-99c4-4303-a9f6-d066d28a61e3", "firstName": "Jane", "lastName": "Doe", "email": "janedoe@mail.com", "correlationId": "CID-abe2bb3d-d2ff-433b-95a3-0debd960ed25", "created": "2022-10-07T16:46:13.023Z", "type": "receive-only", "status": "unverified", "businessName": "Jane Corp llc"}
         "400":
           application/vnd.dwolla.v1.hal+json: {"code": "badRequest", "message": "Duplicate customer or validation error."}
         "403":
@@ -1613,7 +1617,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"beneficial-owners": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "address": {"address1": "462 Main Street", "address2": "Suite 123", "address3": "Unit 123", "city": "Des Moines", "postalCode": "50309", "country": "USA", "stateProvinceRegion": "IA"}, "verificationStatus": "verified", "created": "2022-07-23T00:18:21.419Z"}, {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "address": {"address1": "462 Main Street", "address2": "Suite 123", "address3": "Unit 123", "city": "Des Moines", "postalCode": "50309", "country": "USA", "stateProvinceRegion": "IA"}, "verificationStatus": "verified", "created": "2022-07-23T00:18:21.419Z"}]}}
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"beneficial-owners": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "firstName": "John", "lastName": "Doe", "address": {"address1": "462 Main Street", "address2": "Suite 123", "address3": "Unit 123", "city": "Des Moines", "postalCode": "50309", "country": "USA", "stateProvinceRegion": "IA"}, "verificationStatus": "verified", "created": "2022-07-23T00:18:21.419Z"}, {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "firstName": "John", "lastName": "Doe", "address": {"address1": "462 Main Street", "address2": "Suite 123", "address3": "Unit 123", "city": "Des Moines", "postalCode": "50309", "country": "USA", "stateProvinceRegion": "IA"}, "verificationStatus": "verified", "created": "2022-07-23T00:18:21.419Z"}]}}
         "404":
           application/vnd.dwolla.v1.hal+json: {"code": "not_found", "message": "not found."}
   createBeneficialOwnerForCustomer:
@@ -1637,7 +1641,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "address": {"address1": "462 Main Street", "address2": "Suite 123", "address3": "Unit 123", "city": "Des Moines", "postalCode": "50309", "country": "USA", "stateProvinceRegion": "IA"}, "verificationStatus": "verified", "created": "2022-07-23T00:18:21.419Z"}
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "firstName": "John", "lastName": "Doe", "address": {"address1": "462 Main Street", "address2": "Suite 123", "address3": "Unit 123", "city": "Des Moines", "postalCode": "50309", "country": "USA", "stateProvinceRegion": "IA"}, "verificationStatus": "verified", "created": "2022-07-23T00:18:21.419Z"}
         "404":
           application/vnd.dwolla.v1.hal+json: {"code": "not_found", "message": "not found."}
   updateBeneficialOwner:
@@ -1649,7 +1653,7 @@ examples:
         application/json: {"firstName": "Lauryn", "lastName": "D'Amore", "dateOfBirth": "2005-10-23", "address": {"address1": "462 Main Street", "address2": "Suite 123", "address3": "Unit 123", "city": "Des Moines", "postalCode": "50309", "country": "USA", "stateProvinceRegion": "IA"}, "passport": {"number": "<value>", "country": "Suriname"}}
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "address": {"address1": "462 Main Street", "address2": "Suite 123", "address3": "Unit 123", "city": "Des Moines", "postalCode": "50309", "country": "USA", "stateProvinceRegion": "IA"}, "verificationStatus": "verified", "created": "2022-07-23T00:18:21.419Z"}
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "firstName": "John", "lastName": "Doe", "address": {"address1": "462 Main Street", "address2": "Suite 123", "address3": "Unit 123", "city": "Des Moines", "postalCode": "50309", "country": "USA", "stateProvinceRegion": "IA"}, "verificationStatus": "verified", "created": "2022-07-23T00:18:21.419Z"}
         "400":
           application/vnd.dwolla.v1.hal+json: {"code": "ValidationError", "message": "Validation error(s) present. See embedded errors list for more details.", "_embedded": {"code": "ValidationError", "message": "Validation error(s) present. See embedded errors list for more details."}}
         "403":
@@ -1699,7 +1703,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"documents": [{"_links": {"self": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc", "status": "reviewed", "type": "passport", "created": "2015-09-29T21:42:16.000Z", "documentVerificationStatus": "rejected", "failureReason": "ScanDobMismatch", "allFailureReasons": [{"reason": "ScanDobMismatch", "description": "Scan DOB does not match DOB on account"}, {"reason": "ScanDobMismatch", "description": "Scan DOB does not match DOB on account"}]}]}, "total": 100}
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"documents": [{"_links": {"self": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc", "status": "reviewed", "type": "passport", "created": "2015-09-29T21:42:16.000Z", "documentVerificationStatus": "rejected", "failureReason": "ScanDobMismatch", "allFailureReasons": [{"reason": "ScanDobMismatch", "description": "Scan DOB does not match DOB on account"}, {"reason": "ScanDobMismatch", "description": "Scan DOB does not match DOB on account"}]}]}, "total": 2}
         "403":
           application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
         "404":
@@ -1710,7 +1714,7 @@ examples:
         path:
           id: "<id>"
       requestBody:
-        multipart/form-data: {}
+        multipart/form-data: {"documentType": "license", "file": "x-file: example.file"}
       responses:
         "400":
           application/vnd.dwolla.v1.hal+json: {"code": "DuplicateResource", "message": "A document with this type already exists."}
@@ -1727,7 +1731,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"documents": [{"_links": {"self": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc", "status": "reviewed", "type": "passport", "created": "2015-09-29T21:42:16.000Z", "documentVerificationStatus": "rejected", "failureReason": "ScanDobMismatch", "allFailureReasons": [{"reason": "ScanDobMismatch", "description": "Scan DOB does not match DOB on account"}, {"reason": "ScanDobMismatch", "description": "Scan DOB does not match DOB on account"}]}]}, "total": 100}
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"documents": [{"_links": {"self": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc", "status": "reviewed", "type": "passport", "created": "2015-09-29T21:42:16.000Z", "documentVerificationStatus": "rejected", "failureReason": "ScanDobMismatch", "allFailureReasons": [{"reason": "ScanDobMismatch", "description": "Scan DOB does not match DOB on account"}, {"reason": "ScanDobMismatch", "description": "Scan DOB does not match DOB on account"}]}]}, "total": 2}
         "403":
           application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
         "404":
@@ -1738,7 +1742,7 @@ examples:
         path:
           id: "<id>"
       requestBody:
-        multipart/form-data: {}
+        multipart/form-data: {"documentType": "license", "file": "x-file: example.file"}
       responses:
         "400":
           application/vnd.dwolla.v1.hal+json: {"code": "DuplicateResource", "message": "Bank already exists: id=df8392e5-4c06-42ed-b247-c098ed6f5a11", "_links": {"about": {"href": "https://api.dwolla.com/funding-sources/df8392e5-4c06-42ed-b247-c098ed6f5a11", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "funding-source"}}}
@@ -2055,7 +2059,7 @@ examples:
           itemId: "<id>"
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: {"_links": {"self": {"href": "https://api.dwolla.com/mass-payment-items/c1c7d293-63ec-e511-80df-0aa34a9b2388"}, "mass-payment": {"href": "https://api.dwolla.com/mass-payments/eb467252-808c-4bc0-b86f-a5cd01454563"}, "destination": {"href": "https://api.dwolla.com/funding-sources/b442c936-1f87-465d-a4e2-a982164b26bd"}, "transfer": {"href": "https://api.dwolla.com/transfers/fa3999db-41ed-e511-80df-0aa34a9b2388"}}, "id": "2f845bc9-41ed-e511-80df-0aa34a9b2388", "status": "success", "amount": {"value": "1", "currency": "USD"}, "metadata": {"item1": "item1"}, "processingChannel": {"destination": "real-time-payments"}}
+          application/vnd.dwolla.v1.hal+json: {"_links": {"self": {"href": "https://api.dwolla.com/mass-payment-items/c1c7d293-63ec-e511-80df-0aa34a9b2388"}, "mass-payment": {"href": "https://api.dwolla.com/mass-payments/eb467252-808c-4bc0-b86f-a5cd01454563"}, "destination": {"href": "https://api.dwolla.com/funding-sources/b442c936-1f87-465d-a4e2-a982164b26bd"}, "transfer": {"href": "https://api.dwolla.com/transfers/fa3999db-41ed-e511-80df-0aa34a9b2388"}}, "id": "2f845bc9-41ed-e511-80df-0aa34a9b2388", "status": "success", "amount": {"value": "1.00", "currency": "USD"}, "metadata": {"item1": "item1"}, "processingChannel": {"destination": "real-time-payments"}}
         "403":
           application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "Not authorized to retrieve mass payment item"}
         "404":
@@ -2080,7 +2084,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "7e042ffe-e25e-40d2-b86e-748b98845ecc", "created": "2022-05-15T22:19:09.635Z", "amount": {"value": "10", "currency": "USD"}}
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "7e042ffe-e25e-40d2-b86e-748b98845ecc", "created": "2022-05-15T22:19:09.635Z", "amount": {"value": "10.00", "currency": "USD"}}
         "403":
           application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
         "404":
@@ -2092,7 +2096,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "7e042ffe-e25e-40d2-b86e-748b98845ecc", "created": "2022-05-15T22:19:09.635Z", "amount": {"value": "10", "currency": "USD"}}
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "7e042ffe-e25e-40d2-b86e-748b98845ecc", "created": "2022-05-15T22:19:09.635Z", "amount": {"value": "10.00", "currency": "USD"}}
         "403":
           application/vnd.dwolla.v1.hal+json: {"code": "InvalidResourceState", "message": "Amount must be zero to remove label."}
         "404":
@@ -2161,7 +2165,7 @@ examples:
           ledgerEntryId: "<id>"
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "32d68709-62dd-43d6-a6df-562f4baec526", "amount": {"value": "-5", "currency": "USD"}, "created": "2019-05-16T01:54:58.062Z"}
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "32d68709-62dd-43d6-a6df-562f4baec526", "amount": {"value": "-5.00", "currency": "USD"}, "created": "2019-05-16T01:54:58.062Z"}
         "403":
           application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
         "404":
@@ -2294,7 +2298,7 @@ examples:
     speakeasy-default-list-exchange-partners:
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"exchange-partners": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}}, {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}}, {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}}]}, "total": 3}
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"exchange-partners": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "name": "Plaid", "status": "active", "created": "2022-07-23T00:18:21.419Z"}, {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "name": "Plaid", "status": "active", "created": "2022-07-23T00:18:21.419Z"}, {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "name": "Plaid", "status": "active", "created": "2022-07-23T00:18:21.419Z"}]}, "total": 3}
         "403":
           application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
   getExchangePartner:
@@ -2304,14 +2308,14 @@ examples:
           id: "292317ec-e252-47d8-93c3-2d128e037aa4"
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "name": "MX", "status": "unverified", "created": "2022-07-23T00:18:21.419Z"}
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "name": "Plaid", "status": "active", "created": "2022-07-23T00:18:21.419Z"}
         "404":
           application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
   listAccountExchanges:
     speakeasy-default-list-account-exchanges:
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"exchanges": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "status": "unverified", "created": "2022-07-23T00:18:21.419Z"}, {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "status": "unverified", "created": "2022-07-23T00:18:21.419Z"}]}, "total": 3}
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"exchanges": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "status": "deactivated", "created": "2022-07-23T00:18:21.419Z"}, {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "status": "deactivated", "created": "2022-07-23T00:18:21.419Z"}]}, "total": 3}
         "403":
           application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
         "404":
@@ -2338,7 +2342,7 @@ examples:
           id: "e5e9f2d3-a96c-4abd-a097-8ec7ae28aa8a"
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "status": "unverified", "created": "2022-07-23T00:18:21.419Z"}
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "status": "active", "created": "2022-07-23T00:18:21.419Z"}
         "401":
           application/vnd.dwolla.v1.hal+json: {"code": "InvalidScope", "message": "The scopes for retrieving an exchange resource is not enabled for this application. Reach out to Dwolla for more information."}
         "404":
@@ -2350,7 +2354,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"exchanges": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "status": "unverified", "created": "2022-07-23T00:18:21.419Z"}]}, "total": 3}
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"exchanges": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e", "status": "deactivated", "created": "2022-07-23T00:18:21.419Z"}]}, "total": 3}
         "404":
           application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "Customer ID not found. Check Customer ID."}
   createCustomerExchange:
@@ -2391,7 +2395,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: {"created": "2024-03-25T17:13:38.430Z", "_links": {"self": {"href": "https://api.dwolla.com/exchange-sessions/9b7fb629-0fad-44f4-8c5e-44c25a0bfa8e", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "exchange-sessions"}, "exchange-partner": {"href": "https://api.dwolla.com/exchange-partners/bca8d065-49a5-475b-a6b4-509bc8504d22", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "exchange-partner"}, "external-provider-session": {"href": "{\"description\":\"MX example\",\"value\":\"https://www.mx.com/connect/lAfkc7m897s3t1ks9mmwyj4ry7Zq0xql4grzAg1kz77x7c9jrwls1t22w6xt8d2lsxx9zpqv30js3wswfdwcrpAsqgbAfkqwpksp7c2chsx167xy90Asfc67dkj9y48y8p142xw3yp4x5l9t9gkk6m3yk5vwsvyq2qq7w9trszxwdl14lmkg7l6949bn5n41chdkbnxycy40n9b6fkbdwl6qt5wl107k1x8srvlkpz325p412x9tkyA5clf39109lsfrgz2lkgsvntqf7l0zzwb5hl658gdjbxwhb52krwybnbdAqfq69cdy54l05jkvfwyf01q89x48jtgtx290lzjdfcty1lwb8d648wns/eyJ1aV9tZXNzYWdlX3ZlcnNpb24iOjQsInVpX21lc3NhZ2Vfd2Vidmlld191cmxfc2NoZW1lIjoibXgiLCJtb2RlIjoidmVyaWZpY2F0aW9uIn0%3D\"}", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "text/html"}}, "externalProviderSessionToken": "link-production-b41e8ed3-0874-4c64-b07d-a77088979d5f"}
+          application/vnd.dwolla.v1.hal+json: {"created": "2024-03-25T17:13:38.430Z", "_links": {"self": {"href": "https://api.dwolla.com/exchange-sessions/9b7fb629-0fad-44f4-8c5e-44c25a0bfa8e", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "exchange-sessions"}, "exchange-partner": {"href": "https://api.dwolla.com/exchange-partners/bca8d065-49a5-475b-a6b4-509bc8504d22", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "exchange-partner"}, "external-provider-session": {"href": "https://www.mx.com/connect/lAfkc7m897s3t1ks9mmwyj4ry7Zq0xql4grzAg1kz77x7c9jrwls1t22w6xt8d2lsxx9zpqv30js3wswfdwcrpAsqgbAfkqwpksp7c2chsx167xy90Asfc67dkj9y48y8p142xw3yp4x5l9t9gkk6m3yk5vwsvyq2qq7w9trszxwdl14lmkg7l6949bn5n41chdkbnxycy40n9b6fkbdwl6qt5wl107k1x8srvlkpz325p412x9tkyA5clf39109lsfrgz2lkgsvntqf7l0zzwb5hl658gdjbxwhb52krwybnbdAqfq69cdy54l05jkvfwyf01q89x48jtgtx290lzjdfcty1lwb8d648wns/eyJ1aV9tZXNzYWdlX3ZlcnNpb24iOjQsInVpX21lc3NhZ2Vfd2Vidmlld191cmxfc2NoZW1lIjoibXgiLCJtb2RlIjoidmVyaWZpY2F0aW9uIn0%3D", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "text/html"}}, "externalProviderSessionToken": "link-production-b41e8ed3-0874-4c64-b07d-a77088979d5f"}
         "403":
           application/vnd.dwolla.v1.hal+json: {"code": "forbidden", "message": "Not authorized to retrieve exchange session."}
         "404":
@@ -2629,4 +2633,3 @@ examples:
           application/vnd.dwolla.v1.hal+json: {"code": "forbidden", "message": "Not authorized to simulate transfer processing."}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes Detected:\n* `dwolla.customers.fundingSources.create()`: \n  *  `request.createCustomerFundingSource.[createCustomerBankFundingSourceWithAccountNumbers].verified` **Changed**\n* `dwolla.fundingSources.balance.get()`:  `response` **Changed**\n"

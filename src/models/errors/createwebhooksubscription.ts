@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { smartUnion } from "../../types/union.js";
 import {
   InvalidUrlFormatError,
   InvalidUrlFormatError$inboundSchema,
@@ -32,7 +33,7 @@ export const CreateWebhookSubscriptionDwollaV1HalJSON$inboundSchema: z.ZodType<
   CreateWebhookSubscriptionDwollaV1HalJSON,
   z.ZodTypeDef,
   unknown
-> = z.union([
+> = smartUnion([
   InvalidUrlFormatError$inboundSchema,
   SecretTooLongError$inboundSchema,
   MaxSubscriptionsReachedError$inboundSchema,

@@ -11,6 +11,7 @@ export type CreateUnverifiedCustomer = {
   firstName: string;
   lastName: string;
   email: string;
+  type?: "unverified" | undefined;
   ipAddress?: string | undefined;
   phone?: string | undefined;
   correlationId?: string | undefined;
@@ -22,6 +23,7 @@ export type CreateUnverifiedCustomer$Outbound = {
   firstName: string;
   lastName: string;
   email: string;
+  type: "unverified";
   ipAddress?: string | undefined;
   phone?: string | undefined;
   correlationId?: string | undefined;
@@ -37,6 +39,7 @@ export const CreateUnverifiedCustomer$outboundSchema: z.ZodType<
   firstName: z.string(),
   lastName: z.string(),
   email: z.string(),
+  type: z.literal("unverified"),
   ipAddress: z.string().optional(),
   phone: z.string().optional(),
   correlationId: z.string().optional(),

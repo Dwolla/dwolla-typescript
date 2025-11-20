@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
+import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import { HalLink, HalLink$inboundSchema } from "./hallink.js";
@@ -13,9 +14,18 @@ export type BeneficialOwnershipLinks = {
   self?: HalLink | undefined;
 };
 
+export const BeneficialOwnershipStatus = {
+  Uncertified: "uncertified",
+  Certified: "certified",
+  Recertify: "recertify",
+} as const;
+export type BeneficialOwnershipStatus = ClosedEnum<
+  typeof BeneficialOwnershipStatus
+>;
+
 export type BeneficialOwnership = {
-  links?: BeneficialOwnershipLinks | undefined;
-  status?: string | undefined;
+  links: BeneficialOwnershipLinks;
+  status: BeneficialOwnershipStatus;
 };
 
 /** @internal */
@@ -38,13 +48,18 @@ export function beneficialOwnershipLinksFromJSON(
 }
 
 /** @internal */
+export const BeneficialOwnershipStatus$inboundSchema: z.ZodNativeEnum<
+  typeof BeneficialOwnershipStatus
+> = z.nativeEnum(BeneficialOwnershipStatus);
+
+/** @internal */
 export const BeneficialOwnership$inboundSchema: z.ZodType<
   BeneficialOwnership,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  _links: z.lazy(() => BeneficialOwnershipLinks$inboundSchema).optional(),
-  status: z.string().optional(),
+  _links: z.lazy(() => BeneficialOwnershipLinks$inboundSchema),
+  status: BeneficialOwnershipStatus$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "_links": "links",

@@ -22,27 +22,27 @@ export type LinksAnswer = {
 };
 
 export type GetKbaQuestionsLinks = {
-  answer?: LinksAnswer | undefined;
+  answer: LinksAnswer;
 };
 
 export type QuestionAnswer = {
-  id?: string | undefined;
-  text?: string | undefined;
+  id: string;
+  text: string;
 };
 
 export type Question = {
-  id?: string | undefined;
-  text?: string | undefined;
-  answers?: Array<QuestionAnswer> | undefined;
+  id: string;
+  text: string;
+  answers: Array<QuestionAnswer>;
 };
 
 /**
  * successful operation
  */
 export type GetKbaQuestionsResponse = {
-  links?: GetKbaQuestionsLinks | undefined;
-  id?: string | undefined;
-  questions?: Array<Question> | undefined;
+  links: GetKbaQuestionsLinks;
+  id: string;
+  questions: Array<Question>;
 };
 
 /** @internal */
@@ -98,7 +98,7 @@ export const GetKbaQuestionsLinks$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  answer: z.lazy(() => LinksAnswer$inboundSchema).optional(),
+  answer: z.lazy(() => LinksAnswer$inboundSchema),
 });
 
 export function getKbaQuestionsLinksFromJSON(
@@ -117,8 +117,8 @@ export const QuestionAnswer$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  text: z.string().optional(),
+  id: z.string(),
+  text: z.string(),
 });
 
 export function questionAnswerFromJSON(
@@ -137,9 +137,9 @@ export const Question$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  text: z.string().optional(),
-  answers: z.array(z.lazy(() => QuestionAnswer$inboundSchema)).optional(),
+  id: z.string(),
+  text: z.string(),
+  answers: z.array(z.lazy(() => QuestionAnswer$inboundSchema)),
 });
 
 export function questionFromJSON(
@@ -158,9 +158,9 @@ export const GetKbaQuestionsResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  _links: z.lazy(() => GetKbaQuestionsLinks$inboundSchema).optional(),
-  id: z.string().optional(),
-  questions: z.array(z.lazy(() => Question$inboundSchema)).optional(),
+  _links: z.lazy(() => GetKbaQuestionsLinks$inboundSchema),
+  id: z.string(),
+  questions: z.array(z.lazy(() => Question$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "_links": "links",

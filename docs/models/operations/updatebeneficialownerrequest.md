@@ -8,9 +8,9 @@ import { UpdateBeneficialOwnerRequest } from "dwolla/models/operations";
 let value: UpdateBeneficialOwnerRequest = {
   id: "<id>",
   requestBody: {
-    firstName: "Christiana",
-    lastName: "Stroman",
-    dateOfBirth: "2005-03-22",
+    firstName: "John",
+    lastName: "Doe",
+    dateOfBirth: "1980-01-31",
     address: {
       address1: "462 Main Street",
       address2: "Suite 123",
@@ -20,7 +20,7 @@ let value: UpdateBeneficialOwnerRequest = {
       country: "USA",
       stateProvinceRegion: "IA",
     },
-    ssn: "<value>",
+    ssn: "123456789",
   },
 };
 ```

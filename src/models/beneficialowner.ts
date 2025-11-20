@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
+import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import { HalLink, HalLink$inboundSchema } from "./hallink.js";
@@ -13,18 +14,30 @@ import {
   InternationalAddress$inboundSchema,
 } from "./internationaladdress.js";
 
+export const VerificationStatus = {
+  Verified: "verified",
+  Document: "document",
+  Incomplete: "incomplete",
+} as const;
+export type VerificationStatus = ClosedEnum<typeof VerificationStatus>;
+
 /**
  * Request body model for a Beneficial Owner
  */
 export type BeneficialOwner = {
-  links?: { [k: string]: HalLink } | undefined;
-  id?: string | undefined;
-  firstName?: string | undefined;
-  lastName?: string | undefined;
-  address?: InternationalAddress | undefined;
-  verificationStatus?: string | undefined;
-  created?: Date | undefined;
+  links: { [k: string]: HalLink };
+  id: string;
+  firstName: string;
+  lastName: string;
+  address: InternationalAddress;
+  verificationStatus: VerificationStatus;
+  created: Date;
 };
+
+/** @internal */
+export const VerificationStatus$inboundSchema: z.ZodNativeEnum<
+  typeof VerificationStatus
+> = z.nativeEnum(VerificationStatus);
 
 /** @internal */
 export const BeneficialOwner$inboundSchema: z.ZodType<
@@ -32,14 +45,13 @@ export const BeneficialOwner$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  _links: z.record(HalLink$inboundSchema).optional(),
-  id: z.string().optional(),
-  firstName: z.string().optional(),
-  lastName: z.string().optional(),
-  address: InternationalAddress$inboundSchema.optional(),
-  verificationStatus: z.string().optional(),
-  created: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
+  _links: z.record(HalLink$inboundSchema),
+  id: z.string(),
+  firstName: z.string(),
+  lastName: z.string(),
+  address: InternationalAddress$inboundSchema,
+  verificationStatus: VerificationStatus$inboundSchema,
+  created: z.string().datetime({ offset: true }).transform(v => new Date(v)),
 }).transform((v) => {
   return remap$(v, {
     "_links": "links",

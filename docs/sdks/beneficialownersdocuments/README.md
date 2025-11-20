@@ -98,6 +98,7 @@ Uploads an identity verification document for a beneficial owner using multipart
 <!-- UsageSnippet language="typescript" operationID="createBeneficialOwnerDocument" method="post" path="/beneficial-owners/{id}/documents" -->
 ```typescript
 import { Dwolla } from "dwolla";
+import { openAsBlob } from "node:fs";
 
 const dwolla = new Dwolla({
   security: {
@@ -109,7 +110,10 @@ const dwolla = new Dwolla({
 async function run() {
   const result = await dwolla.beneficialOwners.documents.create({
     id: "<id>",
-    requestBody: {},
+    requestBody: {
+      documentType: "license",
+      file: await openAsBlob("example.file"),
+    },
   });
 
   console.log(result);
@@ -125,6 +129,7 @@ The standalone function version of this method:
 ```typescript
 import { DwollaCore } from "dwolla/core.js";
 import { beneficialOwnersDocumentsCreate } from "dwolla/funcs/beneficialOwnersDocumentsCreate.js";
+import { openAsBlob } from "node:fs";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -138,7 +143,10 @@ const dwolla = new DwollaCore({
 async function run() {
   const res = await beneficialOwnersDocumentsCreate(dwolla, {
     id: "<id>",
-    requestBody: {},
+    requestBody: {
+      documentType: "license",
+      file: await openAsBlob("example.file"),
+    },
   });
   if (res.ok) {
     const { value: result } = res;

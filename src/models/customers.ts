@@ -6,12 +6,13 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
+import { smartUnion } from "../types/union.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 import {
-  UnverifiedBusinessCustomer,
-  UnverifiedBusinessCustomer$inboundSchema,
-} from "./unverifiedbusinesscustomer.js";
+  ReceiveOnlyCustomer,
+  ReceiveOnlyCustomer$inboundSchema,
+} from "./receiveonlycustomer.js";
 import {
   UnverifiedCustomer,
   UnverifiedCustomer$inboundSchema,
@@ -30,20 +31,20 @@ import {
 } from "./verifiedsolepropcustomer.js";
 
 export type Customer =
-  | UnverifiedCustomer
-  | UnverifiedBusinessCustomer
-  | VerifiedPersonalCustomer
+  | VerifiedBusinessCustomer
   | VerifiedSolePropCustomer
-  | VerifiedBusinessCustomer;
+  | VerifiedPersonalCustomer
+  | UnverifiedCustomer
+  | ReceiveOnlyCustomer;
 
 export type CustomersEmbedded = {
   customers?:
     | Array<
-      | UnverifiedCustomer
-      | UnverifiedBusinessCustomer
-      | VerifiedPersonalCustomer
-      | VerifiedSolePropCustomer
       | VerifiedBusinessCustomer
+      | VerifiedSolePropCustomer
+      | VerifiedPersonalCustomer
+      | UnverifiedCustomer
+      | ReceiveOnlyCustomer
     >
     | undefined;
 };
@@ -58,12 +59,12 @@ export const Customer$inboundSchema: z.ZodType<
   Customer,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  UnverifiedCustomer$inboundSchema,
-  UnverifiedBusinessCustomer$inboundSchema,
-  VerifiedPersonalCustomer$inboundSchema,
-  VerifiedSolePropCustomer$inboundSchema,
+> = smartUnion([
   VerifiedBusinessCustomer$inboundSchema,
+  VerifiedSolePropCustomer$inboundSchema,
+  VerifiedPersonalCustomer$inboundSchema,
+  UnverifiedCustomer$inboundSchema,
+  ReceiveOnlyCustomer$inboundSchema,
 ]);
 
 export function customerFromJSON(
@@ -83,12 +84,12 @@ export const CustomersEmbedded$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   customers: z.array(
-    z.union([
-      UnverifiedCustomer$inboundSchema,
-      UnverifiedBusinessCustomer$inboundSchema,
-      VerifiedPersonalCustomer$inboundSchema,
-      VerifiedSolePropCustomer$inboundSchema,
+    smartUnion([
       VerifiedBusinessCustomer$inboundSchema,
+      VerifiedSolePropCustomer$inboundSchema,
+      VerifiedPersonalCustomer$inboundSchema,
+      UnverifiedCustomer$inboundSchema,
+      ReceiveOnlyCustomer$inboundSchema,
     ]),
   ).optional(),
 });

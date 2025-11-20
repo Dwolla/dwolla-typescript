@@ -11,13 +11,13 @@ import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 
 export type DocumentsEmbedded = {
-  documents?: Array<Document> | undefined;
+  documents: Array<Document>;
 };
 
 export type Documents = {
-  links?: { [k: string]: HalLink } | undefined;
-  embedded?: DocumentsEmbedded | undefined;
-  total?: number | undefined;
+  links: { [k: string]: HalLink };
+  embedded: DocumentsEmbedded;
+  total: number;
 };
 
 /** @internal */
@@ -26,7 +26,7 @@ export const DocumentsEmbedded$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  documents: z.array(Document$inboundSchema).optional(),
+  documents: z.array(Document$inboundSchema),
 });
 
 export function documentsEmbeddedFromJSON(
@@ -45,9 +45,9 @@ export const Documents$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  _links: z.record(HalLink$inboundSchema).optional(),
-  _embedded: z.lazy(() => DocumentsEmbedded$inboundSchema).optional(),
-  total: z.number().int().optional(),
+  _links: z.record(HalLink$inboundSchema),
+  _embedded: z.lazy(() => DocumentsEmbedded$inboundSchema),
+  total: z.number().int(),
 }).transform((v) => {
   return remap$(v, {
     "_links": "links",

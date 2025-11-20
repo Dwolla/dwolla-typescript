@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { smartUnion } from "../../types/union.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
 
@@ -306,7 +307,7 @@ export const GetFundingSourceBalanceResponse$inboundSchema: z.ZodType<
   GetFundingSourceBalanceResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
+> = smartUnion([
   z.lazy(() => DwollaBalanceResponse$inboundSchema),
   z.lazy(() => BankBalanceResponse$inboundSchema),
 ]);

@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { smartUnion } from "../../types/union.js";
 import {
   DuplicateFundingSourceError,
   DuplicateFundingSourceError$inboundSchema,
@@ -137,7 +138,7 @@ export const CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError$inboundSch
 /** @internal */
 export const CreateCustomerFundingSourceDwollaV1HalJSON$inboundSchema:
   z.ZodType<CreateCustomerFundingSourceDwollaV1HalJSON, z.ZodTypeDef, unknown> =
-    z.union([
+    smartUnion([
       InactiveExchangeError$inboundSchema,
       InvalidExchangeTokenErrorError$inboundSchema,
       DuplicateFundingSourceError$inboundSchema,

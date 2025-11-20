@@ -6,8 +6,19 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { blobLikeSchema } from "../../types/blobs.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+
+export const CreateBeneficialOwnerDocumentDocumentType = {
+  Passport: "passport",
+  License: "license",
+  IdCard: "idCard",
+  Other: "other",
+} as const;
+export type CreateBeneficialOwnerDocumentDocumentType = ClosedEnum<
+  typeof CreateBeneficialOwnerDocumentDocumentType
+>;
 
 export type CreateBeneficialOwnerDocumentFile = {
   fileName: string;
@@ -18,8 +29,8 @@ export type CreateBeneficialOwnerDocumentFile = {
  * Upload a document for a beneficial owner.
  */
 export type CreateBeneficialOwnerDocumentRequestBody = {
-  documentType?: string | undefined;
-  file?: CreateBeneficialOwnerDocumentFile | Blob | undefined;
+  documentType: CreateBeneficialOwnerDocumentDocumentType;
+  file: CreateBeneficialOwnerDocumentFile | Blob;
 };
 
 export type CreateBeneficialOwnerDocumentRequest = {
@@ -36,6 +47,11 @@ export type CreateBeneficialOwnerDocumentRequest = {
 export type CreateBeneficialOwnerDocumentResponse = {
   headers: { [k: string]: Array<string> };
 };
+
+/** @internal */
+export const CreateBeneficialOwnerDocumentDocumentType$outboundSchema:
+  z.ZodNativeEnum<typeof CreateBeneficialOwnerDocumentDocumentType> = z
+    .nativeEnum(CreateBeneficialOwnerDocumentDocumentType);
 
 /** @internal */
 export type CreateBeneficialOwnerDocumentFile$Outbound = {
@@ -70,8 +86,8 @@ export function createBeneficialOwnerDocumentFileToJSON(
 
 /** @internal */
 export type CreateBeneficialOwnerDocumentRequestBody$Outbound = {
-  documentType?: string | undefined;
-  file?: CreateBeneficialOwnerDocumentFile$Outbound | Blob | undefined;
+  documentType: string;
+  file: CreateBeneficialOwnerDocumentFile$Outbound | Blob;
 };
 
 /** @internal */
@@ -80,10 +96,10 @@ export const CreateBeneficialOwnerDocumentRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateBeneficialOwnerDocumentRequestBody
 > = z.object({
-  documentType: z.string().optional(),
+  documentType: CreateBeneficialOwnerDocumentDocumentType$outboundSchema,
   file: z.lazy(() => CreateBeneficialOwnerDocumentFile$outboundSchema).or(
     blobLikeSchema,
-  ).optional(),
+  ),
 });
 
 export function createBeneficialOwnerDocumentRequestBodyToJSON(

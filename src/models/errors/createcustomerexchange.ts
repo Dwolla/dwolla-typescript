@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { smartUnion } from "../../types/union.js";
 import { DwollaError } from "./dwollaerror.js";
 import {
   InvalidExchangeError,
@@ -123,7 +124,7 @@ export const UnauthorizedDwollaV1HalJSON$inboundSchema: z.ZodType<
   UnauthorizedDwollaV1HalJSON,
   z.ZodTypeDef,
   unknown
-> = z.union([
+> = smartUnion([
   z.lazy(() => CreateCustomerExchangeResponseBodyError1$inboundSchema),
   z.lazy(() => CreateCustomerExchangeResponseBodyError2$inboundSchema),
 ]);
@@ -144,7 +145,7 @@ export const CreateCustomerExchangeBadRequestDwollaV1HalJSON$inboundSchema:
     CreateCustomerExchangeBadRequestDwollaV1HalJSON,
     z.ZodTypeDef,
     unknown
-  > = z.union([
+  > = smartUnion([
     InvalidExchangeTokenError$inboundSchema,
     InvalidExchangeError$inboundSchema,
   ]);

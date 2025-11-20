@@ -8,13 +8,15 @@ import { ClosedEnum } from "../types/enums.js";
 /**
  * Type of funding source. Must be set to "virtual" for VAN creation.
  */
-export const Type = {
+export const CreateCustomerVirtualAccountFundingSourceType = {
   Virtual: "virtual",
 } as const;
 /**
  * Type of funding source. Must be set to "virtual" for VAN creation.
  */
-export type Type = ClosedEnum<typeof Type>;
+export type CreateCustomerVirtualAccountFundingSourceType = ClosedEnum<
+  typeof CreateCustomerVirtualAccountFundingSourceType
+>;
 
 /**
  * Type of bank account. Must be "checking" for Virtual Account Numbers.
@@ -39,7 +41,7 @@ export type CreateCustomerVirtualAccountFundingSource = {
   /**
    * Type of funding source. Must be set to "virtual" for VAN creation.
    */
-  type: Type;
+  type: CreateCustomerVirtualAccountFundingSourceType;
   /**
    * Type of bank account. Must be "checking" for Virtual Account Numbers.
    */
@@ -47,9 +49,9 @@ export type CreateCustomerVirtualAccountFundingSource = {
 };
 
 /** @internal */
-export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
-  Type,
-);
+export const CreateCustomerVirtualAccountFundingSourceType$outboundSchema:
+  z.ZodNativeEnum<typeof CreateCustomerVirtualAccountFundingSourceType> = z
+    .nativeEnum(CreateCustomerVirtualAccountFundingSourceType);
 
 /** @internal */
 export const CreateCustomerVirtualAccountFundingSourceBankAccountType$outboundSchema:
@@ -72,7 +74,7 @@ export const CreateCustomerVirtualAccountFundingSource$outboundSchema:
     CreateCustomerVirtualAccountFundingSource
   > = z.object({
     name: z.string(),
-    type: Type$outboundSchema,
+    type: CreateCustomerVirtualAccountFundingSourceType$outboundSchema,
     bankAccountType:
       CreateCustomerVirtualAccountFundingSourceBankAccountType$outboundSchema,
   });

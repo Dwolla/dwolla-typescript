@@ -5,32 +5,74 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
+import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 
+export const VerifiedSolePropCustomerType = {
+  Business: "business",
+} as const;
+export type VerifiedSolePropCustomerType = ClosedEnum<
+  typeof VerifiedSolePropCustomerType
+>;
+
+export const VerifiedSolePropCustomerStatus = {
+  Verified: "verified",
+  Suspended: "suspended",
+  Deactivated: "deactivated",
+  Document: "document",
+  Retry: "retry",
+} as const;
+export type VerifiedSolePropCustomerStatus = ClosedEnum<
+  typeof VerifiedSolePropCustomerStatus
+>;
+
+export const VerifiedSolePropCustomerBusinessType = {
+  SoleProprietorship: "soleProprietorship",
+} as const;
+export type VerifiedSolePropCustomerBusinessType = ClosedEnum<
+  typeof VerifiedSolePropCustomerBusinessType
+>;
+
 /**
- * Shared models between all Customer types
+ * Verified sole proprietorship customer - distinguished from VerifiedBusinessCustomer by businessType=soleProprietorship
  */
 export type VerifiedSolePropCustomer = {
-  links?: { [k: string]: HalLink } | undefined;
-  id?: string | undefined;
-  firstName?: string | undefined;
-  lastName?: string | undefined;
-  email?: string | undefined;
-  type?: string | undefined;
-  status?: string | undefined;
+  links: { [k: string]: HalLink };
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
   correlationId?: string | undefined;
-  created?: Date | undefined;
-  address1?: string | undefined;
+  created: Date;
+  type: VerifiedSolePropCustomerType;
+  status: VerifiedSolePropCustomerStatus;
+  address1: string;
   address2?: string | undefined;
-  city?: string | undefined;
-  state?: string | undefined;
-  postalCode?: string | undefined;
-  businessName?: string | undefined;
-  businessType?: string | undefined;
-  businessClassification?: string | undefined;
+  city: string;
+  state: string;
+  postalCode: string;
+  businessName: string;
+  businessType: VerifiedSolePropCustomerBusinessType;
+  businessClassification: string;
 };
+
+/** @internal */
+export const VerifiedSolePropCustomerType$inboundSchema: z.ZodNativeEnum<
+  typeof VerifiedSolePropCustomerType
+> = z.nativeEnum(VerifiedSolePropCustomerType);
+
+/** @internal */
+export const VerifiedSolePropCustomerStatus$inboundSchema: z.ZodNativeEnum<
+  typeof VerifiedSolePropCustomerStatus
+> = z.nativeEnum(VerifiedSolePropCustomerStatus);
+
+/** @internal */
+export const VerifiedSolePropCustomerBusinessType$inboundSchema:
+  z.ZodNativeEnum<typeof VerifiedSolePropCustomerBusinessType> = z.nativeEnum(
+    VerifiedSolePropCustomerBusinessType,
+  );
 
 /** @internal */
 export const VerifiedSolePropCustomer$inboundSchema: z.ZodType<
@@ -38,24 +80,23 @@ export const VerifiedSolePropCustomer$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  _links: z.record(HalLink$inboundSchema).optional(),
-  id: z.string().optional(),
-  firstName: z.string().optional(),
-  lastName: z.string().optional(),
-  email: z.string().optional(),
-  type: z.string().optional(),
-  status: z.string().optional(),
+  _links: z.record(HalLink$inboundSchema),
+  id: z.string(),
+  firstName: z.string(),
+  lastName: z.string(),
+  email: z.string(),
   correlationId: z.string().optional(),
-  created: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  address1: z.string().optional(),
+  created: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  type: VerifiedSolePropCustomerType$inboundSchema,
+  status: VerifiedSolePropCustomerStatus$inboundSchema,
+  address1: z.string(),
   address2: z.string().optional(),
-  city: z.string().optional(),
-  state: z.string().optional(),
-  postalCode: z.string().optional(),
-  businessName: z.string().optional(),
-  businessType: z.string().optional(),
-  businessClassification: z.string().optional(),
+  city: z.string(),
+  state: z.string(),
+  postalCode: z.string(),
+  businessName: z.string(),
+  businessType: VerifiedSolePropCustomerBusinessType$inboundSchema,
+  businessClassification: z.string(),
 }).transform((v) => {
   return remap$(v, {
     "_links": "links",

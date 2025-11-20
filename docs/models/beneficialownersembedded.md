@@ -8,14 +8,10 @@ import { BeneficialOwnersEmbedded } from "dwolla/models";
 let value: BeneficialOwnersEmbedded = {
   beneficialOwners: [
     {
-      links: {
-        "key": {
-          href: "https://api.dwolla.com",
-          type: "application/vnd.dwolla.v1.hal+json",
-          resourceType: "resource-type",
-        },
-      },
+      links: {},
       id: "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e",
+      firstName: "John",
+      lastName: "Doe",
       address: {
         address1: "462 Main Street",
         address2: "Suite 123",

@@ -6,25 +6,13 @@
 import { Exchanges } from "dwolla/models";
 
 let value: Exchanges = {
-  links: {
-    "key": {
-      href: "https://api.dwolla.com",
-      type: "application/vnd.dwolla.v1.hal+json",
-      resourceType: "resource-type",
-    },
-  },
+  links: {},
   embedded: {
     exchanges: [
       {
-        links: {
-          "key": {
-            href: "https://api.dwolla.com",
-            type: "application/vnd.dwolla.v1.hal+json",
-            resourceType: "resource-type",
-          },
-        },
+        links: {},
         id: "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e",
-        status: "unverified",
+        status: "active",
         created: new Date("2022-07-23T00:18:21.419Z"),
       },
     ],
@@ -37,6 +25,6 @@ let value: Exchanges = {
 
 | Field                                                      | Type                                                       | Required                                                   | Description                                                | Example                                                    |
 | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| `links`                                                    | Record<string, [models.HalLink](../models/hallink.md)>     | :heavy_minus_sign:                                         | N/A                                                        |                                                            |
-| `embedded`                                                 | [models.ExchangesEmbedded](../models/exchangesembedded.md) | :heavy_minus_sign:                                         | N/A                                                        |                                                            |
-| `total`                                                    | *number*                                                   | :heavy_minus_sign:                                         | N/A                                                        | 3                                                          |
+| `links`                                                    | Record<string, [models.HalLink](../models/hallink.md)>     | :heavy_check_mark:                                         | N/A                                                        |                                                            |
+| `embedded`                                                 | [models.ExchangesEmbedded](../models/exchangesembedded.md) | :heavy_check_mark:                                         | N/A                                                        |                                                            |
+| `total`                                                    | *number*                                                   | :heavy_check_mark:                                         | N/A                                                        | 3                                                          |

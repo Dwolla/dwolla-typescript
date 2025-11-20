@@ -1,6 +1,6 @@
 # CreateInternationalBeneficialOwner
 
-Create an International Beneficial Owner (identified by Passport)
+Create an International Beneficial Owner (identified by Passport). For non-US beneficial owners who don't have a US SSN. Requires passport information for identity verification.
 
 ## Example Usage
 
@@ -8,9 +8,9 @@ Create an International Beneficial Owner (identified by Passport)
 import { CreateInternationalBeneficialOwner } from "dwolla/models";
 
 let value: CreateInternationalBeneficialOwner = {
-  firstName: "Josie",
-  lastName: "Watsica",
-  dateOfBirth: "1988-10-24",
+  firstName: "Jane",
+  lastName: "Smith",
+  dateOfBirth: "1985-03-15",
   address: {
     address1: "462 Main Street",
     address2: "Suite 123",
@@ -22,17 +22,17 @@ let value: CreateInternationalBeneficialOwner = {
   },
   passport: {
     number: "<value>",
-    country: "Tonga",
+    country: "South Sudan",
   },
 };
 ```
 
 ## Fields
 
-| Field                                                            | Type                                                             | Required                                                         | Description                                                      |
-| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `firstName`                                                      | *string*                                                         | :heavy_check_mark:                                               | N/A                                                              |
-| `lastName`                                                       | *string*                                                         | :heavy_check_mark:                                               | N/A                                                              |
-| `dateOfBirth`                                                    | *string*                                                         | :heavy_check_mark:                                               | N/A                                                              |
-| `address`                                                        | [models.InternationalAddress](../models/internationaladdress.md) | :heavy_check_mark:                                               | N/A                                                              |
-| `passport`                                                       | [models.Passport](../models/passport.md)                         | :heavy_check_mark:                                               | N/A                                                              |
+| Field                                                            | Type                                                             | Required                                                         | Description                                                      | Example                                                          |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `firstName`                                                      | *string*                                                         | :heavy_check_mark:                                               | N/A                                                              | Jane                                                             |
+| `lastName`                                                       | *string*                                                         | :heavy_check_mark:                                               | N/A                                                              | Smith                                                            |
+| `dateOfBirth`                                                    | *string*                                                         | :heavy_check_mark:                                               | N/A                                                              | 1985-03-15                                                       |
+| `address`                                                        | [models.InternationalAddress](../models/internationaladdress.md) | :heavy_check_mark:                                               | N/A                                                              |                                                                  |
+| `passport`                                                       | [models.Passport](../models/passport.md)                         | :heavy_check_mark:                                               | N/A                                                              |                                                                  |

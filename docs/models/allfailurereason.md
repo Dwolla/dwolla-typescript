@@ -13,7 +13,7 @@ let value: AllFailureReason = {
 
 ## Fields
 
-| Field                                  | Type                                   | Required                               | Description                            | Example                                |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| `reason`                               | *string*                               | :heavy_minus_sign:                     | N/A                                    | ScanDobMismatch                        |
-| `description`                          | *string*                               | :heavy_minus_sign:                     | N/A                                    | Scan DOB does not match DOB on account |
+| Field                                            | Type                                             | Required                                         | Description                                      | Example                                          |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| `reason`                                         | *string*                                         | :heavy_check_mark:                               | Failure reason code                              | ScanDobMismatch                                  |
+| `description`                                    | *string*                                         | :heavy_check_mark:                               | Human-readable explanation of the failure reason | Scan DOB does not match DOB on account           |

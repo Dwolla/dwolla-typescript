@@ -29,7 +29,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.0.1-beta.12
+  version: 0.0.1-beta.13
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -72,7 +72,7 @@ typescript:
   responseFormat: flat
   sseFlatResponse: false
   templateVersion: v2
-  unionStrategy: left-to-right
+  unionStrategy: populated-fields
   usageSDKInitImports: []
   useIndexModules: true
   zodVersion: v3

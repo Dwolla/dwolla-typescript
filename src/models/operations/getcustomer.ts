@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { smartUnion } from "../../types/union.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
 
@@ -19,11 +20,10 @@ export type GetCustomerRequest = {
  * successful operation
  */
 export type GetCustomerResponse =
-  | models.UnverifiedCustomer
-  | models.UnverifiedBusinessCustomer
+  | models.VerifiedBusinessCustomer
   | models.VerifiedPersonalCustomer
-  | models.VerifiedSolePropCustomer
-  | models.VerifiedBusinessCustomer;
+  | models.UnverifiedCustomer
+  | models.ReceiveOnlyCustomer;
 
 /** @internal */
 export type GetCustomerRequest$Outbound = {
@@ -52,12 +52,11 @@ export const GetCustomerResponse$inboundSchema: z.ZodType<
   GetCustomerResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  models.UnverifiedCustomer$inboundSchema,
-  models.UnverifiedBusinessCustomer$inboundSchema,
-  models.VerifiedPersonalCustomer$inboundSchema,
-  models.VerifiedSolePropCustomer$inboundSchema,
+> = smartUnion([
   models.VerifiedBusinessCustomer$inboundSchema,
+  models.VerifiedPersonalCustomer$inboundSchema,
+  models.UnverifiedCustomer$inboundSchema,
+  models.ReceiveOnlyCustomer$inboundSchema,
 ]);
 
 export function getCustomerResponseFromJSON(
