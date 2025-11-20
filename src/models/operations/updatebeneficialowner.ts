@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { smartUnion } from "../../types/union.js";
 import * as models from "../index.js";
 
 /**
@@ -36,7 +37,7 @@ export const UpdateBeneficialOwnerRequestBody$outboundSchema: z.ZodType<
   UpdateBeneficialOwnerRequestBody$Outbound,
   z.ZodTypeDef,
   UpdateBeneficialOwnerRequestBody
-> = z.union([
+> = smartUnion([
   models.CreateUSBeneficialOwner$outboundSchema,
   models.CreateInternationalBeneficialOwner$outboundSchema,
 ]);
@@ -66,7 +67,7 @@ export const UpdateBeneficialOwnerRequest$outboundSchema: z.ZodType<
   UpdateBeneficialOwnerRequest
 > = z.object({
   id: z.string(),
-  requestBody: z.union([
+  requestBody: smartUnion([
     models.CreateUSBeneficialOwner$outboundSchema,
     models.CreateInternationalBeneficialOwner$outboundSchema,
   ]),

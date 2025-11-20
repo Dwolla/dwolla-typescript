@@ -1,6 +1,6 @@
 # CreateUSBeneficialOwner
 
-Create a US Beneficial Owner (identified by SSN)
+Create a US Beneficial Owner (identified by SSN). For US-based beneficial owners only. Use SSN for identity verification instead of passport.
 
 ## Example Usage
 
@@ -8,9 +8,9 @@ Create a US Beneficial Owner (identified by SSN)
 import { CreateUSBeneficialOwner } from "dwolla/models";
 
 let value: CreateUSBeneficialOwner = {
-  firstName: "Joe",
-  lastName: "Deckow",
-  dateOfBirth: "1991-04-28",
+  firstName: "John",
+  lastName: "Doe",
+  dateOfBirth: "1980-01-31",
   address: {
     address1: "462 Main Street",
     address2: "Suite 123",
@@ -20,16 +20,16 @@ let value: CreateUSBeneficialOwner = {
     country: "USA",
     stateProvinceRegion: "IA",
   },
-  ssn: "<value>",
+  ssn: "123456789",
 };
 ```
 
 ## Fields
 
-| Field                                                            | Type                                                             | Required                                                         | Description                                                      |
-| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `firstName`                                                      | *string*                                                         | :heavy_check_mark:                                               | N/A                                                              |
-| `lastName`                                                       | *string*                                                         | :heavy_check_mark:                                               | N/A                                                              |
-| `dateOfBirth`                                                    | *string*                                                         | :heavy_check_mark:                                               | N/A                                                              |
-| `address`                                                        | [models.InternationalAddress](../models/internationaladdress.md) | :heavy_check_mark:                                               | N/A                                                              |
-| `ssn`                                                            | *string*                                                         | :heavy_check_mark:                                               | N/A                                                              |
+| Field                                                            | Type                                                             | Required                                                         | Description                                                      | Example                                                          |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `firstName`                                                      | *string*                                                         | :heavy_check_mark:                                               | N/A                                                              | John                                                             |
+| `lastName`                                                       | *string*                                                         | :heavy_check_mark:                                               | N/A                                                              | Doe                                                              |
+| `dateOfBirth`                                                    | *string*                                                         | :heavy_check_mark:                                               | N/A                                                              | 1980-01-31                                                       |
+| `address`                                                        | [models.InternationalAddress](../models/internationaladdress.md) | :heavy_check_mark:                                               | N/A                                                              |                                                                  |
+| `ssn`                                                            | *string*                                                         | :heavy_check_mark:                                               | N/A                                                              | 123456789                                                        |

@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { smartUnion } from "../../types/union.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
 
@@ -38,7 +39,7 @@ export const CreateCustomerRequest$outboundSchema: z.ZodType<
   CreateCustomerRequest$Outbound,
   z.ZodTypeDef,
   CreateCustomerRequest
-> = z.union([
+> = smartUnion([
   models.CreateVerifiedSolePropCustomer$outboundSchema,
   models.CreateVerifiedBusinessCustomerWithController$outboundSchema,
   models

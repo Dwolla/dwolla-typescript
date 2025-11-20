@@ -11,8 +11,7 @@ let value: CreateCustomerExchangeSessionWithRedirectLinks = {
       "https://api.dwolla.com/exchange-partners/292317ec-e252-47d8-93c3-2d128e037aa4",
   },
   redirectUrl: {
-    href:
-      "{\"description\":\"Plaid Android example\",\"value\":\"com.example.app123\"}",
+    href: "https://example.com/app123",
   },
 };
 ```

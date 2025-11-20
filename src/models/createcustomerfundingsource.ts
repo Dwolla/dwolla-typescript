@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { smartUnion } from "../types/union.js";
 import {
   CreateCustomerBankFundingSourceWithAccountNumbers,
   CreateCustomerBankFundingSourceWithAccountNumbers$Outbound,
@@ -50,7 +51,7 @@ export const CreateCustomerFundingSource$outboundSchema: z.ZodType<
   CreateCustomerFundingSource$Outbound,
   z.ZodTypeDef,
   CreateCustomerFundingSource
-> = z.union([
+> = smartUnion([
   CreateCustomerBankFundingSourceWithAccountNumbers$outboundSchema,
   CreateCustomerBankFundingSourceWithPlaid$outboundSchema,
   CreateCustomerExchangeFundingSource$outboundSchema,

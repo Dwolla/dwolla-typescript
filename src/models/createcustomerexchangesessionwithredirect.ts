@@ -11,7 +11,11 @@ export type CreateCustomerExchangeSessionWithRedirectExchangePartner = {
 
 export type CreateCustomerExchangeSessionWithRedirectRedirectUrl = {
   /**
-   * Required for Plaid mobile sessions
+   * Required for Plaid mobile sessions.
+   *
+   * @remarks
+   * For Android: use app URI scheme (e.g., com.example.app123)
+   * For iOS: use HTTPS URL (e.g., https://example.com/app123)
    */
   href: string;
 };

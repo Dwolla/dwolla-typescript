@@ -29,7 +29,7 @@ let value: ListMassPaymentItemsEmbedded = {
       id: "2f845bc9-41ed-e511-80df-0aa34a9b2388",
       status: "success",
       amount: {
-        value: "1",
+        value: "1.00",
         currency: "USD",
       },
       metadata: {

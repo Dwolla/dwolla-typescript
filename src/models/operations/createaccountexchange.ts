@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { smartUnion } from "../../types/union.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
 
@@ -13,10 +14,8 @@ import * as models from "../index.js";
  * Parameters for creating an exchange
  */
 export type CreateAccountExchangeRequest =
-  | models.CreateFlinksSecureExchange
   | models.CreateFinicitySecureExchange
-  | models.CreateMXSecureExchange
-  | models.CreatePlaidSecureExchange;
+  | models.CreateTokenBasedExchange;
 
 /**
  * Created
@@ -30,21 +29,17 @@ export type CreateAccountExchangeResponse = {
 
 /** @internal */
 export type CreateAccountExchangeRequest$Outbound =
-  | models.CreateFlinksSecureExchange$Outbound
   | models.CreateFinicitySecureExchange$Outbound
-  | models.CreateMXSecureExchange$Outbound
-  | models.CreatePlaidSecureExchange$Outbound;
+  | models.CreateTokenBasedExchange$Outbound;
 
 /** @internal */
 export const CreateAccountExchangeRequest$outboundSchema: z.ZodType<
   CreateAccountExchangeRequest$Outbound,
   z.ZodTypeDef,
   CreateAccountExchangeRequest
-> = z.union([
-  models.CreateFlinksSecureExchange$outboundSchema,
+> = smartUnion([
   models.CreateFinicitySecureExchange$outboundSchema,
-  models.CreateMXSecureExchange$outboundSchema,
-  models.CreatePlaidSecureExchange$outboundSchema,
+  models.CreateTokenBasedExchange$outboundSchema,
 ]);
 
 export function createAccountExchangeRequestToJSON(

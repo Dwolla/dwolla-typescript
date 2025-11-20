@@ -22,8 +22,7 @@ const value: models.CreateReAuthExchangeSessionForWeb = {};
 const value: models.CreateReAuthExchangeSessionWithRedirect = {
   links: {
     redirectUrl: {
-      href:
-        "{\"description\":\"Plaid Android example\",\"value\":\"com.example.app123\"}",
+      href: "https://example.com/app123",
     },
   },
 };

@@ -5,17 +5,41 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
+import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 
+export const Name = {
+  Mx: "MX",
+  Plaid: "Plaid",
+  Flinks: "Flinks",
+  Finicity: "Finicity",
+} as const;
+export type Name = ClosedEnum<typeof Name>;
+
+export const ExchangePartnerStatus = {
+  Active: "active",
+} as const;
+export type ExchangePartnerStatus = ClosedEnum<typeof ExchangePartnerStatus>;
+
 export type ExchangePartner = {
-  links?: { [k: string]: HalLink } | undefined;
-  id?: string | undefined;
-  name?: string | undefined;
-  status?: string | undefined;
-  created?: Date | undefined;
+  links: { [k: string]: HalLink };
+  id: string;
+  name: Name;
+  status: ExchangePartnerStatus;
+  created: Date;
 };
+
+/** @internal */
+export const Name$inboundSchema: z.ZodNativeEnum<typeof Name> = z.nativeEnum(
+  Name,
+);
+
+/** @internal */
+export const ExchangePartnerStatus$inboundSchema: z.ZodNativeEnum<
+  typeof ExchangePartnerStatus
+> = z.nativeEnum(ExchangePartnerStatus);
 
 /** @internal */
 export const ExchangePartner$inboundSchema: z.ZodType<
@@ -23,12 +47,11 @@ export const ExchangePartner$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  _links: z.record(HalLink$inboundSchema).optional(),
-  id: z.string().optional(),
-  name: z.string().optional(),
-  status: z.string().optional(),
-  created: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
+  _links: z.record(HalLink$inboundSchema),
+  id: z.string(),
+  name: Name$inboundSchema,
+  status: ExchangePartnerStatus$inboundSchema,
+  created: z.string().datetime({ offset: true }).transform(v => new Date(v)),
 }).transform((v) => {
   return remap$(v, {
     "_links": "links",

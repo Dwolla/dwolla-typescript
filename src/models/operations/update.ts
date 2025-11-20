@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { smartUnion } from "../../types/union.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
 
@@ -24,11 +25,11 @@ export type UpdateRequest = {
  * successful operation
  */
 export type UpdateResponse =
-  | models.UnverifiedCustomer
-  | models.UnverifiedBusinessCustomer
-  | models.VerifiedPersonalCustomer
+  | models.VerifiedBusinessCustomer
   | models.VerifiedSolePropCustomer
-  | models.VerifiedBusinessCustomer;
+  | models.VerifiedPersonalCustomer
+  | models.UnverifiedCustomer
+  | models.ReceiveOnlyCustomer;
 
 /** @internal */
 export type UpdateRequest$Outbound = {
@@ -59,12 +60,12 @@ export const UpdateResponse$inboundSchema: z.ZodType<
   UpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  models.UnverifiedCustomer$inboundSchema,
-  models.UnverifiedBusinessCustomer$inboundSchema,
-  models.VerifiedPersonalCustomer$inboundSchema,
-  models.VerifiedSolePropCustomer$inboundSchema,
+> = smartUnion([
   models.VerifiedBusinessCustomer$inboundSchema,
+  models.VerifiedSolePropCustomer$inboundSchema,
+  models.VerifiedPersonalCustomer$inboundSchema,
+  models.UnverifiedCustomer$inboundSchema,
+  models.ReceiveOnlyCustomer$inboundSchema,
 ]);
 
 export function updateResponseFromJSON(

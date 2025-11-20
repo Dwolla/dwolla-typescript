@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
+import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import { HalLink, HalLink$inboundSchema } from "./hallink.js";
@@ -13,19 +14,90 @@ export type DocumentLinks = {
   self?: HalLink | undefined;
 };
 
+/**
+ * Current status of the document upload
+ */
+export const DocumentStatus = {
+  Pending: "pending",
+  Reviewed: "reviewed",
+} as const;
+/**
+ * Current status of the document upload
+ */
+export type DocumentStatus = ClosedEnum<typeof DocumentStatus>;
+
+/**
+ * Type of identity document uploaded
+ */
+export const DocumentType = {
+  Passport: "passport",
+  License: "license",
+  IdCard: "idCard",
+  Other: "other",
+} as const;
+/**
+ * Type of identity document uploaded
+ */
+export type DocumentType = ClosedEnum<typeof DocumentType>;
+
+/**
+ * Verification status of the document after review
+ */
+export const DocumentVerificationStatus = {
+  Pending: "pending",
+  Accepted: "accepted",
+  Rejected: "rejected",
+} as const;
+/**
+ * Verification status of the document after review
+ */
+export type DocumentVerificationStatus = ClosedEnum<
+  typeof DocumentVerificationStatus
+>;
+
 export type AllFailureReason = {
-  reason?: string | undefined;
-  description?: string | undefined;
+  /**
+   * Failure reason code
+   */
+  reason: string;
+  /**
+   * Human-readable explanation of the failure reason
+   */
+  description: string;
 };
 
+/**
+ * Identity verification document for a customer or beneficial owner
+ */
 export type Document = {
-  links?: DocumentLinks | undefined;
-  id?: string | undefined;
-  status?: string | undefined;
-  type?: string | undefined;
-  created?: Date | undefined;
-  documentVerificationStatus?: string | undefined;
+  links: DocumentLinks;
+  /**
+   * Unique identifier for the document
+   */
+  id: string;
+  /**
+   * Current status of the document upload
+   */
+  status: DocumentStatus;
+  /**
+   * Type of identity document uploaded
+   */
+  type: DocumentType;
+  /**
+   * ISO-8601 timestamp when the document was uploaded
+   */
+  created: Date;
+  /**
+   * Verification status of the document after review
+   */
+  documentVerificationStatus: DocumentVerificationStatus;
+  /**
+   * Primary reason why document verification failed (if rejected)
+   */
   failureReason?: string | undefined;
+  /**
+   * Complete list of all failure reasons if document verification was rejected
+   */
   allFailureReasons?: Array<AllFailureReason> | undefined;
 };
 
@@ -49,13 +121,27 @@ export function documentLinksFromJSON(
 }
 
 /** @internal */
+export const DocumentStatus$inboundSchema: z.ZodNativeEnum<
+  typeof DocumentStatus
+> = z.nativeEnum(DocumentStatus);
+
+/** @internal */
+export const DocumentType$inboundSchema: z.ZodNativeEnum<typeof DocumentType> =
+  z.nativeEnum(DocumentType);
+
+/** @internal */
+export const DocumentVerificationStatus$inboundSchema: z.ZodNativeEnum<
+  typeof DocumentVerificationStatus
+> = z.nativeEnum(DocumentVerificationStatus);
+
+/** @internal */
 export const AllFailureReason$inboundSchema: z.ZodType<
   AllFailureReason,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  reason: z.string().optional(),
-  description: z.string().optional(),
+  reason: z.string(),
+  description: z.string(),
 });
 
 export function allFailureReasonFromJSON(
@@ -74,13 +160,12 @@ export const Document$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  _links: z.lazy(() => DocumentLinks$inboundSchema).optional(),
-  id: z.string().optional(),
-  status: z.string().optional(),
-  type: z.string().optional(),
-  created: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  documentVerificationStatus: z.string().optional(),
+  _links: z.lazy(() => DocumentLinks$inboundSchema),
+  id: z.string(),
+  status: DocumentStatus$inboundSchema,
+  type: DocumentType$inboundSchema,
+  created: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  documentVerificationStatus: DocumentVerificationStatus$inboundSchema,
   failureReason: z.string().optional(),
   allFailureReasons: z.array(z.lazy(() => AllFailureReason$inboundSchema))
     .optional(),

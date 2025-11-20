@@ -11,12 +11,12 @@ let value: Finicity = {
   version: "1",
   receiptId: "cr_4N47ou7SlppuIxq0ZUtACh10vYcloY",
   receiptVersion: "1",
-  customerId: "5454874858510164000",
+  customerId: "5454874858510164117",
   partnerId: 2445583946651,
   products: [
     {
       product: "moneyTransferDetails",
-      accountId: "1015199035827334900",
+      accountId: "1015199035827334916",
       accessPeriod: {
         type: "timeframe",
         startTime: new RFCDate("2022-07-06"),
@@ -36,7 +36,7 @@ let value: Finicity = {
 | `version`                                                                                     | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           | 1                                                                                             |
 | `receiptId`                                                                                   | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           | cr_4N47ou7SlppuIxq0ZUtACh10vYcloY                                                             |
 | `receiptVersion`                                                                              | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           | 1                                                                                             |
-| `customerId`                                                                                  | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           | 5454874858510164000                                                                           |
+| `customerId`                                                                                  | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           | 5454874858510164117                                                                           |
 | `partnerId`                                                                                   | *number*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           | 2445583946651                                                                                 |
 | `products`                                                                                    | [models.Product](../models/product.md)[]                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |                                                                                               |
 | `timestamp`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_minus_sign:                                                                            | N/A                                                                                           | 2022-07-11T06:06:23Z                                                                          |

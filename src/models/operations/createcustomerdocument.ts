@@ -6,8 +6,19 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { blobLikeSchema } from "../../types/blobs.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+
+export const CreateCustomerDocumentDocumentType = {
+  Passport: "passport",
+  License: "license",
+  IdCard: "idCard",
+  Other: "other",
+} as const;
+export type CreateCustomerDocumentDocumentType = ClosedEnum<
+  typeof CreateCustomerDocumentDocumentType
+>;
 
 export type CreateCustomerDocumentFile = {
   fileName: string;
@@ -18,8 +29,8 @@ export type CreateCustomerDocumentFile = {
  * Upload a document for a customer.
  */
 export type CreateCustomerDocumentRequestBody = {
-  documentType?: string | undefined;
-  file?: CreateCustomerDocumentFile | Blob | undefined;
+  documentType: CreateCustomerDocumentDocumentType;
+  file: CreateCustomerDocumentFile | Blob;
 };
 
 export type CreateCustomerDocumentRequest = {
@@ -36,6 +47,11 @@ export type CreateCustomerDocumentRequest = {
 export type CreateCustomerDocumentResponse = {
   headers: { [k: string]: Array<string> };
 };
+
+/** @internal */
+export const CreateCustomerDocumentDocumentType$outboundSchema: z.ZodNativeEnum<
+  typeof CreateCustomerDocumentDocumentType
+> = z.nativeEnum(CreateCustomerDocumentDocumentType);
 
 /** @internal */
 export type CreateCustomerDocumentFile$Outbound = {
@@ -68,8 +84,8 @@ export function createCustomerDocumentFileToJSON(
 
 /** @internal */
 export type CreateCustomerDocumentRequestBody$Outbound = {
-  documentType?: string | undefined;
-  file?: CreateCustomerDocumentFile$Outbound | Blob | undefined;
+  documentType: string;
+  file: CreateCustomerDocumentFile$Outbound | Blob;
 };
 
 /** @internal */
@@ -78,10 +94,10 @@ export const CreateCustomerDocumentRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateCustomerDocumentRequestBody
 > = z.object({
-  documentType: z.string().optional(),
+  documentType: CreateCustomerDocumentDocumentType$outboundSchema,
   file: z.lazy(() => CreateCustomerDocumentFile$outboundSchema).or(
     blobLikeSchema,
-  ).optional(),
+  ),
 });
 
 export function createCustomerDocumentRequestBodyToJSON(

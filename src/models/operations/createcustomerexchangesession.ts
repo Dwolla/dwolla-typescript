@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { smartUnion } from "../../types/union.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
 
@@ -43,7 +44,7 @@ export const CreateCustomerExchangeSessionRequestBody$outboundSchema: z.ZodType<
   CreateCustomerExchangeSessionRequestBody$Outbound,
   z.ZodTypeDef,
   CreateCustomerExchangeSessionRequestBody
-> = z.union([
+> = smartUnion([
   models.CreateCustomerExchangeSessionWithRedirect$outboundSchema,
   models.CreateCustomerExchangeSessionForWeb$outboundSchema,
 ]);
@@ -74,7 +75,7 @@ export const CreateCustomerExchangeSessionRequest$outboundSchema: z.ZodType<
   CreateCustomerExchangeSessionRequest
 > = z.object({
   id: z.string(),
-  requestBody: z.union([
+  requestBody: smartUnion([
     models.CreateCustomerExchangeSessionWithRedirect$outboundSchema,
     models.CreateCustomerExchangeSessionForWeb$outboundSchema,
   ]),

@@ -18,4 +18,4 @@ let value: GetKbaQuestionsLinks = {
 
 | Field                                                            | Type                                                             | Required                                                         | Description                                                      |
 | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `answer`                                                         | [operations.LinksAnswer](../../models/operations/linksanswer.md) | :heavy_minus_sign:                                               | N/A                                                              |
+| `answer`                                                         | [operations.LinksAnswer](../../models/operations/linksanswer.md) | :heavy_check_mark:                                               | N/A                                                              |

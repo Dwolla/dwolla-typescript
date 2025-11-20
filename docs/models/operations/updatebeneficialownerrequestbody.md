@@ -9,9 +9,9 @@ Parameters for updating a beneficial owner
 
 ```typescript
 const value: models.CreateUSBeneficialOwner = {
-  firstName: "Joe",
-  lastName: "Deckow",
-  dateOfBirth: "1991-04-28",
+  firstName: "John",
+  lastName: "Doe",
+  dateOfBirth: "1980-01-31",
   address: {
     address1: "462 Main Street",
     address2: "Suite 123",
@@ -21,7 +21,7 @@ const value: models.CreateUSBeneficialOwner = {
     country: "USA",
     stateProvinceRegion: "IA",
   },
-  ssn: "<value>",
+  ssn: "123456789",
 };
 ```
 
@@ -29,9 +29,9 @@ const value: models.CreateUSBeneficialOwner = {
 
 ```typescript
 const value: models.CreateInternationalBeneficialOwner = {
-  firstName: "Josie",
-  lastName: "Watsica",
-  dateOfBirth: "1988-10-24",
+  firstName: "Jane",
+  lastName: "Smith",
+  dateOfBirth: "1985-03-15",
   address: {
     address1: "462 Main Street",
     address2: "Suite 123",

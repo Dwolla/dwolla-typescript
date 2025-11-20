@@ -5,24 +5,50 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
+import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 
+export const UnverifiedCustomerType = {
+  Unverified: "unverified",
+} as const;
+export type UnverifiedCustomerType = ClosedEnum<typeof UnverifiedCustomerType>;
+
+export const UnverifiedCustomerStatus = {
+  Unverified: "unverified",
+  Suspended: "suspended",
+  Deactivated: "deactivated",
+} as const;
+export type UnverifiedCustomerStatus = ClosedEnum<
+  typeof UnverifiedCustomerStatus
+>;
+
 /**
- * Shared models between all Customer types
+ * Unverified customer - basic customer type with no KYC verification
  */
 export type UnverifiedCustomer = {
-  links?: { [k: string]: HalLink } | undefined;
-  id?: string | undefined;
-  firstName?: string | undefined;
-  lastName?: string | undefined;
-  email?: string | undefined;
-  type?: string | undefined;
-  status?: string | undefined;
+  links: { [k: string]: HalLink };
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
   correlationId?: string | undefined;
-  created?: Date | undefined;
+  created: Date;
+  type: UnverifiedCustomerType;
+  status: UnverifiedCustomerStatus;
+  businessName?: string | undefined;
 };
+
+/** @internal */
+export const UnverifiedCustomerType$inboundSchema: z.ZodNativeEnum<
+  typeof UnverifiedCustomerType
+> = z.nativeEnum(UnverifiedCustomerType);
+
+/** @internal */
+export const UnverifiedCustomerStatus$inboundSchema: z.ZodNativeEnum<
+  typeof UnverifiedCustomerStatus
+> = z.nativeEnum(UnverifiedCustomerStatus);
 
 /** @internal */
 export const UnverifiedCustomer$inboundSchema: z.ZodType<
@@ -30,16 +56,16 @@ export const UnverifiedCustomer$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  _links: z.record(HalLink$inboundSchema).optional(),
-  id: z.string().optional(),
-  firstName: z.string().optional(),
-  lastName: z.string().optional(),
-  email: z.string().optional(),
-  type: z.string().optional(),
-  status: z.string().optional(),
+  _links: z.record(HalLink$inboundSchema),
+  id: z.string(),
+  firstName: z.string(),
+  lastName: z.string(),
+  email: z.string(),
   correlationId: z.string().optional(),
-  created: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
+  created: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  type: UnverifiedCustomerType$inboundSchema,
+  status: UnverifiedCustomerStatus$inboundSchema,
+  businessName: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "_links": "links",

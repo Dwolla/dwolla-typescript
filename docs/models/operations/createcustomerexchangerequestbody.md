@@ -18,12 +18,12 @@ const value: models.CreateFinicitySecureExchange = {
     version: "1",
     receiptId: "cr_4N47ou7SlppuIxq0ZUtACh10vYcloY",
     receiptVersion: "1",
-    customerId: "5454874858510164000",
+    customerId: "5454874858510164117",
     partnerId: 2445583946651,
     products: [
       {
         product: "moneyTransferDetails",
-        accountId: "1015199035827334900",
+        accountId: "1015199035827334916",
         accessPeriod: {
           type: "timeframe",
           startTime: new RFCDate("2022-07-06"),
@@ -36,17 +36,17 @@ const value: models.CreateFinicitySecureExchange = {
 };
 ```
 
-### `models.CreateMXSecureExchange`
+### `models.CreateTokenBasedExchange`
 
 ```typescript
-const value: models.CreateMXSecureExchange = {
+const value: models.CreateTokenBasedExchange = {
   links: {
     exchangePartner: {
       href:
         "https://api.dwolla.com/exchange-partners/292317ec-e252-47d8-93c3-2d128e037aa4",
     },
   },
-  token: "someMXProcessorToken",
+  token: "sandbox-token-abc123",
 };
 ```
 
@@ -64,35 +64,6 @@ const value: models.CreateMXOpenBankingExchange = {
     availableConnectionToken:
       "eyJhY2NvdW50SWQiOiJBQ1QtMjAxY2FkM2MtYzc2Yi00N2M1LWI3Y2QtMTkxY2FhNzdlZWM5IiwibWVtYmVySWQiOiJNQlItZGNjZWY0ZWMtOGM4MC00NTlmLTlhMGItMTc1ZTA0OTJmZWIzIn0=",
   },
-};
-```
-
-### `models.CreateFlinksSecureExchange`
-
-```typescript
-const value: models.CreateFlinksSecureExchange = {
-  links: {
-    exchangePartner: {
-      href:
-        "https://api.dwolla.com/exchange-partners/a0b22a57-68df-4450-b507-47c937e64e89",
-    },
-  },
-  token:
-    "MTExYTFhMWEtMTExMS0xYWExLTExMTEtMTFhMTExYTExMTFhOjIyMmIyYjFiLTIyMjItMmJiMi0yMjIyLTIyYjIyMmIyMjIyYg==",
-};
-```
-
-### `models.CreatePlaidSecureExchange`
-
-```typescript
-const value: models.CreatePlaidSecureExchange = {
-  links: {
-    exchangePartner: {
-      href:
-        "https://api.dwolla.com/exchange-partners/f53ffb32-c84f-496a-9d9d-acd100d396ef",
-    },
-  },
-  token: "somePlaidProcessorToken",
 };
 ```
 

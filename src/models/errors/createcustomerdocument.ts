@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { smartUnion } from "../../types/union.js";
 import {
   DuplicateResourceSchemaError,
   DuplicateResourceSchemaError$inboundSchema,
@@ -156,7 +157,7 @@ export const CreateCustomerDocumentForbiddenDwollaV1HalJSON$inboundSchema:
     CreateCustomerDocumentForbiddenDwollaV1HalJSON,
     z.ZodTypeDef,
     unknown
-  > = z.union([
+  > = smartUnion([
     InvalidResourceStateSchemaError$inboundSchema,
     NotAuthorizedSchemaError$inboundSchema,
   ]);
@@ -183,7 +184,7 @@ export const CreateCustomerDocumentBadRequestDwollaV1HalJSON$inboundSchema:
     CreateCustomerDocumentBadRequestDwollaV1HalJSON,
     z.ZodTypeDef,
     unknown
-  > = z.union([
+  > = smartUnion([
     MaximumNumberOfResourcesSchemaError$inboundSchema,
     InvalidFileTypeSchemaError$inboundSchema,
     DuplicateResourceSchemaError$inboundSchema,

@@ -1,11 +1,11 @@
-# CreateMXSecureExchangeExchangePartner
+# CreateTokenBasedExchangeExchangePartner
 
 ## Example Usage
 
 ```typescript
-import { CreateMXSecureExchangeExchangePartner } from "dwolla/models";
+import { CreateTokenBasedExchangeExchangePartner } from "dwolla/models";
 
-let value: CreateMXSecureExchangeExchangePartner = {
+let value: CreateTokenBasedExchangeExchangePartner = {
   href:
     "https://api.dwolla.com/exchange-partners/292317ec-e252-47d8-93c3-2d128e037aa4",
 };

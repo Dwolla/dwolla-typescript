@@ -26,7 +26,7 @@ let value: Labels = {
         id: "7e042ffe-e25e-40d2-b86e-748b98845ecc",
         created: new Date("2022-05-15T22:19:09.635Z"),
         amount: {
-          value: "10",
+          value: "10.00",
           currency: "USD",
         },
       },

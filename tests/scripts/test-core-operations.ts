@@ -144,115 +144,11 @@ function generateBusinessCustomer(): CreateVerifiedBusinessCustomerWithControlle
   };
 }
 
-// New customer type generators for path fragment testing
-function generateUnverifiedCustomer(): CreateUnverifiedCustomer {
+function generateBusinessCustomerInternational(): CreateVerifiedBusinessCustomerWithInternationalController {
   return {
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
-    email: `unverified+${Date.now()}+${faker.string.alphanumeric(4)}@example.com`,
-    ipAddress: faker.internet.ip(),
-    phone: '5555551234', // Use valid US phone format
-    correlationId: faker.string.uuid(),
-    businessName: faker.company.name(),
-  };
-}
-
-function generateReceiveOnlyUser(): CreateReceiveOnlyUser {
-  return {
-    firstName: faker.person.firstName(),
-    lastName: faker.person.lastName(),
-    email: `receiveonly+${Date.now()}+${faker.string.alphanumeric(4)}@example.com`,
-    type: 'receive-only',
-    ipAddress: faker.internet.ip(),
-    phone: '5555551234', // Use valid US phone format
-    correlationId: faker.string.uuid(),
-    businessName: faker.company.name(),
-  };
-}
-
-function generateVerifiedPersonalCustomer(): CreateVerifiedPersonalCustomer {
-  return {
-    firstName: faker.person.firstName(),
-    lastName: faker.person.lastName(),
-    email: `verified-personal+${Date.now()}+${faker.string.alphanumeric(4)}@example.com`,
-    type: 'personal',
-    address1: faker.location.streetAddress(),
-    city: faker.location.city(),
-    state: faker.location.state({ abbreviated: true }),
-    postalCode: faker.location.zipCode(),
-    dateOfBirth: '1990-01-01',
-    ssn: '1234',
-    ipAddress: faker.internet.ip(),
-    phone: '5555551234', // Use valid US phone format
-    correlationId: faker.string.uuid(),
-  };
-}
-
-function generateVerifiedSolePropCustomer(): CreateVerifiedSolePropCustomer {
-  return {
-    firstName: faker.person.firstName(),
-    lastName: faker.person.lastName(),
-    email: `verified-soleprop+${Date.now()}+${faker.string.alphanumeric(4)}@example.com`,
-    type: 'business',
-    businessType: 'soleProprietorship',
-    businessName: faker.company.name(),
-    businessClassification: '9ed38155-7d6f-11e3-83c3-5404a6144203',
-    address1: faker.location.streetAddress(),
-    city: faker.location.city(),
-    state: faker.location.state({ abbreviated: true }),
-    postalCode: faker.location.zipCode(),
-    dateOfBirth: '1975-01-01',
-    ssn: '1234',
-    ein: '12-3456789',
-    ipAddress: faker.internet.ip(),
-    phone: '5555551234', // Use valid US phone format
-    correlationId: faker.string.uuid(),
-    doingBusinessAs: faker.company.name(),
-    website: faker.internet.url(),
-  };
-}
-
-function generateVerifiedBusinessCustomer(): CreateVerifiedBusinessCustomerWithController {
-  return {
-    firstName: faker.person.firstName(),
-    lastName: faker.person.lastName(),
-    email: `verified-business+${Date.now()}+${faker.string.alphanumeric(4)}@example.com`,
-    type: 'business',
-    businessName: faker.company.name(),
-    businessType: 'llc',
-    businessClassification: '9ed38155-7d6f-11e3-83c3-5404a6144203',
-    ein: '12-3456789',
-    address1: faker.location.streetAddress(),
-    city: faker.location.city(),
-    state: faker.location.state({ abbreviated: true }),
-    postalCode: faker.location.zipCode(),
-    controller: {
-      firstName: faker.person.firstName(),
-      lastName: faker.person.lastName(),
-      title: 'CEO',
-      dateOfBirth: '1975-01-01',
-      ssn: '1234',
-      address: {
-        address1: faker.location.streetAddress(),
-        city: faker.location.city(),
-        stateProvinceRegion: faker.location.state({ abbreviated: true }),
-        postalCode: faker.location.zipCode(),
-        country: 'US',
-      },
-    },
-    ipAddress: faker.internet.ip(),
-    phone: '5555551234', // Use valid US phone format
-    correlationId: faker.string.uuid(),
-    doingBusinessAs: faker.company.name(),
-    website: faker.internet.url(),
-  };
-}
-
-function generateVerifiedBusinessInternationalCustomer(): CreateVerifiedBusinessCustomerWithInternationalController {
-  return {
-    firstName: faker.person.firstName(),
-    lastName: faker.person.lastName(),
-    email: `verified-business-intl+${Date.now()}+${faker.string.alphanumeric(4)}@example.com`,
+    email: `biz-intl+${Date.now()}+${faker.string.alphanumeric(4)}@example.com`,
     type: 'business',
     businessName: faker.company.name(),
     businessType: 'corporation',
@@ -266,12 +162,12 @@ function generateVerifiedBusinessInternationalCustomer(): CreateVerifiedBusiness
       firstName: faker.person.firstName(),
       lastName: faker.person.lastName(),
       title: 'CEO',
-      dateOfBirth: '1975-01-01',
+      dateOfBirth: '1980-01-01',
       address: {
         address1: faker.location.streetAddress(),
-        city: faker.location.city(),
-        stateProvinceRegion: 'ON', // Use proper Canadian province abbreviation
-        postalCode: 'K1A 0A9',
+        city: 'Toronto',
+        stateProvinceRegion: 'ON',
+        postalCode: 'M5H 2N2',
         country: 'CA',
       },
       passport: {
@@ -279,11 +175,44 @@ function generateVerifiedBusinessInternationalCustomer(): CreateVerifiedBusiness
         country: 'CA',
       },
     },
-    ipAddress: faker.internet.ip(),
-    phone: '5555551234', // Use valid US phone format
-    correlationId: faker.string.uuid(),
-    doingBusinessAs: faker.company.name(),
-    website: faker.internet.url(),
+  };
+}
+
+function generateSolePropCustomer(): CreateVerifiedSolePropCustomer {
+  return {
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    email: `soleprop+${Date.now()}+${faker.string.alphanumeric(4)}@example.com`,
+    type: 'business',
+    businessType: 'soleProprietorship',
+    businessName: faker.company.name(),
+    businessClassification: '9ed38155-7d6f-11e3-83c3-5404a6144203',
+    address1: faker.location.streetAddress(),
+    city: faker.location.city(),
+    state: faker.location.state({ abbreviated: true }),
+    postalCode: faker.location.zipCode(),
+    dateOfBirth: '1985-01-01',
+    ssn: '1234',
+    ein: '12-3456789',
+  };
+}
+
+function generateUnverifiedCustomer(): CreateUnverifiedCustomer {
+  return {
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    email: `unverified+${Date.now()}+${faker.string.alphanumeric(4)}@example.com`,
+    type: 'unverified',
+  };
+}
+
+function generateReceiveOnlyUser(): CreateReceiveOnlyUser {
+  return {
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    email: `receiveonly+${Date.now()}+${faker.string.alphanumeric(4)}@example.com`,
+    type: 'receive-only',
+    businessName: faker.company.name(),
   };
 }
 
@@ -523,10 +452,10 @@ async function runCoreTests(): Promise<void> {
 
     let personalCustomerId: string;
     try {
-      const personalCustomerData = generateVerifiedPersonalCustomer();
-      const personalResponse = await retry(() => dwolla.customers.createVerifiedPersonal(personalCustomerData));
+      const personalCustomerData = generatePersonalCustomer();
+      const personalResponse = await retry(() => dwolla.customers.create(personalCustomerData));
       personalCustomerId = extractIdFromLocation(personalResponse, 'personal customer');
-      trackApiCall('POST /customers#verified-personal');
+      trackApiCall('POST /customers');
       trackResource('Personal Customer', personalCustomerId);
       logRawResponse('Personal Customer Creation', personalResponse);
 
@@ -558,10 +487,10 @@ async function runCoreTests(): Promise<void> {
     try {
       log('Creating business customer...', 'info');
 
-      const businessCustomerData = generateVerifiedBusinessCustomer();
-      const businessResponse = await retry(() => dwolla.customers.createVerifiedBusiness(businessCustomerData));
+      const businessCustomerData = generateBusinessCustomer();
+      const businessResponse = await retry(() => dwolla.customers.create(businessCustomerData));
       businessCustomerId = extractIdFromLocation(businessResponse, 'business customer');
-      trackApiCall('POST /customers#verified-business');
+      trackApiCall('POST /customers');
       trackResource('Business Customer', businessCustomerId);
       logRawResponse('Business Customer Creation', businessResponse);
 
@@ -1039,19 +968,22 @@ async function runCoreTests(): Promise<void> {
       logRawResponse('Customer List - Failed', null, error);
     }
 
-    // Test 8: New Customer Creation Methods (Path Fragments)
-    logSection('Path Fragment Customer Creation Tests');
+    // Test 8: Additional Customer Type Creation
+    logSection('Additional Customer Type Creation');
     
     // Test 8a: Create Unverified Customer
     try {
       testStart = Date.now();
-      log('Testing unverified customer creation (path fragment)...', 'info');
+      log('Testing unverified customer creation...', 'info');
       testsRun++;
 
-      const unverifiedCustomerData = generateUnverifiedCustomer();
-      await retry(() => dwolla.customers.createUnverified(unverifiedCustomerData));
-      trackApiCall('POST /customers#unverified');
-      logTimed('Unverified customer created successfully (no type field required)', testStart, 'success');
+      const unverifiedData = generateUnverifiedCustomer();
+      const unverifiedResponse = await retry(() => dwolla.customers.create(unverifiedData));
+      const unverifiedCustomerId = extractIdFromLocation(unverifiedResponse, 'unverified customer');
+      trackApiCall('POST /customers (unverified)');
+      trackResource('Unverified Customer', unverifiedCustomerId);
+      logRawResponse('Unverified Customer Creation', unverifiedResponse);
+      logTimed(`Unverified customer created: ${unverifiedCustomerId}`, testStart, 'success');
       testsPassed++;
     } catch (error: any) {
       log(`Unverified customer creation failed: ${error.message}`, 'error');
@@ -1061,81 +993,58 @@ async function runCoreTests(): Promise<void> {
     // Test 8b: Create Receive-Only User
     try {
       testStart = Date.now();
-      log('Testing receive-only user creation (path fragment)...', 'info');
+      log('Testing receive-only user creation...', 'info');
       testsRun++;
 
-      const receiveOnlyUserData = generateReceiveOnlyUser();
-      await retry(() => dwolla.customers.createReceiveOnly(receiveOnlyUserData));
-      trackApiCall('POST /customers#receive-only');
-      logTimed('Receive-only user created successfully', testStart, 'success');
+      const receiveOnlyData = generateReceiveOnlyUser();
+      const receiveOnlyResponse = await retry(() => dwolla.customers.create(receiveOnlyData));
+      const receiveOnlyUserId = extractIdFromLocation(receiveOnlyResponse, 'receive-only user');
+      trackApiCall('POST /customers (receive-only)');
+      trackResource('Receive-Only User', receiveOnlyUserId);
+      logRawResponse('Receive-Only User Creation', receiveOnlyResponse);
+      logTimed(`Receive-only user created: ${receiveOnlyUserId}`, testStart, 'success');
       testsPassed++;
     } catch (error: any) {
       log(`Receive-only user creation failed: ${error.message}`, 'error');
       logRawResponse('Receive-Only User Creation - Failed', null, error);
     }
 
-    // Test 8c: Create Verified Personal Customer (New Method)
+    // Test 8c: Create Sole Proprietorship Customer
     try {
       testStart = Date.now();
-      log('Testing verified personal customer creation (path fragment)...', 'info');
+      log('Testing sole proprietorship customer creation...', 'info');
       testsRun++;
 
-      const verifiedPersonalCustomerData = generateVerifiedPersonalCustomer();
-      await retry(() => dwolla.customers.createVerifiedPersonal(verifiedPersonalCustomerData));
-      trackApiCall('POST /customers#verified-personal');
-      logTimed('Verified personal customer created successfully', testStart, 'success');
+      const solePropData = generateSolePropCustomer();
+      const solePropResponse = await retry(() => dwolla.customers.create(solePropData));
+      const solePropCustomerId = extractIdFromLocation(solePropResponse, 'sole proprietorship customer');
+      trackApiCall('POST /customers (sole proprietorship)');
+      trackResource('Sole Proprietorship Customer', solePropCustomerId);
+      logRawResponse('Sole Proprietorship Customer Creation', solePropResponse);
+      logTimed(`Sole proprietorship customer created: ${solePropCustomerId}`, testStart, 'success');
       testsPassed++;
     } catch (error: any) {
-      log(`Verified personal customer creation failed: ${error.message}`, 'error');
-      logRawResponse('Verified Personal Customer Creation - Failed', null, error);
+      log(`Sole proprietorship customer creation failed: ${error.message}`, 'error');
+      logRawResponse('Sole Proprietorship Customer Creation - Failed', null, error);
     }
 
-    // Test 8d: Create Verified Sole Proprietorship Customer
+    // Test 8d: Create Business Customer with International Controller
     try {
       testStart = Date.now();
-      log('Testing verified sole proprietorship customer creation (path fragment)...', 'info');
+      log('Testing business customer with international controller...', 'info');
       testsRun++;
 
-      const verifiedSolePropCustomerData = generateVerifiedSolePropCustomer();
-      await retry(() => dwolla.customers.createVerifiedSoleProp(verifiedSolePropCustomerData));
-      trackApiCall('POST /customers#verified-sole-prop');
-      logTimed('Verified sole proprietorship customer created successfully', testStart, 'success');
+      const businessIntlData = generateBusinessCustomerInternational();
+      const businessIntlResponse = await retry(() => dwolla.customers.create(businessIntlData));
+      const businessIntlCustomerId = extractIdFromLocation(businessIntlResponse, 'business customer (international)');
+      trackApiCall('POST /customers (business international)');
+      trackResource('Business Customer (International)', businessIntlCustomerId);
+      logRawResponse('Business Customer (International) Creation', businessIntlResponse);
+      logTimed(`Business customer with international controller created: ${businessIntlCustomerId}`, testStart, 'success');
       testsPassed++;
     } catch (error: any) {
-      log(`Verified sole proprietorship customer creation failed: ${error.message}`, 'error');
-      logRawResponse('Verified Sole Prop Customer Creation - Failed', null, error);
-    }
-
-    // Test 8e: Create Verified Business Customer (New Method)
-    try {
-      testStart = Date.now();
-      log('Testing verified business customer creation (path fragment)...', 'info');
-      testsRun++;
-
-      const verifiedBusinessCustomerData = generateVerifiedBusinessCustomer();
-      await retry(() => dwolla.customers.createVerifiedBusiness(verifiedBusinessCustomerData));
-      trackApiCall('POST /customers#verified-business');
-      logTimed('Verified business customer created successfully', testStart, 'success');
-      testsPassed++;
-    } catch (error: any) {
-      log(`Verified business customer creation failed: ${error.message}`, 'error');
-      logRawResponse('Verified Business Customer Creation - Failed', null, error);
-    }
-
-    // Test 8f: Create Verified Business Customer with International Controller
-    try {
-      testStart = Date.now();
-      log('Testing verified business customer with international controller creation (path fragment)...', 'info');
-      testsRun++;
-
-      const verifiedBusinessIntlCustomerData = generateVerifiedBusinessInternationalCustomer();
-      await retry(() => dwolla.customers.createVerifiedBusinessInternational(verifiedBusinessIntlCustomerData));
-      trackApiCall('POST /customers#verified-business-international');
-      logTimed('Verified business customer with international controller created successfully', testStart, 'success');
-      testsPassed++;
-    } catch (error: any) {
-      log(`Verified business customer with international controller creation failed: ${error.message}`, 'error');
-      logRawResponse('Verified Business International Customer Creation - Failed', null, error);
+      log(`Business customer with international controller creation failed: ${error.message}`, 'error');
+      logRawResponse('Business Customer (International) Creation - Failed', null, error);
     }
 
     // Test Summary
@@ -1223,28 +1132,28 @@ async function runCoreTests(): Promise<void> {
     }
 
     console.log('\n📊 Integration Test Breakdown:');
-    console.log('   Personal Customer Flow (Path Fragment):');
-    console.log('   • Personal Customer: createVerifiedPersonal() + Retrieval');
+    console.log('   Personal Customer Flow:');
+    console.log('   • Personal Customer: Creation + Retrieval');
     console.log('   • Personal Funding Source: Creation');
     console.log('   • Microdeposits: Initiate + Verify (bank account verification)');
     console.log('');
-    console.log('   Business Customer Flow (Path Fragment):');
-    console.log('   • Business Customer: createVerifiedBusiness() + Retrieval');
+    console.log('   Business Customer Flow:');
+    console.log('   • Business Customer: Creation + Retrieval');
     console.log('   • Business Funding Source: Creation');
     console.log('   • Beneficial Owners: Create + List + Status + Certification');
     console.log('');
     console.log('   Transfer flow:');
     console.log('   • Transfer: Send funds between personal and business funding sources');
     console.log('');
+    console.log('   Additional Customer Type Tests:');
+    console.log('   • Unverified Customer: Simple customer with minimal requirements');
+    console.log('   • Receive-Only User: Customer that can only receive funds');
+    console.log('   • Sole Proprietorship: Business customer without controller');
+    console.log('   • Business (International): Business with international controller');
+    console.log('');
     console.log('   Additional Tests:');
     console.log('   • List Operations: Customer listing (if supported)');
-    console.log('   • Path Fragment Customer Creation: All customer types using dedicated methods');
-    console.log('     - createUnverified(): Unverified customers (no type field required)');
-    console.log('     - createReceiveOnly(): Receive-only users');
-    console.log('     - createVerifiedPersonal(): Verified personal customers');
-    console.log('     - createVerifiedSoleProp(): Verified sole proprietorship customers');
-    console.log('     - createVerifiedBusiness(): Verified business customers (US controller)');
-    console.log('     - createVerifiedBusinessInternational(): Verified business (international controller)');
+    console.log('   • All customer types can be created');
     console.log('   • All operations use proper TypeScript types and error handling');
   } catch (error: any) {
     log(`❌ Critical test failure: ${error.message}`, 'error');

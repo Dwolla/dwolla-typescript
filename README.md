@@ -493,6 +493,7 @@ Certain SDK methods accept files as part of a multi-part request. It is possible
 
 ```typescript
 import { Dwolla } from "dwolla";
+import { openAsBlob } from "node:fs";
 
 const dwolla = new Dwolla({
   security: {
@@ -504,7 +505,10 @@ const dwolla = new Dwolla({
 async function run() {
   const result = await dwolla.customers.documents.create({
     id: "<id>",
-    requestBody: {},
+    requestBody: {
+      documentType: "license",
+      file: await openAsBlob("example.file"),
+    },
   });
 
   console.log(result);

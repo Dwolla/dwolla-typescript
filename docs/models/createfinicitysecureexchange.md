@@ -18,12 +18,12 @@ let value: CreateFinicitySecureExchange = {
     version: "1",
     receiptId: "cr_4N47ou7SlppuIxq0ZUtACh10vYcloY",
     receiptVersion: "1",
-    customerId: "5454874858510164000",
+    customerId: "5454874858510164117",
     partnerId: 2445583946651,
     products: [
       {
         product: "moneyTransferDetails",
-        accountId: "1015199035827334900",
+        accountId: "1015199035827334916",
         accessPeriod: {
           type: "timeframe",
           startTime: new RFCDate("2022-07-06"),
@@ -40,5 +40,5 @@ let value: CreateFinicitySecureExchange = {
 
 | Field                                                                                      | Type                                                                                       | Required                                                                                   | Description                                                                                |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `links`                                                                                    | [models.CreateFinicitySecureExchangeLinks](../models/createfinicitysecureexchangelinks.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |
-| `finicity`                                                                                 | [models.Finicity](../models/finicity.md)                                                   | :heavy_minus_sign:                                                                         | N/A                                                                                        |
+| `links`                                                                                    | [models.CreateFinicitySecureExchangeLinks](../models/createfinicitysecureexchangelinks.md) | :heavy_check_mark:                                                                         | N/A                                                                                        |
+| `finicity`                                                                                 | [models.Finicity](../models/finicity.md)                                                   | :heavy_check_mark:                                                                         | N/A                                                                                        |

@@ -38,7 +38,7 @@ let value: Documents = {
       },
     ],
   },
-  total: 100,
+  total: 2,
 };
 ```
 
@@ -46,6 +46,6 @@ let value: Documents = {
 
 | Field                                                      | Type                                                       | Required                                                   | Description                                                | Example                                                    |
 | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| `links`                                                    | Record<string, [models.HalLink](../models/hallink.md)>     | :heavy_minus_sign:                                         | N/A                                                        |                                                            |
-| `embedded`                                                 | [models.DocumentsEmbedded](../models/documentsembedded.md) | :heavy_minus_sign:                                         | N/A                                                        |                                                            |
-| `total`                                                    | *number*                                                   | :heavy_minus_sign:                                         | N/A                                                        | 100                                                        |
+| `links`                                                    | Record<string, [models.HalLink](../models/hallink.md)>     | :heavy_check_mark:                                         | N/A                                                        |                                                            |
+| `embedded`                                                 | [models.DocumentsEmbedded](../models/documentsembedded.md) | :heavy_check_mark:                                         | N/A                                                        |                                                            |
+| `total`                                                    | *number*                                                   | :heavy_check_mark:                                         | N/A                                                        | 2                                                          |

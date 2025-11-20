@@ -15,7 +15,7 @@ let value: LabelLedgerEntry = {
   },
   id: "32d68709-62dd-43d6-a6df-562f4baec526",
   amount: {
-    value: "-5",
+    value: "-5.00",
     currency: "USD",
   },
   created: new Date("2019-05-16T01:54:58.062Z"),

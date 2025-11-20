@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { smartUnion } from "../../types/union.js";
 import {
   BadRequestSchemaError,
   BadRequestSchemaError$inboundSchema,
@@ -78,7 +79,7 @@ export const CreateFundingSourceDwollaV1HalJSON$inboundSchema: z.ZodType<
   CreateFundingSourceDwollaV1HalJSON,
   z.ZodTypeDef,
   unknown
-> = z.union([
+> = smartUnion([
   BadRequestSchemaError$inboundSchema,
   DuplicateResourceSchemaError$inboundSchema,
 ]);

@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { smartUnion } from "../../types/union.js";
 import {
   AchAddendaEntriesNotEnabledForAccountError,
   AchAddendaEntriesNotEnabledForAccountError$inboundSchema,
@@ -364,7 +365,7 @@ export const InitiateTransferForbiddenDwollaV1HalJSON$inboundSchema: z.ZodType<
   InitiateTransferForbiddenDwollaV1HalJSON,
   z.ZodTypeDef,
   unknown
-> = z.union([
+> = smartUnion([
   InvalidAttemptToFacilitateFundsError$inboundSchema,
   InvalidAttemptToPayInFundsError$inboundSchema,
   InvalidAttemptToPayOutFundsError$inboundSchema,
@@ -392,7 +393,7 @@ export const InitiateTransferBadRequestDwollaV1HalJSON$inboundSchema: z.ZodType<
   InitiateTransferBadRequestDwollaV1HalJSON,
   z.ZodTypeDef,
   unknown
-> = z.union([
+> = smartUnion([
   SourceNotFoundError$inboundSchema,
   ReceiverNotFoundError$inboundSchema,
   InvalidSourceFundingSourceError$inboundSchema,

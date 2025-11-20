@@ -9,8 +9,8 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type VerifyKbaQuestionsAnswer = {
-  questionId?: string | undefined;
-  answerId?: string | undefined;
+  questionId: string;
+  answerId: string;
 };
 
 /**
@@ -51,8 +51,8 @@ export type VerifyKbaQuestionsResponse = {
 
 /** @internal */
 export type VerifyKbaQuestionsAnswer$Outbound = {
-  questionId?: string | undefined;
-  answerId?: string | undefined;
+  questionId: string;
+  answerId: string;
 };
 
 /** @internal */
@@ -61,8 +61,8 @@ export const VerifyKbaQuestionsAnswer$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   VerifyKbaQuestionsAnswer
 > = z.object({
-  questionId: z.string().optional(),
-  answerId: z.string().optional(),
+  questionId: z.string(),
+  answerId: z.string(),
 });
 
 export function verifyKbaQuestionsAnswerToJSON(

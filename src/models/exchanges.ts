@@ -11,13 +11,13 @@ import { Exchange, Exchange$inboundSchema } from "./exchange.js";
 import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 
 export type ExchangesEmbedded = {
-  exchanges?: Array<Exchange> | undefined;
+  exchanges: Array<Exchange>;
 };
 
 export type Exchanges = {
-  links?: { [k: string]: HalLink } | undefined;
-  embedded?: ExchangesEmbedded | undefined;
-  total?: number | undefined;
+  links: { [k: string]: HalLink };
+  embedded: ExchangesEmbedded;
+  total: number;
 };
 
 /** @internal */
@@ -26,7 +26,7 @@ export const ExchangesEmbedded$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  exchanges: z.array(Exchange$inboundSchema).optional(),
+  exchanges: z.array(Exchange$inboundSchema),
 });
 
 export function exchangesEmbeddedFromJSON(
@@ -45,9 +45,9 @@ export const Exchanges$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  _links: z.record(HalLink$inboundSchema).optional(),
-  _embedded: z.lazy(() => ExchangesEmbedded$inboundSchema).optional(),
-  total: z.number().int().optional(),
+  _links: z.record(HalLink$inboundSchema),
+  _embedded: z.lazy(() => ExchangesEmbedded$inboundSchema),
+  total: z.number().int(),
 }).transform((v) => {
   return remap$(v, {
     "_links": "links",

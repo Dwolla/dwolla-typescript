@@ -6,16 +6,15 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { smartUnion } from "../../types/union.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
 
 export type CreateCustomerExchangeRequestBody =
-  | models.CreateMXOpenBankingExchange
-  | models.CreateFlinksSecureExchange
-  | models.CreatePlaidOpenBankingExchange
   | models.CreateFinicitySecureExchange
-  | models.CreateMXSecureExchange
-  | models.CreatePlaidSecureExchange;
+  | models.CreateTokenBasedExchange
+  | models.CreateMXOpenBankingExchange
+  | models.CreatePlaidOpenBankingExchange;
 
 export type CreateCustomerExchangeRequest = {
   /**
@@ -23,12 +22,10 @@ export type CreateCustomerExchangeRequest = {
    */
   id: string;
   requestBody:
-    | models.CreateMXOpenBankingExchange
-    | models.CreateFlinksSecureExchange
-    | models.CreatePlaidOpenBankingExchange
     | models.CreateFinicitySecureExchange
-    | models.CreateMXSecureExchange
-    | models.CreatePlaidSecureExchange;
+    | models.CreateTokenBasedExchange
+    | models.CreateMXOpenBankingExchange
+    | models.CreatePlaidOpenBankingExchange;
 };
 
 export type CreateCustomerExchangeResponse = {
@@ -37,25 +34,21 @@ export type CreateCustomerExchangeResponse = {
 
 /** @internal */
 export type CreateCustomerExchangeRequestBody$Outbound =
-  | models.CreateMXOpenBankingExchange$Outbound
-  | models.CreateFlinksSecureExchange$Outbound
-  | models.CreatePlaidOpenBankingExchange$Outbound
   | models.CreateFinicitySecureExchange$Outbound
-  | models.CreateMXSecureExchange$Outbound
-  | models.CreatePlaidSecureExchange$Outbound;
+  | models.CreateTokenBasedExchange$Outbound
+  | models.CreateMXOpenBankingExchange$Outbound
+  | models.CreatePlaidOpenBankingExchange$Outbound;
 
 /** @internal */
 export const CreateCustomerExchangeRequestBody$outboundSchema: z.ZodType<
   CreateCustomerExchangeRequestBody$Outbound,
   z.ZodTypeDef,
   CreateCustomerExchangeRequestBody
-> = z.union([
-  models.CreateMXOpenBankingExchange$outboundSchema,
-  models.CreateFlinksSecureExchange$outboundSchema,
-  models.CreatePlaidOpenBankingExchange$outboundSchema,
+> = smartUnion([
   models.CreateFinicitySecureExchange$outboundSchema,
-  models.CreateMXSecureExchange$outboundSchema,
-  models.CreatePlaidSecureExchange$outboundSchema,
+  models.CreateTokenBasedExchange$outboundSchema,
+  models.CreateMXOpenBankingExchange$outboundSchema,
+  models.CreatePlaidOpenBankingExchange$outboundSchema,
 ]);
 
 export function createCustomerExchangeRequestBodyToJSON(
@@ -72,12 +65,10 @@ export function createCustomerExchangeRequestBodyToJSON(
 export type CreateCustomerExchangeRequest$Outbound = {
   id: string;
   RequestBody:
-    | models.CreateMXOpenBankingExchange$Outbound
-    | models.CreateFlinksSecureExchange$Outbound
-    | models.CreatePlaidOpenBankingExchange$Outbound
     | models.CreateFinicitySecureExchange$Outbound
-    | models.CreateMXSecureExchange$Outbound
-    | models.CreatePlaidSecureExchange$Outbound;
+    | models.CreateTokenBasedExchange$Outbound
+    | models.CreateMXOpenBankingExchange$Outbound
+    | models.CreatePlaidOpenBankingExchange$Outbound;
 };
 
 /** @internal */
@@ -87,13 +78,11 @@ export const CreateCustomerExchangeRequest$outboundSchema: z.ZodType<
   CreateCustomerExchangeRequest
 > = z.object({
   id: z.string(),
-  requestBody: z.union([
-    models.CreateMXOpenBankingExchange$outboundSchema,
-    models.CreateFlinksSecureExchange$outboundSchema,
-    models.CreatePlaidOpenBankingExchange$outboundSchema,
+  requestBody: smartUnion([
     models.CreateFinicitySecureExchange$outboundSchema,
-    models.CreateMXSecureExchange$outboundSchema,
-    models.CreatePlaidSecureExchange$outboundSchema,
+    models.CreateTokenBasedExchange$outboundSchema,
+    models.CreateMXOpenBankingExchange$outboundSchema,
+    models.CreatePlaidOpenBankingExchange$outboundSchema,
   ]),
 }).transform((v) => {
   return remap$(v, {

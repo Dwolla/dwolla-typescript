@@ -38,8 +38,8 @@ export type Finicity = {
 };
 
 export type CreateFinicitySecureExchange = {
-  links?: CreateFinicitySecureExchangeLinks | undefined;
-  finicity?: Finicity | undefined;
+  links: CreateFinicitySecureExchangeLinks;
+  finicity: Finicity;
 };
 
 /** @internal */
@@ -178,8 +178,8 @@ export function finicityToJSON(finicity: Finicity): string {
 
 /** @internal */
 export type CreateFinicitySecureExchange$Outbound = {
-  _links?: CreateFinicitySecureExchangeLinks$Outbound | undefined;
-  finicity?: Finicity$Outbound | undefined;
+  _links: CreateFinicitySecureExchangeLinks$Outbound;
+  finicity: Finicity$Outbound;
 };
 
 /** @internal */
@@ -188,9 +188,8 @@ export const CreateFinicitySecureExchange$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateFinicitySecureExchange
 > = z.object({
-  links: z.lazy(() => CreateFinicitySecureExchangeLinks$outboundSchema)
-    .optional(),
-  finicity: z.lazy(() => Finicity$outboundSchema).optional(),
+  links: z.lazy(() => CreateFinicitySecureExchangeLinks$outboundSchema),
+  finicity: z.lazy(() => Finicity$outboundSchema),
 }).transform((v) => {
   return remap$(v, {
     links: "_links",

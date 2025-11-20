@@ -7,8 +7,7 @@ import { CreateReAuthExchangeSessionWithRedirectLinks } from "dwolla/models";
 
 let value: CreateReAuthExchangeSessionWithRedirectLinks = {
   redirectUrl: {
-    href:
-      "{\"description\":\"Plaid Android example\",\"value\":\"com.example.app123\"}",
+    href: "https://example.com/app123",
   },
 };
 ```

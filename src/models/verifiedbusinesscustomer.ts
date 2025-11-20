@@ -5,9 +5,37 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
+import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import { HalLink, HalLink$inboundSchema } from "./hallink.js";
+
+export const VerifiedBusinessCustomerType = {
+  Business: "business",
+} as const;
+export type VerifiedBusinessCustomerType = ClosedEnum<
+  typeof VerifiedBusinessCustomerType
+>;
+
+export const VerifiedBusinessCustomerStatus = {
+  Verified: "verified",
+  Suspended: "suspended",
+  Deactivated: "deactivated",
+  Document: "document",
+  Retry: "retry",
+} as const;
+export type VerifiedBusinessCustomerStatus = ClosedEnum<
+  typeof VerifiedBusinessCustomerStatus
+>;
+
+export const VerifiedBusinessCustomerBusinessType = {
+  Llc: "llc",
+  Corporation: "corporation",
+  Partnership: "partnership",
+} as const;
+export type VerifiedBusinessCustomerBusinessType = ClosedEnum<
+  typeof VerifiedBusinessCustomerBusinessType
+>;
 
 export type VerifiedBusinessCustomerAddress = {
   address1?: string | undefined;
@@ -20,38 +48,54 @@ export type VerifiedBusinessCustomerAddress = {
 };
 
 export type VerifiedBusinessCustomerController = {
-  firstName?: string | undefined;
-  lastName?: string | undefined;
-  title?: string | undefined;
-  address?: VerifiedBusinessCustomerAddress | undefined;
+  firstName: string;
+  lastName: string;
+  title: string;
+  address: VerifiedBusinessCustomerAddress;
 };
 
 /**
- * Shared models between all Customer types
+ * Verified business customer (LLC, Corporation, Partnership) - distinguished from VerifiedSolePropCustomer by presence of a controller object
  */
 export type VerifiedBusinessCustomer = {
-  links?: { [k: string]: HalLink } | undefined;
-  id?: string | undefined;
-  firstName?: string | undefined;
-  lastName?: string | undefined;
-  email?: string | undefined;
-  type?: string | undefined;
-  status?: string | undefined;
+  links: { [k: string]: HalLink };
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
   correlationId?: string | undefined;
-  created?: Date | undefined;
-  address1?: string | undefined;
+  created: Date;
+  type: VerifiedBusinessCustomerType;
+  status: VerifiedBusinessCustomerStatus;
+  address1: string;
   address2?: string | undefined;
-  city?: string | undefined;
-  state?: string | undefined;
-  postalCode?: string | undefined;
+  city: string;
+  state: string;
+  postalCode: string;
   phone?: string | undefined;
   website?: string | undefined;
-  businessName?: string | undefined;
+  businessName: string;
   doingBusinessAs?: string | undefined;
-  businessType?: string | undefined;
-  businessClassification?: string | undefined;
-  controller?: VerifiedBusinessCustomerController | undefined;
+  businessType: VerifiedBusinessCustomerBusinessType;
+  businessClassification: string;
+  controller: VerifiedBusinessCustomerController;
 };
+
+/** @internal */
+export const VerifiedBusinessCustomerType$inboundSchema: z.ZodNativeEnum<
+  typeof VerifiedBusinessCustomerType
+> = z.nativeEnum(VerifiedBusinessCustomerType);
+
+/** @internal */
+export const VerifiedBusinessCustomerStatus$inboundSchema: z.ZodNativeEnum<
+  typeof VerifiedBusinessCustomerStatus
+> = z.nativeEnum(VerifiedBusinessCustomerStatus);
+
+/** @internal */
+export const VerifiedBusinessCustomerBusinessType$inboundSchema:
+  z.ZodNativeEnum<typeof VerifiedBusinessCustomerBusinessType> = z.nativeEnum(
+    VerifiedBusinessCustomerBusinessType,
+  );
 
 /** @internal */
 export const VerifiedBusinessCustomerAddress$inboundSchema: z.ZodType<
@@ -84,11 +128,10 @@ export const VerifiedBusinessCustomerController$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  firstName: z.string().optional(),
-  lastName: z.string().optional(),
-  title: z.string().optional(),
-  address: z.lazy(() => VerifiedBusinessCustomerAddress$inboundSchema)
-    .optional(),
+  firstName: z.string(),
+  lastName: z.string(),
+  title: z.string(),
+  address: z.lazy(() => VerifiedBusinessCustomerAddress$inboundSchema),
 });
 
 export function verifiedBusinessCustomerControllerFromJSON(
@@ -108,29 +151,27 @@ export const VerifiedBusinessCustomer$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  _links: z.record(HalLink$inboundSchema).optional(),
-  id: z.string().optional(),
-  firstName: z.string().optional(),
-  lastName: z.string().optional(),
-  email: z.string().optional(),
-  type: z.string().optional(),
-  status: z.string().optional(),
+  _links: z.record(HalLink$inboundSchema),
+  id: z.string(),
+  firstName: z.string(),
+  lastName: z.string(),
+  email: z.string(),
   correlationId: z.string().optional(),
-  created: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  address1: z.string().optional(),
+  created: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  type: VerifiedBusinessCustomerType$inboundSchema,
+  status: VerifiedBusinessCustomerStatus$inboundSchema,
+  address1: z.string(),
   address2: z.string().optional(),
-  city: z.string().optional(),
-  state: z.string().optional(),
-  postalCode: z.string().optional(),
+  city: z.string(),
+  state: z.string(),
+  postalCode: z.string(),
   phone: z.string().optional(),
   website: z.string().optional(),
-  businessName: z.string().optional(),
+  businessName: z.string(),
   doingBusinessAs: z.string().optional(),
-  businessType: z.string().optional(),
-  businessClassification: z.string().optional(),
-  controller: z.lazy(() => VerifiedBusinessCustomerController$inboundSchema)
-    .optional(),
+  businessType: VerifiedBusinessCustomerBusinessType$inboundSchema,
+  businessClassification: z.string(),
+  controller: z.lazy(() => VerifiedBusinessCustomerController$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "_links": "links",

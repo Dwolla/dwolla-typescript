@@ -15,7 +15,7 @@ import {
 } from "./passport.js";
 
 /**
- * Create an International Beneficial Owner (identified by Passport)
+ * Create an International Beneficial Owner (identified by Passport). For non-US beneficial owners who don't have a US SSN. Requires passport information for identity verification.
  */
 export type CreateInternationalBeneficialOwner = {
   firstName: string;

@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { smartUnion } from "../../types/union.js";
 import { DwollaError } from "./dwollaerror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
@@ -221,7 +222,7 @@ export const CreateCustomerExchangeSessionForbiddenDwollaV1HalJSON$inboundSchema
     CreateCustomerExchangeSessionForbiddenDwollaV1HalJSON,
     z.ZodTypeDef,
     unknown
-  > = z.union([
+  > = smartUnion([
     z.lazy(() => ResponseBodyForbiddenError1$inboundSchema),
     z.lazy(() => ResponseBodyForbiddenError2$inboundSchema),
   ]);
@@ -329,7 +330,7 @@ export const CreateCustomerExchangeSessionBadRequestDwollaV1HalJSON$inboundSchem
     CreateCustomerExchangeSessionBadRequestDwollaV1HalJSON,
     z.ZodTypeDef,
     unknown
-  > = z.union([
+  > = smartUnion([
     z.lazy(() => ResponseBodyBadRequestError1$inboundSchema),
     z.lazy(() => ResponseBodyBadRequestError2$inboundSchema),
     z.lazy(() => ResponseBodyBadRequestError3$inboundSchema),

@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { smartUnion } from "../../types/union.js";
 import {
   ForbiddenError,
   ForbiddenError$inboundSchema,
@@ -27,7 +28,7 @@ export const InitiateKbaForCustomerDwollaV1HalJSON$inboundSchema: z.ZodType<
   InitiateKbaForCustomerDwollaV1HalJSON,
   z.ZodTypeDef,
   unknown
-> = z.union([
+> = smartUnion([
   InvalidResourceStateSchemaError$inboundSchema,
   ForbiddenError$inboundSchema,
 ]);

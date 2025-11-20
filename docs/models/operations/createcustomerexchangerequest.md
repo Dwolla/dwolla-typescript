@@ -20,12 +20,12 @@ let value: CreateCustomerExchangeRequest = {
       version: "1",
       receiptId: "cr_4N47ou7SlppuIxq0ZUtACh10vYcloY",
       receiptVersion: "1",
-      customerId: "5454874858510164000",
+      customerId: "5454874858510164117",
       partnerId: 2445583946651,
       products: [
         {
           product: "moneyTransferDetails",
-          accountId: "1015199035827334900",
+          accountId: "1015199035827334916",
           accessPeriod: {
             type: "timeframe",
             startTime: new RFCDate("2022-07-06"),
