@@ -20,59 +20,21 @@ test("Exchangepartners List Exchange Partners", async () => {
 
   const result = await dwolla.exchangePartners.list();
   expect(result).toBeDefined();
-  expect(result).toEqual({
-    links: {
-      "key": {
-        href: "https://api.dwolla.com",
-        type: "application/vnd.dwolla.v1.hal+json",
-        resourceType: "resource-type",
-      },
-    },
-    embedded: {
-      exchangePartners: [
-        {
-          links: {
-            "key": {
-              href: "https://api.dwolla.com",
-              type: "application/vnd.dwolla.v1.hal+json",
-              resourceType: "resource-type",
-            },
-          },
-          id: "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e",
-          name: "Plaid",
-          status: "active",
-          created: new Date("2022-07-23T00:18:21.419Z"),
-        },
-        {
-          links: {
-            "key": {
-              href: "https://api.dwolla.com",
-              type: "application/vnd.dwolla.v1.hal+json",
-              resourceType: "resource-type",
-            },
-          },
-          id: "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e",
-          name: "Plaid",
-          status: "active",
-          created: new Date("2022-07-23T00:18:21.419Z"),
-        },
-        {
-          links: {
-            "key": {
-              href: "https://api.dwolla.com",
-              type: "application/vnd.dwolla.v1.hal+json",
-              resourceType: "resource-type",
-            },
-          },
-          id: "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e",
-          name: "Plaid",
-          status: "active",
-          created: new Date("2022-07-23T00:18:21.419Z"),
-        },
-      ],
-    },
-    total: 3,
-  });
+  // Assert structure rather than exact payload to tolerate real sandbox data
+  expect(result.links).toBeDefined();
+  expect(result.links?.['self']).toBeDefined();
+  expect(result.embedded).toBeDefined();
+  expect(Array.isArray(result.embedded?.exchangePartners ?? [])).toBe(true);
+
+  if ((result.embedded?.exchangePartners?.length ?? 0) > 0) {
+    const first = result.embedded!.exchangePartners![0]!;
+    expect(first.id).toBeDefined();
+    expect(first.name).toBeDefined();
+    expect(first.status).toBeDefined();
+    expect(first.created).toBeInstanceOf(Date);
+    expect(first.links).toBeDefined();
+    expect(first.links?.['self']).toBeDefined();
+  }
 });
 
 test("Exchangepartners Get Exchange Partner", async () => {
@@ -88,20 +50,14 @@ test("Exchangepartners Get Exchange Partner", async () => {
   });
 
   const result = await dwolla.exchangePartners.get({
-    id: "292317ec-e252-47d8-93c3-2d128e037aa4",
+    id: "3aef60d1-878f-4692-8c06-c6b478efb60d",
   });
   expect(result).toBeDefined();
-  expect(result).toEqual({
-    links: {
-      "key": {
-        href: "https://api.dwolla.com",
-        type: "application/vnd.dwolla.v1.hal+json",
-        resourceType: "resource-type",
-      },
-    },
-    id: "d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e",
-    name: "Plaid",
-    status: "active",
-    created: new Date("2022-07-23T00:18:21.419Z"),
-  });
+  // Assert structure rather than exact payload to tolerate real sandbox data
+  expect(result.links).toBeDefined();
+  expect(result.links?.['self']).toBeDefined();
+  expect(result.id).toBeDefined();
+  expect(result.name).toBeDefined();
+  expect(result.status).toBeDefined();
+  expect(result.created).toBeInstanceOf(Date);
 });

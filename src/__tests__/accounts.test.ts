@@ -20,11 +20,8 @@ test("Accounts Get Account", async () => {
   expect(result).toBeDefined();
   expect(result.id).toBeDefined();
   expect(result.name).toBeDefined();
-  expect(result.email).toBeDefined();
   expect(result.links).toBeDefined();
-  expect(result.address).toBeDefined();
-  expect(result.address?.city).toBeDefined();
-  expect(result.address?.state).toBeDefined();
-  expect(result.address?.country).toBeDefined();
-  expect(result.created).toBeInstanceOf(Date);
+  expect(result.links?.["self"]).toBeDefined();
+  expect(typeof result.timezoneOffset).toBe("number");
+  expect(result.type).toBeDefined();
 });

@@ -19,7 +19,7 @@ test("Exchanges Get Exchange", async () => {
   });
 
   const result = await dwolla.exchanges.get({
-    id: "e5e9f2d3-a96c-4abd-a097-8ec7ae28aa8a",
+    id: "45c5a507-887d-45c3-8abe-fe256ef379b4",
   });
   expect(result).toBeDefined();
   expect(result).toEqual({

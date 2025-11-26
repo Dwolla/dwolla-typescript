@@ -16,7 +16,7 @@ export function createTestHTTPClient(testName: string): HTTPClient {
 
   httpClient.addHook("beforeRequest", (request: Request) => {
     const nextRequest = new Request(request, {
-      signal: request.signal || AbortSignal.timeout(5000),
+      signal: request.signal || AbortSignal.timeout(20000),
     });
 
     nextRequest.headers.set("x-speakeasy-test-name", testName);

@@ -46,7 +46,7 @@ test("Events Get Event", async () => {
   });
 
   const result = await dwolla.events.get({
-    id: "<id>",
+    id: "18631832-9263-42b6-a4c0-11ac8d2e832b",
   });
 
   expect(result).toBeDefined();

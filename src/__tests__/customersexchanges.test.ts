@@ -19,7 +19,7 @@ test("Customers Exchanges List Customer Exchanges", async () => {
   });
 
   const result = await dwolla.customers.exchanges.list({
-    id: "<id>",
+    id: "b2bedef2-2c66-4c4e-982d-1adcaa732b97",
   });
   expect(result).toBeDefined();
   expect(result).toEqual({

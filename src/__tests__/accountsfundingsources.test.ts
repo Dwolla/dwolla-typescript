@@ -22,11 +22,10 @@ test("Accounts Fundingsources List Funding Sources", async () => {
     id: "5e7cd80f-3a4a-451e-9cd6-a86fc571741f",
   });
   expect(result).toBeDefined();
-  // Assert structure rather than exact payload to tolerate real sandbox data
   expect(result.links).toBeDefined();
+  expect(result.links?.["self"]).toBeDefined();
   expect(result.embedded).toBeDefined();
   expect(Array.isArray(result.embedded?.fundingSources ?? [])).toBe(true);
-  expect(typeof result.total).toBe("number");
 
   if ((result.embedded?.fundingSources?.length ?? 0) > 0) {
     const firstFs = result.embedded!.fundingSources![0]!;

@@ -49,7 +49,7 @@ test("Customers Get Customer", async () => {
   });
 
   const result = await dwolla.customers.get({
-    id: "b8f608df-cca2-406e-86cd-bdf1384f2bbb",
+    id: "86d3ca4b-8c3c-4ba9-88fc-3be8243daf9d",
   });
   expect(result).toBeDefined();
   // Assert structure rather than exact payload to tolerate real sandbox data
@@ -76,7 +76,7 @@ test("Customers Update", async () => {
   });
 
   const result = await dwolla.customers.update({
-    id: "b8f608df-cca2-406e-86cd-bdf1384f2bbb",
+    id: "86d3ca4b-8c3c-4ba9-88fc-3be8243daf9d",
     requestBody: {
       "address1": "99-99 33rd St",
       "businessClassification": "9ed3f670-7d6f-11e3-b1ce-5404a6144203",
@@ -122,7 +122,7 @@ test("Customers List Available Exchange Connections", async () => {
   });
 
   const result = await dwolla.customers.listAvailableConnections({
-    id: "<id>",
+    id: "86d3ca4b-8c3c-4ba9-88fc-3be8243daf9d",
   });
   expect(result).toBeDefined();
   // Assert structure rather than exact payload to tolerate real sandbox data
