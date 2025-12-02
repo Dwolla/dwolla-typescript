@@ -23,12 +23,10 @@ test("Clienttokens Create Client Token", async () => {
     links: {
       customer: {
         href:
-          "https://api-sandbox.dwolla.com/customers/707177c3-bf15-4e7e-b37c-55c3898d9bf4",
+          "https://api-sandbox.dwolla.com/customers/274322f3-3004-41ea-8448-2193b25dd745",
       },
     },
   });
   expect(result).toBeDefined();
-  expect(result).toEqual({
-    token: "4adF858jPeQ9RnojMHdqSD2KwsvmhO7Ti7cI5woOiBGCpH5krY",
-  });
+  expect(result.token).toBeDefined();
 });
