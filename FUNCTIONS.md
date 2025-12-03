@@ -24,15 +24,12 @@ import { tokensCreate } from "dwolla/funcs/tokensCreate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const dwolla = new DwollaCore({
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
-});
+const dwolla = new DwollaCore();
 
 async function run() {
   const res = await tokensCreate(dwolla, {
+    basicAuth: process.env["DWOLLA_BASIC_AUTH"] ?? "",
+  }, {
     grantType: "client_credentials",
   });
   if (res.ok) {

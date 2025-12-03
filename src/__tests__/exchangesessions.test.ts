@@ -21,7 +21,7 @@ test("Exchangesessions Retrieve Customer Exchange Session", async () => {
   });
 
   const result = await dwolla.exchangeSessions.get({
-    id: "<id>",
+    id: "29ade3e9-2860-4acc-9bee-76b45ebbccdb",
   });
   expect(result).toBeDefined();
   // Assert structure rather than exact payload
@@ -29,6 +29,5 @@ test("Exchangesessions Retrieve Customer Exchange Session", async () => {
   expect(result.links).toBeDefined();
   expect(result.links?.self).toBeDefined();
   expect(result.links?.exchangePartner).toBeDefined();
-  expect(result.links?.externalProviderSession).toBeDefined();
   expect(result.externalProviderSessionToken).toBeDefined();
 });

@@ -19,15 +19,12 @@ Generate an application access token using OAuth 2.0 client credentials flow for
 ```typescript
 import { Dwolla } from "dwolla";
 
-const dwolla = new Dwolla({
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
-});
+const dwolla = new Dwolla();
 
 async function run() {
   const result = await dwolla.tokens.create({
+    basicAuth: process.env["DWOLLA_BASIC_AUTH"] ?? "",
+  }, {
     grantType: "client_credentials",
   });
 
@@ -47,15 +44,12 @@ import { tokensCreate } from "dwolla/funcs/tokensCreate.js";
 
 // Use `DwollaCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const dwolla = new DwollaCore({
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
-});
+const dwolla = new DwollaCore();
 
 async function run() {
   const res = await tokensCreate(dwolla, {
+    basicAuth: process.env["DWOLLA_BASIC_AUTH"] ?? "",
+  }, {
     grantType: "client_credentials",
   });
   if (res.ok) {
@@ -74,6 +68,7 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                                                                                                      | [operations.CreateApplicationAccessTokenRequest](../../models/operations/createapplicationaccesstokenrequest.md)                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `security`                                                                                                                                                                     | [operations.CreateApplicationAccessTokenSecurity](../../models/operations/createapplicationaccesstokensecurity.md)                                                             | :heavy_check_mark:                                                                                                                                                             | The security requirements to use for the request.                                                                                                                              |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |

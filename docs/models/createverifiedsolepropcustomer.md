@@ -14,6 +14,7 @@ let value: CreateVerifiedSolePropCustomer = {
   ipAddress: "143.156.7.8",
   phone: "5555555555",
   correlationId: "fc451a7a-ae30-4404-aB95-e3553fcd733",
+  type: "business",
   address1: "99-99 33rd St",
   address2: "99-99 33rd St",
   city: "Some City",
@@ -26,6 +27,7 @@ let value: CreateVerifiedSolePropCustomer = {
   doingBusinessAs: "Jane's Electronics",
   ein: "00-0000000",
   website: "https://www.domain.com",
+  businessType: "soleProprietorship",
 };
 ```
 

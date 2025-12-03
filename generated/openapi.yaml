@@ -68,6 +68,8 @@ paths:
       operationId: createApplicationAccessToken
       x-speakeasy-group: tokens
       x-speakeasy-name-override: create
+      security:
+        - basicAuth: []
       x-codeSamples:
         - lang: bash
           source: |
@@ -144,10 +146,8 @@ paths:
                     example: gTm0p62yYXFiB1rOdhV0TsNOinC2V2P1CMaAtojkO9JEGbv3i5
                   token_type:
                     type: string
-                    enum:
-                      - bearer
-                    description: The type of token, always "bearer"
-                    example: bearer
+                    description: The type of token, always "Bearer"
+                    example: Bearer
                   expires_in:
                     type: integer
                     description: The lifetime of the access token, in seconds. Default is 3600.
@@ -4713,8 +4713,9 @@ paths:
                           format: date-time
                           example: '2016-02-22T20:46:38.777Z'
                   total:
-                    type: string
-                    example: '1'
+                    type: integer
+                    format: int32
+                    example: 1
         '404':
           description: 404 Not Found
           headers: {}
@@ -9427,7 +9428,7 @@ paths:
         '200':
           description: Client token created successfully
           content:
-            application/json:
+            application/vnd.dwolla.v1.hal+json:
               schema:
                 type: object
                 required:
@@ -9899,6 +9900,7 @@ components:
               - ach
               - real-time-payments
               - wire
+              - external
             example: ach
         bankName:
           type: string
@@ -10529,6 +10531,9 @@ components:
                   - $ref: '#/components/schemas/VerifiedPersonalCustomer'
                   - $ref: '#/components/schemas/VerifiedSolePropCustomer'
                   - $ref: '#/components/schemas/VerifiedBusinessCustomer'
+        total:
+          type: integer
+          example: 2
     ForbiddenError:
       title: ForbiddenError
       description: Error response schema for 403 Forbidden

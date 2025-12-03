@@ -11,5 +11,5 @@ let value: FundingSourceChannel = "ach";
 ## Values
 
 ```typescript
-"ach" | "real-time-payments" | "wire"
+"ach" | "real-time-payments" | "wire" | "external"
 ```

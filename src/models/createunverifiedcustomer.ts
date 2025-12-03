@@ -11,7 +11,7 @@ export type CreateUnverifiedCustomer = {
   firstName: string;
   lastName: string;
   email: string;
-  type?: "unverified" | undefined;
+  type: "unverified";
   ipAddress?: string | undefined;
   phone?: string | undefined;
   correlationId?: string | undefined;

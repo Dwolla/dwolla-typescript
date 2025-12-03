@@ -94,7 +94,7 @@ async function $do(
 
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
-    Accept: "application/json",
+    Accept: "application/vnd.dwolla.v1.hal+json",
   }));
 
   const securityInput = await extractSecurity(client._options.security);
@@ -158,7 +158,9 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, operations.CreateClientTokenResponse$inboundSchema),
+    M.json(200, operations.CreateClientTokenResponse$inboundSchema, {
+      ctype: "application/vnd.dwolla.v1.hal+json",
+    }),
     M.jsonErr(400, errors.BadRequestError$inboundSchema, {
       ctype: "application/vnd.dwolla.v1.hal+json",
     }),

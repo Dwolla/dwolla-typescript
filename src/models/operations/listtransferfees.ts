@@ -34,7 +34,7 @@ export type Transaction = {
  */
 export type ListTransferFeesResponse = {
   transactions?: Array<Transaction> | undefined;
-  total?: string | undefined;
+  total?: number | undefined;
 };
 
 /** @internal */
@@ -114,7 +114,7 @@ export const ListTransferFeesResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   transactions: z.array(z.lazy(() => Transaction$inboundSchema)).optional(),
-  total: z.string().optional(),
+  total: z.number().int().optional(),
 });
 
 export function listTransferFeesResponseFromJSON(

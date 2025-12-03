@@ -52,6 +52,7 @@ export type CustomersEmbedded = {
 export type Customers = {
   links?: { [k: string]: HalLink } | undefined;
   embedded?: CustomersEmbedded | undefined;
+  total?: number | undefined;
 };
 
 /** @internal */
@@ -112,6 +113,7 @@ export const Customers$inboundSchema: z.ZodType<
 > = z.object({
   _links: z.record(HalLink$inboundSchema).optional(),
   _embedded: z.lazy(() => CustomersEmbedded$inboundSchema).optional(),
+  total: z.number().int().optional(),
 }).transform((v) => {
   return remap$(v, {
     "_links": "links",

@@ -300,7 +300,9 @@ const dwolla = new Dwolla({
 async function run() {
   const result = await dwolla.transfers.cancel({
     id: "<id>",
-    requestBody: {},
+    requestBody: {
+      status: "cancelled",
+    },
   });
 
   console.log(result);
@@ -329,7 +331,9 @@ const dwolla = new DwollaCore({
 async function run() {
   const res = await transfersCancel(dwolla, {
     id: "<id>",
-    requestBody: {},
+    requestBody: {
+      status: "cancelled",
+    },
   });
   if (res.ok) {
     const { value: result } = res;

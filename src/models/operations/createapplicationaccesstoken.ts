@@ -9,6 +9,10 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type CreateApplicationAccessTokenSecurity = {
+  basicAuth: string;
+};
+
 /**
  * Must be set to "client_credentials"
  */
@@ -31,17 +35,6 @@ export type CreateApplicationAccessTokenRequest = {
 };
 
 /**
- * The type of token, always "bearer"
- */
-export const TokenType = {
-  Bearer: "bearer",
-} as const;
-/**
- * The type of token, always "bearer"
- */
-export type TokenType = ClosedEnum<typeof TokenType>;
-
-/**
  * successful operation
  */
 export type CreateApplicationAccessTokenResponse = {
@@ -50,14 +43,38 @@ export type CreateApplicationAccessTokenResponse = {
    */
   accessToken: string;
   /**
-   * The type of token, always "bearer"
+   * The type of token, always "Bearer"
    */
-  tokenType: TokenType;
+  tokenType: string;
   /**
    * The lifetime of the access token, in seconds. Default is 3600.
    */
   expiresIn: number;
 };
+
+/** @internal */
+export type CreateApplicationAccessTokenSecurity$Outbound = {
+  basicAuth: string;
+};
+
+/** @internal */
+export const CreateApplicationAccessTokenSecurity$outboundSchema: z.ZodType<
+  CreateApplicationAccessTokenSecurity$Outbound,
+  z.ZodTypeDef,
+  CreateApplicationAccessTokenSecurity
+> = z.object({
+  basicAuth: z.string(),
+});
+
+export function createApplicationAccessTokenSecurityToJSON(
+  createApplicationAccessTokenSecurity: CreateApplicationAccessTokenSecurity,
+): string {
+  return JSON.stringify(
+    CreateApplicationAccessTokenSecurity$outboundSchema.parse(
+      createApplicationAccessTokenSecurity,
+    ),
+  );
+}
 
 /** @internal */
 export const GrantType$outboundSchema: z.ZodNativeEnum<typeof GrantType> = z
@@ -92,17 +109,13 @@ export function createApplicationAccessTokenRequestToJSON(
 }
 
 /** @internal */
-export const TokenType$inboundSchema: z.ZodNativeEnum<typeof TokenType> = z
-  .nativeEnum(TokenType);
-
-/** @internal */
 export const CreateApplicationAccessTokenResponse$inboundSchema: z.ZodType<
   CreateApplicationAccessTokenResponse,
   z.ZodTypeDef,
   unknown
 > = z.object({
   access_token: z.string(),
-  token_type: TokenType$inboundSchema,
+  token_type: z.string(),
   expires_in: z.number().int(),
 }).transform((v) => {
   return remap$(v, {

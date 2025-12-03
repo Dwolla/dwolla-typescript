@@ -11,6 +11,7 @@ let value: CreateUnverifiedCustomer = {
   firstName: "Account",
   lastName: "Admin",
   email: "accountAdmin@email.com",
+  type: "unverified",
   ipAddress: "143.156.7.8",
   phone: "5555555555",
   correlationId: "fc451a7a-ae30-4404-aB95-e3553fcd733",

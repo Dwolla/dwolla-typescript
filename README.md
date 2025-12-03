@@ -90,15 +90,12 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ```typescript
 import { Dwolla } from "dwolla";
 
-const dwolla = new Dwolla({
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
-});
+const dwolla = new Dwolla();
 
 async function run() {
   const result = await dwolla.tokens.create({
+    basicAuth: process.env["DWOLLA_BASIC_AUTH"] ?? "",
+  }, {
     grantType: "client_credentials",
   });
 
@@ -133,7 +130,27 @@ const dwolla = new Dwolla({
 });
 
 async function run() {
+  const result = await dwolla.root.get();
+
+  console.log(result);
+}
+
+run();
+
+```
+
+### Per-Operation Security Schemes
+
+Some operations in this SDK require the security scheme to be specified at the request level. For example:
+```typescript
+import { Dwolla } from "dwolla";
+
+const dwolla = new Dwolla();
+
+async function run() {
   const result = await dwolla.tokens.create({
+    basicAuth: process.env["DWOLLA_BASIC_AUTH"] ?? "",
+  }, {
     grantType: "client_credentials",
   });
 
@@ -528,15 +545,12 @@ To change the default retry strategy for a single API call, simply provide a ret
 ```typescript
 import { Dwolla } from "dwolla";
 
-const dwolla = new Dwolla({
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
-});
+const dwolla = new Dwolla();
 
 async function run() {
   const result = await dwolla.tokens.create({
+    basicAuth: process.env["DWOLLA_BASIC_AUTH"] ?? "",
+  }, {
     grantType: "client_credentials",
   }, {
     retries: {
@@ -573,14 +587,12 @@ const dwolla = new Dwolla({
     },
     retryConnectionErrors: false,
   },
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
 });
 
 async function run() {
   const result = await dwolla.tokens.create({
+    basicAuth: process.env["DWOLLA_BASIC_AUTH"] ?? "",
+  }, {
     grantType: "client_credentials",
   });
 
@@ -611,16 +623,13 @@ run();
 import { Dwolla } from "dwolla";
 import * as errors from "dwolla/models/errors";
 
-const dwolla = new Dwolla({
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
-});
+const dwolla = new Dwolla();
 
 async function run() {
   try {
     const result = await dwolla.tokens.create({
+      basicAuth: process.env["DWOLLA_BASIC_AUTH"] ?? "",
+    }, {
       grantType: "client_credentials",
     });
 
@@ -860,14 +869,12 @@ import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   server: "prod",
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
 });
 
 async function run() {
   const result = await dwolla.tokens.create({
+    basicAuth: process.env["DWOLLA_BASIC_AUTH"] ?? "",
+  }, {
     grantType: "client_credentials",
   });
 
@@ -886,14 +893,12 @@ import { Dwolla } from "dwolla";
 
 const dwolla = new Dwolla({
   serverURL: "https://api.dwolla.com",
-  security: {
-    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
-    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
-  },
 });
 
 async function run() {
   const result = await dwolla.tokens.create({
+    basicAuth: process.env["DWOLLA_BASIC_AUTH"] ?? "",
+  }, {
     grantType: "client_credentials",
   });
 

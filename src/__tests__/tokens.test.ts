@@ -18,9 +18,16 @@ test("Tokens Create Application Access Token", async () => {
     },
   });
 
+  const clientId = process.env["DWOLLA_CLIENT_ID"] ?? "";
+  const clientSecret = process.env["DWOLLA_CLIENT_SECRET"] ?? "";
+  const dwollaBasicAuth = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
+
   const result = await dwolla.tokens.create({
+    basicAuth: "Basic" + dwollaBasicAuth,
+  }, {
     grantType: "client_credentials",
   });
+
   expect(result).toBeDefined();
   // Assert structure rather than exact payload
   expect(result.accessToken).toBeDefined();

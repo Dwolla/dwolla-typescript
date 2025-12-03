@@ -112,7 +112,7 @@ test("Customers List Available Exchange Connections", async () => {
   });
 
   const result = await dwolla.customers.listAvailableConnections({
-    id: "b2bedef2-2c66-4c4e-982d-1adcaa732b97",
+    id: "43a07339-253d-4fd5-9291-db72a081698b",
   });
   expect(result).toBeDefined();
   // Assert structure rather than exact payload to tolerate real sandbox data

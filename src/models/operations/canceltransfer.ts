@@ -12,7 +12,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  * Parameters to cancel a transfer
  */
 export type CancelTransferRequestBody = {
-  status?: "cancelled" | undefined;
+  status: "cancelled";
 };
 
 export type CancelTransferRequest = {
