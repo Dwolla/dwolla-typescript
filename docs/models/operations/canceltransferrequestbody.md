@@ -16,4 +16,4 @@ let value: CancelTransferRequestBody = {
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `status`           | *string*           | :heavy_check_mark: | N/A                |
+| `status`           | *"cancelled"*      | :heavy_check_mark: | N/A                |

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { smartUnion } from "../../types/union.js";
+import { smartUnion } from "../../types/smartUnion.js";
 import * as models from "../index.js";
 
 /**

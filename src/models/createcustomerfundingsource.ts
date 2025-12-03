@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { smartUnion } from "../types/union.js";
+import { smartUnion } from "../types/smartUnion.js";
 import {
   CreateCustomerBankFundingSourceWithAccountNumbers,
   CreateCustomerBankFundingSourceWithAccountNumbers$Outbound,

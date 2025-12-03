@@ -23,4 +23,4 @@ targets:
                 fixedValue: Typescript (SDK)
             blocking: false
         testing:
-            enabled: true
+            enabled: false

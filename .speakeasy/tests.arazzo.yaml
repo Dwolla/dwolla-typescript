@@ -1,11 +1,11 @@
 arazzo: 1.0.1
 info:
-  title: Test Suite
-  summary: Created from /Users/sthapa/Documents/Projects/DevRel/speakeasy-sdk-gen/dwolla-typescript/.speakeasy/temp/overlay_gIaoiTbFdA.yaml
+  title: Dwolla TypeScript SDK Test Suite
+  summary: Integration tests for the Dwolla TypeScript SDK
   version: 0.0.1
 sourceDescriptions:
-  - name: /Users/sthapa/Documents/Projects/DevRel/speakeasy-sdk-gen/dwolla-typescript/.speakeasy/temp/overlay_gIaoiTbFdA.yaml
-    url: https://TBD.com
+  - name: dwolla-openapi
+    url: https://raw.githubusercontent.com/Dwolla/dwolla-openapi/main/openapi.yml
     type: openapi
 x-speakeasy-test-server:
   baseUrl: https://api-sandbox.dwolla.com
