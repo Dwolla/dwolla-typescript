@@ -14,7 +14,7 @@ export type CreateVerifiedSolePropCustomer = {
   ipAddress?: string | undefined;
   phone?: string | undefined;
   correlationId?: string | undefined;
-  type?: "business" | undefined;
+  type: "business";
   address1: string;
   address2?: string | undefined;
   city: string;
@@ -27,7 +27,7 @@ export type CreateVerifiedSolePropCustomer = {
   doingBusinessAs?: string | undefined;
   ein?: string | undefined;
   website?: string | undefined;
-  businessType?: "soleProprietorship" | undefined;
+  businessType: "soleProprietorship";
 };
 
 /** @internal */

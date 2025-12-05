@@ -39,12 +39,14 @@ let value: Customers = {
       },
     ],
   },
+  total: 2,
 };
 ```
 
 ## Fields
 
-| Field                                                      | Type                                                       | Required                                                   | Description                                                |
-| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| `links`                                                    | Record<string, [models.HalLink](../models/hallink.md)>     | :heavy_minus_sign:                                         | N/A                                                        |
-| `embedded`                                                 | [models.CustomersEmbedded](../models/customersembedded.md) | :heavy_minus_sign:                                         | N/A                                                        |
+| Field                                                      | Type                                                       | Required                                                   | Description                                                | Example                                                    |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| `links`                                                    | Record<string, [models.HalLink](../models/hallink.md)>     | :heavy_minus_sign:                                         | N/A                                                        |                                                            |
+| `embedded`                                                 | [models.CustomersEmbedded](../models/customersembedded.md) | :heavy_minus_sign:                                         | N/A                                                        |                                                            |
+| `total`                                                    | *number*                                                   | :heavy_minus_sign:                                         | N/A                                                        | 2                                                          |

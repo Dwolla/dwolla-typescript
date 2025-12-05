@@ -7,11 +7,13 @@ Parameters to cancel a transfer
 ```typescript
 import { CancelTransferRequestBody } from "dwolla/models/operations";
 
-let value: CancelTransferRequestBody = {};
+let value: CancelTransferRequestBody = {
+  status: "cancelled",
+};
 ```
 
 ## Fields
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `status`           | *string*           | :heavy_check_mark: | N/A                |
+| `status`           | *"cancelled"*      | :heavy_check_mark: | N/A                |

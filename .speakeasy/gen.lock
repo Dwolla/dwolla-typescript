@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 53ac026a-ff11-435d-914b-31df5268afb0
 management:
-  docChecksum: 42cfc58c3eb68a6a4de4b47956c205b9
+  docChecksum: 9fd1bbc68b879020d3e55ac2a43fc6b5
   docVersion: "2.0"
-  speakeasyVersion: 1.658.2
-  generationVersion: 2.755.9
-  releaseVersion: 0.0.1-beta.13
-  configChecksum: 0fc627c25b27407851e489453baa2bf5
+  speakeasyVersion: 1.667.0
+  generationVersion: 2.769.1
+  releaseVersion: 0.0.1-beta.14
+  configChecksum: 9dac73ad419b87dc5e478f4041e6ee4b
   repoURL: https://github.com/Dwolla/dwolla-typescript.git
   installationURL: https://github.com/Dwolla/dwolla-typescript
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.26.7
+    core: 3.26.14
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.1
     enumUnions: 0.1.0
@@ -24,13 +24,15 @@ features:
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.83.0
     groups: 2.81.3
+    methodSecurity: 2.82.6
     nameOverrides: 2.81.2
     oauth2ClientCredentials: 1.1.0
     responseFormat: 0.2.3
     retries: 2.83.0
-    sdkHooks: 0.3.0
+    sdkHooks: 0.4.0
     serverIDs: 2.81.2
-    unions: 2.86.0
+    tests: 0.17.3
+    unions: 2.86.3
     uploadStreams: 0.1.0
 generatedFiles:
   - .devcontainer/README.md
@@ -517,6 +519,7 @@ generatedFiles:
   - docs/models/operations/createaccountexchangeresponsebody.md
   - docs/models/operations/createapplicationaccesstokenrequest.md
   - docs/models/operations/createapplicationaccesstokenresponse.md
+  - docs/models/operations/createapplicationaccesstokensecurity.md
   - docs/models/operations/createbeneficialownerdocumentdocumenttype.md
   - docs/models/operations/createbeneficialownerdocumentfile.md
   - docs/models/operations/createbeneficialownerdocumentrequest.md
@@ -700,7 +703,6 @@ generatedFiles:
   - docs/models/operations/simulatebanktransferprocessingrequest.md
   - docs/models/operations/simulatebanktransferprocessingresponse.md
   - docs/models/operations/to.md
-  - docs/models/operations/tokentype.md
   - docs/models/operations/toledgerentry.md
   - docs/models/operations/total.md
   - docs/models/operations/transaction.md
@@ -1467,8 +1469,9 @@ generatedFiles:
   - src/types/index.ts
   - src/types/operations.ts
   - src/types/rfcdate.ts
+  - src/types/smartUnion.ts
   - src/types/streams.ts
-  - src/types/union.ts
+  - src/types/unrecognized.ts
   - tsconfig.json
 examples:
   createApplicationAccessToken:
@@ -1477,7 +1480,7 @@ examples:
         application/x-www-form-urlencoded: {"grant_type": "client_credentials"}
       responses:
         "200":
-          application/json: {"access_token": "gTm0p62yYXFiB1rOdhV0TsNOinC2V2P1CMaAtojkO9JEGbv3i5", "token_type": "bearer", "expires_in": 3599}
+          application/json: {"access_token": "gTm0p62yYXFiB1rOdhV0TsNOinC2V2P1CMaAtojkO9JEGbv3i5", "token_type": "Bearer", "expires_in": 3599}
         "401":
           application/json: {"error": "invalid_client"}
   root:
@@ -1551,7 +1554,7 @@ examples:
     speakeasy-default-list-and-search-customers:
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"customers": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "c41125c5-99c4-4303-a9f6-d066d28a61e3", "firstName": "Jane", "lastName": "Doe", "email": "janedoe@mail.com", "correlationId": "CID-abe2bb3d-d2ff-433b-95a3-0debd960ed25", "created": "2022-10-07T16:46:13.023Z", "type": "personal", "status": "verified", "address1": "123 Main Street", "address2": "Ste 123", "city": "Des Moines", "state": "IA", "postalCode": "50309"}]}}
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "_embedded": {"customers": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key2": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "c41125c5-99c4-4303-a9f6-d066d28a61e3", "firstName": "Jane", "lastName": "Doe", "email": "janedoe@mail.com", "correlationId": "CID-abe2bb3d-d2ff-433b-95a3-0debd960ed25", "created": "2022-10-07T16:46:13.023Z", "type": "personal", "status": "verified", "address1": "123 Main Street", "address2": "Ste 123", "city": "Des Moines", "state": "IA", "postalCode": "50309"}]}, "total": 2}
         "403":
           application/vnd.dwolla.v1.hal+json: {"code": "Forbidden", "message": "The supplied credentials are not authorized for this resource."}
   createCustomer:
@@ -1976,7 +1979,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: {"transactions": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "416a2857-c887-4cca-bd02-8c3f75c4bb0e", "status": "pending", "amount": {"value": "2.00", "currency": "USD"}, "created": "2016-02-22T20:46:38.777Z"}], "total": "1"}
+          application/vnd.dwolla.v1.hal+json: {"transactions": [{"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}, "key1": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "id": "416a2857-c887-4cca-bd02-8c3f75c4bb0e", "status": "pending", "amount": {"value": "2.00", "currency": "USD"}, "created": "2016-02-22T20:46:38.777Z"}], "total": 1}
         "404":
           application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
   getTransferFailureReason:
@@ -2526,6 +2529,7 @@ examples:
       responses:
         "200":
           application/json: {"token": "4adF858jPeQ9RnojMHdqSD2KwsvmhO7Ti7cI5woOiBGCpH5krY"}
+          application/vnd.dwolla.v1.hal+json: {"token": "4adF858jPeQ9RnojMHdqSD2KwsvmhO7Ti7cI5woOiBGCpH5krY"}
         "400":
           application/vnd.dwolla.v1.hal+json: {"code": "BadRequest", "message": "The request body contains bad syntax or is incomplete."}
         "403":
@@ -2632,4 +2636,69 @@ examples:
         "403":
           application/vnd.dwolla.v1.hal+json: {"code": "forbidden", "message": "Not authorized to simulate transfer processing."}
 examplesVersion: 1.0.2
-generatedTests: {}
+generatedTests:
+  createApplicationAccessToken: "2025-11-24T10:10:12-06:00"
+  getRoot: "2025-11-24T10:10:12-06:00"
+  getAccount: "2025-11-24T10:10:12-06:00"
+  listFundingSources: "2025-11-24T10:10:12-06:00"
+  listAndSearchTransfers: "2025-11-24T10:10:12-06:00"
+  listMassPayments: "2025-11-24T10:10:12-06:00"
+  listAccountExchanges: "2025-11-24T10:10:12-06:00"
+  createAccountExchange: "2025-11-24T10:10:12-06:00"
+  listAndSearchCustomers: "2025-11-24T10:10:12-06:00"
+  getCustomer: "2025-11-24T10:10:12-06:00"
+  update: "2025-11-24T10:10:12-06:00"
+  listAvailableExchangeConnections: "2025-11-24T10:10:12-06:00"
+  listBeneficialOwnersForCustomer: "2025-11-24T10:10:12-06:00"
+  getBeneficialOwnershipStatusForCustomer: "2025-11-24T10:10:12-06:00"
+  certifyBeneficialOwnershipForCustomer: "2025-11-24T10:10:12-06:00"
+  listCustomerDocuments: "2025-11-24T10:10:12-06:00"
+  listCustomerFundingSources: "2025-11-24T10:10:12-06:00"
+  listCustomerTransfers: "2025-11-24T10:10:12-06:00"
+  listCustomerMassPayments: "2025-11-24T10:10:12-06:00"
+  listCustomerLabels: "2025-11-24T10:10:12-06:00"
+  listCustomerExchanges: "2025-11-24T10:10:12-06:00"
+  listBusinessClassifications: "2025-11-24T10:10:12-06:00"
+  retrieveBusinessClassification: "2025-11-24T10:10:12-06:00"
+  retrieveBeneficialOwner: "2025-11-24T10:10:12-06:00"
+  updateBeneficialOwner: "2025-11-24T10:10:12-06:00"
+  deleteBeneficialOwner: "2025-11-24T10:10:12-06:00"
+  listBeneficialOwnerDocuments: "2025-11-24T10:10:12-06:00"
+  retrieveDocument: "2025-11-24T10:10:12-06:00"
+  getKbaQuestions: "2025-11-24T10:10:12-06:00"
+  verifyKbaQuestions: "2025-11-24T10:10:12-06:00"
+  getFundingSource: "2025-11-24T10:10:12-06:00"
+  updateOrRemoveFundingSource: "2025-11-24T10:10:12-06:00"
+  getVanRouting: "2025-11-24T10:10:12-06:00"
+  getMicroDeposits: "2025-11-24T10:10:12-06:00"
+  verifyMicroDeposits: "2025-11-24T10:10:12-06:00"
+  getFundingSourceBalance: "2025-11-24T10:10:12-06:00"
+  createOnDemandTransferAuthorization: "2025-11-24T10:10:12-06:00"
+  getTransfer: "2025-11-24T10:10:12-06:00"
+  cancelTransfer: "2025-11-24T10:10:12-06:00"
+  listTransferFees: "2025-11-24T10:10:12-06:00"
+  getTransferFailureReason: "2025-11-24T10:10:12-06:00"
+  getMassPayment: "2025-11-24T10:10:12-06:00"
+  updateMassPayment: "2025-11-24T10:10:12-06:00"
+  listMassPaymentItems: "2025-11-24T10:10:12-06:00"
+  getMassPaymentItem: "2025-11-24T10:10:12-06:00"
+  getLabel: "2025-11-24T10:10:12-06:00"
+  removeLabel: "2025-11-24T10:10:12-06:00"
+  listLabelLedgerEntries: "2025-11-24T10:10:12-06:00"
+  getLabelLedgerEntry: "2025-11-24T10:10:12-06:00"
+  retrieveLabelReallocation: "2025-11-24T10:10:12-06:00"
+  listEvents: "2025-11-24T10:10:12-06:00"
+  getEvent: "2025-11-24T10:10:12-06:00"
+  listWebhookSubscriptions: "2025-11-24T10:10:12-06:00"
+  getWebhookSubscription: "2025-11-24T10:10:12-06:00"
+  updateWebhookSubscription: "2025-11-24T10:10:12-06:00"
+  delete: "2025-11-24T10:10:12-06:00"
+  listWebhooks: "2025-11-24T10:10:12-06:00"
+  getWebhook: "2025-11-24T10:10:12-06:00"
+  listWebhookRetries: "2025-11-24T10:10:12-06:00"
+  simulateBankTransferProcessing: "2025-11-24T10:10:12-06:00"
+  listExchangePartners: "2025-11-24T10:10:12-06:00"
+  getExchangePartner: "2025-11-24T10:10:12-06:00"
+  getExchange: "2025-11-24T10:10:12-06:00"
+  retrieveCustomerExchangeSession: "2025-11-24T10:10:12-06:00"
+  createClientToken: "2025-11-24T10:10:12-06:00"

@@ -7,7 +7,9 @@ import { CancelTransferRequest } from "dwolla/models/operations";
 
 let value: CancelTransferRequest = {
   id: "<id>",
-  requestBody: {},
+  requestBody: {
+    status: "cancelled",
+  },
 };
 ```
 

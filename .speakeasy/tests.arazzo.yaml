@@ -1,0 +1,1143 @@
+arazzo: 1.0.1
+info:
+  title: Dwolla TypeScript SDK Test Suite
+  summary: Integration tests for the Dwolla TypeScript SDK
+  version: 0.0.1
+sourceDescriptions:
+  - name: dwolla-openapi
+    url: https://raw.githubusercontent.com/Dwolla/dwolla-openapi/main/openapi.yml
+    type: openapi
+x-speakeasy-test-server:
+  baseUrl: https://api-sandbox.dwolla.com
+x-speakeasy-test-rebuild: false
+workflows:
+  - workflowId: createApplicationAccessToken
+    steps:
+      - stepId: test
+        operationId: createApplicationAccessToken
+        requestBody:
+          contentType: application/x-www-form-urlencoded
+          payload:
+            grant_type: client_credentials
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {"access_token":"gTm0p62yYXFiB1rOdhV0TsNOinC2V2P1CMaAtojkO9JEGbv3i5","token_type":"bearer","expires_in":3599}
+            type: simple
+    x-speakeasy-test-group: tokens
+    x-speakeasy-test-rebuild: false
+  - workflowId: getRoot
+    steps:
+      - stepId: test
+        operationId: getRoot
+    x-speakeasy-test-group: root
+    x-speakeasy-test-rebuild: false
+  - workflowId: getAccount
+    steps:
+      - stepId: test
+        operationId: getAccount
+        parameters:
+          - name: id
+            in: path
+            value: 5e7cd80f-3a4a-451e-9cd6-a86fc571741f
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"2e21f010-3023-4891-aced-ed726d7cd5e1","name":"Self Employed","authorizedRep":"Jane Doe","timezoneOffset":-6,"email":"janedoe@mail.com","phone":"5555552368","address":{"address1":"462 Main Street","address2":"Suite 124","city":"Des Moines","postalCode":"50309","state":"IA","country":"US"},"verificationStatus":"Verified","ownershipStatus":"Exempt","ownershipCertificationStatus":"Exempt","type":"Commercial","created":"2021-10-25T00:39:38.283Z"}
+            type: simple
+    x-speakeasy-test-group: accounts
+    x-speakeasy-test-rebuild: false
+  - workflowId: listFundingSources
+    steps:
+      - stepId: test
+        operationId: listFundingSources
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"_embedded":{"funding-sources":[{"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e","status":"unverified","type":"bank","bankAccountType":"checking","name":"My bank","created":"2022-07-23T00:18:21.419Z","removed":true,"channels":["ach"],"bankName":"SANDBOX TEST BANK","fingerprint":"5012989b55af15400e8102f95d2ec5e7ce3aef45c01613280d80a236dd8d6c"}]},"total":3}
+            type: simple
+    x-speakeasy-test-group: accounts_fundingSources
+    x-speakeasy-test-rebuild: false
+  - workflowId: listAndSearchTransfers
+    steps:
+      - stepId: test
+        operationId: listAndSearchTransfers
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"_embedded":{"transfers":[{"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"15c6bcce-46f7-e811-8112-e8dd3bececa8","status":"pending","amount":{"value":"42.00","currency":"USD"},"created":"2018-12-03T22:00:22.970Z","clearing":{"source":"standard","destination":"same-day"},"metadata":{"paymentId":"12345678","note":"Payment for completed work Dec. 1"},"achDetails":{"source":{"addenda":{"values":["ABC123_AddendaValue"]}},"destination":{"addenda":{"values":["ZYX987_AddendaValue"]}}},"rtpDetails":{"destination":{"remittanceData":"ABC_123 Remittance Data"}},"correlationId":"8a2cdc8d-629d-4a24-98ac-40b735229fe2","processingChannel":{"destination":"real-time-payments"}}]},"total":100}
+            type: simple
+    x-speakeasy-test-group: accounts_transfers
+    x-speakeasy-test-rebuild: false
+  - workflowId: listMassPayments
+    steps:
+      - stepId: test
+        operationId: listMassPayments
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+          - name: limit
+            in: query
+            value: 25
+          - name: offset
+            in: query
+            value: 0
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"_embedded":{"mass-payments":[{"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"11ac4051-7b76-44fc-87ab-ae23012393f0","status":"complete","created":"2022-01-20T17:41:41.000Z","total":{"value":"5.00","currency":"USD"},"totalFees":{"value":"5.00","currency":"USD"},"correlationId":"CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2"}]},"total":100}
+            type: simple
+    x-speakeasy-test-group: accounts_massPayments
+    x-speakeasy-test-rebuild: false
+  - workflowId: listAccountExchanges
+    steps:
+      - stepId: test
+        operationId: listAccountExchanges
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"_embedded":{"exchanges":[{"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e","status":"deactivated","created":"2022-07-23T00:18:21.419Z"}, {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e","status":"deactivated","created":"2022-07-23T00:18:21.419Z"}]},"total":3}
+            type: simple
+    x-speakeasy-test-group: accounts_exchanges
+    x-speakeasy-test-rebuild: false
+  - workflowId: createAccountExchange
+    steps:
+      - stepId: test
+        operationId: createAccountExchange
+        requestBody:
+          contentType: application/json
+          payload:
+            _links:
+              exchange-partner:
+                href: https://api.dwolla.com/exchange-partners/292317ec-e252-47d8-93c3-2d128e037aa4
+            token: someMXProcessorToken
+        successCriteria:
+          - condition: $statusCode == 201
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {}
+            type: simple
+    x-speakeasy-test-group: accounts_exchanges
+    x-speakeasy-test-rebuild: false
+  - workflowId: listAndSearchCustomers
+    steps:
+      - stepId: test
+        operationId: listAndSearchCustomers
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"_embedded":{"customers":[{"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key2":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"c41125c5-99c4-4303-a9f6-d066d28a61e3","firstName":"Jane","lastName":"Doe","email":"janedoe@mail.com","correlationId":"CID-abe2bb3d-d2ff-433b-95a3-0debd960ed25","created":"2022-10-07T16:46:13.023Z","type":"personal","status":"verified","address1":"123 Main Street","address2":"Ste 123","city":"Des Moines","state":"IA","postalCode":"50309"}]}}
+            type: simple
+    x-speakeasy-test-group: customers
+    x-speakeasy-test-rebuild: false
+  - workflowId: getCustomer
+    steps:
+      - stepId: test
+        operationId: getCustomer
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key2":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"c41125c5-99c4-4303-a9f6-d066d28a61e3","firstName":"Jane","lastName":"Doe","email":"janedoe@mail.com","correlationId":"CID-abe2bb3d-d2ff-433b-95a3-0debd960ed25","created":"2022-10-07T16:46:13.023Z","type":"unverified","status":"unverified"}
+            type: simple
+    x-speakeasy-test-group: customers
+    x-speakeasy-test-rebuild: false
+  - workflowId: update
+    steps:
+      - stepId: test
+        operationId: update
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        requestBody:
+          contentType: application/json
+          payload:
+            address1: 99-99 33rd St
+            businessClassification: 9ed3f670-7d6f-11e3-b1ce-5404a6144203
+            businessName: Jane Corp
+            businessType: soleProprietorship
+            city: Some City
+            dateOfBirth: "1980-01-31"
+            ein: 00-0000000
+            email: solePropBusiness@email.com
+            firstName: Business
+            lastName: Owner
+            operationType: upgradeToVerifiedSoleProp
+            postalCode: "11101"
+            ssn: "6789"
+            state: NY
+            type: business
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"c41125c5-99c4-4303-a9f6-d066d28a61e3","firstName":"Jane","lastName":"Doe","email":"janedoe@mail.com","correlationId":"CID-abe2bb3d-d2ff-433b-95a3-0debd960ed25","created":"2022-10-07T16:46:13.023Z","type":"receive-only","status":"unverified","businessName":"Jane Corp llc"}
+            type: simple
+    x-speakeasy-test-group: customers
+    x-speakeasy-test-rebuild: false
+  - workflowId: listAvailableExchangeConnections
+    steps:
+      - stepId: test
+        operationId: listAvailableExchangeConnections
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"self":{"href":"https://api.dwolla.com/customers/1b54c81a-261f-4779-bb57-9405e6e00694/available-exchange-connections","type":"application/vnd.dwolla.v1.hal+json","resource-type":"customer"},"customers":{"href":"https://api.dwolla.com/customers/1b54c81a-261f-4779-bb57-9405e6e00694","type":"application/vnd.dwolla.v1.hal+json","resource-type":"customer"}},"_embedded":{"available-exchange-connections":[]}}
+            type: simple
+    x-speakeasy-test-group: customers
+    x-speakeasy-test-rebuild: false
+  - workflowId: listBeneficialOwnersForCustomer
+    steps:
+      - stepId: test
+        operationId: listBeneficialOwnersForCustomer
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"_embedded":{"beneficial-owners":[{"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key2":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e","firstName":"John","lastName":"Doe","address":{"address1":"462 Main Street","address2":"Suite 123","address3":"Unit 123","city":"Des Moines","postalCode":"50309","country":"USA","stateProvinceRegion":"IA"},"verificationStatus":"verified","created":"2022-07-23T00:18:21.419Z"}, {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key2":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e","firstName":"John","lastName":"Doe","address":{"address1":"462 Main Street","address2":"Suite 123","address3":"Unit 123","city":"Des Moines","postalCode":"50309","country":"USA","stateProvinceRegion":"IA"},"verificationStatus":"verified","created":"2022-07-23T00:18:21.419Z"}]}}
+            type: simple
+    x-speakeasy-test-group: customers_beneficialOwners
+    x-speakeasy-test-rebuild: false
+  - workflowId: getBeneficialOwnershipStatusForCustomer
+    steps:
+      - stepId: test
+        operationId: getBeneficialOwnershipStatusForCustomer
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"self":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"status":"uncertified"}
+            type: simple
+    x-speakeasy-test-group: beneficialOwnership
+    x-speakeasy-test-rebuild: false
+  - workflowId: certifyBeneficialOwnershipForCustomer
+    steps:
+      - stepId: test
+        operationId: certifyBeneficialOwnershipForCustomer
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        requestBody:
+          contentType: application/json
+          payload:
+            status: <value>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"self":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"status":"uncertified"}
+            type: simple
+    x-speakeasy-test-group: beneficialOwnership
+    x-speakeasy-test-rebuild: false
+  - workflowId: listCustomerDocuments
+    steps:
+      - stepId: test
+        operationId: listCustomerDocuments
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"_embedded":{"documents":[{"_links":{"self":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc","status":"reviewed","type":"passport","created":"2015-09-29T21:42:16.000Z","documentVerificationStatus":"rejected","failureReason":"ScanDobMismatch","allFailureReasons":[{"reason":"ScanDobMismatch","description":"Scan DOB does not match DOB on account"}, {"reason":"ScanDobMismatch","description":"Scan DOB does not match DOB on account"}]}]},"total":2}
+            type: simple
+    x-speakeasy-test-group: customers_documents
+    x-speakeasy-test-rebuild: false
+  - workflowId: listCustomerFundingSources
+    steps:
+      - stepId: test
+        operationId: listCustomerFundingSources
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"_embedded":{"funding-sources":[{"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e","status":"unverified","type":"bank","bankAccountType":"checking","name":"My bank","created":"2022-07-23T00:18:21.419Z","removed":true,"channels":["ach"],"bankName":"SANDBOX TEST BANK","fingerprint":"5012989b55af15400e8102f95d2ec5e7ce3aef45c01613280d80a236dd8d6c"}]},"total":3}
+            type: simple
+    x-speakeasy-test-group: customers_fundingSources
+    x-speakeasy-test-rebuild: false
+  - workflowId: listCustomerTransfers
+    steps:
+      - stepId: test
+        operationId: listCustomerTransfers
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key2":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"_embedded":{"transfers":[{"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"15c6bcce-46f7-e811-8112-e8dd3bececa8","status":"pending","amount":{"value":"42.00","currency":"USD"},"created":"2018-12-03T22:00:22.970Z","clearing":{"source":"standard","destination":"same-day"},"metadata":{"paymentId":"12345678","note":"Payment for completed work Dec. 1"},"achDetails":{"source":{"addenda":{"values":["ABC123_AddendaValue"]}},"destination":{"addenda":{"values":["ZYX987_AddendaValue"]}}},"rtpDetails":{"destination":{"remittanceData":"ABC_123 Remittance Data"}},"correlationId":"8a2cdc8d-629d-4a24-98ac-40b735229fe2","processingChannel":{"destination":"real-time-payments"}}, {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"15c6bcce-46f7-e811-8112-e8dd3bececa8","status":"pending","amount":{"value":"42.00","currency":"USD"},"created":"2018-12-03T22:00:22.970Z","clearing":{"source":"standard","destination":"same-day"},"metadata":{"paymentId":"12345678","note":"Payment for completed work Dec. 1"},"achDetails":{"source":{"addenda":{"values":["ABC123_AddendaValue"]}},"destination":{"addenda":{"values":["ZYX987_AddendaValue"]}}},"rtpDetails":{"destination":{"remittanceData":"ABC_123 Remittance Data"}},"correlationId":"8a2cdc8d-629d-4a24-98ac-40b735229fe2","processingChannel":{"destination":"real-time-payments"}}, {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"15c6bcce-46f7-e811-8112-e8dd3bececa8","status":"pending","amount":{"value":"42.00","currency":"USD"},"created":"2018-12-03T22:00:22.970Z","clearing":{"source":"standard","destination":"same-day"},"metadata":{"paymentId":"12345678","note":"Payment for completed work Dec. 1"},"achDetails":{"source":{"addenda":{"values":["ABC123_AddendaValue"]}},"destination":{"addenda":{"values":["ZYX987_AddendaValue"]}}},"rtpDetails":{"destination":{"remittanceData":"ABC_123 Remittance Data"}},"correlationId":"8a2cdc8d-629d-4a24-98ac-40b735229fe2","processingChannel":{"destination":"real-time-payments"}}]},"total":100}
+            type: simple
+    x-speakeasy-test-group: customers_transfers
+    x-speakeasy-test-rebuild: false
+  - workflowId: listCustomerMassPayments
+    steps:
+      - stepId: test
+        operationId: listCustomerMassPayments
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"_embedded":{"mass-payments":[{"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key2":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"11ac4051-7b76-44fc-87ab-ae23012393f0","status":"complete","created":"2022-01-20T17:41:41.000Z","total":{"value":"5.00","currency":"USD"},"totalFees":{"value":"5.00","currency":"USD"},"correlationId":"CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2"}]},"total":100}
+            type: simple
+    x-speakeasy-test-group: customers_massPayments
+    x-speakeasy-test-rebuild: false
+  - workflowId: listCustomerLabels
+    steps:
+      - stepId: test
+        operationId: listCustomerLabels
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"_embedded":{"labels":[{"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key2":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"7e042ffe-e25e-40d2-b86e-748b98845ecc","created":"2022-05-15T22:19:09.635Z","amount":{"value":"10","currency":"USD"}}]},"total":100}
+            type: simple
+    x-speakeasy-test-group: customers_labels
+    x-speakeasy-test-rebuild: false
+  - workflowId: listCustomerExchanges
+    steps:
+      - stepId: test
+        operationId: listCustomerExchanges
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"_embedded":{"exchanges":[{"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key2":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e","status":"deactivated","created":"2022-07-23T00:18:21.419Z"}]},"total":3}
+            type: simple
+    x-speakeasy-test-group: customers_exchanges
+    x-speakeasy-test-rebuild: false
+  - workflowId: listBusinessClassifications
+    steps:
+      - stepId: test
+        operationId: listBusinessClassifications
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"_embedded":{"business-classifications":[{"_links":{},"_embedded":{}}, {"_links":{},"_embedded":{}}]},"total":3}
+            type: simple
+    x-speakeasy-test-group: businessClassifications
+    x-speakeasy-test-rebuild: false
+  - workflowId: retrieveBusinessClassification
+    steps:
+      - stepId: test
+        operationId: retrieveBusinessClassification
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"self":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"_embedded":{"industry-classifications":[{"id":"9ed3f66b-7d6f-11e3-95ac-5404a6144203","name":"Wineries"}, {"id":"9ed3f66b-7d6f-11e3-95ac-5404a6144203","name":"Wineries"}]},"id":"9ed3f669-7d6f-11e3-b545-5404a6144203","name":"Food retail and service"}
+            type: simple
+    x-speakeasy-test-group: businessClassifications
+    x-speakeasy-test-rebuild: false
+  - workflowId: retrieveBeneficialOwner
+    steps:
+      - stepId: test
+        operationId: retrieveBeneficialOwner
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e","firstName":"John","lastName":"Doe","address":{"address1":"462 Main Street","address2":"Suite 123","address3":"Unit 123","city":"Des Moines","postalCode":"50309","country":"USA","stateProvinceRegion":"IA"},"verificationStatus":"verified","created":"2022-07-23T00:18:21.419Z"}
+            type: simple
+    x-speakeasy-test-group: beneficialOwners
+    x-speakeasy-test-rebuild: false
+  - workflowId: updateBeneficialOwner
+    steps:
+      - stepId: test
+        operationId: updateBeneficialOwner
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        requestBody:
+          contentType: application/json
+          payload:
+            address:
+              address1: 462 Main Street
+              address2: Suite 123
+              address3: Unit 123
+              city: Des Moines
+              country: USA
+              postalCode: "50309"
+              stateProvinceRegion: IA
+            dateOfBirth: "2005-10-23"
+            firstName: Lauryn
+            lastName: D'Amore
+            passport:
+              country: Suriname
+              number: <value>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key2":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e","firstName":"John","lastName":"Doe","address":{"address1":"462 Main Street","address2":"Suite 123","address3":"Unit 123","city":"Des Moines","postalCode":"50309","country":"USA","stateProvinceRegion":"IA"},"verificationStatus":"verified","created":"2022-07-23T00:18:21.419Z"}
+            type: simple
+    x-speakeasy-test-group: beneficialOwners
+    x-speakeasy-test-rebuild: false
+  - workflowId: deleteBeneficialOwner
+    steps:
+      - stepId: test
+        operationId: deleteBeneficialOwner
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {}
+            type: simple
+    x-speakeasy-test-group: beneficialOwners
+    x-speakeasy-test-rebuild: false
+  - workflowId: listBeneficialOwnerDocuments
+    steps:
+      - stepId: test
+        operationId: listBeneficialOwnerDocuments
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"_embedded":{"documents":[{"_links":{"self":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc","status":"reviewed","type":"passport","created":"2015-09-29T21:42:16.000Z","documentVerificationStatus":"rejected","failureReason":"ScanDobMismatch","allFailureReasons":[{"reason":"ScanDobMismatch","description":"Scan DOB does not match DOB on account"}, {"reason":"ScanDobMismatch","description":"Scan DOB does not match DOB on account"}]}]},"total":2}
+            type: simple
+    x-speakeasy-test-group: beneficialOwners_documents
+    x-speakeasy-test-rebuild: false
+  - workflowId: retrieveDocument
+    steps:
+      - stepId: test
+        operationId: retrieveDocument
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"self":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"56502f7a-fa59-4a2f-8579-0f8bc9d7b9cc","status":"reviewed","type":"passport","created":"2015-09-29T21:42:16.000Z","documentVerificationStatus":"rejected","failureReason":"ScanDobMismatch","allFailureReasons":[{"reason":"ScanDobMismatch","description":"Scan DOB does not match DOB on account"}]}
+            type: simple
+    x-speakeasy-test-group: documents
+    x-speakeasy-test-rebuild: false
+  - workflowId: getKbaQuestions
+    steps:
+      - stepId: test
+        operationId: getKbaQuestions
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"answer":{"href":"https://api.dwolla.com/kba/62dac6f3-bf8f-4961-9af8-428de8ecd9a4","type":"application/vnd.dwolla.v1.hal+json","resource-type":"kba"}},"id":"62dac6f3-bf8f-4961-9af8-428de8ecd9a4","questions":[{"id":"2355953375","text":"In what county do you currently live?","answers":[{"id":"2687969295","text":"Pulaski"}, {"id":"2687969295","text":"Pulaski"}]}, {"id":"2355953375","text":"In what county do you currently live?","answers":[{"id":"2687969295","text":"Pulaski"}, {"id":"2687969295","text":"Pulaski"}]}, {"id":"2355953375","text":"In what county do you currently live?","answers":[{"id":"2687969295","text":"Pulaski"}, {"id":"2687969295","text":"Pulaski"}]}]}
+            type: simple
+    x-speakeasy-test-group: kba
+    x-speakeasy-test-rebuild: false
+  - workflowId: verifyKbaQuestions
+    steps:
+      - stepId: test
+        operationId: verifyKbaQuestions
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        requestBody:
+          contentType: application/json
+          payload:
+            answers:
+              - answerId: "2687969335"
+                questionId: "2355953375"
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"customer":{"href":"https://api.dwolla.com/customers/b5fd802d-d8c7-43ce-94a8-7c14485b7042","type":"application/vnd.dwolla.v1.hal+json","resource-type":"customer"}},"verificationStatus":"verified"}
+            type: simple
+    x-speakeasy-test-group: kba
+    x-speakeasy-test-rebuild: false
+  - workflowId: getFundingSource
+    steps:
+      - stepId: test
+        operationId: getFundingSource
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e","status":"unverified","type":"bank","bankAccountType":"checking","name":"My bank","created":"2022-07-23T00:18:21.419Z","removed":true,"channels":["ach"],"bankName":"SANDBOX TEST BANK","fingerprint":"5012989b55af15400e8102f95d2ec5e7ce3aef45c01613280d80a236dd8d6c"}
+            type: simple
+    x-speakeasy-test-group: fundingSources
+    x-speakeasy-test-rebuild: false
+  - workflowId: updateOrRemoveFundingSource
+    steps:
+      - stepId: test
+        operationId: updateOrRemoveFundingSource
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        requestBody:
+          contentType: application/json
+          payload:
+            removed: true
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {}
+            type: simple
+    x-speakeasy-test-group: fundingSources
+    x-speakeasy-test-rebuild: false
+  - workflowId: getVanRouting
+    steps:
+      - stepId: test
+        operationId: getVanRouting
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"accountNumber":"9619991490430833","routingNumber":"084106768"}
+            type: simple
+    x-speakeasy-test-group: fundingSources
+    x-speakeasy-test-rebuild: false
+  - workflowId: getMicroDeposits
+    steps:
+      - stepId: test
+        operationId: getMicroDeposits
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"created":"2022-12-30T20:56:53.000Z","status":"failed","failure":{"code":"R03","description":"No Account/Unable to locate account"}}
+            type: simple
+    x-speakeasy-test-group: microDeposits
+    x-speakeasy-test-rebuild: false
+  - workflowId: verifyMicroDeposits
+    steps:
+      - stepId: test
+        operationId: verifyMicroDeposits
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        requestBody:
+          contentType: application/vnd.dwolla.v1.hal+json
+          payload:
+            amount1:
+              currency: USD
+              value: "0.02"
+            amount2:
+              currency: USD
+              value: "0.03"
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"self":{"href":"https://api-sandbox.dwolla.com/funding-sources/2e446d1b-fb3c-42a0-9691-5d1d6a4dbbf0/micro-deposits","type":"application/vnd.dwolla.v1.hal+json","resource-type":"micro-deposits"}}}
+            type: simple
+    x-speakeasy-test-group: microDeposits
+    x-speakeasy-test-rebuild: false
+  - workflowId: getFundingSourceBalance
+    steps:
+      - stepId: test
+        operationId: getFundingSourceBalance
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"balance":{"value":"4616.87","currency":"USD"},"total":{"value":"4616.87","currency":"USD"},"lastUpdated":"2017-04-18T15:20:25.880Z"}
+            type: simple
+    x-speakeasy-test-group: balance
+    x-speakeasy-test-rebuild: false
+  - workflowId: createOnDemandTransferAuthorization
+    steps:
+      - stepId: test
+        operationId: createOnDemandTransferAuthorization
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"self":{"href":"https://api.dwolla.com/on-demand-authorizations/30e7c028-0bdf-e511-80de-0aa34a9b2388"}},"bodyText":"I agree that future payments to Company ABC inc. will be processed by the Dwolla payment system from the selected account above. In order to cancel this authorization, I will change my payment settings within my Company ABC inc. account.","buttonText":"Agree & Continue"}
+            type: simple
+    x-speakeasy-test-group: onDemandTransferAuthorizations
+    x-speakeasy-test-rebuild: false
+  - workflowId: getTransfer
+    steps:
+      - stepId: test
+        operationId: getTransfer
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"15c6bcce-46f7-e811-8112-e8dd3bececa8","status":"pending","amount":{"value":"42.00","currency":"USD"},"created":"2018-12-03T22:00:22.970Z","clearing":{"source":"standard","destination":"same-day"},"metadata":{"paymentId":"12345678","note":"Payment for completed work Dec. 1"},"achDetails":{"source":{"addenda":{"values":["ABC123_AddendaValue"]},"beneficiaryName":"John Doe","companyEntryDescription":"PAYMENT","companyId":"1234567890","companyName":"Acme Corporation","effectiveDate":"2021-12-01","postingData":"Acme Corporation:Payment Reference:John Doe","routingNumber":"222222226","traceId":"222222225926346"},"destination":{"addenda":{"values":["ZYX987_AddendaValue"]},"beneficiaryName":"Jane Smith","companyEntryDescription":"PAYMENT","companyId":"1234567890","companyName":"Acme Corporation","effectiveDate":"2021-12-01","postingData":"Acme Corporation:Payment Reference:Jane Smith","routingNumber":"222222226","traceId":"222222225926346"}},"rtpDetails":{"destination":{"remittanceData":"ABC_123 Remittance Data","networkId":"20210617021214273T1BG27487110796028","endToEndReferenceId":"E2E-RTP-20210617-001"}},"fedNowDetails":{"destination":{"remittanceData":"ABC_123 Remittance Data","networkId":"20240115123456789FEDNOW123456","endToEndReferenceId":"E2E-FEDNOW-20240115-001"}},"correlationId":"8a2cdc8d-629d-4a24-98ac-40b735229fe2","processingChannel":{"destination":"real-time-payments"}}
+            type: simple
+    x-speakeasy-test-group: transfers
+    x-speakeasy-test-rebuild: false
+  - workflowId: cancelTransfer
+    steps:
+      - stepId: test
+        operationId: cancelTransfer
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        requestBody:
+          contentType: application/json
+          payload:
+            status: cancelled
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {}
+            type: simple
+    x-speakeasy-test-group: transfers
+    x-speakeasy-test-rebuild: false
+  - workflowId: listTransferFees
+    steps:
+      - stepId: test
+        operationId: listTransferFees
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"transactions":[{"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"416a2857-c887-4cca-bd02-8c3f75c4bb0e","status":"pending","amount":{"value":"2.00","currency":"USD"},"created":"2016-02-22T20:46:38.777Z"}],"total":"1"}
+            type: simple
+    x-speakeasy-test-group: fees
+    x-speakeasy-test-rebuild: false
+  - workflowId: getTransferFailureReason
+    steps:
+      - stepId: test
+        operationId: getTransferFailureReason
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key2":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"code":"R03","description":"No Account/Unable to Locate Account","explanation":"The account number does not correspond to the individual identified in the entry or a valid account."}
+            type: simple
+    x-speakeasy-test-group: failure
+    x-speakeasy-test-rebuild: false
+  - workflowId: getMassPayment
+    steps:
+      - stepId: test
+        operationId: getMassPayment
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key2":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"11ac4051-7b76-44fc-87ab-ae23012393f0","status":"complete","created":"2022-01-20T17:41:41.000Z","total":{"value":"5.00","currency":"USD"},"totalFees":{"value":"5.00","currency":"USD"},"correlationId":"CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2"}
+            type: simple
+    x-speakeasy-test-group: massPayments
+    x-speakeasy-test-rebuild: false
+  - workflowId: updateMassPayment
+    steps:
+      - stepId: test
+        operationId: updateMassPayment
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        requestBody:
+          contentType: application/json
+          payload:
+            status: pending
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key2":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"11ac4051-7b76-44fc-87ab-ae23012393f0","status":"complete","created":"2022-01-20T17:41:41.000Z","total":{"value":"5.00","currency":"USD"},"totalFees":{"value":"5.00","currency":"USD"},"correlationId":"CID-8a2cdc8d-629d-4a24-98ac-40b735229fe2"}
+            type: simple
+    x-speakeasy-test-group: massPayments
+    x-speakeasy-test-rebuild: false
+  - workflowId: listMassPaymentItems
+    steps:
+      - stepId: test
+        operationId: listMassPaymentItems
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"self":{"href":"https://api.dwolla.com/mass-payments/eb467252-808c-4bc0-b86f-a5cd01454563/items"},"first":{"href":"https://api.dwolla.com/mass-payments/eb467252-808c-4bc0-b86f-a5cd01454563/items?limit=25&offset=0"},"last":{"href":"https://api.dwolla.com/mass-payments/eb467252-808c-4bc0-b86f-a5cd01454563/items?limit=25&offset=0"}},"_embedded":{"items":[{"_links":{"self":{"href":"https://api.dwolla.com/mass-payment-items/c1c7d293-63ec-e511-80df-0aa34a9b2388"},"mass-payment":{"href":"https://api.dwolla.com/mass-payments/eb467252-808c-4bc0-b86f-a5cd01454563"},"destination":{"href":"https://api.dwolla.com/funding-sources/b442c936-1f87-465d-a4e2-a982164b26bd"},"transfer":{"href":"https://api.dwolla.com/transfers/fa3999db-41ed-e511-80df-0aa34a9b2388"}},"id":"2f845bc9-41ed-e511-80df-0aa34a9b2388","status":"success","amount":{"value":"1","currency":"USD"},"metadata":{"item1":"item1"},"processingChannel":{"destination":"real-time-payments"}}, {"_links":{"self":{"href":"https://api.dwolla.com/mass-payment-items/c1c7d293-63ec-e511-80df-0aa34a9b2388"},"mass-payment":{"href":"https://api.dwolla.com/mass-payments/eb467252-808c-4bc0-b86f-a5cd01454563"},"destination":{"href":"https://api.dwolla.com/funding-sources/b442c936-1f87-465d-a4e2-a982164b26bd"},"transfer":{"href":"https://api.dwolla.com/transfers/fa3999db-41ed-e511-80df-0aa34a9b2388"}},"id":"2f845bc9-41ed-e511-80df-0aa34a9b2388","status":"success","amount":{"value":"1","currency":"USD"},"metadata":{"item1":"item1"},"processingChannel":{"destination":"real-time-payments"}}]},"total":3}
+            type: simple
+    x-speakeasy-test-group: items
+    x-speakeasy-test-rebuild: false
+  - workflowId: getMassPaymentItem
+    steps:
+      - stepId: test
+        operationId: getMassPaymentItem
+        parameters:
+          - name: itemId
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"self":{"href":"https://api.dwolla.com/mass-payment-items/c1c7d293-63ec-e511-80df-0aa34a9b2388"},"mass-payment":{"href":"https://api.dwolla.com/mass-payments/eb467252-808c-4bc0-b86f-a5cd01454563"},"destination":{"href":"https://api.dwolla.com/funding-sources/b442c936-1f87-465d-a4e2-a982164b26bd"},"transfer":{"href":"https://api.dwolla.com/transfers/fa3999db-41ed-e511-80df-0aa34a9b2388"}},"id":"2f845bc9-41ed-e511-80df-0aa34a9b2388","status":"success","amount":{"value":"1.00","currency":"USD"},"metadata":{"item1":"item1"},"processingChannel":{"destination":"real-time-payments"}}
+            type: simple
+    x-speakeasy-test-group: items
+    x-speakeasy-test-rebuild: false
+  - workflowId: getLabel
+    steps:
+      - stepId: test
+        operationId: getLabel
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"7e042ffe-e25e-40d2-b86e-748b98845ecc","created":"2022-05-15T22:19:09.635Z","amount":{"value":"10.00","currency":"USD"}}
+            type: simple
+    x-speakeasy-test-group: labels
+    x-speakeasy-test-rebuild: false
+  - workflowId: removeLabel
+    steps:
+      - stepId: test
+        operationId: removeLabel
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key2":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"7e042ffe-e25e-40d2-b86e-748b98845ecc","created":"2022-05-15T22:19:09.635Z","amount":{"value":"10.00","currency":"USD"}}
+            type: simple
+    x-speakeasy-test-group: labels
+    x-speakeasy-test-rebuild: false
+  - workflowId: listLabelLedgerEntries
+    steps:
+      - stepId: test
+        operationId: listLabelLedgerEntries
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"_embedded":{"ledger-entries":[{"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"32d68709-62dd-43d6-a6df-562f4baec526","amount":{"value":"-5","currency":"USD"},"created":"2019-05-16T01:54:58.062Z"}, {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"32d68709-62dd-43d6-a6df-562f4baec526","amount":{"value":"-5","currency":"USD"},"created":"2019-05-16T01:54:58.062Z"}]},"total":100}
+            type: simple
+    x-speakeasy-test-group: ledgerEntries
+    x-speakeasy-test-rebuild: false
+  - workflowId: getLabelLedgerEntry
+    steps:
+      - stepId: test
+        operationId: getLabelLedgerEntry
+        parameters:
+          - name: ledgerEntryId
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"32d68709-62dd-43d6-a6df-562f4baec526","amount":{"value":"-5.00","currency":"USD"},"created":"2019-05-16T01:54:58.062Z"}
+            type: simple
+    x-speakeasy-test-group: ledgerEntries
+    x-speakeasy-test-rebuild: false
+  - workflowId: retrieveLabelReallocation
+    steps:
+      - stepId: test
+        operationId: retrieveLabelReallocation
+        parameters:
+          - name: reallocationId
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"self":{"href":"https://api.dwolla.com/label-reallocations/fd36b78c-42f3-4e21-8efb-09196fccbd21","type":"application/vnd.dwolla.v1.hal+json","resource-type":"label-reallocation"},"to-ledger-entry":{"href":"https://api.dwolla.com/ledger-entries/d8a4bf7a-3fa0-48b9-873c-765d7375c59f","type":"application/vnd.dwolla.v1.hal+json","resource-type":"ledger-entry"},"from-ledger-entry":{"href":"https://api.dwolla.com/ledger-entries/f6a44994-b4da-48e3-bd10-d3a168e6a77d","type":"application/vnd.dwolla.v1.hal+json","resource-type":"ledger-entry"}},"created":"2022-05-16T13:41:31.036Z"}
+            type: simple
+    x-speakeasy-test-group: reallocations
+    x-speakeasy-test-rebuild: false
+  - workflowId: listEvents
+    steps:
+      - stepId: test
+        operationId: listEvents
+    x-speakeasy-test-group: events
+    x-speakeasy-test-rebuild: false
+  - workflowId: getEvent
+    steps:
+      - stepId: test
+        operationId: getEvent
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+    x-speakeasy-test-group: events
+    x-speakeasy-test-rebuild: false
+  - workflowId: listWebhookSubscriptions
+    steps:
+      - stepId: test
+        operationId: listWebhookSubscriptions
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"self":{"href":"https://api.dwolla.com/webhook-subscriptions"}},"_embedded":{"webhook-subscriptions":[{"_links":{"self":{"href":"https://api.dwolla.com/webhook-subscriptions/077dfffb-4852-412f-96b6-0fe668066589"},"webhooks":{"href":"https://api.dwolla.com/webhook-subscriptions/077dfffb-4852-412f-96b6-0fe668066589/webhooks"}},"id":"077dfffb-4852-412f-96b6-0fe668066589","url":"http://myapplication.com/webhooks","paused":true,"created":"2022-10-28T16:20:47+00:00"}]},"total":1}
+            type: simple
+    x-speakeasy-test-group: webhookSubscriptions
+    x-speakeasy-test-rebuild: false
+  - workflowId: getWebhookSubscription
+    steps:
+      - stepId: test
+        operationId: getWebhookSubscription
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"self":{"href":"https://api.dwolla.com/webhook-subscriptions/077dfffb-4852-412f-96b6-0fe668066589"},"webhooks":{"href":"https://api.dwolla.com/webhook-subscriptions/077dfffb-4852-412f-96b6-0fe668066589/webhooks"}},"id":"077dfffb-4852-412f-96b6-0fe668066589","url":"http://myapplication.com/webhooks","paused":true,"created":"2022-10-28T16:20:47+00:00"}
+            type: simple
+    x-speakeasy-test-group: webhookSubscriptions
+    x-speakeasy-test-rebuild: false
+  - workflowId: updateWebhookSubscription
+    steps:
+      - stepId: test
+        operationId: updateWebhookSubscription
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        requestBody:
+          contentType: application/json
+          payload:
+            paused: true
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"self":{"href":"https://api.dwolla.com/webhook-subscriptions/077dfffb-4852-412f-96b6-0fe668066589"},"webhooks":{"href":"https://api.dwolla.com/webhook-subscriptions/077dfffb-4852-412f-96b6-0fe668066589/webhooks"}},"id":"077dfffb-4852-412f-96b6-0fe668066589","url":"http://myapplication.com/webhooks","paused":true,"created":"2022-10-28T16:20:47+00:00"}
+            type: simple
+    x-speakeasy-test-group: webhookSubscriptions
+    x-speakeasy-test-rebuild: false
+  - workflowId: delete
+    steps:
+      - stepId: test
+        operationId: delete
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"self":{"href":"https://api.dwolla.com/webhook-subscriptions/077dfffb-4852-412f-96b6-0fe668066589"},"webhooks":{"href":"https://api.dwolla.com/webhook-subscriptions/077dfffb-4852-412f-96b6-0fe668066589/webhooks"}},"id":"077dfffb-4852-412f-96b6-0fe668066589","url":"http://myapplication.com/webhooks","paused":true,"created":"2022-10-28T16:20:47+00:00"}
+            type: simple
+    x-speakeasy-test-group: webhookSubscriptions
+    x-speakeasy-test-rebuild: false
+  - workflowId: listWebhooks
+    steps:
+      - stepId: test
+        operationId: listWebhooks
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"self":{"href":"https://api.dwolla.com/webhook-subscriptions/a0943041-7a5c-4e8f-92de-b55711ef3a83/webhooks"},"first":{"href":"https://api.dwolla.com/webhook-subscriptions/a0943041-7a5c-4e8f-92de-b55711ef3a83/webhooks?limit=25&offset=0"},"last":{"href":"https://api.dwolla.com/webhook-subscriptions/a0943041-7a5c-4e8f-92de-b55711ef3a83/webhooks?limit=25&offset=150"},"next":{"href":"https://api.dwolla.com/webhook-subscriptions/a0943041-7a5c-4e8f-92de-b55711ef3a83/webhooks?limit=25&offset=25"}},"_embedded":{"webhooks":[{"_links":{"self":{"href":"https://api.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8"},"subscription":{"href":"https://api.dwolla.com/webhook-subscriptions/a0943041-7a5c-4e8f-92de-b55711ef3a83"},"retry":{"href":"https://api.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8/retries"},"event":{"href":"https://api.dwolla.com/events/03c7e14c-7f15-44a2-bcf7-83f2f7e95d50"}},"id":"9ece9660-aa34-41eb-80d7-0125d53b45e8","topic":"transfer_created","accountId":"ca32853c-48fa-40be-ae75-77b37504581b","eventId":"03c7e14c-7f15-44a2-bcf7-83f2f7e95d50","subscriptionId":"a0943041-7a5c-4e8f-92de-b55711ef3a83","attempts":[{"id":"d4d16621-c6b0-40cb-8dc3-0469fa9dc4e8","request":{"timestamp":"2022-10-27T17:07:34.304Z","url":"https://myapp.runscope.net","headers":[{"name":"X-Dwolla-Topic","value":"transfer_created"}],"body":"id:03c7e14c-7f15-44a2-bcf7-83f2f7e95d50resourceId:81BA6F36-CD7C-E511-80DB-0AA34A9B2388topic:transfer_createdtimestamp:2022-10-27T17:07:34.207Z_links:self:href:https://api.dwolla.com/events/03c7e14c-7f15-44a2-bcf7-83f2f7e95d50account:href:https://api.dwolla.com/accounts/ca32853c-48fa-40be-ae75-77b37504581bresource:href:https://api.dwolla.com/transfers/81BA6F36-CD7C-E511-80DB-0AA34A9B2388"},"response":{"timestamp":"2022-10-27T17:07:34.308Z","headers":[{"name":"Date","value":"Tue 27 Oct 2022 17:07:34 GMT"}],"statusCode":200,"body":"body:id:03c7e14c-7f15-44a2-bcf7-83f2f7e95d50resourceId:81BA6F36-CD7C-E511-80DB-0AA34A9B2388topic:transfer_createdtimestamp:2022-10-27T17:07:34.207Z_links:self:href:https://api.dwolla.com/events/03c7e14c-7f15-44a2-bcf7-83f2f7e95d50account:href:https://api.dwolla.com/accounts/ca32853c-48fa-40be-ae75-77b37504581bresource:href:https://api.dwolla.com/transfers/81BA6F36-CD7C-E511-80DB-0AA34A9B2388files:[]form:fragment:headers:Connection:[close]Content-Length:[453]Content-Type:[application/json; charset=UTF-8]Host:[myapp.runscope.net]User-Agent:[dwolla-webhooks/1.0]X-Dwolla-Topic:[transfer_created]X-Request-Signature:[bd93780bd7e1ad77ab821094aaa0f9e3dece5ee3]host:myapp.runscope.netmethod:POSTparams:path:/region:us5runscope_host:prod078.runscope.inscheme:httpssource:capturesource_ip:52.24.10.184timestamp:1.4459656543078682e+09url:https://myapp.runscope.net/"}}]}]},"total":1}
+            type: simple
+    x-speakeasy-test-group: webhookSubscriptions_webhooks
+    x-speakeasy-test-rebuild: false
+  - workflowId: getWebhook
+    steps:
+      - stepId: test
+        operationId: getWebhook
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"self":{"href":"https://api.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8"},"subscription":{"href":"https://api.dwolla.com/webhook-subscriptions/a0943041-7a5c-4e8f-92de-b55711ef3a83"},"retry":{"href":"https://api.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8/retries"},"event":{"href":"https://api.dwolla.com/events/03c7e14c-7f15-44a2-bcf7-83f2f7e95d50"}},"id":"9ece9660-aa34-41eb-80d7-0125d53b45e8","topic":"transfer_created","accountId":"ca32853c-48fa-40be-ae75-77b37504581b","eventId":"03c7e14c-7f15-44a2-bcf7-83f2f7e95d50","subscriptionId":"a0943041-7a5c-4e8f-92de-b55711ef3a83","attempts":[{"id":"d4d16621-c6b0-40cb-8dc3-0469fa9dc4e8","request":{"timestamp":"2022-10-27T17:07:34.304Z","url":"https://myapp.runscope.net","headers":[{"name":"X-Dwolla-Topic","value":"transfer_created"}, {"name":"X-Dwolla-Topic","value":"transfer_created"}, {"name":"X-Dwolla-Topic","value":"transfer_created"}],"body":"id:03c7e14c-7f15-44a2-bcf7-83f2f7e95d50resourceId:81BA6F36-CD7C-E511-80DB-0AA34A9B2388topic:transfer_createdtimestamp:2022-10-27T17:07:34.207Z_links:self:href:https://api.dwolla.com/events/03c7e14c-7f15-44a2-bcf7-83f2f7e95d50account:href:https://api.dwolla.com/accounts/ca32853c-48fa-40be-ae75-77b37504581bresource:href:https://api.dwolla.com/transfers/81BA6F36-CD7C-E511-80DB-0AA34A9B2388"},"response":{"timestamp":"2022-10-27T17:07:34.308Z","headers":[{"name":"Date","value":"Tue 27 Oct 2022 17:07:34 GMT"}, {"name":"Date","value":"Tue 27 Oct 2022 17:07:34 GMT"}, {"name":"Date","value":"Tue 27 Oct 2022 17:07:34 GMT"}],"statusCode":200,"body":"body:id:03c7e14c-7f15-44a2-bcf7-83f2f7e95d50resourceId:81BA6F36-CD7C-E511-80DB-0AA34A9B2388topic:transfer_createdtimestamp:2022-10-27T17:07:34.207Z_links:self:href:https://api.dwolla.com/events/03c7e14c-7f15-44a2-bcf7-83f2f7e95d50account:href:https://api.dwolla.com/accounts/ca32853c-48fa-40be-ae75-77b37504581bresource:href:https://api.dwolla.com/transfers/81BA6F36-CD7C-E511-80DB-0AA34A9B2388files:[]form:fragment:headers:Connection:[close]Content-Length:[453]Content-Type:[application/json; charset=UTF-8]Host:[myapp.runscope.net]User-Agent:[dwolla-webhooks/1.0]X-Dwolla-Topic:[transfer_created]X-Request-Signature:[bd93780bd7e1ad77ab821094aaa0f9e3dece5ee3]host:myapp.runscope.netmethod:POSTparams:path:/region:us5runscope_host:prod078.runscope.inscheme:httpssource:capturesource_ip:52.24.10.184timestamp:1.4459656543078682e+09url:https://myapp.runscope.net/"}}, {"id":"d4d16621-c6b0-40cb-8dc3-0469fa9dc4e8","request":{"timestamp":"2022-10-27T17:07:34.304Z","url":"https://myapp.runscope.net","headers":[{"name":"X-Dwolla-Topic","value":"transfer_created"}, {"name":"X-Dwolla-Topic","value":"transfer_created"}, {"name":"X-Dwolla-Topic","value":"transfer_created"}],"body":"id:03c7e14c-7f15-44a2-bcf7-83f2f7e95d50resourceId:81BA6F36-CD7C-E511-80DB-0AA34A9B2388topic:transfer_createdtimestamp:2022-10-27T17:07:34.207Z_links:self:href:https://api.dwolla.com/events/03c7e14c-7f15-44a2-bcf7-83f2f7e95d50account:href:https://api.dwolla.com/accounts/ca32853c-48fa-40be-ae75-77b37504581bresource:href:https://api.dwolla.com/transfers/81BA6F36-CD7C-E511-80DB-0AA34A9B2388"},"response":{"timestamp":"2022-10-27T17:07:34.308Z","headers":[{"name":"Date","value":"Tue 27 Oct 2022 17:07:34 GMT"}, {"name":"Date","value":"Tue 27 Oct 2022 17:07:34 GMT"}, {"name":"Date","value":"Tue 27 Oct 2022 17:07:34 GMT"}],"statusCode":200,"body":"body:id:03c7e14c-7f15-44a2-bcf7-83f2f7e95d50resourceId:81BA6F36-CD7C-E511-80DB-0AA34A9B2388topic:transfer_createdtimestamp:2022-10-27T17:07:34.207Z_links:self:href:https://api.dwolla.com/events/03c7e14c-7f15-44a2-bcf7-83f2f7e95d50account:href:https://api.dwolla.com/accounts/ca32853c-48fa-40be-ae75-77b37504581bresource:href:https://api.dwolla.com/transfers/81BA6F36-CD7C-E511-80DB-0AA34A9B2388files:[]form:fragment:headers:Connection:[close]Content-Length:[453]Content-Type:[application/json; charset=UTF-8]Host:[myapp.runscope.net]User-Agent:[dwolla-webhooks/1.0]X-Dwolla-Topic:[transfer_created]X-Request-Signature:[bd93780bd7e1ad77ab821094aaa0f9e3dece5ee3]host:myapp.runscope.netmethod:POSTparams:path:/region:us5runscope_host:prod078.runscope.inscheme:httpssource:capturesource_ip:52.24.10.184timestamp:1.4459656543078682e+09url:https://myapp.runscope.net/"}}, {"id":"d4d16621-c6b0-40cb-8dc3-0469fa9dc4e8","request":{"timestamp":"2022-10-27T17:07:34.304Z","url":"https://myapp.runscope.net","headers":[{"name":"X-Dwolla-Topic","value":"transfer_created"}, {"name":"X-Dwolla-Topic","value":"transfer_created"}, {"name":"X-Dwolla-Topic","value":"transfer_created"}],"body":"id:03c7e14c-7f15-44a2-bcf7-83f2f7e95d50resourceId:81BA6F36-CD7C-E511-80DB-0AA34A9B2388topic:transfer_createdtimestamp:2022-10-27T17:07:34.207Z_links:self:href:https://api.dwolla.com/events/03c7e14c-7f15-44a2-bcf7-83f2f7e95d50account:href:https://api.dwolla.com/accounts/ca32853c-48fa-40be-ae75-77b37504581bresource:href:https://api.dwolla.com/transfers/81BA6F36-CD7C-E511-80DB-0AA34A9B2388"},"response":{"timestamp":"2022-10-27T17:07:34.308Z","headers":[{"name":"Date","value":"Tue 27 Oct 2022 17:07:34 GMT"}, {"name":"Date","value":"Tue 27 Oct 2022 17:07:34 GMT"}, {"name":"Date","value":"Tue 27 Oct 2022 17:07:34 GMT"}],"statusCode":200,"body":"body:id:03c7e14c-7f15-44a2-bcf7-83f2f7e95d50resourceId:81BA6F36-CD7C-E511-80DB-0AA34A9B2388topic:transfer_createdtimestamp:2022-10-27T17:07:34.207Z_links:self:href:https://api.dwolla.com/events/03c7e14c-7f15-44a2-bcf7-83f2f7e95d50account:href:https://api.dwolla.com/accounts/ca32853c-48fa-40be-ae75-77b37504581bresource:href:https://api.dwolla.com/transfers/81BA6F36-CD7C-E511-80DB-0AA34A9B2388files:[]form:fragment:headers:Connection:[close]Content-Length:[453]Content-Type:[application/json; charset=UTF-8]Host:[myapp.runscope.net]User-Agent:[dwolla-webhooks/1.0]X-Dwolla-Topic:[transfer_created]X-Request-Signature:[bd93780bd7e1ad77ab821094aaa0f9e3dece5ee3]host:myapp.runscope.netmethod:POSTparams:path:/region:us5runscope_host:prod078.runscope.inscheme:httpssource:capturesource_ip:52.24.10.184timestamp:1.4459656543078682e+09url:https://myapp.runscope.net/"}}]}
+            type: simple
+    x-speakeasy-test-group: webhooks
+    x-speakeasy-test-rebuild: false
+  - workflowId: listWebhookRetries
+    steps:
+      - stepId: test
+        operationId: listWebhookRetries
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"self":{"href":"https://api.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8/retries"}},"_embedded":{"retries":[{"_links":{"self":{"href":"https://api.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8/retries/5aa27a0f-cf99-418d-a3ee-67c0ff99a494"},"webhook":{"href":"https://api.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8"}},"id":"5aa27a0f-cf99-418d-a3ee-67c0ff99a494","timestamp":"2022-11-02T17:43:26.000Z"}, {"_links":{"self":{"href":"https://api.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8/retries/5aa27a0f-cf99-418d-a3ee-67c0ff99a494"},"webhook":{"href":"https://api.dwolla.com/webhooks/9ece9660-aa34-41eb-80d7-0125d53b45e8"}},"id":"5aa27a0f-cf99-418d-a3ee-67c0ff99a494","timestamp":"2022-11-02T17:43:26.000Z"}]},"total":1}
+            type: simple
+    x-speakeasy-test-group: retries
+    x-speakeasy-test-rebuild: false
+  - workflowId: simulateBankTransferProcessing
+    steps:
+      - stepId: test
+        operationId: simulateBankTransferProcessing
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {}
+            type: simple
+    x-speakeasy-test-group: sandbox simulations
+    x-speakeasy-test-rebuild: false
+  - workflowId: listExchangePartners
+    steps:
+      - stepId: test
+        operationId: listExchangePartners
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"_embedded":{"exchange-partners":[{"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e","name":"Plaid","status":"active","created":"2022-07-23T00:18:21.419Z"}, {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e","name":"Plaid","status":"active","created":"2022-07-23T00:18:21.419Z"}, {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e","name":"Plaid","status":"active","created":"2022-07-23T00:18:21.419Z"}]},"total":3}
+            type: simple
+    x-speakeasy-test-group: exchangePartners
+    x-speakeasy-test-rebuild: false
+  - workflowId: getExchangePartner
+    steps:
+      - stepId: test
+        operationId: getExchangePartner
+        parameters:
+          - name: id
+            in: path
+            value: 292317ec-e252-47d8-93c3-2d128e037aa4
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e","name":"Plaid","status":"active","created":"2022-07-23T00:18:21.419Z"}
+            type: simple
+    x-speakeasy-test-group: exchangePartners
+    x-speakeasy-test-rebuild: false
+  - workflowId: getExchange
+    steps:
+      - stepId: test
+        operationId: getExchange
+        parameters:
+          - name: id
+            in: path
+            value: e5e9f2d3-a96c-4abd-a097-8ec7ae28aa8a
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"key":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key1":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"},"key2":{"href":"https://api.dwolla.com","type":"application/vnd.dwolla.v1.hal+json","resource-type":"resource-type"}},"id":"d3d6b41e-5567-4bc6-9c6e-0efd0a3e647e","status":"active","created":"2022-07-23T00:18:21.419Z"}
+            type: simple
+    x-speakeasy-test-group: exchanges
+    x-speakeasy-test-rebuild: false
+  - workflowId: retrieveCustomerExchangeSession
+    steps:
+      - stepId: test
+        operationId: retrieveCustomerExchangeSession
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"created":"2024-03-25T17:13:38.430Z","_links":{"self":{"href":"https://api.dwolla.com/exchange-sessions/9b7fb629-0fad-44f4-8c5e-44c25a0bfa8e","type":"application/vnd.dwolla.v1.hal+json","resource-type":"exchange-sessions"},"exchange-partner":{"href":"https://api.dwolla.com/exchange-partners/bca8d065-49a5-475b-a6b4-509bc8504d22","type":"application/vnd.dwolla.v1.hal+json","resource-type":"exchange-partner"},"external-provider-session":{"href":"https://www.mx.com/connect/lAfkc7m897s3t1ks9mmwyj4ry7Zq0xql4grzAg1kz77x7c9jrwls1t22w6xt8d2lsxx9zpqv30js3wswfdwcrpAsqgbAfkqwpksp7c2chsx167xy90Asfc67dkj9y48y8p142xw3yp4x5l9t9gkk6m3yk5vwsvyq2qq7w9trszxwdl14lmkg7l6949bn5n41chdkbnxycy40n9b6fkbdwl6qt5wl107k1x8srvlkpz325p412x9tkyA5clf39109lsfrgz2lkgsvntqf7l0zzwb5hl658gdjbxwhb52krwybnbdAqfq69cdy54l05jkvfwyf01q89x48jtgtx290lzjdfcty1lwb8d648wns/eyJ1aV9tZXNzYWdlX3ZlcnNpb24iOjQsInVpX21lc3NhZ2Vfd2Vidmlld191cmxfc2NoZW1lIjoibXgiLCJtb2RlIjoidmVyaWZpY2F0aW9uIn0%3D","type":"application/vnd.dwolla.v1.hal+json","resource-type":"text/html"}},"externalProviderSessionToken":"link-production-b41e8ed3-0874-4c64-b07d-a77088979d5f"}
+            type: simple
+    x-speakeasy-test-group: exchangeSessions
+    x-speakeasy-test-rebuild: false
+  - workflowId: createClientToken
+    steps:
+      - stepId: test
+        operationId: createClientToken
+        requestBody:
+          contentType: application/json
+          payload:
+            _links:
+              customer:
+                href: https://api-sandbox.dwolla.com/customers/707177c3-bf15-4e7e-b37c-55c3898d9bf4
+            action: customer.update
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {"token":"4adF858jPeQ9RnojMHdqSD2KwsvmhO7Ti7cI5woOiBGCpH5krY"}
+            type: simple
+    x-speakeasy-test-group: clientTokens
+    x-speakeasy-test-rebuild: false

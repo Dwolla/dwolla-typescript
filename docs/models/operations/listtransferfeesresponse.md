@@ -26,7 +26,7 @@ let value: ListTransferFeesResponse = {
       created: new Date("2016-02-22T20:46:38.777Z"),
     },
   ],
-  total: "1",
+  total: 1,
 };
 ```
 
@@ -35,4 +35,4 @@ let value: ListTransferFeesResponse = {
 | Field                                                              | Type                                                               | Required                                                           | Description                                                        | Example                                                            |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
 | `transactions`                                                     | [operations.Transaction](../../models/operations/transaction.md)[] | :heavy_minus_sign:                                                 | N/A                                                                |                                                                    |
-| `total`                                                            | *string*                                                           | :heavy_minus_sign:                                                 | N/A                                                                | 1                                                                  |
+| `total`                                                            | *number*                                                           | :heavy_minus_sign:                                                 | N/A                                                                | 1                                                                  |

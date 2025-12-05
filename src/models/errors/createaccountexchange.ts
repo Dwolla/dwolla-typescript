@@ -5,7 +5,7 @@
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import { smartUnion } from "../../types/union.js";
+import { smartUnion } from "../../types/smartUnion.js";
 import { DwollaError } from "./dwollaerror.js";
 import {
   InvalidExchangeError,

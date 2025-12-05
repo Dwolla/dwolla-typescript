@@ -14,6 +14,7 @@ export const FundingSourceChannel = {
   Ach: "ach",
   RealTimePayments: "real-time-payments",
   Wire: "wire",
+  External: "external",
 } as const;
 export type FundingSourceChannel = ClosedEnum<typeof FundingSourceChannel>;
 

@@ -1,0 +1,3 @@
+# Manually maintained test files - excluded from Speakeasy generation
+src/__tests__/**
+

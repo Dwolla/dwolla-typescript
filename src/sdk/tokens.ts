@@ -15,11 +15,13 @@ export class Tokens extends ClientSDK {
    * Generate an application access token using OAuth 2.0 client credentials flow for server-to-server authentication. Requires client ID and secret sent via Basic authentication header with grant_type=client_credentials in the request body. Returns a bearer access token with expiration time for authenticating API requests scoped to your application. Essential for secure API access.
    */
   async create(
+    security: operations.CreateApplicationAccessTokenSecurity,
     request: operations.CreateApplicationAccessTokenRequest,
     options?: RequestOptions,
   ): Promise<operations.CreateApplicationAccessTokenResponse> {
     return unwrapAsync(tokensCreate(
       this,
+      security,
       request,
       options,
     ));

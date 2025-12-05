@@ -14,7 +14,7 @@ export type CreateVerifiedPersonalCustomer = {
   ipAddress?: string | undefined;
   phone?: string | undefined;
   correlationId?: string | undefined;
-  type?: "personal" | undefined;
+  type: "personal";
   address1: string;
   address2?: string | undefined;
   city: string;

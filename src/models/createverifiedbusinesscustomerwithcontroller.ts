@@ -37,7 +37,7 @@ export type CreateVerifiedBusinessCustomerWithController = {
   ipAddress?: string | undefined;
   phone?: string | undefined;
   correlationId?: string | undefined;
-  type?: "business" | undefined;
+  type: "business";
   address1: string;
   address2?: string | undefined;
   city: string;

@@ -6,7 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
-import { smartUnion } from "../types/union.js";
+import { smartUnion } from "../types/smartUnion.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 import {
@@ -52,6 +52,7 @@ export type CustomersEmbedded = {
 export type Customers = {
   links?: { [k: string]: HalLink } | undefined;
   embedded?: CustomersEmbedded | undefined;
+  total?: number | undefined;
 };
 
 /** @internal */
@@ -112,6 +113,7 @@ export const Customers$inboundSchema: z.ZodType<
 > = z.object({
   _links: z.record(HalLink$inboundSchema).optional(),
   _embedded: z.lazy(() => CustomersEmbedded$inboundSchema).optional(),
+  total: z.number().int().optional(),
 }).transform((v) => {
   return remap$(v, {
     "_links": "links",

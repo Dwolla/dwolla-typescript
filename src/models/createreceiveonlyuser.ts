@@ -11,7 +11,7 @@ export type CreateReceiveOnlyUser = {
   firstName: string;
   lastName: string;
   email: string;
-  type?: "receive-only" | undefined;
+  type: "receive-only";
   ipAddress?: string | undefined;
   phone?: string | undefined;
   correlationId?: string | undefined;
