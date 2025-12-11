@@ -1,5 +1,4 @@
 # Kba
-(*kba*)
 
 ## Overview
 

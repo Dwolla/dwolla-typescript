@@ -1,5 +1,4 @@
-# Failure
-(*transfers.failure*)
+# Transfers.Failure
 
 ## Overview
 

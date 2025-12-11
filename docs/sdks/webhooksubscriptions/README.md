@@ -1,5 +1,4 @@
 # WebhookSubscriptions
-(*webhookSubscriptions*)
 
 ## Overview
 

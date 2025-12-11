@@ -1,5 +1,4 @@
-# AccountsTransfers
-(*accounts.transfers*)
+# Accounts.Transfers
 
 ## Overview
 

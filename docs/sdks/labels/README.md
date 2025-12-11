@@ -1,5 +1,4 @@
 # Labels
-(*labels*)
 
 ## Overview
 

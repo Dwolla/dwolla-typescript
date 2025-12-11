@@ -1,5 +1,4 @@
 # MassPayments
-(*massPayments*)
 
 ## Overview
 

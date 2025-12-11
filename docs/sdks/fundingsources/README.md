@@ -1,5 +1,4 @@
 # FundingSources
-(*fundingSources*)
 
 ## Overview
 

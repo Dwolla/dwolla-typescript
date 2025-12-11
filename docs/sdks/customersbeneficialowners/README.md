@@ -1,5 +1,4 @@
-# CustomersBeneficialOwners
-(*customers.beneficialOwners*)
+# Customers.BeneficialOwners
 
 ## Overview
 

@@ -1,5 +1,4 @@
 # ClientTokens
-(*clientTokens*)
 
 ## Overview
 

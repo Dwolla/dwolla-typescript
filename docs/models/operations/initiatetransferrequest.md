@@ -13,6 +13,14 @@ let value: InitiateTransferRequest = {
       value: "5.00",
       currency: "USD",
     },
+    fees: [
+      {
+        amount: {
+          value: "5.00",
+          currency: "USD",
+        },
+      },
+    ],
     rtpDetails: {
       destination: {
         remittanceData: "ABC_123 Remittance Data",

@@ -37,7 +37,7 @@ export type VerifiedBusinessCustomerBusinessType = ClosedEnum<
   typeof VerifiedBusinessCustomerBusinessType
 >;
 
-export type VerifiedBusinessCustomerAddress = {
+export type Address = {
   address1?: string | undefined;
   address2?: string | undefined;
   address3?: string | undefined;
@@ -51,7 +51,7 @@ export type VerifiedBusinessCustomerController = {
   firstName: string;
   lastName: string;
   title: string;
-  address: VerifiedBusinessCustomerAddress;
+  address: Address;
 };
 
 /**
@@ -98,27 +98,24 @@ export const VerifiedBusinessCustomerBusinessType$inboundSchema:
   );
 
 /** @internal */
-export const VerifiedBusinessCustomerAddress$inboundSchema: z.ZodType<
-  VerifiedBusinessCustomerAddress,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  address1: z.string().optional(),
-  address2: z.string().optional(),
-  address3: z.string().optional(),
-  city: z.string().optional(),
-  postalCode: z.string().optional(),
-  country: z.string().optional(),
-  stateProvinceRegion: z.string().optional(),
-});
+export const Address$inboundSchema: z.ZodType<Address, z.ZodTypeDef, unknown> =
+  z.object({
+    address1: z.string().optional(),
+    address2: z.string().optional(),
+    address3: z.string().optional(),
+    city: z.string().optional(),
+    postalCode: z.string().optional(),
+    country: z.string().optional(),
+    stateProvinceRegion: z.string().optional(),
+  });
 
-export function verifiedBusinessCustomerAddressFromJSON(
+export function addressFromJSON(
   jsonString: string,
-): SafeParseResult<VerifiedBusinessCustomerAddress, SDKValidationError> {
+): SafeParseResult<Address, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => VerifiedBusinessCustomerAddress$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VerifiedBusinessCustomerAddress' from JSON`,
+    (x) => Address$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Address' from JSON`,
   );
 }
 
@@ -131,7 +128,7 @@ export const VerifiedBusinessCustomerController$inboundSchema: z.ZodType<
   firstName: z.string(),
   lastName: z.string(),
   title: z.string(),
-  address: z.lazy(() => VerifiedBusinessCustomerAddress$inboundSchema),
+  address: z.lazy(() => Address$inboundSchema),
 });
 
 export function verifiedBusinessCustomerControllerFromJSON(

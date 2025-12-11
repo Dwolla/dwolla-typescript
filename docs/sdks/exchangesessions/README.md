@@ -1,5 +1,4 @@
 # ExchangeSessions
-(*exchangeSessions*)
 
 ## Overview
 

@@ -1,5 +1,4 @@
-# ExchangesExchangeSessions
-(*exchanges.exchangeSessions*)
+# Exchanges.ExchangeSessions
 
 ## Overview
 

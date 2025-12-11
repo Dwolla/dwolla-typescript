@@ -1,5 +1,4 @@
-# CustomersLabels
-(*customers.labels*)
+# Customers.Labels
 
 ## Overview
 
@@ -111,8 +110,8 @@ async function run() {
     id: "<id>",
     requestBody: {
       amount: {
-        currency: "12.34",
-        value: "USD",
+        currency: "USD",
+        value: "12.34",
       },
     },
   });
@@ -145,8 +144,8 @@ async function run() {
     id: "<id>",
     requestBody: {
       amount: {
-        currency: "12.34",
-        value: "USD",
+        currency: "USD",
+        value: "12.34",
       },
     },
   });

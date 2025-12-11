@@ -1,5 +1,4 @@
-# CustomersDocuments
-(*customers.documents*)
+# Customers.Documents
 
 ## Overview
 

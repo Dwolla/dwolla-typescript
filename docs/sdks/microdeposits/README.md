@@ -1,5 +1,4 @@
-# MicroDeposits
-(*fundingSources.microDeposits*)
+# FundingSources.MicroDeposits
 
 ## Overview
 

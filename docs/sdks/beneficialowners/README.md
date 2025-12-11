@@ -1,5 +1,4 @@
 # BeneficialOwners
-(*beneficialOwners*)
 
 ## Overview
 

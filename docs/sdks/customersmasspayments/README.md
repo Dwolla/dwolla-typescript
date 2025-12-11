@@ -1,5 +1,4 @@
-# CustomersMassPayments
-(*customers.massPayments*)
+# Customers.MassPayments
 
 ## Overview
 

@@ -1,5 +1,4 @@
 # BusinessClassifications
-(*businessClassifications*)
 
 ## Overview
 

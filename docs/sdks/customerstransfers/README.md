@@ -1,5 +1,4 @@
-# CustomersTransfers
-(*customers.transfers*)
+# Customers.Transfers
 
 ## Overview
 

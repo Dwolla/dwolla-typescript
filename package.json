@@ -1,8 +1,8 @@
 {
   "name": "dwolla",
-  "version": "0.0.1-beta.14",
+  "version": "1.0.0",
   "author": "Speakeasy",
-  "description": "Dwolla TypeScript SDK (Beta). Breaking changes may occur between beta versions.",
+  "description": "Dwolla TypeScript SDK",
   "type": "module",
   "tshy": {
     "sourceDialects": [

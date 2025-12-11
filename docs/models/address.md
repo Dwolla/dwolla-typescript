@@ -7,21 +7,23 @@ import { Address } from "dwolla/models";
 
 let value: Address = {
   address1: "462 Main Street",
-  address2: "Suite 124",
+  address2: "Suite 123",
+  address3: "Unit 123",
   city: "Des Moines",
   postalCode: "50309",
-  state: "IA",
-  country: "US",
+  country: "USA",
+  stateProvinceRegion: "IA",
 };
 ```
 
 ## Fields
 
-| Field              | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `address1`         | *string*           | :heavy_check_mark: | N/A                | 462 Main Street    |
-| `address2`         | *string*           | :heavy_minus_sign: | N/A                | Suite 124          |
-| `city`             | *string*           | :heavy_check_mark: | N/A                | Des Moines         |
-| `postalCode`       | *string*           | :heavy_check_mark: | N/A                | 50309              |
-| `state`            | *string*           | :heavy_check_mark: | N/A                | IA                 |
-| `country`          | *string*           | :heavy_check_mark: | N/A                | US                 |
+| Field                 | Type                  | Required              | Description           | Example               |
+| --------------------- | --------------------- | --------------------- | --------------------- | --------------------- |
+| `address1`            | *string*              | :heavy_minus_sign:    | N/A                   | 462 Main Street       |
+| `address2`            | *string*              | :heavy_minus_sign:    | N/A                   | Suite 123             |
+| `address3`            | *string*              | :heavy_minus_sign:    | N/A                   | Unit 123              |
+| `city`                | *string*              | :heavy_minus_sign:    | N/A                   | Des Moines            |
+| `postalCode`          | *string*              | :heavy_minus_sign:    | N/A                   | 50309                 |
+| `country`             | *string*              | :heavy_minus_sign:    | N/A                   | USA                   |
+| `stateProvinceRegion` | *string*              | :heavy_minus_sign:    | N/A                   | IA                    |
