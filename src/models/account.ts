@@ -6,7 +6,6 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
-import { Address, Address$inboundSchema } from "./address.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import { HalLink, HalLink$inboundSchema } from "./hallink.js";
 
@@ -14,16 +13,8 @@ export type Account = {
   links?: { [k: string]: HalLink } | undefined;
   id?: string | undefined;
   name?: string | undefined;
-  authorizedRep?: string | undefined;
   timezoneOffset?: number | undefined;
-  email?: string | undefined;
-  phone?: string | undefined;
-  address?: Address | undefined;
-  verificationStatus?: string | undefined;
-  ownershipStatus?: string | undefined;
-  ownershipCertificationStatus?: string | undefined;
   type?: string | undefined;
-  created?: Date | undefined;
 };
 
 /** @internal */
@@ -32,17 +23,8 @@ export const Account$inboundSchema: z.ZodType<Account, z.ZodTypeDef, unknown> =
     _links: z.record(HalLink$inboundSchema).optional(),
     id: z.string().optional(),
     name: z.string().optional(),
-    authorizedRep: z.string().optional(),
-    timezoneOffset: z.number().int().optional(),
-    email: z.string().optional(),
-    phone: z.string().optional(),
-    address: Address$inboundSchema.optional(),
-    verificationStatus: z.string().optional(),
-    ownershipStatus: z.string().optional(),
-    ownershipCertificationStatus: z.string().optional(),
+    timezoneOffset: z.number().optional(),
     type: z.string().optional(),
-    created: z.string().datetime({ offset: true }).transform(v => new Date(v))
-      .optional(),
   }).transform((v) => {
     return remap$(v, {
       "_links": "links",

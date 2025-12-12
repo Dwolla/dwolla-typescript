@@ -12,9 +12,6 @@ API.
 
 <br /><br />
 
-> [!IMPORTANT]
-> **Beta Release** - This SDK is currently in beta. Core operations including customer creation, funding sources, transfers, and beneficial ownership have been tested and are functional. We are conducting thorough internal testing of all operations before general availability. Please note that breaking changes may occur as we continue to make improvements. While suitable for development and testing, please use with appropriate caution in production environments.
-
 <!-- Start Summary [summary] -->
 ## Summary
 
@@ -38,6 +35,7 @@ Dwolla API: Dwolla API Documentation
   * [Custom HTTP Client](#custom-http-client)
   * [Debugging](#debugging)
 * [Development](#development)
+  * [Testing (Maintainers Only)](#testing-maintainers-only)
   * [Maturity](#maturity)
   * [Contributions](#contributions)
 
@@ -168,49 +166,49 @@ run();
 <details open>
 <summary>Available methods</summary>
 
-### [accounts](docs/sdks/accounts/README.md)
+### [Accounts](docs/sdks/accounts/README.md)
 
 * [get](docs/sdks/accounts/README.md#get) - Retrieve account details
 
-#### [accounts.exchanges](docs/sdks/accountsexchanges/README.md)
+#### [Accounts.Exchanges](docs/sdks/accountsexchanges/README.md)
 
 * [list](docs/sdks/accountsexchanges/README.md#list) - List exchanges for an account
 * [create](docs/sdks/accountsexchanges/README.md#create) - Create an exchange for an account
 
-#### [accounts.fundingSources](docs/sdks/accountsfundingsources/README.md)
+#### [Accounts.FundingSources](docs/sdks/accountsfundingsources/README.md)
 
 * [create](docs/sdks/accountsfundingsources/README.md#create) - Create a funding source for an account
 * [list](docs/sdks/accountsfundingsources/README.md#list) - List funding sources for an account
 
-#### [accounts.massPayments](docs/sdks/accountsmasspayments/README.md)
+#### [Accounts.MassPayments](docs/sdks/accountsmasspayments/README.md)
 
 * [list](docs/sdks/accountsmasspayments/README.md#list) - List account mass payments
 
-#### [accounts.transfers](docs/sdks/accountstransfers/README.md)
+#### [Accounts.Transfers](docs/sdks/accountstransfers/README.md)
 
 * [list](docs/sdks/accountstransfers/README.md#list) - List and search account transfers
 
-### [beneficialOwners](docs/sdks/beneficialowners/README.md)
+### [BeneficialOwners](docs/sdks/beneficialowners/README.md)
 
 * [get](docs/sdks/beneficialowners/README.md#get) - Retrieve beneficial owner
 * [update](docs/sdks/beneficialowners/README.md#update) - Update beneficial owner
 * [delete](docs/sdks/beneficialowners/README.md#delete) - Remove beneficial owner
 
-#### [beneficialOwners.documents](docs/sdks/beneficialownersdocuments/README.md)
+#### [BeneficialOwners.Documents](docs/sdks/beneficialownersdocuments/README.md)
 
 * [list](docs/sdks/beneficialownersdocuments/README.md#list) - List documents for beneficial owner
 * [create](docs/sdks/beneficialownersdocuments/README.md#create) - Create a document for beneficial owner
 
-### [businessClassifications](docs/sdks/businessclassifications/README.md)
+### [BusinessClassifications](docs/sdks/businessclassifications/README.md)
 
 * [list](docs/sdks/businessclassifications/README.md#list) - List business classifications
 * [get](docs/sdks/businessclassifications/README.md#get) - Retrieve a business classification
 
-### [clientTokens](docs/sdks/clienttokens/README.md)
+### [ClientTokens](docs/sdks/clienttokens/README.md)
 
 * [create](docs/sdks/clienttokens/README.md#create) - Create a client token
 
-### [customers](docs/sdks/customers/README.md)
+### [Customers](docs/sdks/customers/README.md)
 
 * [list](docs/sdks/customers/README.md#list) - List and search customers
 * [create](docs/sdks/customers/README.md#create) - Create a customer
@@ -218,166 +216,166 @@ run();
 * [update](docs/sdks/customers/README.md#update) - Update a customer
 * [listAvailableConnections](docs/sdks/customers/README.md#listavailableconnections) - List available exchange connections
 
-#### [customers.beneficialOwners](docs/sdks/customersbeneficialowners/README.md)
+#### [Customers.BeneficialOwners](docs/sdks/customersbeneficialowners/README.md)
 
 * [list](docs/sdks/customersbeneficialowners/README.md#list) - List customer beneficial owners
 * [create](docs/sdks/customersbeneficialowners/README.md#create) - Create customer beneficial owner
 
-#### [customers.beneficialOwnership](docs/sdks/beneficialownership/README.md)
+#### [Customers.BeneficialOwnership](docs/sdks/beneficialownership/README.md)
 
 * [get](docs/sdks/beneficialownership/README.md#get) - Retrieve beneficial ownership status
 * [certify](docs/sdks/beneficialownership/README.md#certify) - Certify beneficial ownership
 
-#### [customers.documents](docs/sdks/customersdocuments/README.md)
+#### [Customers.Documents](docs/sdks/customersdocuments/README.md)
 
 * [list](docs/sdks/customersdocuments/README.md#list) - List documents for customer
 * [create](docs/sdks/customersdocuments/README.md#create) - Create a document for customer
 
-#### [customers.exchanges](docs/sdks/customersexchanges/README.md)
+#### [Customers.Exchanges](docs/sdks/customersexchanges/README.md)
 
 * [list](docs/sdks/customersexchanges/README.md#list) - List exchanges for a customer
 * [create](docs/sdks/customersexchanges/README.md#create) - Create an exchange for a customer
 
-#### [customers.exchangeSessions](docs/sdks/customersexchangesessions/README.md)
+#### [Customers.ExchangeSessions](docs/sdks/customersexchangesessions/README.md)
 
 * [create](docs/sdks/customersexchangesessions/README.md#create) - Create customer exchange session
 
-#### [customers.fundingSources](docs/sdks/customersfundingsources/README.md)
+#### [Customers.FundingSources](docs/sdks/customersfundingsources/README.md)
 
 * [list](docs/sdks/customersfundingsources/README.md#list) - List customer funding sources
 * [create](docs/sdks/customersfundingsources/README.md#create) - Create customer funding source
 
-#### [customers.kba](docs/sdks/customerskba/README.md)
+#### [Customers.Kba](docs/sdks/customerskba/README.md)
 
 * [initiate](docs/sdks/customerskba/README.md#initiate) - Initiate a KBA session
 
-#### [customers.labels](docs/sdks/customerslabels/README.md)
+#### [Customers.Labels](docs/sdks/customerslabels/README.md)
 
 * [list](docs/sdks/customerslabels/README.md#list) - List labels for a customer
 * [create](docs/sdks/customerslabels/README.md#create) - Create a label for a customer
 
-#### [customers.massPayments](docs/sdks/customersmasspayments/README.md)
+#### [Customers.MassPayments](docs/sdks/customersmasspayments/README.md)
 
 * [list](docs/sdks/customersmasspayments/README.md#list) - List mass payments for customer
 
-#### [customers.transfers](docs/sdks/customerstransfers/README.md)
+#### [Customers.Transfers](docs/sdks/customerstransfers/README.md)
 
 * [list](docs/sdks/customerstransfers/README.md#list) - List and search transfers for a customer
 
-### [documents](docs/sdks/documents/README.md)
+### [Documents](docs/sdks/documents/README.md)
 
 * [get](docs/sdks/documents/README.md#get) - Retrieve a document
 
-### [events](docs/sdks/events/README.md)
+### [Events](docs/sdks/events/README.md)
 
 * [list](docs/sdks/events/README.md#list) - List events
 * [get](docs/sdks/events/README.md#get) - Retrieve event
 
-### [exchangePartners](docs/sdks/exchangepartners/README.md)
+### [ExchangePartners](docs/sdks/exchangepartners/README.md)
 
 * [list](docs/sdks/exchangepartners/README.md#list) - List exchange partners
 * [get](docs/sdks/exchangepartners/README.md#get) - Retrieve exchange partner
 
-### [exchanges](docs/sdks/exchanges/README.md)
+### [Exchanges](docs/sdks/exchanges/README.md)
 
 * [get](docs/sdks/exchanges/README.md#get) - Retrieve exchange resource
 
-#### [exchanges.exchangeSessions](docs/sdks/exchangesexchangesessions/README.md)
+#### [Exchanges.ExchangeSessions](docs/sdks/exchangesexchangesessions/README.md)
 
 * [createReAuth](docs/sdks/exchangesexchangesessions/README.md#createreauth) - Create re-authentication exchange session
 
-### [exchangeSessions](docs/sdks/exchangesessions/README.md)
+### [ExchangeSessions](docs/sdks/exchangesessions/README.md)
 
 * [get](docs/sdks/exchangesessions/README.md#get) - Retrieve exchange session
 
-### [fundingSources](docs/sdks/fundingsources/README.md)
+### [FundingSources](docs/sdks/fundingsources/README.md)
 
 * [get](docs/sdks/fundingsources/README.md#get) - Retrieve a funding source
 * [updateOrRemove](docs/sdks/fundingsources/README.md#updateorremove) - Update or remove a funding source
 * [getVanRouting](docs/sdks/fundingsources/README.md#getvanrouting) - Retrieve VAN account and routing numbers
 
-#### [fundingSources.balance](docs/sdks/balance/README.md)
+#### [FundingSources.Balance](docs/sdks/balance/README.md)
 
 * [get](docs/sdks/balance/README.md#get) - Retrieve funding source balance
 
-#### [fundingSources.microDeposits](docs/sdks/microdeposits/README.md)
+#### [FundingSources.MicroDeposits](docs/sdks/microdeposits/README.md)
 
 * [get](docs/sdks/microdeposits/README.md#get) - Retrieve micro-deposits details
 * [initiate](docs/sdks/microdeposits/README.md#initiate) - Initiate micro-deposits
 * [verify](docs/sdks/microdeposits/README.md#verify) - Verify micro-deposits
 
-#### [fundingSources.onDemandTransferAuthorizations](docs/sdks/ondemandtransferauthorizations/README.md)
+#### [FundingSources.OnDemandTransferAuthorizations](docs/sdks/ondemandtransferauthorizations/README.md)
 
 * [create](docs/sdks/ondemandtransferauthorizations/README.md#create) - Create an on-demand transfer authorization
 
-### [kba](docs/sdks/kba/README.md)
+### [Kba](docs/sdks/kba/README.md)
 
 * [getQuestions](docs/sdks/kba/README.md#getquestions) - Retrieve KBA Questions
 * [verify](docs/sdks/kba/README.md#verify) - Verify KBA Questions
 
-### [labels](docs/sdks/labels/README.md)
+### [Labels](docs/sdks/labels/README.md)
 
 * [get](docs/sdks/labels/README.md#get) - Retrieve a label
 * [remove](docs/sdks/labels/README.md#remove) - Remove a label
 
-#### [labels.ledgerEntries](docs/sdks/ledgerentries/README.md)
+#### [Labels.LedgerEntries](docs/sdks/ledgerentries/README.md)
 
 * [list](docs/sdks/ledgerentries/README.md#list) - List label ledger entries
 * [create](docs/sdks/ledgerentries/README.md#create) - Create a label ledger entry
 * [get](docs/sdks/ledgerentries/README.md#get) - Retrieve a label ledger entry
 
-#### [labels.reallocations](docs/sdks/reallocations/README.md)
+#### [Labels.Reallocations](docs/sdks/reallocations/README.md)
 
 * [create](docs/sdks/reallocations/README.md#create) - Create a label reallocation
 * [get](docs/sdks/reallocations/README.md#get) - Retrieve a label reallocation
 
-### [massPayments](docs/sdks/masspayments/README.md)
+### [MassPayments](docs/sdks/masspayments/README.md)
 
 * [create](docs/sdks/masspayments/README.md#create) - Initiate a mass payment
 * [get](docs/sdks/masspayments/README.md#get) - Retrieve a mass payment
 * [update](docs/sdks/masspayments/README.md#update) - Update a mass payment
 
-#### [massPayments.items](docs/sdks/items/README.md)
+#### [MassPayments.Items](docs/sdks/items/README.md)
 
 * [list](docs/sdks/items/README.md#list) - List items for a mass payment
 * [get](docs/sdks/items/README.md#get) - Retrieve mass payment item
 
-### [root](docs/sdks/root/README.md)
+### [Root](docs/sdks/root/README.md)
 
 * [get](docs/sdks/root/README.md#get) - root
 
-### [sandboxSimulations](docs/sdks/sandboxsimulations/README.md)
+### [SandboxSimulations](docs/sdks/sandboxsimulations/README.md)
 
 * [simulate](docs/sdks/sandboxsimulations/README.md#simulate) - Simulate bank transfer processing (Sandbox only)
 
-### [tokens](docs/sdks/tokens/README.md)
+### [Tokens](docs/sdks/tokens/README.md)
 
 * [create](docs/sdks/tokens/README.md#create) - Create an application access token
 
-### [transfers](docs/sdks/transfers/README.md)
+### [Transfers](docs/sdks/transfers/README.md)
 
 * [create](docs/sdks/transfers/README.md#create) - Initiate a transfer
 * [get](docs/sdks/transfers/README.md#get) - Retrieve a transfer
 * [cancel](docs/sdks/transfers/README.md#cancel) - Cancel a transfer
 
-#### [transfers.failure](docs/sdks/failure/README.md)
+#### [Transfers.Failure](docs/sdks/failure/README.md)
 
 * [get](docs/sdks/failure/README.md#get) - Retrieve a transfer failure reason
 
-#### [transfers.fees](docs/sdks/fees/README.md)
+#### [Transfers.Fees](docs/sdks/fees/README.md)
 
 * [list](docs/sdks/fees/README.md#list) - List fees for a transfer
 
-### [webhooks](docs/sdks/webhooks/README.md)
+### [Webhooks](docs/sdks/webhooks/README.md)
 
 * [get](docs/sdks/webhooks/README.md#get) - Retrieve a webhook
 * [retry](docs/sdks/webhooks/README.md#retry) - Retry a webhook
 
-#### [webhooks.retries](docs/sdks/retries/README.md)
+#### [Webhooks.Retries](docs/sdks/retries/README.md)
 
 * [list](docs/sdks/retries/README.md#list) - List retries for a webhook
 
-### [webhookSubscriptions](docs/sdks/webhooksubscriptions/README.md)
+### [WebhookSubscriptions](docs/sdks/webhooksubscriptions/README.md)
 
 * [list](docs/sdks/webhooksubscriptions/README.md#list) - List webhook subscriptions
 * [create](docs/sdks/webhooksubscriptions/README.md#create) - Create a webhook subscription
@@ -385,7 +383,7 @@ run();
 * [update](docs/sdks/webhooksubscriptions/README.md#update) - Update a webhook subscription
 * [delete](docs/sdks/webhooksubscriptions/README.md#delete) - Delete a webhook subscription
 
-#### [webhookSubscriptions.webhooks](docs/sdks/webhooksubscriptionswebhooks/README.md)
+#### [WebhookSubscriptions.Webhooks](docs/sdks/webhooksubscriptionswebhooks/README.md)
 
 * [list](docs/sdks/webhooksubscriptionswebhooks/README.md#list) - List webhooks for a webhook subscription
 
@@ -982,12 +980,43 @@ You can also enable a default debug logger by setting an environment variable `D
 
 # Development
 
+## Testing (Maintainers Only)
+
+This SDK includes integration tests that run against the Dwolla Sandbox environment. These tests are intended for Dwolla team members who are maintainers of this repository and have access to the Speakeasy workspace.
+
+### Prerequisites
+
+1. **Speakeasy CLI**: Install the Speakeasy CLI by following the [installation guide](https://www.speakeasy.com/docs/speakeasy-cli/getting-started).
+
+2. **Speakeasy Account**: You must be a team member in the Dwolla Speakeasy workspace.
+
+3. **Dwolla Sandbox Credentials**: You need a Dwolla Sandbox account with API credentials.
+
+### Running Tests
+
+1. Set your Dwolla Sandbox credentials as environment variables:
+
+```bash
+export DWOLLA_CLIENT_ID="your-sandbox-client-id"
+export DWOLLA_CLIENT_SECRET="your-sandbox-client-secret"
+```
+
+2. Run the tests using Speakeasy CLI:
+
+```bash
+speakeasy test
+```
+
+The tests will execute against the Dwolla Sandbox API and generate a test report.
+
+> [!NOTE]
+> - **58 tests pass**, while **7 tests are skipped**. The skipped tests depend on feature flags (e.g., Open Banking, KBA) that must be enabled by Dwolla for your account. These tests have been verified in previous iterations and work correctly when the features are enabled.
+> - Open Banking tests require resource IDs (e.g., `exchangeId`, `exchangeSessionId`) that must be created outside of the test suite, as they involve interaction with third-party providers.
+> - Tests create real resources (customers, transfers, etc.) in your Sandbox account. These are safe to leave as sandbox data is isolated and can be reset.
+
 ## Maturity
 
-This SDK is in beta, and there may be breaking changes between versions without a major version
-update. Therefore, we recommend pinning usage to a specific package version. This way, you can
-install the same version each time without breaking changes unless you are intentionally looking for
-the latest version.
+This SDK is generally available (GA) and follows [Semantic Versioning](https://semver.org/). We recommend pinning usage to a specific major version to ensure compatibility, as breaking changes will only occur in major version updates.
 
 ## Contributions
 

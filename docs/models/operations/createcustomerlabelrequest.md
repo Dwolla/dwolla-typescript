@@ -9,8 +9,8 @@ let value: CreateCustomerLabelRequest = {
   id: "<id>",
   requestBody: {
     amount: {
-      currency: "12.34",
-      value: "USD",
+      currency: "USD",
+      value: "12.34",
     },
   },
 };

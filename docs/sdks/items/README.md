@@ -1,5 +1,4 @@
-# Items
-(*massPayments.items*)
+# MassPayments.Items
 
 ## Overview
 

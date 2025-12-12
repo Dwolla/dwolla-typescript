@@ -9,8 +9,8 @@ import { CreateCustomerLabelRequestBody } from "dwolla/models/operations";
 
 let value: CreateCustomerLabelRequestBody = {
   amount: {
-    currency: "12.34",
-    value: "USD",
+    currency: "USD",
+    value: "12.34",
   },
 };
 ```

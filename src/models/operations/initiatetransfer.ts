@@ -33,14 +33,9 @@ export type FeeLinks = {
   chargeTo?: ChargeTo | undefined;
 };
 
-export type InitiateTransferAmount = {
-  amount?: string | undefined;
-  currency?: string | undefined;
-};
-
 export type Fee = {
   links?: FeeLinks | undefined;
-  amount?: InitiateTransferAmount | undefined;
+  amount?: models.TransferAmount | undefined;
 };
 
 export type InitiateTransferClearing = {
@@ -285,40 +280,16 @@ export function feeLinksToJSON(feeLinks: FeeLinks): string {
 }
 
 /** @internal */
-export type InitiateTransferAmount$Outbound = {
-  amount?: string | undefined;
-  currency?: string | undefined;
-};
-
-/** @internal */
-export const InitiateTransferAmount$outboundSchema: z.ZodType<
-  InitiateTransferAmount$Outbound,
-  z.ZodTypeDef,
-  InitiateTransferAmount
-> = z.object({
-  amount: z.string().optional(),
-  currency: z.string().optional(),
-});
-
-export function initiateTransferAmountToJSON(
-  initiateTransferAmount: InitiateTransferAmount,
-): string {
-  return JSON.stringify(
-    InitiateTransferAmount$outboundSchema.parse(initiateTransferAmount),
-  );
-}
-
-/** @internal */
 export type Fee$Outbound = {
   _links?: FeeLinks$Outbound | undefined;
-  amount?: InitiateTransferAmount$Outbound | undefined;
+  amount?: models.TransferAmount$Outbound | undefined;
 };
 
 /** @internal */
 export const Fee$outboundSchema: z.ZodType<Fee$Outbound, z.ZodTypeDef, Fee> = z
   .object({
     links: z.lazy(() => FeeLinks$outboundSchema).optional(),
-    amount: z.lazy(() => InitiateTransferAmount$outboundSchema).optional(),
+    amount: models.TransferAmount$outboundSchema.optional(),
   }).transform((v) => {
     return remap$(v, {
       links: "_links",

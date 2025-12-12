@@ -1,5 +1,4 @@
-# BeneficialOwnersDocuments
-(*beneficialOwners.documents*)
+# BeneficialOwners.Documents
 
 ## Overview
 

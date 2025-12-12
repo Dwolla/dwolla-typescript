@@ -4,7 +4,6 @@
 
 export * from "./account.js";
 export * from "./achaddendaentriesnotenabledforaccounterror.js";
-export * from "./address.js";
 export * from "./availableexchangeconnections.js";
 export * from "./badrequestschemaerror.js";
 export * from "./beneficialowner.js";

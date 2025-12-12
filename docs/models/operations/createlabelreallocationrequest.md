@@ -19,8 +19,8 @@ let value: CreateLabelReallocationRequest = {
     },
   },
   amount: {
-    currency: "15.00",
-    value: "USD",
+    currency: "USD",
+    value: "15.00",
   },
 };
 ```

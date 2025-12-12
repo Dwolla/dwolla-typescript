@@ -1,5 +1,4 @@
-# Retries
-(*webhooks.retries*)
+# Webhooks.Retries
 
 ## Overview
 

@@ -1,5 +1,4 @@
-# WebhookSubscriptionsWebhooks
-(*webhookSubscriptions.webhooks*)
+# WebhookSubscriptions.Webhooks
 
 ## Overview
 

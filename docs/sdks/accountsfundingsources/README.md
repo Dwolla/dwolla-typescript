@@ -1,5 +1,4 @@
-# AccountsFundingSources
-(*accounts.fundingSources*)
+# Accounts.FundingSources
 
 ## Overview
 

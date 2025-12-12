@@ -1,5 +1,4 @@
 # Transfers
-(*transfers*)
 
 ## Overview
 
@@ -37,6 +36,14 @@ async function run() {
         value: "5.00",
         currency: "USD",
       },
+      fees: [
+        {
+          amount: {
+            value: "5.00",
+            currency: "USD",
+          },
+        },
+      ],
       rtpDetails: {
         destination: {
           remittanceData: "ABC_123 Remittance Data",
@@ -85,6 +92,14 @@ async function run() {
         value: "5.00",
         currency: "USD",
       },
+      fees: [
+        {
+          amount: {
+            value: "5.00",
+            currency: "USD",
+          },
+        },
+      ],
       rtpDetails: {
         destination: {
           remittanceData: "ABC_123 Remittance Data",

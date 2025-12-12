@@ -1,5 +1,4 @@
-# LedgerEntries
-(*labels.ledgerEntries*)
+# Labels.LedgerEntries
 
 ## Overview
 

@@ -1,5 +1,4 @@
-# CustomersFundingSources
-(*customers.fundingSources*)
+# Customers.FundingSources
 
 ## Overview
 

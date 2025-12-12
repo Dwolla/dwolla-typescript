@@ -1,5 +1,4 @@
-# Reallocations
-(*labels.reallocations*)
+# Labels.Reallocations
 
 ## Overview
 
@@ -36,8 +35,8 @@ async function run() {
       },
     },
     amount: {
-      currency: "15.00",
-      value: "USD",
+      currency: "USD",
+      value: "15.00",
     },
   });
 
@@ -75,8 +74,8 @@ async function run() {
       },
     },
     amount: {
-      currency: "15.00",
-      value: "USD",
+      currency: "USD",
+      value: "15.00",
     },
   });
   if (res.ok) {

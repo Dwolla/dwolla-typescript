@@ -1,5 +1,4 @@
-# CustomersKba
-(*customers.kba*)
+# Customers.Kba
 
 ## Overview
 

@@ -6,8 +6,8 @@
 import { CreateCustomerLabelAmount } from "dwolla/models/operations";
 
 let value: CreateCustomerLabelAmount = {
-  currency: "12.34",
-  value: "USD",
+  currency: "USD",
+  value: "12.34",
 };
 ```
 
@@ -15,5 +15,5 @@ let value: CreateCustomerLabelAmount = {
 
 | Field              | Type               | Required           | Description        | Example            |
 | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `currency`         | *string*           | :heavy_minus_sign: | N/A                | 12.34              |
-| `value`            | *string*           | :heavy_minus_sign: | N/A                | USD                |
+| `currency`         | *string*           | :heavy_minus_sign: | N/A                | USD                |
+| `value`            | *string*           | :heavy_minus_sign: | N/A                | 12.34              |

@@ -24,19 +24,20 @@ generation:
   schemas:
     allOfMergeStrategy: shallowMerge
   requestBodyFieldName: ""
+  persistentEdits: {}
   tests:
     generateTests: true
     generateNewTests: true
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.0.1-beta.14
+  version: 1.0.0
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
     peerDependencies: {}
   additionalPackageJSON:
-    description: Dwolla TypeScript SDK (Beta). Breaking changes may occur between beta versions.
+    description: Dwolla TypeScript SDK.
   additionalScripts: {}
   alwaysIncludeInboundAndOutbound: false
   author: Speakeasy

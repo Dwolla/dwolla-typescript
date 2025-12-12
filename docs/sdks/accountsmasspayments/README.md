@@ -1,5 +1,4 @@
-# AccountsMassPayments
-(*accounts.massPayments*)
+# Accounts.MassPayments
 
 ## Overview
 

@@ -1,5 +1,4 @@
 # ExchangePartners
-(*exchangePartners*)
 
 ## Overview
 

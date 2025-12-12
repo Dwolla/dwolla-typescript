@@ -1,5 +1,4 @@
-# OnDemandTransferAuthorizations
-(*fundingSources.onDemandTransferAuthorizations*)
+# FundingSources.OnDemandTransferAuthorizations
 
 ## Overview
 

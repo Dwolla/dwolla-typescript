@@ -1,5 +1,4 @@
-# AccountsExchanges
-(*accounts.exchanges*)
+# Accounts.Exchanges
 
 ## Overview
 

@@ -6,8 +6,8 @@
 import { CreateLabelReallocationAmount } from "dwolla/models/operations";
 
 let value: CreateLabelReallocationAmount = {
-  currency: "15.00",
-  value: "USD",
+  currency: "USD",
+  value: "15.00",
 };
 ```
 
@@ -15,5 +15,5 @@ let value: CreateLabelReallocationAmount = {
 
 | Field              | Type               | Required           | Description        | Example            |
 | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `currency`         | *string*           | :heavy_minus_sign: | N/A                | 15.00              |
-| `value`            | *string*           | :heavy_minus_sign: | N/A                | USD                |
+| `currency`         | *string*           | :heavy_minus_sign: | N/A                | USD                |
+| `value`            | *string*           | :heavy_minus_sign: | N/A                | 15.00              |
