@@ -1,8 +1,8 @@
 {
   "name": "dwolla",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Speakeasy",
-  "description": "Dwolla TypeScript SDK",
+  "description": "Dwolla TypeScript SDK.",
   "type": "module",
   "tshy": {
     "sourceDialects": [
@@ -40,7 +40,7 @@
     "tshy": "^2.0.0",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.26.0",
-    "vitest": "^3.0.2"
+    "vitest": "^3.0.5"
   },
   "dependencies": {
     "zod": "^3.25.0 || ^4.0.0"

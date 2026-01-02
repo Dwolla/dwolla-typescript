@@ -9,11 +9,16 @@ export type ListCustomerFundingSourcesRequest = {
    * Customer's unique identifier
    */
   id: string;
+  /**
+   * Filter removed funding sources. Boolean value. Defaults to `true`
+   */
+  removed?: string | undefined;
 };
 
 /** @internal */
 export type ListCustomerFundingSourcesRequest$Outbound = {
   id: string;
+  removed?: string | undefined;
 };
 
 /** @internal */
@@ -23,6 +28,7 @@ export const ListCustomerFundingSourcesRequest$outboundSchema: z.ZodType<
   ListCustomerFundingSourcesRequest
 > = z.object({
   id: z.string(),
+  removed: z.string().optional(),
 });
 
 export function listCustomerFundingSourcesRequestToJSON(
