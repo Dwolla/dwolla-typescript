@@ -8,9 +8,19 @@ import { CreateCustomerFundingSourceRequest } from "dwolla/models/operations";
 let value: CreateCustomerFundingSourceRequest = {
   id: "<id>",
   createCustomerFundingSource: {
-    name: "My First VAN",
-    type: "virtual",
-    bankAccountType: "checking",
+    cardToken: "src_abc123_test_token_xyz789",
+    name: "My Visa Debit Card",
+    cardDetails: {
+      billingAddress: {
+        address1: "123 Main St",
+        address2: "Apt 4B",
+        address3: "Unit 101",
+        city: "Dallas",
+        stateProvinceRegion: "TX",
+        country: "US",
+        postalCode: "76034",
+      },
+    },
   },
 };
 ```

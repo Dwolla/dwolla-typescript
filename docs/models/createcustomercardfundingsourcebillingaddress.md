@@ -1,0 +1,31 @@
+# CreateCustomerCardFundingSourceBillingAddress
+
+The billing address associated with the card
+
+## Example Usage
+
+```typescript
+import { CreateCustomerCardFundingSourceBillingAddress } from "dwolla/models";
+
+let value: CreateCustomerCardFundingSourceBillingAddress = {
+  address1: "123 Main St",
+  address2: "Apt 4B",
+  address3: "Unit 101",
+  city: "Dallas",
+  stateProvinceRegion: "TX",
+  country: "US",
+  postalCode: "76034",
+};
+```
+
+## Fields
+
+| Field                                                                         | Type                                                                          | Required                                                                      | Description                                                                   | Example                                                                       |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `address1`                                                                    | *string*                                                                      | :heavy_check_mark:                                                            | First line of the street address. Must be 50 characters or less.              | 123 Main St                                                                   |
+| `address2`                                                                    | *string*                                                                      | :heavy_minus_sign:                                                            | Second line of the street address (optional). Must be 100 characters or less. | Apt 4B                                                                        |
+| `address3`                                                                    | *string*                                                                      | :heavy_minus_sign:                                                            | Third line of the street address (optional). Must be 100 characters or less.  | Unit 101                                                                      |
+| `city`                                                                        | *string*                                                                      | :heavy_check_mark:                                                            | City name. Must be 50 characters or less.                                     | Dallas                                                                        |
+| `stateProvinceRegion`                                                         | *string*                                                                      | :heavy_check_mark:                                                            | Two-letter state, province, or region code.                                   | TX                                                                            |
+| `country`                                                                     | *string*                                                                      | :heavy_check_mark:                                                            | Two-letter country code (ISO 3166-1 alpha-2)                                  | US                                                                            |
+| `postalCode`                                                                  | *string*                                                                      | :heavy_check_mark:                                                            | Postal code or ZIP code                                                       | 76034                                                                         |

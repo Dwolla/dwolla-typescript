@@ -15,6 +15,11 @@ import {
   CreateCustomerBankFundingSourceWithPlaid$outboundSchema,
 } from "./createcustomerbankfundingsourcewithplaid.js";
 import {
+  CreateCustomerCardFundingSource,
+  CreateCustomerCardFundingSource$Outbound,
+  CreateCustomerCardFundingSource$outboundSchema,
+} from "./createcustomercardfundingsource.js";
+import {
   CreateCustomerExchangeFundingSource,
   CreateCustomerExchangeFundingSource$Outbound,
   CreateCustomerExchangeFundingSource$outboundSchema,
@@ -32,19 +37,22 @@ import {
  * - Bank Account: Traditional method using routing/account numbers
  * - Exchange: Using IAV through exchange partners (Plaid, MX, etc.)
  * - Virtual Account: Creating Virtual Account Numbers (VANs)
+ * - Card: Creating debit card funding sources using tokenized card data
  */
 export type CreateCustomerFundingSource =
   | CreateCustomerBankFundingSourceWithAccountNumbers
   | CreateCustomerBankFundingSourceWithPlaid
   | CreateCustomerExchangeFundingSource
-  | CreateCustomerVirtualAccountFundingSource;
+  | CreateCustomerVirtualAccountFundingSource
+  | CreateCustomerCardFundingSource;
 
 /** @internal */
 export type CreateCustomerFundingSource$Outbound =
   | CreateCustomerBankFundingSourceWithAccountNumbers$Outbound
   | CreateCustomerBankFundingSourceWithPlaid$Outbound
   | CreateCustomerExchangeFundingSource$Outbound
-  | CreateCustomerVirtualAccountFundingSource$Outbound;
+  | CreateCustomerVirtualAccountFundingSource$Outbound
+  | CreateCustomerCardFundingSource$Outbound;
 
 /** @internal */
 export const CreateCustomerFundingSource$outboundSchema: z.ZodType<
@@ -56,6 +64,7 @@ export const CreateCustomerFundingSource$outboundSchema: z.ZodType<
   CreateCustomerBankFundingSourceWithPlaid$outboundSchema,
   CreateCustomerExchangeFundingSource$outboundSchema,
   CreateCustomerVirtualAccountFundingSource$outboundSchema,
+  CreateCustomerCardFundingSource$outboundSchema,
 ]);
 
 export function createCustomerFundingSourceToJSON(
