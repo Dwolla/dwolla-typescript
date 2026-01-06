@@ -15,6 +15,10 @@ import {
   CannotParseAmountError$inboundSchema,
 } from "./cannotparseamounterror.js";
 import {
+  CardSourceNotAllowedError,
+  CardSourceNotAllowedError$inboundSchema,
+} from "./cardsourcenotallowederror.js";
+import {
   DepositAccountRestrictedError,
   DepositAccountRestrictedError$inboundSchema,
 } from "./depositaccountrestrictederror.js";
@@ -132,6 +136,10 @@ import {
   InvalidMetadataError$inboundSchema,
 } from "./invalidmetadataerror.js";
 import {
+  InvalidOrRemovedCardDestinationError,
+  InvalidOrRemovedCardDestinationError$inboundSchema,
+} from "./invalidorremovedcarddestinationerror.js";
+import {
   InvalidPointOfSaleAddendaAddressError,
   InvalidPointOfSaleAddendaAddressError$inboundSchema,
 } from "./invalidpointofsaleaddendaaddresserror.js";
@@ -172,6 +180,10 @@ import {
   PointOfSaleAddendaEntriesNotEnabledForAccountError$inboundSchema,
 } from "./pointofsaleaddendaentriesnotenabledforaccounterror.js";
 import {
+  PrefundingSourceNotAllowedError,
+  PrefundingSourceNotAllowedError$inboundSchema,
+} from "./prefundingsourcenotallowederror.js";
+import {
   ReceiverNotFoundError,
   ReceiverNotFoundError$inboundSchema,
 } from "./receivernotfounderror.js";
@@ -204,6 +216,10 @@ import {
   SourceAddendaMaxLengthError,
   SourceAddendaMaxLengthError$inboundSchema,
 } from "./sourceaddendamaxlengtherror.js";
+import {
+  SourceNotCardNetworkSettlementError,
+  SourceNotCardNetworkSettlementError$inboundSchema,
+} from "./sourcenotcardnetworksettlementerror.js";
 import {
   SourceNotFoundError,
   SourceNotFoundError$inboundSchema,
@@ -315,6 +331,7 @@ export type InitiateTransferBadRequestDwollaV1HalJSON =
   | InvalidFacilitatorFeeCollectFromError
   | InvalidFacilitatorFeeCollectFromCombinationError
   | InvalidDestinationFundingSourceError
+  | InvalidOrRemovedCardDestinationError
   | InvalidFacilitatorFeeAmountError
   | WeeklyReceiveLimitReachedError
   | InvalidDestinationClearingTypeError
@@ -336,6 +353,8 @@ export type InitiateTransferBadRequestDwollaV1HalJSON =
   | InvalidSourceBankAccountTypeError
   | InvalidDestinationBankAccountTypeError
   | IncompatibleSourceAndDestinationTypesError
+  | SourceNotCardNetworkSettlementError
+  | CardSourceNotAllowedError
   | IncompatibleSourceForRtpDestinationError
   | InvalidAmountForDestinationProcessingChannelError
   | RtpFacilitatorFeeNotSupportedError
@@ -358,7 +377,8 @@ export type InitiateTransferBadRequestDwollaV1HalJSON =
   | WireInvalidImadError
   | WireAccountRestrictedError
   | WireNotEnabledError
-  | WireAccountNotFoundError;
+  | WireAccountNotFoundError
+  | PrefundingSourceNotAllowedError;
 
 /** @internal */
 export const InitiateTransferForbiddenDwollaV1HalJSON$inboundSchema: z.ZodType<
@@ -415,6 +435,7 @@ export const InitiateTransferBadRequestDwollaV1HalJSON$inboundSchema: z.ZodType<
   InvalidFacilitatorFeeCollectFromError$inboundSchema,
   InvalidFacilitatorFeeCollectFromCombinationError$inboundSchema,
   InvalidDestinationFundingSourceError$inboundSchema,
+  InvalidOrRemovedCardDestinationError$inboundSchema,
   InvalidFacilitatorFeeAmountError$inboundSchema,
   WeeklyReceiveLimitReachedError$inboundSchema,
   InvalidDestinationClearingTypeError$inboundSchema,
@@ -436,6 +457,8 @@ export const InitiateTransferBadRequestDwollaV1HalJSON$inboundSchema: z.ZodType<
   InvalidSourceBankAccountTypeError$inboundSchema,
   InvalidDestinationBankAccountTypeError$inboundSchema,
   IncompatibleSourceAndDestinationTypesError$inboundSchema,
+  SourceNotCardNetworkSettlementError$inboundSchema,
+  CardSourceNotAllowedError$inboundSchema,
   IncompatibleSourceForRtpDestinationError$inboundSchema,
   InvalidAmountForDestinationProcessingChannelError$inboundSchema,
   RtpFacilitatorFeeNotSupportedError$inboundSchema,
@@ -459,6 +482,7 @@ export const InitiateTransferBadRequestDwollaV1HalJSON$inboundSchema: z.ZodType<
   WireAccountRestrictedError$inboundSchema,
   WireNotEnabledError$inboundSchema,
   WireAccountNotFoundError$inboundSchema,
+  PrefundingSourceNotAllowedError$inboundSchema,
 ]);
 
 export function initiateTransferBadRequestDwollaV1HalJSONFromJSON(

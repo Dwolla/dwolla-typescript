@@ -1,21 +1,20 @@
-speakeasyVersion: 1.680.11
+speakeasyVersion: 1.682.0
 sources:
     Dwolla API:
         sourceNamespace: dwolla-api
-        sourceRevisionDigest: sha256:fe7cd40e5c0249d7b034cbb1dbd1f84cf5b0ef65382e5d601d5c2ce91321aff6
-        sourceBlobDigest: sha256:8d3d35bea705bc24cffd35e611a84bfff5f16188749df8722410512ff3c2345f
+        sourceRevisionDigest: sha256:80407213cc02ba59d6a38125a4ad480c9f7d2098a232d1f819d345c03100e6cf
+        sourceBlobDigest: sha256:ebcdc1888f058815d83f1c1b0d565c7596ca9b24890ba6b942ab531c54897c42
         tags:
             - latest
-            - speakeasy-sdk-regen-1767355430
             - "2.0"
 targets:
     dwolla:
         source: Dwolla API
         sourceNamespace: dwolla-api
-        sourceRevisionDigest: sha256:fe7cd40e5c0249d7b034cbb1dbd1f84cf5b0ef65382e5d601d5c2ce91321aff6
-        sourceBlobDigest: sha256:8d3d35bea705bc24cffd35e611a84bfff5f16188749df8722410512ff3c2345f
+        sourceRevisionDigest: sha256:80407213cc02ba59d6a38125a4ad480c9f7d2098a232d1f819d345c03100e6cf
+        sourceBlobDigest: sha256:ebcdc1888f058815d83f1c1b0d565c7596ca9b24890ba6b942ab531c54897c42
         codeSamplesNamespace: dwolla-api-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:cd794843384ec8b4e3f4fcc25d818cdfbd81cbb60bb122a2d0ac0413b7fac5fc
+        codeSamplesRevisionDigest: sha256:f7037039b683d4015a02f17664527b93bdb4eb0acd71632c693702e7d5ddcb3b
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

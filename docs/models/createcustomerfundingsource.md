@@ -4,6 +4,7 @@ Parameters for creating customer funding sources using different methods:
 - Bank Account: Traditional method using routing/account numbers
 - Exchange: Using IAV through exchange partners (Plaid, MX, etc.)
 - Virtual Account: Creating Virtual Account Numbers (VANs)
+- Card: Creating debit card funding sources using tokenized card data
 
 
 
@@ -69,6 +70,26 @@ const value: models.CreateCustomerVirtualAccountFundingSource = {
   name: "My First VAN",
   type: "virtual",
   bankAccountType: "checking",
+};
+```
+
+### `models.CreateCustomerCardFundingSource`
+
+```typescript
+const value: models.CreateCustomerCardFundingSource = {
+  cardToken: "src_abc123_test_token_xyz789",
+  name: "My Visa Debit Card",
+  cardDetails: {
+    billingAddress: {
+      address1: "123 Main St",
+      address2: "Apt 4B",
+      address3: "Unit 101",
+      city: "Dallas",
+      stateProvinceRegion: "TX",
+      country: "US",
+      postalCode: "76034",
+    },
+  },
 };
 ```
 

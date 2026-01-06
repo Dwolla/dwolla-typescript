@@ -21,8 +21,8 @@ export type GetTransferFailureReasonRequest = {
  */
 export type GetTransferFailureReasonResponse = {
   links?: { [k: string]: models.HalLink } | undefined;
-  code?: string | undefined;
-  description?: string | undefined;
+  code: string;
+  description: string;
   explanation?: string | undefined;
 };
 
@@ -57,8 +57,8 @@ export const GetTransferFailureReasonResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   _links: z.record(models.HalLink$inboundSchema).optional(),
-  code: z.string().optional(),
-  description: z.string().optional(),
+  code: z.string(),
+  description: z.string(),
   explanation: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {

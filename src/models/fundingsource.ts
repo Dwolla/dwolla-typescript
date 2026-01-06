@@ -18,6 +18,85 @@ export const FundingSourceChannel = {
 } as const;
 export type FundingSourceChannel = ClosedEnum<typeof FundingSourceChannel>;
 
+/**
+ * The usage type of the bank account. Indicates if this is a settlement account for card network processors.
+ */
+export const BankUsageType = {
+  CardNetwork: "card-network",
+} as const;
+/**
+ * The usage type of the bank account. Indicates if this is a settlement account for card network processors.
+ */
+export type BankUsageType = ClosedEnum<typeof BankUsageType>;
+
+/**
+ * The billing address associated with the card
+ */
+export type FundingSourceBillingAddress = {
+  /**
+   * First line of the street address
+   */
+  address1?: string | undefined;
+  /**
+   * Second line of the street address (optional)
+   */
+  address2?: string | undefined;
+  /**
+   * Third line of the street address (optional)
+   */
+  address3?: string | undefined;
+  /**
+   * City name
+   */
+  city?: string | undefined;
+  /**
+   * Two-letter state, province, or region code
+   */
+  stateProvinceRegion?: string | undefined;
+  /**
+   * Two-letter country code (ISO 3166-1 alpha-2)
+   */
+  country?: string | undefined;
+  /**
+   * Postal code or ZIP code
+   */
+  postalCode?: string | undefined;
+};
+
+/**
+ * Card-specific details. Only present when type is 'card'.
+ */
+export type FundingSourceCardDetails = {
+  /**
+   * The card brand/network (e.g., Visa, Mastercard, American Express)
+   */
+  brand?: string | undefined;
+  /**
+   * The last four digits of the card number
+   */
+  lastFour?: string | undefined;
+  /**
+   * The card expiration month (1-12)
+   */
+  expirationMonth?: number | undefined;
+  /**
+   * The card expiration year (4-digit year)
+   */
+  expirationYear?: number | undefined;
+  /**
+   * The cardholder name as it appears on the card
+   */
+  nameOnCard?: string | undefined;
+  /**
+   * Bank Identification Number (BIN) - the first 6-8 digits of the card number
+   */
+  bin?: string | undefined;
+  /**
+   * The billing address associated with the card
+   */
+  billingAddress?: FundingSourceBillingAddress | undefined;
+};
+
 export type FundingSource = {
   links?: { [k: string]: HalLink } | undefined;
   id?: string | undefined;
@@ -33,12 +112,76 @@ export type FundingSource = {
   channels?: Array<FundingSourceChannel> | undefined;
   bankName?: string | undefined;
   fingerprint?: string | undefined;
+  /**
+   * The usage type of the bank account. Indicates if this is a settlement account for card network processors.
+   */
+  bankUsageType?: BankUsageType | undefined;
+  /**
+   * Card-specific details. Only present when type is 'card'.
+   */
+  cardDetails?: FundingSourceCardDetails | undefined;
 };
 
 /** @internal */
 export const FundingSourceChannel$inboundSchema: z.ZodNativeEnum<
   typeof FundingSourceChannel
 > = z.nativeEnum(FundingSourceChannel);
+
+/** @internal */
+export const BankUsageType$inboundSchema: z.ZodNativeEnum<
+  typeof BankUsageType
+> = z.nativeEnum(BankUsageType);
+
+/** @internal */
+export const FundingSourceBillingAddress$inboundSchema: z.ZodType<
+  FundingSourceBillingAddress,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  address1: z.string().optional(),
+  address2: z.string().optional(),
+  address3: z.string().optional(),
+  city: z.string().optional(),
+  stateProvinceRegion: z.string().optional(),
+  country: z.string().optional(),
+  postalCode: z.string().optional(),
+});
+
+export function fundingSourceBillingAddressFromJSON(
+  jsonString: string,
+): SafeParseResult<FundingSourceBillingAddress, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FundingSourceBillingAddress$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FundingSourceBillingAddress' from JSON`,
+  );
+}
+
+/** @internal */
+export const FundingSourceCardDetails$inboundSchema: z.ZodType<
+  FundingSourceCardDetails,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  brand: z.string().optional(),
+  lastFour: z.string().optional(),
+  expirationMonth: z.number().int().optional(),
+  expirationYear: z.number().int().optional(),
+  nameOnCard: z.string().optional(),
+  bin: z.string().optional(),
+  billingAddress: z.lazy(() => FundingSourceBillingAddress$inboundSchema)
+    .optional(),
+});
+
+export function fundingSourceCardDetailsFromJSON(
+  jsonString: string,
+): SafeParseResult<FundingSourceCardDetails, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FundingSourceCardDetails$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FundingSourceCardDetails' from JSON`,
+  );
+}
 
 /** @internal */
 export const FundingSource$inboundSchema: z.ZodType<
@@ -58,6 +201,8 @@ export const FundingSource$inboundSchema: z.ZodType<
   channels: z.array(FundingSourceChannel$inboundSchema).optional(),
   bankName: z.string().optional(),
   fingerprint: z.string().optional(),
+  bankUsageType: BankUsageType$inboundSchema.optional(),
+  cardDetails: z.lazy(() => FundingSourceCardDetails$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     "_links": "links",

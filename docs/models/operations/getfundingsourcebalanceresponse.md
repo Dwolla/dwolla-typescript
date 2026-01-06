@@ -58,3 +58,28 @@ const value: operations.BankBalanceResponse = {
 };
 ```
 
+### `operations.SettlementAccountBalanceResponse`
+
+```typescript
+const value: operations.SettlementAccountBalanceResponse = {
+  links: {
+    self: {
+      href:
+        "https://api.dwolla.com/funding-sources/12345678-1234-1234-1234-123456789012/balance",
+      type: "application/vnd.dwolla.v1.hal+json",
+      resourceType: "balance",
+    },
+    fundingSource: {
+      href:
+        "https://api.dwolla.com/funding-sources/12345678-1234-1234-1234-123456789012",
+      type: "application/vnd.dwolla.v1.hal+json",
+      resourceType: "funding-source",
+    },
+  },
+  available: {
+    value: "3209.55",
+    currency: "USD",
+  },
+};
+```
+

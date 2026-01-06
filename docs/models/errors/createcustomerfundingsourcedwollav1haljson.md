@@ -33,3 +33,55 @@ const value: errors.DuplicateFundingSourceError = {
 };
 ```
 
+### `errors.UnsupportedCardCountryError`
+
+```typescript
+const value: errors.UnsupportedCardCountryError = {
+  code: "ValidationError",
+  message:
+    "Validation error(s) present. See embedded errors list for more details.",
+  embedded: {
+    errors: [],
+  },
+};
+```
+
+### `errors.InvalidCardTokenError`
+
+```typescript
+const value: errors.InvalidCardTokenError = {
+  code: "ValidationError",
+  message:
+    "Validation error(s) present. See embedded errors list for more details.",
+  embedded: {
+    errors: [],
+  },
+};
+```
+
+### `errors.MaximumCardsExceededError`
+
+```typescript
+const value: errors.MaximumCardsExceededError = {
+  code: "ValidationError",
+  message:
+    "Validation error(s) present. See embedded errors list for more details.",
+  embedded: {
+    errors: [],
+  },
+};
+```
+
+### `errors.CardMissingRequiredFieldsError`
+
+```typescript
+const value: errors.CardMissingRequiredFieldsError = {
+  code: "ValidationError",
+  message:
+    "Validation error(s) present. See embedded errors list for more details.",
+  embedded: {
+    errors: [],
+  },
+};
+```
+

@@ -9,7 +9,7 @@
 
 ## list
 
-Returns all funding sources for a customer, including bank accounts and Dwolla balance (verified customers only). Shows verification status, limited account details, and creation dates. Supports filtering to exclude removed funding sources using the removed parameter.
+Returns all funding sources for a customer, including bank accounts, debit card funding sources, and Dwolla balance (verified customers only). Shows verification status, limited account details, and creation dates. Card funding sources include masked card information. Supports filtering to exclude removed funding sources using the removed parameter.
 
 ### Example Usage
 
@@ -90,7 +90,7 @@ run();
 
 ## create
 
-Creates a bank account funding source for a customer. Supports manual entry with routing/account numbers or instant verification using existing open banking connections. Created funding sources require verification before transfers can be initiated.
+Creates a bank account or debit card funding source for a customer. Supports multiple methods including manual entry with routing/account numbers, instant verification using existing open banking connections, tokenized card creation, and virtual account numbers. Bank funding sources require verification before transfers can be initiated.
 
 ### Example Usage
 
@@ -192,6 +192,10 @@ run();
 | errors.InactiveExchangeError                                    | 400                                                             | application/vnd.dwolla.v1.hal+json                              |
 | errors.InvalidExchangeTokenErrorError                           | 400                                                             | application/vnd.dwolla.v1.hal+json                              |
 | errors.DuplicateFundingSourceError                              | 400                                                             | application/vnd.dwolla.v1.hal+json                              |
+| errors.UnsupportedCardCountryError                              | 400                                                             | application/vnd.dwolla.v1.hal+json                              |
+| errors.InvalidCardTokenError                                    | 400                                                             | application/vnd.dwolla.v1.hal+json                              |
+| errors.MaximumCardsExceededError                                | 400                                                             | application/vnd.dwolla.v1.hal+json                              |
+| errors.CardMissingRequiredFieldsError                           | 400                                                             | application/vnd.dwolla.v1.hal+json                              |
 | errors.CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError | 403                                                             | application/vnd.dwolla.v1.hal+json                              |
 | errors.CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError  | 404                                                             | application/vnd.dwolla.v1.hal+json                              |
 | errors.APIError                                                 | 4XX, 5XX                                                        | \*/\*                                                           |

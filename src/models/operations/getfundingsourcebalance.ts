@@ -17,24 +17,54 @@ export type GetFundingSourceBalanceRequest = {
   id: string;
 };
 
-export type GetFundingSourceBalanceSelf = {
+export type GetFundingSourceBalanceSelf2 = {
   href?: string | undefined;
   type?: string | undefined;
   resourceType?: string | undefined;
 };
 
-export type FundingSource = {
+export type FundingSource2 = {
   href?: string | undefined;
   type?: string | undefined;
   resourceType?: string | undefined;
 };
 
-export type GetFundingSourceBalanceLinks = {
-  self?: GetFundingSourceBalanceSelf | undefined;
-  fundingSource?: FundingSource | undefined;
+export type GetFundingSourceBalanceLinks2 = {
+  self?: GetFundingSourceBalanceSelf2 | undefined;
+  fundingSource?: FundingSource2 | undefined;
 };
 
-export type Available = {
+export type Available2 = {
+  value?: string | undefined;
+  currency?: string | undefined;
+};
+
+/**
+ * Response for retrieving balance of a settlement account with bankUsageType = card-network
+ */
+export type SettlementAccountBalanceResponse = {
+  links: GetFundingSourceBalanceLinks2;
+  available: Available2;
+};
+
+export type GetFundingSourceBalanceSelf1 = {
+  href?: string | undefined;
+  type?: string | undefined;
+  resourceType?: string | undefined;
+};
+
+export type FundingSource1 = {
+  href?: string | undefined;
+  type?: string | undefined;
+  resourceType?: string | undefined;
+};
+
+export type GetFundingSourceBalanceLinks1 = {
+  self?: GetFundingSourceBalanceSelf1 | undefined;
+  fundingSource?: FundingSource1 | undefined;
+};
+
+export type Available1 = {
   value?: string | undefined;
   currency?: string | undefined;
 };
@@ -48,8 +78,8 @@ export type Closing = {
  * Response for retrieving balance of a bank account verified through Open Banking
  */
 export type BankBalanceResponse = {
-  links: GetFundingSourceBalanceLinks;
-  available: Available;
+  links: GetFundingSourceBalanceLinks1;
+  available: Available1;
   closing: Closing;
   lastUpdated: string;
 };
@@ -79,7 +109,8 @@ export type DwollaBalanceResponse = {
  */
 export type GetFundingSourceBalanceResponse =
   | DwollaBalanceResponse
-  | BankBalanceResponse;
+  | BankBalanceResponse
+  | SettlementAccountBalanceResponse;
 
 /** @internal */
 export type GetFundingSourceBalanceRequest$Outbound = {
@@ -106,8 +137,8 @@ export function getFundingSourceBalanceRequestToJSON(
 }
 
 /** @internal */
-export const GetFundingSourceBalanceSelf$inboundSchema: z.ZodType<
-  GetFundingSourceBalanceSelf,
+export const GetFundingSourceBalanceSelf2$inboundSchema: z.ZodType<
+  GetFundingSourceBalanceSelf2,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -120,19 +151,19 @@ export const GetFundingSourceBalanceSelf$inboundSchema: z.ZodType<
   });
 });
 
-export function getFundingSourceBalanceSelfFromJSON(
+export function getFundingSourceBalanceSelf2FromJSON(
   jsonString: string,
-): SafeParseResult<GetFundingSourceBalanceSelf, SDKValidationError> {
+): SafeParseResult<GetFundingSourceBalanceSelf2, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetFundingSourceBalanceSelf$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetFundingSourceBalanceSelf' from JSON`,
+    (x) => GetFundingSourceBalanceSelf2$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetFundingSourceBalanceSelf2' from JSON`,
   );
 }
 
 /** @internal */
-export const FundingSource$inboundSchema: z.ZodType<
-  FundingSource,
+export const FundingSource2$inboundSchema: z.ZodType<
+  FundingSource2,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -145,43 +176,43 @@ export const FundingSource$inboundSchema: z.ZodType<
   });
 });
 
-export function fundingSourceFromJSON(
+export function fundingSource2FromJSON(
   jsonString: string,
-): SafeParseResult<FundingSource, SDKValidationError> {
+): SafeParseResult<FundingSource2, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => FundingSource$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FundingSource' from JSON`,
+    (x) => FundingSource2$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FundingSource2' from JSON`,
   );
 }
 
 /** @internal */
-export const GetFundingSourceBalanceLinks$inboundSchema: z.ZodType<
-  GetFundingSourceBalanceLinks,
+export const GetFundingSourceBalanceLinks2$inboundSchema: z.ZodType<
+  GetFundingSourceBalanceLinks2,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  self: z.lazy(() => GetFundingSourceBalanceSelf$inboundSchema).optional(),
-  "funding-source": z.lazy(() => FundingSource$inboundSchema).optional(),
+  self: z.lazy(() => GetFundingSourceBalanceSelf2$inboundSchema).optional(),
+  "funding-source": z.lazy(() => FundingSource2$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     "funding-source": "fundingSource",
   });
 });
 
-export function getFundingSourceBalanceLinksFromJSON(
+export function getFundingSourceBalanceLinks2FromJSON(
   jsonString: string,
-): SafeParseResult<GetFundingSourceBalanceLinks, SDKValidationError> {
+): SafeParseResult<GetFundingSourceBalanceLinks2, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetFundingSourceBalanceLinks$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetFundingSourceBalanceLinks' from JSON`,
+    (x) => GetFundingSourceBalanceLinks2$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetFundingSourceBalanceLinks2' from JSON`,
   );
 }
 
 /** @internal */
-export const Available$inboundSchema: z.ZodType<
-  Available,
+export const Available2$inboundSchema: z.ZodType<
+  Available2,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -189,13 +220,131 @@ export const Available$inboundSchema: z.ZodType<
   currency: z.string().optional(),
 });
 
-export function availableFromJSON(
+export function available2FromJSON(
   jsonString: string,
-): SafeParseResult<Available, SDKValidationError> {
+): SafeParseResult<Available2, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Available$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Available' from JSON`,
+    (x) => Available2$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Available2' from JSON`,
+  );
+}
+
+/** @internal */
+export const SettlementAccountBalanceResponse$inboundSchema: z.ZodType<
+  SettlementAccountBalanceResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  _links: z.lazy(() => GetFundingSourceBalanceLinks2$inboundSchema),
+  available: z.lazy(() => Available2$inboundSchema),
+}).transform((v) => {
+  return remap$(v, {
+    "_links": "links",
+  });
+});
+
+export function settlementAccountBalanceResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<SettlementAccountBalanceResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SettlementAccountBalanceResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SettlementAccountBalanceResponse' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetFundingSourceBalanceSelf1$inboundSchema: z.ZodType<
+  GetFundingSourceBalanceSelf1,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  href: z.string().optional(),
+  type: z.string().optional(),
+  "resource-type": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "resource-type": "resourceType",
+  });
+});
+
+export function getFundingSourceBalanceSelf1FromJSON(
+  jsonString: string,
+): SafeParseResult<GetFundingSourceBalanceSelf1, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetFundingSourceBalanceSelf1$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetFundingSourceBalanceSelf1' from JSON`,
+  );
+}
+
+/** @internal */
+export const FundingSource1$inboundSchema: z.ZodType<
+  FundingSource1,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  href: z.string().optional(),
+  type: z.string().optional(),
+  "resource-type": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "resource-type": "resourceType",
+  });
+});
+
+export function fundingSource1FromJSON(
+  jsonString: string,
+): SafeParseResult<FundingSource1, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FundingSource1$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FundingSource1' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetFundingSourceBalanceLinks1$inboundSchema: z.ZodType<
+  GetFundingSourceBalanceLinks1,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  self: z.lazy(() => GetFundingSourceBalanceSelf1$inboundSchema).optional(),
+  "funding-source": z.lazy(() => FundingSource1$inboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "funding-source": "fundingSource",
+  });
+});
+
+export function getFundingSourceBalanceLinks1FromJSON(
+  jsonString: string,
+): SafeParseResult<GetFundingSourceBalanceLinks1, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetFundingSourceBalanceLinks1$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetFundingSourceBalanceLinks1' from JSON`,
+  );
+}
+
+/** @internal */
+export const Available1$inboundSchema: z.ZodType<
+  Available1,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  value: z.string().optional(),
+  currency: z.string().optional(),
+});
+
+export function available1FromJSON(
+  jsonString: string,
+): SafeParseResult<Available1, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Available1$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Available1' from JSON`,
   );
 }
 
@@ -222,8 +371,8 @@ export const BankBalanceResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  _links: z.lazy(() => GetFundingSourceBalanceLinks$inboundSchema),
-  available: z.lazy(() => Available$inboundSchema),
+  _links: z.lazy(() => GetFundingSourceBalanceLinks1$inboundSchema),
+  available: z.lazy(() => Available1$inboundSchema),
   closing: z.lazy(() => Closing$inboundSchema),
   lastUpdated: z.string(),
 }).transform((v) => {
@@ -310,6 +459,7 @@ export const GetFundingSourceBalanceResponse$inboundSchema: z.ZodType<
 > = smartUnion([
   z.lazy(() => DwollaBalanceResponse$inboundSchema),
   z.lazy(() => BankBalanceResponse$inboundSchema),
+  z.lazy(() => SettlementAccountBalanceResponse$inboundSchema),
 ]);
 
 export function getFundingSourceBalanceResponseFromJSON(

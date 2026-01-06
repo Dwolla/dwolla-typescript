@@ -14,7 +14,7 @@ export class CustomersFundingSources extends ClientSDK {
    * List customer funding sources
    *
    * @remarks
-   * Returns all funding sources for a customer, including bank accounts and Dwolla balance (verified customers only). Shows verification status, limited account details, and creation dates. Supports filtering to exclude removed funding sources using the removed parameter.
+   * Returns all funding sources for a customer, including bank accounts, debit card funding sources, and Dwolla balance (verified customers only). Shows verification status, limited account details, and creation dates. Card funding sources include masked card information. Supports filtering to exclude removed funding sources using the removed parameter.
    */
   async list(
     request: operations.ListCustomerFundingSourcesRequest,
@@ -31,7 +31,7 @@ export class CustomersFundingSources extends ClientSDK {
    * Create customer funding source
    *
    * @remarks
-   * Creates a bank account funding source for a customer. Supports manual entry with routing/account numbers or instant verification using existing open banking connections. Created funding sources require verification before transfers can be initiated.
+   * Creates a bank account or debit card funding source for a customer. Supports multiple methods including manual entry with routing/account numbers, instant verification using existing open banking connections, tokenized card creation, and virtual account numbers. Bank funding sources require verification before transfers can be initiated.
    */
   async create(
     request: operations.CreateCustomerFundingSourceRequest,

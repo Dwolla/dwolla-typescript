@@ -12,7 +12,7 @@ Operations related to Transfers
 
 ## create
 
-Initiate a transfer between funding sources from a Dwolla Account or API Customer resource. Supports ACH, Instant Payments (RTP/FedNow), and wire transfers with optional expedited clearing, facilitator fees, metadata, and correlation IDs for enhanced traceability. Includes idempotency key support to prevent duplicate transfers and extensive customization options for addenda records and processing channels. Returns the location of the created transfer resource for tracking and management.
+Initiate a transfer between funding sources from a Dwolla Account or API Customer resource. Supports ACH, Instant Payments (RTP/FedNow), Push-to-Debit Card, and wire transfers with optional expedited clearing, facilitator fees, metadata, and correlation IDs for enhanced traceability. Includes idempotency key support to prevent duplicate transfers and extensive customization options for addenda records and processing channels. Returns the location of the created transfer resource for tracking and management.
 
 ### Example Usage
 
@@ -164,6 +164,7 @@ run();
 | errors.InvalidFacilitatorFeeCollectFromError              | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
 | errors.InvalidFacilitatorFeeCollectFromCombinationError   | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
 | errors.InvalidDestinationFundingSourceError               | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.InvalidOrRemovedCardDestinationError               | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
 | errors.InvalidFacilitatorFeeAmountError                   | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
 | errors.WeeklyReceiveLimitReachedError                     | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
 | errors.InvalidDestinationClearingTypeError                | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
@@ -185,6 +186,8 @@ run();
 | errors.InvalidSourceBankAccountTypeError                  | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
 | errors.InvalidDestinationBankAccountTypeError             | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
 | errors.IncompatibleSourceAndDestinationTypesError         | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.SourceNotCardNetworkSettlementError                | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.CardSourceNotAllowedError                          | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
 | errors.IncompatibleSourceForRtpDestinationError           | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
 | errors.InvalidAmountForDestinationProcessingChannelError  | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
 | errors.RtpFacilitatorFeeNotSupportedError                 | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
@@ -208,6 +211,7 @@ run();
 | errors.WireAccountRestrictedError                         | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
 | errors.WireNotEnabledError                                | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
 | errors.WireAccountNotFoundError                           | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
+| errors.PrefundingSourceNotAllowedError                    | 400                                                       | application/vnd.dwolla.v1.hal+json                        |
 | errors.InvalidAttemptToFacilitateFundsError               | 403                                                       | application/vnd.dwolla.v1.hal+json                        |
 | errors.InvalidAttemptToPayInFundsError                    | 403                                                       | application/vnd.dwolla.v1.hal+json                        |
 | errors.InvalidAttemptToPayOutFundsError                   | 403                                                       | application/vnd.dwolla.v1.hal+json                        |

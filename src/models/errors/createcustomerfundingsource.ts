@@ -7,6 +7,10 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import {
+  CardMissingRequiredFieldsError,
+  CardMissingRequiredFieldsError$inboundSchema,
+} from "./cardmissingrequiredfieldserror.js";
+import {
   DuplicateFundingSourceError,
   DuplicateFundingSourceError$inboundSchema,
 } from "./duplicatefundingsourceerror.js";
@@ -16,10 +20,22 @@ import {
   InactiveExchangeError$inboundSchema,
 } from "./inactiveexchangeerror.js";
 import {
+  InvalidCardTokenError,
+  InvalidCardTokenError$inboundSchema,
+} from "./invalidcardtokenerror.js";
+import {
   InvalidExchangeTokenErrorError,
   InvalidExchangeTokenErrorError$inboundSchema,
 } from "./invalidexchangetokenerrorerror.js";
+import {
+  MaximumCardsExceededError,
+  MaximumCardsExceededError$inboundSchema,
+} from "./maximumcardsexceedederror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
+import {
+  UnsupportedCardCountryError,
+  UnsupportedCardCountryError$inboundSchema,
+} from "./unsupportedcardcountryerror.js";
 
 /**
  * not found
@@ -91,7 +107,11 @@ export class CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError
 export type CreateCustomerFundingSourceDwollaV1HalJSON =
   | InactiveExchangeError
   | InvalidExchangeTokenErrorError
-  | DuplicateFundingSourceError;
+  | DuplicateFundingSourceError
+  | UnsupportedCardCountryError
+  | InvalidCardTokenError
+  | MaximumCardsExceededError
+  | CardMissingRequiredFieldsError;
 
 /** @internal */
 export const CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError$inboundSchema:
@@ -142,6 +162,10 @@ export const CreateCustomerFundingSourceDwollaV1HalJSON$inboundSchema:
       InactiveExchangeError$inboundSchema,
       InvalidExchangeTokenErrorError$inboundSchema,
       DuplicateFundingSourceError$inboundSchema,
+      UnsupportedCardCountryError$inboundSchema,
+      InvalidCardTokenError$inboundSchema,
+      MaximumCardsExceededError$inboundSchema,
+      CardMissingRequiredFieldsError$inboundSchema,
     ]);
 
 export function createCustomerFundingSourceDwollaV1HalJSONFromJSON(

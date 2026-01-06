@@ -656,7 +656,7 @@ run();
 **Primary error:**
 * [`DwollaError`](./src/models/errors/dwollaerror.ts): The base class for HTTP error responses.
 
-<details><summary>Less common errors (178)</summary>
+<details><summary>Less common errors (186)</summary>
 
 <br />
 
@@ -702,6 +702,7 @@ run();
 * [`InvalidFacilitatorFeeCollectFromError`](./src/models/errors/invalidfacilitatorfeecollectfromerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
 * [`InvalidFacilitatorFeeCollectFromCombinationError`](./src/models/errors/invalidfacilitatorfeecollectfromcombinationerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
 * [`InvalidDestinationFundingSourceError`](./src/models/errors/invaliddestinationfundingsourceerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
+* [`InvalidOrRemovedCardDestinationError`](./src/models/errors/invalidorremovedcarddestinationerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
 * [`InvalidFacilitatorFeeAmountError`](./src/models/errors/invalidfacilitatorfeeamounterror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
 * [`WeeklyReceiveLimitReachedError`](./src/models/errors/weeklyreceivelimitreachederror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
 * [`InvalidDestinationClearingTypeError`](./src/models/errors/invaliddestinationclearingtypeerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
@@ -723,6 +724,8 @@ run();
 * [`InvalidSourceBankAccountTypeError`](./src/models/errors/invalidsourcebankaccounttypeerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
 * [`InvalidDestinationBankAccountTypeError`](./src/models/errors/invaliddestinationbankaccounttypeerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
 * [`IncompatibleSourceAndDestinationTypesError`](./src/models/errors/incompatiblesourceanddestinationtypeserror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
+* [`SourceNotCardNetworkSettlementError`](./src/models/errors/sourcenotcardnetworksettlementerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
+* [`CardSourceNotAllowedError`](./src/models/errors/cardsourcenotallowederror.ts): Error returned when attempting to use a debit card funding source as the transfer source. Status code `400`. Applicable to 1 of 83 methods.*
 * [`IncompatibleSourceForRtpDestinationError`](./src/models/errors/incompatiblesourceforrtpdestinationerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
 * [`InvalidAmountForDestinationProcessingChannelError`](./src/models/errors/invalidamountfordestinationprocessingchannelerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
 * [`RtpFacilitatorFeeNotSupportedError`](./src/models/errors/rtpfacilitatorfeenotsupportederror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
@@ -746,6 +749,7 @@ run();
 * [`WireAccountRestrictedError`](./src/models/errors/wireaccountrestrictederror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
 * [`WireNotEnabledError`](./src/models/errors/wirenotenablederror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
 * [`WireAccountNotFoundError`](./src/models/errors/wireaccountnotfounderror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
+* [`PrefundingSourceNotAllowedError`](./src/models/errors/prefundingsourcenotallowederror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
 * [`StatusInvalidError`](./src/models/errors/statusinvaliderror.ts): 400 Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
 * [`StatusNotAllowedError`](./src/models/errors/statusnotallowederror.ts): 400 Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
 * [`InvalidUrlFormatError`](./src/models/errors/invalidurlformaterror.ts): Bad request. Status code `400`. Applicable to 1 of 83 methods.*
@@ -755,6 +759,10 @@ run();
 * [`InactiveExchangeError`](./src/models/errors/inactiveexchangeerror.ts): validation error. Status code `400`. Applicable to 1 of 83 methods.*
 * [`InvalidExchangeTokenErrorError`](./src/models/errors/invalidexchangetokenerrorerror.ts): validation error. Status code `400`. Applicable to 1 of 83 methods.*
 * [`DuplicateFundingSourceError`](./src/models/errors/duplicatefundingsourceerror.ts): validation error. Status code `400`. Applicable to 1 of 83 methods.*
+* [`UnsupportedCardCountryError`](./src/models/errors/unsupportedcardcountryerror.ts): Error returned when attempting to create a debit card funding source from an unsupported country. Status code `400`. Applicable to 1 of 83 methods.*
+* [`InvalidCardTokenError`](./src/models/errors/invalidcardtokenerror.ts): Error returned when attempting to create a debit card funding source with an invalid card token. Status code `400`. Applicable to 1 of 83 methods.*
+* [`MaximumCardsExceededError`](./src/models/errors/maximumcardsexceedederror.ts): Error returned when a customer has exceeded the maximum number of debit card funding sources. Status code `400`. Applicable to 1 of 83 methods.*
+* [`CardMissingRequiredFieldsError`](./src/models/errors/cardmissingrequiredfieldserror.ts): Error returned when required fields are missing when creating a debit card funding source. Status code `400`. Applicable to 1 of 83 methods.*
 * [`ResponseBodyBadRequestError1`](./src/models/errors/responsebodybadrequesterror1.ts): validation error. Status code `400`. Applicable to 1 of 83 methods.*
 * [`ResponseBodyBadRequestError2`](./src/models/errors/responsebodybadrequesterror2.ts): validation error. Status code `400`. Applicable to 1 of 83 methods.*
 * [`ResponseBodyBadRequestError3`](./src/models/errors/responsebodybadrequesterror3.ts): validation error. Status code `400`. Applicable to 1 of 83 methods.*

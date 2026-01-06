@@ -428,6 +428,27 @@ const value: errors.InvalidDestinationFundingSourceError = {
 };
 ```
 
+### `errors.InvalidOrRemovedCardDestinationError`
+
+```typescript
+const value: errors.InvalidOrRemovedCardDestinationError = {
+  code: "ValidationError",
+  message:
+    "Validation error(s) present. See embedded errors list for more details.",
+  embedded: {
+    errors: [
+      {
+        code: "Invalid",
+        message:
+          "Destination funding source is either removed or does not exist.",
+        path: "/_links/destination/href",
+        links: {},
+      },
+    ],
+  },
+};
+```
+
 ### `errors.InvalidFacilitatorFeeAmountError`
 
 ```typescript
@@ -855,6 +876,46 @@ const value: errors.IncompatibleSourceAndDestinationTypesError = {
         message:
           "Card type funding sources can only accept payments directly from a balance",
         path: "/_links/destination/href",
+        links: {},
+      },
+    ],
+  },
+};
+```
+
+### `errors.SourceNotCardNetworkSettlementError`
+
+```typescript
+const value: errors.SourceNotCardNetworkSettlementError = {
+  code: "ValidationError",
+  message:
+    "Validation error(s) present. See embedded errors list for more details.",
+  embedded: {
+    errors: [
+      {
+        code: "NotAllowed",
+        message: "Source funding source does not support card payouts.",
+        path: "/_links/source/href",
+        links: {},
+      },
+    ],
+  },
+};
+```
+
+### `errors.CardSourceNotAllowedError`
+
+```typescript
+const value: errors.CardSourceNotAllowedError = {
+  code: "ValidationError",
+  message:
+    "Validation error(s) present. See embedded errors list for more details.",
+  embedded: {
+    errors: [
+      {
+        code: "NotAllowed",
+        message: "Cards cannot be used as a source for transfers.",
+        path: "/_links/source/href",
         links: {},
       },
     ],
@@ -1330,6 +1391,27 @@ const value: errors.WireAccountNotFoundError = {
         code: "NotFound",
         message: "Account or customer invalid.",
         path: "/_links/destination/href",
+        links: {},
+      },
+    ],
+  },
+};
+```
+
+### `errors.PrefundingSourceNotAllowedError`
+
+```typescript
+const value: errors.PrefundingSourceNotAllowedError = {
+  code: "ValidationError",
+  message:
+    "Validation error(s) present. See embedded errors list for more details.",
+  embedded: {
+    errors: [
+      {
+        code: "NotAllowed",
+        message:
+          "Only the prefunding account owner is able to prefund the account.",
+        path: "/_links/source/href",
         links: {},
       },
     ],
