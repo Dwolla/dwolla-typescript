@@ -11,7 +11,7 @@ import { DwollaError } from "./dwollaerror.js";
  * Error returned when attempting to use a debit card funding source as the transfer source
  */
 export type CardSourceNotAllowedErrorData = {
-  code: models.CardSourceNotAllowedErrorCodeValidationError;
+  code: string;
   message: string;
   embedded: models.CardSourceNotAllowedErrorEmbedded;
 };
@@ -20,7 +20,7 @@ export type CardSourceNotAllowedErrorData = {
  * Error returned when attempting to use a debit card funding source as the transfer source
  */
 export class CardSourceNotAllowedError extends DwollaError {
-  code: models.CardSourceNotAllowedErrorCodeValidationError;
+  code: string;
   embedded: models.CardSourceNotAllowedErrorEmbedded;
 
   /** The original data that was passed to this error instance. */
@@ -46,7 +46,7 @@ export const CardSourceNotAllowedError$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  code: models.CardSourceNotAllowedErrorCodeValidationError$inboundSchema,
+  code: z.string(),
   message: z.string(),
   _embedded: z.lazy(() =>
     models.CardSourceNotAllowedErrorEmbedded$inboundSchema

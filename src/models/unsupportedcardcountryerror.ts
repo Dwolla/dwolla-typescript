@@ -5,16 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
-import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-
-export const UnsupportedCardCountryErrorCode = {
-  ValidationError: "ValidationError",
-} as const;
-export type UnsupportedCardCountryErrorCode = ClosedEnum<
-  typeof UnsupportedCardCountryErrorCode
->;
 
 export type UnsupportedCardCountryErrorLinks = {};
 
@@ -28,11 +20,6 @@ export type UnsupportedCardCountryErrorError = {
 export type UnsupportedCardCountryErrorEmbedded = {
   errors: Array<UnsupportedCardCountryErrorError>;
 };
-
-/** @internal */
-export const UnsupportedCardCountryErrorCode$inboundSchema: z.ZodNativeEnum<
-  typeof UnsupportedCardCountryErrorCode
-> = z.nativeEnum(UnsupportedCardCountryErrorCode);
 
 /** @internal */
 export const UnsupportedCardCountryErrorLinks$inboundSchema: z.ZodType<

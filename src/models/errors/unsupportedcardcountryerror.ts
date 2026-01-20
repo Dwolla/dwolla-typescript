@@ -11,7 +11,7 @@ import { DwollaError } from "./dwollaerror.js";
  * Error returned when attempting to create a debit card funding source from an unsupported country
  */
 export type UnsupportedCardCountryErrorData = {
-  code: models.UnsupportedCardCountryErrorCode;
+  code: string;
   message: string;
   embedded: models.UnsupportedCardCountryErrorEmbedded;
 };
@@ -20,7 +20,7 @@ export type UnsupportedCardCountryErrorData = {
  * Error returned when attempting to create a debit card funding source from an unsupported country
  */
 export class UnsupportedCardCountryError extends DwollaError {
-  code: models.UnsupportedCardCountryErrorCode;
+  code: string;
   embedded: models.UnsupportedCardCountryErrorEmbedded;
 
   /** The original data that was passed to this error instance. */
@@ -46,7 +46,7 @@ export const UnsupportedCardCountryError$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  code: models.UnsupportedCardCountryErrorCode$inboundSchema,
+  code: z.string(),
   message: z.string(),
   _embedded: z.lazy(() =>
     models.UnsupportedCardCountryErrorEmbedded$inboundSchema
