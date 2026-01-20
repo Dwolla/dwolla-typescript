@@ -5,16 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
-import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
-
-export const InvalidCardTokenErrorCode = {
-  ValidationError: "ValidationError",
-} as const;
-export type InvalidCardTokenErrorCode = ClosedEnum<
-  typeof InvalidCardTokenErrorCode
->;
 
 export type InvalidCardTokenErrorLinks = {};
 
@@ -28,11 +20,6 @@ export type InvalidCardTokenErrorError = {
 export type InvalidCardTokenErrorEmbedded = {
   errors: Array<InvalidCardTokenErrorError>;
 };
-
-/** @internal */
-export const InvalidCardTokenErrorCode$inboundSchema: z.ZodNativeEnum<
-  typeof InvalidCardTokenErrorCode
-> = z.nativeEnum(InvalidCardTokenErrorCode);
 
 /** @internal */
 export const InvalidCardTokenErrorLinks$inboundSchema: z.ZodType<

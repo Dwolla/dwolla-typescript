@@ -11,7 +11,7 @@ import { DwollaError } from "./dwollaerror.js";
  * Error returned when attempting to create a debit card funding source with an invalid card token
  */
 export type InvalidCardTokenErrorData = {
-  code: models.InvalidCardTokenErrorCode;
+  code: string;
   message: string;
   embedded: models.InvalidCardTokenErrorEmbedded;
 };
@@ -20,7 +20,7 @@ export type InvalidCardTokenErrorData = {
  * Error returned when attempting to create a debit card funding source with an invalid card token
  */
 export class InvalidCardTokenError extends DwollaError {
-  code: models.InvalidCardTokenErrorCode;
+  code: string;
   embedded: models.InvalidCardTokenErrorEmbedded;
 
   /** The original data that was passed to this error instance. */
@@ -46,7 +46,7 @@ export const InvalidCardTokenError$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  code: models.InvalidCardTokenErrorCode$inboundSchema,
+  code: z.string(),
   message: z.string(),
   _embedded: z.lazy(() => models.InvalidCardTokenErrorEmbedded$inboundSchema),
   request$: z.instanceof(Request),
