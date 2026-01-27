@@ -69,7 +69,7 @@ export type InitiateTransferAchDetails = {
  */
 export type RtpDetailsDestination = {
   /**
-   * Remittance information for Real-Time Payments, providing context about the payment purpose
+   * Remittance information for Real-Time Payments, providing context about the payment purpose. Acceptable characters: alphanumeric (0-9, a-z, A-Z), space, and special characters (#,.'&/-@!$%*()_+={}|:;`[]^~\")
    */
   remittanceData?: string | undefined;
 };
@@ -89,7 +89,7 @@ export type RtpDetails = {
  */
 export type InstantDetailsDestination = {
   /**
-   * Remittance information for Instant Payments (RTP/FedNow), providing context about the payment purpose
+   * Remittance information for Instant Payments (RTP/FedNow), providing context about the payment purpose. Acceptable characters: alphanumeric (0-9, a-z, A-Z), space, and special characters (#,.'&/-@!$%*()_+={}|:;`[]^~\")
    */
   remittanceData?: string | undefined;
 };
