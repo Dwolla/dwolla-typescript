@@ -12,9 +12,119 @@
 
 Returns detailed information for a specific funding source, including its type, status, and verification details. Supports bank accounts (via Open Banking), debit card funding sources, and Dwolla balance (verified customers only). Debit card funding sources include masked card details such as brand, last four digits, expiration date, and cardholder name.
 
-### Example Usage
+### Example Usage: card_funding_source
 
-<!-- UsageSnippet language="typescript" operationID="getFundingSource" method="get" path="/funding-sources/{id}" -->
+<!-- UsageSnippet language="typescript" operationID="getFundingSource" method="get" path="/funding-sources/{id}" example="card_funding_source" -->
+```typescript
+import { Dwolla } from "dwolla";
+
+const dwolla = new Dwolla({
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
+});
+
+async function run() {
+  const result = await dwolla.fundingSources.get({
+    id: "<id>",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { DwollaCore } from "dwolla/core.js";
+import { fundingSourcesGet } from "dwolla/funcs/fundingSourcesGet.js";
+
+// Use `DwollaCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const dwolla = new DwollaCore({
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
+});
+
+async function run() {
+  const res = await fundingSourcesGet(dwolla, {
+    id: "<id>",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("fundingSourcesGet failed:", res.error);
+  }
+}
+
+run();
+```
+### Example Usage: settlement_account
+
+<!-- UsageSnippet language="typescript" operationID="getFundingSource" method="get" path="/funding-sources/{id}" example="settlement_account" -->
+```typescript
+import { Dwolla } from "dwolla";
+
+const dwolla = new Dwolla({
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
+});
+
+async function run() {
+  const result = await dwolla.fundingSources.get({
+    id: "<id>",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { DwollaCore } from "dwolla/core.js";
+import { fundingSourcesGet } from "dwolla/funcs/fundingSourcesGet.js";
+
+// Use `DwollaCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const dwolla = new DwollaCore({
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
+});
+
+async function run() {
+  const res = await fundingSourcesGet(dwolla, {
+    id: "<id>",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("fundingSourcesGet failed:", res.error);
+  }
+}
+
+run();
+```
+### Example Usage: standard_bank_account
+
+<!-- UsageSnippet language="typescript" operationID="getFundingSource" method="get" path="/funding-sources/{id}" example="standard_bank_account" -->
 ```typescript
 import { Dwolla } from "dwolla";
 

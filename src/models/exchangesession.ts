@@ -38,6 +38,35 @@ export type ExchangeSessionLinks = {
   externalProviderSession?: ExternalProviderSession | undefined;
 };
 
+/**
+ * Present for Checkout.com exchange sessions (Push to Card / debit card flow).
+ *
+ * @remarks
+ * Use these fields to initialize the Checkout.com Flow component for card capture.
+ */
+export type ExternalProviderSessionData = {
+  /**
+   * Checkout.com payment session ID (e.g. ps_xxx).
+   */
+  id?: string | undefined;
+  /**
+   * Checkout.com payment session secret.
+   */
+  paymentSessionSecret?: string | undefined;
+  /**
+   * Checkout.com payment session token (base64) for Flow initialization.
+   */
+  paymentSessionToken?: string | undefined;
+};
+
+/**
+ * Details of a previously created exchange session. Response shape varies by exchange partner.
+ *
+ * @remarks
+ * - **MX**: includes `_links.external-provider-session.href` (redirect URL).
+ * - **Plaid**: includes `externalProviderSessionToken` (Link initialization token).
+ * - **Checkout.com**: includes `externalProviderSessionData` (payment session for Flow/debit card capture).
+ */
 export type ExchangeSession = {
   created: Date;
   links: ExchangeSessionLinks;
@@ -48,6 +77,13 @@ export type ExchangeSession = {
    * Contains the token to initialize the Plaid Link flow.
    */
   externalProviderSessionToken?: string | undefined;
+  /**
+   * Present for Checkout.com exchange sessions (Push to Card / debit card flow).
+   *
+   * @remarks
+   * Use these fields to initialize the Checkout.com Flow component for card capture.
+   */
+  externalProviderSessionData?: ExternalProviderSessionData | undefined;
 };
 
 /** @internal */
@@ -156,6 +192,32 @@ export function exchangeSessionLinksFromJSON(
 }
 
 /** @internal */
+export const ExternalProviderSessionData$inboundSchema: z.ZodType<
+  ExternalProviderSessionData,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string().optional(),
+  payment_session_secret: z.string().optional(),
+  payment_session_token: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "payment_session_secret": "paymentSessionSecret",
+    "payment_session_token": "paymentSessionToken",
+  });
+});
+
+export function externalProviderSessionDataFromJSON(
+  jsonString: string,
+): SafeParseResult<ExternalProviderSessionData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ExternalProviderSessionData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ExternalProviderSessionData' from JSON`,
+  );
+}
+
+/** @internal */
 export const ExchangeSession$inboundSchema: z.ZodType<
   ExchangeSession,
   z.ZodTypeDef,
@@ -164,6 +226,9 @@ export const ExchangeSession$inboundSchema: z.ZodType<
   created: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   _links: z.lazy(() => ExchangeSessionLinks$inboundSchema),
   externalProviderSessionToken: z.string().optional(),
+  externalProviderSessionData: z.lazy(() =>
+    ExternalProviderSessionData$inboundSchema
+  ).optional(),
 }).transform((v) => {
   return remap$(v, {
     "_links": "links",
