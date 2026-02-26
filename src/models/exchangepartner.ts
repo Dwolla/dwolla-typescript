@@ -15,6 +15,7 @@ export const Name = {
   Plaid: "Plaid",
   Flinks: "Flinks",
   Finicity: "Finicity",
+  CheckoutCom: "Checkout.com",
 } as const;
 export type Name = ClosedEnum<typeof Name>;
 

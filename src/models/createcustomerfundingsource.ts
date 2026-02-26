@@ -15,10 +15,10 @@ import {
   CreateCustomerBankFundingSourceWithPlaid$outboundSchema,
 } from "./createcustomerbankfundingsourcewithplaid.js";
 import {
-  CreateCustomerCardFundingSource,
-  CreateCustomerCardFundingSource$Outbound,
-  CreateCustomerCardFundingSource$outboundSchema,
-} from "./createcustomercardfundingsource.js";
+  CreateCustomerCardFundingSourceWithExchange,
+  CreateCustomerCardFundingSourceWithExchange$Outbound,
+  CreateCustomerCardFundingSourceWithExchange$outboundSchema,
+} from "./createcustomercardfundingsourcewithexchange.js";
 import {
   CreateCustomerExchangeFundingSource,
   CreateCustomerExchangeFundingSource$Outbound,
@@ -44,7 +44,7 @@ export type CreateCustomerFundingSource =
   | CreateCustomerBankFundingSourceWithPlaid
   | CreateCustomerExchangeFundingSource
   | CreateCustomerVirtualAccountFundingSource
-  | CreateCustomerCardFundingSource;
+  | CreateCustomerCardFundingSourceWithExchange;
 
 /** @internal */
 export type CreateCustomerFundingSource$Outbound =
@@ -52,7 +52,7 @@ export type CreateCustomerFundingSource$Outbound =
   | CreateCustomerBankFundingSourceWithPlaid$Outbound
   | CreateCustomerExchangeFundingSource$Outbound
   | CreateCustomerVirtualAccountFundingSource$Outbound
-  | CreateCustomerCardFundingSource$Outbound;
+  | CreateCustomerCardFundingSourceWithExchange$Outbound;
 
 /** @internal */
 export const CreateCustomerFundingSource$outboundSchema: z.ZodType<
@@ -64,7 +64,7 @@ export const CreateCustomerFundingSource$outboundSchema: z.ZodType<
   CreateCustomerBankFundingSourceWithPlaid$outboundSchema,
   CreateCustomerExchangeFundingSource$outboundSchema,
   CreateCustomerVirtualAccountFundingSource$outboundSchema,
-  CreateCustomerCardFundingSource$outboundSchema,
+  CreateCustomerCardFundingSourceWithExchange$outboundSchema,
 ]);
 
 export function createCustomerFundingSourceToJSON(

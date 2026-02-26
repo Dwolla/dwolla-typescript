@@ -46,15 +46,22 @@ const value: errors.UnsupportedCardCountryError = {
 };
 ```
 
-### `errors.InvalidCardTokenError`
+### `errors.InvalidTokenError`
 
 ```typescript
-const value: errors.InvalidCardTokenError = {
+const value: errors.InvalidTokenError = {
   code: "ValidationError",
   message:
     "Validation error(s) present. See embedded errors list for more details.",
   embedded: {
-    errors: [],
+    errors: [
+      {
+        code: "Invalid",
+        message: "The card data is invalid.",
+        path: "/token",
+        links: {},
+      },
+    ],
   },
 };
 ```

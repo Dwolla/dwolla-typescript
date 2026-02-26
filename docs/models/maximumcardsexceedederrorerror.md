@@ -8,7 +8,7 @@ import { MaximumCardsExceededErrorError } from "dwolla/models";
 let value: MaximumCardsExceededErrorError = {
   code: "Invalid",
   message: "The maximum number of cards has been exceeded.",
-  path: "/cardToken",
+  path: "/_links/exchange",
 };
 ```
 
@@ -18,4 +18,4 @@ let value: MaximumCardsExceededErrorError = {
 | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
 | `code`                                         | *string*                                       | :heavy_check_mark:                             | N/A                                            | Invalid                                        |
 | `message`                                      | *string*                                       | :heavy_check_mark:                             | N/A                                            | The maximum number of cards has been exceeded. |
-| `path`                                         | *string*                                       | :heavy_check_mark:                             | N/A                                            | /cardToken                                     |
+| `path`                                         | *string*                                       | :heavy_check_mark:                             | N/A                                            | /_links/exchange                               |
