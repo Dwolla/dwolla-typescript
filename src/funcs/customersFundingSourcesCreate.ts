@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Create customer funding source
  *
  * @remarks
- * Creates a bank account or debit card funding source for a customer. Supports multiple methods including manual entry with routing/account numbers, instant verification using existing open banking connections, tokenized card creation, and virtual account numbers. Bank funding sources require verification before transfers can be initiated.
+ * Creates a bank account or debit card funding source for a customer. Supports multiple methods including manual entry with routing/account numbers, instant verification using existing open banking connections, debit card addition via Exchange, and virtual account numbers. Bank funding sources require verification before transfers can be initiated.
  */
 export function customersFundingSourcesCreate(
   client: DwollaCore,

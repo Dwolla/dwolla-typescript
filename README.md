@@ -760,9 +760,9 @@ run();
 * [`InvalidExchangeTokenErrorError`](./src/models/errors/invalidexchangetokenerrorerror.ts): validation error. Status code `400`. Applicable to 1 of 83 methods.*
 * [`DuplicateFundingSourceError`](./src/models/errors/duplicatefundingsourceerror.ts): validation error. Status code `400`. Applicable to 1 of 83 methods.*
 * [`UnsupportedCardCountryError`](./src/models/errors/unsupportedcardcountryerror.ts): Error returned when attempting to create a debit card funding source from an unsupported country. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InvalidCardTokenError`](./src/models/errors/invalidcardtokenerror.ts): Error returned when attempting to create a debit card funding source with an invalid card token. Status code `400`. Applicable to 1 of 83 methods.*
+* [`InvalidTokenError`](./src/models/errors/invalidtokenerror.ts): Error returned when creating an Exchange with an invalid token, or when the card data is invalid. Status code `400`. Applicable to 1 of 83 methods.*
 * [`MaximumCardsExceededError`](./src/models/errors/maximumcardsexceedederror.ts): Error returned when a customer has exceeded the maximum number of debit card funding sources. Status code `400`. Applicable to 1 of 83 methods.*
-* [`CardMissingRequiredFieldsError`](./src/models/errors/cardmissingrequiredfieldserror.ts): Error returned when required fields are missing when creating a debit card funding source. Status code `400`. Applicable to 1 of 83 methods.*
+* [`CardMissingRequiredFieldsError`](./src/models/errors/cardmissingrequiredfieldserror.ts): Error returned when required fields are missing when creating an Exchange or a debit card funding source. Status code `400`. Applicable to 1 of 83 methods.*
 * [`ResponseBodyBadRequestError1`](./src/models/errors/responsebodybadrequesterror1.ts): validation error. Status code `400`. Applicable to 1 of 83 methods.*
 * [`ResponseBodyBadRequestError2`](./src/models/errors/responsebodybadrequesterror2.ts): validation error. Status code `400`. Applicable to 1 of 83 methods.*
 * [`ResponseBodyBadRequestError3`](./src/models/errors/responsebodybadrequesterror3.ts): validation error. Status code `400`. Applicable to 1 of 83 methods.*
@@ -929,19 +929,23 @@ The `HTTPClient` constructor takes an optional `fetcher` argument that can be
 used to integrate a third-party HTTP client or when writing tests to mock out
 the HTTP client and feed in fixtures.
 
-The following example shows how to use the `"beforeRequest"` hook to to add a
-custom header and a timeout to requests and how to use the `"requestError"` hook
-to log errors:
+The following example shows how to:
+- route requests through a proxy server using [undici](https://www.npmjs.com/package/undici)'s ProxyAgent
+- use the `"beforeRequest"` hook to add a custom header and a timeout to requests
+- use the `"requestError"` hook to log errors
 
 ```typescript
 import { Dwolla } from "dwolla";
+import { ProxyAgent } from "undici";
 import { HTTPClient } from "dwolla/lib/http";
 
+const dispatcher = new ProxyAgent("http://proxy.example.com:8080");
+
 const httpClient = new HTTPClient({
-  // fetcher takes a function that has the same signature as native `fetch`.
-  fetcher: (request) => {
-    return fetch(request);
-  }
+  // 'fetcher' takes a function that has the same signature as native 'fetch'.
+  fetcher: (input, init) =>
+    // 'dispatcher' is specific to undici and not part of the standard Fetch API.
+    fetch(input, { ...init, dispatcher } as RequestInit),
 });
 
 httpClient.addHook("beforeRequest", (request) => {

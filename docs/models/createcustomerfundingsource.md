@@ -73,13 +73,20 @@ const value: models.CreateCustomerVirtualAccountFundingSource = {
 };
 ```
 
-### `models.CreateCustomerCardFundingSource`
+### `models.CreateCustomerCardFundingSourceWithExchange`
 
 ```typescript
-const value: models.CreateCustomerCardFundingSource = {
-  cardToken: "src_abc123_test_token_xyz789",
+const value: models.CreateCustomerCardFundingSourceWithExchange = {
+  links: {
+    exchange: {
+      href:
+        "https://api-sandbox.dwolla.com/exchanges/d46b028c-244b-4054-b19b-72f09cd1dc04",
+    },
+  },
   name: "My Visa Debit Card",
   cardDetails: {
+    firstName: "Jane",
+    lastName: "Doe",
     billingAddress: {
       address1: "123 Main St",
       address2: "Apt 4B",

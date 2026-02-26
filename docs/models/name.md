@@ -11,5 +11,5 @@ let value: Name = "Plaid";
 ## Values
 
 ```typescript
-"MX" | "Plaid" | "Flinks" | "Finicity"
+"MX" | "Plaid" | "Flinks" | "Finicity" | "Checkout.com"
 ```

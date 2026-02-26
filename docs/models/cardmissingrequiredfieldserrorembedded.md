@@ -9,8 +9,8 @@ let value: CardMissingRequiredFieldsErrorEmbedded = {
   errors: [
     {
       code: "Required",
-      message: "Card token is required.",
-      path: "/cardToken",
+      message: "Token is required.",
+      path: "/token",
     },
   ],
 };

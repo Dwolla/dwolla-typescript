@@ -20,13 +20,13 @@ import {
   InactiveExchangeError$inboundSchema,
 } from "./inactiveexchangeerror.js";
 import {
-  InvalidCardTokenError,
-  InvalidCardTokenError$inboundSchema,
-} from "./invalidcardtokenerror.js";
-import {
   InvalidExchangeTokenErrorError,
   InvalidExchangeTokenErrorError$inboundSchema,
 } from "./invalidexchangetokenerrorerror.js";
+import {
+  InvalidTokenError,
+  InvalidTokenError$inboundSchema,
+} from "./invalidtokenerror.js";
 import {
   MaximumCardsExceededError,
   MaximumCardsExceededError$inboundSchema,
@@ -109,7 +109,7 @@ export type CreateCustomerFundingSourceDwollaV1HalJSON =
   | InvalidExchangeTokenErrorError
   | DuplicateFundingSourceError
   | UnsupportedCardCountryError
-  | InvalidCardTokenError
+  | InvalidTokenError
   | MaximumCardsExceededError
   | CardMissingRequiredFieldsError;
 
@@ -163,7 +163,7 @@ export const CreateCustomerFundingSourceDwollaV1HalJSON$inboundSchema:
       InvalidExchangeTokenErrorError$inboundSchema,
       DuplicateFundingSourceError$inboundSchema,
       UnsupportedCardCountryError$inboundSchema,
-      InvalidCardTokenError$inboundSchema,
+      InvalidTokenError$inboundSchema,
       MaximumCardsExceededError$inboundSchema,
       CardMissingRequiredFieldsError$inboundSchema,
     ]);

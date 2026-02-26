@@ -8,26 +8,26 @@ import * as models from "../index.js";
 import { DwollaError } from "./dwollaerror.js";
 
 /**
- * Error returned when required fields are missing when creating an Exchange or a debit card funding source
+ * Error returned when creating an Exchange with an invalid token, or when the card data is invalid
  */
-export type CardMissingRequiredFieldsErrorData = {
+export type InvalidTokenErrorData = {
   code: string;
   message: string;
-  embedded: models.CardMissingRequiredFieldsErrorEmbedded;
+  embedded: models.InvalidTokenErrorEmbedded;
 };
 
 /**
- * Error returned when required fields are missing when creating an Exchange or a debit card funding source
+ * Error returned when creating an Exchange with an invalid token, or when the card data is invalid
  */
-export class CardMissingRequiredFieldsError extends DwollaError {
+export class InvalidTokenError extends DwollaError {
   code: string;
-  embedded: models.CardMissingRequiredFieldsErrorEmbedded;
+  embedded: models.InvalidTokenErrorEmbedded;
 
   /** The original data that was passed to this error instance. */
-  data$: CardMissingRequiredFieldsErrorData;
+  data$: InvalidTokenErrorData;
 
   constructor(
-    err: CardMissingRequiredFieldsErrorData,
+    err: InvalidTokenErrorData,
     httpMeta: { response: Response; request: Request; body: string },
   ) {
     const message = err.message || `API error occurred: ${JSON.stringify(err)}`;
@@ -36,21 +36,19 @@ export class CardMissingRequiredFieldsError extends DwollaError {
     this.code = err.code;
     this.embedded = err.embedded;
 
-    this.name = "CardMissingRequiredFieldsError";
+    this.name = "InvalidTokenError";
   }
 }
 
 /** @internal */
-export const CardMissingRequiredFieldsError$inboundSchema: z.ZodType<
-  CardMissingRequiredFieldsError,
+export const InvalidTokenError$inboundSchema: z.ZodType<
+  InvalidTokenError,
   z.ZodTypeDef,
   unknown
 > = z.object({
   code: z.string(),
   message: z.string(),
-  _embedded: z.lazy(() =>
-    models.CardMissingRequiredFieldsErrorEmbedded$inboundSchema
-  ),
+  _embedded: z.lazy(() => models.InvalidTokenErrorEmbedded$inboundSchema),
   request$: z.instanceof(Request),
   response$: z.instanceof(Response),
   body$: z.string(),
@@ -60,7 +58,7 @@ export const CardMissingRequiredFieldsError$inboundSchema: z.ZodType<
       "_embedded": "embedded",
     });
 
-    return new CardMissingRequiredFieldsError(remapped, {
+    return new InvalidTokenError(remapped, {
       request: v.request$,
       response: v.response$,
       body: v.body$,

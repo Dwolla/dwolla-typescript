@@ -8,7 +8,7 @@ import { UnsupportedCardCountryErrorError } from "dwolla/models";
 let value: UnsupportedCardCountryErrorError = {
   code: "Invalid",
   message: "The card's country is not supported.",
-  path: "/cardToken",
+  path: "/token",
   links: {},
 };
 ```
@@ -19,5 +19,5 @@ let value: UnsupportedCardCountryErrorError = {
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `code`                                                                                   | *string*                                                                                 | :heavy_check_mark:                                                                       | N/A                                                                                      | Invalid                                                                                  |
 | `message`                                                                                | *string*                                                                                 | :heavy_check_mark:                                                                       | N/A                                                                                      | The card's country is not supported.                                                     |
-| `path`                                                                                   | *string*                                                                                 | :heavy_check_mark:                                                                       | N/A                                                                                      | /cardToken                                                                               |
+| `path`                                                                                   | *string*                                                                                 | :heavy_check_mark:                                                                       | N/A                                                                                      | /token                                                                                   |
 | `links`                                                                                  | [models.UnsupportedCardCountryErrorLinks](../models/unsupportedcardcountryerrorlinks.md) | :heavy_minus_sign:                                                                       | N/A                                                                                      | {}                                                                                       |
