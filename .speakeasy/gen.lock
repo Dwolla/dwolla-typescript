@@ -5,15 +5,15 @@ management:
   docVersion: "2.0"
   speakeasyVersion: 1.731.2
   generationVersion: 2.845.1
-  releaseVersion: 1.1.0
-  configChecksum: 8c7039b604de541fc944e47173028ce4
+  releaseVersion: 1.1.1
+  configChecksum: 22a24246f91ed8471666739749480792
   repoURL: https://github.com/Dwolla/dwolla-typescript.git
   installationURL: https://github.com/Dwolla/dwolla-typescript
   published: true
 persistentEdits:
-  generation_id: fc51a4f0-4eca-4dde-819a-a3165613881c
-  pristine_commit_hash: 15f722bbab14b840d6b2011d2f9488a46d4ae68b
-  pristine_tree_hash: 27be389ec67e42718a6f9ab554c49edfceb628a8
+  generation_id: a62f1689-2a4a-4159-9d57-7b30c0399d4d
+  pristine_commit_hash: 620ce051fe39b5f755d7087d8440cf1c3581f4c5
+  pristine_tree_hash: 23132f89ceee8c6d76f2a947357bf280d7ab9310
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -3817,12 +3817,12 @@ trackedFiles:
     pristine_git_object: cfefbaf72057261e33367fa8ec9c1d723f4e5dca
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:33176a8bbfb4f977b908a14a5a35ae127a46a45b
-    pristine_git_object: 32139aaceafc0ba17c4f89e7a81c56b260f02c21
+    last_write_checksum: sha1:800ee813dc57ef36fe36d747e71038c949b89e94
+    pristine_git_object: d6343a90b2f19514c03ffc18845cc002c88dfaf4
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:bf7c097af2f3fbc6789e6d31312e7203449e9625
-    pristine_git_object: 679d3ae20c8086321a78b5ad219a60f133436dbf
+    last_write_checksum: sha1:6ab32f31297ab17204fe06786c18ed2dd433a0c6
+    pristine_git_object: cba35a363dbdc005355b93e451334f657391f010
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:19a6fee77f254ffab5fbdc018e513140135bfd59
@@ -4185,8 +4185,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:38a50b42256c209300ee115f4ed2d32ffc769b3a
-    pristine_git_object: e41ddc64589ece8a12eac73ccaeb30605cd87a86
+    last_write_checksum: sha1:b97f57c60dcf94edb7243b6f5fa43b9e537b0bac
+    pristine_git_object: 2f75d2b91d10585075bb026d1133b969fc9ad447
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -7288,7 +7288,6 @@ generatedTests:
   getFundingSource-standard_bank_account: "2026-01-06T10:06:45-06:00"
   getFundingSource-settlement_account: "2026-01-06T10:06:45-06:00"
   getFundingSource-card_funding_source: "2026-01-06T10:06:45-06:00"
-releaseNotes: "## Typescript SDK Changes:\n* `dwolla.customers.fundingSources.create()`: \n  *  `request.createCustomerFundingSource` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `dwolla.exchangePartners.list()`:  `response.Embedded.exchangePartners[].name.enum(checkout.com)` **Added** (Breaking ⚠️)\n* `dwolla.exchangePartners.get()`:  `response.name.enum(checkout.com)` **Added** (Breaking ⚠️)\n* `dwolla.exchangeSessions.get()`:  `response.externalProviderSessionData` **Added**\n"
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
