@@ -98,7 +98,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/ledger-entries/{ledgerEntryId}")(pathParams);
 
   const headers = new Headers(compactMap({

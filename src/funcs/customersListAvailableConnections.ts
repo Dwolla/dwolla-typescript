@@ -98,7 +98,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/customers/{id}/available-exchange-connections")(
     pathParams,
   );

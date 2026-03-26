@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { smartUnion } from "../../types/smartUnion.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
 
@@ -19,10 +20,11 @@ export type GetCustomerRequest = {
  * successful operation
  */
 export type GetCustomerResponse =
-  | (models.UnverifiedCustomer & { type: "unverified" })
-  | (models.ReceiveOnlyCustomer & { type: "receive-only" })
-  | (models.VerifiedPersonalCustomer & { type: "personal" })
-  | (models.VerifiedBusinessCustomer & { type: "business" });
+  | models.VerifiedBusinessCustomer
+  | models.VerifiedSolePropCustomer
+  | models.VerifiedPersonalCustomer
+  | models.UnverifiedCustomer
+  | models.ReceiveOnlyCustomer;
 
 /** @internal */
 export type GetCustomerRequest$Outbound = {
@@ -51,19 +53,12 @@ export const GetCustomerResponse$inboundSchema: z.ZodType<
   GetCustomerResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  models.UnverifiedCustomer$inboundSchema.and(
-    z.object({ type: z.literal("unverified") }),
-  ),
-  models.ReceiveOnlyCustomer$inboundSchema.and(
-    z.object({ type: z.literal("receive-only") }),
-  ),
-  models.VerifiedPersonalCustomer$inboundSchema.and(
-    z.object({ type: z.literal("personal") }),
-  ),
-  models.VerifiedBusinessCustomer$inboundSchema.and(
-    z.object({ type: z.literal("business") }),
-  ),
+> = smartUnion([
+  models.VerifiedBusinessCustomer$inboundSchema,
+  models.VerifiedSolePropCustomer$inboundSchema,
+  models.VerifiedPersonalCustomer$inboundSchema,
+  models.UnverifiedCustomer$inboundSchema,
+  models.ReceiveOnlyCustomer$inboundSchema,
 ]);
 
 export function getCustomerResponseFromJSON(

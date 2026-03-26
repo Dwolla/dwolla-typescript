@@ -1,16 +1,39 @@
 # SimulateBankTransferProcessingResponse
 
-Simulation executed. Pending bank transfers and micro-deposits were processed or failed.
+Success. **Bank transfer processing** returns HAL with `total`. **Customer verification directives**
+return HAL `_links.self` and `errorCode` (retrieve the Customer for `_embedded.errors`).
 
-## Example Usage
+
+
+## Supported Types
+
+### `models.SandboxSimulationBankProcessingResponse`
 
 ```typescript
-import { SimulateBankTransferProcessingResponse } from "dwolla/models/operations";
-
-let value: SimulateBankTransferProcessingResponse = {};
+const value: models.SandboxSimulationBankProcessingResponse = {
+  total: 8,
+  links: {
+    self: {
+      href: "https://api.dwolla.com",
+      type: "application/vnd.dwolla.v1.hal+json",
+      resourceType: "resource-type",
+    },
+  },
+};
 ```
 
-## Fields
+### `models.SandboxSimulationCustomerVerificationResponse`
 
-| Field       | Type        | Required    | Description |
-| ----------- | ----------- | ----------- | ----------- |
+```typescript
+const value: models.SandboxSimulationCustomerVerificationResponse = {
+  links: {
+    self: {
+      href: "https://api.dwolla.com",
+      type: "application/vnd.dwolla.v1.hal+json",
+      resourceType: "resource-type",
+    },
+  },
+  errorCode: "AddressNotAssociatedWithBusiness",
+};
+```
+

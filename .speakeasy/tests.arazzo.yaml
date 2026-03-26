@@ -1192,3 +1192,37 @@ workflows:
             type: simple
     x-speakeasy-test-group: fundingSources
     x-speakeasy-test-rebuild: true
+  - workflowId: simulateBankTransferProcessing-bankTransferProcessing
+    steps:
+      - stepId: test
+        operationId: simulateBankTransferProcessing
+        requestBody:
+          contentType: application/vnd.dwolla.v1.hal+json
+          payload: {}
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"total":8,"_links":{"self":{"href":"https://api-sandbox.dwolla.com/sandbox-simulations","type":"application/vnd.dwolla.v1.hal+json","resource-type":"sandbox-simulation"}}}
+            type: simple
+    x-speakeasy-test-group: sandbox simulations
+    x-speakeasy-test-rebuild: true
+  - workflowId: simulateBankTransferProcessing-customerVerificationDirective
+    steps:
+      - stepId: test
+        operationId: simulateBankTransferProcessing
+        requestBody:
+          contentType: application/vnd.dwolla.v1.hal+json
+          payload:
+            transfers: []
+            type: virtual
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"self":{"href":"https://api-sandbox.dwolla.com/sandbox-simulations","type":"application/vnd.dwolla.v1.hal+json","resource-type":"sandbox-simulation"}},"errorCode":"AddressNotAssociatedWithBusiness"}
+            type: simple
+    x-speakeasy-test-group: sandbox simulations
+    x-speakeasy-test-rebuild: true

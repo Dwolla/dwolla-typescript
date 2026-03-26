@@ -94,7 +94,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/webhooks/{id}/retries")(pathParams);
 
   const headers = new Headers(compactMap({

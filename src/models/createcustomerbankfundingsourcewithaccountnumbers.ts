@@ -65,7 +65,7 @@ export type CreateCustomerBankFundingSourceWithAccountNumbers = {
   /**
    * Use when creating an unverified bank account.
    */
-  verified?: boolean | undefined;
+  verified?: false | undefined;
   /**
    * An array containing a list of processing channels. ACH is the default processing channel for bank transfers.
    */
@@ -157,7 +157,7 @@ export type CreateCustomerBankFundingSourceWithAccountNumbers$Outbound = {
   accountNumber: string;
   bankAccountType: string;
   name: string;
-  verified?: boolean | undefined;
+  verified?: false | undefined;
   channels?: Array<string> | undefined;
   _links?:
     | CreateCustomerBankFundingSourceWithAccountNumbersLinks$Outbound
@@ -176,7 +176,7 @@ export const CreateCustomerBankFundingSourceWithAccountNumbers$outboundSchema:
     bankAccountType:
       CreateCustomerBankFundingSourceWithAccountNumbersBankAccountType$outboundSchema,
     name: z.string(),
-    verified: z.boolean().optional(),
+    verified: z.literal(false).optional(),
     channels: z.array(
       CreateCustomerBankFundingSourceWithAccountNumbersChannel$outboundSchema,
     ).optional(),

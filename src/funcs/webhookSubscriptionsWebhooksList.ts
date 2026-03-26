@@ -96,7 +96,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/webhook-subscriptions/{id}/webhooks")(pathParams);
 
   const query = encodeFormQuery({

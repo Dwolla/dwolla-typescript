@@ -346,7 +346,7 @@ run();
 
 ### [SandboxSimulations](docs/sdks/sandboxsimulations/README.md)
 
-* [simulate](docs/sdks/sandboxsimulations/README.md#simulate) - Simulate bank transfer processing (Sandbox only)
+* [simulate](docs/sdks/sandboxsimulations/README.md#simulate) - Sandbox simulations (bank transfers, VAN transfers, or customer verification directives)
 
 ### [Tokens](docs/sdks/tokens/README.md)
 
@@ -472,7 +472,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`massPaymentsItemsList`](docs/sdks/items/README.md#list) - List items for a mass payment
 - [`massPaymentsUpdate`](docs/sdks/masspayments/README.md#update) - Update a mass payment
 - [`rootGet`](docs/sdks/root/README.md#get) - root
-- [`sandboxSimulationsSimulate`](docs/sdks/sandboxsimulations/README.md#simulate) - Simulate bank transfer processing (Sandbox only)
+- [`sandboxSimulationsSimulate`](docs/sdks/sandboxsimulations/README.md#simulate) - Sandbox simulations (bank transfers, VAN transfers, or customer verification directives)
 - [`tokensCreate`](docs/sdks/tokens/README.md#create) - Create an application access token
 - [`transfersCancel`](docs/sdks/transfers/README.md#cancel) - Cancel a transfer
 - [`transfersCreate`](docs/sdks/transfers/README.md#create) - Initiate a transfer
@@ -671,7 +671,7 @@ run();
 **Inherit from [`DwollaError`](./src/models/errors/dwollaerror.ts)**:
 * [`NotFoundError`](./src/models/errors/notfounderror.ts): Error response schema for 404 NotFound. Status code `404`. Applicable to 36 of 83 methods.*
 * [`ForbiddenError`](./src/models/errors/forbiddenerror.ts): Error response schema for 403 Forbidden. Status code `403`. Applicable to 24 of 83 methods.*
-* [`BadRequestError`](./src/models/errors/badrequesterror.ts): Error response schema for 400 Bad Request. Status code `400`. Applicable to 11 of 83 methods.*
+* [`BadRequestError`](./src/models/errors/badrequesterror.ts): Error response schema for 400 Bad Request. Status code `400`. Applicable to 12 of 83 methods.*
 * [`DuplicateResourceSchemaError`](./src/models/errors/duplicateresourceschemaerror.ts): Status code `400`. Applicable to 3 of 83 methods.*
 * [`ValidationErrorSchema`](./src/models/errors/validationerrorschema.ts): ValidationError. Status code `400`. Applicable to 2 of 83 methods.*
 * [`InvalidExchangeTokenError`](./src/models/errors/invalidexchangetokenerror.ts): Bad Request. Status code `400`. Applicable to 2 of 83 methods.*

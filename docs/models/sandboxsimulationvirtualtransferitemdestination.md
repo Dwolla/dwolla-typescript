@@ -1,0 +1,18 @@
+# SandboxSimulationVirtualTransferItemDestination
+
+## Example Usage
+
+```typescript
+import { SandboxSimulationVirtualTransferItemDestination } from "dwolla/models";
+
+let value: SandboxSimulationVirtualTransferItemDestination = {
+  href:
+    "https://api-sandbox.dwolla.com/funding-sources/5880e310-675a-4ce3-87d9-a475cc565e09",
+};
+```
+
+## Fields
+
+| Field                                                                               | Type                                                                                | Required                                                                            | Description                                                                         | Example                                                                             |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `href`                                                                              | *string*                                                                            | :heavy_check_mark:                                                                  | N/A                                                                                 | https://api-sandbox.dwolla.com/funding-sources/5880e310-675a-4ce3-87d9-a475cc565e09 |

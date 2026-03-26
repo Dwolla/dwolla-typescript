@@ -95,7 +95,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/exchange-partners/{id}")(pathParams);
 
   const headers = new Headers(compactMap({

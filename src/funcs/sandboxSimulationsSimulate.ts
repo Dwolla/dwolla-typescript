@@ -3,8 +3,10 @@
  */
 
 import { DwollaCore } from "../core.js";
+import { encodeJSON } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -19,25 +21,39 @@ import {
 import * as errors from "../models/errors/index.js";
 import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+import * as models from "../models/index.js";
 import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Simulate bank transfer processing (Sandbox only)
+ * Sandbox simulations (bank transfers, VAN transfers, or customer verification directives)
  *
  * @remarks
- * Triggers processing for the last 500 bank transfers on the authorized application or Sandbox account. This endpoint is only available in the Sandbox environment. It will process or fail pending bank-to-bank transactions (including both sides of a transfer when applicable) and initiated micro-deposits. If webhooks are configured, corresponding events will be delivered.
+ * Sandbox-only endpoint with three modes:
  *
- * If a bank-to-bank transaction is initiated between two users, call this endpoint twice to process both the debit and credit sides.
+ * **Simulate bank transfer processing** — Omit the body or send an empty JSON object. Processes or fails
+ * the last 500 bank transfers on the authorized application or Sandbox account (and initiated micro-deposits).
+ * If webhooks are configured, events are delivered. If a bank-to-bank transaction involves two users,
+ * call this twice to process debit and credit sides. Returns **200** with a HAL document including `total`.
+ *
+ * **Simulate VAN (virtual) transfers** — Send a JSON body with `type` set to `virtual` and a `transfers`
+ * array (up to 10 items). External transfers are created and processed immediately. Returns **202 Accepted**.
+ *
+ * **Simulate verification directives** — For a business Verified Customer in **`retry`** or **`document`**
+ * status, send `type`: `customer-verification`, `_links.customer.href` pointing at that customer, and
+ * `errorCode` set to one of: `PersonalIDRequired`, `POBoxNotAllowed`, `AddressNotAssociatedWithBusiness`,
+ * `EINDocumentRequired`. Returns **200** with HAL `_links.self` and `errorCode`. Then **GET** the Customer;
+ * the same code appears in `_embedded.errors` for end-to-end testing.
  */
 export function sandboxSimulationsSimulate(
   client: DwollaCore,
-  _request?: operations.SimulateBankTransferProcessingRequest | undefined,
+  request?: models.SandboxSimulationRequest | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.SimulateBankTransferProcessingResponse,
+    operations.SimulateBankTransferProcessingResponse | undefined,
+    | errors.BadRequestError
     | errors.SimulateBankTransferProcessingUnauthorizedDwollaV1HalJSONError
     | errors.SimulateBankTransferProcessingForbiddenDwollaV1HalJSONError
     | DwollaError
@@ -52,19 +68,20 @@ export function sandboxSimulationsSimulate(
 > {
   return new APIPromise($do(
     client,
-    _request,
+    request,
     options,
   ));
 }
 
 async function $do(
   client: DwollaCore,
-  _request?: operations.SimulateBankTransferProcessingRequest | undefined,
+  request?: models.SandboxSimulationRequest | undefined,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      operations.SimulateBankTransferProcessingResponse,
+      operations.SimulateBankTransferProcessingResponse | undefined,
+      | errors.BadRequestError
       | errors.SimulateBankTransferProcessingUnauthorizedDwollaV1HalJSONError
       | errors.SimulateBankTransferProcessingForbiddenDwollaV1HalJSONError
       | DwollaError
@@ -79,6 +96,20 @@ async function $do(
     APICall,
   ]
 > {
+  const parsed = safeParse(
+    request,
+    (value) =>
+      models.SandboxSimulationRequest$outboundSchema.optional().parse(value),
+    "Input validation failed",
+  );
+  if (!parsed.ok) {
+    return [parsed, { status: "invalid" }];
+  }
+  const payload = parsed.value;
+  const body = payload === undefined
+    ? null
+    : encodeJSON("body", payload, { explode: true });
+
   const path = pathToFunc("/sandbox-simulations")();
 
   const headers = new Headers(compactMap({
@@ -110,6 +141,7 @@ async function $do(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    body: body,
     userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
@@ -120,7 +152,7 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["401", "403", "4XX", "5XX"],
+    errorCodes: ["400", "401", "403", "4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -134,7 +166,8 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.SimulateBankTransferProcessingResponse,
+    operations.SimulateBankTransferProcessingResponse | undefined,
+    | errors.BadRequestError
     | errors.SimulateBankTransferProcessingUnauthorizedDwollaV1HalJSONError
     | errors.SimulateBankTransferProcessingForbiddenDwollaV1HalJSONError
     | DwollaError
@@ -148,9 +181,18 @@ async function $do(
   >(
     M.json(
       200,
-      operations.SimulateBankTransferProcessingResponse$inboundSchema,
+      operations.SimulateBankTransferProcessingResponse$inboundSchema
+        .optional(),
       { ctype: "application/vnd.dwolla.v1.hal+json" },
     ),
+    M.nil(
+      202,
+      operations.SimulateBankTransferProcessingResponse$inboundSchema
+        .optional(),
+    ),
+    M.jsonErr(400, errors.BadRequestError$inboundSchema, {
+      ctype: "application/vnd.dwolla.v1.hal+json",
+    }),
     M.jsonErr(
       401,
       errors

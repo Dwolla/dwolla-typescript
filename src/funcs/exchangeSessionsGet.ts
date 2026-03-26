@@ -103,7 +103,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/exchange-sessions/{id}")(pathParams);
 
   const headers = new Headers(compactMap({
