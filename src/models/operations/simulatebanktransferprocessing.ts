@@ -5,44 +5,29 @@
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { smartUnion } from "../../types/smartUnion.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import * as models from "../index.js";
 
 /**
- * Optional JSON body. Typically empty; presence of body is not required.
+ * Success. **Bank transfer processing** returns HAL with `total`. **Customer verification directives**
+ *
+ * @remarks
+ * return HAL `_links.self` and `errorCode` (retrieve the Customer for `_embedded.errors`).
  */
-export type SimulateBankTransferProcessingRequest = {};
-
-/**
- * Simulation executed. Pending bank transfers and micro-deposits were processed or failed.
- */
-export type SimulateBankTransferProcessingResponse = {};
-
-/** @internal */
-export type SimulateBankTransferProcessingRequest$Outbound = {};
-
-/** @internal */
-export const SimulateBankTransferProcessingRequest$outboundSchema: z.ZodType<
-  SimulateBankTransferProcessingRequest$Outbound,
-  z.ZodTypeDef,
-  SimulateBankTransferProcessingRequest
-> = z.object({});
-
-export function simulateBankTransferProcessingRequestToJSON(
-  simulateBankTransferProcessingRequest: SimulateBankTransferProcessingRequest,
-): string {
-  return JSON.stringify(
-    SimulateBankTransferProcessingRequest$outboundSchema.parse(
-      simulateBankTransferProcessingRequest,
-    ),
-  );
-}
+export type SimulateBankTransferProcessingResponse =
+  | models.SandboxSimulationBankProcessingResponse
+  | models.SandboxSimulationCustomerVerificationResponse;
 
 /** @internal */
 export const SimulateBankTransferProcessingResponse$inboundSchema: z.ZodType<
   SimulateBankTransferProcessingResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = smartUnion([
+  models.SandboxSimulationBankProcessingResponse$inboundSchema,
+  models.SandboxSimulationCustomerVerificationResponse$inboundSchema,
+]);
 
 export function simulateBankTransferProcessingResponseFromJSON(
   jsonString: string,

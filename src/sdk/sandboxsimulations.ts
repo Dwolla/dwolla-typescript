@@ -4,22 +4,35 @@
 
 import { sandboxSimulationsSimulate } from "../funcs/sandboxSimulationsSimulate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
+import * as models from "../models/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class SandboxSimulations extends ClientSDK {
   /**
-   * Simulate bank transfer processing (Sandbox only)
+   * Sandbox simulations (bank transfers, VAN transfers, or customer verification directives)
    *
    * @remarks
-   * Triggers processing for the last 500 bank transfers on the authorized application or Sandbox account. This endpoint is only available in the Sandbox environment. It will process or fail pending bank-to-bank transactions (including both sides of a transfer when applicable) and initiated micro-deposits. If webhooks are configured, corresponding events will be delivered.
+   * Sandbox-only endpoint with three modes:
    *
-   * If a bank-to-bank transaction is initiated between two users, call this endpoint twice to process both the debit and credit sides.
+   * **Simulate bank transfer processing** — Omit the body or send an empty JSON object. Processes or fails
+   * the last 500 bank transfers on the authorized application or Sandbox account (and initiated micro-deposits).
+   * If webhooks are configured, events are delivered. If a bank-to-bank transaction involves two users,
+   * call this twice to process debit and credit sides. Returns **200** with a HAL document including `total`.
+   *
+   * **Simulate VAN (virtual) transfers** — Send a JSON body with `type` set to `virtual` and a `transfers`
+   * array (up to 10 items). External transfers are created and processed immediately. Returns **202 Accepted**.
+   *
+   * **Simulate verification directives** — For a business Verified Customer in **`retry`** or **`document`**
+   * status, send `type`: `customer-verification`, `_links.customer.href` pointing at that customer, and
+   * `errorCode` set to one of: `PersonalIDRequired`, `POBoxNotAllowed`, `AddressNotAssociatedWithBusiness`,
+   * `EINDocumentRequired`. Returns **200** with HAL `_links.self` and `errorCode`. Then **GET** the Customer;
+   * the same code appears in `_embedded.errors` for end-to-end testing.
    */
   async simulate(
-    request?: operations.SimulateBankTransferProcessingRequest | undefined,
+    request?: models.SandboxSimulationRequest | undefined,
     options?: RequestOptions,
-  ): Promise<operations.SimulateBankTransferProcessingResponse> {
+  ): Promise<operations.SimulateBankTransferProcessingResponse | undefined> {
     return unwrapAsync(sandboxSimulationsSimulate(
       this,
       request,
