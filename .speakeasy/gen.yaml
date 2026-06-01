@@ -33,7 +33,7 @@ generation:
     generateNewTests: true
     skipResponseBodyAssertions: false
 typescript:
-  version: 1.1.2
+  version: 1.2.0
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -54,6 +54,7 @@ typescript:
   enumFormat: union
   envVarPrefix: DWOLLA
   exportZodModelNamespace: false
+  fixEnumNameSanitization: false
   flatAdditionalProperties: false
   flattenGlobalSecurity: true
   flatteningOrder: parameters-first
@@ -83,6 +84,7 @@ typescript:
   packageName: dwolla
   preApplyUnionDiscriminators: true
   preserveModelFieldNames: false
+  privateIdentifierPrefix: '#'
   responseFormat: flat
   sseFlatResponse: false
   templateVersion: v2
