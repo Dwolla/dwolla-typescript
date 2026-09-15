@@ -8,7 +8,7 @@ import { DwollaError } from "./dwollaerror.js";
 /**
  * forbidden
  */
-export type UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONErrorData = {
+export type UpdateOrRemoveFundingSourceDwollaV1HalJSONErrorData = {
   code?: string | undefined;
   message?: string | undefined;
 };
@@ -16,16 +16,16 @@ export type UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONErrorData = {
 /**
  * forbidden
  */
-export class UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError
+export class UpdateOrRemoveFundingSourceDwollaV1HalJSONError
   extends DwollaError
 {
   code?: string | undefined;
 
   /** The original data that was passed to this error instance. */
-  data$: UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONErrorData;
+  data$: UpdateOrRemoveFundingSourceDwollaV1HalJSONErrorData;
 
   constructor(
-    err: UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONErrorData,
+    err: UpdateOrRemoveFundingSourceDwollaV1HalJSONErrorData,
     httpMeta: { response: Response; request: Request; body: string },
   ) {
     const message = err.message || `API error occurred: ${JSON.stringify(err)}`;
@@ -33,46 +33,14 @@ export class UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError
     this.data$ = err;
     if (err.code != null) this.code = err.code;
 
-    this.name = "UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError";
-  }
-}
-
-/**
- * validation error
- */
-export type UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONErrorData = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/**
- * validation error
- */
-export class UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError
-  extends DwollaError
-{
-  code?: string | undefined;
-
-  /** The original data that was passed to this error instance. */
-  data$: UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONErrorData;
-
-  constructor(
-    err: UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONErrorData,
-    httpMeta: { response: Response; request: Request; body: string },
-  ) {
-    const message = err.message || `API error occurred: ${JSON.stringify(err)}`;
-    super(message, httpMeta);
-    this.data$ = err;
-    if (err.code != null) this.code = err.code;
-
-    this.name = "UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError";
+    this.name = "UpdateOrRemoveFundingSourceDwollaV1HalJSONError";
   }
 }
 
 /** @internal */
-export const UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError$inboundSchema:
+export const UpdateOrRemoveFundingSourceDwollaV1HalJSONError$inboundSchema:
   z.ZodType<
-    UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError,
+    UpdateOrRemoveFundingSourceDwollaV1HalJSONError,
     z.ZodTypeDef,
     unknown
   > = z.object({
@@ -83,28 +51,7 @@ export const UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError$inboundSch
     body$: z.string(),
   })
     .transform((v) => {
-      return new UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError(v, {
-        request: v.request$,
-        response: v.response$,
-        body: v.body$,
-      });
-    });
-
-/** @internal */
-export const UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError$inboundSchema:
-  z.ZodType<
-    UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    request$: z.instanceof(Request),
-    response$: z.instanceof(Response),
-    body$: z.string(),
-  })
-    .transform((v) => {
-      return new UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError(v, {
+      return new UpdateOrRemoveFundingSourceDwollaV1HalJSONError(v, {
         request: v.request$,
         response: v.response$,
         body: v.body$,

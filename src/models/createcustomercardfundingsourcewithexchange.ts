@@ -4,6 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
+import { ClosedEnum } from "../types/enums.js";
+import { RFCDate } from "../types/rfcdate.js";
 
 export type CreateCustomerCardFundingSourceWithExchangeExchange = {
   /**
@@ -50,6 +52,43 @@ export type CreateCustomerCardFundingSourceWithExchangeBillingAddress = {
   postalCode: string;
 };
 
+/**
+ * The kind of government identification document provided.
+ */
+export const CreateCustomerCardFundingSourceWithExchangeType = {
+  Passport: "passport",
+  License: "license",
+  IdCard: "idCard",
+  TaxId: "taxId",
+} as const;
+/**
+ * The kind of government identification document provided.
+ */
+export type CreateCustomerCardFundingSourceWithExchangeType = ClosedEnum<
+  typeof CreateCustomerCardFundingSourceWithExchangeType
+>;
+
+/**
+ * Optional. A government identification document for the cardholder.
+ *
+ * @remarks
+ * Supplying this value reduces the number of sanctions screening alerts raised when the card is registered and processed.
+ */
+export type CreateCustomerCardFundingSourceWithExchangeIdentification = {
+  /**
+   * The kind of government identification document provided.
+   */
+  type: CreateCustomerCardFundingSourceWithExchangeType;
+  /**
+   * The identification document number.
+   */
+  number: string;
+  /**
+   * Country that issued the identification document, as a two-letter country code (ISO 3166-1 alpha-2). Must be exactly 2 characters.
+   */
+  country: string;
+};
+
 export type CreateCustomerCardFundingSourceWithExchangeCardDetails = {
   /**
    * Cardholder first name
@@ -63,6 +102,29 @@ export type CreateCustomerCardFundingSourceWithExchangeCardDetails = {
    * The billing address associated with the card
    */
   billingAddress: CreateCustomerCardFundingSourceWithExchangeBillingAddress;
+  /**
+   * Optional. Cardholder date of birth in `YYYY-MM-DD` format.
+   *
+   * @remarks
+   * Supplying this value reduces the number of sanctions screening alerts raised when the card is registered and processed.
+   */
+  dateOfBirth?: RFCDate | undefined;
+  /**
+   * Optional. Cardholder country of birth as a two-letter country code (ISO 3166-1 alpha-2). Must be exactly 2 characters.
+   *
+   * @remarks
+   * Supplying this value reduces the number of sanctions screening alerts raised when the card is registered and processed.
+   */
+  countryOfBirth?: string | undefined;
+  /**
+   * Optional. A government identification document for the cardholder.
+   *
+   * @remarks
+   * Supplying this value reduces the number of sanctions screening alerts raised when the card is registered and processed.
+   */
+  identification?:
+    | CreateCustomerCardFundingSourceWithExchangeIdentification
+    | undefined;
 };
 
 /**
@@ -170,11 +232,51 @@ export function createCustomerCardFundingSourceWithExchangeBillingAddressToJSON(
 }
 
 /** @internal */
+export const CreateCustomerCardFundingSourceWithExchangeType$outboundSchema:
+  z.ZodNativeEnum<typeof CreateCustomerCardFundingSourceWithExchangeType> = z
+    .nativeEnum(CreateCustomerCardFundingSourceWithExchangeType);
+
+/** @internal */
+export type CreateCustomerCardFundingSourceWithExchangeIdentification$Outbound =
+  {
+    type: string;
+    number: string;
+    country: string;
+  };
+
+/** @internal */
+export const CreateCustomerCardFundingSourceWithExchangeIdentification$outboundSchema:
+  z.ZodType<
+    CreateCustomerCardFundingSourceWithExchangeIdentification$Outbound,
+    z.ZodTypeDef,
+    CreateCustomerCardFundingSourceWithExchangeIdentification
+  > = z.object({
+    type: CreateCustomerCardFundingSourceWithExchangeType$outboundSchema,
+    number: z.string(),
+    country: z.string(),
+  });
+
+export function createCustomerCardFundingSourceWithExchangeIdentificationToJSON(
+  createCustomerCardFundingSourceWithExchangeIdentification:
+    CreateCustomerCardFundingSourceWithExchangeIdentification,
+): string {
+  return JSON.stringify(
+    CreateCustomerCardFundingSourceWithExchangeIdentification$outboundSchema
+      .parse(createCustomerCardFundingSourceWithExchangeIdentification),
+  );
+}
+
+/** @internal */
 export type CreateCustomerCardFundingSourceWithExchangeCardDetails$Outbound = {
   firstName: string;
   lastName: string;
   billingAddress:
     CreateCustomerCardFundingSourceWithExchangeBillingAddress$Outbound;
+  dateOfBirth?: string | undefined;
+  countryOfBirth?: string | undefined;
+  identification?:
+    | CreateCustomerCardFundingSourceWithExchangeIdentification$Outbound
+    | undefined;
 };
 
 /** @internal */
@@ -189,6 +291,11 @@ export const CreateCustomerCardFundingSourceWithExchangeCardDetails$outboundSche
     billingAddress: z.lazy(() =>
       CreateCustomerCardFundingSourceWithExchangeBillingAddress$outboundSchema
     ),
+    dateOfBirth: z.instanceof(RFCDate).transform(v => v.toString()).optional(),
+    countryOfBirth: z.string().optional(),
+    identification: z.lazy(() =>
+      CreateCustomerCardFundingSourceWithExchangeIdentification$outboundSchema
+    ).optional(),
   });
 
 export function createCustomerCardFundingSourceWithExchangeCardDetailsToJSON(

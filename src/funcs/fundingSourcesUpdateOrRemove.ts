@@ -30,7 +30,20 @@ import { Result } from "../types/fp.js";
  * Update or remove a funding source
  *
  * @remarks
- * Updates a bank funding source's details or soft deletes it. When updating, you can change the name (any status) or modify routing/account numbers and account type (unverified status only). When removing, the funding source is soft deleted and can still be accessed but marked as removed.
+ * Updates a bank or debit card funding source's details, or soft deletes it.
+ *
+ * For **bank** funding sources you can change the name (any status), or modify routing/account
+ * numbers and account type (unverified status only).
+ *
+ * For **debit card** funding sources you can change the name and any field within `cardDetails`,
+ * including the optional cardholder identity fields `dateOfBirth`, `countryOfBirth`, and
+ * `identification`. This is how you add or update those identity values on a card funding source
+ * that already exists.
+ *
+ * You must provide at least one updateable field. Bank funding sources cannot be updated with
+ * card fields, and card funding sources cannot be updated with bank fields.
+ *
+ * When removing, the funding source is soft deleted and can still be accessed but marked as removed.
  */
 export function fundingSourcesUpdateOrRemove(
   client: DwollaCore,
@@ -39,8 +52,8 @@ export function fundingSourcesUpdateOrRemove(
 ): APIPromise<
   Result<
     operations.UpdateOrRemoveFundingSourceResponse,
-    | errors.UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError
-    | errors.UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError
+    | errors.UpdateFundingSourceValidationError
+    | errors.UpdateOrRemoveFundingSourceDwollaV1HalJSONError
     | DwollaError
     | ResponseValidationError
     | ConnectionError
@@ -66,8 +79,8 @@ async function $do(
   [
     Result<
       operations.UpdateOrRemoveFundingSourceResponse,
-      | errors.UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError
-      | errors.UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError
+      | errors.UpdateFundingSourceValidationError
+      | errors.UpdateOrRemoveFundingSourceDwollaV1HalJSONError
       | DwollaError
       | ResponseValidationError
       | ConnectionError
@@ -156,8 +169,8 @@ async function $do(
 
   const [result] = await M.match<
     operations.UpdateOrRemoveFundingSourceResponse,
-    | errors.UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError
-    | errors.UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError
+    | errors.UpdateFundingSourceValidationError
+    | errors.UpdateOrRemoveFundingSourceDwollaV1HalJSONError
     | DwollaError
     | ResponseValidationError
     | ConnectionError
@@ -170,16 +183,12 @@ async function $do(
     M.json(200, operations.UpdateOrRemoveFundingSourceResponse$inboundSchema, {
       ctype: "application/vnd.dwolla.v1.hal+json",
     }),
-    M.jsonErr(
-      400,
-      errors
-        .UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError$inboundSchema,
-      { ctype: "application/vnd.dwolla.v1.hal+json" },
-    ),
+    M.jsonErr(400, errors.UpdateFundingSourceValidationError$inboundSchema, {
+      ctype: "application/vnd.dwolla.v1.hal+json",
+    }),
     M.jsonErr(
       403,
-      errors
-        .UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError$inboundSchema,
+      errors.UpdateOrRemoveFundingSourceDwollaV1HalJSONError$inboundSchema,
       { ctype: "application/vnd.dwolla.v1.hal+json" },
     ),
     M.fail("4XX"),

@@ -15,7 +15,8 @@ import * as models from "../index.js";
  */
 export type CreateCustomerExchangeSessionRequestBody =
   | models.CreateCustomerExchangeSessionWithRedirect
-  | models.CreateCustomerExchangeSessionForWeb;
+  | models.CreateCustomerExchangeSessionForWeb
+  | models.CreateCustomerExchangeSessionForCard;
 
 export type CreateCustomerExchangeSessionRequest = {
   /**
@@ -27,7 +28,8 @@ export type CreateCustomerExchangeSessionRequest = {
    */
   requestBody:
     | models.CreateCustomerExchangeSessionWithRedirect
-    | models.CreateCustomerExchangeSessionForWeb;
+    | models.CreateCustomerExchangeSessionForWeb
+    | models.CreateCustomerExchangeSessionForCard;
 };
 
 export type CreateCustomerExchangeSessionResponse = {
@@ -37,7 +39,8 @@ export type CreateCustomerExchangeSessionResponse = {
 /** @internal */
 export type CreateCustomerExchangeSessionRequestBody$Outbound =
   | models.CreateCustomerExchangeSessionWithRedirect$Outbound
-  | models.CreateCustomerExchangeSessionForWeb$Outbound;
+  | models.CreateCustomerExchangeSessionForWeb$Outbound
+  | models.CreateCustomerExchangeSessionForCard$Outbound;
 
 /** @internal */
 export const CreateCustomerExchangeSessionRequestBody$outboundSchema: z.ZodType<
@@ -47,6 +50,7 @@ export const CreateCustomerExchangeSessionRequestBody$outboundSchema: z.ZodType<
 > = smartUnion([
   models.CreateCustomerExchangeSessionWithRedirect$outboundSchema,
   models.CreateCustomerExchangeSessionForWeb$outboundSchema,
+  models.CreateCustomerExchangeSessionForCard$outboundSchema,
 ]);
 
 export function createCustomerExchangeSessionRequestBodyToJSON(
@@ -65,7 +69,8 @@ export type CreateCustomerExchangeSessionRequest$Outbound = {
   id: string;
   RequestBody:
     | models.CreateCustomerExchangeSessionWithRedirect$Outbound
-    | models.CreateCustomerExchangeSessionForWeb$Outbound;
+    | models.CreateCustomerExchangeSessionForWeb$Outbound
+    | models.CreateCustomerExchangeSessionForCard$Outbound;
 };
 
 /** @internal */
@@ -78,6 +83,7 @@ export const CreateCustomerExchangeSessionRequest$outboundSchema: z.ZodType<
   requestBody: smartUnion([
     models.CreateCustomerExchangeSessionWithRedirect$outboundSchema,
     models.CreateCustomerExchangeSessionForWeb$outboundSchema,
+    models.CreateCustomerExchangeSessionForCard$outboundSchema,
   ]),
 }).transform((v) => {
   return remap$(v, {

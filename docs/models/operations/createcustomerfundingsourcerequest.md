@@ -4,6 +4,7 @@
 
 ```typescript
 import { CreateCustomerFundingSourceRequest } from "dwolla/models/operations";
+import { RFCDate } from "dwolla/types";
 
 let value: CreateCustomerFundingSourceRequest = {
   id: "<id>",
@@ -26,6 +27,13 @@ let value: CreateCustomerFundingSourceRequest = {
         stateProvinceRegion: "TX",
         country: "US",
         postalCode: "76034",
+      },
+      dateOfBirth: new RFCDate("1990-01-15"),
+      countryOfBirth: "US",
+      identification: {
+        type: "passport",
+        number: "P123456",
+        country: "GB",
       },
     },
   },

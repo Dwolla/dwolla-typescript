@@ -680,7 +680,7 @@ run();
 * [`InvalidFileTypeSchemaError`](./src/models/errors/invalidfiletypeschemaerror.ts): Bad Request. Status code `400`. Applicable to 2 of 83 methods.*
 * [`InvalidResourceStateSchemaError`](./src/models/errors/invalidresourcestateschemaerror.ts): Status code `403`. Applicable to 2 of 83 methods.*
 * [`UpdateBadRequestDwollaV1HalJSONError`](./src/models/errors/updatebadrequestdwollav1haljsonerror.ts): bad request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`UpdateOrRemoveFundingSourceBadRequestDwollaV1HalJSONError`](./src/models/errors/updateorremovefundingsourcebadrequestdwollav1haljsonerror.ts): validation error. Status code `400`. Applicable to 1 of 83 methods.*
+* [`UpdateFundingSourceValidationError`](./src/models/errors/updatefundingsourcevalidationerror.ts): Validation error returned when an update request cannot be applied. The specific problem is described by the embedded error's `code`, `message`, and `path`. Common cases: - no updateable field was provided (`Invalid` at `/`) - bank fields were sent to a card funding source (`NotAllowed` at `/routingNumber`) - card fields were sent to a bank funding source (`NotAllowed` at `/cardDetails`) - a `cardDetails` value failed validation, such as `countryOfBirth` not being exactly 2 characters. Status code `400`. Applicable to 1 of 83 methods.*
 * [`SourceNotFoundError`](./src/models/errors/sourcenotfounderror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
 * [`ReceiverNotFoundError`](./src/models/errors/receivernotfounderror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
 * [`InvalidSourceFundingSourceError`](./src/models/errors/invalidsourcefundingsourceerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
@@ -783,7 +783,7 @@ run();
 * [`UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError`](./src/models/errors/updatebeneficialownerforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 83 methods.*
 * [`InvalidKbaSessionError`](./src/models/errors/invalidkbasessionerror.ts): 403 Error. Status code `403`. Applicable to 1 of 83 methods.*
 * [`ExpiredKbaSessionError`](./src/models/errors/expiredkbasessionerror.ts): 403 Error. Status code `403`. Applicable to 1 of 83 methods.*
-* [`UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError`](./src/models/errors/updateorremovefundingsourceforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 83 methods.*
+* [`UpdateOrRemoveFundingSourceDwollaV1HalJSONError`](./src/models/errors/updateorremovefundingsourcedwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 83 methods.*
 * [`InvalidAttemptToFacilitateFundsError`](./src/models/errors/invalidattempttofacilitatefundserror.ts): Forbidden. Status code `403`. Applicable to 1 of 83 methods.*
 * [`InvalidAttemptToPayInFundsError`](./src/models/errors/invalidattempttopayinfundserror.ts): Forbidden. Status code `403`. Applicable to 1 of 83 methods.*
 * [`InvalidAttemptToPayOutFundsError`](./src/models/errors/invalidattempttopayoutfundserror.ts): Forbidden. Status code `403`. Applicable to 1 of 83 methods.*

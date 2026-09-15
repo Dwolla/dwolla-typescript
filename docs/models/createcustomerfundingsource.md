@@ -95,6 +95,13 @@ const value: models.CreateCustomerCardFundingSourceWithExchange = {
       country: "US",
       postalCode: "76034",
     },
+    dateOfBirth: new RFCDate("1990-01-15"),
+    countryOfBirth: "US",
+    identification: {
+      type: "passport",
+      number: "P123456",
+      country: "GB",
+    },
   },
 };
 ```

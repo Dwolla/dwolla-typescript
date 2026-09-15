@@ -138,6 +138,7 @@ export * from "./transferexpiredforfeeerror.js";
 export * from "./unsupportedcardcountryerror.js";
 export * from "./update.js";
 export * from "./updatebeneficialowner.js";
+export * from "./updatefundingsourcevalidationerror.js";
 export * from "./updatemasspayment.js";
 export * from "./updateorremovefundingsource.js";
 export * from "./validationerrorschema.js";

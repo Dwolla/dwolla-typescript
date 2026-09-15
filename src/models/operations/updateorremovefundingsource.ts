@@ -16,7 +16,8 @@ import * as models from "../index.js";
 export type UpdateOrRemoveFundingSourceRequestBody =
   | models.UpdateUnverifiedBank
   | models.UpdateVerifiedBank
-  | models.RemoveBank;
+  | models.RemoveBank
+  | models.UpdateCardFundingSource;
 
 export type UpdateOrRemoveFundingSourceRequest = {
   /**
@@ -29,7 +30,8 @@ export type UpdateOrRemoveFundingSourceRequest = {
   requestBody:
     | models.UpdateUnverifiedBank
     | models.UpdateVerifiedBank
-    | models.RemoveBank;
+    | models.RemoveBank
+    | models.UpdateCardFundingSource;
 };
 
 /**
@@ -41,7 +43,8 @@ export type UpdateOrRemoveFundingSourceResponse = {};
 export type UpdateOrRemoveFundingSourceRequestBody$Outbound =
   | models.UpdateUnverifiedBank$Outbound
   | models.UpdateVerifiedBank$Outbound
-  | models.RemoveBank$Outbound;
+  | models.RemoveBank$Outbound
+  | models.UpdateCardFundingSource$Outbound;
 
 /** @internal */
 export const UpdateOrRemoveFundingSourceRequestBody$outboundSchema: z.ZodType<
@@ -52,6 +55,7 @@ export const UpdateOrRemoveFundingSourceRequestBody$outboundSchema: z.ZodType<
   models.UpdateUnverifiedBank$outboundSchema,
   models.UpdateVerifiedBank$outboundSchema,
   models.RemoveBank$outboundSchema,
+  models.UpdateCardFundingSource$outboundSchema,
 ]);
 
 export function updateOrRemoveFundingSourceRequestBodyToJSON(
@@ -71,7 +75,8 @@ export type UpdateOrRemoveFundingSourceRequest$Outbound = {
   RequestBody:
     | models.UpdateUnverifiedBank$Outbound
     | models.UpdateVerifiedBank$Outbound
-    | models.RemoveBank$Outbound;
+    | models.RemoveBank$Outbound
+    | models.UpdateCardFundingSource$Outbound;
 };
 
 /** @internal */
@@ -85,6 +90,7 @@ export const UpdateOrRemoveFundingSourceRequest$outboundSchema: z.ZodType<
     models.UpdateUnverifiedBank$outboundSchema,
     models.UpdateVerifiedBank$outboundSchema,
     models.RemoveBank$outboundSchema,
+    models.UpdateCardFundingSource$outboundSchema,
   ]),
 }).transform((v) => {
   return remap$(v, {

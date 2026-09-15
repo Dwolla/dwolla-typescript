@@ -24,6 +24,34 @@ const value: models.UpdateVerifiedBank = {
 };
 ```
 
+### `models.UpdateCardFundingSource`
+
+```typescript
+const value: models.UpdateCardFundingSource = {
+  name: "My Visa Debit Card",
+  cardDetails: {
+    firstName: "Jane",
+    lastName: "Doe",
+    billingAddress: {
+      address1: "123 Main St",
+      address2: "Apt 4B",
+      address3: "Unit 101",
+      city: "Dallas",
+      stateProvinceRegion: "TX",
+      country: "US",
+      postalCode: "76034",
+    },
+    dateOfBirth: new RFCDate("1990-01-15"),
+    countryOfBirth: "US",
+    identification: {
+      type: "passport",
+      number: "P123456",
+      country: "GB",
+    },
+  },
+};
+```
+
 ### `models.RemoveBank`
 
 ```typescript

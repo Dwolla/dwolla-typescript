@@ -95,6 +95,14 @@ export type FundingSourceCardDetails = {
    * The billing address associated with the card
    */
   billingAddress?: FundingSourceBillingAddress | undefined;
+  /**
+   * Cardholder date of birth in `YYYY-MM-DD` format. Only present if it was supplied when the card funding source was created or updated.
+   */
+  dateOfBirth?: string | undefined;
+  /**
+   * Cardholder country of birth as a two-letter country code (ISO 3166-1 alpha-2). Only present if it was supplied when the card funding source was created or updated.
+   */
+  countryOfBirth?: string | undefined;
 };
 
 export type FundingSource = {
@@ -171,6 +179,8 @@ export const FundingSourceCardDetails$inboundSchema: z.ZodType<
   bin: z.string().optional(),
   billingAddress: z.lazy(() => FundingSourceBillingAddress$inboundSchema)
     .optional(),
+  dateOfBirth: z.string().optional(),
+  countryOfBirth: z.string().optional(),
 });
 
 export function fundingSourceCardDetailsFromJSON(
