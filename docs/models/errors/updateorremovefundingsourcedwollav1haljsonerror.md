@@ -1,11 +1,11 @@
-# UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError
+# UpdateOrRemoveFundingSourceDwollaV1HalJSONError
 
 forbidden
 
 ## Example Usage
 
 ```typescript
-import { UpdateOrRemoveFundingSourceForbiddenDwollaV1HalJSONError } from "dwolla/models/errors";
+import { UpdateOrRemoveFundingSourceDwollaV1HalJSONError } from "dwolla/models/errors";
 
 // No examples available for this model
 ```

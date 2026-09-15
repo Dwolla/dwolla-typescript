@@ -45,6 +45,8 @@ let value: FundingSourcesEmbedded = {
           country: "US",
           postalCode: "50310",
         },
+        dateOfBirth: "1990-01-15",
+        countryOfBirth: "US",
       },
     },
   ],

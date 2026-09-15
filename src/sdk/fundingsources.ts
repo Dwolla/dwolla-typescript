@@ -34,7 +34,7 @@ export class FundingSources extends ClientSDK {
    * Retrieve a funding source
    *
    * @remarks
-   * Returns detailed information for a specific funding source, including its type, status, and verification details. Supports bank accounts (via Open Banking), debit card funding sources, and Dwolla balance (verified customers only). Debit card funding sources include masked card details such as brand, last four digits, expiration date, and cardholder name.
+   * Returns detailed information for a specific funding source, including its type, status, and verification details. Supports bank accounts (via Open Banking), debit card funding sources, and Dwolla balance (verified customers only). Debit card funding sources include masked card details such as brand, last four digits, expiration date, and cardholder name, along with `dateOfBirth` and `countryOfBirth` when those optional identity fields were supplied.
    */
   async get(
     request: operations.GetFundingSourceRequest,
@@ -51,7 +51,20 @@ export class FundingSources extends ClientSDK {
    * Update or remove a funding source
    *
    * @remarks
-   * Updates a bank funding source's details or soft deletes it. When updating, you can change the name (any status) or modify routing/account numbers and account type (unverified status only). When removing, the funding source is soft deleted and can still be accessed but marked as removed.
+   * Updates a bank or debit card funding source's details, or soft deletes it.
+   *
+   * For **bank** funding sources you can change the name (any status), or modify routing/account
+   * numbers and account type (unverified status only).
+   *
+   * For **debit card** funding sources you can change the name and any field within `cardDetails`,
+   * including the optional cardholder identity fields `dateOfBirth`, `countryOfBirth`, and
+   * `identification`. This is how you add or update those identity values on a card funding source
+   * that already exists.
+   *
+   * You must provide at least one updateable field. Bank funding sources cannot be updated with
+   * card fields, and card funding sources cannot be updated with bank fields.
+   *
+   * When removing, the funding source is soft deleted and can still be accessed but marked as removed.
    */
   async updateOrRemove(
     request: operations.UpdateOrRemoveFundingSourceRequest,

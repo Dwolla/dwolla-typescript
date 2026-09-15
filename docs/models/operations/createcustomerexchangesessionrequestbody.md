@@ -34,3 +34,21 @@ const value: models.CreateCustomerExchangeSessionForWeb = {
 };
 ```
 
+### `models.CreateCustomerExchangeSessionForCard`
+
+```typescript
+const value: models.CreateCustomerExchangeSessionForCard = {
+  links: {
+    exchangePartner: {
+      href:
+        "https://api-sandbox.dwolla.com/exchange-partners/d652517d-9c02-4ea4-87af-2977e6cf3850",
+    },
+  },
+  cardDetails: {
+    firstName: "John",
+    lastName: "Doe",
+    accountNameInquiry: true,
+  },
+};
+```
+

@@ -17,17 +17,100 @@ export const ExchangeStatus = {
 } as const;
 export type ExchangeStatus = ClosedEnum<typeof ExchangeStatus>;
 
+/**
+ * The result of comparing the expected cardholder name supplied on the exchange session
+ *
+ * @remarks
+ * against the name the card issuer has on file.
+ * - `full-match`: the expected name matched the name on file.
+ * - `partial-match`: part of the expected name matched, for example the last name only.
+ * - `no-match`: the expected name did not match the name on file.
+ * - `not-performed`: ANI was not requested, or the check did not run.
+ * - `not-supported`: the card issuer or network does not support ANI.
+ */
+export const AccountNameInquiry = {
+  FullMatch: "full-match",
+  PartialMatch: "partial-match",
+  NoMatch: "no-match",
+  NotPerformed: "not-performed",
+  NotSupported: "not-supported",
+} as const;
+/**
+ * The result of comparing the expected cardholder name supplied on the exchange session
+ *
+ * @remarks
+ * against the name the card issuer has on file.
+ * - `full-match`: the expected name matched the name on file.
+ * - `partial-match`: part of the expected name matched, for example the last name only.
+ * - `no-match`: the expected name did not match the name on file.
+ * - `not-performed`: ANI was not requested, or the check did not run.
+ * - `not-supported`: the card issuer or network does not support ANI.
+ */
+export type AccountNameInquiry = ClosedEnum<typeof AccountNameInquiry>;
+
+/**
+ * Card-specific details. Only present for card exchanges where an Account Name Inquiry (ANI)
+ *
+ * @remarks
+ * was requested on the exchange session.
+ */
+export type ExchangeCardDetails = {
+  /**
+   * The result of comparing the expected cardholder name supplied on the exchange session
+   *
+   * @remarks
+   * against the name the card issuer has on file.
+   * - `full-match`: the expected name matched the name on file.
+   * - `partial-match`: part of the expected name matched, for example the last name only.
+   * - `no-match`: the expected name did not match the name on file.
+   * - `not-performed`: ANI was not requested, or the check did not run.
+   * - `not-supported`: the card issuer or network does not support ANI.
+   */
+  accountNameInquiry: AccountNameInquiry;
+};
+
 export type Exchange = {
   links: { [k: string]: HalLink };
   id: string;
   status: ExchangeStatus;
   created: Date;
+  /**
+   * Card-specific details. Only present for card exchanges where an Account Name Inquiry (ANI)
+   *
+   * @remarks
+   * was requested on the exchange session.
+   */
+  cardDetails?: ExchangeCardDetails | undefined;
 };
 
 /** @internal */
 export const ExchangeStatus$inboundSchema: z.ZodNativeEnum<
   typeof ExchangeStatus
 > = z.nativeEnum(ExchangeStatus);
+
+/** @internal */
+export const AccountNameInquiry$inboundSchema: z.ZodNativeEnum<
+  typeof AccountNameInquiry
+> = z.nativeEnum(AccountNameInquiry);
+
+/** @internal */
+export const ExchangeCardDetails$inboundSchema: z.ZodType<
+  ExchangeCardDetails,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  accountNameInquiry: AccountNameInquiry$inboundSchema,
+});
+
+export function exchangeCardDetailsFromJSON(
+  jsonString: string,
+): SafeParseResult<ExchangeCardDetails, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ExchangeCardDetails$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ExchangeCardDetails' from JSON`,
+  );
+}
 
 /** @internal */
 export const Exchange$inboundSchema: z.ZodType<
@@ -39,6 +122,7 @@ export const Exchange$inboundSchema: z.ZodType<
   id: z.string(),
   status: ExchangeStatus$inboundSchema,
   created: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  cardDetails: z.lazy(() => ExchangeCardDetails$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     "_links": "links",

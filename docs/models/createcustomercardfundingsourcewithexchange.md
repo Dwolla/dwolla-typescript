@@ -6,6 +6,7 @@ Schema for creating a debit card funding source using an Exchange. Used for Push
 
 ```typescript
 import { CreateCustomerCardFundingSourceWithExchange } from "dwolla/models";
+import { RFCDate } from "dwolla/types";
 
 let value: CreateCustomerCardFundingSourceWithExchange = {
   links: {
@@ -26,6 +27,13 @@ let value: CreateCustomerCardFundingSourceWithExchange = {
       stateProvinceRegion: "TX",
       country: "US",
       postalCode: "76034",
+    },
+    dateOfBirth: new RFCDate("1990-01-15"),
+    countryOfBirth: "US",
+    identification: {
+      type: "passport",
+      number: "P123456",
+      country: "GB",
     },
   },
 };

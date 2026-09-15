@@ -21,7 +21,14 @@ export class Exchanges extends ClientSDK {
    * Retrieve exchange resource
    *
    * @remarks
-   * Returns details for a specific exchange connection between Dwolla and an open banking partner for a customer's bank account. Includes exchange status, creation date, and links to the associated customer and exchange partner.
+   * Returns details for a specific exchange connection between Dwolla and an open banking partner
+   * for a customer's bank account. Includes exchange status, creation date, and links to the
+   * associated customer and exchange partner.
+   *
+   * For card exchanges created from an exchange session that requested an Account Name Inquiry
+   * (ANI), the response also includes `cardDetails.accountNameInquiry` with the name-match result.
+   * Read this value before creating a card funding source to get an early signal of fraudulent
+   * card usage.
    */
   async get(
     request: operations.GetExchangeRequest,
