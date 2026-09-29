@@ -87,7 +87,7 @@ export type RtpDetails = {
 /**
  * Instant payment details for the destination
  */
-export type InstantDetailsDestination = {
+export type InitiateTransferInstantDetailsDestination = {
   /**
    * Remittance information for Instant Payments (RTP/FedNow), providing context about the payment purpose. Acceptable characters: alphanumeric (0-9, a-z, A-Z), space, and special characters (#,.'&/-@!$%*()_+={}|:;`[]^~\")
    */
@@ -95,13 +95,13 @@ export type InstantDetailsDestination = {
 };
 
 /**
- * Instant Payments specific transaction details for both RTP and FedNow networks.
+ * Instant Payments specific transaction details for both RTP and FedNow networks. Only destination is supported; there is no sender-side remittance field. Use destination.remittanceData to convey payment context to the receiver. The metadata and correlationId fields are for your own reconciliation and are not transmitted over the payment network.
  */
-export type InstantDetails = {
+export type InitiateTransferInstantDetails = {
   /**
    * Instant payment details for the destination
    */
-  destination?: InstantDetailsDestination | undefined;
+  destination?: InitiateTransferInstantDetailsDestination | undefined;
 };
 
 export const DestinationEnum = {
@@ -129,9 +129,9 @@ export type InitiateTransferRequestBody = {
    */
   rtpDetails?: RtpDetails | undefined;
   /**
-   * Instant Payments specific transaction details for both RTP and FedNow networks.
+   * Instant Payments specific transaction details for both RTP and FedNow networks. Only destination is supported; there is no sender-side remittance field. Use destination.remittanceData to convey payment context to the receiver. The metadata and correlationId fields are for your own reconciliation and are not transmitted over the payment network.
    */
-  instantDetails?: InstantDetails | undefined;
+  instantDetails?: InitiateTransferInstantDetails | undefined;
   correlationId?: string | undefined;
   processingChannel?: InitiateTransferProcessingChannel | undefined;
 };
@@ -490,44 +490,55 @@ export function rtpDetailsToJSON(rtpDetails: RtpDetails): string {
 }
 
 /** @internal */
-export type InstantDetailsDestination$Outbound = {
+export type InitiateTransferInstantDetailsDestination$Outbound = {
   remittanceData?: string | undefined;
 };
 
 /** @internal */
-export const InstantDetailsDestination$outboundSchema: z.ZodType<
-  InstantDetailsDestination$Outbound,
-  z.ZodTypeDef,
-  InstantDetailsDestination
-> = z.object({
-  remittanceData: z.string().optional(),
-});
+export const InitiateTransferInstantDetailsDestination$outboundSchema:
+  z.ZodType<
+    InitiateTransferInstantDetailsDestination$Outbound,
+    z.ZodTypeDef,
+    InitiateTransferInstantDetailsDestination
+  > = z.object({
+    remittanceData: z.string().optional(),
+  });
 
-export function instantDetailsDestinationToJSON(
-  instantDetailsDestination: InstantDetailsDestination,
+export function initiateTransferInstantDetailsDestinationToJSON(
+  initiateTransferInstantDetailsDestination:
+    InitiateTransferInstantDetailsDestination,
 ): string {
   return JSON.stringify(
-    InstantDetailsDestination$outboundSchema.parse(instantDetailsDestination),
+    InitiateTransferInstantDetailsDestination$outboundSchema.parse(
+      initiateTransferInstantDetailsDestination,
+    ),
   );
 }
 
 /** @internal */
-export type InstantDetails$Outbound = {
-  destination?: InstantDetailsDestination$Outbound | undefined;
+export type InitiateTransferInstantDetails$Outbound = {
+  destination?: InitiateTransferInstantDetailsDestination$Outbound | undefined;
 };
 
 /** @internal */
-export const InstantDetails$outboundSchema: z.ZodType<
-  InstantDetails$Outbound,
+export const InitiateTransferInstantDetails$outboundSchema: z.ZodType<
+  InitiateTransferInstantDetails$Outbound,
   z.ZodTypeDef,
-  InstantDetails
+  InitiateTransferInstantDetails
 > = z.object({
-  destination: z.lazy(() => InstantDetailsDestination$outboundSchema)
-    .optional(),
+  destination: z.lazy(() =>
+    InitiateTransferInstantDetailsDestination$outboundSchema
+  ).optional(),
 });
 
-export function instantDetailsToJSON(instantDetails: InstantDetails): string {
-  return JSON.stringify(InstantDetails$outboundSchema.parse(instantDetails));
+export function initiateTransferInstantDetailsToJSON(
+  initiateTransferInstantDetails: InitiateTransferInstantDetails,
+): string {
+  return JSON.stringify(
+    InitiateTransferInstantDetails$outboundSchema.parse(
+      initiateTransferInstantDetails,
+    ),
+  );
 }
 
 /** @internal */
@@ -568,7 +579,7 @@ export type InitiateTransferRequestBody$Outbound = {
   clearing?: InitiateTransferClearing$Outbound | undefined;
   achDetails?: InitiateTransferAchDetails$Outbound | undefined;
   rtpDetails?: RtpDetails$Outbound | undefined;
-  instantDetails?: InstantDetails$Outbound | undefined;
+  instantDetails?: InitiateTransferInstantDetails$Outbound | undefined;
   correlationId?: string | undefined;
   processingChannel?: InitiateTransferProcessingChannel$Outbound | undefined;
 };
@@ -587,7 +598,8 @@ export const InitiateTransferRequestBody$outboundSchema: z.ZodType<
   achDetails: z.lazy(() => InitiateTransferAchDetails$outboundSchema)
     .optional(),
   rtpDetails: z.lazy(() => RtpDetails$outboundSchema).optional(),
-  instantDetails: z.lazy(() => InstantDetails$outboundSchema).optional(),
+  instantDetails: z.lazy(() => InitiateTransferInstantDetails$outboundSchema)
+    .optional(),
   correlationId: z.string().optional(),
   processingChannel: z.lazy(() =>
     InitiateTransferProcessingChannel$outboundSchema

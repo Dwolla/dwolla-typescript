@@ -1,13 +1,13 @@
-# InstantDetailsDestination
+# InitiateMassPaymentInstantDetailsDestination
 
 Instant payment details for the destination
 
 ## Example Usage
 
 ```typescript
-import { InstantDetailsDestination } from "dwolla/models/operations";
+import { InitiateMassPaymentInstantDetailsDestination } from "dwolla/models/operations";
 
-let value: InstantDetailsDestination = {
+let value: InitiateMassPaymentInstantDetailsDestination = {
   remittanceData: "ABC_123 Remittance Data",
 };
 ```

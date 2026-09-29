@@ -47,6 +47,26 @@ export type ItemAchDetails = {
   destination?: InitiateMassPaymentAchDetailsDestination | undefined;
 };
 
+/**
+ * Instant payment details for the destination
+ */
+export type InitiateMassPaymentInstantDetailsDestination = {
+  /**
+   * Remittance information for Instant Payments (RTP/FedNow), providing context about the payment purpose. Acceptable characters: alphanumeric (0-9, a-z, A-Z), space, and special characters (#,.'&/-@!$%*()_+={}|:;`[]^~\")
+   */
+  remittanceData?: string | undefined;
+};
+
+/**
+ * Instant Payments specific transaction details for both RTP and FedNow networks. Applies to items where processingChannel.destination is set to instant or real-time-payments. Only destination is supported; there is no sender-side remittance field. Use destination.remittanceData to convey payment context to the receiver. The metadata and correlationId fields are for your own reconciliation and are not transmitted over the payment network.
+ */
+export type InitiateMassPaymentInstantDetails = {
+  /**
+   * Instant payment details for the destination
+   */
+  destination?: InitiateMassPaymentInstantDetailsDestination | undefined;
+};
+
 export type Item = {
   links?: ItemLinks | undefined;
   amount?: models.TransferAmount | undefined;
@@ -54,6 +74,10 @@ export type Item = {
   metadata?: ItemMetadata | undefined;
   clearing?: ItemClearing | undefined;
   achDetails?: ItemAchDetails | undefined;
+  /**
+   * Instant Payments specific transaction details for both RTP and FedNow networks. Applies to items where processingChannel.destination is set to instant or real-time-payments. Only destination is supported; there is no sender-side remittance field. Use destination.remittanceData to convey payment context to the receiver. The metadata and correlationId fields are for your own reconciliation and are not transmitted over the payment network.
+   */
+  instantDetails?: InitiateMassPaymentInstantDetails | undefined;
   correlationId?: string | undefined;
 };
 
@@ -310,6 +334,60 @@ export function itemAchDetailsToJSON(itemAchDetails: ItemAchDetails): string {
 }
 
 /** @internal */
+export type InitiateMassPaymentInstantDetailsDestination$Outbound = {
+  remittanceData?: string | undefined;
+};
+
+/** @internal */
+export const InitiateMassPaymentInstantDetailsDestination$outboundSchema:
+  z.ZodType<
+    InitiateMassPaymentInstantDetailsDestination$Outbound,
+    z.ZodTypeDef,
+    InitiateMassPaymentInstantDetailsDestination
+  > = z.object({
+    remittanceData: z.string().optional(),
+  });
+
+export function initiateMassPaymentInstantDetailsDestinationToJSON(
+  initiateMassPaymentInstantDetailsDestination:
+    InitiateMassPaymentInstantDetailsDestination,
+): string {
+  return JSON.stringify(
+    InitiateMassPaymentInstantDetailsDestination$outboundSchema.parse(
+      initiateMassPaymentInstantDetailsDestination,
+    ),
+  );
+}
+
+/** @internal */
+export type InitiateMassPaymentInstantDetails$Outbound = {
+  destination?:
+    | InitiateMassPaymentInstantDetailsDestination$Outbound
+    | undefined;
+};
+
+/** @internal */
+export const InitiateMassPaymentInstantDetails$outboundSchema: z.ZodType<
+  InitiateMassPaymentInstantDetails$Outbound,
+  z.ZodTypeDef,
+  InitiateMassPaymentInstantDetails
+> = z.object({
+  destination: z.lazy(() =>
+    InitiateMassPaymentInstantDetailsDestination$outboundSchema
+  ).optional(),
+});
+
+export function initiateMassPaymentInstantDetailsToJSON(
+  initiateMassPaymentInstantDetails: InitiateMassPaymentInstantDetails,
+): string {
+  return JSON.stringify(
+    InitiateMassPaymentInstantDetails$outboundSchema.parse(
+      initiateMassPaymentInstantDetails,
+    ),
+  );
+}
+
+/** @internal */
 export type Item$Outbound = {
   _links?: ItemLinks$Outbound | undefined;
   amount?: models.TransferAmount$Outbound | undefined;
@@ -317,6 +395,7 @@ export type Item$Outbound = {
   metadata?: ItemMetadata$Outbound | undefined;
   clearing?: ItemClearing$Outbound | undefined;
   achDetails?: ItemAchDetails$Outbound | undefined;
+  instantDetails?: InitiateMassPaymentInstantDetails$Outbound | undefined;
   correlationId?: string | undefined;
 };
 
@@ -331,6 +410,9 @@ export const Item$outboundSchema: z.ZodType<Item$Outbound, z.ZodTypeDef, Item> =
     metadata: z.lazy(() => ItemMetadata$outboundSchema).optional(),
     clearing: z.lazy(() => ItemClearing$outboundSchema).optional(),
     achDetails: z.lazy(() => ItemAchDetails$outboundSchema).optional(),
+    instantDetails: z.lazy(() =>
+      InitiateMassPaymentInstantDetails$outboundSchema
+    ).optional(),
     correlationId: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
