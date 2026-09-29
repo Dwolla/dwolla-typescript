@@ -41,6 +41,11 @@ let value: InitiateMassPaymentRequestBody = {
           },
         },
       },
+      instantDetails: {
+        destination: {
+          remittanceData: "ABC_123 Remittance Data",
+        },
+      },
       correlationId: "ad6ca82d-59f7-45f0-a8d2-94c2cd4e8841",
     },
   ],

@@ -138,3 +138,13 @@ Based on:
 - [typescript v1.3.0] .
 ### Releases
 - [NPM v1.3.0] https://www.npmjs.com/package/dwolla/v/1.3.0 - .
+
+## 2026-09-29 16:03:23
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.799.0 (2.941.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v1.3.1] .
+### Releases
+- [NPM v1.3.1] https://www.npmjs.com/package/dwolla/v/1.3.1 - .

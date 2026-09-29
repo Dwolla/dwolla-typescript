@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 53ac026a-ff11-435d-914b-31df5268afb0
 management:
-  docChecksum: a867b3bed16f2523c58ca8999aeb24a3
+  docChecksum: a8ffe3659bb9781bf4055ccbbefae66e
   docVersion: "2.0"
-  speakeasyVersion: 1.797.0
-  generationVersion: 2.937.18
-  releaseVersion: 1.3.0
-  configChecksum: 09e793e6cdd74838bad19aa24a3efda9
+  speakeasyVersion: 1.799.0
+  generationVersion: 2.941.0
+  releaseVersion: 1.3.1
+  configChecksum: 1d0b3cf00c5d82922f0ea5ffc78b4b5d
   repoURL: https://github.com/Dwolla/dwolla-typescript.git
   installationURL: https://github.com/Dwolla/dwolla-typescript
   published: true
 persistentEdits:
-  generation_id: 4471075e-c2e8-43c6-8ba1-c975f0ee51b1
-  pristine_commit_hash: ccfbfc15b9951de5ed4d3030637b679b2e020679
-  pristine_tree_hash: 2e702e4d0568e14be2aa60c286d91233b7383bd7
+  generation_id: 1adcbae6-0857-4889-a4bc-8144bc33efae
+  pristine_commit_hash: 6dcb3c587f92ad0a20bcbe05be847830bfd9cab9
+  pristine_tree_hash: 7a7adb33eb037abe75e5ec278fb5f9e2f8b2bebc
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -2527,6 +2527,14 @@ trackedFiles:
     id: 65d07b89c92c
     last_write_checksum: sha1:4a5ad1b98fe07fbd95e748460ec7097d3a75670f
     pristine_git_object: 431ea6fad07116d28fe1f03e5cd9b86e0564e6b3
+  docs/models/operations/initiatemasspaymentinstantdetails.md:
+    id: 786c171262f9
+    last_write_checksum: sha1:f3ac0cd3269297a0671e100b2e725719f95f0e9e
+    pristine_git_object: 4adbd83e523eb8f84c18ac0ff10b307cbcabe1b3
+  docs/models/operations/initiatemasspaymentinstantdetailsdestination.md:
+    id: af2e7f2b7c40
+    last_write_checksum: sha1:029f89e9754693ab3db0acee848949add25a2ed6
+    pristine_git_object: 8c30cf20db895e2bc1d7393812df90372e3932ad
   docs/models/operations/initiatemasspaymentlinks.md:
     id: 5609902a11c3
     last_write_checksum: sha1:36b8a41b14d5be5198a1db5b1edc7f1357bdce44
@@ -2549,12 +2557,12 @@ trackedFiles:
     pristine_git_object: 9f62e8bfa8f88aecc43faea6ca8de9e0973425f3
   docs/models/operations/initiatemasspaymentrequest.md:
     id: ad1018fe688a
-    last_write_checksum: sha1:31fe1d7e3fde795ef7cbbe3694dfd10c19fe90ba
-    pristine_git_object: 1e146114f0d842ebdc0883f223ae9c5557190669
+    last_write_checksum: sha1:be8aface6685090970bee0707f564258a1853128
+    pristine_git_object: 5e38bf018b83a00913782fe1aeb720c1e366cccd
   docs/models/operations/initiatemasspaymentrequestbody.md:
     id: 105c741948a5
-    last_write_checksum: sha1:0fc4a9e2eb39774d0d78d899457df74f619d8152
-    pristine_git_object: 771d6ca4115ab92276d532d41b437c9cb6f95d1b
+    last_write_checksum: sha1:d25c784c1fb9760c35b509a3472a9d378ac19852
+    pristine_git_object: 1e5f762bf3f37f8de5adaa246e1b313417501d47
   docs/models/operations/initiatemasspaymentresponse.md:
     id: 2a20cf9fd63c
     last_write_checksum: sha1:37f71a10fa9da32155aeeecfb56276cb9ac5fb71
@@ -2591,6 +2599,14 @@ trackedFiles:
     id: 331f12163436
     last_write_checksum: sha1:f644b42d12dfb58146c8513343a76f0215c999cb
     pristine_git_object: ebcf3258600a8811a55490556afbf5e929544d59
+  docs/models/operations/initiatetransferinstantdetails.md:
+    id: da99d0a4acda
+    last_write_checksum: sha1:da5c62cb7aeb7a4f7ed4aba32af95a2d828ecd77
+    pristine_git_object: 2d24ba2b420384ddff6278d5648c880460970f17
+  docs/models/operations/initiatetransferinstantdetailsdestination.md:
+    id: c847d3d2f3ac
+    last_write_checksum: sha1:e999ffa44688f18d21408d1f74ca4e1a4bb039fb
+    pristine_git_object: 91fead5a8626e245e52fdc94c8bbd65f83443d31
   docs/models/operations/initiatetransferlinks.md:
     id: c6a3f17bd679
     last_write_checksum: sha1:7892feab76b45ce0a736ca67d22205524335153f
@@ -2617,8 +2633,8 @@ trackedFiles:
     pristine_git_object: d101616351b2356bfbb4c7271ea3473aeab719c3
   docs/models/operations/initiatetransferrequestbody.md:
     id: d35fa4b01638
-    last_write_checksum: sha1:84ba86919a2d8fdf2ec28d34f8e1a164c114f76e
-    pristine_git_object: d8f36be5af0caa179c4b6f53dba8fd2781853546
+    last_write_checksum: sha1:555a7210770750c016f1e99be15cd60c5aa24fb3
+    pristine_git_object: 3b24fe621ffbde8ae39fe1b19382ee19a07bb2d8
   docs/models/operations/initiatetransferresponse.md:
     id: a100a730a5cc
     last_write_checksum: sha1:b45e8a7c7b8d1ad6cfb3ff7c6c77ac935b6cb2b7
@@ -2627,18 +2643,10 @@ trackedFiles:
     id: 9b2ac5d67236
     last_write_checksum: sha1:6ae7aaf8cbf476b007ecf1469b65516ad6db4ba3
     pristine_git_object: 83cae6bd4a390002a51a6c733a0aeb6420571034
-  docs/models/operations/instantdetails.md:
-    id: e720aa0429e9
-    last_write_checksum: sha1:889bf295a76455de51c5ef4d5fc3773f2e3cba79
-    pristine_git_object: 14d8b4b6d127a35bed42ede103189fb232c7a273
-  docs/models/operations/instantdetailsdestination.md:
-    id: 76d6d605eec9
-    last_write_checksum: sha1:472e02ca482264773fe8821c664744348f17a1a0
-    pristine_git_object: ee2d42441c587e23d8f84effeddc7e52a3efa2f5
   docs/models/operations/item.md:
     id: ada0a7a887b8
-    last_write_checksum: sha1:71c7121603f301640ab664469fda53e70f24f8a9
-    pristine_git_object: f01740578d6935dd39896c63cdf7f04c7f387f04
+    last_write_checksum: sha1:674e281ffd0e42473c0cfd76265e0a3ddf14bacc
+    pristine_git_object: ad89c99b99a6369cb4dd5269fa5f24231a093cc4
   docs/models/operations/itemachdetails.md:
     id: 64a84a66a0a3
     last_write_checksum: sha1:9e5f5a48ef94260bd59c46111aa4d990ab149586
@@ -3933,12 +3941,12 @@ trackedFiles:
     pristine_git_object: cfefbaf72057261e33367fa8ec9c1d723f4e5dca
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:f104ce2c4f668a9d23e2cbeb2c1eaa12ff1235ff
-    pristine_git_object: 4b2812cfcd3eff68d878dfb0fb3669bd9f284669
+    last_write_checksum: sha1:2eefc7ee02a5779d15d227bb566f1ed7ce99d80f
+    pristine_git_object: 4d4a11403826855c71416b2e055e3dba6c9a07cc
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:c649369e3470265bc65cc8476af4137dacbb3a65
-    pristine_git_object: f56b85ad686b577b044cfdabea121c7570e17467
+    last_write_checksum: sha1:d5e0c8440957dc0887f4531c939b0693afca1100
+    pristine_git_object: 4b5fc075c36efe780554781a040365e86dfdce31
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:19a6fee77f254ffab5fbdc018e513140135bfd59
@@ -4301,8 +4309,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:6d38cb24a1ec4f2c0380a867b9d32f9f632652b9
-    pristine_git_object: 9b3d38e59d58c6170df8b27e5cc7bd60af0530c5
+    last_write_checksum: sha1:8fc5251a37f0853b924d195d7a7ad206a19ae655
+    pristine_git_object: fd153ede780cc1771c51412ee6c5c624d5e24799
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:a257d6f6108693db2197617c579400bc8f0da914
@@ -5557,16 +5565,16 @@ trackedFiles:
     pristine_git_object: bc3c7e5da5e96a58eaf0daebbb5bcae4646651ec
   src/models/operations/initiatemasspayment.ts:
     id: 64e7c3de692c
-    last_write_checksum: sha1:383bc27f52a5f316548063161330df35ab77a19d
-    pristine_git_object: 942ec7dc923a120e639ac36b3b64cb017ac5957c
+    last_write_checksum: sha1:3aa808a4645105f03077495c7743162f8bedfef4
+    pristine_git_object: d0dfabfafad0d4ade0dae6acf895e9f84dbd0e71
   src/models/operations/initiatemicrodeposits.ts:
     id: 839fc697c8ef
     last_write_checksum: sha1:b535dc56084c06ad2a900d1f0762da4e89ae0d5e
     pristine_git_object: ca0273917c7eb8a7b968358ca9ac4ba6ca35d4c6
   src/models/operations/initiatetransfer.ts:
     id: 5ee0965c60ce
-    last_write_checksum: sha1:572660d010ccb9fd55771ad733146884d4c2934a
-    pristine_git_object: 73ac492f5e788d3ba5909bcd9d9b432504861a98
+    last_write_checksum: sha1:ee6eacf62e319514c99b3e85e69301e2532da479
+    pristine_git_object: 2ca9545284e7c3c1c5d460f45405218a76157dd5
   src/models/operations/listandsearchcustomers.ts:
     id: af537a8f4816
     last_write_checksum: sha1:342fad81667c5b1a6d57fbdada93f87043b4b48f
@@ -7490,7 +7498,7 @@ generatedTests:
   getFundingSource-card_funding_source: "2026-01-06T10:06:45-06:00"
   simulateBankTransferProcessing-bankTransferProcessing: "2026-03-26T19:04:47Z"
   simulateBankTransferProcessing-customerVerificationDirective: "2026-03-26T19:04:47Z"
-releaseNotes: "## Typescript SDK Changes:\n* `dwolla.accounts.fundingSources.list()`:  `response.Embedded.fundingSources[].cardDetails` **Changed**\n* `dwolla.accounts.exchanges.list()`:  `response.Embedded.exchanges[].cardDetails` **Added**\n* `dwolla.customers.fundingSources.list()`:  `response.Embedded.fundingSources[].cardDetails` **Changed**\n* `dwolla.customers.fundingSources.create()`: \n  *  `request.createCustomerFundingSource.union(CreateCustomerCardFundingSourceWithExchange).cardDetails` **Changed**\n* `dwolla.customers.exchanges.list()`:  `response.Embedded.exchanges[].cardDetails` **Added**\n* `dwolla.customers.exchangeSessions.create()`: \n  *  `request.requestBody.union(CreateCustomerExchangeSessionForCard)` **Added**\n* `dwolla.fundingSources.get()`:  `response.cardDetails` **Changed**\n* `dwolla.fundingSources.updateOrRemove()`: \n  *  `request.requestBody.union(UpdateCardFundingSource)` **Added**\n  *  `error` **Changed**\n* `dwolla.exchanges.get()`:  `response.cardDetails` **Added**\n"
+releaseNotes: "## Typescript SDK Changes:\n* `dwolla.massPayments.create()`: \n  *  `request.requestBody.items[].instantDetails` **Added**\n"
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
