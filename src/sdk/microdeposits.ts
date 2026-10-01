@@ -14,7 +14,7 @@ export class MicroDeposits extends ClientSDK {
    * Retrieve micro-deposits details
    *
    * @remarks
-   * Returns the status and details of micro-deposits for a funding source to check verification eligibility. Includes deposit status (pending, processed, failed), creation timestamp, and failure details with ACH return codes if deposits failed. Use this endpoint to determine when micro-deposits are ready for verification.
+   * Returns the status and details of micro-deposits for a funding source to check verification eligibility. Includes deposit status (pending, processed, failed), creation timestamp, failure details with ACH return codes if deposits failed, and ACH trace IDs for each deposit when available. Use this endpoint to determine when micro-deposits are ready for verification.
    */
   async get(
     request: operations.GetMicroDepositsRequest,

@@ -22,6 +22,40 @@ export type Failure = {
 };
 
 /**
+ * ACH details for the first micro-deposit
+ */
+export type Deposit1 = {
+  /**
+   * A unique identifier for tracing the ACH transaction through the banking network. Used for transaction tracking and reconciliation purposes
+   */
+  traceId: string;
+};
+
+/**
+ * ACH details for the second micro-deposit
+ */
+export type Deposit2 = {
+  /**
+   * A unique identifier for tracing the ACH transaction through the banking network. Used for transaction tracking and reconciliation purposes
+   */
+  traceId: string;
+};
+
+/**
+ * ACH details for each micro-deposit. Optional; only returned when ACH details are available for the micro-deposits. `deposit1` or `deposit2` may be omitted if details for that deposit are unavailable.
+ */
+export type GetMicroDepositsAchDetails = {
+  /**
+   * ACH details for the first micro-deposit
+   */
+  deposit1?: Deposit1 | undefined;
+  /**
+   * ACH details for the second micro-deposit
+   */
+  deposit2?: Deposit2 | undefined;
+};
+
+/**
  * successful operation
  */
 export type GetMicroDepositsResponse = {
@@ -29,6 +63,10 @@ export type GetMicroDepositsResponse = {
   created?: Date | undefined;
   status?: string | undefined;
   failure?: Failure | undefined;
+  /**
+   * ACH details for each micro-deposit. Optional; only returned when ACH details are available for the micro-deposits. `deposit1` or `deposit2` may be omitted if details for that deposit are unavailable.
+   */
+  achDetails?: GetMicroDepositsAchDetails | undefined;
 };
 
 /** @internal */
@@ -71,6 +109,64 @@ export function failureFromJSON(
 }
 
 /** @internal */
+export const Deposit1$inboundSchema: z.ZodType<
+  Deposit1,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  traceId: z.string(),
+});
+
+export function deposit1FromJSON(
+  jsonString: string,
+): SafeParseResult<Deposit1, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Deposit1$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Deposit1' from JSON`,
+  );
+}
+
+/** @internal */
+export const Deposit2$inboundSchema: z.ZodType<
+  Deposit2,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  traceId: z.string(),
+});
+
+export function deposit2FromJSON(
+  jsonString: string,
+): SafeParseResult<Deposit2, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Deposit2$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Deposit2' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetMicroDepositsAchDetails$inboundSchema: z.ZodType<
+  GetMicroDepositsAchDetails,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  deposit1: z.lazy(() => Deposit1$inboundSchema).optional(),
+  deposit2: z.lazy(() => Deposit2$inboundSchema).optional(),
+});
+
+export function getMicroDepositsAchDetailsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMicroDepositsAchDetails, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMicroDepositsAchDetails$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMicroDepositsAchDetails' from JSON`,
+  );
+}
+
+/** @internal */
 export const GetMicroDepositsResponse$inboundSchema: z.ZodType<
   GetMicroDepositsResponse,
   z.ZodTypeDef,
@@ -81,6 +177,7 @@ export const GetMicroDepositsResponse$inboundSchema: z.ZodType<
     .optional(),
   status: z.string().optional(),
   failure: z.lazy(() => Failure$inboundSchema).optional(),
+  achDetails: z.lazy(() => GetMicroDepositsAchDetails$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     "_links": "links",
