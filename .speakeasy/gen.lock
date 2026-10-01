@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 53ac026a-ff11-435d-914b-31df5268afb0
 management:
-  docChecksum: a8ffe3659bb9781bf4055ccbbefae66e
+  docChecksum: ecb89d4bbd9900d2938c5961d762507b
   docVersion: "2.0"
-  speakeasyVersion: 1.799.0
-  generationVersion: 2.941.0
-  releaseVersion: 1.3.1
-  configChecksum: 1d0b3cf00c5d82922f0ea5ffc78b4b5d
+  speakeasyVersion: 1.800.0
+  generationVersion: 2.943.0
+  releaseVersion: 1.3.2
+  configChecksum: eae6b563043ed201274ed46a2cf4d4d6
   repoURL: https://github.com/Dwolla/dwolla-typescript.git
   installationURL: https://github.com/Dwolla/dwolla-typescript
   published: true
 persistentEdits:
-  generation_id: 1adcbae6-0857-4889-a4bc-8144bc33efae
-  pristine_commit_hash: 6dcb3c587f92ad0a20bcbe05be847830bfd9cab9
-  pristine_tree_hash: 7a7adb33eb037abe75e5ec278fb5f9e2f8b2bebc
+  generation_id: 872d251a-df44-42da-ba08-82538bc4f644
+  pristine_commit_hash: c8551eb52c4acbdcf26ae26762d57ae6f7681e6d
+  pristine_tree_hash: 17f34cf2c94a3b0af8ad2638ba857729f0e893c3
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -36,7 +36,7 @@ features:
     sdkHooks: 0.4.0
     serverIDs: 2.81.2
     tests: 0.17.7
-    unions: 2.86.5
+    unions: 2.86.7
     uploadStreams: 0.1.1
 trackedFiles:
   .devcontainer/README.md:
@@ -2339,6 +2339,14 @@ trackedFiles:
     id: 49d12769b66c
     last_write_checksum: sha1:bc5c9767730f4f4d876c6d9d8997dd957bc86491
     pristine_git_object: b744006b8514b45c0c22dd28e12421b1f2795bfe
+  docs/models/operations/deposit1.md:
+    id: 2f439dac30e0
+    last_write_checksum: sha1:d7993ffbba3d19f3ec9f909a0900a9742e642f16
+    pristine_git_object: 663575e8aff65a5895e30186c57938c76568cbe1
+  docs/models/operations/deposit2.md:
+    id: f072281b7352
+    last_write_checksum: sha1:14a297d7c758283ca8c24e11775aafe08e239407
+    pristine_git_object: 63914525448cdbfebcf18062fbe81ca45d1925be
   docs/models/operations/destinationenum.md:
     id: a2e81ee07366
     last_write_checksum: sha1:af92924fd884f7403ed1b0206ddfbad7141b5113
@@ -2463,14 +2471,18 @@ trackedFiles:
     id: 2c43dfee950b
     last_write_checksum: sha1:21ec8af68fb7bb62d712e8776d125a369ce129f0
     pristine_git_object: 5192661c6015612e4c1eec8a8d47cb44835ab835
+  docs/models/operations/getmicrodepositsachdetails.md:
+    id: f8bee1f35703
+    last_write_checksum: sha1:ede4354d10998171f3593727b94854aceb0cb857
+    pristine_git_object: f1086b462118ba1a6f93c51a3e726d21c0117f4c
   docs/models/operations/getmicrodepositsrequest.md:
     id: 98a5ac65012f
     last_write_checksum: sha1:81d00e76ecf27c7b96d8b5deab028439855e690d
     pristine_git_object: 0e46713dc48c9948c325365a27da335400551812
   docs/models/operations/getmicrodepositsresponse.md:
     id: 103cec8ccf83
-    last_write_checksum: sha1:a2f596199963d9f8678d11d7d626c4579428a45e
-    pristine_git_object: 1202a115297cd06fe4f6a636c647ac2cdf763790
+    last_write_checksum: sha1:7b7705a70f783cc2d22c67ff7207db020b770038
+    pristine_git_object: 5974024a35cd58946124efd9153e99bda4d459ef
   docs/models/operations/gettransferfailurereasonrequest.md:
     id: 4aa881b6610a
     last_write_checksum: sha1:ffa5c233803796ff1acd9ef2a9000f25f56afb0d
@@ -3873,8 +3885,8 @@ trackedFiles:
     pristine_git_object: d3d65d7ae89265702edff42eb63493d08556d705
   docs/sdks/microdeposits/README.md:
     id: 5388e9c10dc1
-    last_write_checksum: sha1:3b00eb08bcb18ed0c81cbefea450ad2d94c9cb2c
-    pristine_git_object: a6bb9971fe71ec60d5afb30689a2bf86cdcb5f2a
+    last_write_checksum: sha1:f8ca5b196f3592ae0d665fd59f8e75a06074f53d
+    pristine_git_object: 2860294bc9a38e22350cdb3e01f0b4b5d1d3802f
   docs/sdks/ondemandtransferauthorizations/README.md:
     id: 08e9755cfe2e
     last_write_checksum: sha1:0863c1716719de2d3012aacaef7931f76866aa8d
@@ -3941,12 +3953,12 @@ trackedFiles:
     pristine_git_object: cfefbaf72057261e33367fa8ec9c1d723f4e5dca
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:2eefc7ee02a5779d15d227bb566f1ed7ce99d80f
-    pristine_git_object: 4d4a11403826855c71416b2e055e3dba6c9a07cc
+    last_write_checksum: sha1:78cd926227edc416cb22af7e3d4ae32639718d2c
+    pristine_git_object: f99f0119df915d10d56b44046b974cb9b0c326f5
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:d5e0c8440957dc0887f4531c939b0693afca1100
-    pristine_git_object: 4b5fc075c36efe780554781a040365e86dfdce31
+    last_write_checksum: sha1:156e4ec1186f51f3446ea3b705ff822494cc6ba7
+    pristine_git_object: a5699bedb0381d19c580372051a2406e461075ef
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:19a6fee77f254ffab5fbdc018e513140135bfd59
@@ -4141,8 +4153,8 @@ trackedFiles:
     pristine_git_object: 6e8fa614a8c5f887e81424497da51d5afedffbc3
   src/funcs/fundingSourcesMicroDepositsGet.ts:
     id: 54c12ed6e6b7
-    last_write_checksum: sha1:f2cf8ebd46f8cd7d983cd5e96c305d6605990362
-    pristine_git_object: d7d502bd553538e6cef8deb8e25bb84235fa2202
+    last_write_checksum: sha1:989e563316eb102fe46e8e5327e81195c59e76cf
+    pristine_git_object: d01451a31682408846ba94cf2fb9ba71460a6f18
   src/funcs/fundingSourcesMicroDepositsInitiate.ts:
     id: a1780e43b4b8
     last_write_checksum: sha1:ecf396092464eae31b67010bece550e1f8d40e93
@@ -4309,8 +4321,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:8fc5251a37f0853b924d195d7a7ad206a19ae655
-    pristine_git_object: fd153ede780cc1771c51412ee6c5c624d5e24799
+    last_write_checksum: sha1:e678f1bdf008da407a4bcfbc4e16911cdee022d4
+    pristine_git_object: df933e9328648c77d7ffbf8d100301eee6ee7328
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:a257d6f6108693db2197617c579400bc8f0da914
@@ -5533,8 +5545,8 @@ trackedFiles:
     pristine_git_object: fbf8d7f84b72b4d198c737a678d650220f836afc
   src/models/operations/getmicrodeposits.ts:
     id: a2606606de2e
-    last_write_checksum: sha1:e818af5bbb8c3eee4e27eeb84237233871072fba
-    pristine_git_object: 332dd041225bbd55fdeecd491e82a4ed024e63b1
+    last_write_checksum: sha1:b08b90449ebc5159f7f987282a240c018d52676d
+    pristine_git_object: f83e50077ebe9d4524d24134f2fd70745a2387d3
   src/models/operations/gettransfer.ts:
     id: 50399fcd74f1
     last_write_checksum: sha1:50eccb82730c6d463a7d2546617dbd8b0ed4909d
@@ -6101,8 +6113,8 @@ trackedFiles:
     pristine_git_object: 91db81fe15e0a94f0d2fb9bff1ba3f5fe7d30dd2
   src/sdk/microdeposits.ts:
     id: 18469352ada3
-    last_write_checksum: sha1:e9db4792ba9dc8c5ce49cf31683077a3e8e56b41
-    pristine_git_object: 0c370bce61e85d43caeab93af0c53b483afcdaa9
+    last_write_checksum: sha1:4dfe2c037c68a60087acdd92d688f82583a160b5
+    pristine_git_object: 2ffaaf881ccb9a85b69029de5360e5ddcb9f463e
   src/sdk/ondemandtransferauthorizations.ts:
     id: 80002726b501
     last_write_checksum: sha1:9d6bfb5327fd4ab4d4197e993f5ae46b6c2023fe
@@ -6663,7 +6675,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "created": "2022-12-30T20:56:53.000Z", "status": "failed", "failure": {"code": "R03", "description": "No Account/Unable to locate account"}}
+          application/vnd.dwolla.v1.hal+json: {"_links": {"key": {"href": "https://api.dwolla.com", "type": "application/vnd.dwolla.v1.hal+json", "resource-type": "resource-type"}}, "created": "2022-12-30T20:56:53.000Z", "status": "failed", "failure": {"code": "R03", "description": "No Account/Unable to locate account"}, "achDetails": {"deposit1": {"traceId": "273976360000105"}, "deposit2": {"traceId": "273976360000106"}}}
         "404":
           application/vnd.dwolla.v1.hal+json: {"code": "NotFound", "message": "The requested resource was not found."}
   initiateOrVerifyMicroDeposits:
@@ -7498,7 +7510,9 @@ generatedTests:
   getFundingSource-card_funding_source: "2026-01-06T10:06:45-06:00"
   simulateBankTransferProcessing-bankTransferProcessing: "2026-03-26T19:04:47Z"
   simulateBankTransferProcessing-customerVerificationDirective: "2026-03-26T19:04:47Z"
-releaseNotes: "## Typescript SDK Changes:\n* `dwolla.massPayments.create()`: \n  *  `request.requestBody.items[].instantDetails` **Added**\n"
+releaseNotes: |
+  ## Typescript SDK Changes:
+  * `dwolla.fundingSources.microDeposits.get()`:  `response.achDetails` **Added**
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
