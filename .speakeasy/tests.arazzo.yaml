@@ -1226,3 +1226,60 @@ workflows:
             type: simple
     x-speakeasy-test-group: sandbox simulations
     x-speakeasy-test-rebuild: true
+  - workflowId: listAlerts-first_page
+    steps:
+      - stepId: test
+        operationId: listAlerts
+        parameters:
+          - name: limit
+            in: query
+            value: 25
+          - name: status
+            in: query
+            value: open
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"self":{"href":"https://api-sandbox.dwolla.com/alerts","type":"application/vnd.dwolla.v1.hal+json","resource-type":"alert"},"next":{"href":"https://api-sandbox.dwolla.com/alerts?limit=25&cursor=aZ3kQ9vX7pLmN2rTb8WcYe4H","type":"application/vnd.dwolla.v1.hal+json","resource-type":"alert"}},"_embedded":{"alerts":[{"_links":{"self":{"href":"https://api-sandbox.dwolla.com/alerts/d4bd3a1e-7c6e-4e8a-9a5c-3b2f9d7e1a42","type":"application/vnd.dwolla.v1.hal+json","resource-type":"alert"},"customer":{"href":"https://api-sandbox.dwolla.com/customers/b0e1c5a6-2f3d-4e7a-8c9b-1d2e3f4a5b6c","type":"application/vnd.dwolla.v1.hal+json","resource-type":"customer"},"transfers":{"href":"https://api-sandbox.dwolla.com/customers/b0e1c5a6-2f3d-4e7a-8c9b-1d2e3f4a5b6c/transfers","type":"application/vnd.dwolla.v1.hal+json","resource-type":"transfer"}},"id":"d4bd3a1e-7c6e-4e8a-9a5c-3b2f9d7e1a42","type":"unusual-transfer-activity","status":"open","description":"Unusual transfer activity was detected for one of your customers.","actionRequired":{"description":"Your feedback is required to complete this customer's review. Please review the activity and email risk@dwolla.com to confirm the appropriate action.\n\nApprove Transfers: Activity is expected.\nSuspend Customer: Activity is not expected.\n\nPlease include the customer ID and provide an explanation for the proposed action. We will reach out if we require more information."},"created":"2026-10-14T16:32:08.000Z","lastUpdated":"2026-10-14T16:32:08.000Z","unusualTransferActivity":{"transferCount":12,"totalAmount":{"value":"48250.00","currency":"USD"}}}, {"_links":{"self":{"href":"https://api-sandbox.dwolla.com/alerts/7f3c2b19-58a4-4d0e-b6e1-0c9a8d7f6e53","type":"application/vnd.dwolla.v1.hal+json","resource-type":"alert"},"customer":{"href":"https://api-sandbox.dwolla.com/customers/e2f4a6c8-1b3d-4f5a-9c7e-8d6b4a2c0e1f","type":"application/vnd.dwolla.v1.hal+json","resource-type":"customer"},"transfers":{"href":"https://api-sandbox.dwolla.com/customers/e2f4a6c8-1b3d-4f5a-9c7e-8d6b4a2c0e1f/transfers","type":"application/vnd.dwolla.v1.hal+json","resource-type":"transfer"}},"id":"7f3c2b19-58a4-4d0e-b6e1-0c9a8d7f6e53","type":"unusual-transfer-activity","status":"resolved","description":"Unusual transfer activity was detected for one of your customers.","created":"2026-10-02T13:05:41.000Z","lastUpdated":"2026-10-03T18:47:19.000Z","resolved":"2026-10-03T18:47:19.000Z","unusualTransferActivity":{"transferCount":5,"totalAmount":{"value":"15600.00","currency":"USD"}}}]}}
+            type: simple
+    x-speakeasy-test-group: alerts
+    x-speakeasy-test-rebuild: true
+  - workflowId: listAlerts-open_alerts_page
+    steps:
+      - stepId: test
+        operationId: listAlerts
+        parameters:
+          - name: limit
+            in: query
+            value: 25
+          - name: status
+            in: query
+            value: open
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"self":{"href":"https://api-sandbox.dwolla.com/alerts?status=open&limit=25&cursor=Vb7tK2mQ9xR4wLp8NcZ6hJ3s","type":"application/vnd.dwolla.v1.hal+json","resource-type":"alert"},"next":{"href":"https://api-sandbox.dwolla.com/alerts?status=open&limit=25&cursor=Hd5gW1nY8eT3qAk6PrX0uB9f","type":"application/vnd.dwolla.v1.hal+json","resource-type":"alert"},"prev":{"href":"https://api-sandbox.dwolla.com/alerts?status=open&limit=25&cursor=Ms4cE7jU2vF9yDo1LbG8wK5z","type":"application/vnd.dwolla.v1.hal+json","resource-type":"alert"}},"_embedded":{"alerts":[{"_links":{"self":{"href":"https://api-sandbox.dwolla.com/alerts/2a9e6c41-0d7b-4f3a-a8e5-6b1c9d2f4e70","type":"application/vnd.dwolla.v1.hal+json","resource-type":"alert"},"customer":{"href":"https://api-sandbox.dwolla.com/customers/c3d5e7f9-4a6b-4c8d-9e0f-2a4b6c8d0e1f","type":"application/vnd.dwolla.v1.hal+json","resource-type":"customer"},"transfers":{"href":"https://api-sandbox.dwolla.com/customers/c3d5e7f9-4a6b-4c8d-9e0f-2a4b6c8d0e1f/transfers","type":"application/vnd.dwolla.v1.hal+json","resource-type":"transfer"}},"id":"2a9e6c41-0d7b-4f3a-a8e5-6b1c9d2f4e70","type":"unusual-transfer-activity","status":"open","description":"Unusual transfer activity was detected for one of your customers.","actionRequired":{"description":"Your feedback is required to complete this customer's review. Please review the activity and email risk@dwolla.com to confirm the appropriate action.\n\nApprove Transfers: Activity is expected.\nSuspend Customer: Activity is not expected.\n\nPlease include the customer ID and provide an explanation for the proposed action. We will reach out if we require more information."},"created":"2026-09-21T11:48:27.000Z","lastUpdated":"2026-09-21T11:48:27.000Z","unusualTransferActivity":{"transferCount":8,"totalAmount":{"value":"31475.00","currency":"USD"}}}]}}
+            type: simple
+    x-speakeasy-test-group: alerts
+    x-speakeasy-test-rebuild: true
+  - workflowId: getAlert-open_unusual_transfer_activity
+    steps:
+      - stepId: test
+        operationId: getAlert
+        parameters:
+          - name: id
+            in: path
+            value: d4bd3a1e-7c6e-4e8a-9a5c-3b2f9d7e1a42
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/vnd.dwolla.v1.hal+json
+          - context: $response.body
+            condition: |
+              {"_links":{"self":{"href":"https://api-sandbox.dwolla.com/alerts/d4bd3a1e-7c6e-4e8a-9a5c-3b2f9d7e1a42","type":"application/vnd.dwolla.v1.hal+json","resource-type":"alert"},"customer":{"href":"https://api-sandbox.dwolla.com/customers/b0e1c5a6-2f3d-4e7a-8c9b-1d2e3f4a5b6c","type":"application/vnd.dwolla.v1.hal+json","resource-type":"customer"},"transfers":{"href":"https://api-sandbox.dwolla.com/customers/b0e1c5a6-2f3d-4e7a-8c9b-1d2e3f4a5b6c/transfers","type":"application/vnd.dwolla.v1.hal+json","resource-type":"transfer"}},"id":"d4bd3a1e-7c6e-4e8a-9a5c-3b2f9d7e1a42","type":"unusual-transfer-activity","status":"open","description":"Unusual transfer activity was detected for one of your customers.","actionRequired":{"description":"Your feedback is required to complete this customer's review. Please review the activity and email risk@dwolla.com to confirm the appropriate action.\n\nApprove Transfers: Activity is expected.\nSuspend Customer: Activity is not expected.\n\nPlease include the customer ID and provide an explanation for the proposed action. We will reach out if we require more information."},"created":"2026-10-14T16:32:08.000Z","lastUpdated":"2026-10-14T16:32:08.000Z","unusualTransferActivity":{"transferCount":12,"totalAmount":{"value":"48250.00","currency":"USD"}}}
+            type: simple
+    x-speakeasy-test-group: alerts
+    x-speakeasy-test-rebuild: true

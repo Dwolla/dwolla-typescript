@@ -9,10 +9,10 @@ import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
-export const Code = {
+export const CodeEnum = {
   NotAllowed: "NotAllowed",
 } as const;
-export type Code = ClosedEnum<typeof Code>;
+export type CodeEnum = ClosedEnum<typeof CodeEnum>;
 
 export const Message = {
   CardsCannotBeUsedAsASourceForTransfers:
@@ -28,7 +28,7 @@ export type Path = ClosedEnum<typeof Path>;
 export type CardSourceNotAllowedErrorLinks = {};
 
 export type CardSourceNotAllowedErrorError = {
-  code: Code;
+  code: CodeEnum;
   message: Message;
   path: Path;
   links?: CardSourceNotAllowedErrorLinks | undefined;
@@ -39,9 +39,8 @@ export type CardSourceNotAllowedErrorEmbedded = {
 };
 
 /** @internal */
-export const Code$inboundSchema: z.ZodNativeEnum<typeof Code> = z.nativeEnum(
-  Code,
-);
+export const CodeEnum$inboundSchema: z.ZodNativeEnum<typeof CodeEnum> = z
+  .nativeEnum(CodeEnum);
 
 /** @internal */
 export const Message$inboundSchema: z.ZodNativeEnum<typeof Message> = z
@@ -75,7 +74,7 @@ export const CardSourceNotAllowedErrorError$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  code: Code$inboundSchema,
+  code: CodeEnum$inboundSchema,
   message: Message$inboundSchema,
   path: Path$inboundSchema,
   _links: z.lazy(() => CardSourceNotAllowedErrorLinks$inboundSchema).optional(),
