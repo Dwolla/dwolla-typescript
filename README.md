@@ -28,6 +28,7 @@ Dwolla API: Dwolla API Documentation
   * [Authentication](#authentication)
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Standalone functions](#standalone-functions)
+  * [Pagination](#pagination)
   * [File uploads](#file-uploads)
   * [Retries](#retries)
   * [Error Handling](#error-handling)
@@ -187,6 +188,11 @@ run();
 #### [Accounts.Transfers](docs/sdks/accountstransfers/README.md)
 
 * [list](docs/sdks/accountstransfers/README.md#list) - List and search account transfers
+
+### [Alerts](docs/sdks/alerts/README.md)
+
+* [list](docs/sdks/alerts/README.md#list) - List alerts
+* [get](docs/sdks/alerts/README.md#get) - Retrieve alert
 
 ### [BeneficialOwners](docs/sdks/beneficialowners/README.md)
 
@@ -412,6 +418,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`accountsGet`](docs/sdks/accounts/README.md#get) - Retrieve account details
 - [`accountsMassPaymentsList`](docs/sdks/accountsmasspayments/README.md#list) - List account mass payments
 - [`accountsTransfersList`](docs/sdks/accountstransfers/README.md#list) - List and search account transfers
+- [`alertsGet`](docs/sdks/alerts/README.md#get) - Retrieve alert
+- [`alertsList`](docs/sdks/alerts/README.md#list) - List alerts
 - [`beneficialOwnersDelete`](docs/sdks/beneficialowners/README.md#delete) - Remove beneficial owner
 - [`beneficialOwnersDocumentsCreate`](docs/sdks/beneficialownersdocuments/README.md#create) - Create a document for beneficial owner
 - [`beneficialOwnersDocumentsList`](docs/sdks/beneficialownersdocuments/README.md#list) - List documents for beneficial owner
@@ -491,6 +499,43 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
+
+<!-- Start Pagination [pagination] -->
+## Pagination
+
+Some of the endpoints in this SDK support pagination. To use pagination, you
+make your SDK calls as usual, but the returned response object will also be an
+async iterable that can be consumed using the [`for await...of`][for-await-of]
+syntax.
+
+[for-await-of]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of
+
+Here's an example of one such pagination call:
+
+```typescript
+import { Dwolla } from "dwolla";
+
+const dwolla = new Dwolla({
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
+});
+
+async function run() {
+  const result = await dwolla.alerts.list({
+    status: "open",
+  });
+
+  for await (const page of result) {
+    console.log(page);
+  }
+}
+
+run();
+
+```
+<!-- End Pagination [pagination] -->
 
 <!-- Start File uploads [file-upload] -->
 ## File uploads
@@ -656,7 +701,7 @@ run();
 **Primary error:**
 * [`DwollaError`](./src/models/errors/dwollaerror.ts): The base class for HTTP error responses.
 
-<details><summary>Less common errors (186)</summary>
+<details><summary>Less common errors (192)</summary>
 
 <br />
 
@@ -669,186 +714,192 @@ run();
 
 
 **Inherit from [`DwollaError`](./src/models/errors/dwollaerror.ts)**:
-* [`NotFoundError`](./src/models/errors/notfounderror.ts): Error response schema for 404 NotFound. Status code `404`. Applicable to 36 of 83 methods.*
-* [`ForbiddenError`](./src/models/errors/forbiddenerror.ts): Error response schema for 403 Forbidden. Status code `403`. Applicable to 24 of 83 methods.*
-* [`BadRequestError`](./src/models/errors/badrequesterror.ts): Error response schema for 400 Bad Request. Status code `400`. Applicable to 12 of 83 methods.*
-* [`DuplicateResourceSchemaError`](./src/models/errors/duplicateresourceschemaerror.ts): Status code `400`. Applicable to 3 of 83 methods.*
-* [`ValidationErrorSchema`](./src/models/errors/validationerrorschema.ts): ValidationError. Status code `400`. Applicable to 2 of 83 methods.*
-* [`InvalidExchangeTokenError`](./src/models/errors/invalidexchangetokenerror.ts): Bad Request. Status code `400`. Applicable to 2 of 83 methods.*
-* [`InvalidExchangeError`](./src/models/errors/invalidexchangeerror.ts): Bad Request. Status code `400`. Applicable to 2 of 83 methods.*
-* [`MaximumNumberOfResourcesSchemaError`](./src/models/errors/maximumnumberofresourcesschemaerror.ts): Bad Request. Status code `400`. Applicable to 2 of 83 methods.*
-* [`InvalidFileTypeSchemaError`](./src/models/errors/invalidfiletypeschemaerror.ts): Bad Request. Status code `400`. Applicable to 2 of 83 methods.*
-* [`InvalidResourceStateSchemaError`](./src/models/errors/invalidresourcestateschemaerror.ts): Status code `403`. Applicable to 2 of 83 methods.*
-* [`UpdateBadRequestDwollaV1HalJSONError`](./src/models/errors/updatebadrequestdwollav1haljsonerror.ts): bad request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`UpdateFundingSourceValidationError`](./src/models/errors/updatefundingsourcevalidationerror.ts): Validation error returned when an update request cannot be applied. The specific problem is described by the embedded error's `code`, `message`, and `path`. Common cases: - no updateable field was provided (`Invalid` at `/`) - bank fields were sent to a card funding source (`NotAllowed` at `/routingNumber`) - card fields were sent to a bank funding source (`NotAllowed` at `/cardDetails`) - a `cardDetails` value failed validation, such as `countryOfBirth` not being exactly 2 characters. Status code `400`. Applicable to 1 of 83 methods.*
-* [`SourceNotFoundError`](./src/models/errors/sourcenotfounderror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`ReceiverNotFoundError`](./src/models/errors/receivernotfounderror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InvalidSourceFundingSourceError`](./src/models/errors/invalidsourcefundingsourceerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`SenderRestrictedError`](./src/models/errors/senderrestrictederror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`ReceiverRestrictedError`](./src/models/errors/receiverrestrictederror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InvalidMetadataError`](./src/models/errors/invalidmetadataerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`OperationBlockedError`](./src/models/errors/operationblockederror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InvalidAmountLimitError`](./src/models/errors/invalidamountlimiterror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`CannotParseAmountError`](./src/models/errors/cannotparseamounterror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InsufficientFundsError`](./src/models/errors/insufficientfundserror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`FacilitatorFeeAccountNotFoundError`](./src/models/errors/facilitatorfeeaccountnotfounderror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`FacilitatorFeeSumTooLargeError`](./src/models/errors/facilitatorfeesumtoolargeerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`FacilitatorFeeBelowMinimumError`](./src/models/errors/facilitatorfeebelowminimumerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`HighRiskError`](./src/models/errors/highriskerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`IncompatibleHoldingsError`](./src/models/errors/incompatibleholdingserror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`DirectAccountWithoutBankError`](./src/models/errors/directaccountwithoutbankerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`SourceSameAsDestinationError`](./src/models/errors/sourcesameasdestinationerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InvalidFacilitatorError`](./src/models/errors/invalidfacilitatorerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InvalidFacilitatorFeeCollectFromError`](./src/models/errors/invalidfacilitatorfeecollectfromerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InvalidFacilitatorFeeCollectFromCombinationError`](./src/models/errors/invalidfacilitatorfeecollectfromcombinationerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InvalidDestinationFundingSourceError`](./src/models/errors/invaliddestinationfundingsourceerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InvalidOrRemovedCardDestinationError`](./src/models/errors/invalidorremovedcarddestinationerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InvalidFacilitatorFeeAmountError`](./src/models/errors/invalidfacilitatorfeeamounterror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`WeeklyReceiveLimitReachedError`](./src/models/errors/weeklyreceivelimitreachederror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InvalidDestinationClearingTypeError`](./src/models/errors/invaliddestinationclearingtypeerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InvalidAmountForDestinationClearingTypeError`](./src/models/errors/invalidamountfordestinationclearingtypeerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InvalidCorrelationIdError`](./src/models/errors/invalidcorrelationiderror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`SourceAddendaMaxLengthError`](./src/models/errors/sourceaddendamaxlengtherror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`DestinationAddendaMaxLengthError`](./src/models/errors/destinationaddendamaxlengtherror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`AchAddendaEntriesNotEnabledForAccountError`](./src/models/errors/achaddendaentriesnotenabledforaccounterror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`PointOfSaleAddendaEntriesNotEnabledForAccountError`](./src/models/errors/pointofsaleaddendaentriesnotenabledforaccounterror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`IncompatibleAddendaEntriesError`](./src/models/errors/incompatibleaddendaentrieserror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InvalidPointOfSaleAddendaIdentificationCodeError`](./src/models/errors/invalidpointofsaleaddendaidentificationcodeerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InvalidPointOfSaleAddendaSerialNumberError`](./src/models/errors/invalidpointofsaleaddendaserialnumbererror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InvalidPointOfSaleAddendaDateError`](./src/models/errors/invalidpointofsaleaddendadateerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InvalidPointOfSaleAddendaAddressError`](./src/models/errors/invalidpointofsaleaddendaaddresserror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InvalidPointOfSaleAddendaCityError`](./src/models/errors/invalidpointofsaleaddendacityerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InvalidPointOfSaleAddendaStateError`](./src/models/errors/invalidpointofsaleaddendastateerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`TransferExpiredForFeeError`](./src/models/errors/transferexpiredforfeeerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InvalidFeeOdfiError`](./src/models/errors/invalidfeeodfierror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InvalidSourceBankAccountTypeError`](./src/models/errors/invalidsourcebankaccounttypeerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InvalidDestinationBankAccountTypeError`](./src/models/errors/invaliddestinationbankaccounttypeerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`IncompatibleSourceAndDestinationTypesError`](./src/models/errors/incompatiblesourceanddestinationtypeserror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`SourceNotCardNetworkSettlementError`](./src/models/errors/sourcenotcardnetworksettlementerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`CardSourceNotAllowedError`](./src/models/errors/cardsourcenotallowederror.ts): Error returned when attempting to use a debit card funding source as the transfer source. Status code `400`. Applicable to 1 of 83 methods.*
-* [`IncompatibleSourceForRtpDestinationError`](./src/models/errors/incompatiblesourceforrtpdestinationerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InvalidAmountForDestinationProcessingChannelError`](./src/models/errors/invalidamountfordestinationprocessingchannelerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`RtpFacilitatorFeeNotSupportedError`](./src/models/errors/rtpfacilitatorfeenotsupportederror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`RtpUnverifiedSenderNotSupportedError`](./src/models/errors/rtpunverifiedsendernotsupportederror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`RtpPersonalToPersonalNotSupportedError`](./src/models/errors/rtppersonaltopersonalnotsupportederror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`DestinationProcessingChannelNotSupportedError`](./src/models/errors/destinationprocessingchannelnotsupportederror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`DestinationRemittanceDataMaxLengthError`](./src/models/errors/destinationremittancedatamaxlengtherror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`WithdrawInvalidAmountError`](./src/models/errors/withdrawinvalidamounterror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`WithdrawInvalidFundingSourceError`](./src/models/errors/withdrawinvalidfundingsourceerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`WithdrawAccountRestrictedError`](./src/models/errors/withdrawaccountrestrictederror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`WithdrawInvalidAmountForClearingTypeError`](./src/models/errors/withdrawinvalidamountforclearingtypeerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`WithdrawInvalidWireBeneficiaryLocalityError`](./src/models/errors/withdrawinvalidwirebeneficiarylocalityerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`WithdrawInvalidWireBeneficiaryRegionError`](./src/models/errors/withdrawinvalidwirebeneficiaryregionerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`WithdrawInvalidWireBeneficiaryCountryError`](./src/models/errors/withdrawinvalidwirebeneficiarycountryerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`WithdrawInvalidWireOriginatorToBeneficiaryError`](./src/models/errors/withdrawinvalidwireoriginatortobeneficiaryerror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`WithdrawProcessingChannelNotSupportedError`](./src/models/errors/withdrawprocessingchannelnotsupportederror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`WithdrawRtpUnverifiedSenderNotSupportedError`](./src/models/errors/withdrawrtpunverifiedsendernotsupportederror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`WithdrawRtpPersonalWithdrawalNotSupportedError`](./src/models/errors/withdrawrtppersonalwithdrawalnotsupportederror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`DepositAccountRestrictedError`](./src/models/errors/depositaccountrestrictederror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`WireInvalidImadError`](./src/models/errors/wireinvalidimaderror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`WireAccountRestrictedError`](./src/models/errors/wireaccountrestrictederror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`WireNotEnabledError`](./src/models/errors/wirenotenablederror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`WireAccountNotFoundError`](./src/models/errors/wireaccountnotfounderror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`PrefundingSourceNotAllowedError`](./src/models/errors/prefundingsourcenotallowederror.ts): Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`StatusInvalidError`](./src/models/errors/statusinvaliderror.ts): 400 Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`StatusNotAllowedError`](./src/models/errors/statusnotallowederror.ts): 400 Bad Request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InvalidUrlFormatError`](./src/models/errors/invalidurlformaterror.ts): Bad request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`SecretTooLongError`](./src/models/errors/secrettoolongerror.ts): Bad request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`MaxSubscriptionsReachedError`](./src/models/errors/maxsubscriptionsreachederror.ts): Bad request. Status code `400`. Applicable to 1 of 83 methods.*
-* [`BadRequestSchemaError`](./src/models/errors/badrequestschemaerror.ts): Bad request or duplicate resource. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InactiveExchangeError`](./src/models/errors/inactiveexchangeerror.ts): validation error. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InvalidExchangeTokenErrorError`](./src/models/errors/invalidexchangetokenerrorerror.ts): validation error. Status code `400`. Applicable to 1 of 83 methods.*
-* [`DuplicateFundingSourceError`](./src/models/errors/duplicatefundingsourceerror.ts): validation error. Status code `400`. Applicable to 1 of 83 methods.*
-* [`UnsupportedCardCountryError`](./src/models/errors/unsupportedcardcountryerror.ts): Error returned when attempting to create a debit card funding source from an unsupported country. Status code `400`. Applicable to 1 of 83 methods.*
-* [`InvalidTokenError`](./src/models/errors/invalidtokenerror.ts): Error returned when creating an Exchange with an invalid token, or when the card data is invalid. Status code `400`. Applicable to 1 of 83 methods.*
-* [`MaximumCardsExceededError`](./src/models/errors/maximumcardsexceedederror.ts): Error returned when a customer has exceeded the maximum number of debit card funding sources. Status code `400`. Applicable to 1 of 83 methods.*
-* [`CardMissingRequiredFieldsError`](./src/models/errors/cardmissingrequiredfieldserror.ts): Error returned when required fields are missing when creating an Exchange or a debit card funding source. Status code `400`. Applicable to 1 of 83 methods.*
-* [`ResponseBodyBadRequestError1`](./src/models/errors/responsebodybadrequesterror1.ts): validation error. Status code `400`. Applicable to 1 of 83 methods.*
-* [`ResponseBodyBadRequestError2`](./src/models/errors/responsebodybadrequesterror2.ts): validation error. Status code `400`. Applicable to 1 of 83 methods.*
-* [`ResponseBodyBadRequestError3`](./src/models/errors/responsebodybadrequesterror3.ts): validation error. Status code `400`. Applicable to 1 of 83 methods.*
-* [`VerifyMicroDepositsBadRequestDwollaV1HalJSONError`](./src/models/errors/verifymicrodepositsbadrequestdwollav1haljsonerror.ts): Bad Request - invalid deposit amounts. Status code `400`. Applicable to 1 of 83 methods.*
-* [`CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONError`](./src/models/errors/createreauthexchangesessionbadrequestdwollav1haljsonerror.ts): validation error. Status code `400`. Applicable to 1 of 83 methods.*
-* [`UnauthorizedError`](./src/models/errors/unauthorizederror.ts): Unauthorized. Status code `401`. Applicable to 1 of 83 methods.*
-* [`GetRootDwollaV1HalJSONError`](./src/models/errors/getrootdwollav1haljsonerror.ts): unauthorized. Status code `401`. Applicable to 1 of 83 methods.*
-* [`SimulateBankTransferProcessingUnauthorizedDwollaV1HalJSONError`](./src/models/errors/simulatebanktransferprocessingunauthorizeddwollav1haljsonerror.ts): unauthorized. Status code `401`. Applicable to 1 of 83 methods.*
-* [`GetExchangeUnauthorizedDwollaV1HalJSONError`](./src/models/errors/getexchangeunauthorizeddwollav1haljsonerror.ts): Invalid Scope. Status code `401`. Applicable to 1 of 83 methods.*
-* [`CreateAccountExchangeDwollaV1HalJSONError`](./src/models/errors/createaccountexchangedwollav1haljsonerror.ts): Invalid Scope. Status code `401`. Applicable to 1 of 83 methods.*
-* [`CreateCustomerExchangeResponseBodyError1`](./src/models/errors/createcustomerexchangeresponsebodyerror1.ts): Unauthorized. Status code `401`. Applicable to 1 of 83 methods.*
-* [`CreateCustomerExchangeResponseBodyError2`](./src/models/errors/createcustomerexchangeresponsebodyerror2.ts): Unauthorized. Status code `401`. Applicable to 1 of 83 methods.*
-* [`CreateCustomerExchangeSessionDwollaV1HalJSONError`](./src/models/errors/createcustomerexchangesessiondwollav1haljsonerror.ts): unauthorized. Status code `401`. Applicable to 1 of 83 methods.*
-* [`GetAccountDwollaV1HalJSONError`](./src/models/errors/getaccountdwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`CreateCustomerForbiddenDwollaV1HalJSONError`](./src/models/errors/createcustomerforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`GetCustomerForbiddenDwollaV1HalJSONError`](./src/models/errors/getcustomerforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`UpdateForbiddenDwollaV1HalJSONError`](./src/models/errors/updateforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError`](./src/models/errors/updatebeneficialownerforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`InvalidKbaSessionError`](./src/models/errors/invalidkbasessionerror.ts): 403 Error. Status code `403`. Applicable to 1 of 83 methods.*
-* [`ExpiredKbaSessionError`](./src/models/errors/expiredkbasessionerror.ts): 403 Error. Status code `403`. Applicable to 1 of 83 methods.*
-* [`UpdateOrRemoveFundingSourceDwollaV1HalJSONError`](./src/models/errors/updateorremovefundingsourcedwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`InvalidAttemptToFacilitateFundsError`](./src/models/errors/invalidattempttofacilitatefundserror.ts): Forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`InvalidAttemptToPayInFundsError`](./src/models/errors/invalidattempttopayinfundserror.ts): Forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`InvalidAttemptToPayOutFundsError`](./src/models/errors/invalidattempttopayoutfundserror.ts): Forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`RtpAccountSettingNotEnabledError`](./src/models/errors/rtpaccountsettingnotenablederror.ts): Forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`InitiateMassPaymentDwollaV1HalJSONError`](./src/models/errors/initiatemasspaymentdwollav1haljsonerror.ts): Forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`GetMassPaymentForbiddenDwollaV1HalJSONError`](./src/models/errors/getmasspaymentforbiddendwollav1haljsonerror.ts): Forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`UpdateMassPaymentForbiddenDwollaV1HalJSONError`](./src/models/errors/updatemasspaymentforbiddendwollav1haljsonerror.ts): Forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`RemoveLabelDwollaV1HalJSONError`](./src/models/errors/removelabeldwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`SimulateBankTransferProcessingForbiddenDwollaV1HalJSONError`](./src/models/errors/simulatebanktransferprocessingforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`RetrieveCustomerExchangeSessionForbiddenDwollaV1HalJSONError`](./src/models/errors/retrievecustomerexchangesessionforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`CreateFundingSourceDwollaV1HalJSONError`](./src/models/errors/createfundingsourcedwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`ListFundingSourcesForbiddenDwollaV1HalJSONError`](./src/models/errors/listfundingsourcesforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`ListMassPaymentsForbiddenDwollaV1HalJSONError`](./src/models/errors/listmasspaymentsforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`GetBeneficialOwnershipStatusForCustomerForbiddenDwollaV1HalJSONError`](./src/models/errors/getbeneficialownershipstatusforcustomerforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError`](./src/models/errors/certifybeneficialownershipforcustomerdwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`NotAuthorizedSchemaError`](./src/models/errors/notauthorizedschemaerror.ts): not found. Status code `403`. Applicable to 1 of 83 methods.*
-* [`ListCustomerFundingSourcesForbiddenDwollaV1HalJSONError`](./src/models/errors/listcustomerfundingsourcesforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError`](./src/models/errors/createcustomerfundingsourceforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError`](./src/models/errors/listcustomermasspaymentsforbiddendwollav1haljsonerror.ts): Not authorized to list mass payments. Status code `403`. Applicable to 1 of 83 methods.*
-* [`ListCustomerLabelsForbiddenDwollaV1HalJSONError`](./src/models/errors/listcustomerlabelsforbiddendwollav1haljsonerror.ts): Forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`CreateCustomerLabelForbiddenDwollaV1HalJSONError`](./src/models/errors/createcustomerlabelforbiddendwollav1haljsonerror.ts): Forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`ResponseBodyForbiddenError1`](./src/models/errors/responsebodyforbiddenerror1.ts): forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`ResponseBodyForbiddenError2`](./src/models/errors/responsebodyforbiddenerror2.ts): forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`InitiateMicroDepositsForbiddenDwollaV1HalJSONError`](./src/models/errors/initiatemicrodepositsforbiddendwollav1haljsonerror.ts): Forbidden - funding source not eligible for micro-deposits. Status code `403`. Applicable to 1 of 83 methods.*
-* [`VerifyMicroDepositsForbiddenDwollaV1HalJSONError`](./src/models/errors/verifymicrodepositsforbiddendwollav1haljsonerror.ts): Forbidden - verification not allowed in current state. Status code `403`. Applicable to 1 of 83 methods.*
-* [`ListMassPaymentItemsForbiddenDwollaV1HalJSONError`](./src/models/errors/listmasspaymentitemsforbiddendwollav1haljsonerror.ts): Not authorized to list mass payment items. Status code `403`. Applicable to 1 of 83 methods.*
-* [`GetMassPaymentItemForbiddenDwollaV1HalJSONError`](./src/models/errors/getmasspaymentitemforbiddendwollav1haljsonerror.ts): Forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`CreateLabelReallocationForbiddenDwollaV1HalJSONError`](./src/models/errors/createlabelreallocationforbiddendwollav1haljsonerror.ts): Forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`CreateReAuthExchangeSessionForbiddenDwollaV1HalJSONError`](./src/models/errors/createreauthexchangesessionforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 83 methods.*
-* [`CreateCustomerNotFoundDwollaV1HalJSONError`](./src/models/errors/createcustomernotfounddwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`GetCustomerNotFoundDwollaV1HalJSONError`](./src/models/errors/getcustomernotfounddwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`ListAvailableExchangeConnectionsDwollaV1HalJSONError`](./src/models/errors/listavailableexchangeconnectionsdwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`RetrieveBusinessClassificationDwollaV1HalJSONError`](./src/models/errors/retrievebusinessclassificationdwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`RetrieveBeneficialOwnerDwollaV1HalJSONError`](./src/models/errors/retrievebeneficialownerdwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`UpdateBeneficialOwnerNotFoundDwollaV1HalJSONError`](./src/models/errors/updatebeneficialownernotfounddwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`DeleteBeneficialOwnerDwollaV1HalJSONError`](./src/models/errors/deletebeneficialownerdwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`GetKbaQuestionsDwollaV1HalJSONError`](./src/models/errors/getkbaquestionsdwollav1haljsonerror.ts): 404 Error. Status code `404`. Applicable to 1 of 83 methods.*
-* [`VerifyKbaQuestionsDwollaV1HalJSONError`](./src/models/errors/verifykbaquestionsdwollav1haljsonerror.ts): 404 Error. Status code `404`. Applicable to 1 of 83 methods.*
-* [`GetFundingSourceDwollaV1HalJSONError`](./src/models/errors/getfundingsourcedwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`GetVanRoutingDwollaV1HalJSONError`](./src/models/errors/getvanroutingdwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`GetMassPaymentNotFoundDwollaV1HalJSONError`](./src/models/errors/getmasspaymentnotfounddwollav1haljsonerror.ts): Not Found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`UpdateMassPaymentNotFoundDwollaV1HalJSONError`](./src/models/errors/updatemasspaymentnotfounddwollav1haljsonerror.ts): Not Found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`GetExchangeNotFoundDwollaV1HalJSONError`](./src/models/errors/getexchangenotfounddwollav1haljsonerror.ts): Not Found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`RetrieveCustomerExchangeSessionNotFoundDwollaV1HalJSONError`](./src/models/errors/retrievecustomerexchangesessionnotfounddwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`ListFundingSourcesNotFoundDwollaV1HalJSONError`](./src/models/errors/listfundingsourcesnotfounddwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`ListAndSearchTransfersDwollaV1HalJSONError`](./src/models/errors/listandsearchtransfersdwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`ListMassPaymentsNotFoundDwollaV1HalJSONError`](./src/models/errors/listmasspaymentsnotfounddwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`ListBeneficialOwnersForCustomerDwollaV1HalJSONError`](./src/models/errors/listbeneficialownersforcustomerdwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONError`](./src/models/errors/getbeneficialownershipstatusforcustomernotfounddwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`CreateCustomerDocumentNotFoundDwollaV1HalJSONError`](./src/models/errors/createcustomerdocumentnotfounddwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`ListCustomerFundingSourcesNotFoundDwollaV1HalJSONError`](./src/models/errors/listcustomerfundingsourcesnotfounddwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError`](./src/models/errors/createcustomerfundingsourcenotfounddwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`ListCustomerMassPaymentsNotFoundDwollaV1HalJSONError`](./src/models/errors/listcustomermasspaymentsnotfounddwollav1haljsonerror.ts): Customer not found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`ListCustomerLabelsNotFoundDwollaV1HalJSONError`](./src/models/errors/listcustomerlabelsnotfounddwollav1haljsonerror.ts): Not Found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`CreateCustomerLabelNotFoundDwollaV1HalJSONError`](./src/models/errors/createcustomerlabelnotfounddwollav1haljsonerror.ts): Not Found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`ListCustomerExchangesDwollaV1HalJSONError`](./src/models/errors/listcustomerexchangesdwollav1haljsonerror.ts): Not Found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`InitiateMicroDepositsNotFoundDwollaV1HalJSONError`](./src/models/errors/initiatemicrodepositsnotfounddwollav1haljsonerror.ts): Funding source not found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`VerifyMicroDepositsNotFoundDwollaV1HalJSONError`](./src/models/errors/verifymicrodepositsnotfounddwollav1haljsonerror.ts): Funding source not found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`GetFundingSourceBalanceDwollaV1HalJSONError`](./src/models/errors/getfundingsourcebalancedwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`ListMassPaymentItemsNotFoundDwollaV1HalJSONError`](./src/models/errors/listmasspaymentitemsnotfounddwollav1haljsonerror.ts): Mass payment not found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`GetMassPaymentItemNotFoundDwollaV1HalJSONError`](./src/models/errors/getmasspaymentitemnotfounddwollav1haljsonerror.ts): Not Found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`CreateLabelReallocationNotFoundDwollaV1HalJSONError`](./src/models/errors/createlabelreallocationnotfounddwollav1haljsonerror.ts): Not Found. Status code `404`. Applicable to 1 of 83 methods.*
-* [`CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError`](./src/models/errors/createcustomerdocumentrequestentitytoolargedwollav1haljsonerror.ts): request entity too large. Status code `413`. Applicable to 1 of 83 methods.*
-* [`CreateBeneficialOwnerDocumentDwollaV1HalJSONError`](./src/models/errors/createbeneficialownerdocumentdwollav1haljsonerror.ts): request entity too large. Status code `413`. Applicable to 1 of 83 methods.*
-* [`TooManyRequestsErrorError`](./src/models/errors/toomanyrequestserrorerror.ts): Too Many Requests. Status code `429`. Applicable to 1 of 83 methods.*
+* [`NotFoundError`](./src/models/errors/notfounderror.ts): Error response schema for 404 NotFound. Status code `404`. Applicable to 37 of 85 methods.*
+* [`ForbiddenError`](./src/models/errors/forbiddenerror.ts): Error response schema for 403 Forbidden. Status code `403`. Applicable to 24 of 85 methods.*
+* [`BadRequestError`](./src/models/errors/badrequesterror.ts): Error response schema for 400 Bad Request. Status code `400`. Applicable to 12 of 85 methods.*
+* [`DuplicateResourceSchemaError`](./src/models/errors/duplicateresourceschemaerror.ts): Status code `400`. Applicable to 3 of 85 methods.*
+* [`ValidationErrorSchema`](./src/models/errors/validationerrorschema.ts): ValidationError. Status code `400`. Applicable to 2 of 85 methods.*
+* [`InvalidExchangeTokenError`](./src/models/errors/invalidexchangetokenerror.ts): Bad Request. Status code `400`. Applicable to 2 of 85 methods.*
+* [`InvalidExchangeError`](./src/models/errors/invalidexchangeerror.ts): Bad Request. Status code `400`. Applicable to 2 of 85 methods.*
+* [`MaximumNumberOfResourcesSchemaError`](./src/models/errors/maximumnumberofresourcesschemaerror.ts): Bad Request. Status code `400`. Applicable to 2 of 85 methods.*
+* [`InvalidFileTypeSchemaError`](./src/models/errors/invalidfiletypeschemaerror.ts): Bad Request. Status code `400`. Applicable to 2 of 85 methods.*
+* [`InvalidResourceStateSchemaError`](./src/models/errors/invalidresourcestateschemaerror.ts): Status code `403`. Applicable to 2 of 85 methods.*
+* [`UpdateBadRequestDwollaV1HalJSONError`](./src/models/errors/updatebadrequestdwollav1haljsonerror.ts): bad request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`UpdateFundingSourceValidationError`](./src/models/errors/updatefundingsourcevalidationerror.ts): Validation error returned when an update request cannot be applied. The specific problem is described by the embedded error's `code`, `message`, and `path`. Common cases: - no updateable field was provided (`Invalid` at `/`) - bank fields were sent to a card funding source (`NotAllowed` at `/routingNumber`) - card fields were sent to a bank funding source (`NotAllowed` at `/cardDetails`) - a `cardDetails` value failed validation, such as `countryOfBirth` not being exactly 2 characters. Status code `400`. Applicable to 1 of 85 methods.*
+* [`SourceNotFoundError`](./src/models/errors/sourcenotfounderror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`ReceiverNotFoundError`](./src/models/errors/receivernotfounderror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InvalidSourceFundingSourceError`](./src/models/errors/invalidsourcefundingsourceerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`SenderRestrictedError`](./src/models/errors/senderrestrictederror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`ReceiverRestrictedError`](./src/models/errors/receiverrestrictederror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InvalidMetadataError`](./src/models/errors/invalidmetadataerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`OperationBlockedError`](./src/models/errors/operationblockederror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InvalidAmountLimitError`](./src/models/errors/invalidamountlimiterror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`CannotParseAmountError`](./src/models/errors/cannotparseamounterror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InsufficientFundsError`](./src/models/errors/insufficientfundserror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`FacilitatorFeeAccountNotFoundError`](./src/models/errors/facilitatorfeeaccountnotfounderror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`FacilitatorFeeSumTooLargeError`](./src/models/errors/facilitatorfeesumtoolargeerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`FacilitatorFeeBelowMinimumError`](./src/models/errors/facilitatorfeebelowminimumerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`HighRiskError`](./src/models/errors/highriskerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`IncompatibleHoldingsError`](./src/models/errors/incompatibleholdingserror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`DirectAccountWithoutBankError`](./src/models/errors/directaccountwithoutbankerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`SourceSameAsDestinationError`](./src/models/errors/sourcesameasdestinationerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InvalidFacilitatorError`](./src/models/errors/invalidfacilitatorerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InvalidFacilitatorFeeCollectFromError`](./src/models/errors/invalidfacilitatorfeecollectfromerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InvalidFacilitatorFeeCollectFromCombinationError`](./src/models/errors/invalidfacilitatorfeecollectfromcombinationerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InvalidDestinationFundingSourceError`](./src/models/errors/invaliddestinationfundingsourceerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InvalidOrRemovedCardDestinationError`](./src/models/errors/invalidorremovedcarddestinationerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InvalidFacilitatorFeeAmountError`](./src/models/errors/invalidfacilitatorfeeamounterror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`WeeklyReceiveLimitReachedError`](./src/models/errors/weeklyreceivelimitreachederror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InvalidDestinationClearingTypeError`](./src/models/errors/invaliddestinationclearingtypeerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InvalidAmountForDestinationClearingTypeError`](./src/models/errors/invalidamountfordestinationclearingtypeerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InvalidCorrelationIdError`](./src/models/errors/invalidcorrelationiderror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`SourceAddendaMaxLengthError`](./src/models/errors/sourceaddendamaxlengtherror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`DestinationAddendaMaxLengthError`](./src/models/errors/destinationaddendamaxlengtherror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`AchAddendaEntriesNotEnabledForAccountError`](./src/models/errors/achaddendaentriesnotenabledforaccounterror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`PointOfSaleAddendaEntriesNotEnabledForAccountError`](./src/models/errors/pointofsaleaddendaentriesnotenabledforaccounterror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`IncompatibleAddendaEntriesError`](./src/models/errors/incompatibleaddendaentrieserror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InvalidPointOfSaleAddendaIdentificationCodeError`](./src/models/errors/invalidpointofsaleaddendaidentificationcodeerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InvalidPointOfSaleAddendaSerialNumberError`](./src/models/errors/invalidpointofsaleaddendaserialnumbererror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InvalidPointOfSaleAddendaDateError`](./src/models/errors/invalidpointofsaleaddendadateerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InvalidPointOfSaleAddendaAddressError`](./src/models/errors/invalidpointofsaleaddendaaddresserror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InvalidPointOfSaleAddendaCityError`](./src/models/errors/invalidpointofsaleaddendacityerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InvalidPointOfSaleAddendaStateError`](./src/models/errors/invalidpointofsaleaddendastateerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`TransferExpiredForFeeError`](./src/models/errors/transferexpiredforfeeerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InvalidFeeOdfiError`](./src/models/errors/invalidfeeodfierror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InvalidSourceBankAccountTypeError`](./src/models/errors/invalidsourcebankaccounttypeerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InvalidDestinationBankAccountTypeError`](./src/models/errors/invaliddestinationbankaccounttypeerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`IncompatibleSourceAndDestinationTypesError`](./src/models/errors/incompatiblesourceanddestinationtypeserror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`SourceNotCardNetworkSettlementError`](./src/models/errors/sourcenotcardnetworksettlementerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`CardSourceNotAllowedError`](./src/models/errors/cardsourcenotallowederror.ts): Error returned when attempting to use a debit card funding source as the transfer source. Status code `400`. Applicable to 1 of 85 methods.*
+* [`IncompatibleSourceForRtpDestinationError`](./src/models/errors/incompatiblesourceforrtpdestinationerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InvalidAmountForDestinationProcessingChannelError`](./src/models/errors/invalidamountfordestinationprocessingchannelerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`RtpFacilitatorFeeNotSupportedError`](./src/models/errors/rtpfacilitatorfeenotsupportederror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`RtpUnverifiedSenderNotSupportedError`](./src/models/errors/rtpunverifiedsendernotsupportederror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`RtpPersonalToPersonalNotSupportedError`](./src/models/errors/rtppersonaltopersonalnotsupportederror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`DestinationProcessingChannelNotSupportedError`](./src/models/errors/destinationprocessingchannelnotsupportederror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`DestinationRemittanceDataMaxLengthError`](./src/models/errors/destinationremittancedatamaxlengtherror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`WithdrawInvalidAmountError`](./src/models/errors/withdrawinvalidamounterror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`WithdrawInvalidFundingSourceError`](./src/models/errors/withdrawinvalidfundingsourceerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`WithdrawAccountRestrictedError`](./src/models/errors/withdrawaccountrestrictederror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`WithdrawInvalidAmountForClearingTypeError`](./src/models/errors/withdrawinvalidamountforclearingtypeerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`WithdrawInvalidWireBeneficiaryLocalityError`](./src/models/errors/withdrawinvalidwirebeneficiarylocalityerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`WithdrawInvalidWireBeneficiaryRegionError`](./src/models/errors/withdrawinvalidwirebeneficiaryregionerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`WithdrawInvalidWireBeneficiaryCountryError`](./src/models/errors/withdrawinvalidwirebeneficiarycountryerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`WithdrawInvalidWireOriginatorToBeneficiaryError`](./src/models/errors/withdrawinvalidwireoriginatortobeneficiaryerror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`WithdrawProcessingChannelNotSupportedError`](./src/models/errors/withdrawprocessingchannelnotsupportederror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`WithdrawRtpUnverifiedSenderNotSupportedError`](./src/models/errors/withdrawrtpunverifiedsendernotsupportederror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`WithdrawRtpPersonalWithdrawalNotSupportedError`](./src/models/errors/withdrawrtppersonalwithdrawalnotsupportederror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`DepositAccountRestrictedError`](./src/models/errors/depositaccountrestrictederror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`WireInvalidImadError`](./src/models/errors/wireinvalidimaderror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`WireAccountRestrictedError`](./src/models/errors/wireaccountrestrictederror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`WireNotEnabledError`](./src/models/errors/wirenotenablederror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`WireAccountNotFoundError`](./src/models/errors/wireaccountnotfounderror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`PrefundingSourceNotAllowedError`](./src/models/errors/prefundingsourcenotallowederror.ts): Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`StatusInvalidError`](./src/models/errors/statusinvaliderror.ts): 400 Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`StatusNotAllowedError`](./src/models/errors/statusnotallowederror.ts): 400 Bad Request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`ListAlertsInvalidQueryParameterError`](./src/models/errors/listalertsinvalidqueryparametererror.ts): A query parameter is invalid. Common cases: - The cursor in a `next` or `prev` link was modified or is malformed (`Invalid cursor.`) - `limit` is less than 1 or greater than 200 (`Limit must be > 0 and <= 200.`) - `limit` isn't an integer (`Invalid query parameter: limit`). Status code `400`. Applicable to 1 of 85 methods.*
+* [`ListAlertsValidationError`](./src/models/errors/listalertsvalidationerror.ts): The `status` query parameter is invalid. Common cases: - `status` isn't `open` or `resolved`, or is empty - `status` is specified more than once - `status` doesn't match the cursor, because it was changed or dropped while paging. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InvalidUrlFormatError`](./src/models/errors/invalidurlformaterror.ts): Bad request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`SecretTooLongError`](./src/models/errors/secrettoolongerror.ts): Bad request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`MaxSubscriptionsReachedError`](./src/models/errors/maxsubscriptionsreachederror.ts): Bad request. Status code `400`. Applicable to 1 of 85 methods.*
+* [`BadRequestSchemaError`](./src/models/errors/badrequestschemaerror.ts): Bad request or duplicate resource. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InactiveExchangeError`](./src/models/errors/inactiveexchangeerror.ts): validation error. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InvalidExchangeTokenErrorError`](./src/models/errors/invalidexchangetokenerrorerror.ts): validation error. Status code `400`. Applicable to 1 of 85 methods.*
+* [`DuplicateFundingSourceError`](./src/models/errors/duplicatefundingsourceerror.ts): validation error. Status code `400`. Applicable to 1 of 85 methods.*
+* [`UnsupportedCardCountryError`](./src/models/errors/unsupportedcardcountryerror.ts): Error returned when attempting to create a debit card funding source from an unsupported country. Status code `400`. Applicable to 1 of 85 methods.*
+* [`InvalidTokenError`](./src/models/errors/invalidtokenerror.ts): Error returned when creating an Exchange with an invalid token, or when the card data is invalid. Status code `400`. Applicable to 1 of 85 methods.*
+* [`MaximumCardsExceededError`](./src/models/errors/maximumcardsexceedederror.ts): Error returned when a customer has exceeded the maximum number of debit card funding sources. Status code `400`. Applicable to 1 of 85 methods.*
+* [`CardMissingRequiredFieldsError`](./src/models/errors/cardmissingrequiredfieldserror.ts): Error returned when required fields are missing when creating an Exchange or a debit card funding source. Status code `400`. Applicable to 1 of 85 methods.*
+* [`ResponseBodyBadRequestError1`](./src/models/errors/responsebodybadrequesterror1.ts): validation error. Status code `400`. Applicable to 1 of 85 methods.*
+* [`ResponseBodyBadRequestError2`](./src/models/errors/responsebodybadrequesterror2.ts): validation error. Status code `400`. Applicable to 1 of 85 methods.*
+* [`ResponseBodyBadRequestError3`](./src/models/errors/responsebodybadrequesterror3.ts): validation error. Status code `400`. Applicable to 1 of 85 methods.*
+* [`VerifyMicroDepositsBadRequestDwollaV1HalJSONError`](./src/models/errors/verifymicrodepositsbadrequestdwollav1haljsonerror.ts): Bad Request - invalid deposit amounts. Status code `400`. Applicable to 1 of 85 methods.*
+* [`CreateReAuthExchangeSessionBadRequestDwollaV1HalJSONError`](./src/models/errors/createreauthexchangesessionbadrequestdwollav1haljsonerror.ts): validation error. Status code `400`. Applicable to 1 of 85 methods.*
+* [`UnauthorizedError`](./src/models/errors/unauthorizederror.ts): Unauthorized. Status code `401`. Applicable to 1 of 85 methods.*
+* [`GetRootDwollaV1HalJSONError`](./src/models/errors/getrootdwollav1haljsonerror.ts): unauthorized. Status code `401`. Applicable to 1 of 85 methods.*
+* [`ListAlertsUnauthorizedDwollaV1HalJSONError`](./src/models/errors/listalertsunauthorizeddwollav1haljsonerror.ts): Unauthorized. Status code `401`. Applicable to 1 of 85 methods.*
+* [`GetAlertUnauthorizedDwollaV1HalJSONError`](./src/models/errors/getalertunauthorizeddwollav1haljsonerror.ts): Unauthorized. Status code `401`. Applicable to 1 of 85 methods.*
+* [`SimulateBankTransferProcessingUnauthorizedDwollaV1HalJSONError`](./src/models/errors/simulatebanktransferprocessingunauthorizeddwollav1haljsonerror.ts): unauthorized. Status code `401`. Applicable to 1 of 85 methods.*
+* [`GetExchangeUnauthorizedDwollaV1HalJSONError`](./src/models/errors/getexchangeunauthorizeddwollav1haljsonerror.ts): Invalid Scope. Status code `401`. Applicable to 1 of 85 methods.*
+* [`CreateAccountExchangeDwollaV1HalJSONError`](./src/models/errors/createaccountexchangedwollav1haljsonerror.ts): Invalid Scope. Status code `401`. Applicable to 1 of 85 methods.*
+* [`CreateCustomerExchangeResponseBodyError1`](./src/models/errors/createcustomerexchangeresponsebodyerror1.ts): Unauthorized. Status code `401`. Applicable to 1 of 85 methods.*
+* [`CreateCustomerExchangeResponseBodyError2`](./src/models/errors/createcustomerexchangeresponsebodyerror2.ts): Unauthorized. Status code `401`. Applicable to 1 of 85 methods.*
+* [`CreateCustomerExchangeSessionDwollaV1HalJSONError`](./src/models/errors/createcustomerexchangesessiondwollav1haljsonerror.ts): unauthorized. Status code `401`. Applicable to 1 of 85 methods.*
+* [`GetAccountDwollaV1HalJSONError`](./src/models/errors/getaccountdwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`CreateCustomerForbiddenDwollaV1HalJSONError`](./src/models/errors/createcustomerforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`GetCustomerForbiddenDwollaV1HalJSONError`](./src/models/errors/getcustomerforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`UpdateForbiddenDwollaV1HalJSONError`](./src/models/errors/updateforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`UpdateBeneficialOwnerForbiddenDwollaV1HalJSONError`](./src/models/errors/updatebeneficialownerforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`InvalidKbaSessionError`](./src/models/errors/invalidkbasessionerror.ts): 403 Error. Status code `403`. Applicable to 1 of 85 methods.*
+* [`ExpiredKbaSessionError`](./src/models/errors/expiredkbasessionerror.ts): 403 Error. Status code `403`. Applicable to 1 of 85 methods.*
+* [`UpdateOrRemoveFundingSourceDwollaV1HalJSONError`](./src/models/errors/updateorremovefundingsourcedwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`InvalidAttemptToFacilitateFundsError`](./src/models/errors/invalidattempttofacilitatefundserror.ts): Forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`InvalidAttemptToPayInFundsError`](./src/models/errors/invalidattempttopayinfundserror.ts): Forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`InvalidAttemptToPayOutFundsError`](./src/models/errors/invalidattempttopayoutfundserror.ts): Forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`RtpAccountSettingNotEnabledError`](./src/models/errors/rtpaccountsettingnotenablederror.ts): Forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`InitiateMassPaymentDwollaV1HalJSONError`](./src/models/errors/initiatemasspaymentdwollav1haljsonerror.ts): Forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`GetMassPaymentForbiddenDwollaV1HalJSONError`](./src/models/errors/getmasspaymentforbiddendwollav1haljsonerror.ts): Forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`UpdateMassPaymentForbiddenDwollaV1HalJSONError`](./src/models/errors/updatemasspaymentforbiddendwollav1haljsonerror.ts): Forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`RemoveLabelDwollaV1HalJSONError`](./src/models/errors/removelabeldwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`ListAlertsForbiddenDwollaV1HalJSONError`](./src/models/errors/listalertsforbiddendwollav1haljsonerror.ts): Forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`GetAlertForbiddenDwollaV1HalJSONError`](./src/models/errors/getalertforbiddendwollav1haljsonerror.ts): Forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`SimulateBankTransferProcessingForbiddenDwollaV1HalJSONError`](./src/models/errors/simulatebanktransferprocessingforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`RetrieveCustomerExchangeSessionForbiddenDwollaV1HalJSONError`](./src/models/errors/retrievecustomerexchangesessionforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`CreateFundingSourceDwollaV1HalJSONError`](./src/models/errors/createfundingsourcedwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`ListFundingSourcesForbiddenDwollaV1HalJSONError`](./src/models/errors/listfundingsourcesforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`ListMassPaymentsForbiddenDwollaV1HalJSONError`](./src/models/errors/listmasspaymentsforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`GetBeneficialOwnershipStatusForCustomerForbiddenDwollaV1HalJSONError`](./src/models/errors/getbeneficialownershipstatusforcustomerforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`CertifyBeneficialOwnershipForCustomerDwollaV1HalJSONError`](./src/models/errors/certifybeneficialownershipforcustomerdwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`NotAuthorizedSchemaError`](./src/models/errors/notauthorizedschemaerror.ts): not found. Status code `403`. Applicable to 1 of 85 methods.*
+* [`ListCustomerFundingSourcesForbiddenDwollaV1HalJSONError`](./src/models/errors/listcustomerfundingsourcesforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError`](./src/models/errors/createcustomerfundingsourceforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`ListCustomerMassPaymentsForbiddenDwollaV1HalJSONError`](./src/models/errors/listcustomermasspaymentsforbiddendwollav1haljsonerror.ts): Not authorized to list mass payments. Status code `403`. Applicable to 1 of 85 methods.*
+* [`ListCustomerLabelsForbiddenDwollaV1HalJSONError`](./src/models/errors/listcustomerlabelsforbiddendwollav1haljsonerror.ts): Forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`CreateCustomerLabelForbiddenDwollaV1HalJSONError`](./src/models/errors/createcustomerlabelforbiddendwollav1haljsonerror.ts): Forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`ResponseBodyForbiddenError1`](./src/models/errors/responsebodyforbiddenerror1.ts): forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`ResponseBodyForbiddenError2`](./src/models/errors/responsebodyforbiddenerror2.ts): forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`InitiateMicroDepositsForbiddenDwollaV1HalJSONError`](./src/models/errors/initiatemicrodepositsforbiddendwollav1haljsonerror.ts): Forbidden - funding source not eligible for micro-deposits. Status code `403`. Applicable to 1 of 85 methods.*
+* [`VerifyMicroDepositsForbiddenDwollaV1HalJSONError`](./src/models/errors/verifymicrodepositsforbiddendwollav1haljsonerror.ts): Forbidden - verification not allowed in current state. Status code `403`. Applicable to 1 of 85 methods.*
+* [`ListMassPaymentItemsForbiddenDwollaV1HalJSONError`](./src/models/errors/listmasspaymentitemsforbiddendwollav1haljsonerror.ts): Not authorized to list mass payment items. Status code `403`. Applicable to 1 of 85 methods.*
+* [`GetMassPaymentItemForbiddenDwollaV1HalJSONError`](./src/models/errors/getmasspaymentitemforbiddendwollav1haljsonerror.ts): Forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`CreateLabelReallocationForbiddenDwollaV1HalJSONError`](./src/models/errors/createlabelreallocationforbiddendwollav1haljsonerror.ts): Forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`CreateReAuthExchangeSessionForbiddenDwollaV1HalJSONError`](./src/models/errors/createreauthexchangesessionforbiddendwollav1haljsonerror.ts): forbidden. Status code `403`. Applicable to 1 of 85 methods.*
+* [`CreateCustomerNotFoundDwollaV1HalJSONError`](./src/models/errors/createcustomernotfounddwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`GetCustomerNotFoundDwollaV1HalJSONError`](./src/models/errors/getcustomernotfounddwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`ListAvailableExchangeConnectionsDwollaV1HalJSONError`](./src/models/errors/listavailableexchangeconnectionsdwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`RetrieveBusinessClassificationDwollaV1HalJSONError`](./src/models/errors/retrievebusinessclassificationdwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`RetrieveBeneficialOwnerDwollaV1HalJSONError`](./src/models/errors/retrievebeneficialownerdwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`UpdateBeneficialOwnerNotFoundDwollaV1HalJSONError`](./src/models/errors/updatebeneficialownernotfounddwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`DeleteBeneficialOwnerDwollaV1HalJSONError`](./src/models/errors/deletebeneficialownerdwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`GetKbaQuestionsDwollaV1HalJSONError`](./src/models/errors/getkbaquestionsdwollav1haljsonerror.ts): 404 Error. Status code `404`. Applicable to 1 of 85 methods.*
+* [`VerifyKbaQuestionsDwollaV1HalJSONError`](./src/models/errors/verifykbaquestionsdwollav1haljsonerror.ts): 404 Error. Status code `404`. Applicable to 1 of 85 methods.*
+* [`GetFundingSourceDwollaV1HalJSONError`](./src/models/errors/getfundingsourcedwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`GetVanRoutingDwollaV1HalJSONError`](./src/models/errors/getvanroutingdwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`GetMassPaymentNotFoundDwollaV1HalJSONError`](./src/models/errors/getmasspaymentnotfounddwollav1haljsonerror.ts): Not Found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`UpdateMassPaymentNotFoundDwollaV1HalJSONError`](./src/models/errors/updatemasspaymentnotfounddwollav1haljsonerror.ts): Not Found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`GetExchangeNotFoundDwollaV1HalJSONError`](./src/models/errors/getexchangenotfounddwollav1haljsonerror.ts): Not Found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`RetrieveCustomerExchangeSessionNotFoundDwollaV1HalJSONError`](./src/models/errors/retrievecustomerexchangesessionnotfounddwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`ListFundingSourcesNotFoundDwollaV1HalJSONError`](./src/models/errors/listfundingsourcesnotfounddwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`ListAndSearchTransfersDwollaV1HalJSONError`](./src/models/errors/listandsearchtransfersdwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`ListMassPaymentsNotFoundDwollaV1HalJSONError`](./src/models/errors/listmasspaymentsnotfounddwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`ListBeneficialOwnersForCustomerDwollaV1HalJSONError`](./src/models/errors/listbeneficialownersforcustomerdwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`GetBeneficialOwnershipStatusForCustomerNotFoundDwollaV1HalJSONError`](./src/models/errors/getbeneficialownershipstatusforcustomernotfounddwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`CreateCustomerDocumentNotFoundDwollaV1HalJSONError`](./src/models/errors/createcustomerdocumentnotfounddwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`ListCustomerFundingSourcesNotFoundDwollaV1HalJSONError`](./src/models/errors/listcustomerfundingsourcesnotfounddwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError`](./src/models/errors/createcustomerfundingsourcenotfounddwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`ListCustomerMassPaymentsNotFoundDwollaV1HalJSONError`](./src/models/errors/listcustomermasspaymentsnotfounddwollav1haljsonerror.ts): Customer not found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`ListCustomerLabelsNotFoundDwollaV1HalJSONError`](./src/models/errors/listcustomerlabelsnotfounddwollav1haljsonerror.ts): Not Found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`CreateCustomerLabelNotFoundDwollaV1HalJSONError`](./src/models/errors/createcustomerlabelnotfounddwollav1haljsonerror.ts): Not Found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`ListCustomerExchangesDwollaV1HalJSONError`](./src/models/errors/listcustomerexchangesdwollav1haljsonerror.ts): Not Found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`InitiateMicroDepositsNotFoundDwollaV1HalJSONError`](./src/models/errors/initiatemicrodepositsnotfounddwollav1haljsonerror.ts): Funding source not found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`VerifyMicroDepositsNotFoundDwollaV1HalJSONError`](./src/models/errors/verifymicrodepositsnotfounddwollav1haljsonerror.ts): Funding source not found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`GetFundingSourceBalanceDwollaV1HalJSONError`](./src/models/errors/getfundingsourcebalancedwollav1haljsonerror.ts): not found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`ListMassPaymentItemsNotFoundDwollaV1HalJSONError`](./src/models/errors/listmasspaymentitemsnotfounddwollav1haljsonerror.ts): Mass payment not found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`GetMassPaymentItemNotFoundDwollaV1HalJSONError`](./src/models/errors/getmasspaymentitemnotfounddwollav1haljsonerror.ts): Not Found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`CreateLabelReallocationNotFoundDwollaV1HalJSONError`](./src/models/errors/createlabelreallocationnotfounddwollav1haljsonerror.ts): Not Found. Status code `404`. Applicable to 1 of 85 methods.*
+* [`CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError`](./src/models/errors/createcustomerdocumentrequestentitytoolargedwollav1haljsonerror.ts): request entity too large. Status code `413`. Applicable to 1 of 85 methods.*
+* [`CreateBeneficialOwnerDocumentDwollaV1HalJSONError`](./src/models/errors/createbeneficialownerdocumentdwollav1haljsonerror.ts): request entity too large. Status code `413`. Applicable to 1 of 85 methods.*
+* [`TooManyRequestsErrorError`](./src/models/errors/toomanyrequestserrorerror.ts): Too Many Requests. Status code `429`. Applicable to 1 of 85 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>

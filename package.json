@@ -1,6 +1,6 @@
 {
   "name": "dwolla",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "author": "Speakeasy",
   "description": "Dwolla TypeScript SDK.",
   "type": "module",
