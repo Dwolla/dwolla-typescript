@@ -4,6 +4,9 @@
 
 export * from "./account.js";
 export * from "./achaddendaentriesnotenabledforaccounterror.js";
+export * from "./actionrequired.js";
+export * from "./alert.js";
+export * from "./alerts.js";
 export * from "./availableexchangeconnections.js";
 export * from "./badrequestschemaerror.js";
 export * from "./beneficialowner.js";
@@ -95,6 +98,7 @@ export * from "./label.js";
 export * from "./labelledgerentries.js";
 export * from "./labelledgerentry.js";
 export * from "./labels.js";
+export * from "./listalertsvalidationerror.js";
 export * from "./masspayment.js";
 export * from "./masspaymentitem.js";
 export * from "./masspayments.js";
@@ -133,6 +137,7 @@ export * from "./transferamount.js";
 export * from "./transferexpiredforfeeerror.js";
 export * from "./transfers.js";
 export * from "./unsupportedcardcountryerror.js";
+export * from "./unusualtransferactivity.js";
 export * from "./unverifiedcustomer.js";
 export * from "./updatecardfundingsource.js";
 export * from "./updatefundingsourcevalidationerror.js";

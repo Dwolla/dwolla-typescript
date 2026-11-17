@@ -4,6 +4,7 @@
 
 import { ClientSDK } from "../lib/sdks.js";
 import { Accounts } from "./accounts.js";
+import { Alerts } from "./alerts.js";
 import { BeneficialOwners } from "./beneficialowners.js";
 import { BusinessClassifications } from "./businessclassifications.js";
 import { ClientTokens } from "./clienttokens.js";
@@ -90,6 +91,11 @@ export class Dwolla extends ClientSDK {
   private _events?: Events;
   get events(): Events {
     return (this._events ??= new Events(this._options));
+  }
+
+  private _alerts?: Alerts;
+  get alerts(): Alerts {
+    return (this._alerts ??= new Alerts(this._options));
   }
 
   private _webhookSubscriptions?: WebhookSubscriptions;
