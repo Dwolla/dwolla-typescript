@@ -17,8 +17,14 @@ export const envSchema: z.ZodType<Env, z.ZodTypeDef, unknown> = z.object({
   DWOLLA_CLIENT_SECRET: z.string().optional(),
   DWOLLA_TOKEN_URL: z.string().default("/token"),
 
-  DWOLLA_DEBUG: z.coerce.boolean().optional(),
+  DWOLLA_DEBUG: z.unknown().transform(parseEnvFlag).optional(),
 });
+
+function parseEnvFlag(value: unknown): boolean {
+  return ["true", "1", "yes", "on"].includes(
+    String(value).trim().toLowerCase(),
+  );
+}
 
 /**
  * Checks for the existence of the Deno global object to determine the environment.
