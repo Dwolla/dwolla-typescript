@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -22,11 +22,13 @@ export const CardMissingRequiredFieldsErrorError$inboundSchema: z.ZodType<
   CardMissingRequiredFieldsErrorError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  path: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string(),
+    message: z.string(),
+    path: z.string(),
+  })
+);
 
 export function cardMissingRequiredFieldsErrorErrorFromJSON(
   jsonString: string,
@@ -44,11 +46,13 @@ export const CardMissingRequiredFieldsErrorEmbedded$inboundSchema: z.ZodType<
   CardMissingRequiredFieldsErrorEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  errors: z.array(
-    z.lazy(() => CardMissingRequiredFieldsErrorError$inboundSchema),
-  ),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    errors: z.array(
+      z.lazy(() => CardMissingRequiredFieldsErrorError$inboundSchema),
+    ),
+  })
+);
 
 export function cardMissingRequiredFieldsErrorEmbeddedFromJSON(
   jsonString: string,

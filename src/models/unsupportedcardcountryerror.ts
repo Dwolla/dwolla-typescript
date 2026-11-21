@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -26,7 +26,7 @@ export const UnsupportedCardCountryErrorLinks$inboundSchema: z.ZodType<
   UnsupportedCardCountryErrorLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function unsupportedCardCountryErrorLinksFromJSON(
   jsonString: string,
@@ -43,17 +43,19 @@ export const UnsupportedCardCountryErrorError$inboundSchema: z.ZodType<
   UnsupportedCardCountryErrorError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  path: z.string(),
-  _links: z.lazy(() => UnsupportedCardCountryErrorLinks$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string(),
+    message: z.string(),
+    path: z.string(),
+    _links: z.lazy(() => UnsupportedCardCountryErrorLinks$inboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function unsupportedCardCountryErrorErrorFromJSON(
   jsonString: string,
@@ -70,9 +72,13 @@ export const UnsupportedCardCountryErrorEmbedded$inboundSchema: z.ZodType<
   UnsupportedCardCountryErrorEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  errors: z.array(z.lazy(() => UnsupportedCardCountryErrorError$inboundSchema)),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    errors: z.array(
+      z.lazy(() => UnsupportedCardCountryErrorError$inboundSchema),
+    ),
+  })
+);
 
 export function unsupportedCardCountryErrorEmbeddedFromJSON(
   jsonString: string,

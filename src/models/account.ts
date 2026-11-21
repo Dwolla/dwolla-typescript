@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import { HalLink, HalLink$inboundSchema } from "./hallink.js";
@@ -19,17 +19,19 @@ export type Account = {
 
 /** @internal */
 export const Account$inboundSchema: z.ZodType<Account, z.ZodTypeDef, unknown> =
-  z.object({
-    _links: z.record(HalLink$inboundSchema).optional(),
-    id: z.string().optional(),
-    name: z.string().optional(),
-    timezoneOffset: z.number().optional(),
-    type: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "_links": "links",
-    });
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      _links: z.record(HalLink$inboundSchema).optional(),
+      id: z.string().optional(),
+      name: z.string().optional(),
+      timezoneOffset: z.number().optional(),
+      type: z.string().optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "_links": "links",
+      });
+    })
+  );
 
 export function accountFromJSON(
   jsonString: string,

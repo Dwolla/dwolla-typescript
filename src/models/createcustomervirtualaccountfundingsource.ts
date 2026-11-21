@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 
 /**
@@ -50,14 +51,18 @@ export type CreateCustomerVirtualAccountFundingSource = {
 
 /** @internal */
 export const CreateCustomerVirtualAccountFundingSourceType$outboundSchema:
-  z.ZodNativeEnum<typeof CreateCustomerVirtualAccountFundingSourceType> = z
-    .nativeEnum(CreateCustomerVirtualAccountFundingSourceType);
+  z.ZodNativeEnum<typeof CreateCustomerVirtualAccountFundingSourceType> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(CreateCustomerVirtualAccountFundingSourceType)
+    );
 
 /** @internal */
 export const CreateCustomerVirtualAccountFundingSourceBankAccountType$outboundSchema:
   z.ZodNativeEnum<
     typeof CreateCustomerVirtualAccountFundingSourceBankAccountType
-  > = z.nativeEnum(CreateCustomerVirtualAccountFundingSourceBankAccountType);
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.nativeEnum(CreateCustomerVirtualAccountFundingSourceBankAccountType)
+  );
 
 /** @internal */
 export type CreateCustomerVirtualAccountFundingSource$Outbound = {
@@ -72,12 +77,14 @@ export const CreateCustomerVirtualAccountFundingSource$outboundSchema:
     CreateCustomerVirtualAccountFundingSource$Outbound,
     z.ZodTypeDef,
     CreateCustomerVirtualAccountFundingSource
-  > = z.object({
-    name: z.string(),
-    type: CreateCustomerVirtualAccountFundingSourceType$outboundSchema,
-    bankAccountType:
-      CreateCustomerVirtualAccountFundingSourceBankAccountType$outboundSchema,
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      name: z.string(),
+      type: CreateCustomerVirtualAccountFundingSourceType$outboundSchema,
+      bankAccountType:
+        CreateCustomerVirtualAccountFundingSourceBankAccountType$outboundSchema,
+    })
+  );
 
 export function createCustomerVirtualAccountFundingSourceToJSON(
   createCustomerVirtualAccountFundingSource:

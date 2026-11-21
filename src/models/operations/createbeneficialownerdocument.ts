@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { blobLikeSchema } from "../../types/blobs.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -50,8 +50,10 @@ export type CreateBeneficialOwnerDocumentResponse = {
 
 /** @internal */
 export const CreateBeneficialOwnerDocumentDocumentType$outboundSchema:
-  z.ZodNativeEnum<typeof CreateBeneficialOwnerDocumentDocumentType> = z
-    .nativeEnum(CreateBeneficialOwnerDocumentDocumentType);
+  z.ZodNativeEnum<typeof CreateBeneficialOwnerDocumentDocumentType> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(CreateBeneficialOwnerDocumentDocumentType)
+    );
 
 /** @internal */
 export type CreateBeneficialOwnerDocumentFile$Outbound = {
@@ -64,15 +66,17 @@ export const CreateBeneficialOwnerDocumentFile$outboundSchema: z.ZodType<
   CreateBeneficialOwnerDocumentFile$Outbound,
   z.ZodTypeDef,
   CreateBeneficialOwnerDocumentFile
-> = z.object({
-  fileName: z.string(),
-  content: z.union([
-    z.instanceof(ReadableStream<Uint8Array>),
-    z.instanceof(Blob),
-    z.instanceof(ArrayBuffer),
-    z.instanceof(Uint8Array),
-  ]),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    fileName: z.string(),
+    content: z.union([
+      z.instanceof(ReadableStream<Uint8Array>),
+      z.instanceof(Blob),
+      z.instanceof(ArrayBuffer),
+      z.instanceof(Uint8Array),
+    ]),
+  })
+);
 
 export function createBeneficialOwnerDocumentFileToJSON(
   createBeneficialOwnerDocumentFile: CreateBeneficialOwnerDocumentFile,
@@ -95,12 +99,14 @@ export const CreateBeneficialOwnerDocumentRequestBody$outboundSchema: z.ZodType<
   CreateBeneficialOwnerDocumentRequestBody$Outbound,
   z.ZodTypeDef,
   CreateBeneficialOwnerDocumentRequestBody
-> = z.object({
-  documentType: CreateBeneficialOwnerDocumentDocumentType$outboundSchema,
-  file: z.lazy(() => CreateBeneficialOwnerDocumentFile$outboundSchema).or(
-    blobLikeSchema,
-  ),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    documentType: CreateBeneficialOwnerDocumentDocumentType$outboundSchema,
+    file: z.lazy(() => CreateBeneficialOwnerDocumentFile$outboundSchema).or(
+      blobLikeSchema,
+    ),
+  })
+);
 
 export function createBeneficialOwnerDocumentRequestBodyToJSON(
   createBeneficialOwnerDocumentRequestBody:
@@ -124,16 +130,18 @@ export const CreateBeneficialOwnerDocumentRequest$outboundSchema: z.ZodType<
   CreateBeneficialOwnerDocumentRequest$Outbound,
   z.ZodTypeDef,
   CreateBeneficialOwnerDocumentRequest
-> = z.object({
-  id: z.string(),
-  requestBody: z.lazy(() =>
-    CreateBeneficialOwnerDocumentRequestBody$outboundSchema
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    requestBody: "RequestBody",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    requestBody: z.lazy(() =>
+      CreateBeneficialOwnerDocumentRequestBody$outboundSchema
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      requestBody: "RequestBody",
+    });
+  })
+);
 
 export function createBeneficialOwnerDocumentRequestToJSON(
   createBeneficialOwnerDocumentRequest: CreateBeneficialOwnerDocumentRequest,
@@ -150,13 +158,15 @@ export const CreateBeneficialOwnerDocumentResponse$inboundSchema: z.ZodType<
   CreateBeneficialOwnerDocumentResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+    });
+  })
+);
 
 export function createBeneficialOwnerDocumentResponseFromJSON(
   jsonString: string,

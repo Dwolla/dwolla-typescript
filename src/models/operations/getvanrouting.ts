@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
@@ -35,9 +35,11 @@ export const GetVanRoutingRequest$outboundSchema: z.ZodType<
   GetVanRoutingRequest$Outbound,
   z.ZodTypeDef,
   GetVanRoutingRequest
-> = z.object({
-  id: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+  })
+);
 
 export function getVanRoutingRequestToJSON(
   getVanRoutingRequest: GetVanRoutingRequest,
@@ -52,15 +54,17 @@ export const GetVanRoutingResponse$inboundSchema: z.ZodType<
   GetVanRoutingResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.record(models.HalLink$inboundSchema).optional(),
-  accountNumber: z.string().optional(),
-  routingNumber: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.record(models.HalLink$inboundSchema).optional(),
+    accountNumber: z.string().optional(),
+    routingNumber: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function getVanRoutingResponseFromJSON(
   jsonString: string,

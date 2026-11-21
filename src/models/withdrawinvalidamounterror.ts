@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -26,7 +26,7 @@ export const WithdrawInvalidAmountErrorLinks$inboundSchema: z.ZodType<
   WithdrawInvalidAmountErrorLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function withdrawInvalidAmountErrorLinksFromJSON(
   jsonString: string,
@@ -43,17 +43,19 @@ export const WithdrawInvalidAmountErrorError$inboundSchema: z.ZodType<
   WithdrawInvalidAmountErrorError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  _links: z.lazy(() => WithdrawInvalidAmountErrorLinks$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string().optional(),
+    message: z.string().optional(),
+    path: z.string().optional(),
+    _links: z.lazy(() => WithdrawInvalidAmountErrorLinks$inboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function withdrawInvalidAmountErrorErrorFromJSON(
   jsonString: string,
@@ -70,10 +72,12 @@ export const WithdrawInvalidAmountErrorEmbedded$inboundSchema: z.ZodType<
   WithdrawInvalidAmountErrorEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  errors: z.array(z.lazy(() => WithdrawInvalidAmountErrorError$inboundSchema))
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    errors: z.array(z.lazy(() => WithdrawInvalidAmountErrorError$inboundSchema))
+      .optional(),
+  })
+);
 
 export function withdrawInvalidAmountErrorEmbeddedFromJSON(
   jsonString: string,

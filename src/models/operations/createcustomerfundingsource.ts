@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
@@ -35,15 +35,17 @@ export const CreateCustomerFundingSourceRequest$outboundSchema: z.ZodType<
   CreateCustomerFundingSourceRequest$Outbound,
   z.ZodTypeDef,
   CreateCustomerFundingSourceRequest
-> = z.object({
-  id: z.string(),
-  createCustomerFundingSource:
-    models.CreateCustomerFundingSource$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    createCustomerFundingSource: "CreateCustomerFundingSource",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    createCustomerFundingSource:
+      models.CreateCustomerFundingSource$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      createCustomerFundingSource: "CreateCustomerFundingSource",
+    });
+  })
+);
 
 export function createCustomerFundingSourceRequestToJSON(
   createCustomerFundingSourceRequest: CreateCustomerFundingSourceRequest,
@@ -60,13 +62,15 @@ export const CreateCustomerFundingSourceResponse$inboundSchema: z.ZodType<
   CreateCustomerFundingSourceResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+    });
+  })
+);
 
 export function createCustomerFundingSourceResponseFromJSON(
   jsonString: string,

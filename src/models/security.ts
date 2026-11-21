@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 
 export type Security = {
   clientID?: string | undefined;
@@ -22,11 +23,13 @@ export const Security$outboundSchema: z.ZodType<
   Security$Outbound,
   z.ZodTypeDef,
   Security
-> = z.object({
-  clientID: z.string().optional(),
-  clientSecret: z.string().optional(),
-  tokenURL: z.string().default("/token"),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    clientID: z.string().optional(),
+    clientSecret: z.string().optional(),
+    tokenURL: z.string().default("/token"),
+  })
+);
 
 export function securityToJSON(security: Security): string {
   return JSON.stringify(Security$outboundSchema.parse(security));

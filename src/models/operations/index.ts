@@ -76,6 +76,7 @@ export * from "./retrievelabelreallocation.js";
 export * from "./retrywebhook.js";
 export * from "./simulatebanktransferprocessing.js";
 export * from "./update.js";
+export * from "./updatealert.js";
 export * from "./updatebeneficialowner.js";
 export * from "./updatemasspayment.js";
 export * from "./updateorremovefundingsource.js";

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -62,9 +62,11 @@ export const CreateApplicationAccessTokenSecurity$outboundSchema: z.ZodType<
   CreateApplicationAccessTokenSecurity$Outbound,
   z.ZodTypeDef,
   CreateApplicationAccessTokenSecurity
-> = z.object({
-  basicAuth: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    basicAuth: z.string(),
+  })
+);
 
 export function createApplicationAccessTokenSecurityToJSON(
   createApplicationAccessTokenSecurity: CreateApplicationAccessTokenSecurity,
@@ -77,8 +79,8 @@ export function createApplicationAccessTokenSecurityToJSON(
 }
 
 /** @internal */
-export const GrantType$outboundSchema: z.ZodNativeEnum<typeof GrantType> = z
-  .nativeEnum(GrantType);
+export const GrantType$outboundSchema: z.ZodNativeEnum<typeof GrantType> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(GrantType));
 
 /** @internal */
 export type CreateApplicationAccessTokenRequest$Outbound = {
@@ -90,13 +92,15 @@ export const CreateApplicationAccessTokenRequest$outboundSchema: z.ZodType<
   CreateApplicationAccessTokenRequest$Outbound,
   z.ZodTypeDef,
   CreateApplicationAccessTokenRequest
-> = z.object({
-  grantType: GrantType$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    grantType: "grant_type",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    grantType: GrantType$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      grantType: "grant_type",
+    });
+  })
+);
 
 export function createApplicationAccessTokenRequestToJSON(
   createApplicationAccessTokenRequest: CreateApplicationAccessTokenRequest,
@@ -113,17 +117,19 @@ export const CreateApplicationAccessTokenResponse$inboundSchema: z.ZodType<
   CreateApplicationAccessTokenResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  access_token: z.string(),
-  token_type: z.string(),
-  expires_in: z.number().int(),
-}).transform((v) => {
-  return remap$(v, {
-    "access_token": "accessToken",
-    "token_type": "tokenType",
-    "expires_in": "expiresIn",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    access_token: z.string(),
+    token_type: z.string(),
+    expires_in: z.number().int(),
+  }).transform((v) => {
+    return remap$(v, {
+      "access_token": "accessToken",
+      "token_type": "tokenType",
+      "expires_in": "expiresIn",
+    });
+  })
+);
 
 export function createApplicationAccessTokenResponseFromJSON(
   jsonString: string,

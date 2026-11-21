@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -41,9 +41,11 @@ export const CancelTransferRequestBody$outboundSchema: z.ZodType<
   CancelTransferRequestBody$Outbound,
   z.ZodTypeDef,
   CancelTransferRequestBody
-> = z.object({
-  status: z.literal("cancelled"),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    status: z.literal("cancelled"),
+  })
+);
 
 export function cancelTransferRequestBodyToJSON(
   cancelTransferRequestBody: CancelTransferRequestBody,
@@ -64,14 +66,16 @@ export const CancelTransferRequest$outboundSchema: z.ZodType<
   CancelTransferRequest$Outbound,
   z.ZodTypeDef,
   CancelTransferRequest
-> = z.object({
-  id: z.string(),
-  requestBody: z.lazy(() => CancelTransferRequestBody$outboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    requestBody: "RequestBody",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    requestBody: z.lazy(() => CancelTransferRequestBody$outboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      requestBody: "RequestBody",
+    });
+  })
+);
 
 export function cancelTransferRequestToJSON(
   cancelTransferRequest: CancelTransferRequest,
@@ -86,7 +90,7 @@ export const CancelTransferResponse$inboundSchema: z.ZodType<
   CancelTransferResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function cancelTransferResponseFromJSON(
   jsonString: string,

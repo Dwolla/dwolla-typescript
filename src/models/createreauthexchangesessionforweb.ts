@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 
 /**
  * Create re-auth exchange session for web (Plaid web sessions where request body is optional)
@@ -17,7 +18,7 @@ export const CreateReAuthExchangeSessionForWeb$outboundSchema: z.ZodType<
   CreateReAuthExchangeSessionForWeb$Outbound,
   z.ZodTypeDef,
   CreateReAuthExchangeSessionForWeb
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function createReAuthExchangeSessionForWebToJSON(
   createReAuthExchangeSessionForWeb: CreateReAuthExchangeSessionForWeb,

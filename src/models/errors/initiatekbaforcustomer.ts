@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import {
@@ -28,10 +28,12 @@ export const InitiateKbaForCustomerDwollaV1HalJSON$inboundSchema: z.ZodType<
   InitiateKbaForCustomerDwollaV1HalJSON,
   z.ZodTypeDef,
   unknown
-> = smartUnion([
-  InvalidResourceStateSchemaError$inboundSchema,
-  ForbiddenError$inboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    InvalidResourceStateSchemaError$inboundSchema,
+    ForbiddenError$inboundSchema,
+  ])
+);
 
 export function initiateKbaForCustomerDwollaV1HalJSONFromJSON(
   jsonString: string,

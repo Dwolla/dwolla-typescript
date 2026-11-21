@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -36,9 +36,11 @@ export const GetCustomerRequest$outboundSchema: z.ZodType<
   GetCustomerRequest$Outbound,
   z.ZodTypeDef,
   GetCustomerRequest
-> = z.object({
-  id: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+  })
+);
 
 export function getCustomerRequestToJSON(
   getCustomerRequest: GetCustomerRequest,
@@ -53,13 +55,15 @@ export const GetCustomerResponse$inboundSchema: z.ZodType<
   GetCustomerResponse,
   z.ZodTypeDef,
   unknown
-> = smartUnion([
-  models.VerifiedBusinessCustomer$inboundSchema,
-  models.VerifiedSolePropCustomer$inboundSchema,
-  models.VerifiedPersonalCustomer$inboundSchema,
-  models.UnverifiedCustomer$inboundSchema,
-  models.ReceiveOnlyCustomer$inboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    models.VerifiedBusinessCustomer$inboundSchema,
+    models.VerifiedSolePropCustomer$inboundSchema,
+    models.VerifiedPersonalCustomer$inboundSchema,
+    models.UnverifiedCustomer$inboundSchema,
+    models.ReceiveOnlyCustomer$inboundSchema,
+  ])
+);
 
 export function getCustomerResponseFromJSON(
   jsonString: string,

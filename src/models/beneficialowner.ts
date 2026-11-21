@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
@@ -37,26 +37,28 @@ export type BeneficialOwner = {
 /** @internal */
 export const VerificationStatus$inboundSchema: z.ZodNativeEnum<
   typeof VerificationStatus
-> = z.nativeEnum(VerificationStatus);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(VerificationStatus));
 
 /** @internal */
 export const BeneficialOwner$inboundSchema: z.ZodType<
   BeneficialOwner,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.record(HalLink$inboundSchema),
-  id: z.string(),
-  firstName: z.string(),
-  lastName: z.string(),
-  address: InternationalAddress$inboundSchema,
-  verificationStatus: VerificationStatus$inboundSchema,
-  created: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.record(HalLink$inboundSchema),
+    id: z.string(),
+    firstName: z.string(),
+    lastName: z.string(),
+    address: InternationalAddress$inboundSchema,
+    verificationStatus: VerificationStatus$inboundSchema,
+    created: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function beneficialOwnerFromJSON(
   jsonString: string,

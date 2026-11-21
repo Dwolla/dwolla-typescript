@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 import {
   InternationalAddress,
@@ -80,14 +81,16 @@ export const CreateVerifiedBusinessCustomerWithInternationalControllerController
     CreateVerifiedBusinessCustomerWithInternationalControllerController$Outbound,
     z.ZodTypeDef,
     CreateVerifiedBusinessCustomerWithInternationalControllerController
-  > = z.object({
-    firstName: z.string(),
-    lastName: z.string(),
-    title: z.string(),
-    dateOfBirth: z.string(),
-    address: InternationalAddress$outboundSchema,
-    passport: Passport$outboundSchema,
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      firstName: z.string(),
+      lastName: z.string(),
+      title: z.string(),
+      dateOfBirth: z.string(),
+      address: InternationalAddress$outboundSchema,
+      passport: Passport$outboundSchema,
+    })
+  );
 
 export function createVerifiedBusinessCustomerWithInternationalControllerControllerToJSON(
   createVerifiedBusinessCustomerWithInternationalControllerController:
@@ -105,8 +108,10 @@ export function createVerifiedBusinessCustomerWithInternationalControllerControl
 export const CreateVerifiedBusinessCustomerWithInternationalControllerBusinessType$outboundSchema:
   z.ZodNativeEnum<
     typeof CreateVerifiedBusinessCustomerWithInternationalControllerBusinessType
-  > = z.nativeEnum(
-    CreateVerifiedBusinessCustomerWithInternationalControllerBusinessType,
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.nativeEnum(
+      CreateVerifiedBusinessCustomerWithInternationalControllerBusinessType,
+    )
   );
 
 /** @internal */
@@ -140,30 +145,32 @@ export const CreateVerifiedBusinessCustomerWithInternationalController$outboundS
     CreateVerifiedBusinessCustomerWithInternationalController$Outbound,
     z.ZodTypeDef,
     CreateVerifiedBusinessCustomerWithInternationalController
-  > = z.object({
-    firstName: z.string(),
-    lastName: z.string(),
-    email: z.string(),
-    ipAddress: z.string().optional(),
-    phone: z.string().optional(),
-    correlationId: z.string().optional(),
-    type: z.literal("business"),
-    address1: z.string(),
-    address2: z.string().optional(),
-    city: z.string(),
-    state: z.string(),
-    postalCode: z.string(),
-    businessClassification: z.string(),
-    businessName: z.string(),
-    doingBusinessAs: z.string().optional(),
-    ein: z.string(),
-    website: z.string().optional(),
-    controller: z.lazy(() =>
-      CreateVerifiedBusinessCustomerWithInternationalControllerController$outboundSchema
-    ),
-    businessType:
-      CreateVerifiedBusinessCustomerWithInternationalControllerBusinessType$outboundSchema,
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      firstName: z.string(),
+      lastName: z.string(),
+      email: z.string(),
+      ipAddress: z.string().optional(),
+      phone: z.string().optional(),
+      correlationId: z.string().optional(),
+      type: z.literal("business"),
+      address1: z.string(),
+      address2: z.string().optional(),
+      city: z.string(),
+      state: z.string(),
+      postalCode: z.string(),
+      businessClassification: z.string(),
+      businessName: z.string(),
+      doingBusinessAs: z.string().optional(),
+      ein: z.string(),
+      website: z.string().optional(),
+      controller: z.lazy(() =>
+        CreateVerifiedBusinessCustomerWithInternationalControllerController$outboundSchema
+      ),
+      businessType:
+        CreateVerifiedBusinessCustomerWithInternationalControllerBusinessType$outboundSchema,
+    })
+  );
 
 export function createVerifiedBusinessCustomerWithInternationalControllerToJSON(
   createVerifiedBusinessCustomerWithInternationalController:

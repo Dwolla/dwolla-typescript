@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ListLabelLedgerEntriesRequest = {
   /**
@@ -31,11 +32,13 @@ export const ListLabelLedgerEntriesRequest$outboundSchema: z.ZodType<
   ListLabelLedgerEntriesRequest$Outbound,
   z.ZodTypeDef,
   ListLabelLedgerEntriesRequest
-> = z.object({
-  id: z.string(),
-  limit: z.number().int().optional(),
-  offset: z.number().int().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    limit: z.number().int().optional(),
+    offset: z.number().int().optional(),
+  })
+);
 
 export function listLabelLedgerEntriesRequestToJSON(
   listLabelLedgerEntriesRequest: ListLabelLedgerEntriesRequest,

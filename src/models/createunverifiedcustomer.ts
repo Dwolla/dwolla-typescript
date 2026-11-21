@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 
 /**
  * Create an Unverified Customer
@@ -35,16 +36,18 @@ export const CreateUnverifiedCustomer$outboundSchema: z.ZodType<
   CreateUnverifiedCustomer$Outbound,
   z.ZodTypeDef,
   CreateUnverifiedCustomer
-> = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
-  email: z.string(),
-  type: z.literal("unverified"),
-  ipAddress: z.string().optional(),
-  phone: z.string().optional(),
-  correlationId: z.string().optional(),
-  businessName: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    firstName: z.string(),
+    lastName: z.string(),
+    email: z.string(),
+    type: z.literal("unverified"),
+    ipAddress: z.string().optional(),
+    phone: z.string().optional(),
+    correlationId: z.string().optional(),
+    businessName: z.string().optional(),
+  })
+);
 
 export function createUnverifiedCustomerToJSON(
   createUnverifiedCustomer: CreateUnverifiedCustomer,

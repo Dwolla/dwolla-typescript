@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ListBeneficialOwnersForCustomerRequest = {
   /**
@@ -21,9 +22,11 @@ export const ListBeneficialOwnersForCustomerRequest$outboundSchema: z.ZodType<
   ListBeneficialOwnersForCustomerRequest$Outbound,
   z.ZodTypeDef,
   ListBeneficialOwnersForCustomerRequest
-> = z.object({
-  id: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+  })
+);
 
 export function listBeneficialOwnersForCustomerRequestToJSON(
   listBeneficialOwnersForCustomerRequest:

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -51,12 +51,14 @@ export const UpdateOrRemoveFundingSourceRequestBody$outboundSchema: z.ZodType<
   UpdateOrRemoveFundingSourceRequestBody$Outbound,
   z.ZodTypeDef,
   UpdateOrRemoveFundingSourceRequestBody
-> = smartUnion([
-  models.UpdateUnverifiedBank$outboundSchema,
-  models.UpdateVerifiedBank$outboundSchema,
-  models.RemoveBank$outboundSchema,
-  models.UpdateCardFundingSource$outboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    models.UpdateUnverifiedBank$outboundSchema,
+    models.UpdateVerifiedBank$outboundSchema,
+    models.RemoveBank$outboundSchema,
+    models.UpdateCardFundingSource$outboundSchema,
+  ])
+);
 
 export function updateOrRemoveFundingSourceRequestBodyToJSON(
   updateOrRemoveFundingSourceRequestBody:
@@ -84,19 +86,21 @@ export const UpdateOrRemoveFundingSourceRequest$outboundSchema: z.ZodType<
   UpdateOrRemoveFundingSourceRequest$Outbound,
   z.ZodTypeDef,
   UpdateOrRemoveFundingSourceRequest
-> = z.object({
-  id: z.string(),
-  requestBody: smartUnion([
-    models.UpdateUnverifiedBank$outboundSchema,
-    models.UpdateVerifiedBank$outboundSchema,
-    models.RemoveBank$outboundSchema,
-    models.UpdateCardFundingSource$outboundSchema,
-  ]),
-}).transform((v) => {
-  return remap$(v, {
-    requestBody: "RequestBody",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    requestBody: smartUnion([
+      models.UpdateUnverifiedBank$outboundSchema,
+      models.UpdateVerifiedBank$outboundSchema,
+      models.RemoveBank$outboundSchema,
+      models.UpdateCardFundingSource$outboundSchema,
+    ]),
+  }).transform((v) => {
+    return remap$(v, {
+      requestBody: "RequestBody",
+    });
+  })
+);
 
 export function updateOrRemoveFundingSourceRequestToJSON(
   updateOrRemoveFundingSourceRequest: UpdateOrRemoveFundingSourceRequest,
@@ -113,7 +117,7 @@ export const UpdateOrRemoveFundingSourceResponse$inboundSchema: z.ZodType<
   UpdateOrRemoveFundingSourceResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function updateOrRemoveFundingSourceResponseFromJSON(
   jsonString: string,

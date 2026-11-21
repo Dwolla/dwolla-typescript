@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -50,9 +50,11 @@ export const WebhookRetriesSelf$inboundSchema: z.ZodType<
   WebhookRetriesSelf,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+  })
+);
 
 export function webhookRetriesSelfFromJSON(
   jsonString: string,
@@ -69,9 +71,11 @@ export const WebhookRetriesLinks$inboundSchema: z.ZodType<
   WebhookRetriesLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  self: z.lazy(() => WebhookRetriesSelf$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    self: z.lazy(() => WebhookRetriesSelf$inboundSchema).optional(),
+  })
+);
 
 export function webhookRetriesLinksFromJSON(
   jsonString: string,
@@ -88,9 +92,11 @@ export const RetrySelf$inboundSchema: z.ZodType<
   RetrySelf,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+  })
+);
 
 export function retrySelfFromJSON(
   jsonString: string,
@@ -107,9 +113,11 @@ export const WebhookRetriesWebhook$inboundSchema: z.ZodType<
   WebhookRetriesWebhook,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+  })
+);
 
 export function webhookRetriesWebhookFromJSON(
   jsonString: string,
@@ -126,10 +134,12 @@ export const RetryLinks$inboundSchema: z.ZodType<
   RetryLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  self: z.lazy(() => RetrySelf$inboundSchema).optional(),
-  webhook: z.lazy(() => WebhookRetriesWebhook$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    self: z.lazy(() => RetrySelf$inboundSchema).optional(),
+    webhook: z.lazy(() => WebhookRetriesWebhook$inboundSchema).optional(),
+  })
+);
 
 export function retryLinksFromJSON(
   jsonString: string,
@@ -146,16 +156,18 @@ export const WebhookRetriesRetry$inboundSchema: z.ZodType<
   WebhookRetriesRetry,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.lazy(() => RetryLinks$inboundSchema).optional(),
-  id: z.string().optional(),
-  timestamp: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.lazy(() => RetryLinks$inboundSchema).optional(),
+    id: z.string().optional(),
+    timestamp: z.string().datetime({ offset: true }).transform(v => new Date(v))
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function webhookRetriesRetryFromJSON(
   jsonString: string,
@@ -172,9 +184,12 @@ export const WebhookRetriesEmbedded$inboundSchema: z.ZodType<
   WebhookRetriesEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  retries: z.array(z.lazy(() => WebhookRetriesRetry$inboundSchema)).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    retries: z.array(z.lazy(() => WebhookRetriesRetry$inboundSchema))
+      .optional(),
+  })
+);
 
 export function webhookRetriesEmbeddedFromJSON(
   jsonString: string,
@@ -191,16 +206,18 @@ export const WebhookRetries$inboundSchema: z.ZodType<
   WebhookRetries,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.lazy(() => WebhookRetriesLinks$inboundSchema).optional(),
-  _embedded: z.lazy(() => WebhookRetriesEmbedded$inboundSchema).optional(),
-  total: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-    "_embedded": "embedded",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.lazy(() => WebhookRetriesLinks$inboundSchema).optional(),
+    _embedded: z.lazy(() => WebhookRetriesEmbedded$inboundSchema).optional(),
+    total: z.number().int().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+      "_embedded": "embedded",
+    });
+  })
+);
 
 export function webhookRetriesFromJSON(
   jsonString: string,

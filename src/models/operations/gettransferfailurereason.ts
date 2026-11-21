@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
@@ -36,9 +36,11 @@ export const GetTransferFailureReasonRequest$outboundSchema: z.ZodType<
   GetTransferFailureReasonRequest$Outbound,
   z.ZodTypeDef,
   GetTransferFailureReasonRequest
-> = z.object({
-  id: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+  })
+);
 
 export function getTransferFailureReasonRequestToJSON(
   getTransferFailureReasonRequest: GetTransferFailureReasonRequest,
@@ -55,16 +57,18 @@ export const GetTransferFailureReasonResponse$inboundSchema: z.ZodType<
   GetTransferFailureReasonResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.record(models.HalLink$inboundSchema).optional(),
-  code: z.string(),
-  description: z.string(),
-  explanation: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.record(models.HalLink$inboundSchema).optional(),
+    code: z.string(),
+    description: z.string(),
+    explanation: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function getTransferFailureReasonResponseFromJSON(
   jsonString: string,

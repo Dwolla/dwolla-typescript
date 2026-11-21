@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 
 /**
@@ -79,15 +80,19 @@ export type CreateCustomerBankFundingSourceWithAccountNumbers = {
 export const CreateCustomerBankFundingSourceWithAccountNumbersBankAccountType$outboundSchema:
   z.ZodNativeEnum<
     typeof CreateCustomerBankFundingSourceWithAccountNumbersBankAccountType
-  > = z.nativeEnum(
-    CreateCustomerBankFundingSourceWithAccountNumbersBankAccountType,
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.nativeEnum(
+      CreateCustomerBankFundingSourceWithAccountNumbersBankAccountType,
+    )
   );
 
 /** @internal */
 export const CreateCustomerBankFundingSourceWithAccountNumbersChannel$outboundSchema:
   z.ZodNativeEnum<
     typeof CreateCustomerBankFundingSourceWithAccountNumbersChannel
-  > = z.nativeEnum(CreateCustomerBankFundingSourceWithAccountNumbersChannel);
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.nativeEnum(CreateCustomerBankFundingSourceWithAccountNumbersChannel)
+  );
 
 /** @internal */
 export type CreateCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorization$Outbound =
@@ -101,9 +106,11 @@ export const CreateCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorizat
     CreateCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorization$Outbound,
     z.ZodTypeDef,
     CreateCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorization
-  > = z.object({
-    href: z.string(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      href: z.string(),
+    })
+  );
 
 export function createCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorizationToJSON(
   createCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorization:
@@ -130,15 +137,17 @@ export const CreateCustomerBankFundingSourceWithAccountNumbersLinks$outboundSche
     CreateCustomerBankFundingSourceWithAccountNumbersLinks$Outbound,
     z.ZodTypeDef,
     CreateCustomerBankFundingSourceWithAccountNumbersLinks
-  > = z.object({
-    onDemandAuthorization: z.lazy(() =>
-      CreateCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorization$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      onDemandAuthorization: "on-demand-authorization",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      onDemandAuthorization: z.lazy(() =>
+        CreateCustomerBankFundingSourceWithAccountNumbersOnDemandAuthorization$outboundSchema
+      ).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        onDemandAuthorization: "on-demand-authorization",
+      });
+    })
+  );
 
 export function createCustomerBankFundingSourceWithAccountNumbersLinksToJSON(
   createCustomerBankFundingSourceWithAccountNumbersLinks:
@@ -170,24 +179,26 @@ export const CreateCustomerBankFundingSourceWithAccountNumbers$outboundSchema:
     CreateCustomerBankFundingSourceWithAccountNumbers$Outbound,
     z.ZodTypeDef,
     CreateCustomerBankFundingSourceWithAccountNumbers
-  > = z.object({
-    routingNumber: z.string(),
-    accountNumber: z.string(),
-    bankAccountType:
-      CreateCustomerBankFundingSourceWithAccountNumbersBankAccountType$outboundSchema,
-    name: z.string(),
-    verified: z.literal(false).optional(),
-    channels: z.array(
-      CreateCustomerBankFundingSourceWithAccountNumbersChannel$outboundSchema,
-    ).optional(),
-    links: z.lazy(() =>
-      CreateCustomerBankFundingSourceWithAccountNumbersLinks$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      links: "_links",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      routingNumber: z.string(),
+      accountNumber: z.string(),
+      bankAccountType:
+        CreateCustomerBankFundingSourceWithAccountNumbersBankAccountType$outboundSchema,
+      name: z.string(),
+      verified: z.literal(false).optional(),
+      channels: z.array(
+        CreateCustomerBankFundingSourceWithAccountNumbersChannel$outboundSchema,
+      ).optional(),
+      links: z.lazy(() =>
+        CreateCustomerBankFundingSourceWithAccountNumbersLinks$outboundSchema
+      ).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        links: "_links",
+      });
+    })
+  );
 
 export function createCustomerBankFundingSourceWithAccountNumbersToJSON(
   createCustomerBankFundingSourceWithAccountNumbers:

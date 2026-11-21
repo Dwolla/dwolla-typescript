@@ -4,15 +4,17 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
-export const Code = {
+export const CardSourceNotAllowedErrorCode = {
   NotAllowed: "NotAllowed",
 } as const;
-export type Code = ClosedEnum<typeof Code>;
+export type CardSourceNotAllowedErrorCode = ClosedEnum<
+  typeof CardSourceNotAllowedErrorCode
+>;
 
 export const Message = {
   CardsCannotBeUsedAsASourceForTransfers:
@@ -28,7 +30,7 @@ export type Path = ClosedEnum<typeof Path>;
 export type CardSourceNotAllowedErrorLinks = {};
 
 export type CardSourceNotAllowedErrorError = {
-  code: Code;
+  code: CardSourceNotAllowedErrorCode;
   message: Message;
   path: Path;
   links?: CardSourceNotAllowedErrorLinks | undefined;
@@ -39,25 +41,26 @@ export type CardSourceNotAllowedErrorEmbedded = {
 };
 
 /** @internal */
-export const Code$inboundSchema: z.ZodNativeEnum<typeof Code> = z.nativeEnum(
-  Code,
+export const CardSourceNotAllowedErrorCode$inboundSchema: z.ZodNativeEnum<
+  typeof CardSourceNotAllowedErrorCode
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(CardSourceNotAllowedErrorCode)
 );
 
 /** @internal */
-export const Message$inboundSchema: z.ZodNativeEnum<typeof Message> = z
-  .nativeEnum(Message);
+export const Message$inboundSchema: z.ZodNativeEnum<typeof Message> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(Message));
 
 /** @internal */
-export const Path$inboundSchema: z.ZodNativeEnum<typeof Path> = z.nativeEnum(
-  Path,
-);
+export const Path$inboundSchema: z.ZodNativeEnum<typeof Path> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(Path));
 
 /** @internal */
 export const CardSourceNotAllowedErrorLinks$inboundSchema: z.ZodType<
   CardSourceNotAllowedErrorLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function cardSourceNotAllowedErrorLinksFromJSON(
   jsonString: string,
@@ -74,16 +77,19 @@ export const CardSourceNotAllowedErrorError$inboundSchema: z.ZodType<
   CardSourceNotAllowedErrorError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: Code$inboundSchema,
-  message: Message$inboundSchema,
-  path: Path$inboundSchema,
-  _links: z.lazy(() => CardSourceNotAllowedErrorLinks$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: CardSourceNotAllowedErrorCode$inboundSchema,
+    message: Message$inboundSchema,
+    path: Path$inboundSchema,
+    _links: z.lazy(() => CardSourceNotAllowedErrorLinks$inboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function cardSourceNotAllowedErrorErrorFromJSON(
   jsonString: string,
@@ -100,9 +106,11 @@ export const CardSourceNotAllowedErrorEmbedded$inboundSchema: z.ZodType<
   CardSourceNotAllowedErrorEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  errors: z.array(z.lazy(() => CardSourceNotAllowedErrorError$inboundSchema)),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    errors: z.array(z.lazy(() => CardSourceNotAllowedErrorError$inboundSchema)),
+  })
+);
 
 export function cardSourceNotAllowedErrorEmbeddedFromJSON(
   jsonString: string,

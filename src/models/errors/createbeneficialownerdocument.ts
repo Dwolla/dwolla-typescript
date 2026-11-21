@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import {
@@ -67,20 +67,22 @@ export const CreateBeneficialOwnerDocumentDwollaV1HalJSONError$inboundSchema:
     CreateBeneficialOwnerDocumentDwollaV1HalJSONError,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    request$: z.instanceof(Request),
-    response$: z.instanceof(Response),
-    body$: z.string(),
-  })
-    .transform((v) => {
-      return new CreateBeneficialOwnerDocumentDwollaV1HalJSONError(v, {
-        request: v.request$,
-        response: v.response$,
-        body: v.body$,
-      });
-    });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      code: z.string().optional(),
+      message: z.string().optional(),
+      request$: z.instanceof(Request),
+      response$: z.instanceof(Response),
+      body$: z.string(),
+    })
+      .transform((v) => {
+        return new CreateBeneficialOwnerDocumentDwollaV1HalJSONError(v, {
+          request: v.request$,
+          response: v.response$,
+          body: v.body$,
+        });
+      })
+  );
 
 /** @internal */
 export const CreateBeneficialOwnerDocumentDwollaV1HalJSON$inboundSchema:
@@ -88,11 +90,13 @@ export const CreateBeneficialOwnerDocumentDwollaV1HalJSON$inboundSchema:
     CreateBeneficialOwnerDocumentDwollaV1HalJSON,
     z.ZodTypeDef,
     unknown
-  > = smartUnion([
-    MaximumNumberOfResourcesSchemaError$inboundSchema,
-    InvalidFileTypeSchemaError$inboundSchema,
-    DuplicateResourceSchemaError$inboundSchema,
-  ]);
+  > = /* @__PURE__ */ lazySchema$(() =>
+    smartUnion([
+      MaximumNumberOfResourcesSchemaError$inboundSchema,
+      InvalidFileTypeSchemaError$inboundSchema,
+      DuplicateResourceSchemaError$inboundSchema,
+    ])
+  );
 
 export function createBeneficialOwnerDocumentDwollaV1HalJSONFromJSON(
   jsonString: string,

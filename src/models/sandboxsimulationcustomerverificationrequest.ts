@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 
 export type SandboxSimulationCustomerVerificationRequestCustomer = {
@@ -63,9 +64,11 @@ export const SandboxSimulationCustomerVerificationRequestCustomer$outboundSchema
     SandboxSimulationCustomerVerificationRequestCustomer$Outbound,
     z.ZodTypeDef,
     SandboxSimulationCustomerVerificationRequestCustomer
-  > = z.object({
-    href: z.string(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      href: z.string(),
+    })
+  );
 
 export function sandboxSimulationCustomerVerificationRequestCustomerToJSON(
   sandboxSimulationCustomerVerificationRequestCustomer:
@@ -89,11 +92,13 @@ export const SandboxSimulationCustomerVerificationRequestLinks$outboundSchema:
     SandboxSimulationCustomerVerificationRequestLinks$Outbound,
     z.ZodTypeDef,
     SandboxSimulationCustomerVerificationRequestLinks
-  > = z.object({
-    customer: z.lazy(() =>
-      SandboxSimulationCustomerVerificationRequestCustomer$outboundSchema
-    ),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      customer: z.lazy(() =>
+        SandboxSimulationCustomerVerificationRequestCustomer$outboundSchema
+      ),
+    })
+  );
 
 export function sandboxSimulationCustomerVerificationRequestLinksToJSON(
   sandboxSimulationCustomerVerificationRequestLinks:
@@ -110,7 +115,9 @@ export function sandboxSimulationCustomerVerificationRequestLinksToJSON(
 export const SandboxSimulationCustomerVerificationRequestErrorCode$outboundSchema:
   z.ZodNativeEnum<
     typeof SandboxSimulationCustomerVerificationRequestErrorCode
-  > = z.nativeEnum(SandboxSimulationCustomerVerificationRequestErrorCode);
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.nativeEnum(SandboxSimulationCustomerVerificationRequestErrorCode)
+  );
 
 /** @internal */
 export type SandboxSimulationCustomerVerificationRequest$Outbound = {
@@ -125,18 +132,20 @@ export const SandboxSimulationCustomerVerificationRequest$outboundSchema:
     SandboxSimulationCustomerVerificationRequest$Outbound,
     z.ZodTypeDef,
     SandboxSimulationCustomerVerificationRequest
-  > = z.object({
-    type: z.literal("customer-verification"),
-    links: z.lazy(() =>
-      SandboxSimulationCustomerVerificationRequestLinks$outboundSchema
-    ),
-    errorCode:
-      SandboxSimulationCustomerVerificationRequestErrorCode$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      links: "_links",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      type: z.literal("customer-verification"),
+      links: z.lazy(() =>
+        SandboxSimulationCustomerVerificationRequestLinks$outboundSchema
+      ),
+      errorCode:
+        SandboxSimulationCustomerVerificationRequestErrorCode$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        links: "_links",
+      });
+    })
+  );
 
 export function sandboxSimulationCustomerVerificationRequestToJSON(
   sandboxSimulationCustomerVerificationRequest:

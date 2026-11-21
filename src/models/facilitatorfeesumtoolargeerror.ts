@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -26,7 +26,7 @@ export const FacilitatorFeeSumTooLargeErrorLinks$inboundSchema: z.ZodType<
   FacilitatorFeeSumTooLargeErrorLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function facilitatorFeeSumTooLargeErrorLinksFromJSON(
   jsonString: string,
@@ -44,17 +44,19 @@ export const FacilitatorFeeSumTooLargeErrorError$inboundSchema: z.ZodType<
   FacilitatorFeeSumTooLargeErrorError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  _links: z.lazy(() => FacilitatorFeeSumTooLargeErrorLinks$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string().optional(),
+    message: z.string().optional(),
+    path: z.string().optional(),
+    _links: z.lazy(() => FacilitatorFeeSumTooLargeErrorLinks$inboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function facilitatorFeeSumTooLargeErrorErrorFromJSON(
   jsonString: string,
@@ -72,11 +74,13 @@ export const FacilitatorFeeSumTooLargeErrorEmbedded$inboundSchema: z.ZodType<
   FacilitatorFeeSumTooLargeErrorEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  errors: z.array(
-    z.lazy(() => FacilitatorFeeSumTooLargeErrorError$inboundSchema),
-  ).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    errors: z.array(
+      z.lazy(() => FacilitatorFeeSumTooLargeErrorError$inboundSchema),
+    ).optional(),
+  })
+);
 
 export function facilitatorFeeSumTooLargeErrorEmbeddedFromJSON(
   jsonString: string,

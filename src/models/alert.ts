@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import * as openEnums from "../types/enums.js";
 import { ClosedEnum, OpenEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
@@ -45,6 +45,15 @@ export type TransfersHalLink = {
   resourceType?: string | undefined;
 };
 
+/**
+ * Resolves the alert. Present only while the alert is `open` and can be resolved. To resolve the alert, send a `POST` request to this link with `{"status": "resolved"}`. Check for this link before resolving an alert.
+ */
+export type ResolveHalLink = {
+  href?: string | undefined;
+  type?: string | undefined;
+  resourceType?: string | undefined;
+};
+
 export type AlertLinks = {
   /**
    * The alert's resource URI.
@@ -58,6 +67,10 @@ export type AlertLinks = {
    * The Customer's transfers. Present only when the alert is related to a Customer's transfers.
    */
   transfers?: TransfersHalLink | undefined;
+  /**
+   * Resolves the alert. Present only while the alert is `open` and can be resolved. To resolve the alert, send a `POST` request to this link with `{"status": "resolved"}`. Check for this link before resolving an alert.
+   */
+  resolve?: ResolveHalLink | undefined;
 };
 
 /**
@@ -137,15 +150,17 @@ export const AlertSelfHalLink$inboundSchema: z.ZodType<
   AlertSelfHalLink,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-  type: z.string().optional(),
-  "resource-type": z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "resource-type": "resourceType",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+    type: z.string().optional(),
+    "resource-type": z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "resource-type": "resourceType",
+    });
+  })
+);
 
 export function alertSelfHalLinkFromJSON(
   jsonString: string,
@@ -162,15 +177,17 @@ export const CustomerHalLink$inboundSchema: z.ZodType<
   CustomerHalLink,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-  type: z.string().optional(),
-  "resource-type": z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "resource-type": "resourceType",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+    type: z.string().optional(),
+    "resource-type": z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "resource-type": "resourceType",
+    });
+  })
+);
 
 export function customerHalLinkFromJSON(
   jsonString: string,
@@ -187,15 +204,17 @@ export const TransfersHalLink$inboundSchema: z.ZodType<
   TransfersHalLink,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-  type: z.string().optional(),
-  "resource-type": z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "resource-type": "resourceType",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+    type: z.string().optional(),
+    "resource-type": z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "resource-type": "resourceType",
+    });
+  })
+);
 
 export function transfersHalLinkFromJSON(
   jsonString: string,
@@ -208,15 +227,45 @@ export function transfersHalLinkFromJSON(
 }
 
 /** @internal */
+export const ResolveHalLink$inboundSchema: z.ZodType<
+  ResolveHalLink,
+  z.ZodTypeDef,
+  unknown
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+    type: z.string().optional(),
+    "resource-type": z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "resource-type": "resourceType",
+    });
+  })
+);
+
+export function resolveHalLinkFromJSON(
+  jsonString: string,
+): SafeParseResult<ResolveHalLink, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ResolveHalLink$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ResolveHalLink' from JSON`,
+  );
+}
+
+/** @internal */
 export const AlertLinks$inboundSchema: z.ZodType<
   AlertLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  self: z.lazy(() => AlertSelfHalLink$inboundSchema),
-  customer: z.lazy(() => CustomerHalLink$inboundSchema).optional(),
-  transfers: z.lazy(() => TransfersHalLink$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    self: z.lazy(() => AlertSelfHalLink$inboundSchema),
+    customer: z.lazy(() => CustomerHalLink$inboundSchema).optional(),
+    transfers: z.lazy(() => TransfersHalLink$inboundSchema).optional(),
+    resolve: z.lazy(() => ResolveHalLink$inboundSchema).optional(),
+  })
+);
 
 export function alertLinksFromJSON(
   jsonString: string,
@@ -233,33 +282,38 @@ export const AlertType$inboundSchema: z.ZodType<
   AlertType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(AlertType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(AlertType));
 
 /** @internal */
-export const AlertStatus$inboundSchema: z.ZodNativeEnum<typeof AlertStatus> = z
-  .nativeEnum(AlertStatus);
+export const AlertStatus$inboundSchema: z.ZodNativeEnum<typeof AlertStatus> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(AlertStatus));
 
 /** @internal */
-export const Alert$inboundSchema: z.ZodType<Alert, z.ZodTypeDef, unknown> = z
-  .object({
-    _links: z.lazy(() => AlertLinks$inboundSchema),
-    id: z.string(),
-    type: AlertType$inboundSchema,
-    status: AlertStatus$inboundSchema,
-    description: z.string(),
-    actionRequired: ActionRequired$inboundSchema.optional(),
-    created: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-    lastUpdated: z.string().datetime({ offset: true }).transform(v =>
-      new Date(v)
-    ),
-    resolved: z.string().datetime({ offset: true }).transform(v => new Date(v))
-      .optional(),
-    unusualTransferActivity: UnusualTransferActivity$inboundSchema.optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "_links": "links",
-    });
-  });
+export const Alert$inboundSchema: z.ZodType<Alert, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      _links: z.lazy(() => AlertLinks$inboundSchema),
+      id: z.string(),
+      type: AlertType$inboundSchema,
+      status: AlertStatus$inboundSchema,
+      description: z.string(),
+      actionRequired: ActionRequired$inboundSchema.optional(),
+      created: z.string().datetime({ offset: true }).transform(v =>
+        new Date(v)
+      ),
+      lastUpdated: z.string().datetime({ offset: true }).transform(v =>
+        new Date(v)
+      ),
+      resolved: z.string().datetime({ offset: true }).transform(v =>
+        new Date(v)
+      ).optional(),
+      unusualTransferActivity: UnusualTransferActivity$inboundSchema.optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "_links": "links",
+      });
+    })
+  );
 
 export function alertFromJSON(
   jsonString: string,

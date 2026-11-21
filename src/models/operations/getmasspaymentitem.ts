@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type GetMassPaymentItemRequest = {
   /**
@@ -21,9 +22,11 @@ export const GetMassPaymentItemRequest$outboundSchema: z.ZodType<
   GetMassPaymentItemRequest$Outbound,
   z.ZodTypeDef,
   GetMassPaymentItemRequest
-> = z.object({
-  itemId: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    itemId: z.string(),
+  })
+);
 
 export function getMassPaymentItemRequestToJSON(
   getMassPaymentItemRequest: GetMassPaymentItemRequest,

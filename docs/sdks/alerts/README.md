@@ -8,6 +8,7 @@ Operations related to Alerts
 
 * [list](#list) - List alerts
 * [get](#get) - Retrieve alert
+* [update](#update) - Resolve alert
 
 ## list
 
@@ -180,6 +181,8 @@ Returns a single alert for your Dwolla account. Alerts notify you of activity th
 
 Alerts are in active development and must be enabled for your account. To enable alerts, please [reach out to Dwolla](https://www.dwolla.com/contact?b=apidocs).
 
+If you can resolve the alert, its `_links` include a `resolve` link. To resolve it, send `{"status": "resolved"}` to `POST /alerts/{id}`.
+
 Requires an application access token for your account. Returns a `404 NotFound` error if the alert doesn't exist.
 
 
@@ -260,3 +263,287 @@ run();
 | errors.GetAlertForbiddenDwollaV1HalJSONError    | 403                                             | application/vnd.dwolla.v1.hal+json              |
 | errors.NotFoundError                            | 404                                             | application/vnd.dwolla.v1.hal+json              |
 | errors.APIError                                 | 4XX, 5XX                                        | \*/\*                                           |
+
+## update
+
+Resolves an alert for your Dwolla account by setting its `status` to `resolved`. Returns the updated alert, with `status` set to `resolved`, the `resolved` timestamp set, and no `resolve` link.
+
+You can only resolve an alert that has a `resolve` link in its `_links`. The link is present only while the alert is `open` and can be resolved, so check for it before resolving an alert.
+
+Resolving an alert changes only the alert itself: its `status` becomes `resolved`, and `actionRequired` is removed when no further action is needed. It doesn't release holds on transfers or change the Customer, and it doesn't take the action described in `actionRequired` for you.
+
+Resolving an alert that's already resolved, or that you can't resolve, returns a `400 ValidationError` error with the embedded code `NotAllowed`, and the alert isn't changed.
+
+Alerts are in active development and must be enabled for your account. To enable alerts, please [reach out to Dwolla](https://www.dwolla.com/contact?b=apidocs).
+
+Requires an application access token for your account. Returns a `404 NotFound` error if the alert doesn't exist.
+
+
+### Example Usage: resolve
+
+<!-- UsageSnippet language="typescript" operationID="updateAlert" method="post" path="/alerts/{id}" example="resolve" -->
+```typescript
+import { Dwolla } from "dwolla";
+
+const dwolla = new Dwolla({
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
+});
+
+async function run() {
+  const result = await dwolla.alerts.update({
+    id: "d4bd3a1e-7c6e-4e8a-9a5c-3b2f9d7e1a42",
+    updateAlert: {
+      status: "resolved",
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { DwollaCore } from "dwolla/core.js";
+import { alertsUpdate } from "dwolla/funcs/alertsUpdate.js";
+
+// Use `DwollaCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const dwolla = new DwollaCore({
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
+});
+
+async function run() {
+  const res = await alertsUpdate(dwolla, {
+    id: "d4bd3a1e-7c6e-4e8a-9a5c-3b2f9d7e1a42",
+    updateAlert: {
+      status: "resolved",
+    },
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("alertsUpdate failed:", res.error);
+  }
+}
+
+run();
+```
+### Example Usage: resolved_unusual_transfer_activity
+
+<!-- UsageSnippet language="typescript" operationID="updateAlert" method="post" path="/alerts/{id}" example="resolved_unusual_transfer_activity" -->
+```typescript
+import { Dwolla } from "dwolla";
+
+const dwolla = new Dwolla({
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
+});
+
+async function run() {
+  const result = await dwolla.alerts.update({
+    id: "d4bd3a1e-7c6e-4e8a-9a5c-3b2f9d7e1a42",
+    updateAlert: {
+      status: "resolved",
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { DwollaCore } from "dwolla/core.js";
+import { alertsUpdate } from "dwolla/funcs/alertsUpdate.js";
+
+// Use `DwollaCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const dwolla = new DwollaCore({
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
+});
+
+async function run() {
+  const res = await alertsUpdate(dwolla, {
+    id: "d4bd3a1e-7c6e-4e8a-9a5c-3b2f9d7e1a42",
+    updateAlert: {
+      status: "resolved",
+    },
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("alertsUpdate failed:", res.error);
+  }
+}
+
+run();
+```
+### Example Usage: status_invalid
+
+<!-- UsageSnippet language="typescript" operationID="updateAlert" method="post" path="/alerts/{id}" example="status_invalid" -->
+```typescript
+import { Dwolla } from "dwolla";
+
+const dwolla = new Dwolla({
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
+});
+
+async function run() {
+  const result = await dwolla.alerts.update({
+    id: "d4bd3a1e-7c6e-4e8a-9a5c-3b2f9d7e1a42",
+    updateAlert: {
+      status: "resolved",
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { DwollaCore } from "dwolla/core.js";
+import { alertsUpdate } from "dwolla/funcs/alertsUpdate.js";
+
+// Use `DwollaCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const dwolla = new DwollaCore({
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
+});
+
+async function run() {
+  const res = await alertsUpdate(dwolla, {
+    id: "d4bd3a1e-7c6e-4e8a-9a5c-3b2f9d7e1a42",
+    updateAlert: {
+      status: "resolved",
+    },
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("alertsUpdate failed:", res.error);
+  }
+}
+
+run();
+```
+### Example Usage: status_not_allowed
+
+<!-- UsageSnippet language="typescript" operationID="updateAlert" method="post" path="/alerts/{id}" example="status_not_allowed" -->
+```typescript
+import { Dwolla } from "dwolla";
+
+const dwolla = new Dwolla({
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
+});
+
+async function run() {
+  const result = await dwolla.alerts.update({
+    id: "d4bd3a1e-7c6e-4e8a-9a5c-3b2f9d7e1a42",
+    updateAlert: {
+      status: "resolved",
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { DwollaCore } from "dwolla/core.js";
+import { alertsUpdate } from "dwolla/funcs/alertsUpdate.js";
+
+// Use `DwollaCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const dwolla = new DwollaCore({
+  security: {
+    clientID: process.env["DWOLLA_CLIENT_ID"] ?? "",
+    clientSecret: process.env["DWOLLA_CLIENT_SECRET"] ?? "",
+  },
+});
+
+async function run() {
+  const res = await alertsUpdate(dwolla, {
+    id: "d4bd3a1e-7c6e-4e8a-9a5c-3b2f9d7e1a42",
+    updateAlert: {
+      status: "resolved",
+    },
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("alertsUpdate failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.UpdateAlertRequest](../../models/operations/updatealertrequest.md)                                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[models.Alert](../../models/alert.md)\>**
+
+### Errors
+
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| errors.UpdateAlertStatusInvalidError               | 400                                                | application/vnd.dwolla.v1.hal+json                 |
+| errors.UpdateAlertStatusNotAllowedError            | 400                                                | application/vnd.dwolla.v1.hal+json                 |
+| errors.UpdateAlertUnauthorizedDwollaV1HalJSONError | 401                                                | application/vnd.dwolla.v1.hal+json                 |
+| errors.UpdateAlertForbiddenDwollaV1HalJSONError    | 403                                                | application/vnd.dwolla.v1.hal+json                 |
+| errors.NotFoundError                               | 404                                                | application/vnd.dwolla.v1.hal+json                 |
+| errors.APIError                                    | 4XX, 5XX                                           | \*/\*                                              |

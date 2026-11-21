@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -26,7 +26,7 @@ export const OperationBlockedErrorLinks$inboundSchema: z.ZodType<
   OperationBlockedErrorLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function operationBlockedErrorLinksFromJSON(
   jsonString: string,
@@ -43,16 +43,18 @@ export const OperationBlockedErrorError$inboundSchema: z.ZodType<
   OperationBlockedErrorError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  _links: z.lazy(() => OperationBlockedErrorLinks$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string().optional(),
+    message: z.string().optional(),
+    path: z.string().optional(),
+    _links: z.lazy(() => OperationBlockedErrorLinks$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function operationBlockedErrorErrorFromJSON(
   jsonString: string,
@@ -69,10 +71,12 @@ export const OperationBlockedErrorEmbedded$inboundSchema: z.ZodType<
   OperationBlockedErrorEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  errors: z.array(z.lazy(() => OperationBlockedErrorError$inboundSchema))
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    errors: z.array(z.lazy(() => OperationBlockedErrorError$inboundSchema))
+      .optional(),
+  })
+);
 
 export function operationBlockedErrorEmbeddedFromJSON(
   jsonString: string,

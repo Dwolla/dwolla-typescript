@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as models from "../index.js";
 import { DwollaError } from "./dwollaerror.js";
 
@@ -55,24 +56,26 @@ export const ListAlertsValidationError$inboundSchema: z.ZodType<
   ListAlertsValidationError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _embedded: z.lazy(() =>
-    models.ListAlertsValidationErrorEmbedded$inboundSchema
-  ),
-  request$: z.instanceof(Request),
-  response$: z.instanceof(Response),
-  body$: z.string(),
-})
-  .transform((v) => {
-    const remapped = remap$(v, {
-      "_embedded": "embedded",
-    });
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string(),
+    message: z.string(),
+    _embedded: z.lazy(() =>
+      models.ListAlertsValidationErrorEmbedded$inboundSchema
+    ),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
+  })
+    .transform((v) => {
+      const remapped = remap$(v, {
+        "_embedded": "embedded",
+      });
 
-    return new ListAlertsValidationError(remapped, {
-      request: v.request$,
-      response: v.response$,
-      body: v.body$,
-    });
-  });
+      return new ListAlertsValidationError(remapped, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
+    })
+);

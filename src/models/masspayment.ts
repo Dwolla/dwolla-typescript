@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import { HalLink, HalLink$inboundSchema } from "./hallink.js";
@@ -31,7 +31,7 @@ export const MassPaymentMetaData$inboundSchema: z.ZodType<
   MassPaymentMetaData,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function massPaymentMetaDataFromJSON(
   jsonString: string,
@@ -48,21 +48,23 @@ export const MassPayment$inboundSchema: z.ZodType<
   MassPayment,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.record(HalLink$inboundSchema).optional(),
-  id: z.string().optional(),
-  status: z.string().optional(),
-  created: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  metaData: z.lazy(() => MassPaymentMetaData$inboundSchema).optional(),
-  total: TransferAmount$inboundSchema.optional(),
-  totalFees: TransferAmount$inboundSchema.optional(),
-  correlationId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.record(HalLink$inboundSchema).optional(),
+    id: z.string().optional(),
+    status: z.string().optional(),
+    created: z.string().datetime({ offset: true }).transform(v => new Date(v))
+      .optional(),
+    metaData: z.lazy(() => MassPaymentMetaData$inboundSchema).optional(),
+    total: TransferAmount$inboundSchema.optional(),
+    totalFees: TransferAmount$inboundSchema.optional(),
+    correlationId: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function massPaymentFromJSON(
   jsonString: string,

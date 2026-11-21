@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 import {
   InternationalAddress,
@@ -68,14 +69,16 @@ export const CreateVerifiedBusinessCustomerWithControllerController$outboundSche
     CreateVerifiedBusinessCustomerWithControllerController$Outbound,
     z.ZodTypeDef,
     CreateVerifiedBusinessCustomerWithControllerController
-  > = z.object({
-    firstName: z.string(),
-    lastName: z.string(),
-    title: z.string(),
-    dateOfBirth: z.string(),
-    address: InternationalAddress$outboundSchema,
-    ssn: z.string(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      firstName: z.string(),
+      lastName: z.string(),
+      title: z.string(),
+      dateOfBirth: z.string(),
+      address: InternationalAddress$outboundSchema,
+      ssn: z.string(),
+    })
+  );
 
 export function createVerifiedBusinessCustomerWithControllerControllerToJSON(
   createVerifiedBusinessCustomerWithControllerController:
@@ -92,7 +95,9 @@ export function createVerifiedBusinessCustomerWithControllerControllerToJSON(
 export const CreateVerifiedBusinessCustomerWithControllerBusinessType$outboundSchema:
   z.ZodNativeEnum<
     typeof CreateVerifiedBusinessCustomerWithControllerBusinessType
-  > = z.nativeEnum(CreateVerifiedBusinessCustomerWithControllerBusinessType);
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.nativeEnum(CreateVerifiedBusinessCustomerWithControllerBusinessType)
+  );
 
 /** @internal */
 export type CreateVerifiedBusinessCustomerWithController$Outbound = {
@@ -123,30 +128,32 @@ export const CreateVerifiedBusinessCustomerWithController$outboundSchema:
     CreateVerifiedBusinessCustomerWithController$Outbound,
     z.ZodTypeDef,
     CreateVerifiedBusinessCustomerWithController
-  > = z.object({
-    firstName: z.string(),
-    lastName: z.string(),
-    email: z.string(),
-    ipAddress: z.string().optional(),
-    phone: z.string().optional(),
-    correlationId: z.string().optional(),
-    type: z.literal("business"),
-    address1: z.string(),
-    address2: z.string().optional(),
-    city: z.string(),
-    state: z.string(),
-    postalCode: z.string(),
-    businessClassification: z.string(),
-    businessName: z.string(),
-    doingBusinessAs: z.string().optional(),
-    ein: z.string(),
-    website: z.string().optional(),
-    controller: z.lazy(() =>
-      CreateVerifiedBusinessCustomerWithControllerController$outboundSchema
-    ),
-    businessType:
-      CreateVerifiedBusinessCustomerWithControllerBusinessType$outboundSchema,
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      firstName: z.string(),
+      lastName: z.string(),
+      email: z.string(),
+      ipAddress: z.string().optional(),
+      phone: z.string().optional(),
+      correlationId: z.string().optional(),
+      type: z.literal("business"),
+      address1: z.string(),
+      address2: z.string().optional(),
+      city: z.string(),
+      state: z.string(),
+      postalCode: z.string(),
+      businessClassification: z.string(),
+      businessName: z.string(),
+      doingBusinessAs: z.string().optional(),
+      ein: z.string(),
+      website: z.string().optional(),
+      controller: z.lazy(() =>
+        CreateVerifiedBusinessCustomerWithControllerController$outboundSchema
+      ),
+      businessType:
+        CreateVerifiedBusinessCustomerWithControllerBusinessType$outboundSchema,
+    })
+  );
 
 export function createVerifiedBusinessCustomerWithControllerToJSON(
   createVerifiedBusinessCustomerWithController:

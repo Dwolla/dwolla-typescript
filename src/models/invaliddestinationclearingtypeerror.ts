@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -26,7 +26,7 @@ export const InvalidDestinationClearingTypeErrorLinks$inboundSchema: z.ZodType<
   InvalidDestinationClearingTypeErrorLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function invalidDestinationClearingTypeErrorLinksFromJSON(
   jsonString: string,
@@ -49,17 +49,19 @@ export const InvalidDestinationClearingTypeErrorError$inboundSchema: z.ZodType<
   InvalidDestinationClearingTypeErrorError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  _links: z.lazy(() => InvalidDestinationClearingTypeErrorLinks$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string().optional(),
+    message: z.string().optional(),
+    path: z.string().optional(),
+    _links: z.lazy(() => InvalidDestinationClearingTypeErrorLinks$inboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function invalidDestinationClearingTypeErrorErrorFromJSON(
   jsonString: string,
@@ -83,11 +85,13 @@ export const InvalidDestinationClearingTypeErrorEmbedded$inboundSchema:
     InvalidDestinationClearingTypeErrorEmbedded,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    errors: z.array(
-      z.lazy(() => InvalidDestinationClearingTypeErrorError$inboundSchema),
-    ).optional(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      errors: z.array(
+        z.lazy(() => InvalidDestinationClearingTypeErrorError$inboundSchema),
+      ).optional(),
+    })
+  );
 
 export function invalidDestinationClearingTypeErrorEmbeddedFromJSON(
   jsonString: string,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -29,7 +29,7 @@ export const WithdrawRtpPersonalWithdrawalNotSupportedErrorLinks$inboundSchema:
     WithdrawRtpPersonalWithdrawalNotSupportedErrorLinks,
     z.ZodTypeDef,
     unknown
-  > = z.object({});
+  > = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function withdrawRtpPersonalWithdrawalNotSupportedErrorLinksFromJSON(
   jsonString: string,
@@ -53,18 +53,20 @@ export const WithdrawRtpPersonalWithdrawalNotSupportedErrorError$inboundSchema:
     WithdrawRtpPersonalWithdrawalNotSupportedErrorError,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    path: z.string().optional(),
-    _links: z.lazy(() =>
-      WithdrawRtpPersonalWithdrawalNotSupportedErrorLinks$inboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "_links": "links",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      code: z.string().optional(),
+      message: z.string().optional(),
+      path: z.string().optional(),
+      _links: z.lazy(() =>
+        WithdrawRtpPersonalWithdrawalNotSupportedErrorLinks$inboundSchema
+      ).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "_links": "links",
+      });
+    })
+  );
 
 export function withdrawRtpPersonalWithdrawalNotSupportedErrorErrorFromJSON(
   jsonString: string,
@@ -88,13 +90,13 @@ export const WithdrawRtpPersonalWithdrawalNotSupportedErrorEmbedded$inboundSchem
     WithdrawRtpPersonalWithdrawalNotSupportedErrorEmbedded,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    errors: z.array(
-      z.lazy(() =>
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      errors: z.array(z.lazy(() =>
         WithdrawRtpPersonalWithdrawalNotSupportedErrorError$inboundSchema
-      ),
-    ).optional(),
-  });
+      )).optional(),
+    })
+  );
 
 export function withdrawRtpPersonalWithdrawalNotSupportedErrorEmbeddedFromJSON(
   jsonString: string,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { RFCDate } from "../types/rfcdate.js";
@@ -290,10 +290,12 @@ export const TransferAmount1$inboundSchema: z.ZodType<
   TransferAmount1,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  value: z.string().optional(),
-  currency: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    value: z.string().optional(),
+    currency: z.string().optional(),
+  })
+);
 
 export function transferAmount1FromJSON(
   jsonString: string,
@@ -310,10 +312,12 @@ export const Clearing$inboundSchema: z.ZodType<
   Clearing,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  source: z.string().optional(),
-  destination: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    source: z.string().optional(),
+    destination: z.string().optional(),
+  })
+);
 
 export function clearingFromJSON(
   jsonString: string,
@@ -330,10 +334,12 @@ export const TransferMetadata$inboundSchema: z.ZodType<
   TransferMetadata,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  paymentId: z.string().optional(),
-  note: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    paymentId: z.string().optional(),
+    note: z.string().optional(),
+  })
+);
 
 export function transferMetadataFromJSON(
   jsonString: string,
@@ -350,9 +356,11 @@ export const SourceAddenda$inboundSchema: z.ZodType<
   SourceAddenda,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  values: z.array(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    values: z.array(z.string()).optional(),
+  })
+);
 
 export function sourceAddendaFromJSON(
   jsonString: string,
@@ -367,22 +375,26 @@ export function sourceAddendaFromJSON(
 /** @internal */
 export const SourceCompanyEntryDescription$inboundSchema: z.ZodNativeEnum<
   typeof SourceCompanyEntryDescription
-> = z.nativeEnum(SourceCompanyEntryDescription);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(SourceCompanyEntryDescription)
+);
 
 /** @internal */
-export const Source$inboundSchema: z.ZodType<Source, z.ZodTypeDef, unknown> = z
-  .object({
-    addenda: z.lazy(() => SourceAddenda$inboundSchema).optional(),
-    beneficiaryName: z.string().optional(),
-    companyEntryDescription: SourceCompanyEntryDescription$inboundSchema
-      .optional(),
-    companyId: z.string().optional(),
-    companyName: z.string().optional(),
-    effectiveDate: z.string().transform(v => new RFCDate(v)).optional(),
-    postingData: z.string().optional(),
-    routingNumber: z.string().optional(),
-    traceId: z.string().optional(),
-  });
+export const Source$inboundSchema: z.ZodType<Source, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      addenda: z.lazy(() => SourceAddenda$inboundSchema).optional(),
+      beneficiaryName: z.string().optional(),
+      companyEntryDescription: SourceCompanyEntryDescription$inboundSchema
+        .optional(),
+      companyId: z.string().optional(),
+      companyName: z.string().optional(),
+      effectiveDate: z.string().transform(v => new RFCDate(v)).optional(),
+      postingData: z.string().optional(),
+      routingNumber: z.string().optional(),
+      traceId: z.string().optional(),
+    })
+  );
 
 export function sourceFromJSON(
   jsonString: string,
@@ -399,9 +411,11 @@ export const DestinationAddenda$inboundSchema: z.ZodType<
   DestinationAddenda,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  values: z.array(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    values: z.array(z.string()).optional(),
+  })
+);
 
 export function destinationAddendaFromJSON(
   jsonString: string,
@@ -416,25 +430,29 @@ export function destinationAddendaFromJSON(
 /** @internal */
 export const DestinationCompanyEntryDescription$inboundSchema: z.ZodNativeEnum<
   typeof DestinationCompanyEntryDescription
-> = z.nativeEnum(DestinationCompanyEntryDescription);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(DestinationCompanyEntryDescription)
+);
 
 /** @internal */
 export const AchDetailsDestination$inboundSchema: z.ZodType<
   AchDetailsDestination,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  addenda: z.lazy(() => DestinationAddenda$inboundSchema).optional(),
-  beneficiaryName: z.string().optional(),
-  companyEntryDescription: DestinationCompanyEntryDescription$inboundSchema
-    .optional(),
-  companyId: z.string().optional(),
-  companyName: z.string().optional(),
-  effectiveDate: z.string().transform(v => new RFCDate(v)).optional(),
-  postingData: z.string().optional(),
-  routingNumber: z.string().optional(),
-  traceId: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    addenda: z.lazy(() => DestinationAddenda$inboundSchema).optional(),
+    beneficiaryName: z.string().optional(),
+    companyEntryDescription: DestinationCompanyEntryDescription$inboundSchema
+      .optional(),
+    companyId: z.string().optional(),
+    companyName: z.string().optional(),
+    effectiveDate: z.string().transform(v => new RFCDate(v)).optional(),
+    postingData: z.string().optional(),
+    routingNumber: z.string().optional(),
+    traceId: z.string().optional(),
+  })
+);
 
 export function achDetailsDestinationFromJSON(
   jsonString: string,
@@ -451,10 +469,12 @@ export const AchDetails$inboundSchema: z.ZodType<
   AchDetails,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  source: z.lazy(() => Source$inboundSchema).optional(),
-  destination: z.lazy(() => AchDetailsDestination$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    source: z.lazy(() => Source$inboundSchema).optional(),
+    destination: z.lazy(() => AchDetailsDestination$inboundSchema).optional(),
+  })
+);
 
 export function achDetailsFromJSON(
   jsonString: string,
@@ -471,11 +491,13 @@ export const RtpDetailsDestination$inboundSchema: z.ZodType<
   RtpDetailsDestination,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  remittanceData: z.string().optional(),
-  networkId: z.string().optional(),
-  endToEndReferenceId: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    remittanceData: z.string().optional(),
+    networkId: z.string().optional(),
+    endToEndReferenceId: z.string().optional(),
+  })
+);
 
 export function rtpDetailsDestinationFromJSON(
   jsonString: string,
@@ -492,9 +514,11 @@ export const RtpDetails$inboundSchema: z.ZodType<
   RtpDetails,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  destination: z.lazy(() => RtpDetailsDestination$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    destination: z.lazy(() => RtpDetailsDestination$inboundSchema).optional(),
+  })
+);
 
 export function rtpDetailsFromJSON(
   jsonString: string,
@@ -511,11 +535,13 @@ export const FedNowDetailsDestination$inboundSchema: z.ZodType<
   FedNowDetailsDestination,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  remittanceData: z.string().optional(),
-  networkId: z.string().optional(),
-  endToEndReferenceId: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    remittanceData: z.string().optional(),
+    networkId: z.string().optional(),
+    endToEndReferenceId: z.string().optional(),
+  })
+);
 
 export function fedNowDetailsDestinationFromJSON(
   jsonString: string,
@@ -532,9 +558,12 @@ export const FedNowDetails$inboundSchema: z.ZodType<
   FedNowDetails,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  destination: z.lazy(() => FedNowDetailsDestination$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    destination: z.lazy(() => FedNowDetailsDestination$inboundSchema)
+      .optional(),
+  })
+);
 
 export function fedNowDetailsFromJSON(
   jsonString: string,
@@ -549,16 +578,18 @@ export function fedNowDetailsFromJSON(
 /** @internal */
 export const DestinationEnum$inboundSchema: z.ZodNativeEnum<
   typeof DestinationEnum
-> = z.nativeEnum(DestinationEnum);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(DestinationEnum));
 
 /** @internal */
 export const TransferProcessingChannel$inboundSchema: z.ZodType<
   TransferProcessingChannel,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  destination: DestinationEnum$inboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    destination: DestinationEnum$inboundSchema.optional(),
+  })
+);
 
 export function transferProcessingChannelFromJSON(
   jsonString: string,
@@ -575,26 +606,28 @@ export const Transfer$inboundSchema: z.ZodType<
   Transfer,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.record(HalLink$inboundSchema).optional(),
-  id: z.string().optional(),
-  status: z.string().optional(),
-  amount: z.lazy(() => TransferAmount1$inboundSchema).optional(),
-  created: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  clearing: z.lazy(() => Clearing$inboundSchema).optional(),
-  metadata: z.lazy(() => TransferMetadata$inboundSchema).optional(),
-  achDetails: z.lazy(() => AchDetails$inboundSchema).optional(),
-  rtpDetails: z.lazy(() => RtpDetails$inboundSchema).optional(),
-  fedNowDetails: z.lazy(() => FedNowDetails$inboundSchema).optional(),
-  correlationId: z.string().optional(),
-  processingChannel: z.lazy(() => TransferProcessingChannel$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.record(HalLink$inboundSchema).optional(),
+    id: z.string().optional(),
+    status: z.string().optional(),
+    amount: z.lazy(() => TransferAmount1$inboundSchema).optional(),
+    created: z.string().datetime({ offset: true }).transform(v => new Date(v))
+      .optional(),
+    clearing: z.lazy(() => Clearing$inboundSchema).optional(),
+    metadata: z.lazy(() => TransferMetadata$inboundSchema).optional(),
+    achDetails: z.lazy(() => AchDetails$inboundSchema).optional(),
+    rtpDetails: z.lazy(() => RtpDetails$inboundSchema).optional(),
+    fedNowDetails: z.lazy(() => FedNowDetails$inboundSchema).optional(),
+    correlationId: z.string().optional(),
+    processingChannel: z.lazy(() => TransferProcessingChannel$inboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function transferFromJSON(
   jsonString: string,

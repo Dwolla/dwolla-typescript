@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -158,9 +158,11 @@ export const InitiateTransferLinksSource$outboundSchema: z.ZodType<
   InitiateTransferLinksSource$Outbound,
   z.ZodTypeDef,
   InitiateTransferLinksSource
-> = z.object({
-  href: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+  })
+);
 
 export function initiateTransferLinksSourceToJSON(
   initiateTransferLinksSource: InitiateTransferLinksSource,
@@ -182,9 +184,11 @@ export const InitiateTransferLinksDestination$outboundSchema: z.ZodType<
   InitiateTransferLinksDestination$Outbound,
   z.ZodTypeDef,
   InitiateTransferLinksDestination
-> = z.object({
-  href: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+  })
+);
 
 export function initiateTransferLinksDestinationToJSON(
   initiateTransferLinksDestination: InitiateTransferLinksDestination,
@@ -207,11 +211,13 @@ export const InitiateTransferLinks$outboundSchema: z.ZodType<
   InitiateTransferLinks$Outbound,
   z.ZodTypeDef,
   InitiateTransferLinks
-> = z.object({
-  source: z.lazy(() => InitiateTransferLinksSource$outboundSchema).optional(),
-  destination: z.lazy(() => InitiateTransferLinksDestination$outboundSchema)
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    source: z.lazy(() => InitiateTransferLinksSource$outboundSchema).optional(),
+    destination: z.lazy(() => InitiateTransferLinksDestination$outboundSchema)
+      .optional(),
+  })
+);
 
 export function initiateTransferLinksToJSON(
   initiateTransferLinks: InitiateTransferLinks,
@@ -229,7 +235,7 @@ export const InitiateTransferMetadata$outboundSchema: z.ZodType<
   InitiateTransferMetadata$Outbound,
   z.ZodTypeDef,
   InitiateTransferMetadata
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function initiateTransferMetadataToJSON(
   initiateTransferMetadata: InitiateTransferMetadata,
@@ -249,9 +255,11 @@ export const ChargeTo$outboundSchema: z.ZodType<
   ChargeTo$Outbound,
   z.ZodTypeDef,
   ChargeTo
-> = z.object({
-  href: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+  })
+);
 
 export function chargeToToJSON(chargeTo: ChargeTo): string {
   return JSON.stringify(ChargeTo$outboundSchema.parse(chargeTo));
@@ -267,13 +275,15 @@ export const FeeLinks$outboundSchema: z.ZodType<
   FeeLinks$Outbound,
   z.ZodTypeDef,
   FeeLinks
-> = z.object({
-  chargeTo: z.lazy(() => ChargeTo$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    chargeTo: "charge-to",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    chargeTo: z.lazy(() => ChargeTo$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      chargeTo: "charge-to",
+    });
+  })
+);
 
 export function feeLinksToJSON(feeLinks: FeeLinks): string {
   return JSON.stringify(FeeLinks$outboundSchema.parse(feeLinks));
@@ -286,15 +296,17 @@ export type Fee$Outbound = {
 };
 
 /** @internal */
-export const Fee$outboundSchema: z.ZodType<Fee$Outbound, z.ZodTypeDef, Fee> = z
-  .object({
-    links: z.lazy(() => FeeLinks$outboundSchema).optional(),
-    amount: models.TransferAmount$outboundSchema.optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      links: "_links",
-    });
-  });
+export const Fee$outboundSchema: z.ZodType<Fee$Outbound, z.ZodTypeDef, Fee> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      links: z.lazy(() => FeeLinks$outboundSchema).optional(),
+      amount: models.TransferAmount$outboundSchema.optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        links: "_links",
+      });
+    })
+  );
 
 export function feeToJSON(fee: Fee): string {
   return JSON.stringify(Fee$outboundSchema.parse(fee));
@@ -311,10 +323,12 @@ export const InitiateTransferClearing$outboundSchema: z.ZodType<
   InitiateTransferClearing$Outbound,
   z.ZodTypeDef,
   InitiateTransferClearing
-> = z.object({
-  source: z.string().optional(),
-  destination: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    source: z.string().optional(),
+    destination: z.string().optional(),
+  })
+);
 
 export function initiateTransferClearingToJSON(
   initiateTransferClearing: InitiateTransferClearing,
@@ -334,9 +348,11 @@ export const InitiateTransferSourceAddenda$outboundSchema: z.ZodType<
   InitiateTransferSourceAddenda$Outbound,
   z.ZodTypeDef,
   InitiateTransferSourceAddenda
-> = z.object({
-  values: z.array(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    values: z.array(z.string()).optional(),
+  })
+);
 
 export function initiateTransferSourceAddendaToJSON(
   initiateTransferSourceAddenda: InitiateTransferSourceAddenda,
@@ -358,10 +374,12 @@ export const InitiateTransferAchDetailsSource$outboundSchema: z.ZodType<
   InitiateTransferAchDetailsSource$Outbound,
   z.ZodTypeDef,
   InitiateTransferAchDetailsSource
-> = z.object({
-  addenda: z.lazy(() => InitiateTransferSourceAddenda$outboundSchema)
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    addenda: z.lazy(() => InitiateTransferSourceAddenda$outboundSchema)
+      .optional(),
+  })
+);
 
 export function initiateTransferAchDetailsSourceToJSON(
   initiateTransferAchDetailsSource: InitiateTransferAchDetailsSource,
@@ -383,9 +401,11 @@ export const InitiateTransferDestinationAddenda$outboundSchema: z.ZodType<
   InitiateTransferDestinationAddenda$Outbound,
   z.ZodTypeDef,
   InitiateTransferDestinationAddenda
-> = z.object({
-  values: z.array(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    values: z.array(z.string()).optional(),
+  })
+);
 
 export function initiateTransferDestinationAddendaToJSON(
   initiateTransferDestinationAddenda: InitiateTransferDestinationAddenda,
@@ -407,10 +427,12 @@ export const InitiateTransferAchDetailsDestination$outboundSchema: z.ZodType<
   InitiateTransferAchDetailsDestination$Outbound,
   z.ZodTypeDef,
   InitiateTransferAchDetailsDestination
-> = z.object({
-  addenda: z.lazy(() => InitiateTransferDestinationAddenda$outboundSchema)
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    addenda: z.lazy(() => InitiateTransferDestinationAddenda$outboundSchema)
+      .optional(),
+  })
+);
 
 export function initiateTransferAchDetailsDestinationToJSON(
   initiateTransferAchDetailsDestination: InitiateTransferAchDetailsDestination,
@@ -433,13 +455,15 @@ export const InitiateTransferAchDetails$outboundSchema: z.ZodType<
   InitiateTransferAchDetails$Outbound,
   z.ZodTypeDef,
   InitiateTransferAchDetails
-> = z.object({
-  source: z.lazy(() => InitiateTransferAchDetailsSource$outboundSchema)
-    .optional(),
-  destination: z.lazy(() =>
-    InitiateTransferAchDetailsDestination$outboundSchema
-  ).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    source: z.lazy(() => InitiateTransferAchDetailsSource$outboundSchema)
+      .optional(),
+    destination: z.lazy(() =>
+      InitiateTransferAchDetailsDestination$outboundSchema
+    ).optional(),
+  })
+);
 
 export function initiateTransferAchDetailsToJSON(
   initiateTransferAchDetails: InitiateTransferAchDetails,
@@ -459,9 +483,11 @@ export const RtpDetailsDestination$outboundSchema: z.ZodType<
   RtpDetailsDestination$Outbound,
   z.ZodTypeDef,
   RtpDetailsDestination
-> = z.object({
-  remittanceData: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    remittanceData: z.string().optional(),
+  })
+);
 
 export function rtpDetailsDestinationToJSON(
   rtpDetailsDestination: RtpDetailsDestination,
@@ -481,9 +507,11 @@ export const RtpDetails$outboundSchema: z.ZodType<
   RtpDetails$Outbound,
   z.ZodTypeDef,
   RtpDetails
-> = z.object({
-  destination: z.lazy(() => RtpDetailsDestination$outboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    destination: z.lazy(() => RtpDetailsDestination$outboundSchema).optional(),
+  })
+);
 
 export function rtpDetailsToJSON(rtpDetails: RtpDetails): string {
   return JSON.stringify(RtpDetails$outboundSchema.parse(rtpDetails));
@@ -500,9 +528,11 @@ export const InitiateTransferInstantDetailsDestination$outboundSchema:
     InitiateTransferInstantDetailsDestination$Outbound,
     z.ZodTypeDef,
     InitiateTransferInstantDetailsDestination
-  > = z.object({
-    remittanceData: z.string().optional(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      remittanceData: z.string().optional(),
+    })
+  );
 
 export function initiateTransferInstantDetailsDestinationToJSON(
   initiateTransferInstantDetailsDestination:
@@ -525,11 +555,13 @@ export const InitiateTransferInstantDetails$outboundSchema: z.ZodType<
   InitiateTransferInstantDetails$Outbound,
   z.ZodTypeDef,
   InitiateTransferInstantDetails
-> = z.object({
-  destination: z.lazy(() =>
-    InitiateTransferInstantDetailsDestination$outboundSchema
-  ).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    destination: z.lazy(() =>
+      InitiateTransferInstantDetailsDestination$outboundSchema
+    ).optional(),
+  })
+);
 
 export function initiateTransferInstantDetailsToJSON(
   initiateTransferInstantDetails: InitiateTransferInstantDetails,
@@ -544,7 +576,7 @@ export function initiateTransferInstantDetailsToJSON(
 /** @internal */
 export const DestinationEnum$outboundSchema: z.ZodNativeEnum<
   typeof DestinationEnum
-> = z.nativeEnum(DestinationEnum);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(DestinationEnum));
 
 /** @internal */
 export type InitiateTransferProcessingChannel$Outbound = {
@@ -556,9 +588,11 @@ export const InitiateTransferProcessingChannel$outboundSchema: z.ZodType<
   InitiateTransferProcessingChannel$Outbound,
   z.ZodTypeDef,
   InitiateTransferProcessingChannel
-> = z.object({
-  destination: DestinationEnum$outboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    destination: DestinationEnum$outboundSchema.optional(),
+  })
+);
 
 export function initiateTransferProcessingChannelToJSON(
   initiateTransferProcessingChannel: InitiateTransferProcessingChannel,
@@ -589,26 +623,28 @@ export const InitiateTransferRequestBody$outboundSchema: z.ZodType<
   InitiateTransferRequestBody$Outbound,
   z.ZodTypeDef,
   InitiateTransferRequestBody
-> = z.object({
-  links: z.lazy(() => InitiateTransferLinks$outboundSchema),
-  amount: models.TransferAmount$outboundSchema,
-  metadata: z.lazy(() => InitiateTransferMetadata$outboundSchema).optional(),
-  fees: z.array(z.lazy(() => Fee$outboundSchema)).optional(),
-  clearing: z.lazy(() => InitiateTransferClearing$outboundSchema).optional(),
-  achDetails: z.lazy(() => InitiateTransferAchDetails$outboundSchema)
-    .optional(),
-  rtpDetails: z.lazy(() => RtpDetails$outboundSchema).optional(),
-  instantDetails: z.lazy(() => InitiateTransferInstantDetails$outboundSchema)
-    .optional(),
-  correlationId: z.string().optional(),
-  processingChannel: z.lazy(() =>
-    InitiateTransferProcessingChannel$outboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    links: z.lazy(() => InitiateTransferLinks$outboundSchema),
+    amount: models.TransferAmount$outboundSchema,
+    metadata: z.lazy(() => InitiateTransferMetadata$outboundSchema).optional(),
+    fees: z.array(z.lazy(() => Fee$outboundSchema)).optional(),
+    clearing: z.lazy(() => InitiateTransferClearing$outboundSchema).optional(),
+    achDetails: z.lazy(() => InitiateTransferAchDetails$outboundSchema)
+      .optional(),
+    rtpDetails: z.lazy(() => RtpDetails$outboundSchema).optional(),
+    instantDetails: z.lazy(() => InitiateTransferInstantDetails$outboundSchema)
+      .optional(),
+    correlationId: z.string().optional(),
+    processingChannel: z.lazy(() =>
+      InitiateTransferProcessingChannel$outboundSchema
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      links: "_links",
+    });
+  })
+);
 
 export function initiateTransferRequestBodyToJSON(
   initiateTransferRequestBody: InitiateTransferRequestBody,
@@ -631,15 +667,17 @@ export const InitiateTransferRequest$outboundSchema: z.ZodType<
   InitiateTransferRequest$Outbound,
   z.ZodTypeDef,
   InitiateTransferRequest
-> = z.object({
-  idempotencyKey: z.string().optional(),
-  requestBody: z.lazy(() => InitiateTransferRequestBody$outboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    idempotencyKey: "Idempotency-Key",
-    requestBody: "RequestBody",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    idempotencyKey: z.string().optional(),
+    requestBody: z.lazy(() => InitiateTransferRequestBody$outboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      idempotencyKey: "Idempotency-Key",
+      requestBody: "RequestBody",
+    });
+  })
+);
 
 export function initiateTransferRequestToJSON(
   initiateTransferRequest: InitiateTransferRequest,
@@ -654,13 +692,15 @@ export const InitiateTransferResponse$inboundSchema: z.ZodType<
   InitiateTransferResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+    });
+  })
+);
 
 export function initiateTransferResponseFromJSON(
   jsonString: string,

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 import {
   SandboxSimulationVirtualTransferItem,
   SandboxSimulationVirtualTransferItem$Outbound,
@@ -38,10 +39,12 @@ export const SandboxSimulationVirtualAccountTransfersRequest$outboundSchema:
     SandboxSimulationVirtualAccountTransfersRequest$Outbound,
     z.ZodTypeDef,
     SandboxSimulationVirtualAccountTransfersRequest
-  > = z.object({
-    type: z.literal("virtual"),
-    transfers: z.array(SandboxSimulationVirtualTransferItem$outboundSchema),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      type: z.literal("virtual"),
+      transfers: z.array(SandboxSimulationVirtualTransferItem$outboundSchema),
+    })
+  );
 
 export function sandboxSimulationVirtualAccountTransfersRequestToJSON(
   sandboxSimulationVirtualAccountTransfersRequest:

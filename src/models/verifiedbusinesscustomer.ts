@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
@@ -84,30 +84,37 @@ export type VerifiedBusinessCustomer = {
 /** @internal */
 export const VerifiedBusinessCustomerType$inboundSchema: z.ZodNativeEnum<
   typeof VerifiedBusinessCustomerType
-> = z.nativeEnum(VerifiedBusinessCustomerType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(VerifiedBusinessCustomerType)
+);
 
 /** @internal */
 export const VerifiedBusinessCustomerStatus$inboundSchema: z.ZodNativeEnum<
   typeof VerifiedBusinessCustomerStatus
-> = z.nativeEnum(VerifiedBusinessCustomerStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(VerifiedBusinessCustomerStatus)
+);
 
 /** @internal */
 export const VerifiedBusinessCustomerBusinessType$inboundSchema:
-  z.ZodNativeEnum<typeof VerifiedBusinessCustomerBusinessType> = z.nativeEnum(
-    VerifiedBusinessCustomerBusinessType,
-  );
+  z.ZodNativeEnum<typeof VerifiedBusinessCustomerBusinessType> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(VerifiedBusinessCustomerBusinessType)
+    );
 
 /** @internal */
 export const Address$inboundSchema: z.ZodType<Address, z.ZodTypeDef, unknown> =
-  z.object({
-    address1: z.string().optional(),
-    address2: z.string().optional(),
-    address3: z.string().optional(),
-    city: z.string().optional(),
-    postalCode: z.string().optional(),
-    country: z.string().optional(),
-    stateProvinceRegion: z.string().optional(),
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      address1: z.string().optional(),
+      address2: z.string().optional(),
+      address3: z.string().optional(),
+      city: z.string().optional(),
+      postalCode: z.string().optional(),
+      country: z.string().optional(),
+      stateProvinceRegion: z.string().optional(),
+    })
+  );
 
 export function addressFromJSON(
   jsonString: string,
@@ -124,12 +131,14 @@ export const VerifiedBusinessCustomerController$inboundSchema: z.ZodType<
   VerifiedBusinessCustomerController,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
-  title: z.string(),
-  address: z.lazy(() => Address$inboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    firstName: z.string(),
+    lastName: z.string(),
+    title: z.string(),
+    address: z.lazy(() => Address$inboundSchema),
+  })
+);
 
 export function verifiedBusinessCustomerControllerFromJSON(
   jsonString: string,
@@ -147,33 +156,35 @@ export const VerifiedBusinessCustomer$inboundSchema: z.ZodType<
   VerifiedBusinessCustomer,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.record(HalLink$inboundSchema),
-  id: z.string(),
-  firstName: z.string(),
-  lastName: z.string(),
-  email: z.string(),
-  correlationId: z.string().optional(),
-  created: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  type: VerifiedBusinessCustomerType$inboundSchema,
-  status: VerifiedBusinessCustomerStatus$inboundSchema,
-  address1: z.string(),
-  address2: z.string().optional(),
-  city: z.string(),
-  state: z.string(),
-  postalCode: z.string(),
-  phone: z.string().optional(),
-  website: z.string().optional(),
-  businessName: z.string(),
-  doingBusinessAs: z.string().optional(),
-  businessType: VerifiedBusinessCustomerBusinessType$inboundSchema,
-  businessClassification: z.string(),
-  controller: z.lazy(() => VerifiedBusinessCustomerController$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.record(HalLink$inboundSchema),
+    id: z.string(),
+    firstName: z.string(),
+    lastName: z.string(),
+    email: z.string(),
+    correlationId: z.string().optional(),
+    created: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    type: VerifiedBusinessCustomerType$inboundSchema,
+    status: VerifiedBusinessCustomerStatus$inboundSchema,
+    address1: z.string(),
+    address2: z.string().optional(),
+    city: z.string(),
+    state: z.string(),
+    postalCode: z.string(),
+    phone: z.string().optional(),
+    website: z.string().optional(),
+    businessName: z.string(),
+    doingBusinessAs: z.string().optional(),
+    businessType: VerifiedBusinessCustomerBusinessType$inboundSchema,
+    businessClassification: z.string(),
+    controller: z.lazy(() => VerifiedBusinessCustomerController$inboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function verifiedBusinessCustomerFromJSON(
   jsonString: string,

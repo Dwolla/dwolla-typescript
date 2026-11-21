@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import { HalLink, HalLink$inboundSchema } from "./hallink.js";
@@ -26,10 +26,12 @@ export const LabelAmount$inboundSchema: z.ZodType<
   LabelAmount,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  value: z.string().optional(),
-  currency: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    value: z.string().optional(),
+    currency: z.string().optional(),
+  })
+);
 
 export function labelAmountFromJSON(
   jsonString: string,
@@ -42,18 +44,20 @@ export function labelAmountFromJSON(
 }
 
 /** @internal */
-export const Label$inboundSchema: z.ZodType<Label, z.ZodTypeDef, unknown> = z
-  .object({
-    _links: z.record(HalLink$inboundSchema).optional(),
-    id: z.string().optional(),
-    created: z.string().datetime({ offset: true }).transform(v => new Date(v))
-      .optional(),
-    amount: z.lazy(() => LabelAmount$inboundSchema).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "_links": "links",
-    });
-  });
+export const Label$inboundSchema: z.ZodType<Label, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      _links: z.record(HalLink$inboundSchema).optional(),
+      id: z.string().optional(),
+      created: z.string().datetime({ offset: true }).transform(v => new Date(v))
+        .optional(),
+      amount: z.lazy(() => LabelAmount$inboundSchema).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "_links": "links",
+      });
+    })
+  );
 
 export function labelFromJSON(
   jsonString: string,

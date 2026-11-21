@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
@@ -133,27 +133,29 @@ export type FundingSource = {
 /** @internal */
 export const FundingSourceChannel$inboundSchema: z.ZodNativeEnum<
   typeof FundingSourceChannel
-> = z.nativeEnum(FundingSourceChannel);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(FundingSourceChannel));
 
 /** @internal */
 export const BankUsageType$inboundSchema: z.ZodNativeEnum<
   typeof BankUsageType
-> = z.nativeEnum(BankUsageType);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(BankUsageType));
 
 /** @internal */
 export const FundingSourceBillingAddress$inboundSchema: z.ZodType<
   FundingSourceBillingAddress,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  address1: z.string().optional(),
-  address2: z.string().optional(),
-  address3: z.string().optional(),
-  city: z.string().optional(),
-  stateProvinceRegion: z.string().optional(),
-  country: z.string().optional(),
-  postalCode: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    address1: z.string().optional(),
+    address2: z.string().optional(),
+    address3: z.string().optional(),
+    city: z.string().optional(),
+    stateProvinceRegion: z.string().optional(),
+    country: z.string().optional(),
+    postalCode: z.string().optional(),
+  })
+);
 
 export function fundingSourceBillingAddressFromJSON(
   jsonString: string,
@@ -170,18 +172,20 @@ export const FundingSourceCardDetails$inboundSchema: z.ZodType<
   FundingSourceCardDetails,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  brand: z.string().optional(),
-  lastFour: z.string().optional(),
-  expirationMonth: z.number().int().optional(),
-  expirationYear: z.number().int().optional(),
-  nameOnCard: z.string().optional(),
-  bin: z.string().optional(),
-  billingAddress: z.lazy(() => FundingSourceBillingAddress$inboundSchema)
-    .optional(),
-  dateOfBirth: z.string().optional(),
-  countryOfBirth: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    brand: z.string().optional(),
+    lastFour: z.string().optional(),
+    expirationMonth: z.number().int().optional(),
+    expirationYear: z.number().int().optional(),
+    nameOnCard: z.string().optional(),
+    bin: z.string().optional(),
+    billingAddress: z.lazy(() => FundingSourceBillingAddress$inboundSchema)
+      .optional(),
+    dateOfBirth: z.string().optional(),
+    countryOfBirth: z.string().optional(),
+  })
+);
 
 export function fundingSourceCardDetailsFromJSON(
   jsonString: string,
@@ -198,26 +202,29 @@ export const FundingSource$inboundSchema: z.ZodType<
   FundingSource,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.record(HalLink$inboundSchema).optional(),
-  id: z.string().optional(),
-  status: z.string().optional(),
-  type: z.string().optional(),
-  bankAccountType: z.string().optional(),
-  name: z.string().optional(),
-  created: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  removed: z.boolean().optional(),
-  channels: z.array(FundingSourceChannel$inboundSchema).optional(),
-  bankName: z.string().optional(),
-  fingerprint: z.string().optional(),
-  bankUsageType: BankUsageType$inboundSchema.optional(),
-  cardDetails: z.lazy(() => FundingSourceCardDetails$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.record(HalLink$inboundSchema).optional(),
+    id: z.string().optional(),
+    status: z.string().optional(),
+    type: z.string().optional(),
+    bankAccountType: z.string().optional(),
+    name: z.string().optional(),
+    created: z.string().datetime({ offset: true }).transform(v => new Date(v))
+      .optional(),
+    removed: z.boolean().optional(),
+    channels: z.array(FundingSourceChannel$inboundSchema).optional(),
+    bankName: z.string().optional(),
+    fingerprint: z.string().optional(),
+    bankUsageType: BankUsageType$inboundSchema.optional(),
+    cardDetails: z.lazy(() => FundingSourceCardDetails$inboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function fundingSourceFromJSON(
   jsonString: string,

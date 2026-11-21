@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 
 export type Passport = {
   number: string;
@@ -20,10 +21,12 @@ export const Passport$outboundSchema: z.ZodType<
   Passport$Outbound,
   z.ZodTypeDef,
   Passport
-> = z.object({
-  number: z.string(),
-  country: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    number: z.string(),
+    country: z.string(),
+  })
+);
 
 export function passportToJSON(passport: Passport): string {
   return JSON.stringify(Passport$outboundSchema.parse(passport));

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { Document, Document$inboundSchema } from "./document.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
@@ -25,9 +25,11 @@ export const DocumentsEmbedded$inboundSchema: z.ZodType<
   DocumentsEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  documents: z.array(Document$inboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    documents: z.array(Document$inboundSchema),
+  })
+);
 
 export function documentsEmbeddedFromJSON(
   jsonString: string,
@@ -44,16 +46,18 @@ export const Documents$inboundSchema: z.ZodType<
   Documents,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.record(HalLink$inboundSchema),
-  _embedded: z.lazy(() => DocumentsEmbedded$inboundSchema),
-  total: z.number().int(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-    "_embedded": "embedded",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.record(HalLink$inboundSchema),
+    _embedded: z.lazy(() => DocumentsEmbedded$inboundSchema),
+    total: z.number().int(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+      "_embedded": "embedded",
+    });
+  })
+);
 
 export function documentsFromJSON(
   jsonString: string,

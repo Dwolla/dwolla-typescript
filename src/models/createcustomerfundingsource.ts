@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 import { smartUnion } from "../types/smartUnion.js";
 import {
   CreateCustomerBankFundingSourceWithAccountNumbers,
@@ -59,13 +60,15 @@ export const CreateCustomerFundingSource$outboundSchema: z.ZodType<
   CreateCustomerFundingSource$Outbound,
   z.ZodTypeDef,
   CreateCustomerFundingSource
-> = smartUnion([
-  CreateCustomerBankFundingSourceWithAccountNumbers$outboundSchema,
-  CreateCustomerBankFundingSourceWithPlaid$outboundSchema,
-  CreateCustomerExchangeFundingSource$outboundSchema,
-  CreateCustomerVirtualAccountFundingSource$outboundSchema,
-  CreateCustomerCardFundingSourceWithExchange$outboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    CreateCustomerBankFundingSourceWithAccountNumbers$outboundSchema,
+    CreateCustomerBankFundingSourceWithPlaid$outboundSchema,
+    CreateCustomerExchangeFundingSource$outboundSchema,
+    CreateCustomerVirtualAccountFundingSource$outboundSchema,
+    CreateCustomerCardFundingSourceWithExchange$outboundSchema,
+  ])
+);
 
 export function createCustomerFundingSourceToJSON(
   createCustomerFundingSource: CreateCustomerFundingSource,

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { DwollaError } from "./dwollaerror.js";
 
 /**
@@ -70,28 +71,8 @@ export const GetExchangeNotFoundDwollaV1HalJSONError$inboundSchema: z.ZodType<
   GetExchangeNotFoundDwollaV1HalJSONError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  request$: z.instanceof(Request),
-  response$: z.instanceof(Response),
-  body$: z.string(),
-})
-  .transform((v) => {
-    return new GetExchangeNotFoundDwollaV1HalJSONError(v, {
-      request: v.request$,
-      response: v.response$,
-      body: v.body$,
-    });
-  });
-
-/** @internal */
-export const GetExchangeUnauthorizedDwollaV1HalJSONError$inboundSchema:
-  z.ZodType<
-    GetExchangeUnauthorizedDwollaV1HalJSONError,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
     code: z.string().optional(),
     message: z.string().optional(),
     request$: z.instanceof(Request),
@@ -99,9 +80,33 @@ export const GetExchangeUnauthorizedDwollaV1HalJSONError$inboundSchema:
     body$: z.string(),
   })
     .transform((v) => {
-      return new GetExchangeUnauthorizedDwollaV1HalJSONError(v, {
+      return new GetExchangeNotFoundDwollaV1HalJSONError(v, {
         request: v.request$,
         response: v.response$,
         body: v.body$,
       });
-    });
+    })
+);
+
+/** @internal */
+export const GetExchangeUnauthorizedDwollaV1HalJSONError$inboundSchema:
+  z.ZodType<
+    GetExchangeUnauthorizedDwollaV1HalJSONError,
+    z.ZodTypeDef,
+    unknown
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      code: z.string().optional(),
+      message: z.string().optional(),
+      request$: z.instanceof(Request),
+      response$: z.instanceof(Response),
+      body$: z.string(),
+    })
+      .transform((v) => {
+        return new GetExchangeUnauthorizedDwollaV1HalJSONError(v, {
+          request: v.request$,
+          response: v.response$,
+          body: v.body$,
+        });
+      })
+  );

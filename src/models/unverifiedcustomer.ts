@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
@@ -43,34 +43,36 @@ export type UnverifiedCustomer = {
 /** @internal */
 export const UnverifiedCustomerType$inboundSchema: z.ZodNativeEnum<
   typeof UnverifiedCustomerType
-> = z.nativeEnum(UnverifiedCustomerType);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(UnverifiedCustomerType));
 
 /** @internal */
 export const UnverifiedCustomerStatus$inboundSchema: z.ZodNativeEnum<
   typeof UnverifiedCustomerStatus
-> = z.nativeEnum(UnverifiedCustomerStatus);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(UnverifiedCustomerStatus));
 
 /** @internal */
 export const UnverifiedCustomer$inboundSchema: z.ZodType<
   UnverifiedCustomer,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.record(HalLink$inboundSchema),
-  id: z.string(),
-  firstName: z.string(),
-  lastName: z.string(),
-  email: z.string(),
-  correlationId: z.string().optional(),
-  created: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  type: UnverifiedCustomerType$inboundSchema,
-  status: UnverifiedCustomerStatus$inboundSchema,
-  businessName: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.record(HalLink$inboundSchema),
+    id: z.string(),
+    firstName: z.string(),
+    lastName: z.string(),
+    email: z.string(),
+    correlationId: z.string().optional(),
+    created: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    type: UnverifiedCustomerType$inboundSchema,
+    status: UnverifiedCustomerStatus$inboundSchema,
+    businessName: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function unverifiedCustomerFromJSON(
   jsonString: string,

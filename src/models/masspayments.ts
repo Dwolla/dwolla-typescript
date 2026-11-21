@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import { HalLink, HalLink$inboundSchema } from "./hallink.js";
@@ -25,13 +25,15 @@ export const MassPaymentsEmbedded$inboundSchema: z.ZodType<
   MassPaymentsEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  "mass-payments": z.array(MassPayment$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "mass-payments": "massPayments",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    "mass-payments": z.array(MassPayment$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "mass-payments": "massPayments",
+    });
+  })
+);
 
 export function massPaymentsEmbeddedFromJSON(
   jsonString: string,
@@ -48,16 +50,18 @@ export const MassPayments$inboundSchema: z.ZodType<
   MassPayments,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.record(HalLink$inboundSchema).optional(),
-  _embedded: z.lazy(() => MassPaymentsEmbedded$inboundSchema).optional(),
-  total: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-    "_embedded": "embedded",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.record(HalLink$inboundSchema).optional(),
+    _embedded: z.lazy(() => MassPaymentsEmbedded$inboundSchema).optional(),
+    total: z.number().int().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+      "_embedded": "embedded",
+    });
+  })
+);
 
 export function massPaymentsFromJSON(
   jsonString: string,

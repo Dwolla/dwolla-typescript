@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -47,9 +47,11 @@ export const CreateClientTokenCustomer$outboundSchema: z.ZodType<
   CreateClientTokenCustomer$Outbound,
   z.ZodTypeDef,
   CreateClientTokenCustomer
-> = z.object({
-  href: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string(),
+  })
+);
 
 export function createClientTokenCustomerToJSON(
   createClientTokenCustomer: CreateClientTokenCustomer,
@@ -69,9 +71,11 @@ export const CreateClientTokenLinks$outboundSchema: z.ZodType<
   CreateClientTokenLinks$Outbound,
   z.ZodTypeDef,
   CreateClientTokenLinks
-> = z.object({
-  customer: z.lazy(() => CreateClientTokenCustomer$outboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    customer: z.lazy(() => CreateClientTokenCustomer$outboundSchema),
+  })
+);
 
 export function createClientTokenLinksToJSON(
   createClientTokenLinks: CreateClientTokenLinks,
@@ -92,14 +96,16 @@ export const CreateClientTokenRequest$outboundSchema: z.ZodType<
   CreateClientTokenRequest$Outbound,
   z.ZodTypeDef,
   CreateClientTokenRequest
-> = z.object({
-  action: z.string(),
-  links: z.lazy(() => CreateClientTokenLinks$outboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    action: z.string(),
+    links: z.lazy(() => CreateClientTokenLinks$outboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      links: "_links",
+    });
+  })
+);
 
 export function createClientTokenRequestToJSON(
   createClientTokenRequest: CreateClientTokenRequest,
@@ -114,9 +120,11 @@ export const CreateClientTokenResponse$inboundSchema: z.ZodType<
   CreateClientTokenResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  token: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    token: z.string(),
+  })
+);
 
 export function createClientTokenResponseFromJSON(
   jsonString: string,

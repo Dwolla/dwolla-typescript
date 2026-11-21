@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type RetrieveBusinessClassificationRequest = {
   /**
@@ -21,9 +22,11 @@ export const RetrieveBusinessClassificationRequest$outboundSchema: z.ZodType<
   RetrieveBusinessClassificationRequest$Outbound,
   z.ZodTypeDef,
   RetrieveBusinessClassificationRequest
-> = z.object({
-  id: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+  })
+);
 
 export function retrieveBusinessClassificationRequestToJSON(
   retrieveBusinessClassificationRequest: RetrieveBusinessClassificationRequest,

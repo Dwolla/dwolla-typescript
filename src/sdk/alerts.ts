@@ -4,6 +4,7 @@
 
 import { alertsGet } from "../funcs/alertsGet.js";
 import { alertsList } from "../funcs/alertsList.js";
+import { alertsUpdate } from "../funcs/alertsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as models from "../models/index.js";
 import * as operations from "../models/operations/index.js";
@@ -54,6 +55,8 @@ export class Alerts extends ClientSDK {
    *
    * Alerts are in active development and must be enabled for your account. To enable alerts, please [reach out to Dwolla](https://www.dwolla.com/contact?b=apidocs).
    *
+   * If you can resolve the alert, its `_links` include a `resolve` link. To resolve it, send `{"status": "resolved"}` to `POST /alerts/{id}`.
+   *
    * Requires an application access token for your account. Returns a `404 NotFound` error if the alert doesn't exist.
    */
   async get(
@@ -61,6 +64,33 @@ export class Alerts extends ClientSDK {
     options?: RequestOptions,
   ): Promise<models.Alert> {
     return unwrapAsync(alertsGet(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Resolve alert
+   *
+   * @remarks
+   * Resolves an alert for your Dwolla account by setting its `status` to `resolved`. Returns the updated alert, with `status` set to `resolved`, the `resolved` timestamp set, and no `resolve` link.
+   *
+   * You can only resolve an alert that has a `resolve` link in its `_links`. The link is present only while the alert is `open` and can be resolved, so check for it before resolving an alert.
+   *
+   * Resolving an alert changes only the alert itself: its `status` becomes `resolved`, and `actionRequired` is removed when no further action is needed. It doesn't release holds on transfers or change the Customer, and it doesn't take the action described in `actionRequired` for you.
+   *
+   * Resolving an alert that's already resolved, or that you can't resolve, returns a `400 ValidationError` error with the embedded code `NotAllowed`, and the alert isn't changed.
+   *
+   * Alerts are in active development and must be enabled for your account. To enable alerts, please [reach out to Dwolla](https://www.dwolla.com/contact?b=apidocs).
+   *
+   * Requires an application access token for your account. Returns a `404 NotFound` error if the alert doesn't exist.
+   */
+  async update(
+    request: operations.UpdateAlertRequest,
+    options?: RequestOptions,
+  ): Promise<models.Alert> {
+    return unwrapAsync(alertsUpdate(
       this,
       request,
       options,

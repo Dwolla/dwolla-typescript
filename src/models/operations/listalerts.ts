@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -44,8 +44,8 @@ export type ListAlertsResponse = {
 };
 
 /** @internal */
-export const Status$outboundSchema: z.ZodNativeEnum<typeof Status> = z
-  .nativeEnum(Status);
+export const Status$outboundSchema: z.ZodNativeEnum<typeof Status> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(Status));
 
 /** @internal */
 export type ListAlertsRequest$Outbound = {
@@ -58,10 +58,12 @@ export const ListAlertsRequest$outboundSchema: z.ZodType<
   ListAlertsRequest$Outbound,
   z.ZodTypeDef,
   ListAlertsRequest
-> = z.object({
-  limit: z.number().int().default(25),
-  status: Status$outboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    limit: z.number().int().default(25),
+    status: Status$outboundSchema.optional(),
+  })
+);
 
 export function listAlertsRequestToJSON(
   listAlertsRequest: ListAlertsRequest,
@@ -76,13 +78,15 @@ export const ListAlertsResponse$inboundSchema: z.ZodType<
   ListAlertsResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Result: models.Alerts$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Result: models.Alerts$inboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      "Result": "result",
+    });
+  })
+);
 
 export function listAlertsResponseFromJSON(
   jsonString: string,

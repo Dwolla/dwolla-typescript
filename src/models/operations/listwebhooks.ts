@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
@@ -82,13 +82,15 @@ export const ListWebhooksRequest$outboundSchema: z.ZodType<
   ListWebhooksRequest$Outbound,
   z.ZodTypeDef,
   ListWebhooksRequest
-> = z.object({
-  id: z.string(),
-  limit: z.string().optional(),
-  offset: z.string().optional(),
-  startDate: z.string().optional(),
-  endDate: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    limit: z.string().optional(),
+    offset: z.string().optional(),
+    startDate: z.string().optional(),
+    endDate: z.string().optional(),
+  })
+);
 
 export function listWebhooksRequestToJSON(
   listWebhooksRequest: ListWebhooksRequest,
@@ -103,9 +105,11 @@ export const ListWebhooksSelf$inboundSchema: z.ZodType<
   ListWebhooksSelf,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+  })
+);
 
 export function listWebhooksSelfFromJSON(
   jsonString: string,
@@ -122,9 +126,11 @@ export const ListWebhooksFirst$inboundSchema: z.ZodType<
   ListWebhooksFirst,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+  })
+);
 
 export function listWebhooksFirstFromJSON(
   jsonString: string,
@@ -141,9 +147,11 @@ export const ListWebhooksLast$inboundSchema: z.ZodType<
   ListWebhooksLast,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+  })
+);
 
 export function listWebhooksLastFromJSON(
   jsonString: string,
@@ -156,10 +164,12 @@ export function listWebhooksLastFromJSON(
 }
 
 /** @internal */
-export const Next$inboundSchema: z.ZodType<Next, z.ZodTypeDef, unknown> = z
-  .object({
-    href: z.string().optional(),
-  });
+export const Next$inboundSchema: z.ZodType<Next, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      href: z.string().optional(),
+    })
+  );
 
 export function nextFromJSON(
   jsonString: string,
@@ -176,12 +186,14 @@ export const ListWebhooksLinks$inboundSchema: z.ZodType<
   ListWebhooksLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  self: z.lazy(() => ListWebhooksSelf$inboundSchema).optional(),
-  first: z.lazy(() => ListWebhooksFirst$inboundSchema).optional(),
-  last: z.lazy(() => ListWebhooksLast$inboundSchema).optional(),
-  next: z.lazy(() => Next$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    self: z.lazy(() => ListWebhooksSelf$inboundSchema).optional(),
+    first: z.lazy(() => ListWebhooksFirst$inboundSchema).optional(),
+    last: z.lazy(() => ListWebhooksLast$inboundSchema).optional(),
+    next: z.lazy(() => Next$inboundSchema).optional(),
+  })
+);
 
 export function listWebhooksLinksFromJSON(
   jsonString: string,
@@ -198,9 +210,11 @@ export const ListWebhooksEmbedded$inboundSchema: z.ZodType<
   ListWebhooksEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  webhooks: z.array(models.Webhook$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    webhooks: z.array(models.Webhook$inboundSchema).optional(),
+  })
+);
 
 export function listWebhooksEmbeddedFromJSON(
   jsonString: string,
@@ -217,16 +231,18 @@ export const ListWebhooksResponse$inboundSchema: z.ZodType<
   ListWebhooksResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.lazy(() => ListWebhooksLinks$inboundSchema).optional(),
-  _embedded: z.lazy(() => ListWebhooksEmbedded$inboundSchema).optional(),
-  total: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-    "_embedded": "embedded",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.lazy(() => ListWebhooksLinks$inboundSchema).optional(),
+    _embedded: z.lazy(() => ListWebhooksEmbedded$inboundSchema).optional(),
+    total: z.number().int().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+      "_embedded": "embedded",
+    });
+  })
+);
 
 export function listWebhooksResponseFromJSON(
   jsonString: string,

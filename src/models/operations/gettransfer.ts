@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type GetTransferRequest = {
   /**
@@ -21,9 +22,11 @@ export const GetTransferRequest$outboundSchema: z.ZodType<
   GetTransferRequest$Outbound,
   z.ZodTypeDef,
   GetTransferRequest
-> = z.object({
-  id: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+  })
+);
 
 export function getTransferRequestToJSON(
   getTransferRequest: GetTransferRequest,

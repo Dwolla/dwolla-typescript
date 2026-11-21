@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import { DwollaError } from "./dwollaerror.js";
@@ -59,30 +59,34 @@ export const CreateAccountExchangeDwollaV1HalJSONError$inboundSchema: z.ZodType<
   CreateAccountExchangeDwollaV1HalJSONError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  request$: z.instanceof(Request),
-  response$: z.instanceof(Response),
-  body$: z.string(),
-})
-  .transform((v) => {
-    return new CreateAccountExchangeDwollaV1HalJSONError(v, {
-      request: v.request$,
-      response: v.response$,
-      body: v.body$,
-    });
-  });
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string().optional(),
+    message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
+  })
+    .transform((v) => {
+      return new CreateAccountExchangeDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
+    })
+);
 
 /** @internal */
 export const CreateAccountExchangeDwollaV1HalJSON$inboundSchema: z.ZodType<
   CreateAccountExchangeDwollaV1HalJSON,
   z.ZodTypeDef,
   unknown
-> = smartUnion([
-  InvalidExchangeTokenError$inboundSchema,
-  InvalidExchangeError$inboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    InvalidExchangeTokenError$inboundSchema,
+    InvalidExchangeError$inboundSchema,
+  ])
+);
 
 export function createAccountExchangeDwollaV1HalJSONFromJSON(
   jsonString: string,
