@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -26,7 +26,7 @@ export const SecretTooLongErrorLinks$inboundSchema: z.ZodType<
   SecretTooLongErrorLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function secretTooLongErrorLinksFromJSON(
   jsonString: string,
@@ -43,16 +43,18 @@ export const SecretTooLongErrorError$inboundSchema: z.ZodType<
   SecretTooLongErrorError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  _links: z.lazy(() => SecretTooLongErrorLinks$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string().optional(),
+    message: z.string().optional(),
+    path: z.string().optional(),
+    _links: z.lazy(() => SecretTooLongErrorLinks$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function secretTooLongErrorErrorFromJSON(
   jsonString: string,
@@ -69,10 +71,12 @@ export const SecretTooLongErrorEmbedded$inboundSchema: z.ZodType<
   SecretTooLongErrorEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  errors: z.array(z.lazy(() => SecretTooLongErrorError$inboundSchema))
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    errors: z.array(z.lazy(() => SecretTooLongErrorError$inboundSchema))
+      .optional(),
+  })
+);
 
 export function secretTooLongErrorEmbeddedFromJSON(
   jsonString: string,

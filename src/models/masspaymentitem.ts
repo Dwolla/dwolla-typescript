@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -58,9 +58,11 @@ export const MassPaymentItemSelf$inboundSchema: z.ZodType<
   MassPaymentItemSelf,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+  })
+);
 
 export function massPaymentItemSelfFromJSON(
   jsonString: string,
@@ -77,9 +79,11 @@ export const MassPaymentItemMassPayment$inboundSchema: z.ZodType<
   MassPaymentItemMassPayment,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+  })
+);
 
 export function massPaymentItemMassPaymentFromJSON(
   jsonString: string,
@@ -96,9 +100,11 @@ export const MassPaymentItemDestination$inboundSchema: z.ZodType<
   MassPaymentItemDestination,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+  })
+);
 
 export function massPaymentItemDestinationFromJSON(
   jsonString: string,
@@ -115,9 +121,11 @@ export const MassPaymentItemTransfer$inboundSchema: z.ZodType<
   MassPaymentItemTransfer,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+  })
+);
 
 export function massPaymentItemTransferFromJSON(
   jsonString: string,
@@ -134,18 +142,20 @@ export const MassPaymentItemLinks$inboundSchema: z.ZodType<
   MassPaymentItemLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  self: z.lazy(() => MassPaymentItemSelf$inboundSchema).optional(),
-  "mass-payment": z.lazy(() => MassPaymentItemMassPayment$inboundSchema)
-    .optional(),
-  destination: z.lazy(() => MassPaymentItemDestination$inboundSchema)
-    .optional(),
-  transfer: z.lazy(() => MassPaymentItemTransfer$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "mass-payment": "massPayment",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    self: z.lazy(() => MassPaymentItemSelf$inboundSchema).optional(),
+    "mass-payment": z.lazy(() => MassPaymentItemMassPayment$inboundSchema)
+      .optional(),
+    destination: z.lazy(() => MassPaymentItemDestination$inboundSchema)
+      .optional(),
+    transfer: z.lazy(() => MassPaymentItemTransfer$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "mass-payment": "massPayment",
+    });
+  })
+);
 
 export function massPaymentItemLinksFromJSON(
   jsonString: string,
@@ -162,10 +172,12 @@ export const MassPaymentItemAmount$inboundSchema: z.ZodType<
   MassPaymentItemAmount,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  value: z.string().optional(),
-  currency: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    value: z.string().optional(),
+    currency: z.string().optional(),
+  })
+);
 
 export function massPaymentItemAmountFromJSON(
   jsonString: string,
@@ -182,9 +194,11 @@ export const MassPaymentItemMetadata$inboundSchema: z.ZodType<
   MassPaymentItemMetadata,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  item1: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    item1: z.string().optional(),
+  })
+);
 
 export function massPaymentItemMetadataFromJSON(
   jsonString: string,
@@ -201,9 +215,11 @@ export const MassPaymentItemProcessingChannel$inboundSchema: z.ZodType<
   MassPaymentItemProcessingChannel,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  destination: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    destination: z.string().optional(),
+  })
+);
 
 export function massPaymentItemProcessingChannelFromJSON(
   jsonString: string,
@@ -220,20 +236,22 @@ export const MassPaymentItem$inboundSchema: z.ZodType<
   MassPaymentItem,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.lazy(() => MassPaymentItemLinks$inboundSchema).optional(),
-  id: z.string().optional(),
-  status: z.string().optional(),
-  amount: z.lazy(() => MassPaymentItemAmount$inboundSchema).optional(),
-  metadata: z.lazy(() => MassPaymentItemMetadata$inboundSchema).optional(),
-  processingChannel: z.lazy(() =>
-    MassPaymentItemProcessingChannel$inboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.lazy(() => MassPaymentItemLinks$inboundSchema).optional(),
+    id: z.string().optional(),
+    status: z.string().optional(),
+    amount: z.lazy(() => MassPaymentItemAmount$inboundSchema).optional(),
+    metadata: z.lazy(() => MassPaymentItemMetadata$inboundSchema).optional(),
+    processingChannel: z.lazy(() =>
+      MassPaymentItemProcessingChannel$inboundSchema
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function massPaymentItemFromJSON(
   jsonString: string,

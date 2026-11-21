@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 /**
  * Parameters to update a webhook subscription
@@ -33,9 +34,11 @@ export const UpdateWebhookSubscriptionRequestBody$outboundSchema: z.ZodType<
   UpdateWebhookSubscriptionRequestBody$Outbound,
   z.ZodTypeDef,
   UpdateWebhookSubscriptionRequestBody
-> = z.object({
-  paused: z.boolean(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    paused: z.boolean(),
+  })
+);
 
 export function updateWebhookSubscriptionRequestBodyToJSON(
   updateWebhookSubscriptionRequestBody: UpdateWebhookSubscriptionRequestBody,
@@ -58,16 +61,18 @@ export const UpdateWebhookSubscriptionRequest$outboundSchema: z.ZodType<
   UpdateWebhookSubscriptionRequest$Outbound,
   z.ZodTypeDef,
   UpdateWebhookSubscriptionRequest
-> = z.object({
-  id: z.string(),
-  requestBody: z.lazy(() =>
-    UpdateWebhookSubscriptionRequestBody$outboundSchema
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    requestBody: "RequestBody",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    requestBody: z.lazy(() =>
+      UpdateWebhookSubscriptionRequestBody$outboundSchema
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      requestBody: "RequestBody",
+    });
+  })
+);
 
 export function updateWebhookSubscriptionRequestToJSON(
   updateWebhookSubscriptionRequest: UpdateWebhookSubscriptionRequest,

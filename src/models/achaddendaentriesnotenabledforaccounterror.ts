@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -27,7 +27,7 @@ export const AchAddendaEntriesNotEnabledForAccountErrorLinks$inboundSchema:
     AchAddendaEntriesNotEnabledForAccountErrorLinks,
     z.ZodTypeDef,
     unknown
-  > = z.object({});
+  > = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function achAddendaEntriesNotEnabledForAccountErrorLinksFromJSON(
   jsonString: string,
@@ -51,18 +51,20 @@ export const AchAddendaEntriesNotEnabledForAccountErrorError$inboundSchema:
     AchAddendaEntriesNotEnabledForAccountErrorError,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    path: z.string().optional(),
-    _links: z.lazy(() =>
-      AchAddendaEntriesNotEnabledForAccountErrorLinks$inboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "_links": "links",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      code: z.string().optional(),
+      message: z.string().optional(),
+      path: z.string().optional(),
+      _links: z.lazy(() =>
+        AchAddendaEntriesNotEnabledForAccountErrorLinks$inboundSchema
+      ).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "_links": "links",
+      });
+    })
+  );
 
 export function achAddendaEntriesNotEnabledForAccountErrorErrorFromJSON(
   jsonString: string,
@@ -86,13 +88,13 @@ export const AchAddendaEntriesNotEnabledForAccountErrorEmbedded$inboundSchema:
     AchAddendaEntriesNotEnabledForAccountErrorEmbedded,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    errors: z.array(
-      z.lazy(() =>
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      errors: z.array(z.lazy(() =>
         AchAddendaEntriesNotEnabledForAccountErrorError$inboundSchema
-      ),
-    ).optional(),
-  });
+      )).optional(),
+    })
+  );
 
 export function achAddendaEntriesNotEnabledForAccountErrorEmbeddedFromJSON(
   jsonString: string,

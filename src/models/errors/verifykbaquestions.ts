@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import { DwollaError } from "./dwollaerror.js";
@@ -64,31 +64,35 @@ export const VerifyKbaQuestionsDwollaV1HalJSONError$inboundSchema: z.ZodType<
   VerifyKbaQuestionsDwollaV1HalJSONError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  request$: z.instanceof(Request),
-  response$: z.instanceof(Response),
-  body$: z.string(),
-})
-  .transform((v) => {
-    return new VerifyKbaQuestionsDwollaV1HalJSONError(v, {
-      request: v.request$,
-      response: v.response$,
-      body: v.body$,
-    });
-  });
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string().optional(),
+    message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
+  })
+    .transform((v) => {
+      return new VerifyKbaQuestionsDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
+    })
+);
 
 /** @internal */
 export const VerifyKbaQuestionsDwollaV1HalJSON$inboundSchema: z.ZodType<
   VerifyKbaQuestionsDwollaV1HalJSON,
   z.ZodTypeDef,
   unknown
-> = smartUnion([
-  ForbiddenError$inboundSchema,
-  InvalidKbaSessionError$inboundSchema,
-  ExpiredKbaSessionError$inboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    ForbiddenError$inboundSchema,
+    InvalidKbaSessionError$inboundSchema,
+    ExpiredKbaSessionError$inboundSchema,
+  ])
+);
 
 export function verifyKbaQuestionsDwollaV1HalJSONFromJSON(
   jsonString: string,

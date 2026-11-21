@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import { HalLink, HalLink$inboundSchema } from "./hallink.js";
@@ -34,9 +34,11 @@ export const BusinessClassificationLinks$inboundSchema: z.ZodType<
   BusinessClassificationLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  self: HalLink$inboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    self: HalLink$inboundSchema.optional(),
+  })
+);
 
 export function businessClassificationLinksFromJSON(
   jsonString: string,
@@ -53,10 +55,12 @@ export const IndustryClassification$inboundSchema: z.ZodType<
   IndustryClassification,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.string().optional(),
-  name: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    name: z.string().optional(),
+  })
+);
 
 export function industryClassificationFromJSON(
   jsonString: string,
@@ -73,15 +77,17 @@ export const BusinessClassificationEmbedded$inboundSchema: z.ZodType<
   BusinessClassificationEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  "industry-classifications": z.array(
-    z.lazy(() => IndustryClassification$inboundSchema),
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "industry-classifications": "industryClassifications",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    "industry-classifications": z.array(
+      z.lazy(() => IndustryClassification$inboundSchema),
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "industry-classifications": "industryClassifications",
+    });
+  })
+);
 
 export function businessClassificationEmbeddedFromJSON(
   jsonString: string,
@@ -98,18 +104,20 @@ export const BusinessClassification$inboundSchema: z.ZodType<
   BusinessClassification,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.lazy(() => BusinessClassificationLinks$inboundSchema).optional(),
-  _embedded: z.lazy(() => BusinessClassificationEmbedded$inboundSchema)
-    .optional(),
-  id: z.string().optional(),
-  name: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-    "_embedded": "embedded",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.lazy(() => BusinessClassificationLinks$inboundSchema).optional(),
+    _embedded: z.lazy(() => BusinessClassificationEmbedded$inboundSchema)
+      .optional(),
+    id: z.string().optional(),
+    name: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+      "_embedded": "embedded",
+    });
+  })
+);
 
 export function businessClassificationFromJSON(
   jsonString: string,

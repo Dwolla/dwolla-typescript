@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { smartUnion } from "../types/smartUnion.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
@@ -60,13 +60,15 @@ export const Customer$inboundSchema: z.ZodType<
   Customer,
   z.ZodTypeDef,
   unknown
-> = smartUnion([
-  VerifiedBusinessCustomer$inboundSchema,
-  VerifiedSolePropCustomer$inboundSchema,
-  VerifiedPersonalCustomer$inboundSchema,
-  UnverifiedCustomer$inboundSchema,
-  ReceiveOnlyCustomer$inboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    VerifiedBusinessCustomer$inboundSchema,
+    VerifiedSolePropCustomer$inboundSchema,
+    VerifiedPersonalCustomer$inboundSchema,
+    UnverifiedCustomer$inboundSchema,
+    ReceiveOnlyCustomer$inboundSchema,
+  ])
+);
 
 export function customerFromJSON(
   jsonString: string,
@@ -83,17 +85,19 @@ export const CustomersEmbedded$inboundSchema: z.ZodType<
   CustomersEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  customers: z.array(
-    smartUnion([
-      VerifiedBusinessCustomer$inboundSchema,
-      VerifiedSolePropCustomer$inboundSchema,
-      VerifiedPersonalCustomer$inboundSchema,
-      UnverifiedCustomer$inboundSchema,
-      ReceiveOnlyCustomer$inboundSchema,
-    ]),
-  ).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    customers: z.array(
+      smartUnion([
+        VerifiedBusinessCustomer$inboundSchema,
+        VerifiedSolePropCustomer$inboundSchema,
+        VerifiedPersonalCustomer$inboundSchema,
+        UnverifiedCustomer$inboundSchema,
+        ReceiveOnlyCustomer$inboundSchema,
+      ]),
+    ).optional(),
+  })
+);
 
 export function customersEmbeddedFromJSON(
   jsonString: string,
@@ -110,16 +114,18 @@ export const Customers$inboundSchema: z.ZodType<
   Customers,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.record(HalLink$inboundSchema).optional(),
-  _embedded: z.lazy(() => CustomersEmbedded$inboundSchema).optional(),
-  total: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-    "_embedded": "embedded",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.record(HalLink$inboundSchema).optional(),
+    _embedded: z.lazy(() => CustomersEmbedded$inboundSchema).optional(),
+    total: z.number().int().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+      "_embedded": "embedded",
+    });
+  })
+);
 
 export function customersFromJSON(
   jsonString: string,

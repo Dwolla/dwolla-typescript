@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 /**
  * Parameters for updating a mass payment
@@ -33,9 +34,11 @@ export const UpdateMassPaymentRequestBody$outboundSchema: z.ZodType<
   UpdateMassPaymentRequestBody$Outbound,
   z.ZodTypeDef,
   UpdateMassPaymentRequestBody
-> = z.object({
-  status: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    status: z.string(),
+  })
+);
 
 export function updateMassPaymentRequestBodyToJSON(
   updateMassPaymentRequestBody: UpdateMassPaymentRequestBody,
@@ -58,14 +61,16 @@ export const UpdateMassPaymentRequest$outboundSchema: z.ZodType<
   UpdateMassPaymentRequest$Outbound,
   z.ZodTypeDef,
   UpdateMassPaymentRequest
-> = z.object({
-  id: z.string(),
-  requestBody: z.lazy(() => UpdateMassPaymentRequestBody$outboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    requestBody: "RequestBody",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    requestBody: z.lazy(() => UpdateMassPaymentRequestBody$outboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      requestBody: "RequestBody",
+    });
+  })
+);
 
 export function updateMassPaymentRequestToJSON(
   updateMassPaymentRequest: UpdateMassPaymentRequest,

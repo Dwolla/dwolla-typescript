@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -39,15 +39,17 @@ export const CreateCustomerRequest$outboundSchema: z.ZodType<
   CreateCustomerRequest$Outbound,
   z.ZodTypeDef,
   CreateCustomerRequest
-> = smartUnion([
-  models.CreateVerifiedSolePropCustomer$outboundSchema,
-  models.CreateVerifiedBusinessCustomerWithController$outboundSchema,
-  models
-    .CreateVerifiedBusinessCustomerWithInternationalController$outboundSchema,
-  models.CreateVerifiedPersonalCustomer$outboundSchema,
-  models.CreateReceiveOnlyUser$outboundSchema,
-  models.CreateUnverifiedCustomer$outboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    models.CreateVerifiedSolePropCustomer$outboundSchema,
+    models.CreateVerifiedBusinessCustomerWithController$outboundSchema,
+    models
+      .CreateVerifiedBusinessCustomerWithInternationalController$outboundSchema,
+    models.CreateVerifiedPersonalCustomer$outboundSchema,
+    models.CreateReceiveOnlyUser$outboundSchema,
+    models.CreateUnverifiedCustomer$outboundSchema,
+  ])
+);
 
 export function createCustomerRequestToJSON(
   createCustomerRequest: CreateCustomerRequest,
@@ -62,13 +64,15 @@ export const CreateCustomerResponse$inboundSchema: z.ZodType<
   CreateCustomerResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+    });
+  })
+);
 
 export function createCustomerResponseFromJSON(
   jsonString: string,

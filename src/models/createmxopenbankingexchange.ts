@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 
 export type CreateMXOpenBankingExchangeExchangePartner = {
   href: string;
@@ -36,9 +37,11 @@ export const CreateMXOpenBankingExchangeExchangePartner$outboundSchema:
     CreateMXOpenBankingExchangeExchangePartner$Outbound,
     z.ZodTypeDef,
     CreateMXOpenBankingExchangeExchangePartner
-  > = z.object({
-    href: z.string(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      href: z.string(),
+    })
+  );
 
 export function createMXOpenBankingExchangeExchangePartnerToJSON(
   createMXOpenBankingExchangeExchangePartner:
@@ -61,15 +64,17 @@ export const CreateMXOpenBankingExchangeLinks$outboundSchema: z.ZodType<
   CreateMXOpenBankingExchangeLinks$Outbound,
   z.ZodTypeDef,
   CreateMXOpenBankingExchangeLinks
-> = z.object({
-  exchangePartner: z.lazy(() =>
-    CreateMXOpenBankingExchangeExchangePartner$outboundSchema
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    exchangePartner: "exchange-partner",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    exchangePartner: z.lazy(() =>
+      CreateMXOpenBankingExchangeExchangePartner$outboundSchema
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      exchangePartner: "exchange-partner",
+    });
+  })
+);
 
 export function createMXOpenBankingExchangeLinksToJSON(
   createMXOpenBankingExchangeLinks: CreateMXOpenBankingExchangeLinks,
@@ -87,10 +92,12 @@ export type Mx$Outbound = {
 };
 
 /** @internal */
-export const Mx$outboundSchema: z.ZodType<Mx$Outbound, z.ZodTypeDef, Mx> = z
-  .object({
-    availableConnectionToken: z.string(),
-  });
+export const Mx$outboundSchema: z.ZodType<Mx$Outbound, z.ZodTypeDef, Mx> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      availableConnectionToken: z.string(),
+    })
+  );
 
 export function mxToJSON(mx: Mx): string {
   return JSON.stringify(Mx$outboundSchema.parse(mx));
@@ -107,14 +114,16 @@ export const CreateMXOpenBankingExchange$outboundSchema: z.ZodType<
   CreateMXOpenBankingExchange$Outbound,
   z.ZodTypeDef,
   CreateMXOpenBankingExchange
-> = z.object({
-  links: z.lazy(() => CreateMXOpenBankingExchangeLinks$outboundSchema),
-  mx: z.lazy(() => Mx$outboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    links: z.lazy(() => CreateMXOpenBankingExchangeLinks$outboundSchema),
+    mx: z.lazy(() => Mx$outboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      links: "_links",
+    });
+  })
+);
 
 export function createMXOpenBankingExchangeToJSON(
   createMXOpenBankingExchange: CreateMXOpenBankingExchange,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
@@ -47,9 +47,11 @@ export const ListTransferFeesRequest$outboundSchema: z.ZodType<
   ListTransferFeesRequest$Outbound,
   z.ZodTypeDef,
   ListTransferFeesRequest
-> = z.object({
-  id: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+  })
+);
 
 export function listTransferFeesRequestToJSON(
   listTransferFeesRequest: ListTransferFeesRequest,
@@ -64,10 +66,12 @@ export const ListTransferFeesAmount$inboundSchema: z.ZodType<
   ListTransferFeesAmount,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  value: z.string().optional(),
-  currency: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    value: z.string().optional(),
+    currency: z.string().optional(),
+  })
+);
 
 export function listTransferFeesAmountFromJSON(
   jsonString: string,
@@ -84,18 +88,20 @@ export const Transaction$inboundSchema: z.ZodType<
   Transaction,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.record(models.HalLink$inboundSchema).optional(),
-  id: z.string().optional(),
-  status: z.string().optional(),
-  amount: z.lazy(() => ListTransferFeesAmount$inboundSchema).optional(),
-  created: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.record(models.HalLink$inboundSchema).optional(),
+    id: z.string().optional(),
+    status: z.string().optional(),
+    amount: z.lazy(() => ListTransferFeesAmount$inboundSchema).optional(),
+    created: z.string().datetime({ offset: true }).transform(v => new Date(v))
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function transactionFromJSON(
   jsonString: string,
@@ -112,10 +118,12 @@ export const ListTransferFeesResponse$inboundSchema: z.ZodType<
   ListTransferFeesResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  transactions: z.array(z.lazy(() => Transaction$inboundSchema)).optional(),
-  total: z.number().int().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    transactions: z.array(z.lazy(() => Transaction$inboundSchema)).optional(),
+    total: z.number().int().optional(),
+  })
+);
 
 export function listTransferFeesResponseFromJSON(
   jsonString: string,

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 
 /**
  * Request body for removing a bank funding source
@@ -21,9 +22,11 @@ export const RemoveBank$outboundSchema: z.ZodType<
   RemoveBank$Outbound,
   z.ZodTypeDef,
   RemoveBank
-> = z.object({
-  removed: z.boolean(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    removed: z.boolean(),
+  })
+);
 
 export function removeBankToJSON(removeBank: RemoveBank): string {
   return JSON.stringify(RemoveBank$outboundSchema.parse(removeBank));

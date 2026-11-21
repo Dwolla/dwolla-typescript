@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import {
@@ -59,30 +59,34 @@ export const CreateFundingSourceDwollaV1HalJSONError$inboundSchema: z.ZodType<
   CreateFundingSourceDwollaV1HalJSONError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  request$: z.instanceof(Request),
-  response$: z.instanceof(Response),
-  body$: z.string(),
-})
-  .transform((v) => {
-    return new CreateFundingSourceDwollaV1HalJSONError(v, {
-      request: v.request$,
-      response: v.response$,
-      body: v.body$,
-    });
-  });
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string().optional(),
+    message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
+  })
+    .transform((v) => {
+      return new CreateFundingSourceDwollaV1HalJSONError(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
+    })
+);
 
 /** @internal */
 export const CreateFundingSourceDwollaV1HalJSON$inboundSchema: z.ZodType<
   CreateFundingSourceDwollaV1HalJSON,
   z.ZodTypeDef,
   unknown
-> = smartUnion([
-  BadRequestSchemaError$inboundSchema,
-  DuplicateResourceSchemaError$inboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    BadRequestSchemaError$inboundSchema,
+    DuplicateResourceSchemaError$inboundSchema,
+  ])
+);
 
 export function createFundingSourceDwollaV1HalJSONFromJSON(
   jsonString: string,

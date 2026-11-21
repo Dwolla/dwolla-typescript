@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
@@ -72,12 +72,14 @@ export const ListMassPaymentItemsRequest$outboundSchema: z.ZodType<
   ListMassPaymentItemsRequest$Outbound,
   z.ZodTypeDef,
   ListMassPaymentItemsRequest
-> = z.object({
-  id: z.string(),
-  limit: z.string().optional(),
-  offset: z.string().optional(),
-  status: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    limit: z.string().optional(),
+    offset: z.string().optional(),
+    status: z.string().optional(),
+  })
+);
 
 export function listMassPaymentItemsRequestToJSON(
   listMassPaymentItemsRequest: ListMassPaymentItemsRequest,
@@ -94,9 +96,11 @@ export const ListMassPaymentItemsSelf$inboundSchema: z.ZodType<
   ListMassPaymentItemsSelf,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+  })
+);
 
 export function listMassPaymentItemsSelfFromJSON(
   jsonString: string,
@@ -113,9 +117,11 @@ export const ListMassPaymentItemsFirst$inboundSchema: z.ZodType<
   ListMassPaymentItemsFirst,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+  })
+);
 
 export function listMassPaymentItemsFirstFromJSON(
   jsonString: string,
@@ -132,9 +138,11 @@ export const ListMassPaymentItemsLast$inboundSchema: z.ZodType<
   ListMassPaymentItemsLast,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+  })
+);
 
 export function listMassPaymentItemsLastFromJSON(
   jsonString: string,
@@ -151,11 +159,13 @@ export const ListMassPaymentItemsLinks$inboundSchema: z.ZodType<
   ListMassPaymentItemsLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  self: z.lazy(() => ListMassPaymentItemsSelf$inboundSchema).optional(),
-  first: z.lazy(() => ListMassPaymentItemsFirst$inboundSchema).optional(),
-  last: z.lazy(() => ListMassPaymentItemsLast$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    self: z.lazy(() => ListMassPaymentItemsSelf$inboundSchema).optional(),
+    first: z.lazy(() => ListMassPaymentItemsFirst$inboundSchema).optional(),
+    last: z.lazy(() => ListMassPaymentItemsLast$inboundSchema).optional(),
+  })
+);
 
 export function listMassPaymentItemsLinksFromJSON(
   jsonString: string,
@@ -172,9 +182,11 @@ export const ListMassPaymentItemsEmbedded$inboundSchema: z.ZodType<
   ListMassPaymentItemsEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  items: z.array(models.MassPaymentItem$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    items: z.array(models.MassPaymentItem$inboundSchema).optional(),
+  })
+);
 
 export function listMassPaymentItemsEmbeddedFromJSON(
   jsonString: string,
@@ -191,17 +203,19 @@ export const ListMassPaymentItemsResponse$inboundSchema: z.ZodType<
   ListMassPaymentItemsResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.lazy(() => ListMassPaymentItemsLinks$inboundSchema).optional(),
-  _embedded: z.lazy(() => ListMassPaymentItemsEmbedded$inboundSchema)
-    .optional(),
-  total: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-    "_embedded": "embedded",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.lazy(() => ListMassPaymentItemsLinks$inboundSchema).optional(),
+    _embedded: z.lazy(() => ListMassPaymentItemsEmbedded$inboundSchema)
+      .optional(),
+    total: z.number().int().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+      "_embedded": "embedded",
+    });
+  })
+);
 
 export function listMassPaymentItemsResponseFromJSON(
   jsonString: string,

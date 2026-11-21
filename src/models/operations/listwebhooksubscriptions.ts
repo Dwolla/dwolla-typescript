@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
@@ -35,9 +35,11 @@ export const ListWebhookSubscriptionsSelf$inboundSchema: z.ZodType<
   ListWebhookSubscriptionsSelf,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+  })
+);
 
 export function listWebhookSubscriptionsSelfFromJSON(
   jsonString: string,
@@ -54,9 +56,11 @@ export const ListWebhookSubscriptionsLinks$inboundSchema: z.ZodType<
   ListWebhookSubscriptionsLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  self: z.lazy(() => ListWebhookSubscriptionsSelf$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    self: z.lazy(() => ListWebhookSubscriptionsSelf$inboundSchema).optional(),
+  })
+);
 
 export function listWebhookSubscriptionsLinksFromJSON(
   jsonString: string,
@@ -73,14 +77,16 @@ export const ListWebhookSubscriptionsEmbedded$inboundSchema: z.ZodType<
   ListWebhookSubscriptionsEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  "webhook-subscriptions": z.array(models.WebhookSubscription$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "webhook-subscriptions": "webhookSubscriptions",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    "webhook-subscriptions": z.array(models.WebhookSubscription$inboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "webhook-subscriptions": "webhookSubscriptions",
+    });
+  })
+);
 
 export function listWebhookSubscriptionsEmbeddedFromJSON(
   jsonString: string,
@@ -97,17 +103,20 @@ export const ListWebhookSubscriptionsResponse$inboundSchema: z.ZodType<
   ListWebhookSubscriptionsResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.lazy(() => ListWebhookSubscriptionsLinks$inboundSchema).optional(),
-  _embedded: z.lazy(() => ListWebhookSubscriptionsEmbedded$inboundSchema)
-    .optional(),
-  total: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-    "_embedded": "embedded",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.lazy(() => ListWebhookSubscriptionsLinks$inboundSchema)
+      .optional(),
+    _embedded: z.lazy(() => ListWebhookSubscriptionsEmbedded$inboundSchema)
+      .optional(),
+    total: z.number().int().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+      "_embedded": "embedded",
+    });
+  })
+);
 
 export function listWebhookSubscriptionsResponseFromJSON(
   jsonString: string,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 import {
   TransferAmount,
   TransferAmount$Outbound,
@@ -43,9 +44,11 @@ export const SandboxSimulationVirtualTransferItemDestination$outboundSchema:
     SandboxSimulationVirtualTransferItemDestination$Outbound,
     z.ZodTypeDef,
     SandboxSimulationVirtualTransferItemDestination
-  > = z.object({
-    href: z.string(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      href: z.string(),
+    })
+  );
 
 export function sandboxSimulationVirtualTransferItemDestinationToJSON(
   sandboxSimulationVirtualTransferItemDestination:
@@ -65,11 +68,13 @@ export type Link$Outbound = {
 
 /** @internal */
 export const Link$outboundSchema: z.ZodType<Link$Outbound, z.ZodTypeDef, Link> =
-  z.object({
-    destination: z.lazy(() =>
-      SandboxSimulationVirtualTransferItemDestination$outboundSchema
-    ),
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      destination: z.lazy(() =>
+        SandboxSimulationVirtualTransferItemDestination$outboundSchema
+      ),
+    })
+  );
 
 export function linkToJSON(link: Link): string {
   return JSON.stringify(Link$outboundSchema.parse(link));
@@ -86,14 +91,16 @@ export const SandboxSimulationVirtualTransferItem$outboundSchema: z.ZodType<
   SandboxSimulationVirtualTransferItem$Outbound,
   z.ZodTypeDef,
   SandboxSimulationVirtualTransferItem
-> = z.object({
-  link: z.lazy(() => Link$outboundSchema),
-  amount: TransferAmount$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    link: "_link",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    link: z.lazy(() => Link$outboundSchema),
+    amount: TransferAmount$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      link: "_link",
+    });
+  })
+);
 
 export function sandboxSimulationVirtualTransferItemToJSON(
   sandboxSimulationVirtualTransferItem: SandboxSimulationVirtualTransferItem,

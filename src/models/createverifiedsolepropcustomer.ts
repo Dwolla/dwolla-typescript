@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 
 /**
  * Create a Verified Business customer (Sole Proprietorship)
@@ -59,28 +60,30 @@ export const CreateVerifiedSolePropCustomer$outboundSchema: z.ZodType<
   CreateVerifiedSolePropCustomer$Outbound,
   z.ZodTypeDef,
   CreateVerifiedSolePropCustomer
-> = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
-  email: z.string(),
-  ipAddress: z.string().optional(),
-  phone: z.string().optional(),
-  correlationId: z.string().optional(),
-  type: z.literal("business"),
-  address1: z.string(),
-  address2: z.string().optional(),
-  city: z.string(),
-  state: z.string(),
-  postalCode: z.string(),
-  ssn: z.string(),
-  dateOfBirth: z.string(),
-  businessClassification: z.string(),
-  businessName: z.string(),
-  doingBusinessAs: z.string().optional(),
-  ein: z.string().optional(),
-  website: z.string().optional(),
-  businessType: z.literal("soleProprietorship"),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    firstName: z.string(),
+    lastName: z.string(),
+    email: z.string(),
+    ipAddress: z.string().optional(),
+    phone: z.string().optional(),
+    correlationId: z.string().optional(),
+    type: z.literal("business"),
+    address1: z.string(),
+    address2: z.string().optional(),
+    city: z.string(),
+    state: z.string(),
+    postalCode: z.string(),
+    ssn: z.string(),
+    dateOfBirth: z.string(),
+    businessClassification: z.string(),
+    businessName: z.string(),
+    doingBusinessAs: z.string().optional(),
+    ein: z.string().optional(),
+    website: z.string().optional(),
+    businessType: z.literal("soleProprietorship"),
+  })
+);
 
 export function createVerifiedSolePropCustomerToJSON(
   createVerifiedSolePropCustomer: CreateVerifiedSolePropCustomer,

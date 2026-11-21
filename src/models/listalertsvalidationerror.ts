@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -26,7 +26,7 @@ export const ListAlertsValidationErrorLinks$inboundSchema: z.ZodType<
   ListAlertsValidationErrorLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function listAlertsValidationErrorLinksFromJSON(
   jsonString: string,
@@ -43,16 +43,19 @@ export const ListAlertsValidationErrorError$inboundSchema: z.ZodType<
   ListAlertsValidationErrorError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  path: z.string(),
-  _links: z.lazy(() => ListAlertsValidationErrorLinks$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string(),
+    message: z.string(),
+    path: z.string(),
+    _links: z.lazy(() => ListAlertsValidationErrorLinks$inboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function listAlertsValidationErrorErrorFromJSON(
   jsonString: string,
@@ -69,9 +72,11 @@ export const ListAlertsValidationErrorEmbedded$inboundSchema: z.ZodType<
   ListAlertsValidationErrorEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  errors: z.array(z.lazy(() => ListAlertsValidationErrorError$inboundSchema)),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    errors: z.array(z.lazy(() => ListAlertsValidationErrorError$inboundSchema)),
+  })
+);
 
 export function listAlertsValidationErrorEmbeddedFromJSON(
   jsonString: string,

@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -22,11 +22,13 @@ export const MaximumCardsExceededErrorError$inboundSchema: z.ZodType<
   MaximumCardsExceededErrorError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  path: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string(),
+    message: z.string(),
+    path: z.string(),
+  })
+);
 
 export function maximumCardsExceededErrorErrorFromJSON(
   jsonString: string,
@@ -43,9 +45,11 @@ export const MaximumCardsExceededErrorEmbedded$inboundSchema: z.ZodType<
   MaximumCardsExceededErrorEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  errors: z.array(z.lazy(() => MaximumCardsExceededErrorError$inboundSchema)),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    errors: z.array(z.lazy(() => MaximumCardsExceededErrorError$inboundSchema)),
+  })
+);
 
 export function maximumCardsExceededErrorEmbeddedFromJSON(
   jsonString: string,

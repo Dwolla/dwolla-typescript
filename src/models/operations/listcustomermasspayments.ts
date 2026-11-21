@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ListCustomerMassPaymentsRequest = {
   /**
@@ -36,12 +37,14 @@ export const ListCustomerMassPaymentsRequest$outboundSchema: z.ZodType<
   ListCustomerMassPaymentsRequest$Outbound,
   z.ZodTypeDef,
   ListCustomerMassPaymentsRequest
-> = z.object({
-  id: z.string(),
-  correlationId: z.string().optional(),
-  limit: z.number().int().optional(),
-  offset: z.number().int().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    correlationId: z.string().optional(),
+    limit: z.number().int().optional(),
+    offset: z.number().int().optional(),
+  })
+);
 
 export function listCustomerMassPaymentsRequestToJSON(
   listCustomerMassPaymentsRequest: ListCustomerMassPaymentsRequest,

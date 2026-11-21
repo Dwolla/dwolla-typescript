@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import { HalLink, HalLink$inboundSchema } from "./hallink.js";
@@ -14,14 +14,16 @@ export type Root = {
 };
 
 /** @internal */
-export const Root$inboundSchema: z.ZodType<Root, z.ZodTypeDef, unknown> = z
-  .object({
-    _links: z.record(HalLink$inboundSchema).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "_links": "links",
-    });
-  });
+export const Root$inboundSchema: z.ZodType<Root, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      _links: z.record(HalLink$inboundSchema).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "_links": "links",
+      });
+    })
+  );
 
 export function rootFromJSON(
   jsonString: string,

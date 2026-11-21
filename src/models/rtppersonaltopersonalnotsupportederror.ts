@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -27,7 +27,7 @@ export const RtpPersonalToPersonalNotSupportedErrorLinks$inboundSchema:
     RtpPersonalToPersonalNotSupportedErrorLinks,
     z.ZodTypeDef,
     unknown
-  > = z.object({});
+  > = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function rtpPersonalToPersonalNotSupportedErrorLinksFromJSON(
   jsonString: string,
@@ -51,18 +51,20 @@ export const RtpPersonalToPersonalNotSupportedErrorError$inboundSchema:
     RtpPersonalToPersonalNotSupportedErrorError,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    path: z.string().optional(),
-    _links: z.lazy(() =>
-      RtpPersonalToPersonalNotSupportedErrorLinks$inboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "_links": "links",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      code: z.string().optional(),
+      message: z.string().optional(),
+      path: z.string().optional(),
+      _links: z.lazy(() =>
+        RtpPersonalToPersonalNotSupportedErrorLinks$inboundSchema
+      ).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "_links": "links",
+      });
+    })
+  );
 
 export function rtpPersonalToPersonalNotSupportedErrorErrorFromJSON(
   jsonString: string,
@@ -86,11 +88,13 @@ export const RtpPersonalToPersonalNotSupportedErrorEmbedded$inboundSchema:
     RtpPersonalToPersonalNotSupportedErrorEmbedded,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    errors: z.array(
-      z.lazy(() => RtpPersonalToPersonalNotSupportedErrorError$inboundSchema),
-    ).optional(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      errors: z.array(
+        z.lazy(() => RtpPersonalToPersonalNotSupportedErrorError$inboundSchema),
+      ).optional(),
+    })
+  );
 
 export function rtpPersonalToPersonalNotSupportedErrorEmbeddedFromJSON(
   jsonString: string,

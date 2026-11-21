@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import { Event, Event$inboundSchema } from "./event.js";
@@ -28,7 +28,7 @@ export const EventsLinks$inboundSchema: z.ZodType<
   EventsLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function eventsLinksFromJSON(
   jsonString: string,
@@ -45,9 +45,11 @@ export const EventsEmbedded$inboundSchema: z.ZodType<
   EventsEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  events: z.array(Event$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    events: z.array(Event$inboundSchema).optional(),
+  })
+);
 
 export function eventsEmbeddedFromJSON(
   jsonString: string,
@@ -60,18 +62,20 @@ export function eventsEmbeddedFromJSON(
 }
 
 /** @internal */
-export const Events$inboundSchema: z.ZodType<Events, z.ZodTypeDef, unknown> = z
-  .object({
-    _links: z.lazy(() => EventsLinks$inboundSchema).optional(),
-    additionalProperties: HalLink$inboundSchema.optional(),
-    _embedded: z.lazy(() => EventsEmbedded$inboundSchema).optional(),
-    total: z.number().int().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "_links": "links",
-      "_embedded": "embedded",
-    });
-  });
+export const Events$inboundSchema: z.ZodType<Events, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      _links: z.lazy(() => EventsLinks$inboundSchema).optional(),
+      additionalProperties: HalLink$inboundSchema.optional(),
+      _embedded: z.lazy(() => EventsEmbedded$inboundSchema).optional(),
+      total: z.number().int().optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "_links": "links",
+        "_embedded": "embedded",
+      });
+    })
+  );
 
 export function eventsFromJSON(
   jsonString: string,

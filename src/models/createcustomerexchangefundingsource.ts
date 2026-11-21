@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 
 export type CreateCustomerExchangeFundingSourceExchange = {
@@ -61,9 +62,11 @@ export const CreateCustomerExchangeFundingSourceExchange$outboundSchema:
     CreateCustomerExchangeFundingSourceExchange$Outbound,
     z.ZodTypeDef,
     CreateCustomerExchangeFundingSourceExchange
-  > = z.object({
-    href: z.string(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      href: z.string(),
+    })
+  );
 
 export function createCustomerExchangeFundingSourceExchangeToJSON(
   createCustomerExchangeFundingSourceExchange:
@@ -88,9 +91,11 @@ export const CreateCustomerExchangeFundingSourceOnDemandAuthorization$outboundSc
     CreateCustomerExchangeFundingSourceOnDemandAuthorization$Outbound,
     z.ZodTypeDef,
     CreateCustomerExchangeFundingSourceOnDemandAuthorization
-  > = z.object({
-    href: z.string(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      href: z.string(),
+    })
+  );
 
 export function createCustomerExchangeFundingSourceOnDemandAuthorizationToJSON(
   createCustomerExchangeFundingSourceOnDemandAuthorization:
@@ -115,18 +120,20 @@ export const CreateCustomerExchangeFundingSourceLinks$outboundSchema: z.ZodType<
   CreateCustomerExchangeFundingSourceLinks$Outbound,
   z.ZodTypeDef,
   CreateCustomerExchangeFundingSourceLinks
-> = z.object({
-  exchange: z.lazy(() =>
-    CreateCustomerExchangeFundingSourceExchange$outboundSchema
-  ),
-  onDemandAuthorization: z.lazy(() =>
-    CreateCustomerExchangeFundingSourceOnDemandAuthorization$outboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    onDemandAuthorization: "on-demand-authorization",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    exchange: z.lazy(() =>
+      CreateCustomerExchangeFundingSourceExchange$outboundSchema
+    ),
+    onDemandAuthorization: z.lazy(() =>
+      CreateCustomerExchangeFundingSourceOnDemandAuthorization$outboundSchema
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      onDemandAuthorization: "on-demand-authorization",
+    });
+  })
+);
 
 export function createCustomerExchangeFundingSourceLinksToJSON(
   createCustomerExchangeFundingSourceLinks:
@@ -141,8 +148,10 @@ export function createCustomerExchangeFundingSourceLinksToJSON(
 
 /** @internal */
 export const CreateCustomerExchangeFundingSourceBankAccountType$outboundSchema:
-  z.ZodNativeEnum<typeof CreateCustomerExchangeFundingSourceBankAccountType> = z
-    .nativeEnum(CreateCustomerExchangeFundingSourceBankAccountType);
+  z.ZodNativeEnum<typeof CreateCustomerExchangeFundingSourceBankAccountType> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(CreateCustomerExchangeFundingSourceBankAccountType)
+    );
 
 /** @internal */
 export type CreateCustomerExchangeFundingSource$Outbound = {
@@ -156,16 +165,20 @@ export const CreateCustomerExchangeFundingSource$outboundSchema: z.ZodType<
   CreateCustomerExchangeFundingSource$Outbound,
   z.ZodTypeDef,
   CreateCustomerExchangeFundingSource
-> = z.object({
-  links: z.lazy(() => CreateCustomerExchangeFundingSourceLinks$outboundSchema),
-  bankAccountType:
-    CreateCustomerExchangeFundingSourceBankAccountType$outboundSchema,
-  name: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    links: z.lazy(() =>
+      CreateCustomerExchangeFundingSourceLinks$outboundSchema
+    ),
+    bankAccountType:
+      CreateCustomerExchangeFundingSourceBankAccountType$outboundSchema,
+    name: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      links: "_links",
+    });
+  })
+);
 
 export function createCustomerExchangeFundingSourceToJSON(
   createCustomerExchangeFundingSource: CreateCustomerExchangeFundingSource,

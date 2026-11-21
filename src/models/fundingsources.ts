@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import { FundingSource, FundingSource$inboundSchema } from "./fundingsource.js";
@@ -25,13 +25,15 @@ export const FundingSourcesEmbedded$inboundSchema: z.ZodType<
   FundingSourcesEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  "funding-sources": z.array(FundingSource$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "funding-sources": "fundingSources",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    "funding-sources": z.array(FundingSource$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "funding-sources": "fundingSources",
+    });
+  })
+);
 
 export function fundingSourcesEmbeddedFromJSON(
   jsonString: string,
@@ -48,16 +50,18 @@ export const FundingSources$inboundSchema: z.ZodType<
   FundingSources,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.record(HalLink$inboundSchema).optional(),
-  _embedded: z.lazy(() => FundingSourcesEmbedded$inboundSchema).optional(),
-  total: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-    "_embedded": "embedded",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.record(HalLink$inboundSchema).optional(),
+    _embedded: z.lazy(() => FundingSourcesEmbedded$inboundSchema).optional(),
+    total: z.number().int().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+      "_embedded": "embedded",
+    });
+  })
+);
 
 export function fundingSourcesFromJSON(
   jsonString: string,

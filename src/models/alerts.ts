@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { Alert, Alert$inboundSchema } from "./alert.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
@@ -71,15 +71,17 @@ export const AlertsSelfHalLink$inboundSchema: z.ZodType<
   AlertsSelfHalLink,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-  type: z.string().optional(),
-  "resource-type": z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "resource-type": "resourceType",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+    type: z.string().optional(),
+    "resource-type": z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "resource-type": "resourceType",
+    });
+  })
+);
 
 export function alertsSelfHalLinkFromJSON(
   jsonString: string,
@@ -96,15 +98,17 @@ export const NextHalLink$inboundSchema: z.ZodType<
   NextHalLink,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-  type: z.string().optional(),
-  "resource-type": z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "resource-type": "resourceType",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+    type: z.string().optional(),
+    "resource-type": z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "resource-type": "resourceType",
+    });
+  })
+);
 
 export function nextHalLinkFromJSON(
   jsonString: string,
@@ -121,15 +125,17 @@ export const PrevHalLink$inboundSchema: z.ZodType<
   PrevHalLink,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-  type: z.string().optional(),
-  "resource-type": z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "resource-type": "resourceType",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+    type: z.string().optional(),
+    "resource-type": z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "resource-type": "resourceType",
+    });
+  })
+);
 
 export function prevHalLinkFromJSON(
   jsonString: string,
@@ -146,11 +152,13 @@ export const AlertsLinks$inboundSchema: z.ZodType<
   AlertsLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  self: z.lazy(() => AlertsSelfHalLink$inboundSchema),
-  next: z.lazy(() => NextHalLink$inboundSchema).optional(),
-  prev: z.lazy(() => PrevHalLink$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    self: z.lazy(() => AlertsSelfHalLink$inboundSchema),
+    next: z.lazy(() => NextHalLink$inboundSchema).optional(),
+    prev: z.lazy(() => PrevHalLink$inboundSchema).optional(),
+  })
+);
 
 export function alertsLinksFromJSON(
   jsonString: string,
@@ -167,9 +175,11 @@ export const AlertsEmbedded$inboundSchema: z.ZodType<
   AlertsEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  alerts: z.array(Alert$inboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    alerts: z.array(Alert$inboundSchema),
+  })
+);
 
 export function alertsEmbeddedFromJSON(
   jsonString: string,
@@ -182,16 +192,18 @@ export function alertsEmbeddedFromJSON(
 }
 
 /** @internal */
-export const Alerts$inboundSchema: z.ZodType<Alerts, z.ZodTypeDef, unknown> = z
-  .object({
-    _links: z.lazy(() => AlertsLinks$inboundSchema),
-    _embedded: z.lazy(() => AlertsEmbedded$inboundSchema),
-  }).transform((v) => {
-    return remap$(v, {
-      "_links": "links",
-      "_embedded": "embedded",
-    });
-  });
+export const Alerts$inboundSchema: z.ZodType<Alerts, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      _links: z.lazy(() => AlertsLinks$inboundSchema),
+      _embedded: z.lazy(() => AlertsEmbedded$inboundSchema),
+    }).transform((v) => {
+      return remap$(v, {
+        "_links": "links",
+        "_embedded": "embedded",
+      });
+    })
+  );
 
 export function alertsFromJSON(
   jsonString: string,

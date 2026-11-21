@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -26,7 +26,7 @@ export const PrefundingSourceNotAllowedErrorLinks$inboundSchema: z.ZodType<
   PrefundingSourceNotAllowedErrorLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function prefundingSourceNotAllowedErrorLinksFromJSON(
   jsonString: string,
@@ -44,17 +44,19 @@ export const PrefundingSourceNotAllowedErrorError$inboundSchema: z.ZodType<
   PrefundingSourceNotAllowedErrorError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  _links: z.lazy(() => PrefundingSourceNotAllowedErrorLinks$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string().optional(),
+    message: z.string().optional(),
+    path: z.string().optional(),
+    _links: z.lazy(() => PrefundingSourceNotAllowedErrorLinks$inboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function prefundingSourceNotAllowedErrorErrorFromJSON(
   jsonString: string,
@@ -72,11 +74,13 @@ export const PrefundingSourceNotAllowedErrorEmbedded$inboundSchema: z.ZodType<
   PrefundingSourceNotAllowedErrorEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  errors: z.array(
-    z.lazy(() => PrefundingSourceNotAllowedErrorError$inboundSchema),
-  ).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    errors: z.array(
+      z.lazy(() => PrefundingSourceNotAllowedErrorError$inboundSchema),
+    ).optional(),
+  })
+);
 
 export function prefundingSourceNotAllowedErrorEmbeddedFromJSON(
   jsonString: string,

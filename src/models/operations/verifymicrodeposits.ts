@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -78,10 +78,12 @@ export const Amount1$outboundSchema: z.ZodType<
   Amount1$Outbound,
   z.ZodTypeDef,
   Amount1
-> = z.object({
-  value: z.string(),
-  currency: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    value: z.string(),
+    currency: z.string(),
+  })
+);
 
 export function amount1ToJSON(amount1: Amount1): string {
   return JSON.stringify(Amount1$outboundSchema.parse(amount1));
@@ -98,10 +100,12 @@ export const Amount2$outboundSchema: z.ZodType<
   Amount2$Outbound,
   z.ZodTypeDef,
   Amount2
-> = z.object({
-  value: z.string(),
-  currency: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    value: z.string(),
+    currency: z.string(),
+  })
+);
 
 export function amount2ToJSON(amount2: Amount2): string {
   return JSON.stringify(Amount2$outboundSchema.parse(amount2));
@@ -118,10 +122,12 @@ export const VerifyMicroDepositsRequestBody$outboundSchema: z.ZodType<
   VerifyMicroDepositsRequestBody$Outbound,
   z.ZodTypeDef,
   VerifyMicroDepositsRequestBody
-> = z.object({
-  amount1: z.lazy(() => Amount1$outboundSchema),
-  amount2: z.lazy(() => Amount2$outboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    amount1: z.lazy(() => Amount1$outboundSchema),
+    amount2: z.lazy(() => Amount2$outboundSchema),
+  })
+);
 
 export function verifyMicroDepositsRequestBodyToJSON(
   verifyMicroDepositsRequestBody: VerifyMicroDepositsRequestBody,
@@ -144,14 +150,16 @@ export const VerifyMicroDepositsRequest$outboundSchema: z.ZodType<
   VerifyMicroDepositsRequest$Outbound,
   z.ZodTypeDef,
   VerifyMicroDepositsRequest
-> = z.object({
-  id: z.string(),
-  requestBody: z.lazy(() => VerifyMicroDepositsRequestBody$outboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    requestBody: "RequestBody",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    requestBody: z.lazy(() => VerifyMicroDepositsRequestBody$outboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      requestBody: "RequestBody",
+    });
+  })
+);
 
 export function verifyMicroDepositsRequestToJSON(
   verifyMicroDepositsRequest: VerifyMicroDepositsRequest,
@@ -166,7 +174,7 @@ export const BadRequestLinks$inboundSchema: z.ZodType<
   BadRequestLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function badRequestLinksFromJSON(
   jsonString: string,
@@ -179,17 +187,19 @@ export function badRequestLinksFromJSON(
 }
 
 /** @internal */
-export const ErrorT$inboundSchema: z.ZodType<ErrorT, z.ZodTypeDef, unknown> = z
-  .object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    path: z.string().optional(),
-    _links: z.lazy(() => BadRequestLinks$inboundSchema).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "_links": "links",
-    });
-  });
+export const ErrorT$inboundSchema: z.ZodType<ErrorT, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      code: z.string().optional(),
+      message: z.string().optional(),
+      path: z.string().optional(),
+      _links: z.lazy(() => BadRequestLinks$inboundSchema).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "_links": "links",
+      });
+    })
+  );
 
 export function errorFromJSON(
   jsonString: string,
@@ -206,9 +216,11 @@ export const VerifyMicroDepositsEmbedded$inboundSchema: z.ZodType<
   VerifyMicroDepositsEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  errors: z.array(z.lazy(() => ErrorT$inboundSchema)).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    errors: z.array(z.lazy(() => ErrorT$inboundSchema)).optional(),
+  })
+);
 
 export function verifyMicroDepositsEmbeddedFromJSON(
   jsonString: string,
@@ -225,15 +237,17 @@ export const VerifyMicroDepositsSelf$inboundSchema: z.ZodType<
   VerifyMicroDepositsSelf,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-  type: z.string().optional(),
-  "resource-type": z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "resource-type": "resourceType",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+    type: z.string().optional(),
+    "resource-type": z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "resource-type": "resourceType",
+    });
+  })
+);
 
 export function verifyMicroDepositsSelfFromJSON(
   jsonString: string,
@@ -250,9 +264,11 @@ export const VerifyMicroDepositsLinks$inboundSchema: z.ZodType<
   VerifyMicroDepositsLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  self: z.lazy(() => VerifyMicroDepositsSelf$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    self: z.lazy(() => VerifyMicroDepositsSelf$inboundSchema).optional(),
+  })
+);
 
 export function verifyMicroDepositsLinksFromJSON(
   jsonString: string,
@@ -269,13 +285,15 @@ export const VerifyMicroDepositsResponse$inboundSchema: z.ZodType<
   VerifyMicroDepositsResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.lazy(() => VerifyMicroDepositsLinks$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.lazy(() => VerifyMicroDepositsLinks$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function verifyMicroDepositsResponseFromJSON(
   jsonString: string,

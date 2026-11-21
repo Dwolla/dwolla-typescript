@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 
 /**
  * Create a Verified Personal customer
@@ -47,22 +48,24 @@ export const CreateVerifiedPersonalCustomer$outboundSchema: z.ZodType<
   CreateVerifiedPersonalCustomer$Outbound,
   z.ZodTypeDef,
   CreateVerifiedPersonalCustomer
-> = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
-  email: z.string(),
-  ipAddress: z.string().optional(),
-  phone: z.string().optional(),
-  correlationId: z.string().optional(),
-  type: z.literal("personal"),
-  address1: z.string(),
-  address2: z.string().optional(),
-  city: z.string(),
-  state: z.string(),
-  postalCode: z.string(),
-  ssn: z.string(),
-  dateOfBirth: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    firstName: z.string(),
+    lastName: z.string(),
+    email: z.string(),
+    ipAddress: z.string().optional(),
+    phone: z.string().optional(),
+    correlationId: z.string().optional(),
+    type: z.literal("personal"),
+    address1: z.string(),
+    address2: z.string().optional(),
+    city: z.string(),
+    state: z.string(),
+    postalCode: z.string(),
+    ssn: z.string(),
+    dateOfBirth: z.string(),
+  })
+);
 
 export function createVerifiedPersonalCustomerToJSON(
   createVerifiedPersonalCustomer: CreateVerifiedPersonalCustomer,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import { HalLink, HalLink$inboundSchema } from "./hallink.js";
@@ -25,9 +25,11 @@ export const TransfersEmbedded$inboundSchema: z.ZodType<
   TransfersEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  transfers: z.array(Transfer$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    transfers: z.array(Transfer$inboundSchema).optional(),
+  })
+);
 
 export function transfersEmbeddedFromJSON(
   jsonString: string,
@@ -44,16 +46,18 @@ export const Transfers$inboundSchema: z.ZodType<
   Transfers,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.record(HalLink$inboundSchema).optional(),
-  _embedded: z.lazy(() => TransfersEmbedded$inboundSchema).optional(),
-  total: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-    "_embedded": "embedded",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.record(HalLink$inboundSchema).optional(),
+    _embedded: z.lazy(() => TransfersEmbedded$inboundSchema).optional(),
+    total: z.number().int().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+      "_embedded": "embedded",
+    });
+  })
+);
 
 export function transfersFromJSON(
   jsonString: string,

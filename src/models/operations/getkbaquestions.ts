@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -55,9 +55,11 @@ export const GetKbaQuestionsRequest$outboundSchema: z.ZodType<
   GetKbaQuestionsRequest$Outbound,
   z.ZodTypeDef,
   GetKbaQuestionsRequest
-> = z.object({
-  id: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+  })
+);
 
 export function getKbaQuestionsRequestToJSON(
   getKbaQuestionsRequest: GetKbaQuestionsRequest,
@@ -72,15 +74,17 @@ export const LinksAnswer$inboundSchema: z.ZodType<
   LinksAnswer,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-  type: z.string().optional(),
-  "resource-type": z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "resource-type": "resourceType",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+    type: z.string().optional(),
+    "resource-type": z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "resource-type": "resourceType",
+    });
+  })
+);
 
 export function linksAnswerFromJSON(
   jsonString: string,
@@ -97,9 +101,11 @@ export const GetKbaQuestionsLinks$inboundSchema: z.ZodType<
   GetKbaQuestionsLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  answer: z.lazy(() => LinksAnswer$inboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    answer: z.lazy(() => LinksAnswer$inboundSchema),
+  })
+);
 
 export function getKbaQuestionsLinksFromJSON(
   jsonString: string,
@@ -116,10 +122,12 @@ export const QuestionAnswer$inboundSchema: z.ZodType<
   QuestionAnswer,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.string(),
-  text: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    text: z.string(),
+  })
+);
 
 export function questionAnswerFromJSON(
   jsonString: string,
@@ -136,11 +144,13 @@ export const Question$inboundSchema: z.ZodType<
   Question,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.string(),
-  text: z.string(),
-  answers: z.array(z.lazy(() => QuestionAnswer$inboundSchema)),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    text: z.string(),
+    answers: z.array(z.lazy(() => QuestionAnswer$inboundSchema)),
+  })
+);
 
 export function questionFromJSON(
   jsonString: string,
@@ -157,15 +167,17 @@ export const GetKbaQuestionsResponse$inboundSchema: z.ZodType<
   GetKbaQuestionsResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.lazy(() => GetKbaQuestionsLinks$inboundSchema),
-  id: z.string(),
-  questions: z.array(z.lazy(() => Question$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.lazy(() => GetKbaQuestionsLinks$inboundSchema),
+    id: z.string(),
+    questions: z.array(z.lazy(() => Question$inboundSchema)),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function getKbaQuestionsResponseFromJSON(
   jsonString: string,

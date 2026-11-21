@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import {
@@ -28,13 +28,15 @@ export const ExchangePartnersEmbedded$inboundSchema: z.ZodType<
   ExchangePartnersEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  "exchange-partners": z.array(ExchangePartner$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "exchange-partners": "exchangePartners",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    "exchange-partners": z.array(ExchangePartner$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "exchange-partners": "exchangePartners",
+    });
+  })
+);
 
 export function exchangePartnersEmbeddedFromJSON(
   jsonString: string,
@@ -51,16 +53,18 @@ export const ExchangePartners$inboundSchema: z.ZodType<
   ExchangePartners,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.record(HalLink$inboundSchema).optional(),
-  _embedded: z.lazy(() => ExchangePartnersEmbedded$inboundSchema).optional(),
-  total: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-    "_embedded": "embedded",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.record(HalLink$inboundSchema).optional(),
+    _embedded: z.lazy(() => ExchangePartnersEmbedded$inboundSchema).optional(),
+    total: z.number().int().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+      "_embedded": "embedded",
+    });
+  })
+);
 
 export function exchangePartnersFromJSON(
   jsonString: string,

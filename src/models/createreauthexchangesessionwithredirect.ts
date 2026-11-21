@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 
 export type CreateReAuthExchangeSessionWithRedirectRedirectUrl = {
   /**
@@ -38,9 +39,11 @@ export const CreateReAuthExchangeSessionWithRedirectRedirectUrl$outboundSchema:
     CreateReAuthExchangeSessionWithRedirectRedirectUrl$Outbound,
     z.ZodTypeDef,
     CreateReAuthExchangeSessionWithRedirectRedirectUrl
-  > = z.object({
-    href: z.string(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      href: z.string(),
+    })
+  );
 
 export function createReAuthExchangeSessionWithRedirectRedirectUrlToJSON(
   createReAuthExchangeSessionWithRedirectRedirectUrl:
@@ -64,15 +67,17 @@ export const CreateReAuthExchangeSessionWithRedirectLinks$outboundSchema:
     CreateReAuthExchangeSessionWithRedirectLinks$Outbound,
     z.ZodTypeDef,
     CreateReAuthExchangeSessionWithRedirectLinks
-  > = z.object({
-    redirectUrl: z.lazy(() =>
-      CreateReAuthExchangeSessionWithRedirectRedirectUrl$outboundSchema
-    ),
-  }).transform((v) => {
-    return remap$(v, {
-      redirectUrl: "redirect-url",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      redirectUrl: z.lazy(() =>
+        CreateReAuthExchangeSessionWithRedirectRedirectUrl$outboundSchema
+      ),
+    }).transform((v) => {
+      return remap$(v, {
+        redirectUrl: "redirect-url",
+      });
+    })
+  );
 
 export function createReAuthExchangeSessionWithRedirectLinksToJSON(
   createReAuthExchangeSessionWithRedirectLinks:
@@ -95,15 +100,17 @@ export const CreateReAuthExchangeSessionWithRedirect$outboundSchema: z.ZodType<
   CreateReAuthExchangeSessionWithRedirect$Outbound,
   z.ZodTypeDef,
   CreateReAuthExchangeSessionWithRedirect
-> = z.object({
-  links: z.lazy(() =>
-    CreateReAuthExchangeSessionWithRedirectLinks$outboundSchema
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    links: z.lazy(() =>
+      CreateReAuthExchangeSessionWithRedirectLinks$outboundSchema
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      links: "_links",
+    });
+  })
+);
 
 export function createReAuthExchangeSessionWithRedirectToJSON(
   createReAuthExchangeSessionWithRedirect:

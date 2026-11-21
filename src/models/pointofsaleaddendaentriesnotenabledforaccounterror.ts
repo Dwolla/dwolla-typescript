@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -29,7 +29,7 @@ export const PointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks$inboundSche
     PointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks,
     z.ZodTypeDef,
     unknown
-  > = z.object({});
+  > = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function pointOfSaleAddendaEntriesNotEnabledForAccountErrorLinksFromJSON(
   jsonString: string,
@@ -52,18 +52,20 @@ export const PointOfSaleAddendaEntriesNotEnabledForAccountErrorError$inboundSche
     PointOfSaleAddendaEntriesNotEnabledForAccountErrorError,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    path: z.string().optional(),
-    _links: z.lazy(() =>
-      PointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks$inboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "_links": "links",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      code: z.string().optional(),
+      message: z.string().optional(),
+      path: z.string().optional(),
+      _links: z.lazy(() =>
+        PointOfSaleAddendaEntriesNotEnabledForAccountErrorLinks$inboundSchema
+      ).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "_links": "links",
+      });
+    })
+  );
 
 export function pointOfSaleAddendaEntriesNotEnabledForAccountErrorErrorFromJSON(
   jsonString: string,
@@ -86,13 +88,13 @@ export const PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded$inboundS
     PointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbedded,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    errors: z.array(
-      z.lazy(() =>
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      errors: z.array(z.lazy(() =>
         PointOfSaleAddendaEntriesNotEnabledForAccountErrorError$inboundSchema
-      ),
-    ).optional(),
-  });
+      )).optional(),
+    })
+  );
 
 export function pointOfSaleAddendaEntriesNotEnabledForAccountErrorEmbeddedFromJSON(
   jsonString: string,

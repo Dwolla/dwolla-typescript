@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 
 export type CreateCustomerExchangeSessionWithRedirectExchangePartner = {
   href: string;
@@ -44,9 +45,11 @@ export const CreateCustomerExchangeSessionWithRedirectExchangePartner$outboundSc
     CreateCustomerExchangeSessionWithRedirectExchangePartner$Outbound,
     z.ZodTypeDef,
     CreateCustomerExchangeSessionWithRedirectExchangePartner
-  > = z.object({
-    href: z.string(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      href: z.string(),
+    })
+  );
 
 export function createCustomerExchangeSessionWithRedirectExchangePartnerToJSON(
   createCustomerExchangeSessionWithRedirectExchangePartner:
@@ -69,9 +72,11 @@ export const CreateCustomerExchangeSessionWithRedirectRedirectUrl$outboundSchema
     CreateCustomerExchangeSessionWithRedirectRedirectUrl$Outbound,
     z.ZodTypeDef,
     CreateCustomerExchangeSessionWithRedirectRedirectUrl
-  > = z.object({
-    href: z.string(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      href: z.string(),
+    })
+  );
 
 export function createCustomerExchangeSessionWithRedirectRedirectUrlToJSON(
   createCustomerExchangeSessionWithRedirectRedirectUrl:
@@ -97,19 +102,21 @@ export const CreateCustomerExchangeSessionWithRedirectLinks$outboundSchema:
     CreateCustomerExchangeSessionWithRedirectLinks$Outbound,
     z.ZodTypeDef,
     CreateCustomerExchangeSessionWithRedirectLinks
-  > = z.object({
-    exchangePartner: z.lazy(() =>
-      CreateCustomerExchangeSessionWithRedirectExchangePartner$outboundSchema
-    ),
-    redirectUrl: z.lazy(() =>
-      CreateCustomerExchangeSessionWithRedirectRedirectUrl$outboundSchema
-    ),
-  }).transform((v) => {
-    return remap$(v, {
-      exchangePartner: "exchange-partner",
-      redirectUrl: "redirect-url",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      exchangePartner: z.lazy(() =>
+        CreateCustomerExchangeSessionWithRedirectExchangePartner$outboundSchema
+      ),
+      redirectUrl: z.lazy(() =>
+        CreateCustomerExchangeSessionWithRedirectRedirectUrl$outboundSchema
+      ),
+    }).transform((v) => {
+      return remap$(v, {
+        exchangePartner: "exchange-partner",
+        redirectUrl: "redirect-url",
+      });
+    })
+  );
 
 export function createCustomerExchangeSessionWithRedirectLinksToJSON(
   createCustomerExchangeSessionWithRedirectLinks:
@@ -133,15 +140,17 @@ export const CreateCustomerExchangeSessionWithRedirect$outboundSchema:
     CreateCustomerExchangeSessionWithRedirect$Outbound,
     z.ZodTypeDef,
     CreateCustomerExchangeSessionWithRedirect
-  > = z.object({
-    links: z.lazy(() =>
-      CreateCustomerExchangeSessionWithRedirectLinks$outboundSchema
-    ),
-  }).transform((v) => {
-    return remap$(v, {
-      links: "_links",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      links: z.lazy(() =>
+        CreateCustomerExchangeSessionWithRedirectLinks$outboundSchema
+      ),
+    }).transform((v) => {
+      return remap$(v, {
+        links: "_links",
+      });
+    })
+  );
 
 export function createCustomerExchangeSessionWithRedirectToJSON(
   createCustomerExchangeSessionWithRedirect:

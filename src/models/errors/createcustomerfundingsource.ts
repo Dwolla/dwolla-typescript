@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import {
@@ -119,20 +119,22 @@ export const CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError$inboundSche
     CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    request$: z.instanceof(Request),
-    response$: z.instanceof(Response),
-    body$: z.string(),
-  })
-    .transform((v) => {
-      return new CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError(v, {
-        request: v.request$,
-        response: v.response$,
-        body: v.body$,
-      });
-    });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      code: z.string().optional(),
+      message: z.string().optional(),
+      request$: z.instanceof(Request),
+      response$: z.instanceof(Response),
+      body$: z.string(),
+    })
+      .transform((v) => {
+        return new CreateCustomerFundingSourceNotFoundDwollaV1HalJSONError(v, {
+          request: v.request$,
+          response: v.response$,
+          body: v.body$,
+        });
+      })
+  );
 
 /** @internal */
 export const CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError$inboundSchema:
@@ -140,33 +142,37 @@ export const CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError$inboundSch
     CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    request$: z.instanceof(Request),
-    response$: z.instanceof(Response),
-    body$: z.string(),
-  })
-    .transform((v) => {
-      return new CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError(v, {
-        request: v.request$,
-        response: v.response$,
-        body: v.body$,
-      });
-    });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      code: z.string().optional(),
+      message: z.string().optional(),
+      request$: z.instanceof(Request),
+      response$: z.instanceof(Response),
+      body$: z.string(),
+    })
+      .transform((v) => {
+        return new CreateCustomerFundingSourceForbiddenDwollaV1HalJSONError(v, {
+          request: v.request$,
+          response: v.response$,
+          body: v.body$,
+        });
+      })
+  );
 
 /** @internal */
 export const CreateCustomerFundingSourceDwollaV1HalJSON$inboundSchema:
   z.ZodType<CreateCustomerFundingSourceDwollaV1HalJSON, z.ZodTypeDef, unknown> =
-    smartUnion([
-      InactiveExchangeError$inboundSchema,
-      InvalidExchangeTokenErrorError$inboundSchema,
-      DuplicateFundingSourceError$inboundSchema,
-      UnsupportedCardCountryError$inboundSchema,
-      InvalidTokenError$inboundSchema,
-      MaximumCardsExceededError$inboundSchema,
-      CardMissingRequiredFieldsError$inboundSchema,
-    ]);
+    /* @__PURE__ */ lazySchema$(() =>
+      smartUnion([
+        InactiveExchangeError$inboundSchema,
+        InvalidExchangeTokenErrorError$inboundSchema,
+        DuplicateFundingSourceError$inboundSchema,
+        UnsupportedCardCountryError$inboundSchema,
+        InvalidTokenError$inboundSchema,
+        MaximumCardsExceededError$inboundSchema,
+        CardMissingRequiredFieldsError$inboundSchema,
+      ])
+    );
 
 export function createCustomerFundingSourceDwollaV1HalJSONFromJSON(
   jsonString: string,

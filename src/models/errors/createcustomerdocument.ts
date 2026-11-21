@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import {
@@ -116,19 +116,21 @@ export const CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError$inb
     CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    request$: z.instanceof(Request),
-    response$: z.instanceof(Response),
-    body$: z.string(),
-  })
-    .transform((v) => {
-      return new CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError(
-        v,
-        { request: v.request$, response: v.response$, body: v.body$ },
-      );
-    });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      code: z.string().optional(),
+      message: z.string().optional(),
+      request$: z.instanceof(Request),
+      response$: z.instanceof(Response),
+      body$: z.string(),
+    })
+      .transform((v) => {
+        return new CreateCustomerDocumentRequestEntityTooLargeDwollaV1HalJSONError(
+          v,
+          { request: v.request$, response: v.response$, body: v.body$ },
+        );
+      })
+  );
 
 /** @internal */
 export const CreateCustomerDocumentNotFoundDwollaV1HalJSONError$inboundSchema:
@@ -136,20 +138,22 @@ export const CreateCustomerDocumentNotFoundDwollaV1HalJSONError$inboundSchema:
     CreateCustomerDocumentNotFoundDwollaV1HalJSONError,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    request$: z.instanceof(Request),
-    response$: z.instanceof(Response),
-    body$: z.string(),
-  })
-    .transform((v) => {
-      return new CreateCustomerDocumentNotFoundDwollaV1HalJSONError(v, {
-        request: v.request$,
-        response: v.response$,
-        body: v.body$,
-      });
-    });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      code: z.string().optional(),
+      message: z.string().optional(),
+      request$: z.instanceof(Request),
+      response$: z.instanceof(Response),
+      body$: z.string(),
+    })
+      .transform((v) => {
+        return new CreateCustomerDocumentNotFoundDwollaV1HalJSONError(v, {
+          request: v.request$,
+          response: v.response$,
+          body: v.body$,
+        });
+      })
+  );
 
 /** @internal */
 export const CreateCustomerDocumentForbiddenDwollaV1HalJSON$inboundSchema:
@@ -157,10 +161,12 @@ export const CreateCustomerDocumentForbiddenDwollaV1HalJSON$inboundSchema:
     CreateCustomerDocumentForbiddenDwollaV1HalJSON,
     z.ZodTypeDef,
     unknown
-  > = smartUnion([
-    InvalidResourceStateSchemaError$inboundSchema,
-    NotAuthorizedSchemaError$inboundSchema,
-  ]);
+  > = /* @__PURE__ */ lazySchema$(() =>
+    smartUnion([
+      InvalidResourceStateSchemaError$inboundSchema,
+      NotAuthorizedSchemaError$inboundSchema,
+    ])
+  );
 
 export function createCustomerDocumentForbiddenDwollaV1HalJSONFromJSON(
   jsonString: string,
@@ -184,11 +190,13 @@ export const CreateCustomerDocumentBadRequestDwollaV1HalJSON$inboundSchema:
     CreateCustomerDocumentBadRequestDwollaV1HalJSON,
     z.ZodTypeDef,
     unknown
-  > = smartUnion([
-    MaximumNumberOfResourcesSchemaError$inboundSchema,
-    InvalidFileTypeSchemaError$inboundSchema,
-    DuplicateResourceSchemaError$inboundSchema,
-  ]);
+  > = /* @__PURE__ */ lazySchema$(() =>
+    smartUnion([
+      MaximumNumberOfResourcesSchemaError$inboundSchema,
+      InvalidFileTypeSchemaError$inboundSchema,
+      DuplicateResourceSchemaError$inboundSchema,
+    ])
+  );
 
 export function createCustomerDocumentBadRequestDwollaV1HalJSONFromJSON(
   jsonString: string,

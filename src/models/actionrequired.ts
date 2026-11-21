@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -22,9 +22,11 @@ export const ActionRequired$inboundSchema: z.ZodType<
   ActionRequired,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  description: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    description: z.string(),
+  })
+);
 
 export function actionRequiredFromJSON(
   jsonString: string,

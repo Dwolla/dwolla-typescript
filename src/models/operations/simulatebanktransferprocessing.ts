@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -24,10 +24,12 @@ export const SimulateBankTransferProcessingResponse$inboundSchema: z.ZodType<
   SimulateBankTransferProcessingResponse,
   z.ZodTypeDef,
   unknown
-> = smartUnion([
-  models.SandboxSimulationBankProcessingResponse$inboundSchema,
-  models.SandboxSimulationCustomerVerificationResponse$inboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    models.SandboxSimulationBankProcessingResponse$inboundSchema,
+    models.SandboxSimulationCustomerVerificationResponse$inboundSchema,
+  ])
+);
 
 export function simulateBankTransferProcessingResponseFromJSON(
   jsonString: string,

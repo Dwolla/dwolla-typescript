@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import * as models from "../index.js";
 
@@ -37,10 +38,12 @@ export const UpdateBeneficialOwnerRequestBody$outboundSchema: z.ZodType<
   UpdateBeneficialOwnerRequestBody$Outbound,
   z.ZodTypeDef,
   UpdateBeneficialOwnerRequestBody
-> = smartUnion([
-  models.CreateUSBeneficialOwner$outboundSchema,
-  models.CreateInternationalBeneficialOwner$outboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    models.CreateUSBeneficialOwner$outboundSchema,
+    models.CreateInternationalBeneficialOwner$outboundSchema,
+  ])
+);
 
 export function updateBeneficialOwnerRequestBodyToJSON(
   updateBeneficialOwnerRequestBody: UpdateBeneficialOwnerRequestBody,
@@ -65,17 +68,19 @@ export const UpdateBeneficialOwnerRequest$outboundSchema: z.ZodType<
   UpdateBeneficialOwnerRequest$Outbound,
   z.ZodTypeDef,
   UpdateBeneficialOwnerRequest
-> = z.object({
-  id: z.string(),
-  requestBody: smartUnion([
-    models.CreateUSBeneficialOwner$outboundSchema,
-    models.CreateInternationalBeneficialOwner$outboundSchema,
-  ]),
-}).transform((v) => {
-  return remap$(v, {
-    requestBody: "RequestBody",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    requestBody: smartUnion([
+      models.CreateUSBeneficialOwner$outboundSchema,
+      models.CreateInternationalBeneficialOwner$outboundSchema,
+    ]),
+  }).transform((v) => {
+    return remap$(v, {
+      requestBody: "RequestBody",
+    });
+  })
+);
 
 export function updateBeneficialOwnerRequestToJSON(
   updateBeneficialOwnerRequest: UpdateBeneficialOwnerRequest,

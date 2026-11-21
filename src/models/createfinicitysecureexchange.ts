@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 import { RFCDate } from "../types/rfcdate.js";
 
 export type CreateFinicitySecureExchangeExchangePartner = {
@@ -53,9 +54,11 @@ export const CreateFinicitySecureExchangeExchangePartner$outboundSchema:
     CreateFinicitySecureExchangeExchangePartner$Outbound,
     z.ZodTypeDef,
     CreateFinicitySecureExchangeExchangePartner
-  > = z.object({
-    href: z.string().optional(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      href: z.string().optional(),
+    })
+  );
 
 export function createFinicitySecureExchangeExchangePartnerToJSON(
   createFinicitySecureExchangeExchangePartner:
@@ -80,15 +83,17 @@ export const CreateFinicitySecureExchangeLinks$outboundSchema: z.ZodType<
   CreateFinicitySecureExchangeLinks$Outbound,
   z.ZodTypeDef,
   CreateFinicitySecureExchangeLinks
-> = z.object({
-  exchangePartner: z.lazy(() =>
-    CreateFinicitySecureExchangeExchangePartner$outboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    exchangePartner: "exchange-partner",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    exchangePartner: z.lazy(() =>
+      CreateFinicitySecureExchangeExchangePartner$outboundSchema
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      exchangePartner: "exchange-partner",
+    });
+  })
+);
 
 export function createFinicitySecureExchangeLinksToJSON(
   createFinicitySecureExchangeLinks: CreateFinicitySecureExchangeLinks,
@@ -112,11 +117,13 @@ export const AccessPeriod$outboundSchema: z.ZodType<
   AccessPeriod$Outbound,
   z.ZodTypeDef,
   AccessPeriod
-> = z.object({
-  type: z.string().optional(),
-  startTime: z.instanceof(RFCDate).transform(v => v.toString()).optional(),
-  endTime: z.date().transform(v => v.toISOString()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.string().optional(),
+    startTime: z.instanceof(RFCDate).transform(v => v.toString()).optional(),
+    endTime: z.date().transform(v => v.toISOString()).optional(),
+  })
+);
 
 export function accessPeriodToJSON(accessPeriod: AccessPeriod): string {
   return JSON.stringify(AccessPeriod$outboundSchema.parse(accessPeriod));
@@ -134,11 +141,13 @@ export const Product$outboundSchema: z.ZodType<
   Product$Outbound,
   z.ZodTypeDef,
   Product
-> = z.object({
-  product: z.string().optional(),
-  accountId: z.string().optional(),
-  accessPeriod: z.lazy(() => AccessPeriod$outboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    product: z.string().optional(),
+    accountId: z.string().optional(),
+    accessPeriod: z.lazy(() => AccessPeriod$outboundSchema).optional(),
+  })
+);
 
 export function productToJSON(product: Product): string {
   return JSON.stringify(Product$outboundSchema.parse(product));
@@ -161,16 +170,18 @@ export const Finicity$outboundSchema: z.ZodType<
   Finicity$Outbound,
   z.ZodTypeDef,
   Finicity
-> = z.object({
-  profile: z.number().int().optional(),
-  version: z.string().optional(),
-  receiptId: z.string().optional(),
-  receiptVersion: z.string().optional(),
-  customerId: z.string().optional(),
-  partnerId: z.number().int().optional(),
-  products: z.array(z.lazy(() => Product$outboundSchema)).optional(),
-  timestamp: z.date().transform(v => v.toISOString()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    profile: z.number().int().optional(),
+    version: z.string().optional(),
+    receiptId: z.string().optional(),
+    receiptVersion: z.string().optional(),
+    customerId: z.string().optional(),
+    partnerId: z.number().int().optional(),
+    products: z.array(z.lazy(() => Product$outboundSchema)).optional(),
+    timestamp: z.date().transform(v => v.toISOString()).optional(),
+  })
+);
 
 export function finicityToJSON(finicity: Finicity): string {
   return JSON.stringify(Finicity$outboundSchema.parse(finicity));
@@ -187,14 +198,16 @@ export const CreateFinicitySecureExchange$outboundSchema: z.ZodType<
   CreateFinicitySecureExchange$Outbound,
   z.ZodTypeDef,
   CreateFinicitySecureExchange
-> = z.object({
-  links: z.lazy(() => CreateFinicitySecureExchangeLinks$outboundSchema),
-  finicity: z.lazy(() => Finicity$outboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    links: z.lazy(() => CreateFinicitySecureExchangeLinks$outboundSchema),
+    finicity: z.lazy(() => Finicity$outboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      links: "_links",
+    });
+  })
+);
 
 export function createFinicitySecureExchangeToJSON(
   createFinicitySecureExchange: CreateFinicitySecureExchange,
