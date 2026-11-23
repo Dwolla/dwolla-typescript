@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 
 export type CreateAccountFundingSourceExchange = {
@@ -41,9 +42,11 @@ export const CreateAccountFundingSourceExchange$outboundSchema: z.ZodType<
   CreateAccountFundingSourceExchange$Outbound,
   z.ZodTypeDef,
   CreateAccountFundingSourceExchange
-> = z.object({
-  href: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+  })
+);
 
 export function createAccountFundingSourceExchangeToJSON(
   createAccountFundingSourceExchange: CreateAccountFundingSourceExchange,
@@ -65,10 +68,12 @@ export const CreateAccountFundingSourceLinks$outboundSchema: z.ZodType<
   CreateAccountFundingSourceLinks$Outbound,
   z.ZodTypeDef,
   CreateAccountFundingSourceLinks
-> = z.object({
-  exchange: z.lazy(() => CreateAccountFundingSourceExchange$outboundSchema)
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    exchange: z.lazy(() => CreateAccountFundingSourceExchange$outboundSchema)
+      .optional(),
+  })
+);
 
 export function createAccountFundingSourceLinksToJSON(
   createAccountFundingSourceLinks: CreateAccountFundingSourceLinks,
@@ -82,8 +87,10 @@ export function createAccountFundingSourceLinksToJSON(
 
 /** @internal */
 export const CreateAccountFundingSourceBankAccountType$outboundSchema:
-  z.ZodNativeEnum<typeof CreateAccountFundingSourceBankAccountType> = z
-    .nativeEnum(CreateAccountFundingSourceBankAccountType);
+  z.ZodNativeEnum<typeof CreateAccountFundingSourceBankAccountType> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(CreateAccountFundingSourceBankAccountType)
+    );
 
 /** @internal */
 export type CreateAccountFundingSource$Outbound = {
@@ -100,19 +107,21 @@ export const CreateAccountFundingSource$outboundSchema: z.ZodType<
   CreateAccountFundingSource$Outbound,
   z.ZodTypeDef,
   CreateAccountFundingSource
-> = z.object({
-  links: z.lazy(() => CreateAccountFundingSourceLinks$outboundSchema)
-    .optional(),
-  name: z.string(),
-  bankAccountType: CreateAccountFundingSourceBankAccountType$outboundSchema,
-  accountNumber: z.string(),
-  routingNumber: z.string(),
-  channels: z.array(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    links: z.lazy(() => CreateAccountFundingSourceLinks$outboundSchema)
+      .optional(),
+    name: z.string(),
+    bankAccountType: CreateAccountFundingSourceBankAccountType$outboundSchema,
+    accountNumber: z.string(),
+    routingNumber: z.string(),
+    channels: z.array(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      links: "_links",
+    });
+  })
+);
 
 export function createAccountFundingSourceToJSON(
   createAccountFundingSource: CreateAccountFundingSource,

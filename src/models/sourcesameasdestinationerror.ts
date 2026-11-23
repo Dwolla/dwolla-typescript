@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -26,7 +26,7 @@ export const SourceSameAsDestinationErrorLinks$inboundSchema: z.ZodType<
   SourceSameAsDestinationErrorLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function sourceSameAsDestinationErrorLinksFromJSON(
   jsonString: string,
@@ -43,17 +43,19 @@ export const SourceSameAsDestinationErrorError$inboundSchema: z.ZodType<
   SourceSameAsDestinationErrorError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  _links: z.lazy(() => SourceSameAsDestinationErrorLinks$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string().optional(),
+    message: z.string().optional(),
+    path: z.string().optional(),
+    _links: z.lazy(() => SourceSameAsDestinationErrorLinks$inboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function sourceSameAsDestinationErrorErrorFromJSON(
   jsonString: string,
@@ -70,10 +72,13 @@ export const SourceSameAsDestinationErrorEmbedded$inboundSchema: z.ZodType<
   SourceSameAsDestinationErrorEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  errors: z.array(z.lazy(() => SourceSameAsDestinationErrorError$inboundSchema))
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    errors: z.array(
+      z.lazy(() => SourceSameAsDestinationErrorError$inboundSchema),
+    ).optional(),
+  })
+);
 
 export function sourceSameAsDestinationErrorEmbeddedFromJSON(
   jsonString: string,

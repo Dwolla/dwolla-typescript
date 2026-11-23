@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type GetLabelLedgerEntryRequest = {
   /**
@@ -21,9 +22,11 @@ export const GetLabelLedgerEntryRequest$outboundSchema: z.ZodType<
   GetLabelLedgerEntryRequest$Outbound,
   z.ZodTypeDef,
   GetLabelLedgerEntryRequest
-> = z.object({
-  ledgerEntryId: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    ledgerEntryId: z.string(),
+  })
+);
 
 export function getLabelLedgerEntryRequestToJSON(
   getLabelLedgerEntryRequest: GetLabelLedgerEntryRequest,

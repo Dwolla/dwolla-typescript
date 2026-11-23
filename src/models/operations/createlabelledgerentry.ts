@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -52,10 +52,12 @@ export const CreateLabelLedgerEntryAmount$outboundSchema: z.ZodType<
   CreateLabelLedgerEntryAmount$Outbound,
   z.ZodTypeDef,
   CreateLabelLedgerEntryAmount
-> = z.object({
-  value: z.string(),
-  currency: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    value: z.string(),
+    currency: z.string(),
+  })
+);
 
 export function createLabelLedgerEntryAmountToJSON(
   createLabelLedgerEntryAmount: CreateLabelLedgerEntryAmount,
@@ -77,9 +79,11 @@ export const CreateLabelLedgerEntryRequestBody$outboundSchema: z.ZodType<
   CreateLabelLedgerEntryRequestBody$Outbound,
   z.ZodTypeDef,
   CreateLabelLedgerEntryRequestBody
-> = z.object({
-  amount: z.lazy(() => CreateLabelLedgerEntryAmount$outboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    amount: z.lazy(() => CreateLabelLedgerEntryAmount$outboundSchema),
+  })
+);
 
 export function createLabelLedgerEntryRequestBodyToJSON(
   createLabelLedgerEntryRequestBody: CreateLabelLedgerEntryRequestBody,
@@ -102,14 +106,16 @@ export const CreateLabelLedgerEntryRequest$outboundSchema: z.ZodType<
   CreateLabelLedgerEntryRequest$Outbound,
   z.ZodTypeDef,
   CreateLabelLedgerEntryRequest
-> = z.object({
-  id: z.string(),
-  requestBody: z.lazy(() => CreateLabelLedgerEntryRequestBody$outboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    requestBody: "RequestBody",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    requestBody: z.lazy(() => CreateLabelLedgerEntryRequestBody$outboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      requestBody: "RequestBody",
+    });
+  })
+);
 
 export function createLabelLedgerEntryRequestToJSON(
   createLabelLedgerEntryRequest: CreateLabelLedgerEntryRequest,
@@ -126,13 +132,15 @@ export const CreateLabelLedgerEntryResponse$inboundSchema: z.ZodType<
   CreateLabelLedgerEntryResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+    });
+  })
+);
 
 export function createLabelLedgerEntryResponseFromJSON(
   jsonString: string,

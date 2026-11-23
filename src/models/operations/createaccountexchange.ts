@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -37,10 +37,12 @@ export const CreateAccountExchangeRequest$outboundSchema: z.ZodType<
   CreateAccountExchangeRequest$Outbound,
   z.ZodTypeDef,
   CreateAccountExchangeRequest
-> = smartUnion([
-  models.CreateFinicitySecureExchange$outboundSchema,
-  models.CreateTokenBasedExchange$outboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    models.CreateFinicitySecureExchange$outboundSchema,
+    models.CreateTokenBasedExchange$outboundSchema,
+  ])
+);
 
 export function createAccountExchangeRequestToJSON(
   createAccountExchangeRequest: CreateAccountExchangeRequest,
@@ -57,7 +59,7 @@ export const CreateAccountExchangeResponseBody$inboundSchema: z.ZodType<
   CreateAccountExchangeResponseBody,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function createAccountExchangeResponseBodyFromJSON(
   jsonString: string,
@@ -74,15 +76,17 @@ export const CreateAccountExchangeResponse$inboundSchema: z.ZodType<
   CreateAccountExchangeResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-  Result: z.lazy(() => CreateAccountExchangeResponseBody$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-    "Result": "result",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+    Result: z.lazy(() => CreateAccountExchangeResponseBody$inboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+      "Result": "result",
+    });
+  })
+);
 
 export function createAccountExchangeResponseFromJSON(
   jsonString: string,

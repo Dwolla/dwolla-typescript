@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -26,7 +26,7 @@ export const SourceNotFoundErrorLinks$inboundSchema: z.ZodType<
   SourceNotFoundErrorLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function sourceNotFoundErrorLinksFromJSON(
   jsonString: string,
@@ -43,16 +43,18 @@ export const SourceNotFoundErrorError$inboundSchema: z.ZodType<
   SourceNotFoundErrorError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  _links: z.lazy(() => SourceNotFoundErrorLinks$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string().optional(),
+    message: z.string().optional(),
+    path: z.string().optional(),
+    _links: z.lazy(() => SourceNotFoundErrorLinks$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function sourceNotFoundErrorErrorFromJSON(
   jsonString: string,
@@ -69,10 +71,12 @@ export const SourceNotFoundErrorEmbedded$inboundSchema: z.ZodType<
   SourceNotFoundErrorEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  errors: z.array(z.lazy(() => SourceNotFoundErrorError$inboundSchema))
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    errors: z.array(z.lazy(() => SourceNotFoundErrorError$inboundSchema))
+      .optional(),
+  })
+);
 
 export function sourceNotFoundErrorEmbeddedFromJSON(
   jsonString: string,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import { HalLink, HalLink$inboundSchema } from "./hallink.js";
@@ -30,9 +30,11 @@ export const SandboxSimulationBankProcessingResponseLinks$inboundSchema:
     SandboxSimulationBankProcessingResponseLinks,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    self: HalLink$inboundSchema,
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      self: HalLink$inboundSchema,
+    })
+  );
 
 export function sandboxSimulationBankProcessingResponseLinksFromJSON(
   jsonString: string,
@@ -55,16 +57,18 @@ export const SandboxSimulationBankProcessingResponse$inboundSchema: z.ZodType<
   SandboxSimulationBankProcessingResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  total: z.number().int(),
-  _links: z.lazy(() =>
-    SandboxSimulationBankProcessingResponseLinks$inboundSchema
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    total: z.number().int(),
+    _links: z.lazy(() =>
+      SandboxSimulationBankProcessingResponseLinks$inboundSchema
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function sandboxSimulationBankProcessingResponseFromJSON(
   jsonString: string,

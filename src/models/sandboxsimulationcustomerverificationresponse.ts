@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
@@ -50,9 +50,11 @@ export const SandboxSimulationCustomerVerificationResponseLinks$inboundSchema:
     SandboxSimulationCustomerVerificationResponseLinks,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    self: HalLink$inboundSchema,
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      self: HalLink$inboundSchema,
+    })
+  );
 
 export function sandboxSimulationCustomerVerificationResponseLinksFromJSON(
   jsonString: string,
@@ -74,7 +76,9 @@ export function sandboxSimulationCustomerVerificationResponseLinksFromJSON(
 export const SandboxSimulationCustomerVerificationResponseErrorCode$inboundSchema:
   z.ZodNativeEnum<
     typeof SandboxSimulationCustomerVerificationResponseErrorCode
-  > = z.nativeEnum(SandboxSimulationCustomerVerificationResponseErrorCode);
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.nativeEnum(SandboxSimulationCustomerVerificationResponseErrorCode)
+  );
 
 /** @internal */
 export const SandboxSimulationCustomerVerificationResponse$inboundSchema:
@@ -82,17 +86,19 @@ export const SandboxSimulationCustomerVerificationResponse$inboundSchema:
     SandboxSimulationCustomerVerificationResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    _links: z.lazy(() =>
-      SandboxSimulationCustomerVerificationResponseLinks$inboundSchema
-    ),
-    errorCode:
-      SandboxSimulationCustomerVerificationResponseErrorCode$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "_links": "links",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      _links: z.lazy(() =>
+        SandboxSimulationCustomerVerificationResponseLinks$inboundSchema
+      ),
+      errorCode:
+        SandboxSimulationCustomerVerificationResponseErrorCode$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "_links": "links",
+      });
+    })
+  );
 
 export function sandboxSimulationCustomerVerificationResponseFromJSON(
   jsonString: string,

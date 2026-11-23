@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { DwollaError } from "./dwollaerror.js";
 
 /**
@@ -68,6 +69,30 @@ export class CreateCustomerForbiddenDwollaV1HalJSONError extends DwollaError {
 /** @internal */
 export const CreateCustomerNotFoundDwollaV1HalJSONError$inboundSchema:
   z.ZodType<CreateCustomerNotFoundDwollaV1HalJSONError, z.ZodTypeDef, unknown> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.object({
+        code: z.string().optional(),
+        message: z.string().optional(),
+        request$: z.instanceof(Request),
+        response$: z.instanceof(Response),
+        body$: z.string(),
+      })
+        .transform((v) => {
+          return new CreateCustomerNotFoundDwollaV1HalJSONError(v, {
+            request: v.request$,
+            response: v.response$,
+            body: v.body$,
+          });
+        })
+    );
+
+/** @internal */
+export const CreateCustomerForbiddenDwollaV1HalJSONError$inboundSchema:
+  z.ZodType<
+    CreateCustomerForbiddenDwollaV1HalJSONError,
+    z.ZodTypeDef,
+    unknown
+  > = /* @__PURE__ */ lazySchema$(() =>
     z.object({
       code: z.string().optional(),
       message: z.string().optional(),
@@ -76,30 +101,10 @@ export const CreateCustomerNotFoundDwollaV1HalJSONError$inboundSchema:
       body$: z.string(),
     })
       .transform((v) => {
-        return new CreateCustomerNotFoundDwollaV1HalJSONError(v, {
+        return new CreateCustomerForbiddenDwollaV1HalJSONError(v, {
           request: v.request$,
           response: v.response$,
           body: v.body$,
         });
-      });
-
-/** @internal */
-export const CreateCustomerForbiddenDwollaV1HalJSONError$inboundSchema:
-  z.ZodType<
-    CreateCustomerForbiddenDwollaV1HalJSONError,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    request$: z.instanceof(Request),
-    response$: z.instanceof(Response),
-    body$: z.string(),
-  })
-    .transform((v) => {
-      return new CreateCustomerForbiddenDwollaV1HalJSONError(v, {
-        request: v.request$,
-        response: v.response$,
-        body: v.body$,
-      });
-    });
+      })
+  );

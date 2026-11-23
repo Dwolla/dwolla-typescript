@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -57,10 +57,12 @@ export const CreateReAuthExchangeSessionRequestBody$outboundSchema: z.ZodType<
   CreateReAuthExchangeSessionRequestBody$Outbound,
   z.ZodTypeDef,
   CreateReAuthExchangeSessionRequestBody
-> = smartUnion([
-  models.CreateReAuthExchangeSessionWithRedirect$outboundSchema,
-  models.CreateReAuthExchangeSessionForWeb$outboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    models.CreateReAuthExchangeSessionWithRedirect$outboundSchema,
+    models.CreateReAuthExchangeSessionForWeb$outboundSchema,
+  ])
+);
 
 export function createReAuthExchangeSessionRequestBodyToJSON(
   createReAuthExchangeSessionRequestBody:
@@ -87,17 +89,19 @@ export const CreateReAuthExchangeSessionRequest$outboundSchema: z.ZodType<
   CreateReAuthExchangeSessionRequest$Outbound,
   z.ZodTypeDef,
   CreateReAuthExchangeSessionRequest
-> = z.object({
-  id: z.string(),
-  requestBody: smartUnion([
-    models.CreateReAuthExchangeSessionWithRedirect$outboundSchema,
-    models.CreateReAuthExchangeSessionForWeb$outboundSchema,
-  ]).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    requestBody: "RequestBody",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    requestBody: smartUnion([
+      models.CreateReAuthExchangeSessionWithRedirect$outboundSchema,
+      models.CreateReAuthExchangeSessionForWeb$outboundSchema,
+    ]).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      requestBody: "RequestBody",
+    });
+  })
+);
 
 export function createReAuthExchangeSessionRequestToJSON(
   createReAuthExchangeSessionRequest: CreateReAuthExchangeSessionRequest,
@@ -114,13 +118,15 @@ export const CreateReAuthExchangeSessionResponse$inboundSchema: z.ZodType<
   CreateReAuthExchangeSessionResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+    });
+  })
+);
 
 export function createReAuthExchangeSessionResponseFromJSON(
   jsonString: string,

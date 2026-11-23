@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 import {
   InternationalAddress,
   InternationalAddress$Outbound,
@@ -39,13 +40,15 @@ export const CreateInternationalBeneficialOwner$outboundSchema: z.ZodType<
   CreateInternationalBeneficialOwner$Outbound,
   z.ZodTypeDef,
   CreateInternationalBeneficialOwner
-> = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
-  dateOfBirth: z.string(),
-  address: InternationalAddress$outboundSchema,
-  passport: Passport$outboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    firstName: z.string(),
+    lastName: z.string(),
+    dateOfBirth: z.string(),
+    address: InternationalAddress$outboundSchema,
+    passport: Passport$outboundSchema,
+  })
+);
 
 export function createInternationalBeneficialOwnerToJSON(
   createInternationalBeneficialOwner: CreateInternationalBeneficialOwner,

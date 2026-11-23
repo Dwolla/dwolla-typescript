@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
@@ -61,47 +61,54 @@ export type VerifiedSolePropCustomer = {
 /** @internal */
 export const VerifiedSolePropCustomerType$inboundSchema: z.ZodNativeEnum<
   typeof VerifiedSolePropCustomerType
-> = z.nativeEnum(VerifiedSolePropCustomerType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(VerifiedSolePropCustomerType)
+);
 
 /** @internal */
 export const VerifiedSolePropCustomerStatus$inboundSchema: z.ZodNativeEnum<
   typeof VerifiedSolePropCustomerStatus
-> = z.nativeEnum(VerifiedSolePropCustomerStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(VerifiedSolePropCustomerStatus)
+);
 
 /** @internal */
 export const VerifiedSolePropCustomerBusinessType$inboundSchema:
-  z.ZodNativeEnum<typeof VerifiedSolePropCustomerBusinessType> = z.nativeEnum(
-    VerifiedSolePropCustomerBusinessType,
-  );
+  z.ZodNativeEnum<typeof VerifiedSolePropCustomerBusinessType> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(VerifiedSolePropCustomerBusinessType)
+    );
 
 /** @internal */
 export const VerifiedSolePropCustomer$inboundSchema: z.ZodType<
   VerifiedSolePropCustomer,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.record(HalLink$inboundSchema),
-  id: z.string(),
-  firstName: z.string(),
-  lastName: z.string(),
-  email: z.string(),
-  correlationId: z.string().optional(),
-  created: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  type: VerifiedSolePropCustomerType$inboundSchema,
-  status: VerifiedSolePropCustomerStatus$inboundSchema,
-  address1: z.string(),
-  address2: z.string().optional(),
-  city: z.string(),
-  state: z.string(),
-  postalCode: z.string(),
-  businessName: z.string(),
-  businessType: VerifiedSolePropCustomerBusinessType$inboundSchema,
-  businessClassification: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.record(HalLink$inboundSchema),
+    id: z.string(),
+    firstName: z.string(),
+    lastName: z.string(),
+    email: z.string(),
+    correlationId: z.string().optional(),
+    created: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    type: VerifiedSolePropCustomerType$inboundSchema,
+    status: VerifiedSolePropCustomerStatus$inboundSchema,
+    address1: z.string(),
+    address2: z.string().optional(),
+    city: z.string(),
+    state: z.string(),
+    postalCode: z.string(),
+    businessName: z.string(),
+    businessType: VerifiedSolePropCustomerBusinessType$inboundSchema,
+    businessClassification: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function verifiedSolePropCustomerFromJSON(
   jsonString: string,

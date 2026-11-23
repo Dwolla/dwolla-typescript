@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -27,9 +27,11 @@ export const OnDemandAuthorizationSelf$inboundSchema: z.ZodType<
   OnDemandAuthorizationSelf,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+  })
+);
 
 export function onDemandAuthorizationSelfFromJSON(
   jsonString: string,
@@ -46,9 +48,11 @@ export const OnDemandAuthorizationLinks$inboundSchema: z.ZodType<
   OnDemandAuthorizationLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  self: z.lazy(() => OnDemandAuthorizationSelf$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    self: z.lazy(() => OnDemandAuthorizationSelf$inboundSchema).optional(),
+  })
+);
 
 export function onDemandAuthorizationLinksFromJSON(
   jsonString: string,
@@ -65,15 +69,17 @@ export const OnDemandAuthorization$inboundSchema: z.ZodType<
   OnDemandAuthorization,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.lazy(() => OnDemandAuthorizationLinks$inboundSchema).optional(),
-  bodyText: z.string().optional(),
-  buttonText: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.lazy(() => OnDemandAuthorizationLinks$inboundSchema).optional(),
+    bodyText: z.string().optional(),
+    buttonText: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function onDemandAuthorizationFromJSON(
   jsonString: string,

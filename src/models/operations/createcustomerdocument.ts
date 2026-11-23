@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { blobLikeSchema } from "../../types/blobs.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -51,7 +51,9 @@ export type CreateCustomerDocumentResponse = {
 /** @internal */
 export const CreateCustomerDocumentDocumentType$outboundSchema: z.ZodNativeEnum<
   typeof CreateCustomerDocumentDocumentType
-> = z.nativeEnum(CreateCustomerDocumentDocumentType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(CreateCustomerDocumentDocumentType)
+);
 
 /** @internal */
 export type CreateCustomerDocumentFile$Outbound = {
@@ -64,15 +66,17 @@ export const CreateCustomerDocumentFile$outboundSchema: z.ZodType<
   CreateCustomerDocumentFile$Outbound,
   z.ZodTypeDef,
   CreateCustomerDocumentFile
-> = z.object({
-  fileName: z.string(),
-  content: z.union([
-    z.instanceof(ReadableStream<Uint8Array>),
-    z.instanceof(Blob),
-    z.instanceof(ArrayBuffer),
-    z.instanceof(Uint8Array),
-  ]),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    fileName: z.string(),
+    content: z.union([
+      z.instanceof(ReadableStream<Uint8Array>),
+      z.instanceof(Blob),
+      z.instanceof(ArrayBuffer),
+      z.instanceof(Uint8Array),
+    ]),
+  })
+);
 
 export function createCustomerDocumentFileToJSON(
   createCustomerDocumentFile: CreateCustomerDocumentFile,
@@ -93,12 +97,14 @@ export const CreateCustomerDocumentRequestBody$outboundSchema: z.ZodType<
   CreateCustomerDocumentRequestBody$Outbound,
   z.ZodTypeDef,
   CreateCustomerDocumentRequestBody
-> = z.object({
-  documentType: CreateCustomerDocumentDocumentType$outboundSchema,
-  file: z.lazy(() => CreateCustomerDocumentFile$outboundSchema).or(
-    blobLikeSchema,
-  ),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    documentType: CreateCustomerDocumentDocumentType$outboundSchema,
+    file: z.lazy(() => CreateCustomerDocumentFile$outboundSchema).or(
+      blobLikeSchema,
+    ),
+  })
+);
 
 export function createCustomerDocumentRequestBodyToJSON(
   createCustomerDocumentRequestBody: CreateCustomerDocumentRequestBody,
@@ -121,14 +127,16 @@ export const CreateCustomerDocumentRequest$outboundSchema: z.ZodType<
   CreateCustomerDocumentRequest$Outbound,
   z.ZodTypeDef,
   CreateCustomerDocumentRequest
-> = z.object({
-  id: z.string(),
-  requestBody: z.lazy(() => CreateCustomerDocumentRequestBody$outboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    requestBody: "RequestBody",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    requestBody: z.lazy(() => CreateCustomerDocumentRequestBody$outboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      requestBody: "RequestBody",
+    });
+  })
+);
 
 export function createCustomerDocumentRequestToJSON(
   createCustomerDocumentRequest: CreateCustomerDocumentRequest,
@@ -145,13 +153,15 @@ export const CreateCustomerDocumentResponse$inboundSchema: z.ZodType<
   CreateCustomerDocumentResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+    });
+  })
+);
 
 export function createCustomerDocumentResponseFromJSON(
   jsonString: string,

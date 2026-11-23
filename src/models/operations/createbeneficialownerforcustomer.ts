@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -45,10 +45,12 @@ export const CreateBeneficialOwnerForCustomerRequestBody$outboundSchema:
     CreateBeneficialOwnerForCustomerRequestBody$Outbound,
     z.ZodTypeDef,
     CreateBeneficialOwnerForCustomerRequestBody
-  > = smartUnion([
-    models.CreateUSBeneficialOwner$outboundSchema,
-    models.CreateInternationalBeneficialOwner$outboundSchema,
-  ]);
+  > = /* @__PURE__ */ lazySchema$(() =>
+    smartUnion([
+      models.CreateUSBeneficialOwner$outboundSchema,
+      models.CreateInternationalBeneficialOwner$outboundSchema,
+    ])
+  );
 
 export function createBeneficialOwnerForCustomerRequestBodyToJSON(
   createBeneficialOwnerForCustomerRequestBody:
@@ -74,17 +76,19 @@ export const CreateBeneficialOwnerForCustomerRequest$outboundSchema: z.ZodType<
   CreateBeneficialOwnerForCustomerRequest$Outbound,
   z.ZodTypeDef,
   CreateBeneficialOwnerForCustomerRequest
-> = z.object({
-  id: z.string(),
-  requestBody: smartUnion([
-    models.CreateUSBeneficialOwner$outboundSchema,
-    models.CreateInternationalBeneficialOwner$outboundSchema,
-  ]),
-}).transform((v) => {
-  return remap$(v, {
-    requestBody: "RequestBody",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    requestBody: smartUnion([
+      models.CreateUSBeneficialOwner$outboundSchema,
+      models.CreateInternationalBeneficialOwner$outboundSchema,
+    ]),
+  }).transform((v) => {
+    return remap$(v, {
+      requestBody: "RequestBody",
+    });
+  })
+);
 
 export function createBeneficialOwnerForCustomerRequestToJSON(
   createBeneficialOwnerForCustomerRequest:
@@ -102,13 +106,15 @@ export const CreateBeneficialOwnerForCustomerResponse$inboundSchema: z.ZodType<
   CreateBeneficialOwnerForCustomerResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+    });
+  })
+);
 
 export function createBeneficialOwnerForCustomerResponseFromJSON(
   jsonString: string,

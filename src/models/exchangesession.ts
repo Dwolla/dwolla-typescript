@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -91,15 +91,17 @@ export const ExchangeSessionSelf$inboundSchema: z.ZodType<
   ExchangeSessionSelf,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string(),
-  type: z.string(),
-  "resource-type": z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "resource-type": "resourceType",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string(),
+    type: z.string(),
+    "resource-type": z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "resource-type": "resourceType",
+    });
+  })
+);
 
 export function exchangeSessionSelfFromJSON(
   jsonString: string,
@@ -116,15 +118,17 @@ export const ExchangeSessionExchangePartner$inboundSchema: z.ZodType<
   ExchangeSessionExchangePartner,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string(),
-  type: z.string(),
-  "resource-type": z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "resource-type": "resourceType",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string(),
+    type: z.string(),
+    "resource-type": z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "resource-type": "resourceType",
+    });
+  })
+);
 
 export function exchangeSessionExchangePartnerFromJSON(
   jsonString: string,
@@ -141,15 +145,17 @@ export const ExternalProviderSession$inboundSchema: z.ZodType<
   ExternalProviderSession,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string(),
-  type: z.string(),
-  "resource-type": z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "resource-type": "resourceType",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string(),
+    type: z.string(),
+    "resource-type": z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "resource-type": "resourceType",
+    });
+  })
+);
 
 export function externalProviderSessionFromJSON(
   jsonString: string,
@@ -166,20 +172,22 @@ export const ExchangeSessionLinks$inboundSchema: z.ZodType<
   ExchangeSessionLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  self: z.lazy(() => ExchangeSessionSelf$inboundSchema),
-  "exchange-partner": z.lazy(() =>
-    ExchangeSessionExchangePartner$inboundSchema
-  ),
-  "external-provider-session": z.lazy(() =>
-    ExternalProviderSession$inboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "exchange-partner": "exchangePartner",
-    "external-provider-session": "externalProviderSession",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    self: z.lazy(() => ExchangeSessionSelf$inboundSchema),
+    "exchange-partner": z.lazy(() =>
+      ExchangeSessionExchangePartner$inboundSchema
+    ),
+    "external-provider-session": z.lazy(() =>
+      ExternalProviderSession$inboundSchema
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "exchange-partner": "exchangePartner",
+      "external-provider-session": "externalProviderSession",
+    });
+  })
+);
 
 export function exchangeSessionLinksFromJSON(
   jsonString: string,
@@ -196,16 +204,18 @@ export const ExternalProviderSessionData$inboundSchema: z.ZodType<
   ExternalProviderSessionData,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.string().optional(),
-  payment_session_secret: z.string().optional(),
-  payment_session_token: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "payment_session_secret": "paymentSessionSecret",
-    "payment_session_token": "paymentSessionToken",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    payment_session_secret: z.string().optional(),
+    payment_session_token: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "payment_session_secret": "paymentSessionSecret",
+      "payment_session_token": "paymentSessionToken",
+    });
+  })
+);
 
 export function externalProviderSessionDataFromJSON(
   jsonString: string,
@@ -222,18 +232,20 @@ export const ExchangeSession$inboundSchema: z.ZodType<
   ExchangeSession,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  created: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  _links: z.lazy(() => ExchangeSessionLinks$inboundSchema),
-  externalProviderSessionToken: z.string().optional(),
-  externalProviderSessionData: z.lazy(() =>
-    ExternalProviderSessionData$inboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    created: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    _links: z.lazy(() => ExchangeSessionLinks$inboundSchema),
+    externalProviderSessionToken: z.string().optional(),
+    externalProviderSessionData: z.lazy(() =>
+      ExternalProviderSessionData$inboundSchema
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function exchangeSessionFromJSON(
   jsonString: string,

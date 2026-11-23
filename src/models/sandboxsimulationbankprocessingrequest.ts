@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 
 /**
  * Omit the request body or send an empty JSON object (`{}`). Triggers processing (or failure) for the last
@@ -21,7 +22,7 @@ export const SandboxSimulationBankProcessingRequest$outboundSchema: z.ZodType<
   SandboxSimulationBankProcessingRequest$Outbound,
   z.ZodTypeDef,
   SandboxSimulationBankProcessingRequest
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function sandboxSimulationBankProcessingRequestToJSON(
   sandboxSimulationBankProcessingRequest:

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -26,7 +26,7 @@ export const WeeklyReceiveLimitReachedErrorLinks$inboundSchema: z.ZodType<
   WeeklyReceiveLimitReachedErrorLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function weeklyReceiveLimitReachedErrorLinksFromJSON(
   jsonString: string,
@@ -44,17 +44,19 @@ export const WeeklyReceiveLimitReachedErrorError$inboundSchema: z.ZodType<
   WeeklyReceiveLimitReachedErrorError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  _links: z.lazy(() => WeeklyReceiveLimitReachedErrorLinks$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string().optional(),
+    message: z.string().optional(),
+    path: z.string().optional(),
+    _links: z.lazy(() => WeeklyReceiveLimitReachedErrorLinks$inboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function weeklyReceiveLimitReachedErrorErrorFromJSON(
   jsonString: string,
@@ -72,11 +74,13 @@ export const WeeklyReceiveLimitReachedErrorEmbedded$inboundSchema: z.ZodType<
   WeeklyReceiveLimitReachedErrorEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  errors: z.array(
-    z.lazy(() => WeeklyReceiveLimitReachedErrorError$inboundSchema),
-  ).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    errors: z.array(
+      z.lazy(() => WeeklyReceiveLimitReachedErrorError$inboundSchema),
+    ).optional(),
+  })
+);
 
 export function weeklyReceiveLimitReachedErrorEmbeddedFromJSON(
   jsonString: string,

@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -22,15 +22,17 @@ export const InternationalAddress$inboundSchema: z.ZodType<
   InternationalAddress,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  address1: z.string(),
-  address2: z.string().optional(),
-  address3: z.string().optional(),
-  city: z.string(),
-  postalCode: z.string().optional(),
-  country: z.string(),
-  stateProvinceRegion: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    address1: z.string(),
+    address2: z.string().optional(),
+    address3: z.string().optional(),
+    city: z.string(),
+    postalCode: z.string().optional(),
+    country: z.string(),
+    stateProvinceRegion: z.string(),
+  })
+);
 /** @internal */
 export type InternationalAddress$Outbound = {
   address1: string;
@@ -47,15 +49,17 @@ export const InternationalAddress$outboundSchema: z.ZodType<
   InternationalAddress$Outbound,
   z.ZodTypeDef,
   InternationalAddress
-> = z.object({
-  address1: z.string(),
-  address2: z.string().optional(),
-  address3: z.string().optional(),
-  city: z.string(),
-  postalCode: z.string().optional(),
-  country: z.string(),
-  stateProvinceRegion: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    address1: z.string(),
+    address2: z.string().optional(),
+    address3: z.string().optional(),
+    city: z.string(),
+    postalCode: z.string().optional(),
+    country: z.string(),
+    stateProvinceRegion: z.string(),
+  })
+);
 
 export function internationalAddressToJSON(
   internationalAddress: InternationalAddress,

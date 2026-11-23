@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 import { Exchange, Exchange$inboundSchema } from "./exchange.js";
@@ -25,9 +25,11 @@ export const ExchangesEmbedded$inboundSchema: z.ZodType<
   ExchangesEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  exchanges: z.array(Exchange$inboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    exchanges: z.array(Exchange$inboundSchema),
+  })
+);
 
 export function exchangesEmbeddedFromJSON(
   jsonString: string,
@@ -44,16 +46,18 @@ export const Exchanges$inboundSchema: z.ZodType<
   Exchanges,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.record(HalLink$inboundSchema),
-  _embedded: z.lazy(() => ExchangesEmbedded$inboundSchema),
-  total: z.number().int(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-    "_embedded": "embedded",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.record(HalLink$inboundSchema),
+    _embedded: z.lazy(() => ExchangesEmbedded$inboundSchema),
+    total: z.number().int(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+      "_embedded": "embedded",
+    });
+  })
+);
 
 export function exchangesFromJSON(
   jsonString: string,

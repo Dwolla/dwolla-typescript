@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 import { RFCDate } from "../types/rfcdate.js";
 
@@ -162,15 +163,17 @@ export const UpdateCardFundingSourceBillingAddress$outboundSchema: z.ZodType<
   UpdateCardFundingSourceBillingAddress$Outbound,
   z.ZodTypeDef,
   UpdateCardFundingSourceBillingAddress
-> = z.object({
-  address1: z.string().optional(),
-  address2: z.string().optional(),
-  address3: z.string().optional(),
-  city: z.string().optional(),
-  stateProvinceRegion: z.string().optional(),
-  country: z.string().optional(),
-  postalCode: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    address1: z.string().optional(),
+    address2: z.string().optional(),
+    address3: z.string().optional(),
+    city: z.string().optional(),
+    stateProvinceRegion: z.string().optional(),
+    country: z.string().optional(),
+    postalCode: z.string(),
+  })
+);
 
 export function updateCardFundingSourceBillingAddressToJSON(
   updateCardFundingSourceBillingAddress: UpdateCardFundingSourceBillingAddress,
@@ -185,7 +188,9 @@ export function updateCardFundingSourceBillingAddressToJSON(
 /** @internal */
 export const UpdateCardFundingSourceType$outboundSchema: z.ZodNativeEnum<
   typeof UpdateCardFundingSourceType
-> = z.nativeEnum(UpdateCardFundingSourceType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.nativeEnum(UpdateCardFundingSourceType)
+);
 
 /** @internal */
 export type UpdateCardFundingSourceIdentification$Outbound = {
@@ -199,11 +204,13 @@ export const UpdateCardFundingSourceIdentification$outboundSchema: z.ZodType<
   UpdateCardFundingSourceIdentification$Outbound,
   z.ZodTypeDef,
   UpdateCardFundingSourceIdentification
-> = z.object({
-  type: UpdateCardFundingSourceType$outboundSchema,
-  number: z.string(),
-  country: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: UpdateCardFundingSourceType$outboundSchema,
+    number: z.string(),
+    country: z.string(),
+  })
+);
 
 export function updateCardFundingSourceIdentificationToJSON(
   updateCardFundingSourceIdentification: UpdateCardFundingSourceIdentification,
@@ -230,18 +237,20 @@ export const UpdateCardFundingSourceCardDetails$outboundSchema: z.ZodType<
   UpdateCardFundingSourceCardDetails$Outbound,
   z.ZodTypeDef,
   UpdateCardFundingSourceCardDetails
-> = z.object({
-  firstName: z.string().optional(),
-  lastName: z.string().optional(),
-  billingAddress: z.lazy(() =>
-    UpdateCardFundingSourceBillingAddress$outboundSchema
-  ).optional(),
-  dateOfBirth: z.instanceof(RFCDate).transform(v => v.toString()).optional(),
-  countryOfBirth: z.string().optional(),
-  identification: z.lazy(() =>
-    UpdateCardFundingSourceIdentification$outboundSchema
-  ).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    firstName: z.string().optional(),
+    lastName: z.string().optional(),
+    billingAddress: z.lazy(() =>
+      UpdateCardFundingSourceBillingAddress$outboundSchema
+    ).optional(),
+    dateOfBirth: z.instanceof(RFCDate).transform(v => v.toString()).optional(),
+    countryOfBirth: z.string().optional(),
+    identification: z.lazy(() =>
+      UpdateCardFundingSourceIdentification$outboundSchema
+    ).optional(),
+  })
+);
 
 export function updateCardFundingSourceCardDetailsToJSON(
   updateCardFundingSourceCardDetails: UpdateCardFundingSourceCardDetails,
@@ -264,11 +273,13 @@ export const UpdateCardFundingSource$outboundSchema: z.ZodType<
   UpdateCardFundingSource$Outbound,
   z.ZodTypeDef,
   UpdateCardFundingSource
-> = z.object({
-  name: z.string().optional(),
-  cardDetails: z.lazy(() => UpdateCardFundingSourceCardDetails$outboundSchema)
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string().optional(),
+    cardDetails: z.lazy(() => UpdateCardFundingSourceCardDetails$outboundSchema)
+      .optional(),
+  })
+);
 
 export function updateCardFundingSourceToJSON(
   updateCardFundingSource: UpdateCardFundingSource,

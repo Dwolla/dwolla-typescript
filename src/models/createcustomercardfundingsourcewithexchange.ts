@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 import { RFCDate } from "../types/rfcdate.js";
 
@@ -150,9 +151,11 @@ export const CreateCustomerCardFundingSourceWithExchangeExchange$outboundSchema:
     CreateCustomerCardFundingSourceWithExchangeExchange$Outbound,
     z.ZodTypeDef,
     CreateCustomerCardFundingSourceWithExchangeExchange
-  > = z.object({
-    href: z.string(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      href: z.string(),
+    })
+  );
 
 export function createCustomerCardFundingSourceWithExchangeExchangeToJSON(
   createCustomerCardFundingSourceWithExchangeExchange:
@@ -176,11 +179,13 @@ export const CreateCustomerCardFundingSourceWithExchangeLinks$outboundSchema:
     CreateCustomerCardFundingSourceWithExchangeLinks$Outbound,
     z.ZodTypeDef,
     CreateCustomerCardFundingSourceWithExchangeLinks
-  > = z.object({
-    exchange: z.lazy(() =>
-      CreateCustomerCardFundingSourceWithExchangeExchange$outboundSchema
-    ),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      exchange: z.lazy(() =>
+        CreateCustomerCardFundingSourceWithExchangeExchange$outboundSchema
+      ),
+    })
+  );
 
 export function createCustomerCardFundingSourceWithExchangeLinksToJSON(
   createCustomerCardFundingSourceWithExchangeLinks:
@@ -211,15 +216,17 @@ export const CreateCustomerCardFundingSourceWithExchangeBillingAddress$outboundS
     CreateCustomerCardFundingSourceWithExchangeBillingAddress$Outbound,
     z.ZodTypeDef,
     CreateCustomerCardFundingSourceWithExchangeBillingAddress
-  > = z.object({
-    address1: z.string(),
-    address2: z.string().optional(),
-    address3: z.string().optional(),
-    city: z.string(),
-    stateProvinceRegion: z.string(),
-    country: z.string(),
-    postalCode: z.string(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      address1: z.string(),
+      address2: z.string().optional(),
+      address3: z.string().optional(),
+      city: z.string(),
+      stateProvinceRegion: z.string(),
+      country: z.string(),
+      postalCode: z.string(),
+    })
+  );
 
 export function createCustomerCardFundingSourceWithExchangeBillingAddressToJSON(
   createCustomerCardFundingSourceWithExchangeBillingAddress:
@@ -233,8 +240,10 @@ export function createCustomerCardFundingSourceWithExchangeBillingAddressToJSON(
 
 /** @internal */
 export const CreateCustomerCardFundingSourceWithExchangeType$outboundSchema:
-  z.ZodNativeEnum<typeof CreateCustomerCardFundingSourceWithExchangeType> = z
-    .nativeEnum(CreateCustomerCardFundingSourceWithExchangeType);
+  z.ZodNativeEnum<typeof CreateCustomerCardFundingSourceWithExchangeType> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(CreateCustomerCardFundingSourceWithExchangeType)
+    );
 
 /** @internal */
 export type CreateCustomerCardFundingSourceWithExchangeIdentification$Outbound =
@@ -250,11 +259,13 @@ export const CreateCustomerCardFundingSourceWithExchangeIdentification$outboundS
     CreateCustomerCardFundingSourceWithExchangeIdentification$Outbound,
     z.ZodTypeDef,
     CreateCustomerCardFundingSourceWithExchangeIdentification
-  > = z.object({
-    type: CreateCustomerCardFundingSourceWithExchangeType$outboundSchema,
-    number: z.string(),
-    country: z.string(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      type: CreateCustomerCardFundingSourceWithExchangeType$outboundSchema,
+      number: z.string(),
+      country: z.string(),
+    })
+  );
 
 export function createCustomerCardFundingSourceWithExchangeIdentificationToJSON(
   createCustomerCardFundingSourceWithExchangeIdentification:
@@ -285,18 +296,21 @@ export const CreateCustomerCardFundingSourceWithExchangeCardDetails$outboundSche
     CreateCustomerCardFundingSourceWithExchangeCardDetails$Outbound,
     z.ZodTypeDef,
     CreateCustomerCardFundingSourceWithExchangeCardDetails
-  > = z.object({
-    firstName: z.string(),
-    lastName: z.string(),
-    billingAddress: z.lazy(() =>
-      CreateCustomerCardFundingSourceWithExchangeBillingAddress$outboundSchema
-    ),
-    dateOfBirth: z.instanceof(RFCDate).transform(v => v.toString()).optional(),
-    countryOfBirth: z.string().optional(),
-    identification: z.lazy(() =>
-      CreateCustomerCardFundingSourceWithExchangeIdentification$outboundSchema
-    ).optional(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      firstName: z.string(),
+      lastName: z.string(),
+      billingAddress: z.lazy(() =>
+        CreateCustomerCardFundingSourceWithExchangeBillingAddress$outboundSchema
+      ),
+      dateOfBirth: z.instanceof(RFCDate).transform(v => v.toString())
+        .optional(),
+      countryOfBirth: z.string().optional(),
+      identification: z.lazy(() =>
+        CreateCustomerCardFundingSourceWithExchangeIdentification$outboundSchema
+      ).optional(),
+    })
+  );
 
 export function createCustomerCardFundingSourceWithExchangeCardDetailsToJSON(
   createCustomerCardFundingSourceWithExchangeCardDetails:
@@ -322,19 +336,21 @@ export const CreateCustomerCardFundingSourceWithExchange$outboundSchema:
     CreateCustomerCardFundingSourceWithExchange$Outbound,
     z.ZodTypeDef,
     CreateCustomerCardFundingSourceWithExchange
-  > = z.object({
-    links: z.lazy(() =>
-      CreateCustomerCardFundingSourceWithExchangeLinks$outboundSchema
-    ),
-    name: z.string(),
-    cardDetails: z.lazy(() =>
-      CreateCustomerCardFundingSourceWithExchangeCardDetails$outboundSchema
-    ),
-  }).transform((v) => {
-    return remap$(v, {
-      links: "_links",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      links: z.lazy(() =>
+        CreateCustomerCardFundingSourceWithExchangeLinks$outboundSchema
+      ),
+      name: z.string(),
+      cardDetails: z.lazy(() =>
+        CreateCustomerCardFundingSourceWithExchangeCardDetails$outboundSchema
+      ),
+    }).transform((v) => {
+      return remap$(v, {
+        links: "_links",
+      });
+    })
+  );
 
 export function createCustomerCardFundingSourceWithExchangeToJSON(
   createCustomerCardFundingSourceWithExchange:

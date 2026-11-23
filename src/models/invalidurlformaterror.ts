@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -26,7 +26,7 @@ export const InvalidUrlFormatErrorLinks$inboundSchema: z.ZodType<
   InvalidUrlFormatErrorLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function invalidUrlFormatErrorLinksFromJSON(
   jsonString: string,
@@ -43,16 +43,18 @@ export const InvalidUrlFormatErrorError$inboundSchema: z.ZodType<
   InvalidUrlFormatErrorError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  _links: z.lazy(() => InvalidUrlFormatErrorLinks$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string().optional(),
+    message: z.string().optional(),
+    path: z.string().optional(),
+    _links: z.lazy(() => InvalidUrlFormatErrorLinks$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function invalidUrlFormatErrorErrorFromJSON(
   jsonString: string,
@@ -69,10 +71,12 @@ export const InvalidUrlFormatErrorEmbedded$inboundSchema: z.ZodType<
   InvalidUrlFormatErrorEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  errors: z.array(z.lazy(() => InvalidUrlFormatErrorError$inboundSchema))
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    errors: z.array(z.lazy(() => InvalidUrlFormatErrorError$inboundSchema))
+      .optional(),
+  })
+);
 
 export function invalidUrlFormatErrorEmbeddedFromJSON(
   jsonString: string,

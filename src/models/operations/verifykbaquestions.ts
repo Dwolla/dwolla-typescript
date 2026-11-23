@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -60,10 +60,12 @@ export const VerifyKbaQuestionsAnswer$outboundSchema: z.ZodType<
   VerifyKbaQuestionsAnswer$Outbound,
   z.ZodTypeDef,
   VerifyKbaQuestionsAnswer
-> = z.object({
-  questionId: z.string(),
-  answerId: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    questionId: z.string(),
+    answerId: z.string(),
+  })
+);
 
 export function verifyKbaQuestionsAnswerToJSON(
   verifyKbaQuestionsAnswer: VerifyKbaQuestionsAnswer,
@@ -83,9 +85,11 @@ export const VerifyKbaQuestionsRequestBody$outboundSchema: z.ZodType<
   VerifyKbaQuestionsRequestBody$Outbound,
   z.ZodTypeDef,
   VerifyKbaQuestionsRequestBody
-> = z.object({
-  answers: z.array(z.lazy(() => VerifyKbaQuestionsAnswer$outboundSchema)),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    answers: z.array(z.lazy(() => VerifyKbaQuestionsAnswer$outboundSchema)),
+  })
+);
 
 export function verifyKbaQuestionsRequestBodyToJSON(
   verifyKbaQuestionsRequestBody: VerifyKbaQuestionsRequestBody,
@@ -108,14 +112,16 @@ export const VerifyKbaQuestionsRequest$outboundSchema: z.ZodType<
   VerifyKbaQuestionsRequest$Outbound,
   z.ZodTypeDef,
   VerifyKbaQuestionsRequest
-> = z.object({
-  id: z.string(),
-  requestBody: z.lazy(() => VerifyKbaQuestionsRequestBody$outboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    requestBody: "RequestBody",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    requestBody: z.lazy(() => VerifyKbaQuestionsRequestBody$outboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      requestBody: "RequestBody",
+    });
+  })
+);
 
 export function verifyKbaQuestionsRequestToJSON(
   verifyKbaQuestionsRequest: VerifyKbaQuestionsRequest,
@@ -130,15 +136,17 @@ export const VerifyKbaQuestionsCustomer$inboundSchema: z.ZodType<
   VerifyKbaQuestionsCustomer,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-  type: z.string().optional(),
-  "resource-type": z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "resource-type": "resourceType",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+    type: z.string().optional(),
+    "resource-type": z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "resource-type": "resourceType",
+    });
+  })
+);
 
 export function verifyKbaQuestionsCustomerFromJSON(
   jsonString: string,
@@ -155,9 +163,11 @@ export const VerifyKbaQuestionsLinks$inboundSchema: z.ZodType<
   VerifyKbaQuestionsLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  customer: z.lazy(() => VerifyKbaQuestionsCustomer$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    customer: z.lazy(() => VerifyKbaQuestionsCustomer$inboundSchema).optional(),
+  })
+);
 
 export function verifyKbaQuestionsLinksFromJSON(
   jsonString: string,
@@ -174,14 +184,16 @@ export const VerifyKbaQuestionsResponse$inboundSchema: z.ZodType<
   VerifyKbaQuestionsResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.lazy(() => VerifyKbaQuestionsLinks$inboundSchema).optional(),
-  verificationStatus: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.lazy(() => VerifyKbaQuestionsLinks$inboundSchema).optional(),
+    verificationStatus: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function verifyKbaQuestionsResponseFromJSON(
   jsonString: string,

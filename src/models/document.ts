@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
@@ -106,9 +106,11 @@ export const DocumentLinks$inboundSchema: z.ZodType<
   DocumentLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  self: HalLink$inboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    self: HalLink$inboundSchema.optional(),
+  })
+);
 
 export function documentLinksFromJSON(
   jsonString: string,
@@ -123,26 +125,28 @@ export function documentLinksFromJSON(
 /** @internal */
 export const DocumentStatus$inboundSchema: z.ZodNativeEnum<
   typeof DocumentStatus
-> = z.nativeEnum(DocumentStatus);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(DocumentStatus));
 
 /** @internal */
 export const DocumentType$inboundSchema: z.ZodNativeEnum<typeof DocumentType> =
-  z.nativeEnum(DocumentType);
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(DocumentType));
 
 /** @internal */
 export const DocumentVerificationStatus$inboundSchema: z.ZodNativeEnum<
   typeof DocumentVerificationStatus
-> = z.nativeEnum(DocumentVerificationStatus);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(DocumentVerificationStatus));
 
 /** @internal */
 export const AllFailureReason$inboundSchema: z.ZodType<
   AllFailureReason,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  reason: z.string(),
-  description: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    reason: z.string(),
+    description: z.string(),
+  })
+);
 
 export function allFailureReasonFromJSON(
   jsonString: string,
@@ -159,21 +163,23 @@ export const Document$inboundSchema: z.ZodType<
   Document,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.lazy(() => DocumentLinks$inboundSchema),
-  id: z.string(),
-  status: DocumentStatus$inboundSchema,
-  type: DocumentType$inboundSchema,
-  created: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  documentVerificationStatus: DocumentVerificationStatus$inboundSchema,
-  failureReason: z.string().optional(),
-  allFailureReasons: z.array(z.lazy(() => AllFailureReason$inboundSchema))
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.lazy(() => DocumentLinks$inboundSchema),
+    id: z.string(),
+    status: DocumentStatus$inboundSchema,
+    type: DocumentType$inboundSchema,
+    created: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    documentVerificationStatus: DocumentVerificationStatus$inboundSchema,
+    failureReason: z.string().optional(),
+    allFailureReasons: z.array(z.lazy(() => AllFailureReason$inboundSchema))
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function documentFromJSON(
   jsonString: string,

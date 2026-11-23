@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import {
@@ -33,11 +33,13 @@ export const CreateWebhookSubscriptionDwollaV1HalJSON$inboundSchema: z.ZodType<
   CreateWebhookSubscriptionDwollaV1HalJSON,
   z.ZodTypeDef,
   unknown
-> = smartUnion([
-  InvalidUrlFormatError$inboundSchema,
-  SecretTooLongError$inboundSchema,
-  MaxSubscriptionsReachedError$inboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    InvalidUrlFormatError$inboundSchema,
+    SecretTooLongError$inboundSchema,
+    MaxSubscriptionsReachedError$inboundSchema,
+  ])
+);
 
 export function createWebhookSubscriptionDwollaV1HalJSONFromJSON(
   jsonString: string,

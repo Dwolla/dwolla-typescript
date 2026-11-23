@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -26,7 +26,7 @@ export const InvalidTokenErrorLinks$inboundSchema: z.ZodType<
   InvalidTokenErrorLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function invalidTokenErrorLinksFromJSON(
   jsonString: string,
@@ -43,16 +43,18 @@ export const InvalidTokenErrorError$inboundSchema: z.ZodType<
   InvalidTokenErrorError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  path: z.string(),
-  _links: z.lazy(() => InvalidTokenErrorLinks$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string(),
+    message: z.string(),
+    path: z.string(),
+    _links: z.lazy(() => InvalidTokenErrorLinks$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function invalidTokenErrorErrorFromJSON(
   jsonString: string,
@@ -69,9 +71,11 @@ export const InvalidTokenErrorEmbedded$inboundSchema: z.ZodType<
   InvalidTokenErrorEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  errors: z.array(z.lazy(() => InvalidTokenErrorError$inboundSchema)),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    errors: z.array(z.lazy(() => InvalidTokenErrorError$inboundSchema)),
+  })
+);
 
 export function invalidTokenErrorEmbeddedFromJSON(
   jsonString: string,

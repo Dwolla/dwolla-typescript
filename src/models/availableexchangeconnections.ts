@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -50,15 +50,17 @@ export const AvailableExchangeConnectionsSelf$inboundSchema: z.ZodType<
   AvailableExchangeConnectionsSelf,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string(),
-  type: z.string(),
-  "resource-type": z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "resource-type": "resourceType",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string(),
+    type: z.string(),
+    "resource-type": z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "resource-type": "resourceType",
+    });
+  })
+);
 
 export function availableExchangeConnectionsSelfFromJSON(
   jsonString: string,
@@ -75,15 +77,17 @@ export const AvailableExchangeConnectionsCustomers$inboundSchema: z.ZodType<
   AvailableExchangeConnectionsCustomers,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string(),
-  type: z.string(),
-  "resource-type": z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "resource-type": "resourceType",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string(),
+    type: z.string(),
+    "resource-type": z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "resource-type": "resourceType",
+    });
+  })
+);
 
 export function availableExchangeConnectionsCustomersFromJSON(
   jsonString: string,
@@ -101,10 +105,14 @@ export const AvailableExchangeConnectionsLinks$inboundSchema: z.ZodType<
   AvailableExchangeConnectionsLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  self: z.lazy(() => AvailableExchangeConnectionsSelf$inboundSchema),
-  customers: z.lazy(() => AvailableExchangeConnectionsCustomers$inboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    self: z.lazy(() => AvailableExchangeConnectionsSelf$inboundSchema),
+    customers: z.lazy(() =>
+      AvailableExchangeConnectionsCustomers$inboundSchema
+    ),
+  })
+);
 
 export function availableExchangeConnectionsLinksFromJSON(
   jsonString: string,
@@ -121,10 +129,12 @@ export const AvailableExchangeConnection$inboundSchema: z.ZodType<
   AvailableExchangeConnection,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  availableConnectionToken: z.string(),
-  name: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    availableConnectionToken: z.string(),
+    name: z.string(),
+  })
+);
 
 export function availableExchangeConnectionFromJSON(
   jsonString: string,
@@ -141,15 +151,17 @@ export const AvailableExchangeConnectionsEmbedded$inboundSchema: z.ZodType<
   AvailableExchangeConnectionsEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  "available-exchange-connections": z.array(
-    z.lazy(() => AvailableExchangeConnection$inboundSchema),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "available-exchange-connections": "availableExchangeConnections",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    "available-exchange-connections": z.array(
+      z.lazy(() => AvailableExchangeConnection$inboundSchema),
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "available-exchange-connections": "availableExchangeConnections",
+    });
+  })
+);
 
 export function availableExchangeConnectionsEmbeddedFromJSON(
   jsonString: string,
@@ -167,15 +179,17 @@ export const AvailableExchangeConnections$inboundSchema: z.ZodType<
   AvailableExchangeConnections,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.lazy(() => AvailableExchangeConnectionsLinks$inboundSchema),
-  _embedded: z.lazy(() => AvailableExchangeConnectionsEmbedded$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-    "_embedded": "embedded",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.lazy(() => AvailableExchangeConnectionsLinks$inboundSchema),
+    _embedded: z.lazy(() => AvailableExchangeConnectionsEmbedded$inboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+      "_embedded": "embedded",
+    });
+  })
+);
 
 export function availableExchangeConnectionsFromJSON(
   jsonString: string,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 /**
  * Parameters for certifying beneficial ownership for a Customer
@@ -34,9 +35,11 @@ export const CertifyBeneficialOwnershipForCustomerRequestBody$outboundSchema:
     CertifyBeneficialOwnershipForCustomerRequestBody$Outbound,
     z.ZodTypeDef,
     CertifyBeneficialOwnershipForCustomerRequestBody
-  > = z.object({
-    status: z.string(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      status: z.string(),
+    })
+  );
 
 export function certifyBeneficialOwnershipForCustomerRequestBodyToJSON(
   certifyBeneficialOwnershipForCustomerRequestBody:
@@ -61,16 +64,18 @@ export const CertifyBeneficialOwnershipForCustomerRequest$outboundSchema:
     CertifyBeneficialOwnershipForCustomerRequest$Outbound,
     z.ZodTypeDef,
     CertifyBeneficialOwnershipForCustomerRequest
-  > = z.object({
-    id: z.string(),
-    requestBody: z.lazy(() =>
-      CertifyBeneficialOwnershipForCustomerRequestBody$outboundSchema
-    ),
-  }).transform((v) => {
-    return remap$(v, {
-      requestBody: "RequestBody",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: z.string(),
+      requestBody: z.lazy(() =>
+        CertifyBeneficialOwnershipForCustomerRequestBody$outboundSchema
+      ),
+    }).transform((v) => {
+      return remap$(v, {
+        requestBody: "RequestBody",
+      });
+    })
+  );
 
 export function certifyBeneficialOwnershipForCustomerRequestToJSON(
   certifyBeneficialOwnershipForCustomerRequest:

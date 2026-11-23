@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 
 export type CreateTokenBasedExchangeExchangePartner = {
   href?: string | undefined;
@@ -34,9 +35,11 @@ export const CreateTokenBasedExchangeExchangePartner$outboundSchema: z.ZodType<
   CreateTokenBasedExchangeExchangePartner$Outbound,
   z.ZodTypeDef,
   CreateTokenBasedExchangeExchangePartner
-> = z.object({
-  href: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+  })
+);
 
 export function createTokenBasedExchangeExchangePartnerToJSON(
   createTokenBasedExchangeExchangePartner:
@@ -59,15 +62,17 @@ export const CreateTokenBasedExchangeLinks$outboundSchema: z.ZodType<
   CreateTokenBasedExchangeLinks$Outbound,
   z.ZodTypeDef,
   CreateTokenBasedExchangeLinks
-> = z.object({
-  exchangePartner: z.lazy(() =>
-    CreateTokenBasedExchangeExchangePartner$outboundSchema
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    exchangePartner: "exchange-partner",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    exchangePartner: z.lazy(() =>
+      CreateTokenBasedExchangeExchangePartner$outboundSchema
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      exchangePartner: "exchange-partner",
+    });
+  })
+);
 
 export function createTokenBasedExchangeLinksToJSON(
   createTokenBasedExchangeLinks: CreateTokenBasedExchangeLinks,
@@ -90,14 +95,16 @@ export const CreateTokenBasedExchange$outboundSchema: z.ZodType<
   CreateTokenBasedExchange$Outbound,
   z.ZodTypeDef,
   CreateTokenBasedExchange
-> = z.object({
-  links: z.lazy(() => CreateTokenBasedExchangeLinks$outboundSchema),
-  token: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    links: z.lazy(() => CreateTokenBasedExchangeLinks$outboundSchema),
+    token: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      links: "_links",
+    });
+  })
+);
 
 export function createTokenBasedExchangeToJSON(
   createTokenBasedExchange: CreateTokenBasedExchange,

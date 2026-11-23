@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 
 /**
  * Request body for updating information of a Verified bank funding source
@@ -21,9 +22,11 @@ export const UpdateVerifiedBank$outboundSchema: z.ZodType<
   UpdateVerifiedBank$Outbound,
   z.ZodTypeDef,
   UpdateVerifiedBank
-> = z.object({
-  name: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string(),
+  })
+);
 
 export function updateVerifiedBankToJSON(
   updateVerifiedBank: UpdateVerifiedBank,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -26,7 +26,7 @@ export const DestinationAddendaMaxLengthErrorLinks$inboundSchema: z.ZodType<
   DestinationAddendaMaxLengthErrorLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function destinationAddendaMaxLengthErrorLinksFromJSON(
   jsonString: string,
@@ -44,17 +44,19 @@ export const DestinationAddendaMaxLengthErrorError$inboundSchema: z.ZodType<
   DestinationAddendaMaxLengthErrorError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  _links: z.lazy(() => DestinationAddendaMaxLengthErrorLinks$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string().optional(),
+    message: z.string().optional(),
+    path: z.string().optional(),
+    _links: z.lazy(() => DestinationAddendaMaxLengthErrorLinks$inboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function destinationAddendaMaxLengthErrorErrorFromJSON(
   jsonString: string,
@@ -72,11 +74,13 @@ export const DestinationAddendaMaxLengthErrorEmbedded$inboundSchema: z.ZodType<
   DestinationAddendaMaxLengthErrorEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  errors: z.array(
-    z.lazy(() => DestinationAddendaMaxLengthErrorError$inboundSchema),
-  ).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    errors: z.array(
+      z.lazy(() => DestinationAddendaMaxLengthErrorError$inboundSchema),
+    ).optional(),
+  })
+);
 
 export function destinationAddendaMaxLengthErrorEmbeddedFromJSON(
   jsonString: string,

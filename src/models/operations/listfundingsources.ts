@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ListFundingSourcesRequest = {
   /**
@@ -26,10 +27,12 @@ export const ListFundingSourcesRequest$outboundSchema: z.ZodType<
   ListFundingSourcesRequest$Outbound,
   z.ZodTypeDef,
   ListFundingSourcesRequest
-> = z.object({
-  id: z.string(),
-  removed: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    removed: z.string().optional(),
+  })
+);
 
 export function listFundingSourcesRequestToJSON(
   listFundingSourcesRequest: ListFundingSourcesRequest,

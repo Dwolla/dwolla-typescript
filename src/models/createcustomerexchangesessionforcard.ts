@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 
 export type CreateCustomerExchangeSessionForCardExchangePartner = {
   /**
@@ -69,9 +70,11 @@ export const CreateCustomerExchangeSessionForCardExchangePartner$outboundSchema:
     CreateCustomerExchangeSessionForCardExchangePartner$Outbound,
     z.ZodTypeDef,
     CreateCustomerExchangeSessionForCardExchangePartner
-  > = z.object({
-    href: z.string(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      href: z.string(),
+    })
+  );
 
 export function createCustomerExchangeSessionForCardExchangePartnerToJSON(
   createCustomerExchangeSessionForCardExchangePartner:
@@ -96,15 +99,17 @@ export const CreateCustomerExchangeSessionForCardLinks$outboundSchema:
     CreateCustomerExchangeSessionForCardLinks$Outbound,
     z.ZodTypeDef,
     CreateCustomerExchangeSessionForCardLinks
-  > = z.object({
-    exchangePartner: z.lazy(() =>
-      CreateCustomerExchangeSessionForCardExchangePartner$outboundSchema
-    ),
-  }).transform((v) => {
-    return remap$(v, {
-      exchangePartner: "exchange-partner",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      exchangePartner: z.lazy(() =>
+        CreateCustomerExchangeSessionForCardExchangePartner$outboundSchema
+      ),
+    }).transform((v) => {
+      return remap$(v, {
+        exchangePartner: "exchange-partner",
+      });
+    })
+  );
 
 export function createCustomerExchangeSessionForCardLinksToJSON(
   createCustomerExchangeSessionForCardLinks:
@@ -130,11 +135,13 @@ export const CreateCustomerExchangeSessionForCardCardDetails$outboundSchema:
     CreateCustomerExchangeSessionForCardCardDetails$Outbound,
     z.ZodTypeDef,
     CreateCustomerExchangeSessionForCardCardDetails
-  > = z.object({
-    firstName: z.string(),
-    lastName: z.string(),
-    accountNameInquiry: z.boolean(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      firstName: z.string(),
+      lastName: z.string(),
+      accountNameInquiry: z.boolean(),
+    })
+  );
 
 export function createCustomerExchangeSessionForCardCardDetailsToJSON(
   createCustomerExchangeSessionForCardCardDetails:
@@ -160,16 +167,20 @@ export const CreateCustomerExchangeSessionForCard$outboundSchema: z.ZodType<
   CreateCustomerExchangeSessionForCard$Outbound,
   z.ZodTypeDef,
   CreateCustomerExchangeSessionForCard
-> = z.object({
-  links: z.lazy(() => CreateCustomerExchangeSessionForCardLinks$outboundSchema),
-  cardDetails: z.lazy(() =>
-    CreateCustomerExchangeSessionForCardCardDetails$outboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    links: z.lazy(() =>
+      CreateCustomerExchangeSessionForCardLinks$outboundSchema
+    ),
+    cardDetails: z.lazy(() =>
+      CreateCustomerExchangeSessionForCardCardDetails$outboundSchema
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      links: "_links",
+    });
+  })
+);
 
 export function createCustomerExchangeSessionForCardToJSON(
   createCustomerExchangeSessionForCard: CreateCustomerExchangeSessionForCard,

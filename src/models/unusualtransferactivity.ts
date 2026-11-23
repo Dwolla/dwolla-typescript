@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -34,10 +34,12 @@ export const UnusualTransferActivityTransferAmount$inboundSchema: z.ZodType<
   UnusualTransferActivityTransferAmount,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  value: z.string(),
-  currency: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    value: z.string(),
+    currency: z.string(),
+  })
+);
 
 export function unusualTransferActivityTransferAmountFromJSON(
   jsonString: string,
@@ -55,12 +57,14 @@ export const UnusualTransferActivity$inboundSchema: z.ZodType<
   UnusualTransferActivity,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  transferCount: z.number().int(),
-  totalAmount: z.lazy(() =>
-    UnusualTransferActivityTransferAmount$inboundSchema
-  ),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    transferCount: z.number().int(),
+    totalAmount: z.lazy(() =>
+      UnusualTransferActivityTransferAmount$inboundSchema
+    ),
+  })
+);
 
 export function unusualTransferActivityFromJSON(
   jsonString: string,

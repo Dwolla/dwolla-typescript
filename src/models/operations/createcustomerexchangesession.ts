@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -47,11 +47,13 @@ export const CreateCustomerExchangeSessionRequestBody$outboundSchema: z.ZodType<
   CreateCustomerExchangeSessionRequestBody$Outbound,
   z.ZodTypeDef,
   CreateCustomerExchangeSessionRequestBody
-> = smartUnion([
-  models.CreateCustomerExchangeSessionWithRedirect$outboundSchema,
-  models.CreateCustomerExchangeSessionForWeb$outboundSchema,
-  models.CreateCustomerExchangeSessionForCard$outboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    models.CreateCustomerExchangeSessionWithRedirect$outboundSchema,
+    models.CreateCustomerExchangeSessionForWeb$outboundSchema,
+    models.CreateCustomerExchangeSessionForCard$outboundSchema,
+  ])
+);
 
 export function createCustomerExchangeSessionRequestBodyToJSON(
   createCustomerExchangeSessionRequestBody:
@@ -78,18 +80,20 @@ export const CreateCustomerExchangeSessionRequest$outboundSchema: z.ZodType<
   CreateCustomerExchangeSessionRequest$Outbound,
   z.ZodTypeDef,
   CreateCustomerExchangeSessionRequest
-> = z.object({
-  id: z.string(),
-  requestBody: smartUnion([
-    models.CreateCustomerExchangeSessionWithRedirect$outboundSchema,
-    models.CreateCustomerExchangeSessionForWeb$outboundSchema,
-    models.CreateCustomerExchangeSessionForCard$outboundSchema,
-  ]),
-}).transform((v) => {
-  return remap$(v, {
-    requestBody: "RequestBody",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    requestBody: smartUnion([
+      models.CreateCustomerExchangeSessionWithRedirect$outboundSchema,
+      models.CreateCustomerExchangeSessionForWeb$outboundSchema,
+      models.CreateCustomerExchangeSessionForCard$outboundSchema,
+    ]),
+  }).transform((v) => {
+    return remap$(v, {
+      requestBody: "RequestBody",
+    });
+  })
+);
 
 export function createCustomerExchangeSessionRequestToJSON(
   createCustomerExchangeSessionRequest: CreateCustomerExchangeSessionRequest,
@@ -106,13 +110,15 @@ export const CreateCustomerExchangeSessionResponse$inboundSchema: z.ZodType<
   CreateCustomerExchangeSessionResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+    });
+  })
+);
 
 export function createCustomerExchangeSessionResponseFromJSON(
   jsonString: string,

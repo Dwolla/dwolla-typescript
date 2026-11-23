@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import {
   BeneficialOwner,
@@ -30,13 +30,15 @@ export const BeneficialOwnersEmbedded$inboundSchema: z.ZodType<
   BeneficialOwnersEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  "beneficial-owners": z.array(BeneficialOwner$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "beneficial-owners": "beneficialOwners",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    "beneficial-owners": z.array(BeneficialOwner$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "beneficial-owners": "beneficialOwners",
+    });
+  })
+);
 
 export function beneficialOwnersEmbeddedFromJSON(
   jsonString: string,
@@ -53,15 +55,17 @@ export const BeneficialOwners$inboundSchema: z.ZodType<
   BeneficialOwners,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.record(HalLink$inboundSchema).optional(),
-  _embedded: z.lazy(() => BeneficialOwnersEmbedded$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-    "_embedded": "embedded",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.record(HalLink$inboundSchema).optional(),
+    _embedded: z.lazy(() => BeneficialOwnersEmbedded$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+      "_embedded": "embedded",
+    });
+  })
+);
 
 export function beneficialOwnersFromJSON(
   jsonString: string,

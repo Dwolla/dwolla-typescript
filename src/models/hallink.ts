@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -16,15 +16,17 @@ export type HalLink = {
 
 /** @internal */
 export const HalLink$inboundSchema: z.ZodType<HalLink, z.ZodTypeDef, unknown> =
-  z.object({
-    href: z.string().optional(),
-    type: z.string().optional(),
-    "resource-type": z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "resource-type": "resourceType",
-    });
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      href: z.string().optional(),
+      type: z.string().optional(),
+      "resource-type": z.string().optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "resource-type": "resourceType",
+      });
+    })
+  );
 
 export function halLinkFromJSON(
   jsonString: string,

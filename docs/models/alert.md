@@ -27,6 +27,12 @@ let value: Alert = {
       type: "application/vnd.dwolla.v1.hal+json",
       resourceType: "transfer",
     },
+    resolve: {
+      href:
+        "https://api.dwolla.com/alerts/d4bd3a1e-7c6e-4e8a-9a5c-3b2f9d7e1a42",
+      type: "application/vnd.dwolla.v1.hal+json",
+      resourceType: "alert",
+    },
   },
   id: "d4bd3a1e-7c6e-4e8a-9a5c-3b2f9d7e1a42",
   type: "unusual-transfer-activity",

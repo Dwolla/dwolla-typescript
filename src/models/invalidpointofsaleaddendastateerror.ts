@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -26,7 +26,7 @@ export const InvalidPointOfSaleAddendaStateErrorLinks$inboundSchema: z.ZodType<
   InvalidPointOfSaleAddendaStateErrorLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function invalidPointOfSaleAddendaStateErrorLinksFromJSON(
   jsonString: string,
@@ -49,17 +49,19 @@ export const InvalidPointOfSaleAddendaStateErrorError$inboundSchema: z.ZodType<
   InvalidPointOfSaleAddendaStateErrorError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  _links: z.lazy(() => InvalidPointOfSaleAddendaStateErrorLinks$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string().optional(),
+    message: z.string().optional(),
+    path: z.string().optional(),
+    _links: z.lazy(() => InvalidPointOfSaleAddendaStateErrorLinks$inboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function invalidPointOfSaleAddendaStateErrorErrorFromJSON(
   jsonString: string,
@@ -83,11 +85,13 @@ export const InvalidPointOfSaleAddendaStateErrorEmbedded$inboundSchema:
     InvalidPointOfSaleAddendaStateErrorEmbedded,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    errors: z.array(
-      z.lazy(() => InvalidPointOfSaleAddendaStateErrorError$inboundSchema),
-    ).optional(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      errors: z.array(
+        z.lazy(() => InvalidPointOfSaleAddendaStateErrorError$inboundSchema),
+      ).optional(),
+    })
+  );
 
 export function invalidPointOfSaleAddendaStateErrorEmbeddedFromJSON(
   jsonString: string,

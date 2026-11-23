@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -22,11 +22,13 @@ export const UpdateFundingSourceValidationErrorError$inboundSchema: z.ZodType<
   UpdateFundingSourceValidationErrorError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  path: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string(),
+    message: z.string(),
+    path: z.string(),
+  })
+);
 
 export function updateFundingSourceValidationErrorErrorFromJSON(
   jsonString: string,
@@ -47,11 +49,13 @@ export function updateFundingSourceValidationErrorErrorFromJSON(
 /** @internal */
 export const UpdateFundingSourceValidationErrorEmbedded$inboundSchema:
   z.ZodType<UpdateFundingSourceValidationErrorEmbedded, z.ZodTypeDef, unknown> =
-    z.object({
-      errors: z.array(
-        z.lazy(() => UpdateFundingSourceValidationErrorError$inboundSchema),
-      ),
-    });
+    /* @__PURE__ */ lazySchema$(() =>
+      z.object({
+        errors: z.array(
+          z.lazy(() => UpdateFundingSourceValidationErrorError$inboundSchema),
+        ),
+      })
+    );
 
 export function updateFundingSourceValidationErrorEmbeddedFromJSON(
   jsonString: string,

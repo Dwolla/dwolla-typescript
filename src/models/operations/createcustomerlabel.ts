@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -46,10 +46,12 @@ export const CreateCustomerLabelAmount$outboundSchema: z.ZodType<
   CreateCustomerLabelAmount$Outbound,
   z.ZodTypeDef,
   CreateCustomerLabelAmount
-> = z.object({
-  currency: z.string().optional(),
-  value: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    currency: z.string().optional(),
+    value: z.string().optional(),
+  })
+);
 
 export function createCustomerLabelAmountToJSON(
   createCustomerLabelAmount: CreateCustomerLabelAmount,
@@ -69,9 +71,11 @@ export const CreateCustomerLabelRequestBody$outboundSchema: z.ZodType<
   CreateCustomerLabelRequestBody$Outbound,
   z.ZodTypeDef,
   CreateCustomerLabelRequestBody
-> = z.object({
-  amount: z.lazy(() => CreateCustomerLabelAmount$outboundSchema),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    amount: z.lazy(() => CreateCustomerLabelAmount$outboundSchema),
+  })
+);
 
 export function createCustomerLabelRequestBodyToJSON(
   createCustomerLabelRequestBody: CreateCustomerLabelRequestBody,
@@ -94,14 +98,16 @@ export const CreateCustomerLabelRequest$outboundSchema: z.ZodType<
   CreateCustomerLabelRequest$Outbound,
   z.ZodTypeDef,
   CreateCustomerLabelRequest
-> = z.object({
-  id: z.string(),
-  requestBody: z.lazy(() => CreateCustomerLabelRequestBody$outboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    requestBody: "RequestBody",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    requestBody: z.lazy(() => CreateCustomerLabelRequestBody$outboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      requestBody: "RequestBody",
+    });
+  })
+);
 
 export function createCustomerLabelRequestToJSON(
   createCustomerLabelRequest: CreateCustomerLabelRequest,
@@ -116,13 +122,15 @@ export const CreateCustomerLabelResponse$inboundSchema: z.ZodType<
   CreateCustomerLabelResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+    });
+  })
+);
 
 export function createCustomerLabelResponseFromJSON(
   jsonString: string,

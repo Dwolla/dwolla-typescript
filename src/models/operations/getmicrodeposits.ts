@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as models from "../index.js";
@@ -79,9 +79,11 @@ export const GetMicroDepositsRequest$outboundSchema: z.ZodType<
   GetMicroDepositsRequest$Outbound,
   z.ZodTypeDef,
   GetMicroDepositsRequest
-> = z.object({
-  id: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+  })
+);
 
 export function getMicroDepositsRequestToJSON(
   getMicroDepositsRequest: GetMicroDepositsRequest,
@@ -93,10 +95,12 @@ export function getMicroDepositsRequestToJSON(
 
 /** @internal */
 export const Failure$inboundSchema: z.ZodType<Failure, z.ZodTypeDef, unknown> =
-  z.object({
-    code: z.string().optional(),
-    description: z.string().optional(),
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      code: z.string().optional(),
+      description: z.string().optional(),
+    })
+  );
 
 export function failureFromJSON(
   jsonString: string,
@@ -113,9 +117,11 @@ export const Deposit1$inboundSchema: z.ZodType<
   Deposit1,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  traceId: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    traceId: z.string(),
+  })
+);
 
 export function deposit1FromJSON(
   jsonString: string,
@@ -132,9 +138,11 @@ export const Deposit2$inboundSchema: z.ZodType<
   Deposit2,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  traceId: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    traceId: z.string(),
+  })
+);
 
 export function deposit2FromJSON(
   jsonString: string,
@@ -151,10 +159,12 @@ export const GetMicroDepositsAchDetails$inboundSchema: z.ZodType<
   GetMicroDepositsAchDetails,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  deposit1: z.lazy(() => Deposit1$inboundSchema).optional(),
-  deposit2: z.lazy(() => Deposit2$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    deposit1: z.lazy(() => Deposit1$inboundSchema).optional(),
+    deposit2: z.lazy(() => Deposit2$inboundSchema).optional(),
+  })
+);
 
 export function getMicroDepositsAchDetailsFromJSON(
   jsonString: string,
@@ -171,18 +181,21 @@ export const GetMicroDepositsResponse$inboundSchema: z.ZodType<
   GetMicroDepositsResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.record(models.HalLink$inboundSchema).optional(),
-  created: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  status: z.string().optional(),
-  failure: z.lazy(() => Failure$inboundSchema).optional(),
-  achDetails: z.lazy(() => GetMicroDepositsAchDetails$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.record(models.HalLink$inboundSchema).optional(),
+    created: z.string().datetime({ offset: true }).transform(v => new Date(v))
+      .optional(),
+    status: z.string().optional(),
+    failure: z.lazy(() => Failure$inboundSchema).optional(),
+    achDetails: z.lazy(() => GetMicroDepositsAchDetails$inboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function getMicroDepositsResponseFromJSON(
   jsonString: string,

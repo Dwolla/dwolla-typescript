@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import { DwollaError } from "./dwollaerror.js";
@@ -181,40 +181,44 @@ export const ResponseBodyForbiddenError2$inboundSchema: z.ZodType<
   ResponseBodyForbiddenError2,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  request$: z.instanceof(Request),
-  response$: z.instanceof(Response),
-  body$: z.string(),
-})
-  .transform((v) => {
-    return new ResponseBodyForbiddenError2(v, {
-      request: v.request$,
-      response: v.response$,
-      body: v.body$,
-    });
-  });
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string(),
+    message: z.string(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
+  })
+    .transform((v) => {
+      return new ResponseBodyForbiddenError2(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
+    })
+);
 
 /** @internal */
 export const ResponseBodyForbiddenError1$inboundSchema: z.ZodType<
   ResponseBodyForbiddenError1,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  request$: z.instanceof(Request),
-  response$: z.instanceof(Response),
-  body$: z.string(),
-})
-  .transform((v) => {
-    return new ResponseBodyForbiddenError1(v, {
-      request: v.request$,
-      response: v.response$,
-      body: v.body$,
-    });
-  });
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string(),
+    message: z.string(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
+  })
+    .transform((v) => {
+      return new ResponseBodyForbiddenError1(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
+    })
+);
 
 /** @internal */
 export const CreateCustomerExchangeSessionForbiddenDwollaV1HalJSON$inboundSchema:
@@ -222,10 +226,12 @@ export const CreateCustomerExchangeSessionForbiddenDwollaV1HalJSON$inboundSchema
     CreateCustomerExchangeSessionForbiddenDwollaV1HalJSON,
     z.ZodTypeDef,
     unknown
-  > = smartUnion([
-    z.lazy(() => ResponseBodyForbiddenError1$inboundSchema),
-    z.lazy(() => ResponseBodyForbiddenError2$inboundSchema),
-  ]);
+  > = /* @__PURE__ */ lazySchema$(() =>
+    smartUnion([
+      z.lazy(() => ResponseBodyForbiddenError1$inboundSchema),
+      z.lazy(() => ResponseBodyForbiddenError2$inboundSchema),
+    ])
+  );
 
 export function createCustomerExchangeSessionForbiddenDwollaV1HalJSONFromJSON(
   jsonString: string,
@@ -249,80 +255,88 @@ export const CreateCustomerExchangeSessionDwollaV1HalJSONError$inboundSchema:
     CreateCustomerExchangeSessionDwollaV1HalJSONError,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    request$: z.instanceof(Request),
-    response$: z.instanceof(Response),
-    body$: z.string(),
-  })
-    .transform((v) => {
-      return new CreateCustomerExchangeSessionDwollaV1HalJSONError(v, {
-        request: v.request$,
-        response: v.response$,
-        body: v.body$,
-      });
-    });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      code: z.string().optional(),
+      message: z.string().optional(),
+      request$: z.instanceof(Request),
+      response$: z.instanceof(Response),
+      body$: z.string(),
+    })
+      .transform((v) => {
+        return new CreateCustomerExchangeSessionDwollaV1HalJSONError(v, {
+          request: v.request$,
+          response: v.response$,
+          body: v.body$,
+        });
+      })
+  );
 
 /** @internal */
 export const ResponseBodyBadRequestError3$inboundSchema: z.ZodType<
   ResponseBodyBadRequestError3,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  request$: z.instanceof(Request),
-  response$: z.instanceof(Response),
-  body$: z.string(),
-})
-  .transform((v) => {
-    return new ResponseBodyBadRequestError3(v, {
-      request: v.request$,
-      response: v.response$,
-      body: v.body$,
-    });
-  });
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string(),
+    message: z.string(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
+  })
+    .transform((v) => {
+      return new ResponseBodyBadRequestError3(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
+    })
+);
 
 /** @internal */
 export const ResponseBodyBadRequestError2$inboundSchema: z.ZodType<
   ResponseBodyBadRequestError2,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  request$: z.instanceof(Request),
-  response$: z.instanceof(Response),
-  body$: z.string(),
-})
-  .transform((v) => {
-    return new ResponseBodyBadRequestError2(v, {
-      request: v.request$,
-      response: v.response$,
-      body: v.body$,
-    });
-  });
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string(),
+    message: z.string(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
+  })
+    .transform((v) => {
+      return new ResponseBodyBadRequestError2(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
+    })
+);
 
 /** @internal */
 export const ResponseBodyBadRequestError1$inboundSchema: z.ZodType<
   ResponseBodyBadRequestError1,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  request$: z.instanceof(Request),
-  response$: z.instanceof(Response),
-  body$: z.string(),
-})
-  .transform((v) => {
-    return new ResponseBodyBadRequestError1(v, {
-      request: v.request$,
-      response: v.response$,
-      body: v.body$,
-    });
-  });
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string(),
+    message: z.string(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
+  })
+    .transform((v) => {
+      return new ResponseBodyBadRequestError1(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
+    })
+);
 
 /** @internal */
 export const CreateCustomerExchangeSessionBadRequestDwollaV1HalJSON$inboundSchema:
@@ -330,11 +344,13 @@ export const CreateCustomerExchangeSessionBadRequestDwollaV1HalJSON$inboundSchem
     CreateCustomerExchangeSessionBadRequestDwollaV1HalJSON,
     z.ZodTypeDef,
     unknown
-  > = smartUnion([
-    z.lazy(() => ResponseBodyBadRequestError1$inboundSchema),
-    z.lazy(() => ResponseBodyBadRequestError2$inboundSchema),
-    z.lazy(() => ResponseBodyBadRequestError3$inboundSchema),
-  ]);
+  > = /* @__PURE__ */ lazySchema$(() =>
+    smartUnion([
+      z.lazy(() => ResponseBodyBadRequestError1$inboundSchema),
+      z.lazy(() => ResponseBodyBadRequestError2$inboundSchema),
+      z.lazy(() => ResponseBodyBadRequestError3$inboundSchema),
+    ])
+  );
 
 export function createCustomerExchangeSessionBadRequestDwollaV1HalJSONFromJSON(
   jsonString: string,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -44,12 +44,14 @@ export const CreateCustomerExchangeRequestBody$outboundSchema: z.ZodType<
   CreateCustomerExchangeRequestBody$Outbound,
   z.ZodTypeDef,
   CreateCustomerExchangeRequestBody
-> = smartUnion([
-  models.CreateFinicitySecureExchange$outboundSchema,
-  models.CreateTokenBasedExchange$outboundSchema,
-  models.CreateMXOpenBankingExchange$outboundSchema,
-  models.CreatePlaidOpenBankingExchange$outboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    models.CreateFinicitySecureExchange$outboundSchema,
+    models.CreateTokenBasedExchange$outboundSchema,
+    models.CreateMXOpenBankingExchange$outboundSchema,
+    models.CreatePlaidOpenBankingExchange$outboundSchema,
+  ])
+);
 
 export function createCustomerExchangeRequestBodyToJSON(
   createCustomerExchangeRequestBody: CreateCustomerExchangeRequestBody,
@@ -76,19 +78,21 @@ export const CreateCustomerExchangeRequest$outboundSchema: z.ZodType<
   CreateCustomerExchangeRequest$Outbound,
   z.ZodTypeDef,
   CreateCustomerExchangeRequest
-> = z.object({
-  id: z.string(),
-  requestBody: smartUnion([
-    models.CreateFinicitySecureExchange$outboundSchema,
-    models.CreateTokenBasedExchange$outboundSchema,
-    models.CreateMXOpenBankingExchange$outboundSchema,
-    models.CreatePlaidOpenBankingExchange$outboundSchema,
-  ]),
-}).transform((v) => {
-  return remap$(v, {
-    requestBody: "RequestBody",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    requestBody: smartUnion([
+      models.CreateFinicitySecureExchange$outboundSchema,
+      models.CreateTokenBasedExchange$outboundSchema,
+      models.CreateMXOpenBankingExchange$outboundSchema,
+      models.CreatePlaidOpenBankingExchange$outboundSchema,
+    ]),
+  }).transform((v) => {
+    return remap$(v, {
+      requestBody: "RequestBody",
+    });
+  })
+);
 
 export function createCustomerExchangeRequestToJSON(
   createCustomerExchangeRequest: CreateCustomerExchangeRequest,
@@ -105,13 +109,15 @@ export const CreateCustomerExchangeResponse$inboundSchema: z.ZodType<
   CreateCustomerExchangeResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+    });
+  })
+);
 
 export function createCustomerExchangeResponseFromJSON(
   jsonString: string,

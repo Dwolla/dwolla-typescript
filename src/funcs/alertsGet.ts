@@ -8,9 +8,8 @@ import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
-import { RequestOptions } from "../lib/sdks.js";
+import { encodePath, RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
-import { pathToFunc } from "../lib/url.js";
 import { DwollaError } from "../models/errors/dwollaerror.js";
 import {
   ConnectionError,
@@ -34,6 +33,8 @@ import { Result } from "../types/fp.js";
  * Returns a single alert for your Dwolla account. Alerts notify you of activity that may need your attention, such as unusual transfer activity for one of your Customers. When an alert needs a response from you, it includes an `actionRequired` object whose `description` explains what to do.
  *
  * Alerts are in active development and must be enabled for your account. To enable alerts, please [reach out to Dwolla](https://www.dwolla.com/contact?b=apidocs).
+ *
+ * If you can resolve the alert, its `_links` include a `resolve` link. To resolve it, send `{"status": "resolved"}` to `POST /alerts/{id}`.
  *
  * Requires an application access token for your account. Returns a `404 NotFound` error if the alert doesn't exist.
  */
@@ -104,7 +105,11 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-  const path = pathToFunc("/alerts/{id}")(pathParams);
+  const pathResult = encodePath("/alerts/{id}", pathParams);
+  if (!pathResult.ok) {
+    return [pathResult, { status: "invalid" }];
+  }
+  const path = pathResult.value;
 
   const headers = new Headers(compactMap({
     Accept: "application/vnd.dwolla.v1.hal+json",

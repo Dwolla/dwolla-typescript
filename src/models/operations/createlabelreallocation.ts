@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -45,9 +45,11 @@ export type From$Outbound = {
 
 /** @internal */
 export const From$outboundSchema: z.ZodType<From$Outbound, z.ZodTypeDef, From> =
-  z.object({
-    href: z.string().optional(),
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      href: z.string().optional(),
+    })
+  );
 
 export function fromToJSON(from: From): string {
   return JSON.stringify(From$outboundSchema.parse(from));
@@ -59,10 +61,12 @@ export type To$Outbound = {
 };
 
 /** @internal */
-export const To$outboundSchema: z.ZodType<To$Outbound, z.ZodTypeDef, To> = z
-  .object({
-    href: z.string().optional(),
-  });
+export const To$outboundSchema: z.ZodType<To$Outbound, z.ZodTypeDef, To> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      href: z.string().optional(),
+    })
+  );
 
 export function toToJSON(to: To): string {
   return JSON.stringify(To$outboundSchema.parse(to));
@@ -79,10 +83,12 @@ export const CreateLabelReallocationLinks$outboundSchema: z.ZodType<
   CreateLabelReallocationLinks$Outbound,
   z.ZodTypeDef,
   CreateLabelReallocationLinks
-> = z.object({
-  from: z.lazy(() => From$outboundSchema).optional(),
-  to: z.lazy(() => To$outboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    from: z.lazy(() => From$outboundSchema).optional(),
+    to: z.lazy(() => To$outboundSchema).optional(),
+  })
+);
 
 export function createLabelReallocationLinksToJSON(
   createLabelReallocationLinks: CreateLabelReallocationLinks,
@@ -105,10 +111,12 @@ export const CreateLabelReallocationAmount$outboundSchema: z.ZodType<
   CreateLabelReallocationAmount$Outbound,
   z.ZodTypeDef,
   CreateLabelReallocationAmount
-> = z.object({
-  currency: z.string().optional(),
-  value: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    currency: z.string().optional(),
+    value: z.string().optional(),
+  })
+);
 
 export function createLabelReallocationAmountToJSON(
   createLabelReallocationAmount: CreateLabelReallocationAmount,
@@ -131,14 +139,16 @@ export const CreateLabelReallocationRequest$outboundSchema: z.ZodType<
   CreateLabelReallocationRequest$Outbound,
   z.ZodTypeDef,
   CreateLabelReallocationRequest
-> = z.object({
-  links: z.lazy(() => CreateLabelReallocationLinks$outboundSchema),
-  amount: z.lazy(() => CreateLabelReallocationAmount$outboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    links: z.lazy(() => CreateLabelReallocationLinks$outboundSchema),
+    amount: z.lazy(() => CreateLabelReallocationAmount$outboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      links: "_links",
+    });
+  })
+);
 
 export function createLabelReallocationRequestToJSON(
   createLabelReallocationRequest: CreateLabelReallocationRequest,
@@ -155,13 +165,15 @@ export const CreateLabelReallocationResponse$inboundSchema: z.ZodType<
   CreateLabelReallocationResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  Headers: z.record(z.array(z.string())).default({}),
-}).transform((v) => {
-  return remap$(v, {
-    "Headers": "headers",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    Headers: z.record(z.array(z.string())).default({}),
+  }).transform((v) => {
+    return remap$(v, {
+      "Headers": "headers",
+    });
+  })
+);
 
 export function createLabelReallocationResponseFromJSON(
   jsonString: string,

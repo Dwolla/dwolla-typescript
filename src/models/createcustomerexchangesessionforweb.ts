@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 
 export type CreateCustomerExchangeSessionForWebExchangePartner = {
   href: string;
@@ -31,9 +32,11 @@ export const CreateCustomerExchangeSessionForWebExchangePartner$outboundSchema:
     CreateCustomerExchangeSessionForWebExchangePartner$Outbound,
     z.ZodTypeDef,
     CreateCustomerExchangeSessionForWebExchangePartner
-  > = z.object({
-    href: z.string(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      href: z.string(),
+    })
+  );
 
 export function createCustomerExchangeSessionForWebExchangePartnerToJSON(
   createCustomerExchangeSessionForWebExchangePartner:
@@ -57,15 +60,17 @@ export const CreateCustomerExchangeSessionForWebLinks$outboundSchema: z.ZodType<
   CreateCustomerExchangeSessionForWebLinks$Outbound,
   z.ZodTypeDef,
   CreateCustomerExchangeSessionForWebLinks
-> = z.object({
-  exchangePartner: z.lazy(() =>
-    CreateCustomerExchangeSessionForWebExchangePartner$outboundSchema
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    exchangePartner: "exchange-partner",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    exchangePartner: z.lazy(() =>
+      CreateCustomerExchangeSessionForWebExchangePartner$outboundSchema
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      exchangePartner: "exchange-partner",
+    });
+  })
+);
 
 export function createCustomerExchangeSessionForWebLinksToJSON(
   createCustomerExchangeSessionForWebLinks:
@@ -88,13 +93,17 @@ export const CreateCustomerExchangeSessionForWeb$outboundSchema: z.ZodType<
   CreateCustomerExchangeSessionForWeb$Outbound,
   z.ZodTypeDef,
   CreateCustomerExchangeSessionForWeb
-> = z.object({
-  links: z.lazy(() => CreateCustomerExchangeSessionForWebLinks$outboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    links: z.lazy(() =>
+      CreateCustomerExchangeSessionForWebLinks$outboundSchema
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      links: "_links",
+    });
+  })
+);
 
 export function createCustomerExchangeSessionForWebToJSON(
   createCustomerExchangeSessionForWeb: CreateCustomerExchangeSessionForWeb,

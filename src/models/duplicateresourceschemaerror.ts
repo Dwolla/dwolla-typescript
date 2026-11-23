@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -19,16 +19,18 @@ export type DuplicateResourceSchemaLinks = {
 };
 
 /** @internal */
-export const About$inboundSchema: z.ZodType<About, z.ZodTypeDef, unknown> = z
-  .object({
-    href: z.string().optional(),
-    type: z.string().optional(),
-    "resource-type": z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "resource-type": "resourceType",
-    });
-  });
+export const About$inboundSchema: z.ZodType<About, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      href: z.string().optional(),
+      type: z.string().optional(),
+      "resource-type": z.string().optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "resource-type": "resourceType",
+      });
+    })
+  );
 
 export function aboutFromJSON(
   jsonString: string,
@@ -45,9 +47,11 @@ export const DuplicateResourceSchemaLinks$inboundSchema: z.ZodType<
   DuplicateResourceSchemaLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  about: z.lazy(() => About$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    about: z.lazy(() => About$inboundSchema).optional(),
+  })
+);
 
 export function duplicateResourceSchemaLinksFromJSON(
   jsonString: string,

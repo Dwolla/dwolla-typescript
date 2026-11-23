@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -57,9 +57,11 @@ export const RetrieveLabelReallocationRequest$outboundSchema: z.ZodType<
   RetrieveLabelReallocationRequest$Outbound,
   z.ZodTypeDef,
   RetrieveLabelReallocationRequest
-> = z.object({
-  reallocationId: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    reallocationId: z.string(),
+  })
+);
 
 export function retrieveLabelReallocationRequestToJSON(
   retrieveLabelReallocationRequest: RetrieveLabelReallocationRequest,
@@ -76,15 +78,17 @@ export const RetrieveLabelReallocationSelf$inboundSchema: z.ZodType<
   RetrieveLabelReallocationSelf,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-  type: z.string().optional(),
-  "resource-type": z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "resource-type": "resourceType",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+    type: z.string().optional(),
+    "resource-type": z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "resource-type": "resourceType",
+    });
+  })
+);
 
 export function retrieveLabelReallocationSelfFromJSON(
   jsonString: string,
@@ -101,15 +105,17 @@ export const ToLedgerEntry$inboundSchema: z.ZodType<
   ToLedgerEntry,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-  type: z.string().optional(),
-  "resource-type": z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "resource-type": "resourceType",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+    type: z.string().optional(),
+    "resource-type": z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "resource-type": "resourceType",
+    });
+  })
+);
 
 export function toLedgerEntryFromJSON(
   jsonString: string,
@@ -126,15 +132,17 @@ export const FromLedgerEntry$inboundSchema: z.ZodType<
   FromLedgerEntry,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-  type: z.string().optional(),
-  "resource-type": z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "resource-type": "resourceType",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+    type: z.string().optional(),
+    "resource-type": z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "resource-type": "resourceType",
+    });
+  })
+);
 
 export function fromLedgerEntryFromJSON(
   jsonString: string,
@@ -151,16 +159,18 @@ export const RetrieveLabelReallocationLinks$inboundSchema: z.ZodType<
   RetrieveLabelReallocationLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  self: z.lazy(() => RetrieveLabelReallocationSelf$inboundSchema).optional(),
-  "to-ledger-entry": z.lazy(() => ToLedgerEntry$inboundSchema).optional(),
-  "from-ledger-entry": z.lazy(() => FromLedgerEntry$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "to-ledger-entry": "toLedgerEntry",
-    "from-ledger-entry": "fromLedgerEntry",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    self: z.lazy(() => RetrieveLabelReallocationSelf$inboundSchema).optional(),
+    "to-ledger-entry": z.lazy(() => ToLedgerEntry$inboundSchema).optional(),
+    "from-ledger-entry": z.lazy(() => FromLedgerEntry$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "to-ledger-entry": "toLedgerEntry",
+      "from-ledger-entry": "fromLedgerEntry",
+    });
+  })
+);
 
 export function retrieveLabelReallocationLinksFromJSON(
   jsonString: string,
@@ -177,15 +187,18 @@ export const RetrieveLabelReallocationResponse$inboundSchema: z.ZodType<
   RetrieveLabelReallocationResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.lazy(() => RetrieveLabelReallocationLinks$inboundSchema).optional(),
-  created: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.lazy(() => RetrieveLabelReallocationLinks$inboundSchema)
+      .optional(),
+    created: z.string().datetime({ offset: true }).transform(v => new Date(v))
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function retrieveLabelReallocationResponseFromJSON(
   jsonString: string,

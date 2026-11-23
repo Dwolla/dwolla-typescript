@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 import { smartUnion } from "../types/smartUnion.js";
 import {
   SandboxSimulationBankProcessingRequest,
@@ -43,11 +44,13 @@ export const SandboxSimulationRequest$outboundSchema: z.ZodType<
   SandboxSimulationRequest$Outbound,
   z.ZodTypeDef,
   SandboxSimulationRequest
-> = smartUnion([
-  SandboxSimulationCustomerVerificationRequest$outboundSchema,
-  SandboxSimulationVirtualAccountTransfersRequest$outboundSchema,
-  SandboxSimulationBankProcessingRequest$outboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    SandboxSimulationCustomerVerificationRequest$outboundSchema,
+    SandboxSimulationVirtualAccountTransfersRequest$outboundSchema,
+    SandboxSimulationBankProcessingRequest$outboundSchema,
+  ])
+);
 
 export function sandboxSimulationRequestToJSON(
   sandboxSimulationRequest: SandboxSimulationRequest,

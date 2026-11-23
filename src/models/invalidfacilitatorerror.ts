@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -26,7 +26,7 @@ export const InvalidFacilitatorErrorLinks$inboundSchema: z.ZodType<
   InvalidFacilitatorErrorLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function invalidFacilitatorErrorLinksFromJSON(
   jsonString: string,
@@ -43,16 +43,18 @@ export const InvalidFacilitatorErrorError$inboundSchema: z.ZodType<
   InvalidFacilitatorErrorError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  path: z.string().optional(),
-  _links: z.lazy(() => InvalidFacilitatorErrorLinks$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string().optional(),
+    message: z.string().optional(),
+    path: z.string().optional(),
+    _links: z.lazy(() => InvalidFacilitatorErrorLinks$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function invalidFacilitatorErrorErrorFromJSON(
   jsonString: string,
@@ -69,10 +71,12 @@ export const InvalidFacilitatorErrorEmbedded$inboundSchema: z.ZodType<
   InvalidFacilitatorErrorEmbedded,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  errors: z.array(z.lazy(() => InvalidFacilitatorErrorError$inboundSchema))
-    .optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    errors: z.array(z.lazy(() => InvalidFacilitatorErrorError$inboundSchema))
+      .optional(),
+  })
+);
 
 export function invalidFacilitatorErrorEmbeddedFromJSON(
   jsonString: string,

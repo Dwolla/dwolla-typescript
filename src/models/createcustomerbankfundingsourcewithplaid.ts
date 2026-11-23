@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 
 /**
@@ -63,12 +64,16 @@ export type CreateCustomerBankFundingSourceWithPlaid = {
 export const CreateCustomerBankFundingSourceWithPlaidBankAccountType$outboundSchema:
   z.ZodNativeEnum<
     typeof CreateCustomerBankFundingSourceWithPlaidBankAccountType
-  > = z.nativeEnum(CreateCustomerBankFundingSourceWithPlaidBankAccountType);
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.nativeEnum(CreateCustomerBankFundingSourceWithPlaidBankAccountType)
+  );
 
 /** @internal */
 export const CreateCustomerBankFundingSourceWithPlaidChannel$outboundSchema:
-  z.ZodNativeEnum<typeof CreateCustomerBankFundingSourceWithPlaidChannel> = z
-    .nativeEnum(CreateCustomerBankFundingSourceWithPlaidChannel);
+  z.ZodNativeEnum<typeof CreateCustomerBankFundingSourceWithPlaidChannel> =
+    /* @__PURE__ */ lazySchema$(() =>
+      z.nativeEnum(CreateCustomerBankFundingSourceWithPlaidChannel)
+    );
 
 /** @internal */
 export type CreateCustomerBankFundingSourceWithPlaidOnDemandAuthorization$Outbound =
@@ -82,9 +87,11 @@ export const CreateCustomerBankFundingSourceWithPlaidOnDemandAuthorization$outbo
     CreateCustomerBankFundingSourceWithPlaidOnDemandAuthorization$Outbound,
     z.ZodTypeDef,
     CreateCustomerBankFundingSourceWithPlaidOnDemandAuthorization
-  > = z.object({
-    href: z.string(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      href: z.string(),
+    })
+  );
 
 export function createCustomerBankFundingSourceWithPlaidOnDemandAuthorizationToJSON(
   createCustomerBankFundingSourceWithPlaidOnDemandAuthorization:
@@ -109,15 +116,17 @@ export const CreateCustomerBankFundingSourceWithPlaidLinks$outboundSchema:
     CreateCustomerBankFundingSourceWithPlaidLinks$Outbound,
     z.ZodTypeDef,
     CreateCustomerBankFundingSourceWithPlaidLinks
-  > = z.object({
-    onDemandAuthorization: z.lazy(() =>
-      CreateCustomerBankFundingSourceWithPlaidOnDemandAuthorization$outboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      onDemandAuthorization: "on-demand-authorization",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      onDemandAuthorization: z.lazy(() =>
+        CreateCustomerBankFundingSourceWithPlaidOnDemandAuthorization$outboundSchema
+      ).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        onDemandAuthorization: "on-demand-authorization",
+      });
+    })
+  );
 
 export function createCustomerBankFundingSourceWithPlaidLinksToJSON(
   createCustomerBankFundingSourceWithPlaidLinks:
@@ -144,22 +153,24 @@ export const CreateCustomerBankFundingSourceWithPlaid$outboundSchema: z.ZodType<
   CreateCustomerBankFundingSourceWithPlaid$Outbound,
   z.ZodTypeDef,
   CreateCustomerBankFundingSourceWithPlaid
-> = z.object({
-  plaidToken: z.string(),
-  bankAccountType:
-    CreateCustomerBankFundingSourceWithPlaidBankAccountType$outboundSchema,
-  name: z.string(),
-  channels: z.array(
-    CreateCustomerBankFundingSourceWithPlaidChannel$outboundSchema,
-  ).optional(),
-  links: z.lazy(() =>
-    CreateCustomerBankFundingSourceWithPlaidLinks$outboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    plaidToken: z.string(),
+    bankAccountType:
+      CreateCustomerBankFundingSourceWithPlaidBankAccountType$outboundSchema,
+    name: z.string(),
+    channels: z.array(
+      CreateCustomerBankFundingSourceWithPlaidChannel$outboundSchema,
+    ).optional(),
+    links: z.lazy(() =>
+      CreateCustomerBankFundingSourceWithPlaidLinks$outboundSchema
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      links: "_links",
+    });
+  })
+);
 
 export function createCustomerBankFundingSourceWithPlaidToJSON(
   createCustomerBankFundingSourceWithPlaid:

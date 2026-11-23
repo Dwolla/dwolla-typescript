@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -34,9 +34,11 @@ export const WebhookSubscriptionSelf$inboundSchema: z.ZodType<
   WebhookSubscriptionSelf,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+  })
+);
 
 export function webhookSubscriptionSelfFromJSON(
   jsonString: string,
@@ -53,9 +55,11 @@ export const Webhooks$inboundSchema: z.ZodType<
   Webhooks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+  })
+);
 
 export function webhooksFromJSON(
   jsonString: string,
@@ -72,10 +76,12 @@ export const WebhookSubscriptionLinks$inboundSchema: z.ZodType<
   WebhookSubscriptionLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  self: z.lazy(() => WebhookSubscriptionSelf$inboundSchema).optional(),
-  webhooks: z.lazy(() => Webhooks$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    self: z.lazy(() => WebhookSubscriptionSelf$inboundSchema).optional(),
+    webhooks: z.lazy(() => Webhooks$inboundSchema).optional(),
+  })
+);
 
 export function webhookSubscriptionLinksFromJSON(
   jsonString: string,
@@ -92,18 +98,20 @@ export const WebhookSubscription$inboundSchema: z.ZodType<
   WebhookSubscription,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.lazy(() => WebhookSubscriptionLinks$inboundSchema).optional(),
-  id: z.string().optional(),
-  url: z.string().optional(),
-  paused: z.boolean().optional(),
-  created: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.lazy(() => WebhookSubscriptionLinks$inboundSchema).optional(),
+    id: z.string().optional(),
+    url: z.string().optional(),
+    paused: z.boolean().optional(),
+    created: z.string().datetime({ offset: true }).transform(v => new Date(v))
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function webhookSubscriptionFromJSON(
   jsonString: string,

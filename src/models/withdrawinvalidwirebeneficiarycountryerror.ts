@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -27,7 +27,7 @@ export const WithdrawInvalidWireBeneficiaryCountryErrorLinks$inboundSchema:
     WithdrawInvalidWireBeneficiaryCountryErrorLinks,
     z.ZodTypeDef,
     unknown
-  > = z.object({});
+  > = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function withdrawInvalidWireBeneficiaryCountryErrorLinksFromJSON(
   jsonString: string,
@@ -51,18 +51,20 @@ export const WithdrawInvalidWireBeneficiaryCountryErrorError$inboundSchema:
     WithdrawInvalidWireBeneficiaryCountryErrorError,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    code: z.string().optional(),
-    message: z.string().optional(),
-    path: z.string().optional(),
-    _links: z.lazy(() =>
-      WithdrawInvalidWireBeneficiaryCountryErrorLinks$inboundSchema
-    ).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "_links": "links",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      code: z.string().optional(),
+      message: z.string().optional(),
+      path: z.string().optional(),
+      _links: z.lazy(() =>
+        WithdrawInvalidWireBeneficiaryCountryErrorLinks$inboundSchema
+      ).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "_links": "links",
+      });
+    })
+  );
 
 export function withdrawInvalidWireBeneficiaryCountryErrorErrorFromJSON(
   jsonString: string,
@@ -86,13 +88,13 @@ export const WithdrawInvalidWireBeneficiaryCountryErrorEmbedded$inboundSchema:
     WithdrawInvalidWireBeneficiaryCountryErrorEmbedded,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    errors: z.array(
-      z.lazy(() =>
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      errors: z.array(z.lazy(() =>
         WithdrawInvalidWireBeneficiaryCountryErrorError$inboundSchema
-      ),
-    ).optional(),
-  });
+      )).optional(),
+    })
+  );
 
 export function withdrawInvalidWireBeneficiaryCountryErrorEmbeddedFromJSON(
   jsonString: string,

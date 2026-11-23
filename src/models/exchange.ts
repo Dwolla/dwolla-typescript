@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
@@ -86,21 +86,23 @@ export type Exchange = {
 /** @internal */
 export const ExchangeStatus$inboundSchema: z.ZodNativeEnum<
   typeof ExchangeStatus
-> = z.nativeEnum(ExchangeStatus);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(ExchangeStatus));
 
 /** @internal */
 export const AccountNameInquiry$inboundSchema: z.ZodNativeEnum<
   typeof AccountNameInquiry
-> = z.nativeEnum(AccountNameInquiry);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(AccountNameInquiry));
 
 /** @internal */
 export const ExchangeCardDetails$inboundSchema: z.ZodType<
   ExchangeCardDetails,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  accountNameInquiry: AccountNameInquiry$inboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    accountNameInquiry: AccountNameInquiry$inboundSchema,
+  })
+);
 
 export function exchangeCardDetailsFromJSON(
   jsonString: string,
@@ -117,17 +119,19 @@ export const Exchange$inboundSchema: z.ZodType<
   Exchange,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.record(HalLink$inboundSchema),
-  id: z.string(),
-  status: ExchangeStatus$inboundSchema,
-  created: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  cardDetails: z.lazy(() => ExchangeCardDetails$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.record(HalLink$inboundSchema),
+    id: z.string(),
+    status: ExchangeStatus$inboundSchema,
+    created: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    cardDetails: z.lazy(() => ExchangeCardDetails$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function exchangeFromJSON(
   jsonString: string,

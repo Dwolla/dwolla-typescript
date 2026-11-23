@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
 
@@ -76,9 +76,11 @@ export const WebhookSelf$inboundSchema: z.ZodType<
   WebhookSelf,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+  })
+);
 
 export function webhookSelfFromJSON(
   jsonString: string,
@@ -95,9 +97,11 @@ export const Subscription$inboundSchema: z.ZodType<
   Subscription,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+  })
+);
 
 export function subscriptionFromJSON(
   jsonString: string,
@@ -114,9 +118,11 @@ export const WebhookRetry$inboundSchema: z.ZodType<
   WebhookRetry,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+  })
+);
 
 export function webhookRetryFromJSON(
   jsonString: string,
@@ -133,9 +139,11 @@ export const WebhookEvent$inboundSchema: z.ZodType<
   WebhookEvent,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+  })
+);
 
 export function webhookEventFromJSON(
   jsonString: string,
@@ -152,12 +160,14 @@ export const WebhookLinks$inboundSchema: z.ZodType<
   WebhookLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  self: z.lazy(() => WebhookSelf$inboundSchema).optional(),
-  subscription: z.lazy(() => Subscription$inboundSchema).optional(),
-  retry: z.lazy(() => WebhookRetry$inboundSchema).optional(),
-  event: z.lazy(() => WebhookEvent$inboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    self: z.lazy(() => WebhookSelf$inboundSchema).optional(),
+    subscription: z.lazy(() => Subscription$inboundSchema).optional(),
+    retry: z.lazy(() => WebhookRetry$inboundSchema).optional(),
+    event: z.lazy(() => WebhookEvent$inboundSchema).optional(),
+  })
+);
 
 export function webhookLinksFromJSON(
   jsonString: string,
@@ -174,10 +184,12 @@ export const RequestHeader$inboundSchema: z.ZodType<
   RequestHeader,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  name: z.string().optional(),
-  value: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string().optional(),
+    value: z.string().optional(),
+  })
+);
 
 export function requestHeaderFromJSON(
   jsonString: string,
@@ -194,13 +206,15 @@ export const RequestT$inboundSchema: z.ZodType<
   RequestT,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  timestamp: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  url: z.string().optional(),
-  headers: z.array(z.lazy(() => RequestHeader$inboundSchema)).optional(),
-  body: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    timestamp: z.string().datetime({ offset: true }).transform(v => new Date(v))
+      .optional(),
+    url: z.string().optional(),
+    headers: z.array(z.lazy(() => RequestHeader$inboundSchema)).optional(),
+    body: z.string().optional(),
+  })
+);
 
 export function requestFromJSON(
   jsonString: string,
@@ -217,10 +231,12 @@ export const ResponseHeader$inboundSchema: z.ZodType<
   ResponseHeader,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  name: z.string().optional(),
-  value: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string().optional(),
+    value: z.string().optional(),
+  })
+);
 
 export function responseHeaderFromJSON(
   jsonString: string,
@@ -237,13 +253,15 @@ export const ResponseT$inboundSchema: z.ZodType<
   ResponseT,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  timestamp: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  headers: z.array(z.lazy(() => ResponseHeader$inboundSchema)).optional(),
-  statusCode: z.number().int().optional(),
-  body: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    timestamp: z.string().datetime({ offset: true }).transform(v => new Date(v))
+      .optional(),
+    headers: z.array(z.lazy(() => ResponseHeader$inboundSchema)).optional(),
+    statusCode: z.number().int().optional(),
+    body: z.string().optional(),
+  })
+);
 
 export function responseFromJSON(
   jsonString: string,
@@ -257,11 +275,13 @@ export function responseFromJSON(
 
 /** @internal */
 export const Attempt$inboundSchema: z.ZodType<Attempt, z.ZodTypeDef, unknown> =
-  z.object({
-    id: z.string().optional(),
-    request: z.lazy(() => RequestT$inboundSchema).optional(),
-    response: z.lazy(() => ResponseT$inboundSchema).optional(),
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: z.string().optional(),
+      request: z.lazy(() => RequestT$inboundSchema).optional(),
+      response: z.lazy(() => ResponseT$inboundSchema).optional(),
+    })
+  );
 
 export function attemptFromJSON(
   jsonString: string,
@@ -275,19 +295,21 @@ export function attemptFromJSON(
 
 /** @internal */
 export const Webhook$inboundSchema: z.ZodType<Webhook, z.ZodTypeDef, unknown> =
-  z.object({
-    _links: z.lazy(() => WebhookLinks$inboundSchema).optional(),
-    id: z.string().optional(),
-    topic: z.string().optional(),
-    accountId: z.string().optional(),
-    eventId: z.string().optional(),
-    subscriptionId: z.string().optional(),
-    attempts: z.array(z.lazy(() => Attempt$inboundSchema)).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "_links": "links",
-    });
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      _links: z.lazy(() => WebhookLinks$inboundSchema).optional(),
+      id: z.string().optional(),
+      topic: z.string().optional(),
+      accountId: z.string().optional(),
+      eventId: z.string().optional(),
+      subscriptionId: z.string().optional(),
+      attempts: z.array(z.lazy(() => Attempt$inboundSchema)).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "_links": "links",
+      });
+    })
+  );
 
 export function webhookFromJSON(
   jsonString: string,

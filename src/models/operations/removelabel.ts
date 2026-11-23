@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type RemoveLabelRequest = {
   /**
@@ -21,9 +22,11 @@ export const RemoveLabelRequest$outboundSchema: z.ZodType<
   RemoveLabelRequest$Outbound,
   z.ZodTypeDef,
   RemoveLabelRequest
-> = z.object({
-  id: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+  })
+);
 
 export function removeLabelRequestToJSON(
   removeLabelRequest: RemoveLabelRequest,

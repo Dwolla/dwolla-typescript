@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import { DwollaError } from "./dwollaerror.js";
@@ -84,50 +84,56 @@ export const CreateCustomerExchangeResponseBodyError2$inboundSchema: z.ZodType<
   CreateCustomerExchangeResponseBodyError2,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  request$: z.instanceof(Request),
-  response$: z.instanceof(Response),
-  body$: z.string(),
-})
-  .transform((v) => {
-    return new CreateCustomerExchangeResponseBodyError2(v, {
-      request: v.request$,
-      response: v.response$,
-      body: v.body$,
-    });
-  });
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string().optional(),
+    message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
+  })
+    .transform((v) => {
+      return new CreateCustomerExchangeResponseBodyError2(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
+    })
+);
 
 /** @internal */
 export const CreateCustomerExchangeResponseBodyError1$inboundSchema: z.ZodType<
   CreateCustomerExchangeResponseBodyError1,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-  request$: z.instanceof(Request),
-  response$: z.instanceof(Response),
-  body$: z.string(),
-})
-  .transform((v) => {
-    return new CreateCustomerExchangeResponseBodyError1(v, {
-      request: v.request$,
-      response: v.response$,
-      body: v.body$,
-    });
-  });
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string().optional(),
+    message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
+  })
+    .transform((v) => {
+      return new CreateCustomerExchangeResponseBodyError1(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
+    })
+);
 
 /** @internal */
 export const UnauthorizedDwollaV1HalJSON$inboundSchema: z.ZodType<
   UnauthorizedDwollaV1HalJSON,
   z.ZodTypeDef,
   unknown
-> = smartUnion([
-  z.lazy(() => CreateCustomerExchangeResponseBodyError1$inboundSchema),
-  z.lazy(() => CreateCustomerExchangeResponseBodyError2$inboundSchema),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    z.lazy(() => CreateCustomerExchangeResponseBodyError1$inboundSchema),
+    z.lazy(() => CreateCustomerExchangeResponseBodyError2$inboundSchema),
+  ])
+);
 
 export function unauthorizedDwollaV1HalJSONFromJSON(
   jsonString: string,
@@ -145,10 +151,12 @@ export const CreateCustomerExchangeBadRequestDwollaV1HalJSON$inboundSchema:
     CreateCustomerExchangeBadRequestDwollaV1HalJSON,
     z.ZodTypeDef,
     unknown
-  > = smartUnion([
-    InvalidExchangeTokenError$inboundSchema,
-    InvalidExchangeError$inboundSchema,
-  ]);
+  > = /* @__PURE__ */ lazySchema$(() =>
+    smartUnion([
+      InvalidExchangeTokenError$inboundSchema,
+      InvalidExchangeError$inboundSchema,
+    ])
+  );
 
 export function createCustomerExchangeBadRequestDwollaV1HalJSONFromJSON(
   jsonString: string,

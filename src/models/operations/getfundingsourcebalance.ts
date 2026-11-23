@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -122,9 +122,11 @@ export const GetFundingSourceBalanceRequest$outboundSchema: z.ZodType<
   GetFundingSourceBalanceRequest$Outbound,
   z.ZodTypeDef,
   GetFundingSourceBalanceRequest
-> = z.object({
-  id: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+  })
+);
 
 export function getFundingSourceBalanceRequestToJSON(
   getFundingSourceBalanceRequest: GetFundingSourceBalanceRequest,
@@ -141,15 +143,17 @@ export const GetFundingSourceBalanceSelf2$inboundSchema: z.ZodType<
   GetFundingSourceBalanceSelf2,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-  type: z.string().optional(),
-  "resource-type": z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "resource-type": "resourceType",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+    type: z.string().optional(),
+    "resource-type": z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "resource-type": "resourceType",
+    });
+  })
+);
 
 export function getFundingSourceBalanceSelf2FromJSON(
   jsonString: string,
@@ -166,15 +170,17 @@ export const FundingSource2$inboundSchema: z.ZodType<
   FundingSource2,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-  type: z.string().optional(),
-  "resource-type": z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "resource-type": "resourceType",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+    type: z.string().optional(),
+    "resource-type": z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "resource-type": "resourceType",
+    });
+  })
+);
 
 export function fundingSource2FromJSON(
   jsonString: string,
@@ -191,14 +197,16 @@ export const GetFundingSourceBalanceLinks2$inboundSchema: z.ZodType<
   GetFundingSourceBalanceLinks2,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  self: z.lazy(() => GetFundingSourceBalanceSelf2$inboundSchema).optional(),
-  "funding-source": z.lazy(() => FundingSource2$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "funding-source": "fundingSource",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    self: z.lazy(() => GetFundingSourceBalanceSelf2$inboundSchema).optional(),
+    "funding-source": z.lazy(() => FundingSource2$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "funding-source": "fundingSource",
+    });
+  })
+);
 
 export function getFundingSourceBalanceLinks2FromJSON(
   jsonString: string,
@@ -215,10 +223,12 @@ export const Available2$inboundSchema: z.ZodType<
   Available2,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  value: z.string().optional(),
-  currency: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    value: z.string().optional(),
+    currency: z.string().optional(),
+  })
+);
 
 export function available2FromJSON(
   jsonString: string,
@@ -235,14 +245,16 @@ export const SettlementAccountBalanceResponse$inboundSchema: z.ZodType<
   SettlementAccountBalanceResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.lazy(() => GetFundingSourceBalanceLinks2$inboundSchema),
-  available: z.lazy(() => Available2$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.lazy(() => GetFundingSourceBalanceLinks2$inboundSchema),
+    available: z.lazy(() => Available2$inboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function settlementAccountBalanceResponseFromJSON(
   jsonString: string,
@@ -259,15 +271,17 @@ export const GetFundingSourceBalanceSelf1$inboundSchema: z.ZodType<
   GetFundingSourceBalanceSelf1,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-  type: z.string().optional(),
-  "resource-type": z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "resource-type": "resourceType",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+    type: z.string().optional(),
+    "resource-type": z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "resource-type": "resourceType",
+    });
+  })
+);
 
 export function getFundingSourceBalanceSelf1FromJSON(
   jsonString: string,
@@ -284,15 +298,17 @@ export const FundingSource1$inboundSchema: z.ZodType<
   FundingSource1,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  href: z.string().optional(),
-  type: z.string().optional(),
-  "resource-type": z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "resource-type": "resourceType",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    href: z.string().optional(),
+    type: z.string().optional(),
+    "resource-type": z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "resource-type": "resourceType",
+    });
+  })
+);
 
 export function fundingSource1FromJSON(
   jsonString: string,
@@ -309,14 +325,16 @@ export const GetFundingSourceBalanceLinks1$inboundSchema: z.ZodType<
   GetFundingSourceBalanceLinks1,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  self: z.lazy(() => GetFundingSourceBalanceSelf1$inboundSchema).optional(),
-  "funding-source": z.lazy(() => FundingSource1$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "funding-source": "fundingSource",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    self: z.lazy(() => GetFundingSourceBalanceSelf1$inboundSchema).optional(),
+    "funding-source": z.lazy(() => FundingSource1$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "funding-source": "fundingSource",
+    });
+  })
+);
 
 export function getFundingSourceBalanceLinks1FromJSON(
   jsonString: string,
@@ -333,10 +351,12 @@ export const Available1$inboundSchema: z.ZodType<
   Available1,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  value: z.string().optional(),
-  currency: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    value: z.string().optional(),
+    currency: z.string().optional(),
+  })
+);
 
 export function available1FromJSON(
   jsonString: string,
@@ -350,10 +370,12 @@ export function available1FromJSON(
 
 /** @internal */
 export const Closing$inboundSchema: z.ZodType<Closing, z.ZodTypeDef, unknown> =
-  z.object({
-    value: z.string().optional(),
-    currency: z.string().optional(),
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      value: z.string().optional(),
+      currency: z.string().optional(),
+    })
+  );
 
 export function closingFromJSON(
   jsonString: string,
@@ -370,16 +392,18 @@ export const BankBalanceResponse$inboundSchema: z.ZodType<
   BankBalanceResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.lazy(() => GetFundingSourceBalanceLinks1$inboundSchema),
-  available: z.lazy(() => Available1$inboundSchema),
-  closing: z.lazy(() => Closing$inboundSchema),
-  lastUpdated: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.lazy(() => GetFundingSourceBalanceLinks1$inboundSchema),
+    available: z.lazy(() => Available1$inboundSchema),
+    closing: z.lazy(() => Closing$inboundSchema),
+    lastUpdated: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function bankBalanceResponseFromJSON(
   jsonString: string,
@@ -393,10 +417,12 @@ export function bankBalanceResponseFromJSON(
 
 /** @internal */
 export const Balance$inboundSchema: z.ZodType<Balance, z.ZodTypeDef, unknown> =
-  z.object({
-    value: z.string().optional(),
-    currency: z.string().optional(),
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      value: z.string().optional(),
+      currency: z.string().optional(),
+    })
+  );
 
 export function balanceFromJSON(
   jsonString: string,
@@ -409,11 +435,13 @@ export function balanceFromJSON(
 }
 
 /** @internal */
-export const Total$inboundSchema: z.ZodType<Total, z.ZodTypeDef, unknown> = z
-  .object({
-    value: z.string().optional(),
-    currency: z.string().optional(),
-  });
+export const Total$inboundSchema: z.ZodType<Total, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      value: z.string().optional(),
+      currency: z.string().optional(),
+    })
+  );
 
 export function totalFromJSON(
   jsonString: string,
@@ -430,16 +458,18 @@ export const DwollaBalanceResponse$inboundSchema: z.ZodType<
   DwollaBalanceResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.record(models.HalLink$inboundSchema),
-  balance: z.lazy(() => Balance$inboundSchema),
-  total: z.lazy(() => Total$inboundSchema),
-  lastUpdated: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.record(models.HalLink$inboundSchema),
+    balance: z.lazy(() => Balance$inboundSchema),
+    total: z.lazy(() => Total$inboundSchema),
+    lastUpdated: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function dwollaBalanceResponseFromJSON(
   jsonString: string,
@@ -456,11 +486,13 @@ export const GetFundingSourceBalanceResponse$inboundSchema: z.ZodType<
   GetFundingSourceBalanceResponse,
   z.ZodTypeDef,
   unknown
-> = smartUnion([
-  z.lazy(() => DwollaBalanceResponse$inboundSchema),
-  z.lazy(() => BankBalanceResponse$inboundSchema),
-  z.lazy(() => SettlementAccountBalanceResponse$inboundSchema),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    z.lazy(() => DwollaBalanceResponse$inboundSchema),
+    z.lazy(() => BankBalanceResponse$inboundSchema),
+    z.lazy(() => SettlementAccountBalanceResponse$inboundSchema),
+  ])
+);
 
 export function getFundingSourceBalanceResponseFromJSON(
   jsonString: string,

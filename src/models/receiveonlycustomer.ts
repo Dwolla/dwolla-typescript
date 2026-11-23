@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../lib/schemas.js";
 import { ClosedEnum } from "../types/enums.js";
 import { Result as SafeParseResult } from "../types/fp.js";
 import { SDKValidationError } from "./errors/sdkvalidationerror.js";
@@ -45,34 +45,36 @@ export type ReceiveOnlyCustomer = {
 /** @internal */
 export const ReceiveOnlyCustomerType$inboundSchema: z.ZodNativeEnum<
   typeof ReceiveOnlyCustomerType
-> = z.nativeEnum(ReceiveOnlyCustomerType);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(ReceiveOnlyCustomerType));
 
 /** @internal */
 export const ReceiveOnlyCustomerStatus$inboundSchema: z.ZodNativeEnum<
   typeof ReceiveOnlyCustomerStatus
-> = z.nativeEnum(ReceiveOnlyCustomerStatus);
+> = /* @__PURE__ */ lazySchema$(() => z.nativeEnum(ReceiveOnlyCustomerStatus));
 
 /** @internal */
 export const ReceiveOnlyCustomer$inboundSchema: z.ZodType<
   ReceiveOnlyCustomer,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _links: z.record(HalLink$inboundSchema),
-  id: z.string(),
-  firstName: z.string(),
-  lastName: z.string(),
-  email: z.string(),
-  correlationId: z.string().optional(),
-  created: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  type: ReceiveOnlyCustomerType$inboundSchema,
-  status: ReceiveOnlyCustomerStatus$inboundSchema,
-  businessName: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "_links": "links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _links: z.record(HalLink$inboundSchema),
+    id: z.string(),
+    firstName: z.string(),
+    lastName: z.string(),
+    email: z.string(),
+    correlationId: z.string().optional(),
+    created: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    type: ReceiveOnlyCustomerType$inboundSchema,
+    status: ReceiveOnlyCustomerStatus$inboundSchema,
+    businessName: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "_links": "links",
+    });
+  })
+);
 
 export function receiveOnlyCustomerFromJSON(
   jsonString: string,

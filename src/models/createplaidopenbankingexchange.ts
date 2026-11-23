@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../lib/schemas.js";
 
 export type CreatePlaidOpenBankingExchangeExchangePartner = {
   href: string;
@@ -36,9 +37,11 @@ export const CreatePlaidOpenBankingExchangeExchangePartner$outboundSchema:
     CreatePlaidOpenBankingExchangeExchangePartner$Outbound,
     z.ZodTypeDef,
     CreatePlaidOpenBankingExchangeExchangePartner
-  > = z.object({
-    href: z.string(),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      href: z.string(),
+    })
+  );
 
 export function createPlaidOpenBankingExchangeExchangePartnerToJSON(
   createPlaidOpenBankingExchangeExchangePartner:
@@ -61,15 +64,17 @@ export const CreatePlaidOpenBankingExchangeLinks$outboundSchema: z.ZodType<
   CreatePlaidOpenBankingExchangeLinks$Outbound,
   z.ZodTypeDef,
   CreatePlaidOpenBankingExchangeLinks
-> = z.object({
-  exchangePartner: z.lazy(() =>
-    CreatePlaidOpenBankingExchangeExchangePartner$outboundSchema
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    exchangePartner: "exchange-partner",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    exchangePartner: z.lazy(() =>
+      CreatePlaidOpenBankingExchangeExchangePartner$outboundSchema
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      exchangePartner: "exchange-partner",
+    });
+  })
+);
 
 export function createPlaidOpenBankingExchangeLinksToJSON(
   createPlaidOpenBankingExchangeLinks: CreatePlaidOpenBankingExchangeLinks,
@@ -91,9 +96,11 @@ export const Plaid$outboundSchema: z.ZodType<
   Plaid$Outbound,
   z.ZodTypeDef,
   Plaid
-> = z.object({
-  publicToken: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    publicToken: z.string(),
+  })
+);
 
 export function plaidToJSON(plaid: Plaid): string {
   return JSON.stringify(Plaid$outboundSchema.parse(plaid));
@@ -110,14 +117,16 @@ export const CreatePlaidOpenBankingExchange$outboundSchema: z.ZodType<
   CreatePlaidOpenBankingExchange$Outbound,
   z.ZodTypeDef,
   CreatePlaidOpenBankingExchange
-> = z.object({
-  links: z.lazy(() => CreatePlaidOpenBankingExchangeLinks$outboundSchema),
-  plaid: z.lazy(() => Plaid$outboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    links: "_links",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    links: z.lazy(() => CreatePlaidOpenBankingExchangeLinks$outboundSchema),
+    plaid: z.lazy(() => Plaid$outboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      links: "_links",
+    });
+  })
+);
 
 export function createPlaidOpenBankingExchangeToJSON(
   createPlaidOpenBankingExchange: CreatePlaidOpenBankingExchange,

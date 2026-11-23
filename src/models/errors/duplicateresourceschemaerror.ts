@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as models from "../index.js";
 import { DwollaError } from "./dwollaerror.js";
 
@@ -39,23 +40,25 @@ export const DuplicateResourceSchemaError$inboundSchema: z.ZodType<
   DuplicateResourceSchemaError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: z.string(),
-  message: z.string(),
-  _links: z.lazy(() => models.DuplicateResourceSchemaLinks$inboundSchema)
-    .optional(),
-  request$: z.instanceof(Request),
-  response$: z.instanceof(Response),
-  body$: z.string(),
-})
-  .transform((v) => {
-    const remapped = remap$(v, {
-      "_links": "links",
-    });
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.string(),
+    message: z.string(),
+    _links: z.lazy(() => models.DuplicateResourceSchemaLinks$inboundSchema)
+      .optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
+  })
+    .transform((v) => {
+      const remapped = remap$(v, {
+        "_links": "links",
+      });
 
-    return new DuplicateResourceSchemaError(remapped, {
-      request: v.request$,
-      response: v.response$,
-      body: v.body$,
-    });
-  });
+      return new DuplicateResourceSchemaError(remapped, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
+    })
+);
